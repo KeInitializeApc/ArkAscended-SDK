@@ -19,12 +19,12 @@ namespace SDK
 struct FLiveLinkTransformControllerData
 {
 public:
-	bool                                         bWorldTransform;                                   // 0x0(0x1)(Edit, BlueprintVisible, EditFixedSize, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bUseLocation;                                      // 0x1(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bUseRotation;                                      // 0x2(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bUseScale;                                         // 0x3(0x1)(Edit, BlueprintReadOnly, Net, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bSweep;                                            // 0x4(0x1)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Config, EditConst, SubobjectReference)
-	bool                                         bTeleport;                                         // 0x5(0x1)(Edit, Net, EditFixedSize, Parm, ReturnParm, Config, EditConst, SubobjectReference)
+	bool                                         bWorldTransform;                                   // 0x0(0x1)(ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bUseLocation;                                      // 0x1(0x1)(Edit, ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bUseRotation;                                      // 0x2(0x1)(BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bUseScale;                                         // 0x3(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bSweep;                                            // 0x4(0x1)(Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
+	bool                                         bTeleport;                                         // 0x5(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
 };
 
 }

@@ -71,7 +71,7 @@ class ATrueSkySequenceActor* ATrueSkySequenceActor::GetDefaultObj()
 // Function TrueSkyPlugin.TrueSkySequenceActor.SetTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+// float                              Value                                                            (ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
 
 void ATrueSkySequenceActor::SetTime(float* Value)
 {
@@ -101,13 +101,13 @@ void ATrueSkySequenceActor::SetTime(float* Value)
 // (Final, Native, Public, HasDefaults, BlueprintCallable, Const)
 // Parameters:
 // int32                              ID                                                               (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// struct FLinearColor                LightColour                                                      (Edit, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
-// float                              Intensity                                                        (Edit, BlueprintVisible, Parm, ZeroConstructor, Config)
-// struct FVector                     Pos                                                              (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, EditConst, SubobjectReference)
-// float                              MinRadius                                                        (BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// float                              MaxRadius                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FLinearColor                LightColour                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, Config, InstancedReference, SubobjectReference)
+// float                              Intensity                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Config)
+// struct FVector                     Pos                                                              (BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// float                              MinRadius                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              MaxRadius                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-float ATrueSkySequenceActor::SetPointLightSource(int32* ID, float Intensity, float* MaxRadius)
+float ATrueSkySequenceActor::SetPointLightSource(int32* ID, float Intensity, const struct FVector& Pos, float* MinRadius)
 {
 	static class UFunction* Func = nullptr;
 
@@ -117,6 +117,7 @@ float ATrueSkySequenceActor::SetPointLightSource(int32* ID, float Intensity, flo
 	Params::ATrueSkySequenceActor_SetPointLightSource_Params Parms{};
 
 	Parms.Intensity = Intensity;
+	Parms.Pos = Pos;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -129,8 +130,8 @@ float ATrueSkySequenceActor::SetPointLightSource(int32* ID, float Intensity, flo
 	if (ID != nullptr)
 		*ID = Parms.ID;
 
-	if (MaxRadius != nullptr)
-		*MaxRadius = Parms.MaxRadius;
+	if (MinRadius != nullptr)
+		*MinRadius = Parms.MinRadius;
 
 	return Parms.ReturnValue;
 
@@ -140,9 +141,9 @@ float ATrueSkySequenceActor::SetPointLightSource(int32* ID, float Intensity, flo
 // Function TrueSkyPlugin.TrueSkySequenceActor.SetPointLight
 // (Final, Native, Public, BlueprintCallable, Const)
 // Parameters:
-// class APointLight*                 Source                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config)
+// class APointLight*                 Source                                                           (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config)
 
-void ATrueSkySequenceActor::SetPointLight(class APointLight** Source)
+class APointLight* ATrueSkySequenceActor::SetPointLight()
 {
 	static class UFunction* Func = nullptr;
 
@@ -160,8 +161,7 @@ void ATrueSkySequenceActor::SetPointLight(class APointLight** Source)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Source != nullptr)
-		*Source = Parms.Source;
+	return Parms.ReturnValue;
 
 }
 
@@ -169,9 +169,9 @@ void ATrueSkySequenceActor::SetPointLight(class APointLight** Source)
 // Function TrueSkyPlugin.TrueSkySequenceActor.SetKeyframeInt
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              KeyframeUid                                                      (ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// int32                              KeyframeUid                                                      (ExportObject, BlueprintReadOnly, ReturnParm, Config, InstancedReference, SubobjectReference)
 // class FString                      Name                                                             (ConstParm, Net, OutParm)
-// int32                              Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+// int32                              Value                                                            (ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
 
 int32 ATrueSkySequenceActor::SetKeyframeInt(class FString* Name, int32* Value)
 {
@@ -205,9 +205,9 @@ int32 ATrueSkySequenceActor::SetKeyframeInt(class FString* Name, int32* Value)
 // Function TrueSkyPlugin.TrueSkySequenceActor.SetKeyframeFloat
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              KeyframeUid                                                      (ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// int32                              KeyframeUid                                                      (ExportObject, BlueprintReadOnly, ReturnParm, Config, InstancedReference, SubobjectReference)
 // class FString                      Name                                                             (ConstParm, Net, OutParm)
-// float                              Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+// float                              Value                                                            (ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
 
 int32 ATrueSkySequenceActor::SetKeyframeFloat(class FString* Name, float* Value)
 {
@@ -242,7 +242,7 @@ int32 ATrueSkySequenceActor::SetKeyframeFloat(class FString* Name, float* Value)
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // class FString                      Name                                                             (ConstParm, Net, OutParm)
-// int32                              Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+// int32                              Value                                                            (ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
 
 void ATrueSkySequenceActor::SetInt(class FString* Name, int32* Value)
 {
@@ -275,7 +275,7 @@ void ATrueSkySequenceActor::SetInt(class FString* Name, int32* Value)
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // class FString                      Name                                                             (ConstParm, Net, OutParm)
-// float                              Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+// float                              Value                                                            (ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
 
 void ATrueSkySequenceActor::SetFloat(class FString* Name, float* Value)
 {
@@ -307,9 +307,9 @@ void ATrueSkySequenceActor::SetFloat(class FString* Name, float* Value)
 // Function TrueSkyPlugin.TrueSkySequenceActor.GetSunRotation
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRotator                    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRotator                    ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void ATrueSkySequenceActor::GetSunRotation(const struct FRotator& ReturnValue)
+struct FRotator ATrueSkySequenceActor::GetSunRotation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -318,7 +318,6 @@ void ATrueSkySequenceActor::GetSunRotation(const struct FRotator& ReturnValue)
 
 	Params::ATrueSkySequenceActor_GetSunRotation_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -328,15 +327,17 @@ void ATrueSkySequenceActor::GetSunRotation(const struct FRotator& ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function TrueSkyPlugin.TrueSkySequenceActor.GetSunColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FLinearColor                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FLinearColor                ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void ATrueSkySequenceActor::GetSunColor(const struct FLinearColor& ReturnValue)
+struct FLinearColor ATrueSkySequenceActor::GetSunColor()
 {
 	static class UFunction* Func = nullptr;
 
@@ -345,7 +346,6 @@ void ATrueSkySequenceActor::GetSunColor(const struct FLinearColor& ReturnValue)
 
 	Params::ATrueSkySequenceActor_GetSunColor_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -355,15 +355,17 @@ void ATrueSkySequenceActor::GetSunColor(const struct FLinearColor& ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function TrueSkyPlugin.TrueSkySequenceActor.GetNextModifiableSkyKeyframe
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void ATrueSkySequenceActor::GetNextModifiableSkyKeyframe(int32 ReturnValue)
+int32 ATrueSkySequenceActor::GetNextModifiableSkyKeyframe()
 {
 	static class UFunction* Func = nullptr;
 
@@ -372,7 +374,6 @@ void ATrueSkySequenceActor::GetNextModifiableSkyKeyframe(int32 ReturnValue)
 
 	Params::ATrueSkySequenceActor_GetNextModifiableSkyKeyframe_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -382,16 +383,18 @@ void ATrueSkySequenceActor::GetNextModifiableSkyKeyframe(int32 ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function TrueSkyPlugin.TrueSkySequenceActor.GetNextModifiableCloudKeyframe
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              Layer                                                            (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              Layer                                                            (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 ATrueSkySequenceActor::GetNextModifiableCloudKeyframe(int32 ReturnValue)
+int32 ATrueSkySequenceActor::GetNextModifiableCloudKeyframe()
 {
 	static class UFunction* Func = nullptr;
 
@@ -400,7 +403,6 @@ int32 ATrueSkySequenceActor::GetNextModifiableCloudKeyframe(int32 ReturnValue)
 
 	Params::ATrueSkySequenceActor_GetNextModifiableCloudKeyframe_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -418,11 +420,11 @@ int32 ATrueSkySequenceActor::GetNextModifiableCloudKeyframe(int32 ReturnValue)
 // Function TrueSkyPlugin.TrueSkySequenceActor.GetKeyframeInt
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              KeyframeUid                                                      (ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// int32                              KeyframeUid                                                      (ExportObject, BlueprintReadOnly, ReturnParm, Config, InstancedReference, SubobjectReference)
 // class FString                      Name                                                             (ConstParm, Net, OutParm)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 ATrueSkySequenceActor::GetKeyframeInt(class FString* Name, int32 ReturnValue)
+int32 ATrueSkySequenceActor::GetKeyframeInt(class FString* Name)
 {
 	static class UFunction* Func = nullptr;
 
@@ -431,7 +433,6 @@ int32 ATrueSkySequenceActor::GetKeyframeInt(class FString* Name, int32 ReturnVal
 
 	Params::ATrueSkySequenceActor_GetKeyframeInt_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -452,11 +453,11 @@ int32 ATrueSkySequenceActor::GetKeyframeInt(class FString* Name, int32 ReturnVal
 // Function TrueSkyPlugin.TrueSkySequenceActor.GetKeyframeFloat
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              KeyframeUid                                                      (ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// int32                              KeyframeUid                                                      (ExportObject, BlueprintReadOnly, ReturnParm, Config, InstancedReference, SubobjectReference)
 // class FString                      Name                                                             (ConstParm, Net, OutParm)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 ATrueSkySequenceActor::GetKeyframeFloat(class FString* Name, float ReturnValue)
+float ATrueSkySequenceActor::GetKeyframeFloat(class FString* Name)
 {
 	static class UFunction* Func = nullptr;
 
@@ -465,7 +466,6 @@ int32 ATrueSkySequenceActor::GetKeyframeFloat(class FString* Name, float ReturnV
 
 	Params::ATrueSkySequenceActor_GetKeyframeFloat_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -487,9 +487,9 @@ int32 ATrueSkySequenceActor::GetKeyframeFloat(class FString* Name, float ReturnV
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // class FString                      Name                                                             (ConstParm, Net, OutParm)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void ATrueSkySequenceActor::GetInt(class FString* Name, int32 ReturnValue)
+int32 ATrueSkySequenceActor::GetInt(class FString* Name)
 {
 	static class UFunction* Func = nullptr;
 
@@ -498,7 +498,6 @@ void ATrueSkySequenceActor::GetInt(class FString* Name, int32 ReturnValue)
 
 	Params::ATrueSkySequenceActor_GetInt_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -510,6 +509,8 @@ void ATrueSkySequenceActor::GetInt(class FString* Name, int32 ReturnValue)
 
 	if (Name != nullptr)
 		*Name = std::move(Parms.Name);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -518,9 +519,9 @@ void ATrueSkySequenceActor::GetInt(class FString* Name, int32 ReturnValue)
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // class FString                      Name                                                             (ConstParm, Net, OutParm)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void ATrueSkySequenceActor::GetFloat(class FString* Name, float ReturnValue)
+float ATrueSkySequenceActor::GetFloat(class FString* Name)
 {
 	static class UFunction* Func = nullptr;
 
@@ -529,7 +530,6 @@ void ATrueSkySequenceActor::GetFloat(class FString* Name, float ReturnValue)
 
 	Params::ATrueSkySequenceActor_GetFloat_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -541,6 +541,8 @@ void ATrueSkySequenceActor::GetFloat(class FString* Name, float ReturnValue)
 
 	if (Name != nullptr)
 		*Name = std::move(Parms.Name);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -572,11 +574,11 @@ void ATrueSkySequenceActor::ForceUpdate()
 // Function TrueSkyPlugin.TrueSkySequenceActor.CloudPointTest
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              QueryID                                                          (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FVector                     Pos                                                              (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, EditConst, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              QueryID                                                          (Edit, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FVector                     Pos                                                              (BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FVector ATrueSkySequenceActor::CloudPointTest(int32* QueryID, float ReturnValue)
+float ATrueSkySequenceActor::CloudPointTest(int32 QueryID, const struct FVector& Pos)
 {
 	static class UFunction* Func = nullptr;
 
@@ -585,7 +587,8 @@ struct FVector ATrueSkySequenceActor::CloudPointTest(int32* QueryID, float Retur
 
 	Params::ATrueSkySequenceActor_CloudPointTest_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.QueryID = QueryID;
+	Parms.Pos = Pos;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -594,9 +597,6 @@ struct FVector ATrueSkySequenceActor::CloudPointTest(int32* QueryID, float Retur
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (QueryID != nullptr)
-		*QueryID = Parms.QueryID;
 
 	return Parms.ReturnValue;
 
@@ -606,12 +606,12 @@ struct FVector ATrueSkySequenceActor::CloudPointTest(int32* QueryID, float Retur
 // Function TrueSkyPlugin.TrueSkySequenceActor.CloudLineTest
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              QueryID                                                          (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FVector                     StartPos                                                         (Edit, Net, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// struct FVector                     EndPos                                                           (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              QueryID                                                          (Edit, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FVector                     StartPos                                                         (Edit, ConstParm, ExportObject, Parm, ReturnParm, Config, InstancedReference, SubobjectReference)
+// struct FVector                     EndPos                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FVector ATrueSkySequenceActor::CloudLineTest(int32* QueryID, const struct FVector& EndPos, float ReturnValue)
+float ATrueSkySequenceActor::CloudLineTest(int32 QueryID)
 {
 	static class UFunction* Func = nullptr;
 
@@ -620,8 +620,7 @@ struct FVector ATrueSkySequenceActor::CloudLineTest(int32* QueryID, const struct
 
 	Params::ATrueSkySequenceActor_CloudLineTest_Params Parms{};
 
-	Parms.EndPos = EndPos;
-	Parms.ReturnValue = ReturnValue;
+	Parms.QueryID = QueryID;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -630,9 +629,6 @@ struct FVector ATrueSkySequenceActor::CloudLineTest(int32* QueryID, const struct
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (QueryID != nullptr)
-		*QueryID = Parms.QueryID;
 
 	return Parms.ReturnValue;
 

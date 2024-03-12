@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0xEE0 - 0xEE0)
+// 0x0 (0xEF0 - 0xEF0)
 // BlueprintGeneratedClass PrimalItemArmor_TransparentRiotShield.PrimalItemArmor_TransparentRiotShield_C
 class UPrimalItemArmor_TransparentRiotShield_C : public UPrimalItemArmor_Shield_C
 {

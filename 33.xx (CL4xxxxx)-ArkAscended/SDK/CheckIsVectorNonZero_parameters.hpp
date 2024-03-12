@@ -18,7 +18,7 @@ namespace Params
 struct UCheckIsVectorNonZero_C_ReceiveExecute_Params
 {
 public:
-	class AActor*                                OwnerActor;                                        // 0x0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class AActor*                                OwnerActor;                                        // 0x0(0x8)(ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x31 (0x31 - 0x0)
@@ -26,12 +26,12 @@ public:
 struct UCheckIsVectorNonZero_C_ExecuteUbergraph_CheckIsVectorNonZero_Params
 {
 public:
-	int32                                        EntryPoint;                                        // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_299B[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FVector                               CallFunc_GetBlackboardValueAsVector_ReturnValue;   // 0x8(0x18)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-	class AActor*                                K2Node_Event_OwnerActor;                           // 0x20(0x8)(Edit, ConstParm, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-	double                                       CallFunc_VSize_ReturnValue;                        // 0x28(0x8)(ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-	bool                                         CallFunc_Greater_DoubleDouble_ReturnValue;         // 0x30(0x1)(ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+	int32                                        EntryPoint;                                        // 0x0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_3505[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               CallFunc_GetBlackboardValueAsVector_ReturnValue;   // 0x8(0x18)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	class AActor*                                K2Node_Event_OwnerActor;                           // 0x20(0x8)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, SubobjectReference)
+	double                                       CallFunc_VSize_ReturnValue;                        // 0x28(0x8)(Edit, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+	bool                                         CallFunc_Greater_DoubleDouble_ReturnValue;         // 0x30(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
 };
 
 }

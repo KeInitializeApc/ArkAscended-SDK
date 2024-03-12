@@ -43,9 +43,9 @@ class UASAUI_NewsCarousel_C* UASAUI_NewsCarousel_C::GetDefaultObj()
 // Function ASAUI_NewsCarousel.ASAUI_NewsCarousel_C.GetColorAndOpacity
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent, BlueprintPure)
 // Parameters:
-// struct FLinearColor                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FLinearColor                ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UASAUI_NewsCarousel_C::GetColorAndOpacity(const struct FLinearColor& ReturnValue)
+struct FLinearColor UASAUI_NewsCarousel_C::GetColorAndOpacity()
 {
 	static class UFunction* Func = nullptr;
 
@@ -54,9 +54,10 @@ void UASAUI_NewsCarousel_C::GetColorAndOpacity(const struct FLinearColor& Return
 
 	Params::UASAUI_NewsCarousel_C_GetColorAndOpacity_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -64,9 +65,9 @@ void UASAUI_NewsCarousel_C::GetColorAndOpacity(const struct FLinearColor& Return
 // Function ASAUI_NewsCarousel.ASAUI_NewsCarousel_C.PreConstruct
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// bool                               IsDesignTime                                                     (Edit, ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+// bool                               IsDesignTime                                                     (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 
-void UASAUI_NewsCarousel_C::PreConstruct(bool* IsDesignTime)
+bool UASAUI_NewsCarousel_C::PreConstruct()
 {
 	static class UFunction* Func = nullptr;
 
@@ -78,8 +79,7 @@ void UASAUI_NewsCarousel_C::PreConstruct(bool* IsDesignTime)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (IsDesignTime != nullptr)
-		*IsDesignTime = Parms.IsDesignTime;
+	return Parms.ReturnValue;
 
 }
 
@@ -105,10 +105,10 @@ void UASAUI_NewsCarousel_C::Construct()
 // Function ASAUI_NewsCarousel.ASAUI_NewsCarousel_C.DoClickAction
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// class FString                      ActionKey                                                        (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// class FString                      ActionValue                                                      (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FString                      ActionKey                                                        (ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class FString                      ActionValue                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
 
-class FString UASAUI_NewsCarousel_C::DoClickAction(const class FString& ActionValue)
+void UASAUI_NewsCarousel_C::DoClickAction(class FString* ActionKey, const class FString& ActionValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -121,7 +121,8 @@ class FString UASAUI_NewsCarousel_C::DoClickAction(const class FString& ActionVa
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (ActionKey != nullptr)
+		*ActionKey = std::move(Parms.ActionKey);
 
 }
 
@@ -129,15 +130,15 @@ class FString UASAUI_NewsCarousel_C::DoClickAction(const class FString& ActionVa
 // Function ASAUI_NewsCarousel.ASAUI_NewsCarousel_C.ExecuteUbergraph_ASAUI_NewsCarousel
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-// class FString                      K2Node_Event_ActionKey                                           (Edit, Net, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// class FString                      K2Node_Event_ActionValue                                         (Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// int64                              CallFunc_Conv_StringToInt64_ReturnValue                          (ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_EqualEqual_StriStri_ReturnValue                         (BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// class UMaterialInstanceDynamic*    CallFunc_CreateDynamicMaterialInstance_ReturnValue               (BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, SubobjectReference)
-// bool                               K2Node_Event_IsDesignTime                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Config, GlobalConfig, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
+// class FString                      K2Node_Event_ActionKey                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      K2Node_Event_ActionValue                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int64                              CallFunc_Conv_StringToInt64_ReturnValue                          (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_EqualEqual_StriStri_ReturnValue                         (Edit, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// class UMaterialInstanceDynamic*    CallFunc_CreateDynamicMaterialInstance_ReturnValue               (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               K2Node_Event_IsDesignTime                                        (BlueprintVisible, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-bool UASAUI_NewsCarousel_C::ExecuteUbergraph_ASAUI_NewsCarousel(class UMaterialInstanceDynamic** CallFunc_CreateDynamicMaterialInstance_ReturnValue)
+bool UASAUI_NewsCarousel_C::ExecuteUbergraph_ASAUI_NewsCarousel(int32* EntryPoint, bool CallFunc_EqualEqual_StriStri_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -146,11 +147,12 @@ bool UASAUI_NewsCarousel_C::ExecuteUbergraph_ASAUI_NewsCarousel(class UMaterialI
 
 	Params::UASAUI_NewsCarousel_C_ExecuteUbergraph_ASAUI_NewsCarousel_Params Parms{};
 
+	Parms.CallFunc_EqualEqual_StriStri_ReturnValue = CallFunc_EqualEqual_StriStri_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_CreateDynamicMaterialInstance_ReturnValue != nullptr)
-		*CallFunc_CreateDynamicMaterialInstance_ReturnValue = Parms.CallFunc_CreateDynamicMaterialInstance_ReturnValue;
+	if (EntryPoint != nullptr)
+		*EntryPoint = Parms.EntryPoint;
 
 	return Parms.ReturnValue;
 
@@ -160,7 +162,7 @@ bool UASAUI_NewsCarousel_C::ExecuteUbergraph_ASAUI_NewsCarousel(class UMaterialI
 // Function ASAUI_NewsCarousel.ASAUI_NewsCarousel_C.OnModDeeplinkClicked__DelegateSignature
 // (Public, Delegate, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int64                              ModIDRequested                                                   (ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
+// int64                              ModIDRequested                                                   (ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 int64 UASAUI_NewsCarousel_C::OnModDeeplinkClicked__DelegateSignature()
 {

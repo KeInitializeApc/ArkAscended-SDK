@@ -14,10 +14,10 @@ namespace SDK
 class UMoviePlayerSettings : public UObject
 {
 public:
-	bool                                         bWaitForMoviesToComplete;                          // 0x28(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnInstance, SubobjectReference)
-	bool                                         bMoviesAreSkippable;                               // 0x29(0x1)(Edit, ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
-	uint8                                        Pad_110F[0x6];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<class FString>                        StartupMovies;                                     // 0x30(0x10)(Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bWaitForMoviesToComplete;                          // 0x28(0x1)(ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference)
+	bool                                         bMoviesAreSkippable;                               // 0x29(0x1)(Edit, BlueprintVisible, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, EditConst, InstancedReference)
+	uint8                                        Pad_25ED[0x6];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<class FString>                        StartupMovies;                                     // 0x30(0x10)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UMoviePlayerSettings* GetDefaultObj();

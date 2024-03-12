@@ -43,13 +43,13 @@ class ABuff_BeltTorch_C* ABuff_BeltTorch_C::GetDefaultObj()
 // Function Buff_BeltTorch.Buff_BeltTorch_C.ActivateVFX
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class APawn*                       CallFunc_GetInstigator_ReturnValue                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, SubobjectReference)
-// class AShooterCharacter*           K2Node_DynamicCast_AsShooter_Character                           (Edit, ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_IsLocallyControlledByPlayer_ReturnValue                 (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, SubobjectReference)
-// bool                               CallFunc_K2_AttachToComponent_ReturnValue                        (ConstParm, ExportObject, Parm, ZeroConstructor, Transient, SubobjectReference)
+// class APawn*                       CallFunc_GetInstigator_ReturnValue                               (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// class AShooterCharacter*           K2Node_DynamicCast_AsShooter_Character                           (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, SubobjectReference)
+// bool                               CallFunc_IsLocallyControlledByPlayer_ReturnValue                 (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_K2_AttachToComponent_ReturnValue                        (BlueprintVisible, Net, Config, DisableEditOnInstance, SubobjectReference)
 
-bool ABuff_BeltTorch_C::ActivateVFX(bool CallFunc_K2_AttachToComponent_ReturnValue)
+void ABuff_BeltTorch_C::ActivateVFX(class APawn* CallFunc_GetInstigator_ReturnValue, class AShooterCharacter* K2Node_DynamicCast_AsShooter_Character, bool* K2Node_DynamicCast_bSuccess, bool* CallFunc_IsLocallyControlledByPlayer_ReturnValue, bool CallFunc_K2_AttachToComponent_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -58,11 +58,17 @@ bool ABuff_BeltTorch_C::ActivateVFX(bool CallFunc_K2_AttachToComponent_ReturnVal
 
 	Params::ABuff_BeltTorch_C_ActivateVFX_Params Parms{};
 
+	Parms.CallFunc_GetInstigator_ReturnValue = CallFunc_GetInstigator_ReturnValue;
+	Parms.K2Node_DynamicCast_AsShooter_Character = K2Node_DynamicCast_AsShooter_Character;
 	Parms.CallFunc_K2_AttachToComponent_ReturnValue = CallFunc_K2_AttachToComponent_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (K2Node_DynamicCast_bSuccess != nullptr)
+		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
+
+	if (CallFunc_IsLocallyControlledByPlayer_ReturnValue != nullptr)
+		*CallFunc_IsLocallyControlledByPlayer_ReturnValue = Parms.CallFunc_IsLocallyControlledByPlayer_ReturnValue;
 
 }
 
@@ -70,16 +76,16 @@ bool ABuff_BeltTorch_C::ActivateVFX(bool CallFunc_K2_AttachToComponent_ReturnVal
 // Function Buff_BeltTorch.Buff_BeltTorch_C.UpdateTorchType
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               FPV                                                              (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Transient, SubobjectReference)
-// class APawn*                       CallFunc_GetInstigator_ReturnValue                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, SubobjectReference)
-// struct FVector                     CallFunc_GetActorEyesViewPoint_OutLocation                       (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, SubobjectReference)
-// struct FRotator                    CallFunc_GetActorEyesViewPoint_OutRotation                       (ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, SubobjectReference)
-// struct FVector                     CallFunc_GreaterGreater_VectorRotator_ReturnValue                (BlueprintVisible, ExportObject, ReturnParm, Transient, SubobjectReference)
-// struct FVector                     CallFunc_Add_VectorVector_ReturnValue                            (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, SubobjectReference)
-// struct FTransform                  CallFunc_MakeTransform_ReturnValue                               (BlueprintVisible, Net, Parm, ReturnParm, Transient, SubobjectReference)
-// struct FHitResult                  CallFunc_K2_SetWorldTransform_SweepHitResult                     (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, SubobjectReference)
+// bool                               FPV                                                              (ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Config, DisableEditOnInstance, SubobjectReference)
+// class APawn*                       CallFunc_GetInstigator_ReturnValue                               (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// struct FVector                     CallFunc_GetActorEyesViewPoint_OutLocation                       (ExportObject, Net, Parm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// struct FRotator                    CallFunc_GetActorEyesViewPoint_OutRotation                       (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, SubobjectReference)
+// struct FVector                     CallFunc_GreaterGreater_VectorRotator_ReturnValue                (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, Config, DisableEditOnInstance, SubobjectReference)
+// struct FVector                     CallFunc_Add_VectorVector_ReturnValue                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, SubobjectReference)
+// struct FTransform                  CallFunc_MakeTransform_ReturnValue                               (Edit, ExportObject, BlueprintReadOnly, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// struct FHitResult                  CallFunc_K2_SetWorldTransform_SweepHitResult                     (ExportObject, Net, EditFixedSize, OutParm, Config, DisableEditOnInstance, SubobjectReference)
 
-struct FTransform ABuff_BeltTorch_C::UpdateTorchType(bool* FPV, struct FHitResult* CallFunc_K2_SetWorldTransform_SweepHitResult)
+struct FVector ABuff_BeltTorch_C::UpdateTorchType(bool* FPV, class APawn* CallFunc_GetInstigator_ReturnValue, const struct FVector& CallFunc_GetActorEyesViewPoint_OutLocation, struct FVector* CallFunc_GreaterGreater_VectorRotator_ReturnValue, const struct FTransform& CallFunc_MakeTransform_ReturnValue, struct FHitResult* CallFunc_K2_SetWorldTransform_SweepHitResult)
 {
 	static class UFunction* Func = nullptr;
 
@@ -88,11 +94,17 @@ struct FTransform ABuff_BeltTorch_C::UpdateTorchType(bool* FPV, struct FHitResul
 
 	Params::ABuff_BeltTorch_C_UpdateTorchType_Params Parms{};
 
+	Parms.CallFunc_GetInstigator_ReturnValue = CallFunc_GetInstigator_ReturnValue;
+	Parms.CallFunc_GetActorEyesViewPoint_OutLocation = CallFunc_GetActorEyesViewPoint_OutLocation;
+	Parms.CallFunc_MakeTransform_ReturnValue = CallFunc_MakeTransform_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
 	if (FPV != nullptr)
 		*FPV = Parms.FPV;
+
+	if (CallFunc_GreaterGreater_VectorRotator_ReturnValue != nullptr)
+		*CallFunc_GreaterGreater_VectorRotator_ReturnValue = std::move(Parms.CallFunc_GreaterGreater_VectorRotator_ReturnValue);
 
 	if (CallFunc_K2_SetWorldTransform_SweepHitResult != nullptr)
 		*CallFunc_K2_SetWorldTransform_SweepHitResult = std::move(Parms.CallFunc_K2_SetWorldTransform_SweepHitResult);
@@ -105,11 +117,11 @@ struct FTransform ABuff_BeltTorch_C::UpdateTorchType(bool* FPV, struct FHitResul
 // Function Buff_BeltTorch.Buff_BeltTorch_C.BPTryMultiUse
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class APlayerController*           ForPC                                                            (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              UseIndex                                                         (Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class APlayerController*           ForPC                                                            (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// int32                              UseIndex                                                         (Edit, ConstParm, Net, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 ABuff_BeltTorch_C::BPTryMultiUse(bool ReturnValue)
+bool ABuff_BeltTorch_C::BPTryMultiUse(class APlayerController** ForPC)
 {
 	static class UFunction* Func = nullptr;
 
@@ -118,9 +130,11 @@ int32 ABuff_BeltTorch_C::BPTryMultiUse(bool ReturnValue)
 
 	Params::ABuff_BeltTorch_C_BPTryMultiUse_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (ForPC != nullptr)
+		*ForPC = Parms.ForPC;
 
 	return Parms.ReturnValue;
 
@@ -130,11 +144,11 @@ int32 ABuff_BeltTorch_C::BPTryMultiUse(bool ReturnValue)
 // Function Buff_BeltTorch.Buff_BeltTorch_C.BPGetMultiUseEntries
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class APlayerController*           ForPC                                                            (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FMultiUseEntry>      MultiUseEntries                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FMultiUseEntry>      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class APlayerController*           ForPC                                                            (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// TArray<struct FMultiUseEntry>      MultiUseEntries                                                  (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+// TArray<struct FMultiUseEntry>      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-TArray<struct FMultiUseEntry> ABuff_BeltTorch_C::BPGetMultiUseEntries(const TArray<struct FMultiUseEntry>& ReturnValue)
+TArray<struct FMultiUseEntry> ABuff_BeltTorch_C::BPGetMultiUseEntries(class APlayerController** ForPC)
 {
 	static class UFunction* Func = nullptr;
 
@@ -143,9 +157,11 @@ TArray<struct FMultiUseEntry> ABuff_BeltTorch_C::BPGetMultiUseEntries(const TArr
 
 	Params::ABuff_BeltTorch_C_BPGetMultiUseEntries_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (ForPC != nullptr)
+		*ForPC = Parms.ForPC;
 
 	return Parms.ReturnValue;
 
@@ -155,25 +171,25 @@ TArray<struct FMultiUseEntry> ABuff_BeltTorch_C::BPGetMultiUseEntries(const TArr
 // Function Buff_BeltTorch.Buff_BeltTorch_C.InitializeTorchFromItem
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UPrimalItem*                 TheItem                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UClass*                      WeaponClassOverride                                              (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, SubobjectReference)
-// bool                               CallFunc_NotEqual_ClassClass_ReturnValue                         (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
-// class UObject*                     CallFunc_GetClassDefaultObject_ReturnValue                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
-// class AShooterWeapon_Melee*        K2Node_DynamicCast_AsShooter_Weapon_Melee                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_IsValidClass_ReturnValue                                (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, SubobjectReference)
-// bool                               CallFunc_ActorHasTag_ReturnValue                                 (BlueprintVisible, BlueprintReadOnly, ZeroConstructor, Transient, SubobjectReference)
-// class UPrimalItem_WeaponTorch_C*   K2Node_DynamicCast_AsPrimal_Item_Weapon_Torch                    (ExportObject, Net, Parm, OutParm, Transient, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess_1                                    (Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, Interp)
-// class UClass*                      CallFunc_Conv_SoftClassReferenceToClass_ReturnValue              (Edit, ExportObject, OutParm, ReturnParm, Transient, SubobjectReference)
-// int32                              CallFunc_GetFlameColorIndex_Index                                (ConstParm, BlueprintReadOnly, Parm, ReturnParm, Transient, SubobjectReference)
-// class UClass*                      K2Node_ClassDynamicCast_AsShooter_Weapon                         (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, SubobjectReference)
-// bool                               K2Node_ClassDynamicCast_bSuccess                                 (ConstParm, ExportObject, EditFixedSize, ZeroConstructor, Transient, SubobjectReference)
-// bool                               CallFunc_IsValidSoftClassReference_ReturnValue                   (Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_IsServer_ReturnValue                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// class UPrimalItem*                 TheItem                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UClass*                      WeaponClassOverride                                              (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_NotEqual_ClassClass_ReturnValue                         (Edit, ConstParm, ExportObject, Net, EditFixedSize, DisableEditOnInstance, SubobjectReference)
+// class UObject*                     CallFunc_GetClassDefaultObject_ReturnValue                       (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, SubobjectReference)
+// class AShooterWeapon_Melee*        K2Node_DynamicCast_AsShooter_Weapon_Melee                        (Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, SubobjectReference)
+// bool                               CallFunc_IsValidClass_ReturnValue                                (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_ActorHasTag_ReturnValue                                 (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// class UPrimalItem_WeaponTorch_C*   K2Node_DynamicCast_AsPrimal_Item_Weapon_Torch                    (ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess_1                                    (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, SubobjectReference, Interp)
+// class UClass*                      CallFunc_Conv_SoftClassReferenceToClass_ReturnValue              (Edit, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_GetFlameColorIndex_Index                                (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// class UClass*                      K2Node_ClassDynamicCast_AsShooter_Weapon                         (Edit, ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               K2Node_ClassDynamicCast_bSuccess                                 (BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValidSoftClassReference_ReturnValue                   (BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// bool                               CallFunc_IsServer_ReturnValue                                    (ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-bool ABuff_BeltTorch_C::InitializeTorchFromItem(bool CallFunc_ActorHasTag_ReturnValue, class UPrimalItem_WeaponTorch_C** K2Node_DynamicCast_AsPrimal_Item_Weapon_Torch, bool K2Node_ClassDynamicCast_bSuccess, bool* CallFunc_IsValid_ReturnValue)
+bool ABuff_BeltTorch_C::InitializeTorchFromItem(class UClass* WeaponClassOverride, bool CallFunc_NotEqual_ClassClass_ReturnValue, class UObject** CallFunc_GetClassDefaultObject_ReturnValue, class AShooterWeapon_Melee** K2Node_DynamicCast_AsShooter_Weapon_Melee, bool* K2Node_DynamicCast_bSuccess, bool* K2Node_DynamicCast_bSuccess_1, class UClass* CallFunc_Conv_SoftClassReferenceToClass_ReturnValue, bool* CallFunc_IsValidSoftClassReference_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -182,16 +198,26 @@ bool ABuff_BeltTorch_C::InitializeTorchFromItem(bool CallFunc_ActorHasTag_Return
 
 	Params::ABuff_BeltTorch_C_InitializeTorchFromItem_Params Parms{};
 
-	Parms.CallFunc_ActorHasTag_ReturnValue = CallFunc_ActorHasTag_ReturnValue;
-	Parms.K2Node_ClassDynamicCast_bSuccess = K2Node_ClassDynamicCast_bSuccess;
+	Parms.WeaponClassOverride = WeaponClassOverride;
+	Parms.CallFunc_NotEqual_ClassClass_ReturnValue = CallFunc_NotEqual_ClassClass_ReturnValue;
+	Parms.CallFunc_Conv_SoftClassReferenceToClass_ReturnValue = CallFunc_Conv_SoftClassReferenceToClass_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (K2Node_DynamicCast_AsPrimal_Item_Weapon_Torch != nullptr)
-		*K2Node_DynamicCast_AsPrimal_Item_Weapon_Torch = Parms.K2Node_DynamicCast_AsPrimal_Item_Weapon_Torch;
+	if (CallFunc_GetClassDefaultObject_ReturnValue != nullptr)
+		*CallFunc_GetClassDefaultObject_ReturnValue = Parms.CallFunc_GetClassDefaultObject_ReturnValue;
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	if (K2Node_DynamicCast_AsShooter_Weapon_Melee != nullptr)
+		*K2Node_DynamicCast_AsShooter_Weapon_Melee = Parms.K2Node_DynamicCast_AsShooter_Weapon_Melee;
+
+	if (K2Node_DynamicCast_bSuccess != nullptr)
+		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
+
+	if (K2Node_DynamicCast_bSuccess_1 != nullptr)
+		*K2Node_DynamicCast_bSuccess_1 = Parms.K2Node_DynamicCast_bSuccess_1;
+
+	if (CallFunc_IsValidSoftClassReference_ReturnValue != nullptr)
+		*CallFunc_IsValidSoftClassReference_ReturnValue = Parms.CallFunc_IsValidSoftClassReference_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -201,9 +227,9 @@ bool ABuff_BeltTorch_C::InitializeTorchFromItem(bool CallFunc_ActorHasTag_Return
 // Function Buff_BeltTorch.Buff_BeltTorch_C.SetFlameColorIndex
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                              TheIndex                                                         (ConstParm, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               CallFunc_EqualEqual_IntInt_ReturnValue                           (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, SubobjectReference)
-// bool                               CallFunc_IsServer_ReturnValue                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// int32                              TheIndex                                                         (BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               CallFunc_EqualEqual_IntInt_ReturnValue                           (BlueprintVisible, Net, OutParm, ZeroConstructor, Transient, Config, SubobjectReference)
+// bool                               CallFunc_IsServer_ReturnValue                                    (ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
 bool ABuff_BeltTorch_C::SetFlameColorIndex(bool* CallFunc_EqualEqual_IntInt_ReturnValue)
 {
@@ -228,13 +254,13 @@ bool ABuff_BeltTorch_C::SetFlameColorIndex(bool* CallFunc_EqualEqual_IntInt_Retu
 // Function Buff_BeltTorch.Buff_BeltTorch_C.UpdateTorchFlameColor
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UMaterialInstanceDynamic*    TheMIC                                                           (ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FLinearColor                K2Node_MakeStruct_LinearColor                                    (BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, Transient, SubobjectReference)
-// bool                               CallFunc_IsDedicatedServer_ReturnValue                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_NotEqual_LinearColorLinearColor_ReturnValue             (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, SubobjectReference)
-// bool                               CallFunc_Array_IsValidIndex_ReturnValue                          (ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, SubobjectReference)
+// class UMaterialInstanceDynamic*    TheMIC                                                           (ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FLinearColor                K2Node_MakeStruct_LinearColor                                    (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsDedicatedServer_ReturnValue                           (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
+// bool                               CallFunc_NotEqual_LinearColorLinearColor_ReturnValue             (BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Array_IsValidIndex_ReturnValue                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
 
-bool ABuff_BeltTorch_C::UpdateTorchFlameColor(bool* CallFunc_NotEqual_LinearColorLinearColor_ReturnValue)
+bool ABuff_BeltTorch_C::UpdateTorchFlameColor(struct FLinearColor* K2Node_MakeStruct_LinearColor, bool* CallFunc_Array_IsValidIndex_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -246,8 +272,11 @@ bool ABuff_BeltTorch_C::UpdateTorchFlameColor(bool* CallFunc_NotEqual_LinearColo
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_NotEqual_LinearColorLinearColor_ReturnValue != nullptr)
-		*CallFunc_NotEqual_LinearColorLinearColor_ReturnValue = Parms.CallFunc_NotEqual_LinearColorLinearColor_ReturnValue;
+	if (K2Node_MakeStruct_LinearColor != nullptr)
+		*K2Node_MakeStruct_LinearColor = std::move(Parms.K2Node_MakeStruct_LinearColor);
+
+	if (CallFunc_Array_IsValidIndex_ReturnValue != nullptr)
+		*CallFunc_Array_IsValidIndex_ReturnValue = Parms.CallFunc_Array_IsValidIndex_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -257,10 +286,10 @@ bool ABuff_BeltTorch_C::UpdateTorchFlameColor(bool* CallFunc_NotEqual_LinearColo
 // Function Buff_BeltTorch.Buff_BeltTorch_C.SetTorchFlameColor
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// struct FLinearColor                TheColor                                                         (Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// class UMaterialInstanceDynamic*    TheMIC                                                           (ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// struct FVector                     CallFunc_Conv_LinearColorToVector_ReturnValue                    (Edit, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, SubobjectReference)
-// bool                               CallFunc_IsDedicatedServer_ReturnValue                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FLinearColor                TheColor                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// class UMaterialInstanceDynamic*    TheMIC                                                           (ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     CallFunc_Conv_LinearColorToVector_ReturnValue                    (Edit, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsDedicatedServer_ReturnValue                           (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
 
 bool ABuff_BeltTorch_C::SetTorchFlameColor()
 {
@@ -282,9 +311,9 @@ bool ABuff_BeltTorch_C::SetTorchFlameColor()
 // Function Buff_BeltTorch.Buff_BeltTorch_C.InitializeAssociatedWeaponClass
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UClass*                      WeaponClass                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_EqualEqual_ObjectObject_ReturnValue                     (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_IsServer_ReturnValue                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// class UClass*                      WeaponClass                                                      (Edit, BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_EqualEqual_ObjectObject_ReturnValue                     (Edit, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// bool                               CallFunc_IsServer_ReturnValue                                    (ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
 bool ABuff_BeltTorch_C::InitializeAssociatedWeaponClass()
 {
@@ -306,14 +335,14 @@ bool ABuff_BeltTorch_C::InitializeAssociatedWeaponClass()
 // Function Buff_BeltTorch.Buff_BeltTorch_C.Update All Torch Colors
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              CallFunc_Add_IntInt_ReturnValue                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FLinearColor                CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_Less_IntInt_ReturnValue                                 (ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, SubobjectReference)
+// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ConstParm, EditFixedSize, DisableEditOnTemplate, Config, SubobjectReference)
+// int32                              CallFunc_Add_IntInt_ReturnValue                                  (ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// struct FLinearColor                CallFunc_Array_Get_Item                                          (EditFixedSize, ZeroConstructor, Transient, SubobjectReference)
+// bool                               CallFunc_Less_IntInt_ReturnValue                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
 
-bool ABuff_BeltTorch_C::Update_All_Torch_Colors()
+bool ABuff_BeltTorch_C::Update_All_Torch_Colors(int32 Temp_int_Array_Index_Variable, int32 Temp_int_Loop_Counter_Variable, const struct FLinearColor& CallFunc_Array_Get_Item)
 {
 	static class UFunction* Func = nullptr;
 
@@ -322,6 +351,9 @@ bool ABuff_BeltTorch_C::Update_All_Torch_Colors()
 
 	Params::ABuff_BeltTorch_C_Update_All_Torch_Colors_Params Parms{};
 
+	Parms.Temp_int_Array_Index_Variable = Temp_int_Array_Index_Variable;
+	Parms.Temp_int_Loop_Counter_Variable = Temp_int_Loop_Counter_Variable;
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -333,26 +365,26 @@ bool ABuff_BeltTorch_C::Update_All_Torch_Colors()
 // Function Buff_BeltTorch.Buff_BeltTorch_C.UpdateTorchColorsArray
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UPrimalItem*                 ForPrimalItem                                                    (Edit, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              Temp_int_Variable                                                (ConstParm, ExportObject, EditFixedSize, ReturnParm, Config, SubobjectReference)
-// struct FLinearColor                CallFunc_GetItemCustomColor_outColor                             (ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, Transient, SubobjectReference)
-// bool                               CallFunc_GetItemCustomColor_ReturnValue                          (BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, SubobjectReference)
-// bool                               CallFunc_LessEqual_IntInt_ReturnValue                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
-// int32                              CallFunc_Add_IntInt_ReturnValue                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FLinearColor                K2Node_MakeStruct_LinearColor                                    (BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, Transient, SubobjectReference)
-// class UPrimalItem_WeaponTorch_C*   K2Node_DynamicCast_AsPrimal_Item_Weapon_Torch                    (ExportObject, Net, Parm, OutParm, Transient, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              CallFunc_GetFlameColorIndex_Index                                (ConstParm, BlueprintReadOnly, Parm, ReturnParm, Transient, SubobjectReference)
-// struct FLinearColor                CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_EqualEqual_IntInt_ReturnValue                           (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, SubobjectReference)
-// bool                               CallFunc_NotEqual_LinearColorLinearColor_ReturnValue             (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, SubobjectReference)
-// bool                               CallFunc_Array_IsValidIndex_ReturnValue                          (ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, SubobjectReference)
-// bool                               CallFunc_IsServer_ReturnValue                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
-// bool                               CallFunc_Not_PreBool_ReturnValue                                 (Edit, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_BooleanOR_ReturnValue                                   (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// class UPrimalItem*                 ForPrimalItem                                                    (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// int32                              Temp_int_Variable                                                (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// struct FLinearColor                CallFunc_GetItemCustomColor_outColor                             (BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_GetItemCustomColor_ReturnValue                          (Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_LessEqual_IntInt_ReturnValue                            (BlueprintReadOnly, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Add_IntInt_ReturnValue                                  (ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// struct FLinearColor                K2Node_MakeStruct_LinearColor                                    (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// class UPrimalItem_WeaponTorch_C*   K2Node_DynamicCast_AsPrimal_Item_Weapon_Torch                    (ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, SubobjectReference)
+// int32                              CallFunc_GetFlameColorIndex_Index                                (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// struct FLinearColor                CallFunc_Array_Get_Item                                          (EditFixedSize, ZeroConstructor, Transient, SubobjectReference)
+// bool                               CallFunc_EqualEqual_IntInt_ReturnValue                           (BlueprintVisible, Net, OutParm, ZeroConstructor, Transient, Config, SubobjectReference)
+// bool                               CallFunc_NotEqual_LinearColorLinearColor_ReturnValue             (BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Array_IsValidIndex_ReturnValue                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsServer_ReturnValue                                    (ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_Not_PreBool_ReturnValue                                 (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// bool                               CallFunc_BooleanOR_ReturnValue                                   (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, SubobjectReference)
 
-bool ABuff_BeltTorch_C::UpdateTorchColorsArray(bool* CallFunc_IsValid_ReturnValue, const struct FLinearColor& CallFunc_GetItemCustomColor_outColor, class UPrimalItem_WeaponTorch_C** K2Node_DynamicCast_AsPrimal_Item_Weapon_Torch, bool* CallFunc_EqualEqual_IntInt_ReturnValue, bool* CallFunc_NotEqual_LinearColorLinearColor_ReturnValue)
+bool ABuff_BeltTorch_C::UpdateTorchColorsArray(int32* Temp_int_Variable, bool CallFunc_LessEqual_IntInt_ReturnValue, struct FLinearColor* K2Node_MakeStruct_LinearColor, bool* K2Node_DynamicCast_bSuccess, const struct FLinearColor& CallFunc_Array_Get_Item, bool* CallFunc_EqualEqual_IntInt_ReturnValue, bool* CallFunc_Array_IsValidIndex_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -361,21 +393,25 @@ bool ABuff_BeltTorch_C::UpdateTorchColorsArray(bool* CallFunc_IsValid_ReturnValu
 
 	Params::ABuff_BeltTorch_C_UpdateTorchColorsArray_Params Parms{};
 
-	Parms.CallFunc_GetItemCustomColor_outColor = CallFunc_GetItemCustomColor_outColor;
+	Parms.CallFunc_LessEqual_IntInt_ReturnValue = CallFunc_LessEqual_IntInt_ReturnValue;
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	if (Temp_int_Variable != nullptr)
+		*Temp_int_Variable = Parms.Temp_int_Variable;
 
-	if (K2Node_DynamicCast_AsPrimal_Item_Weapon_Torch != nullptr)
-		*K2Node_DynamicCast_AsPrimal_Item_Weapon_Torch = Parms.K2Node_DynamicCast_AsPrimal_Item_Weapon_Torch;
+	if (K2Node_MakeStruct_LinearColor != nullptr)
+		*K2Node_MakeStruct_LinearColor = std::move(Parms.K2Node_MakeStruct_LinearColor);
+
+	if (K2Node_DynamicCast_bSuccess != nullptr)
+		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
 
 	if (CallFunc_EqualEqual_IntInt_ReturnValue != nullptr)
 		*CallFunc_EqualEqual_IntInt_ReturnValue = Parms.CallFunc_EqualEqual_IntInt_ReturnValue;
 
-	if (CallFunc_NotEqual_LinearColorLinearColor_ReturnValue != nullptr)
-		*CallFunc_NotEqual_LinearColorLinearColor_ReturnValue = Parms.CallFunc_NotEqual_LinearColorLinearColor_ReturnValue;
+	if (CallFunc_Array_IsValidIndex_ReturnValue != nullptr)
+		*CallFunc_Array_IsValidIndex_ReturnValue = Parms.CallFunc_Array_IsValidIndex_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -385,28 +421,28 @@ bool ABuff_BeltTorch_C::UpdateTorchColorsArray(bool* CallFunc_IsValid_ReturnValu
 // Function Buff_BeltTorch.Buff_BeltTorch_C.SetTorchColorByIndex
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// struct FLinearColor                TheColor                                                         (Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// int32                              TheColorIndex                                                    (BlueprintVisible, Parm, ReturnParm, Transient, SubobjectReference)
-// class UMaterialInstanceDynamic*    TheMIC                                                           (ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               CallFunc_InRange_IntInt_ReturnValue                              (Edit, ConstParm, ExportObject, OutParm, ZeroConstructor, Transient, SubobjectReference)
-// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<class UMaterialInterface*>  CallFunc_GetMaterials_ReturnValue                                (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, SubobjectReference)
-// int32                              CallFunc_Add_IntInt_ReturnValue                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// class UMaterialInterface*          CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// class UMaterialInstanceDynamic*    CallFunc_CreateDynamicMaterialInstance_ReturnValue               (BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, SubobjectReference)
-// class UMaterialInstanceDynamic*    K2Node_DynamicCast_AsMaterial_Instance_Dynamic                   (ConstParm, ExportObject, Net, OutParm, ZeroConstructor, Transient, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_Less_IntInt_ReturnValue                                 (ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_IsDedicatedServer_ReturnValue                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FLinearColor                K2Node_MakeStruct_LinearColor                                    (BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, Transient, SubobjectReference)
-// bool                               CallFunc_NotEqual_LinearColorLinearColor_ReturnValue             (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, SubobjectReference)
-// class UObject*                     CallFunc_GetClassDefaultObject_ReturnValue                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
-// class UPrimalItem_WeaponTorch_C*   K2Node_DynamicCast_AsPrimal_Item_Weapon_Torch                    (ExportObject, Net, Parm, OutParm, Transient, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess_1                                    (Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, Interp)
+// struct FLinearColor                TheColor                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// int32                              TheColorIndex                                                    (Edit, ConstParm, ExportObject, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// class UMaterialInstanceDynamic*    TheMIC                                                           (ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               CallFunc_InRange_IntInt_ReturnValue                              (ConstParm, BlueprintReadOnly, Parm, Config, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, SubobjectReference)
+// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ConstParm, EditFixedSize, DisableEditOnTemplate, Config, SubobjectReference)
+// TArray<class UMaterialInterface*>  CallFunc_GetMaterials_ReturnValue                                (Edit, ConstParm, ExportObject, Net, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Add_IntInt_ReturnValue                                  (ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// class UMaterialInterface*          CallFunc_Array_Get_Item                                          (EditFixedSize, ZeroConstructor, Transient, SubobjectReference)
+// class UMaterialInstanceDynamic*    CallFunc_CreateDynamicMaterialInstance_ReturnValue               (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// class UMaterialInstanceDynamic*    K2Node_DynamicCast_AsMaterial_Instance_Dynamic                   (Edit, BlueprintReadOnly, Net, Parm, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// bool                               CallFunc_Less_IntInt_ReturnValue                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// bool                               CallFunc_IsDedicatedServer_ReturnValue                           (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
+// struct FLinearColor                K2Node_MakeStruct_LinearColor                                    (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_NotEqual_LinearColorLinearColor_ReturnValue             (BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// class UObject*                     CallFunc_GetClassDefaultObject_ReturnValue                       (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, SubobjectReference)
+// class UPrimalItem_WeaponTorch_C*   K2Node_DynamicCast_AsPrimal_Item_Weapon_Torch                    (ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess_1                                    (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, SubobjectReference, Interp)
 
-bool ABuff_BeltTorch_C::SetTorchColorByIndex(bool* CallFunc_InRange_IntInt_ReturnValue, class UMaterialInstanceDynamic** CallFunc_CreateDynamicMaterialInstance_ReturnValue, class UMaterialInstanceDynamic** K2Node_DynamicCast_AsMaterial_Instance_Dynamic, bool* CallFunc_NotEqual_LinearColorLinearColor_ReturnValue, class UPrimalItem_WeaponTorch_C** K2Node_DynamicCast_AsPrimal_Item_Weapon_Torch)
+class UPrimalItem_WeaponTorch_C* ABuff_BeltTorch_C::SetTorchColorByIndex(int32 TheColorIndex, bool CallFunc_InRange_IntInt_ReturnValue, int32 Temp_int_Array_Index_Variable, int32 Temp_int_Loop_Counter_Variable, const TArray<class UMaterialInterface*>& CallFunc_GetMaterials_ReturnValue, class UMaterialInterface* CallFunc_Array_Get_Item, class UMaterialInstanceDynamic* K2Node_DynamicCast_AsMaterial_Instance_Dynamic, bool* K2Node_DynamicCast_bSuccess, struct FLinearColor* K2Node_MakeStruct_LinearColor, class UObject** CallFunc_GetClassDefaultObject_ReturnValue, bool* K2Node_DynamicCast_bSuccess_1)
 {
 	static class UFunction* Func = nullptr;
 
@@ -415,23 +451,27 @@ bool ABuff_BeltTorch_C::SetTorchColorByIndex(bool* CallFunc_InRange_IntInt_Retur
 
 	Params::ABuff_BeltTorch_C_SetTorchColorByIndex_Params Parms{};
 
+	Parms.TheColorIndex = TheColorIndex;
+	Parms.CallFunc_InRange_IntInt_ReturnValue = CallFunc_InRange_IntInt_ReturnValue;
+	Parms.Temp_int_Array_Index_Variable = Temp_int_Array_Index_Variable;
+	Parms.Temp_int_Loop_Counter_Variable = Temp_int_Loop_Counter_Variable;
+	Parms.CallFunc_GetMaterials_ReturnValue = CallFunc_GetMaterials_ReturnValue;
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
+	Parms.K2Node_DynamicCast_AsMaterial_Instance_Dynamic = K2Node_DynamicCast_AsMaterial_Instance_Dynamic;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_InRange_IntInt_ReturnValue != nullptr)
-		*CallFunc_InRange_IntInt_ReturnValue = Parms.CallFunc_InRange_IntInt_ReturnValue;
+	if (K2Node_DynamicCast_bSuccess != nullptr)
+		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
 
-	if (CallFunc_CreateDynamicMaterialInstance_ReturnValue != nullptr)
-		*CallFunc_CreateDynamicMaterialInstance_ReturnValue = Parms.CallFunc_CreateDynamicMaterialInstance_ReturnValue;
+	if (K2Node_MakeStruct_LinearColor != nullptr)
+		*K2Node_MakeStruct_LinearColor = std::move(Parms.K2Node_MakeStruct_LinearColor);
 
-	if (K2Node_DynamicCast_AsMaterial_Instance_Dynamic != nullptr)
-		*K2Node_DynamicCast_AsMaterial_Instance_Dynamic = Parms.K2Node_DynamicCast_AsMaterial_Instance_Dynamic;
+	if (CallFunc_GetClassDefaultObject_ReturnValue != nullptr)
+		*CallFunc_GetClassDefaultObject_ReturnValue = Parms.CallFunc_GetClassDefaultObject_ReturnValue;
 
-	if (CallFunc_NotEqual_LinearColorLinearColor_ReturnValue != nullptr)
-		*CallFunc_NotEqual_LinearColorLinearColor_ReturnValue = Parms.CallFunc_NotEqual_LinearColorLinearColor_ReturnValue;
-
-	if (K2Node_DynamicCast_AsPrimal_Item_Weapon_Torch != nullptr)
-		*K2Node_DynamicCast_AsPrimal_Item_Weapon_Torch = Parms.K2Node_DynamicCast_AsPrimal_Item_Weapon_Torch;
+	if (K2Node_DynamicCast_bSuccess_1 != nullptr)
+		*K2Node_DynamicCast_bSuccess_1 = Parms.K2Node_DynamicCast_bSuccess_1;
 
 	return Parms.ReturnValue;
 
@@ -441,11 +481,11 @@ bool ABuff_BeltTorch_C::SetTorchColorByIndex(bool* CallFunc_InRange_IntInt_Retur
 // Function Buff_BeltTorch.Buff_BeltTorch_C.ApplyMeshColorization
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_IsDedicatedServer_ReturnValue                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_Not_PreBool_ReturnValue                                 (Edit, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               CallFunc_IsDedicatedServer_ReturnValue                           (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
+// bool                               CallFunc_Not_PreBool_ReturnValue                                 (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
 
-bool ABuff_BeltTorch_C::ApplyMeshColorization(bool* CallFunc_IsValid_ReturnValue)
+bool ABuff_BeltTorch_C::ApplyMeshColorization()
 {
 	static class UFunction* Func = nullptr;
 
@@ -457,9 +497,6 @@ bool ABuff_BeltTorch_C::ApplyMeshColorization(bool* CallFunc_IsValid_ReturnValue
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -468,16 +505,16 @@ bool ABuff_BeltTorch_C::ApplyMeshColorization(bool* CallFunc_IsValid_ReturnValue
 // Function Buff_BeltTorch.Buff_BeltTorch_C.ShouldDeactivateBuff
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent, BlueprintPure)
 // Parameters:
-// bool                               bShouldDeactivate                                                (Edit, ExportObject, Parm, OutParm, Transient, SubobjectReference)
-// class APrimalCharacter*            K2Node_DynamicCast_AsPrimal_Character                            (BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_LessEqual_DoubleDouble_ReturnValue                      (Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, Transient, SubobjectReference)
-// bool                               CallFunc_IsSubmerged_ReturnValue                                 (Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_1                                   (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, Interp)
-// double                             CallFunc_LessEqual_DoubleDouble_A_ImplicitCast                   (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, SubobjectReference)
+// bool                               bShouldDeactivate                                                (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// class APrimalCharacter*            K2Node_DynamicCast_AsPrimal_Character                            (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, SubobjectReference)
+// bool                               CallFunc_LessEqual_DoubleDouble_ReturnValue                      (Edit, ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsSubmerged_ReturnValue                                 (Edit, ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_1                                   (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference, Interp)
+// double                             CallFunc_LessEqual_DoubleDouble_A_ImplicitCast                   (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
 
-double ABuff_BeltTorch_C::ShouldDeactivateBuff(bool* bShouldDeactivate, class APrimalCharacter* K2Node_DynamicCast_AsPrimal_Character, bool* CallFunc_IsValid_ReturnValue, bool* CallFunc_IsValid_ReturnValue_1)
+bool ABuff_BeltTorch_C::ShouldDeactivateBuff(class APrimalCharacter** K2Node_DynamicCast_AsPrimal_Character, bool* K2Node_DynamicCast_bSuccess, bool* CallFunc_IsSubmerged_ReturnValue, double* CallFunc_LessEqual_DoubleDouble_A_ImplicitCast)
 {
 	static class UFunction* Func = nullptr;
 
@@ -486,18 +523,20 @@ double ABuff_BeltTorch_C::ShouldDeactivateBuff(bool* bShouldDeactivate, class AP
 
 	Params::ABuff_BeltTorch_C_ShouldDeactivateBuff_Params Parms{};
 
-	Parms.K2Node_DynamicCast_AsPrimal_Character = K2Node_DynamicCast_AsPrimal_Character;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (bShouldDeactivate != nullptr)
-		*bShouldDeactivate = Parms.bShouldDeactivate;
+	if (K2Node_DynamicCast_AsPrimal_Character != nullptr)
+		*K2Node_DynamicCast_AsPrimal_Character = Parms.K2Node_DynamicCast_AsPrimal_Character;
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	if (K2Node_DynamicCast_bSuccess != nullptr)
+		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
 
-	if (CallFunc_IsValid_ReturnValue_1 != nullptr)
-		*CallFunc_IsValid_ReturnValue_1 = Parms.CallFunc_IsValid_ReturnValue_1;
+	if (CallFunc_IsSubmerged_ReturnValue != nullptr)
+		*CallFunc_IsSubmerged_ReturnValue = Parms.CallFunc_IsSubmerged_ReturnValue;
+
+	if (CallFunc_LessEqual_DoubleDouble_A_ImplicitCast != nullptr)
+		*CallFunc_LessEqual_DoubleDouble_A_ImplicitCast = Parms.CallFunc_LessEqual_DoubleDouble_A_ImplicitCast;
 
 	return Parms.ReturnValue;
 
@@ -507,13 +546,13 @@ double ABuff_BeltTorch_C::ShouldDeactivateBuff(bool* bShouldDeactivate, class AP
 // Function Buff_BeltTorch.Buff_BeltTorch_C.InitializeDefaultTorchWeapon
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_IsValidClass_ReturnValue                                (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// class UObject*                     CallFunc_GetClassDefaultObject_ReturnValue                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
-// class AShooterWeapon_Melee*        K2Node_DynamicCast_AsShooter_Weapon_Melee                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               CallFunc_IsValidClass_ReturnValue                                (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// class UObject*                     CallFunc_GetClassDefaultObject_ReturnValue                       (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, SubobjectReference)
+// class AShooterWeapon_Melee*        K2Node_DynamicCast_AsShooter_Weapon_Melee                        (Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, SubobjectReference)
 
-bool ABuff_BeltTorch_C::InitializeDefaultTorchWeapon(bool* CallFunc_IsValid_ReturnValue)
+bool ABuff_BeltTorch_C::InitializeDefaultTorchWeapon(class UObject** CallFunc_GetClassDefaultObject_ReturnValue, class AShooterWeapon_Melee** K2Node_DynamicCast_AsShooter_Weapon_Melee, bool* K2Node_DynamicCast_bSuccess)
 {
 	static class UFunction* Func = nullptr;
 
@@ -525,8 +564,14 @@ bool ABuff_BeltTorch_C::InitializeDefaultTorchWeapon(bool* CallFunc_IsValid_Retu
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	if (CallFunc_GetClassDefaultObject_ReturnValue != nullptr)
+		*CallFunc_GetClassDefaultObject_ReturnValue = Parms.CallFunc_GetClassDefaultObject_ReturnValue;
+
+	if (K2Node_DynamicCast_AsShooter_Weapon_Melee != nullptr)
+		*K2Node_DynamicCast_AsShooter_Weapon_Melee = Parms.K2Node_DynamicCast_AsShooter_Weapon_Melee;
+
+	if (K2Node_DynamicCast_bSuccess != nullptr)
+		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
 
 	return Parms.ReturnValue;
 
@@ -536,11 +581,11 @@ bool ABuff_BeltTorch_C::InitializeDefaultTorchWeapon(bool* CallFunc_IsValid_Retu
 // Function Buff_BeltTorch.Buff_BeltTorch_C.InitializeTorchMesh
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_ActorHasTag_ReturnValue                                 (BlueprintVisible, BlueprintReadOnly, ZeroConstructor, Transient, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_IsDedicatedServer_ReturnValue                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               CallFunc_ActorHasTag_ReturnValue                                 (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// bool                               CallFunc_IsDedicatedServer_ReturnValue                           (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
 
-bool ABuff_BeltTorch_C::InitializeTorchMesh(bool CallFunc_ActorHasTag_ReturnValue, bool* CallFunc_IsValid_ReturnValue)
+bool ABuff_BeltTorch_C::InitializeTorchMesh()
 {
 	static class UFunction* Func = nullptr;
 
@@ -549,12 +594,8 @@ bool ABuff_BeltTorch_C::InitializeTorchMesh(bool CallFunc_ActorHasTag_ReturnValu
 
 	Params::ABuff_BeltTorch_C_InitializeTorchMesh_Params Parms{};
 
-	Parms.CallFunc_ActorHasTag_ReturnValue = CallFunc_ActorHasTag_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -564,11 +605,11 @@ bool ABuff_BeltTorch_C::InitializeTorchMesh(bool CallFunc_ActorHasTag_ReturnValu
 // Function Buff_BeltTorch.Buff_BeltTorch_C.DeactivateBeltTorch
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               bEquipTorchOnDeactivation                                        (Edit, Parm, OutParm, ZeroConstructor, Transient, SubobjectReference)
-// bool                               CallFunc_IsServer_ReturnValue                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bEquipTorchOnDeactivation                                        (ExportObject, OutParm, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsServer_ReturnValue                                    (ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
 
-bool ABuff_BeltTorch_C::DeactivateBeltTorch(bool* bEquipTorchOnDeactivation, bool* CallFunc_IsValid_ReturnValue)
+bool ABuff_BeltTorch_C::DeactivateBeltTorch(bool* bEquipTorchOnDeactivation)
 {
 	static class UFunction* Func = nullptr;
 
@@ -583,9 +624,6 @@ bool ABuff_BeltTorch_C::DeactivateBeltTorch(bool* bEquipTorchOnDeactivation, boo
 	if (bEquipTorchOnDeactivation != nullptr)
 		*bEquipTorchOnDeactivation = Parms.bEquipTorchOnDeactivation;
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -594,19 +632,19 @@ bool ABuff_BeltTorch_C::DeactivateBeltTorch(bool* bEquipTorchOnDeactivation, boo
 // Function Buff_BeltTorch.Buff_BeltTorch_C.AreValidTorchIDs
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent, BlueprintPure)
 // Parameters:
-// int32                              TorchID1                                                         (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, SubobjectReference)
-// int32                              TorchID2                                                         (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Transient, SubobjectReference)
-// bool                               bAreValid                                                        (BlueprintVisible, Parm, ZeroConstructor, Transient, SubobjectReference)
-// bool                               CallFunc_EqualEqual_IntInt_ReturnValue                           (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, SubobjectReference)
-// bool                               CallFunc_EqualEqual_IntInt_ReturnValue_1                         (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, SubobjectReference, Interp)
-// bool                               CallFunc_BooleanAND_ReturnValue                                  (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// class APawn*                       CallFunc_GetInstigator_ReturnValue                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, SubobjectReference)
-// class AShooterCharacter*           K2Node_DynamicCast_AsShooter_Character                           (Edit, ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// class UPrimalItem*                 CallFunc_BPFindItemWithID_ReturnValue                            (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              TorchID1                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// int32                              TorchID2                                                         (ConstParm, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               bAreValid                                                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_EqualEqual_IntInt_ReturnValue                           (BlueprintVisible, Net, OutParm, ZeroConstructor, Transient, Config, SubobjectReference)
+// bool                               CallFunc_EqualEqual_IntInt_ReturnValue_1                         (BlueprintVisible, Net, OutParm, ZeroConstructor, Transient, Config, SubobjectReference, Interp)
+// bool                               CallFunc_BooleanAND_ReturnValue                                  (Edit, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// class APawn*                       CallFunc_GetInstigator_ReturnValue                               (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// class AShooterCharacter*           K2Node_DynamicCast_AsShooter_Character                           (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, SubobjectReference)
+// class UPrimalItem*                 CallFunc_BPFindItemWithID_ReturnValue                            (ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
 
-bool ABuff_BeltTorch_C::AreValidTorchIDs(bool bAreValid, bool* CallFunc_EqualEqual_IntInt_ReturnValue, bool* CallFunc_EqualEqual_IntInt_ReturnValue_1, class UPrimalItem** CallFunc_BPFindItemWithID_ReturnValue, bool* CallFunc_IsValid_ReturnValue)
+bool ABuff_BeltTorch_C::AreValidTorchIDs(int32* TorchID1, bool bAreValid, bool* CallFunc_EqualEqual_IntInt_ReturnValue, bool* CallFunc_EqualEqual_IntInt_ReturnValue_1, class APawn* CallFunc_GetInstigator_ReturnValue, class AShooterCharacter* K2Node_DynamicCast_AsShooter_Character, bool* K2Node_DynamicCast_bSuccess)
 {
 	static class UFunction* Func = nullptr;
 
@@ -616,8 +654,13 @@ bool ABuff_BeltTorch_C::AreValidTorchIDs(bool bAreValid, bool* CallFunc_EqualEqu
 	Params::ABuff_BeltTorch_C_AreValidTorchIDs_Params Parms{};
 
 	Parms.bAreValid = bAreValid;
+	Parms.CallFunc_GetInstigator_ReturnValue = CallFunc_GetInstigator_ReturnValue;
+	Parms.K2Node_DynamicCast_AsShooter_Character = K2Node_DynamicCast_AsShooter_Character;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (TorchID1 != nullptr)
+		*TorchID1 = Parms.TorchID1;
 
 	if (CallFunc_EqualEqual_IntInt_ReturnValue != nullptr)
 		*CallFunc_EqualEqual_IntInt_ReturnValue = Parms.CallFunc_EqualEqual_IntInt_ReturnValue;
@@ -625,11 +668,8 @@ bool ABuff_BeltTorch_C::AreValidTorchIDs(bool bAreValid, bool* CallFunc_EqualEqu
 	if (CallFunc_EqualEqual_IntInt_ReturnValue_1 != nullptr)
 		*CallFunc_EqualEqual_IntInt_ReturnValue_1 = Parms.CallFunc_EqualEqual_IntInt_ReturnValue_1;
 
-	if (CallFunc_BPFindItemWithID_ReturnValue != nullptr)
-		*CallFunc_BPFindItemWithID_ReturnValue = Parms.CallFunc_BPFindItemWithID_ReturnValue;
-
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	if (K2Node_DynamicCast_bSuccess != nullptr)
+		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
 
 	return Parms.ReturnValue;
 
@@ -639,17 +679,17 @@ bool ABuff_BeltTorch_C::AreValidTorchIDs(bool bAreValid, bool* CallFunc_EqualEqu
 // Function Buff_BeltTorch.Buff_BeltTorch_C.InitializeTorchItem
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               bInitialized                                                     (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_EqualEqual_IntInt_ReturnValue                           (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, SubobjectReference)
-// bool                               CallFunc_EqualEqual_IntInt_ReturnValue_1                         (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, SubobjectReference, Interp)
-// class APawn*                       CallFunc_GetInstigator_ReturnValue                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, SubobjectReference)
-// bool                               CallFunc_BooleanAND_ReturnValue                                  (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// class AShooterCharacter*           K2Node_DynamicCast_AsShooter_Character                           (Edit, ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// class UPrimalItem*                 CallFunc_BPFindItemWithID_ReturnValue                            (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bInitialized                                                     (Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_EqualEqual_IntInt_ReturnValue                           (BlueprintVisible, Net, OutParm, ZeroConstructor, Transient, Config, SubobjectReference)
+// bool                               CallFunc_EqualEqual_IntInt_ReturnValue_1                         (BlueprintVisible, Net, OutParm, ZeroConstructor, Transient, Config, SubobjectReference, Interp)
+// class APawn*                       CallFunc_GetInstigator_ReturnValue                               (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_BooleanAND_ReturnValue                                  (Edit, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// class AShooterCharacter*           K2Node_DynamicCast_AsShooter_Character                           (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, SubobjectReference)
+// class UPrimalItem*                 CallFunc_BPFindItemWithID_ReturnValue                            (ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
 
-bool ABuff_BeltTorch_C::InitializeTorchItem(bool bInitialized, bool* CallFunc_EqualEqual_IntInt_ReturnValue, bool* CallFunc_EqualEqual_IntInt_ReturnValue_1, class UPrimalItem** CallFunc_BPFindItemWithID_ReturnValue, bool* CallFunc_IsValid_ReturnValue)
+bool ABuff_BeltTorch_C::InitializeTorchItem(bool* CallFunc_EqualEqual_IntInt_ReturnValue, bool* CallFunc_EqualEqual_IntInt_ReturnValue_1, class APawn* CallFunc_GetInstigator_ReturnValue, class AShooterCharacter* K2Node_DynamicCast_AsShooter_Character, bool* K2Node_DynamicCast_bSuccess)
 {
 	static class UFunction* Func = nullptr;
 
@@ -658,7 +698,8 @@ bool ABuff_BeltTorch_C::InitializeTorchItem(bool bInitialized, bool* CallFunc_Eq
 
 	Params::ABuff_BeltTorch_C_InitializeTorchItem_Params Parms{};
 
-	Parms.bInitialized = bInitialized;
+	Parms.CallFunc_GetInstigator_ReturnValue = CallFunc_GetInstigator_ReturnValue;
+	Parms.K2Node_DynamicCast_AsShooter_Character = K2Node_DynamicCast_AsShooter_Character;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -668,11 +709,8 @@ bool ABuff_BeltTorch_C::InitializeTorchItem(bool bInitialized, bool* CallFunc_Eq
 	if (CallFunc_EqualEqual_IntInt_ReturnValue_1 != nullptr)
 		*CallFunc_EqualEqual_IntInt_ReturnValue_1 = Parms.CallFunc_EqualEqual_IntInt_ReturnValue_1;
 
-	if (CallFunc_BPFindItemWithID_ReturnValue != nullptr)
-		*CallFunc_BPFindItemWithID_ReturnValue = Parms.CallFunc_BPFindItemWithID_ReturnValue;
-
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	if (K2Node_DynamicCast_bSuccess != nullptr)
+		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
 
 	return Parms.ReturnValue;
 
@@ -682,16 +720,16 @@ bool ABuff_BeltTorch_C::InitializeTorchItem(bool bInitialized, bool* CallFunc_Eq
 // Function Buff_BeltTorch.Buff_BeltTorch_C.InitializeTorchIDs
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UPrimalItem*                 TorchItem                                                        (BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, SubobjectReference)
-// int32                              CallFunc_BPGetItemID_ItemID1                                     (Edit, BlueprintVisible, ZeroConstructor, Transient, SubobjectReference)
-// int32                              CallFunc_BPGetItemID_ItemID2                                     (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, SubobjectReference)
-// bool                               CallFunc_AreValidTorchIDs_bAreValid                              (BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_EqualEqual_IntInt_ReturnValue                           (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, SubobjectReference)
-// bool                               CallFunc_EqualEqual_IntInt_ReturnValue_1                         (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, SubobjectReference, Interp)
-// bool                               CallFunc_IsServer_ReturnValue                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// class UPrimalItem*                 TorchItem                                                        (Edit, ConstParm, BlueprintReadOnly, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_BPGetItemID_ItemID1                                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_BPGetItemID_ItemID2                                     (BlueprintReadOnly, EditFixedSize, OutParm, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_AreValidTorchIDs_bAreValid                              (ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// bool                               CallFunc_EqualEqual_IntInt_ReturnValue                           (BlueprintVisible, Net, OutParm, ZeroConstructor, Transient, Config, SubobjectReference)
+// bool                               CallFunc_EqualEqual_IntInt_ReturnValue_1                         (BlueprintVisible, Net, OutParm, ZeroConstructor, Transient, Config, SubobjectReference, Interp)
+// bool                               CallFunc_IsServer_ReturnValue                                    (ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-bool ABuff_BeltTorch_C::InitializeTorchIDs(int32 CallFunc_BPGetItemID_ItemID1, int32* CallFunc_BPGetItemID_ItemID2, bool* CallFunc_IsValid_ReturnValue, bool* CallFunc_EqualEqual_IntInt_ReturnValue, bool* CallFunc_EqualEqual_IntInt_ReturnValue_1)
+bool ABuff_BeltTorch_C::InitializeTorchIDs(class UPrimalItem* TorchItem, int32* CallFunc_BPGetItemID_ItemID2, bool* CallFunc_AreValidTorchIDs_bAreValid, bool* CallFunc_EqualEqual_IntInt_ReturnValue, bool* CallFunc_EqualEqual_IntInt_ReturnValue_1)
 {
 	static class UFunction* Func = nullptr;
 
@@ -700,15 +738,15 @@ bool ABuff_BeltTorch_C::InitializeTorchIDs(int32 CallFunc_BPGetItemID_ItemID1, i
 
 	Params::ABuff_BeltTorch_C_InitializeTorchIDs_Params Parms{};
 
-	Parms.CallFunc_BPGetItemID_ItemID1 = CallFunc_BPGetItemID_ItemID1;
+	Parms.TorchItem = TorchItem;
 
 	UObject::ProcessEvent(Func, &Parms);
 
 	if (CallFunc_BPGetItemID_ItemID2 != nullptr)
 		*CallFunc_BPGetItemID_ItemID2 = Parms.CallFunc_BPGetItemID_ItemID2;
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	if (CallFunc_AreValidTorchIDs_bAreValid != nullptr)
+		*CallFunc_AreValidTorchIDs_bAreValid = Parms.CallFunc_AreValidTorchIDs_bAreValid;
 
 	if (CallFunc_EqualEqual_IntInt_ReturnValue != nullptr)
 		*CallFunc_EqualEqual_IntInt_ReturnValue = Parms.CallFunc_EqualEqual_IntInt_ReturnValue;
@@ -742,7 +780,7 @@ void ABuff_BeltTorch_C::Server_DeactivateBeltTorch()
 // Function Buff_BeltTorch.Buff_BeltTorch_C.BuffTickServer
 // (Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// float                              DeltaTime                                                        (BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// float                              DeltaTime                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 float ABuff_BeltTorch_C::BuffTickServer()
 {
@@ -764,8 +802,8 @@ float ABuff_BeltTorch_C::BuffTickServer()
 // Function Buff_BeltTorch.Buff_BeltTorch_C.SetTorchColorByIndex_Multicast
 // (Net, NetReliable, NetMulticast, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// struct FLinearColor                TheColor                                                         (Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// int32                              TheIndex                                                         (ConstParm, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FLinearColor                TheColor                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// int32                              TheIndex                                                         (BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
 
 int32 ABuff_BeltTorch_C::SetTorchColorByIndex_Multicast()
 {
@@ -787,9 +825,9 @@ int32 ABuff_BeltTorch_C::SetTorchColorByIndex_Multicast()
 // Function Buff_BeltTorch.Buff_BeltTorch_C.BPOnInputEvent
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// enum class EPrimalCharacterInputTypeInputType                                                        (EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+// enum class EPrimalCharacterInputTypeInputType                                                        (BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, GlobalConfig, SubobjectReference)
 
-enum class EPrimalCharacterInputType ABuff_BeltTorch_C::BPOnInputEvent()
+void ABuff_BeltTorch_C::BPOnInputEvent(enum class EPrimalCharacterInputType* InputType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -801,7 +839,8 @@ enum class EPrimalCharacterInputType ABuff_BeltTorch_C::BPOnInputEvent()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (InputType != nullptr)
+		*InputType = Parms.InputType;
 
 }
 
@@ -809,7 +848,7 @@ enum class EPrimalCharacterInputType ABuff_BeltTorch_C::BPOnInputEvent()
 // Function Buff_BeltTorch.Buff_BeltTorch_C.SetTorchFlameColor_Multicast
 // (Net, NetReliable, NetMulticast, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// struct FLinearColor                TheColor                                                         (Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// struct FLinearColor                TheColor                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
 
 struct FLinearColor ABuff_BeltTorch_C::SetTorchFlameColor_Multicast()
 {
@@ -831,7 +870,7 @@ struct FLinearColor ABuff_BeltTorch_C::SetTorchFlameColor_Multicast()
 // Function Buff_BeltTorch.Buff_BeltTorch_C.BuffTickClient
 // (Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// float                              DeltaTime                                                        (BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// float                              DeltaTime                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 float ABuff_BeltTorch_C::BuffTickClient()
 {
@@ -853,9 +892,9 @@ float ABuff_BeltTorch_C::BuffTickClient()
 // Function Buff_BeltTorch.Buff_BeltTorch_C.BPDeactivated
 // (Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class AActor*                      ForInstigator                                                    (EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class AActor*                      ForInstigator                                                    (ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
 
-class AActor* ABuff_BeltTorch_C::BPDeactivated()
+void ABuff_BeltTorch_C::BPDeactivated(class AActor** ForInstigator)
 {
 	static class UFunction* Func = nullptr;
 
@@ -867,7 +906,8 @@ class AActor* ABuff_BeltTorch_C::BPDeactivated()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (ForInstigator != nullptr)
+		*ForInstigator = Parms.ForInstigator;
 
 }
 
@@ -875,49 +915,49 @@ class AActor* ABuff_BeltTorch_C::BPDeactivated()
 // Function Buff_BeltTorch.Buff_BeltTorch_C.ExecuteUbergraph_Buff_BeltTorch
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-// float                              K2Node_Event_DeltaTime_1                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, SubobjectReference, Interp)
-// bool                               CallFunc_AreValidTorchIDs_bAreValid                              (BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_InitializeTorchItem_bInitialized                        (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, Transient, SubobjectReference)
-// bool                               CallFunc_ShouldDeactivateBuff_bShouldDeactivate                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, SubobjectReference)
-// class AShooterCharacter*           K2Node_DynamicCast_AsShooter_Character                           (Edit, ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_1                                   (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, Interp)
-// bool                               CallFunc_ObjectIsChildOf_ReturnValue                             (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_2                                   (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, RepNotify, Interp)
-// bool                               CallFunc_IsTimeSince_ReturnValue                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_3                                   (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, NonTransactional)
-// double                             CallFunc_Multiply_DoubleFloat_ReturnValue                        (Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, ReturnParm, SubobjectReference)
-// double                             CallFunc_GetGameTimeInSeconds_ReturnValue                        (Edit, ConstParm, Net, Parm, ReturnParm, Config, SubobjectReference)
-// double                             CallFunc_Multiply_DoubleFloat_ReturnValue_1                      (Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, ReturnParm, SubobjectReference, Interp)
-// struct FLinearColor                K2Node_CustomEvent_TheColor_1                                    (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, SubobjectReference, Interp)
-// int32                              K2Node_CustomEvent_TheIndex                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, SubobjectReference)
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_Greater_IntInt_ReturnValue                              (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Config, SubobjectReference)
-// enum class EPrimalCharacterInputTypeK2Node_Event_inputType                                           (BlueprintVisible, Net, OutParm, ReturnParm, Transient, SubobjectReference)
-// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue                         (BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_4                                   (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, RepNotify, NonTransactional)
-// bool                               CallFunc_Greater_IntInt_ReturnValue_1                            (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Config, SubobjectReference, Interp)
-// struct FLinearColor                K2Node_CustomEvent_TheColor                                      (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, SubobjectReference)
-// class AActor*                      CallFunc_GetOwner_ReturnValue                                    (Edit, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
-// class AShooterCharacter*           K2Node_DynamicCast_AsShooter_Character_1                         (Edit, ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference, Interp)
-// bool                               K2Node_DynamicCast_bSuccess_1                                    (Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, Interp)
-// bool                               CallFunc_IsLocallyControlledByPlayer_ReturnValue                 (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, SubobjectReference)
-// bool                               CallFunc_IsFirstPerson_ReturnValue                               (BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, SubobjectReference)
-// bool                               CallFunc_BooleanAND_ReturnValue                                  (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              K2Node_Event_DeltaTime                                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, SubobjectReference)
-// bool                               CallFunc_BooleanAND_ReturnValue_1                                (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, Interp)
-// class AActor*                      K2Node_Event_ForInstigator                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, SubobjectReference)
-// enum class ENetworkModeResult      CallFunc_CanRunCosmeticEvents_OutNetworkMode                     (OutParm, ZeroConstructor, ReturnParm, Transient, SubobjectReference)
-// bool                               K2Node_SwitchEnum_CmpSuccess                                     (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, SubobjectReference)
-// bool                               CallFunc_Not_PreBool_ReturnValue                                 (Edit, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_BooleanAND_ReturnValue_2                                (Edit, ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, RepNotify, Interp)
-// double                             CallFunc_Multiply_DoubleFloat_A_ImplicitCast                     (BlueprintReadOnly, Parm, OutParm, ReturnParm, SubobjectReference)
-// float                              CallFunc_Multiply_DoubleFloat_B_ImplicitCast                     (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, SubobjectReference)
-// float                              CallFunc_AddItemDurability_durabilityToAdd_ImplicitCast          (BlueprintVisible, EditFixedSize, ReturnParm, Transient, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
+// float                              K2Node_Event_DeltaTime_1                                         (Edit, BlueprintVisible, Net, Parm, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_AreValidTorchIDs_bAreValid                              (ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// bool                               CallFunc_InitializeTorchItem_bInitialized                        (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_ShouldDeactivateBuff_bShouldDeactivate                  (ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// class AShooterCharacter*           K2Node_DynamicCast_AsShooter_Character                           (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_1                                   (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference, Interp)
+// bool                               CallFunc_ObjectIsChildOf_ReturnValue                             (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_2                                   (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference, RepNotify, Interp)
+// bool                               CallFunc_IsTimeSince_ReturnValue                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_3                                   (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference, NonTransactional)
+// double                             CallFunc_Multiply_DoubleFloat_ReturnValue                        (ConstParm, BlueprintVisible, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// double                             CallFunc_GetGameTimeInSeconds_ReturnValue                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, SubobjectReference)
+// double                             CallFunc_Multiply_DoubleFloat_ReturnValue_1                      (ConstParm, BlueprintVisible, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
+// struct FLinearColor                K2Node_CustomEvent_TheColor_1                                    (Edit, ConstParm, Parm, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// int32                              K2Node_CustomEvent_TheIndex                                      (ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// bool                               CallFunc_Greater_IntInt_ReturnValue                              (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, SubobjectReference)
+// enum class EPrimalCharacterInputTypeK2Node_Event_inputType                                           (BlueprintVisible, ExportObject, Parm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue                         (BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_4                                   (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference, RepNotify, NonTransactional)
+// bool                               CallFunc_Greater_IntInt_ReturnValue_1                            (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, SubobjectReference, Interp)
+// struct FLinearColor                K2Node_CustomEvent_TheColor                                      (Edit, ConstParm, Parm, Config, DisableEditOnInstance, SubobjectReference)
+// class AActor*                      CallFunc_GetOwner_ReturnValue                                    (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, Config, SubobjectReference)
+// class AShooterCharacter*           K2Node_DynamicCast_AsShooter_Character_1                         (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, SubobjectReference, Interp)
+// bool                               K2Node_DynamicCast_bSuccess_1                                    (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, SubobjectReference, Interp)
+// bool                               CallFunc_IsLocallyControlledByPlayer_ReturnValue                 (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsFirstPerson_ReturnValue                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_BooleanAND_ReturnValue                                  (Edit, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// float                              K2Node_Event_DeltaTime                                           (Edit, BlueprintVisible, Net, Parm, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_BooleanAND_ReturnValue_1                                (Edit, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Config, SubobjectReference, Interp)
+// class AActor*                      K2Node_Event_ForInstigator                                       (Edit, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// enum class ENetworkModeResult      CallFunc_CanRunCosmeticEvents_OutNetworkMode                     (BlueprintVisible, BlueprintReadOnly, ReturnParm, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               K2Node_SwitchEnum_CmpSuccess                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_Not_PreBool_ReturnValue                                 (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// bool                               CallFunc_BooleanAND_ReturnValue_2                                (Edit, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Config, SubobjectReference, RepNotify, Interp)
+// double                             CallFunc_Multiply_DoubleFloat_A_ImplicitCast                     (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// float                              CallFunc_Multiply_DoubleFloat_B_ImplicitCast                     (Edit, ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
+// float                              CallFunc_AddItemDurability_durabilityToAdd_ImplicitCast          (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, Config, DisableEditOnInstance, SubobjectReference)
 
-float ABuff_BeltTorch_C::ExecuteUbergraph_Buff_BeltTorch(float* K2Node_Event_DeltaTime_1, bool* CallFunc_IsValid_ReturnValue, bool* CallFunc_IsValid_ReturnValue_1, bool CallFunc_ObjectIsChildOf_ReturnValue, bool* CallFunc_IsValid_ReturnValue_2, bool* CallFunc_IsValid_ReturnValue_3, const struct FLinearColor& K2Node_CustomEvent_TheColor_1, bool* CallFunc_IsValid_ReturnValue_4, const struct FLinearColor& K2Node_CustomEvent_TheColor, bool* CallFunc_IsFirstPerson_ReturnValue, float* K2Node_Event_DeltaTime, class AActor** K2Node_Event_ForInstigator)
+bool ABuff_BeltTorch_C::ExecuteUbergraph_Buff_BeltTorch(int32* EntryPoint, float K2Node_Event_DeltaTime_1, bool* CallFunc_AreValidTorchIDs_bAreValid, bool* CallFunc_InitializeTorchItem_bInitialized, bool CallFunc_ShouldDeactivateBuff_bShouldDeactivate, class AShooterCharacter* K2Node_DynamicCast_AsShooter_Character, bool* K2Node_DynamicCast_bSuccess, bool CallFunc_ObjectIsChildOf_ReturnValue, bool CallFunc_IsTimeSince_ReturnValue, double CallFunc_Multiply_DoubleFloat_ReturnValue, double CallFunc_Multiply_DoubleFloat_ReturnValue_1, const struct FLinearColor& K2Node_CustomEvent_TheColor_1, bool* CallFunc_Greater_IntInt_ReturnValue, enum class EPrimalCharacterInputType K2Node_Event_inputType, bool* CallFunc_Greater_IntInt_ReturnValue_1, const struct FLinearColor& K2Node_CustomEvent_TheColor, class AActor* CallFunc_GetOwner_ReturnValue, class AShooterCharacter* K2Node_DynamicCast_AsShooter_Character_1, bool* K2Node_DynamicCast_bSuccess_1, bool* CallFunc_IsLocallyControlledByPlayer_ReturnValue, bool* CallFunc_IsFirstPerson_ReturnValue, float K2Node_Event_DeltaTime, bool K2Node_SwitchEnum_CmpSuccess, double CallFunc_Multiply_DoubleFloat_A_ImplicitCast, float* CallFunc_Multiply_DoubleFloat_B_ImplicitCast, float* CallFunc_AddItemDurability_durabilityToAdd_ImplicitCast)
 {
 	static class UFunction* Func = nullptr;
 
@@ -926,38 +966,56 @@ float ABuff_BeltTorch_C::ExecuteUbergraph_Buff_BeltTorch(float* K2Node_Event_Del
 
 	Params::ABuff_BeltTorch_C_ExecuteUbergraph_Buff_BeltTorch_Params Parms{};
 
+	Parms.K2Node_Event_DeltaTime_1 = K2Node_Event_DeltaTime_1;
+	Parms.CallFunc_ShouldDeactivateBuff_bShouldDeactivate = CallFunc_ShouldDeactivateBuff_bShouldDeactivate;
+	Parms.K2Node_DynamicCast_AsShooter_Character = K2Node_DynamicCast_AsShooter_Character;
 	Parms.CallFunc_ObjectIsChildOf_ReturnValue = CallFunc_ObjectIsChildOf_ReturnValue;
+	Parms.CallFunc_IsTimeSince_ReturnValue = CallFunc_IsTimeSince_ReturnValue;
+	Parms.CallFunc_Multiply_DoubleFloat_ReturnValue = CallFunc_Multiply_DoubleFloat_ReturnValue;
+	Parms.CallFunc_Multiply_DoubleFloat_ReturnValue_1 = CallFunc_Multiply_DoubleFloat_ReturnValue_1;
 	Parms.K2Node_CustomEvent_TheColor_1 = K2Node_CustomEvent_TheColor_1;
+	Parms.K2Node_Event_inputType = K2Node_Event_inputType;
 	Parms.K2Node_CustomEvent_TheColor = K2Node_CustomEvent_TheColor;
+	Parms.CallFunc_GetOwner_ReturnValue = CallFunc_GetOwner_ReturnValue;
+	Parms.K2Node_DynamicCast_AsShooter_Character_1 = K2Node_DynamicCast_AsShooter_Character_1;
+	Parms.K2Node_Event_DeltaTime = K2Node_Event_DeltaTime;
+	Parms.K2Node_SwitchEnum_CmpSuccess = K2Node_SwitchEnum_CmpSuccess;
+	Parms.CallFunc_Multiply_DoubleFloat_A_ImplicitCast = CallFunc_Multiply_DoubleFloat_A_ImplicitCast;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (K2Node_Event_DeltaTime_1 != nullptr)
-		*K2Node_Event_DeltaTime_1 = Parms.K2Node_Event_DeltaTime_1;
+	if (EntryPoint != nullptr)
+		*EntryPoint = Parms.EntryPoint;
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	if (CallFunc_AreValidTorchIDs_bAreValid != nullptr)
+		*CallFunc_AreValidTorchIDs_bAreValid = Parms.CallFunc_AreValidTorchIDs_bAreValid;
 
-	if (CallFunc_IsValid_ReturnValue_1 != nullptr)
-		*CallFunc_IsValid_ReturnValue_1 = Parms.CallFunc_IsValid_ReturnValue_1;
+	if (CallFunc_InitializeTorchItem_bInitialized != nullptr)
+		*CallFunc_InitializeTorchItem_bInitialized = Parms.CallFunc_InitializeTorchItem_bInitialized;
 
-	if (CallFunc_IsValid_ReturnValue_2 != nullptr)
-		*CallFunc_IsValid_ReturnValue_2 = Parms.CallFunc_IsValid_ReturnValue_2;
+	if (K2Node_DynamicCast_bSuccess != nullptr)
+		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
 
-	if (CallFunc_IsValid_ReturnValue_3 != nullptr)
-		*CallFunc_IsValid_ReturnValue_3 = Parms.CallFunc_IsValid_ReturnValue_3;
+	if (CallFunc_Greater_IntInt_ReturnValue != nullptr)
+		*CallFunc_Greater_IntInt_ReturnValue = Parms.CallFunc_Greater_IntInt_ReturnValue;
 
-	if (CallFunc_IsValid_ReturnValue_4 != nullptr)
-		*CallFunc_IsValid_ReturnValue_4 = Parms.CallFunc_IsValid_ReturnValue_4;
+	if (CallFunc_Greater_IntInt_ReturnValue_1 != nullptr)
+		*CallFunc_Greater_IntInt_ReturnValue_1 = Parms.CallFunc_Greater_IntInt_ReturnValue_1;
+
+	if (K2Node_DynamicCast_bSuccess_1 != nullptr)
+		*K2Node_DynamicCast_bSuccess_1 = Parms.K2Node_DynamicCast_bSuccess_1;
+
+	if (CallFunc_IsLocallyControlledByPlayer_ReturnValue != nullptr)
+		*CallFunc_IsLocallyControlledByPlayer_ReturnValue = Parms.CallFunc_IsLocallyControlledByPlayer_ReturnValue;
 
 	if (CallFunc_IsFirstPerson_ReturnValue != nullptr)
 		*CallFunc_IsFirstPerson_ReturnValue = Parms.CallFunc_IsFirstPerson_ReturnValue;
 
-	if (K2Node_Event_DeltaTime != nullptr)
-		*K2Node_Event_DeltaTime = Parms.K2Node_Event_DeltaTime;
+	if (CallFunc_Multiply_DoubleFloat_B_ImplicitCast != nullptr)
+		*CallFunc_Multiply_DoubleFloat_B_ImplicitCast = Parms.CallFunc_Multiply_DoubleFloat_B_ImplicitCast;
 
-	if (K2Node_Event_ForInstigator != nullptr)
-		*K2Node_Event_ForInstigator = Parms.K2Node_Event_ForInstigator;
+	if (CallFunc_AddItemDurability_durabilityToAdd_ImplicitCast != nullptr)
+		*CallFunc_AddItemDurability_durabilityToAdd_ImplicitCast = Parms.CallFunc_AddItemDurability_durabilityToAdd_ImplicitCast;
 
 	return Parms.ReturnValue;
 

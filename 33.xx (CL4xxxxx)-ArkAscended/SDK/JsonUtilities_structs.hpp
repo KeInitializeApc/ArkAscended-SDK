@@ -19,8 +19,8 @@ namespace SDK
 struct FJsonObjectWrapper
 {
 public:
-	class FString                                JsonString;                                        // 0x0(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1E6A[0x10];                                    // Fixing Size Of Struct > TateDumper <
+	class FString                                JsonString;                                        // 0x0(0x10)(ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1B01[0x10];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 }

@@ -20,8 +20,8 @@ public:
 
 	void StopLink();
 	void SetLinkSound(class USoundBase* NewSound);
-	float PlayLink();
-	void IsLinkPlaying(bool ReturnValue);
+	void PlayLink(float StartTime);
+	bool IsLinkPlaying();
 };
 
 }

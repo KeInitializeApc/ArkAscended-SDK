@@ -71,8 +71,8 @@ class ITurnBasedMatchInterface* ITurnBasedMatchInterface::GetDefaultObj()
 // Function OnlineSubsystem.TurnBasedMatchInterface.OnMatchReceivedTurn
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// class FString                      Match                                                            (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-// bool                               bDidBecomeActive                                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// class FString                      Match                                                            (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// bool                               bDidBecomeActive                                                 (Edit, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
 
 bool ITurnBasedMatchInterface::OnMatchReceivedTurn()
 {
@@ -94,7 +94,7 @@ bool ITurnBasedMatchInterface::OnMatchReceivedTurn()
 // Function OnlineSubsystem.TurnBasedMatchInterface.OnMatchEnded
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// class FString                      Match                                                            (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// class FString                      Match                                                            (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
 
 class FString ITurnBasedMatchInterface::OnMatchEnded()
 {

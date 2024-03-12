@@ -28,7 +28,7 @@ enum class EComputeNTBsOptions : uint8
 struct FElementID
 {
 public:
-	int32                                        IDValue;                                           // 0x0(0x4)(BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        IDValue;                                           // 0x0(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x0 (0x4 - 0x4)

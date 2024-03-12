@@ -14,7 +14,7 @@ namespace SDK
 class UASAUI_NewsCarousel_Nav_Left_C : public UUI_MenuCarouselButtonWidget
 {
 public:
-	class UCustomButtonWidget*                   NavButton;                                         // 0x768(0x8)(Edit, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	class UCustomButtonWidget*                   NavButton;                                         // 0x768(0x8)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UASAUI_NewsCarousel_Nav_Left_C* GetDefaultObj();

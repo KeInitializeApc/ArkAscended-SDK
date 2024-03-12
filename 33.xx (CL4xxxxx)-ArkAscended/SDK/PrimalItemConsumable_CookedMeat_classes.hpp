@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0xED0 - 0xED0)
+// 0x0 (0xEE0 - 0xEE0)
 // BlueprintGeneratedClass PrimalItemConsumable_CookedMeat.PrimalItemConsumable_CookedMeat_C
 class UPrimalItemConsumable_CookedMeat_C : public UPrimalItemConsumableEatable_C
 {

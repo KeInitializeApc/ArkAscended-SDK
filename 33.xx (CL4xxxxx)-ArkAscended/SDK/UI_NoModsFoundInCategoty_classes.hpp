@@ -14,15 +14,15 @@ namespace SDK
 class UUI_NoModsFoundInCategoty_C : public UPrimalUserWidget
 {
 public:
-	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x330(0x8)(BlueprintReadOnly, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-	class UImage*                                IMG_NoModsBackground;                              // 0x338(0x8)(ExportObject, Net, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	class UVerticalBox*                          VerBox_NoInstalledMods;                            // 0x340(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x330(0x8)(Edit, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, SubobjectReference)
+	class UImage*                                IMG_NoModsBackground;                              // 0x338(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UVerticalBox*                          VerBox_NoInstalledMods;                            // 0x340(0x8)(Edit, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UUI_NoModsFoundInCategoty_C* GetDefaultObj();
 
-	float Tick();
-	int32 ExecuteUbergraph_UI_NoModsFoundInCategoty(const struct FGeometry& K2Node_Event_MyGeometry, float* K2Node_Event_InDeltaTime);
+	float Tick(struct FGeometry* MyGeometry);
+	void ExecuteUbergraph_UI_NoModsFoundInCategoty(int32* EntryPoint, const struct FGeometry& K2Node_Event_MyGeometry, float K2Node_Event_InDeltaTime);
 };
 
 }

@@ -43,9 +43,9 @@ class UCheckIsVectorNonZero_C* UCheckIsVectorNonZero_C::GetDefaultObj()
 // Function CheckIsVectorNonZero.CheckIsVectorNonZero_C.ReceiveExecute
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AActor*                      OwnerActor                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class AActor*                      OwnerActor                                                       (ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UCheckIsVectorNonZero_C::ReceiveExecute(class AActor** OwnerActor)
+class AActor* UCheckIsVectorNonZero_C::ReceiveExecute()
 {
 	static class UFunction* Func = nullptr;
 
@@ -57,8 +57,7 @@ void UCheckIsVectorNonZero_C::ReceiveExecute(class AActor** OwnerActor)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (OwnerActor != nullptr)
-		*OwnerActor = Parms.OwnerActor;
+	return Parms.ReturnValue;
 
 }
 
@@ -66,13 +65,13 @@ void UCheckIsVectorNonZero_C::ReceiveExecute(class AActor** OwnerActor)
 // Function CheckIsVectorNonZero.CheckIsVectorNonZero_C.ExecuteUbergraph_CheckIsVectorNonZero
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-// struct FVector                     CallFunc_GetBlackboardValueAsVector_ReturnValue                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// class AActor*                      K2Node_Event_OwnerActor                                          (Edit, ConstParm, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// double                             CallFunc_VSize_ReturnValue                                       (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_Greater_DoubleDouble_ReturnValue                        (ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
+// struct FVector                     CallFunc_GetBlackboardValueAsVector_ReturnValue                  (ConstParm, BlueprintVisible, EditFixedSize, OutParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class AActor*                      K2Node_Event_OwnerActor                                          (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, SubobjectReference)
+// double                             CallFunc_VSize_ReturnValue                                       (Edit, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// bool                               CallFunc_Greater_DoubleDouble_ReturnValue                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
 
-bool UCheckIsVectorNonZero_C::ExecuteUbergraph_CheckIsVectorNonZero(class AActor** K2Node_Event_OwnerActor)
+bool UCheckIsVectorNonZero_C::ExecuteUbergraph_CheckIsVectorNonZero(int32* EntryPoint, struct FVector* CallFunc_GetBlackboardValueAsVector_ReturnValue, class AActor** K2Node_Event_OwnerActor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -83,6 +82,12 @@ bool UCheckIsVectorNonZero_C::ExecuteUbergraph_CheckIsVectorNonZero(class AActor
 
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (EntryPoint != nullptr)
+		*EntryPoint = Parms.EntryPoint;
+
+	if (CallFunc_GetBlackboardValueAsVector_ReturnValue != nullptr)
+		*CallFunc_GetBlackboardValueAsVector_ReturnValue = std::move(Parms.CallFunc_GetBlackboardValueAsVector_ReturnValue);
 
 	if (K2Node_Event_OwnerActor != nullptr)
 		*K2Node_Event_OwnerActor = Parms.K2Node_Event_OwnerActor;

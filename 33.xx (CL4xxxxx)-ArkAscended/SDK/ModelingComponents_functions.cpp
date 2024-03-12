@@ -903,9 +903,9 @@ class UOctreeDynamicMeshComponent* UOctreeDynamicMeshComponent::GetDefaultObj()
 // Function ModelingComponents.OctreeDynamicMeshComponent.SetDynamicMesh
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UDynamicMesh*                NewMesh                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+// class UDynamicMesh*                NewMesh                                                          (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
 
-void UOctreeDynamicMeshComponent::SetDynamicMesh(class UDynamicMesh** NewMesh)
+class UDynamicMesh* UOctreeDynamicMeshComponent::SetDynamicMesh()
 {
 	static class UFunction* Func = nullptr;
 
@@ -923,8 +923,7 @@ void UOctreeDynamicMeshComponent::SetDynamicMesh(class UDynamicMesh** NewMesh)
 
 	Func->FunctionFlags = Flgs;
 
-	if (NewMesh != nullptr)
-		*NewMesh = Parms.NewMesh;
+	return Parms.ReturnValue;
 
 }
 
@@ -1016,11 +1015,11 @@ class UPreviewGeometry* UPreviewGeometry::GetDefaultObj()
 // Function ModelingComponents.PreviewGeometry.SetPointSetVisibility
 // (Final, Native, Public)
 // Parameters:
-// class FString                      PointSetIdentifier                                               (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bVisible                                                         (Edit, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      PointSetIdentifier                                               (BlueprintVisible, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bVisible                                                         (BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool UPreviewGeometry::SetPointSetVisibility(class FString* PointSetIdentifier, bool ReturnValue)
+bool UPreviewGeometry::SetPointSetVisibility(const class FString& PointSetIdentifier, bool* bVisible)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1029,7 +1028,7 @@ bool UPreviewGeometry::SetPointSetVisibility(class FString* PointSetIdentifier, 
 
 	Params::UPreviewGeometry_SetPointSetVisibility_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.PointSetIdentifier = PointSetIdentifier;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1039,8 +1038,8 @@ bool UPreviewGeometry::SetPointSetVisibility(class FString* PointSetIdentifier, 
 
 	Func->FunctionFlags = Flgs;
 
-	if (PointSetIdentifier != nullptr)
-		*PointSetIdentifier = std::move(Parms.PointSetIdentifier);
+	if (bVisible != nullptr)
+		*bVisible = Parms.bVisible;
 
 	return Parms.ReturnValue;
 
@@ -1050,11 +1049,11 @@ bool UPreviewGeometry::SetPointSetVisibility(class FString* PointSetIdentifier, 
 // Function ModelingComponents.PreviewGeometry.SetPointSetMaterial
 // (Final, Native, Public)
 // Parameters:
-// class FString                      PointSetIdentifier                                               (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-// class UMaterialInterface*          NewMaterial                                                      (Edit, ConstParm, Net, EditFixedSize, Transient, DisableEditOnInstance, EditConst, DuplicateTransient)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      PointSetIdentifier                                               (BlueprintVisible, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
+// class UMaterialInterface*          NewMaterial                                                      (BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, EditConst, GlobalConfig, DuplicateTransient)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UPreviewGeometry::SetPointSetMaterial(class FString* PointSetIdentifier, class UMaterialInterface* NewMaterial, bool ReturnValue)
+bool UPreviewGeometry::SetPointSetMaterial(const class FString& PointSetIdentifier)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1063,8 +1062,7 @@ void UPreviewGeometry::SetPointSetMaterial(class FString* PointSetIdentifier, cl
 
 	Params::UPreviewGeometry_SetPointSetMaterial_Params Parms{};
 
-	Parms.NewMaterial = NewMaterial;
-	Parms.ReturnValue = ReturnValue;
+	Parms.PointSetIdentifier = PointSetIdentifier;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1074,8 +1072,7 @@ void UPreviewGeometry::SetPointSetMaterial(class FString* PointSetIdentifier, cl
 
 	Func->FunctionFlags = Flgs;
 
-	if (PointSetIdentifier != nullptr)
-		*PointSetIdentifier = std::move(Parms.PointSetIdentifier);
+	return Parms.ReturnValue;
 
 }
 
@@ -1083,11 +1080,11 @@ void UPreviewGeometry::SetPointSetMaterial(class FString* PointSetIdentifier, cl
 // Function ModelingComponents.PreviewGeometry.SetLineSetVisibility
 // (Final, Native, Public)
 // Parameters:
-// class FString                      LineSetIdentifier                                                (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bVisible                                                         (Edit, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      LineSetIdentifier                                                (ConstParm, ExportObject, BlueprintReadOnly, Net, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bVisible                                                         (BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool UPreviewGeometry::SetLineSetVisibility(class FString* LineSetIdentifier, bool ReturnValue)
+bool UPreviewGeometry::SetLineSetVisibility(const class FString& LineSetIdentifier, bool* bVisible)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1096,7 +1093,7 @@ bool UPreviewGeometry::SetLineSetVisibility(class FString* LineSetIdentifier, bo
 
 	Params::UPreviewGeometry_SetLineSetVisibility_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.LineSetIdentifier = LineSetIdentifier;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1106,8 +1103,8 @@ bool UPreviewGeometry::SetLineSetVisibility(class FString* LineSetIdentifier, bo
 
 	Func->FunctionFlags = Flgs;
 
-	if (LineSetIdentifier != nullptr)
-		*LineSetIdentifier = std::move(Parms.LineSetIdentifier);
+	if (bVisible != nullptr)
+		*bVisible = Parms.bVisible;
 
 	return Parms.ReturnValue;
 
@@ -1117,11 +1114,11 @@ bool UPreviewGeometry::SetLineSetVisibility(class FString* LineSetIdentifier, bo
 // Function ModelingComponents.PreviewGeometry.SetLineSetMaterial
 // (Final, Native, Public)
 // Parameters:
-// class FString                      LineSetIdentifier                                                (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-// class UMaterialInterface*          NewMaterial                                                      (Edit, ConstParm, Net, EditFixedSize, Transient, DisableEditOnInstance, EditConst, DuplicateTransient)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      LineSetIdentifier                                                (ConstParm, ExportObject, BlueprintReadOnly, Net, Transient, Config, InstancedReference, SubobjectReference)
+// class UMaterialInterface*          NewMaterial                                                      (BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, EditConst, GlobalConfig, DuplicateTransient)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UPreviewGeometry::SetLineSetMaterial(class FString* LineSetIdentifier, class UMaterialInterface* NewMaterial, bool ReturnValue)
+bool UPreviewGeometry::SetLineSetMaterial(const class FString& LineSetIdentifier)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1130,8 +1127,7 @@ void UPreviewGeometry::SetLineSetMaterial(class FString* LineSetIdentifier, clas
 
 	Params::UPreviewGeometry_SetLineSetMaterial_Params Parms{};
 
-	Parms.NewMaterial = NewMaterial;
-	Parms.ReturnValue = ReturnValue;
+	Parms.LineSetIdentifier = LineSetIdentifier;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1141,8 +1137,7 @@ void UPreviewGeometry::SetLineSetMaterial(class FString* LineSetIdentifier, clas
 
 	Func->FunctionFlags = Flgs;
 
-	if (LineSetIdentifier != nullptr)
-		*LineSetIdentifier = std::move(Parms.LineSetIdentifier);
+	return Parms.ReturnValue;
 
 }
 
@@ -1150,7 +1145,7 @@ void UPreviewGeometry::SetLineSetMaterial(class FString* LineSetIdentifier, clas
 // Function ModelingComponents.PreviewGeometry.SetAllPointSetsMaterial
 // (Final, Native, Public)
 // Parameters:
-// class UMaterialInterface*          Material                                                         (Edit, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance)
+// class UMaterialInterface*          Material                                                         (Edit, ConstParm, Net, EditFixedSize, Transient, Config, DisableEditOnInstance)
 
 void UPreviewGeometry::SetAllPointSetsMaterial(class UMaterialInterface* Material)
 {
@@ -1177,7 +1172,7 @@ void UPreviewGeometry::SetAllPointSetsMaterial(class UMaterialInterface* Materia
 // Function ModelingComponents.PreviewGeometry.SetAllLineSetsMaterial
 // (Final, Native, Public)
 // Parameters:
-// class UMaterialInterface*          Material                                                         (Edit, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance)
+// class UMaterialInterface*          Material                                                         (Edit, ConstParm, Net, EditFixedSize, Transient, Config, DisableEditOnInstance)
 
 void UPreviewGeometry::SetAllLineSetsMaterial(class UMaterialInterface* Material)
 {
@@ -1204,11 +1199,11 @@ void UPreviewGeometry::SetAllLineSetsMaterial(class UMaterialInterface* Material
 // Function ModelingComponents.PreviewGeometry.RemovePointSet
 // (Final, Native, Public)
 // Parameters:
-// class FString                      PointSetIdentifier                                               (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bDestroy                                                         (ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      PointSetIdentifier                                               (BlueprintVisible, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bDestroy                                                         (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UPreviewGeometry::RemovePointSet(class FString* PointSetIdentifier, bool* bDestroy, bool ReturnValue)
+bool UPreviewGeometry::RemovePointSet(const class FString& PointSetIdentifier, bool bDestroy)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1217,7 +1212,8 @@ void UPreviewGeometry::RemovePointSet(class FString* PointSetIdentifier, bool* b
 
 	Params::UPreviewGeometry_RemovePointSet_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.PointSetIdentifier = PointSetIdentifier;
+	Parms.bDestroy = bDestroy;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1227,11 +1223,7 @@ void UPreviewGeometry::RemovePointSet(class FString* PointSetIdentifier, bool* b
 
 	Func->FunctionFlags = Flgs;
 
-	if (PointSetIdentifier != nullptr)
-		*PointSetIdentifier = std::move(Parms.PointSetIdentifier);
-
-	if (bDestroy != nullptr)
-		*bDestroy = Parms.bDestroy;
+	return Parms.ReturnValue;
 
 }
 
@@ -1239,11 +1231,11 @@ void UPreviewGeometry::RemovePointSet(class FString* PointSetIdentifier, bool* b
 // Function ModelingComponents.PreviewGeometry.RemoveLineSet
 // (Final, Native, Public)
 // Parameters:
-// class FString                      LineSetIdentifier                                                (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bDestroy                                                         (ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      LineSetIdentifier                                                (ConstParm, ExportObject, BlueprintReadOnly, Net, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bDestroy                                                         (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UPreviewGeometry::RemoveLineSet(class FString* LineSetIdentifier, bool* bDestroy, bool ReturnValue)
+bool UPreviewGeometry::RemoveLineSet(const class FString& LineSetIdentifier, bool bDestroy)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1252,7 +1244,8 @@ void UPreviewGeometry::RemoveLineSet(class FString* LineSetIdentifier, bool* bDe
 
 	Params::UPreviewGeometry_RemoveLineSet_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.LineSetIdentifier = LineSetIdentifier;
+	Parms.bDestroy = bDestroy;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1262,11 +1255,7 @@ void UPreviewGeometry::RemoveLineSet(class FString* LineSetIdentifier, bool* bDe
 
 	Func->FunctionFlags = Flgs;
 
-	if (LineSetIdentifier != nullptr)
-		*LineSetIdentifier = std::move(Parms.LineSetIdentifier);
-
-	if (bDestroy != nullptr)
-		*bDestroy = Parms.bDestroy;
+	return Parms.ReturnValue;
 
 }
 
@@ -1274,9 +1263,9 @@ void UPreviewGeometry::RemoveLineSet(class FString* LineSetIdentifier, bool* bDe
 // Function ModelingComponents.PreviewGeometry.RemoveAllPointSets
 // (Final, Native, Public)
 // Parameters:
-// bool                               bDestroy                                                         (ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bDestroy                                                         (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
 
-void UPreviewGeometry::RemoveAllPointSets(bool* bDestroy)
+void UPreviewGeometry::RemoveAllPointSets(bool bDestroy)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1285,6 +1274,7 @@ void UPreviewGeometry::RemoveAllPointSets(bool* bDestroy)
 
 	Params::UPreviewGeometry_RemoveAllPointSets_Params Parms{};
 
+	Parms.bDestroy = bDestroy;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1294,18 +1284,15 @@ void UPreviewGeometry::RemoveAllPointSets(bool* bDestroy)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bDestroy != nullptr)
-		*bDestroy = Parms.bDestroy;
-
 }
 
 
 // Function ModelingComponents.PreviewGeometry.RemoveAllLineSets
 // (Final, Native, Public)
 // Parameters:
-// bool                               bDestroy                                                         (ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bDestroy                                                         (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
 
-void UPreviewGeometry::RemoveAllLineSets(bool* bDestroy)
+void UPreviewGeometry::RemoveAllLineSets(bool bDestroy)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1314,6 +1301,7 @@ void UPreviewGeometry::RemoveAllLineSets(bool* bDestroy)
 
 	Params::UPreviewGeometry_RemoveAllLineSets_Params Parms{};
 
+	Parms.bDestroy = bDestroy;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1323,18 +1311,15 @@ void UPreviewGeometry::RemoveAllLineSets(bool* bDestroy)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bDestroy != nullptr)
-		*bDestroy = Parms.bDestroy;
-
 }
 
 
 // Function ModelingComponents.PreviewGeometry.GetActor
 // (Final, Native, Public, Const)
 // Parameters:
-// class APreviewGeometryActor*       ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class APreviewGeometryActor*       ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UPreviewGeometry::GetActor(class APreviewGeometryActor* ReturnValue)
+class APreviewGeometryActor* UPreviewGeometry::GetActor()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1343,7 +1328,6 @@ void UPreviewGeometry::GetActor(class APreviewGeometryActor* ReturnValue)
 
 	Params::UPreviewGeometry_GetActor_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1353,16 +1337,18 @@ void UPreviewGeometry::GetActor(class APreviewGeometryActor* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ModelingComponents.PreviewGeometry.FindPointSet
 // (Final, Native, Public)
 // Parameters:
-// class FString                      PointSetIdentifier                                               (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-// class UPointSetComponent*          ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      PointSetIdentifier                                               (BlueprintVisible, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
+// class UPointSetComponent*          ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UPreviewGeometry::FindPointSet(class FString* PointSetIdentifier, class UPointSetComponent* ReturnValue)
+class UPointSetComponent* UPreviewGeometry::FindPointSet(const class FString& PointSetIdentifier)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1371,7 +1357,7 @@ void UPreviewGeometry::FindPointSet(class FString* PointSetIdentifier, class UPo
 
 	Params::UPreviewGeometry_FindPointSet_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.PointSetIdentifier = PointSetIdentifier;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1381,8 +1367,7 @@ void UPreviewGeometry::FindPointSet(class FString* PointSetIdentifier, class UPo
 
 	Func->FunctionFlags = Flgs;
 
-	if (PointSetIdentifier != nullptr)
-		*PointSetIdentifier = std::move(Parms.PointSetIdentifier);
+	return Parms.ReturnValue;
 
 }
 
@@ -1390,10 +1375,10 @@ void UPreviewGeometry::FindPointSet(class FString* PointSetIdentifier, class UPo
 // Function ModelingComponents.PreviewGeometry.FindLineSet
 // (Final, Native, Public)
 // Parameters:
-// class FString                      LineSetIdentifier                                                (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-// class ULineSetComponent*           ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      LineSetIdentifier                                                (ConstParm, ExportObject, BlueprintReadOnly, Net, Transient, Config, InstancedReference, SubobjectReference)
+// class ULineSetComponent*           ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UPreviewGeometry::FindLineSet(class FString* LineSetIdentifier, class ULineSetComponent* ReturnValue)
+class ULineSetComponent* UPreviewGeometry::FindLineSet(const class FString& LineSetIdentifier)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1402,7 +1387,7 @@ void UPreviewGeometry::FindLineSet(class FString* LineSetIdentifier, class ULine
 
 	Params::UPreviewGeometry_FindLineSet_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.LineSetIdentifier = LineSetIdentifier;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1412,8 +1397,7 @@ void UPreviewGeometry::FindLineSet(class FString* LineSetIdentifier, class ULine
 
 	Func->FunctionFlags = Flgs;
 
-	if (LineSetIdentifier != nullptr)
-		*LineSetIdentifier = std::move(Parms.LineSetIdentifier);
+	return Parms.ReturnValue;
 
 }
 
@@ -1445,10 +1429,10 @@ void UPreviewGeometry::Disconnect()
 // Function ModelingComponents.PreviewGeometry.CreateInWorld
 // (Final, Native, Public, HasOutParams, HasDefaults)
 // Parameters:
-// class UWorld*                      World                                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Transient, DisableEditOnInstance)
-// struct FTransform                  WithTransform                                                    (Net, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
+// class UWorld*                      World                                                            (ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance)
+// struct FTransform                  WithTransform                                                    (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
 
-void UPreviewGeometry::CreateInWorld(class UWorld* World, struct FTransform* WithTransform)
+class UWorld* UPreviewGeometry::CreateInWorld(const struct FTransform& WithTransform)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1457,7 +1441,7 @@ void UPreviewGeometry::CreateInWorld(class UWorld* World, struct FTransform* Wit
 
 	Params::UPreviewGeometry_CreateInWorld_Params Parms{};
 
-	Parms.World = World;
+	Parms.WithTransform = WithTransform;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1467,8 +1451,7 @@ void UPreviewGeometry::CreateInWorld(class UWorld* World, struct FTransform* Wit
 
 	Func->FunctionFlags = Flgs;
 
-	if (WithTransform != nullptr)
-		*WithTransform = std::move(Parms.WithTransform);
+	return Parms.ReturnValue;
 
 }
 
@@ -1476,10 +1459,10 @@ void UPreviewGeometry::CreateInWorld(class UWorld* World, struct FTransform* Wit
 // Function ModelingComponents.PreviewGeometry.AddPointSet
 // (Final, Native, Public)
 // Parameters:
-// class FString                      PointSetIdentifier                                               (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-// class UPointSetComponent*          ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      PointSetIdentifier                                               (BlueprintVisible, EditFixedSize, Transient, Config, InstancedReference, SubobjectReference)
+// class UPointSetComponent*          ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UPreviewGeometry::AddPointSet(class FString* PointSetIdentifier, class UPointSetComponent* ReturnValue)
+class UPointSetComponent* UPreviewGeometry::AddPointSet(const class FString& PointSetIdentifier)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1488,7 +1471,7 @@ void UPreviewGeometry::AddPointSet(class FString* PointSetIdentifier, class UPoi
 
 	Params::UPreviewGeometry_AddPointSet_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.PointSetIdentifier = PointSetIdentifier;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1498,8 +1481,7 @@ void UPreviewGeometry::AddPointSet(class FString* PointSetIdentifier, class UPoi
 
 	Func->FunctionFlags = Flgs;
 
-	if (PointSetIdentifier != nullptr)
-		*PointSetIdentifier = std::move(Parms.PointSetIdentifier);
+	return Parms.ReturnValue;
 
 }
 
@@ -1507,10 +1489,10 @@ void UPreviewGeometry::AddPointSet(class FString* PointSetIdentifier, class UPoi
 // Function ModelingComponents.PreviewGeometry.AddLineSet
 // (Final, Native, Public)
 // Parameters:
-// class FString                      LineSetIdentifier                                                (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-// class ULineSetComponent*           ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      LineSetIdentifier                                                (ConstParm, ExportObject, BlueprintReadOnly, Net, Transient, Config, InstancedReference, SubobjectReference)
+// class ULineSetComponent*           ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UPreviewGeometry::AddLineSet(class FString* LineSetIdentifier, class ULineSetComponent* ReturnValue)
+class ULineSetComponent* UPreviewGeometry::AddLineSet(const class FString& LineSetIdentifier)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1519,7 +1501,7 @@ void UPreviewGeometry::AddLineSet(class FString* LineSetIdentifier, class ULineS
 
 	Params::UPreviewGeometry_AddLineSet_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.LineSetIdentifier = LineSetIdentifier;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1529,8 +1511,7 @@ void UPreviewGeometry::AddLineSet(class FString* LineSetIdentifier, class ULineS
 
 	Func->FunctionFlags = Flgs;
 
-	if (LineSetIdentifier != nullptr)
-		*LineSetIdentifier = std::move(Parms.LineSetIdentifier);
+	return Parms.ReturnValue;
 
 }
 
@@ -2266,10 +2247,10 @@ class UModelingObjectsCreationAPI* UModelingObjectsCreationAPI::GetDefaultObj()
 // Function ModelingComponents.ModelingObjectsCreationAPI.CreateTextureObject
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FCreateTextureObjectParams  CreateTexParams                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// struct FCreateTextureObjectResult  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FCreateTextureObjectParams  CreateTexParams                                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// struct FCreateTextureObjectResult  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FCreateTextureObjectParams UModelingObjectsCreationAPI::CreateTextureObject(const struct FCreateTextureObjectResult& ReturnValue)
+struct FCreateTextureObjectResult UModelingObjectsCreationAPI::CreateTextureObject(const struct FCreateTextureObjectParams& CreateTexParams)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2278,7 +2259,7 @@ struct FCreateTextureObjectParams UModelingObjectsCreationAPI::CreateTextureObje
 
 	Params::UModelingObjectsCreationAPI_CreateTextureObject_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.CreateTexParams = CreateTexParams;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2296,10 +2277,10 @@ struct FCreateTextureObjectParams UModelingObjectsCreationAPI::CreateTextureObje
 // Function ModelingComponents.ModelingObjectsCreationAPI.CreateMeshObject
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FCreateMeshObjectParams     CreateMeshParams                                                 (ConstParm, BlueprintVisible, Net, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// struct FCreateMeshObjectResult     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FCreateMeshObjectParams     CreateMeshParams                                                 (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// struct FCreateMeshObjectResult     ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FCreateMeshObjectParams UModelingObjectsCreationAPI::CreateMeshObject(const struct FCreateMeshObjectResult& ReturnValue)
+struct FCreateMeshObjectResult UModelingObjectsCreationAPI::CreateMeshObject(const struct FCreateMeshObjectParams& CreateMeshParams)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2308,7 +2289,7 @@ struct FCreateMeshObjectParams UModelingObjectsCreationAPI::CreateMeshObject(con
 
 	Params::UModelingObjectsCreationAPI_CreateMeshObject_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.CreateMeshParams = CreateMeshParams;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2382,9 +2363,9 @@ class UCreateMeshObjectTypeProperties* UCreateMeshObjectTypeProperties::GetDefau
 // Function ModelingComponents.CreateMeshObjectTypeProperties.ShouldShowPropertySet
 // (Final, Native, Public, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UCreateMeshObjectTypeProperties::ShouldShowPropertySet(bool ReturnValue)
+bool UCreateMeshObjectTypeProperties::ShouldShowPropertySet()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2393,7 +2374,6 @@ void UCreateMeshObjectTypeProperties::ShouldShowPropertySet(bool ReturnValue)
 
 	Params::UCreateMeshObjectTypeProperties_ShouldShowPropertySet_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2403,15 +2383,17 @@ void UCreateMeshObjectTypeProperties::ShouldShowPropertySet(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ModelingComponents.CreateMeshObjectTypeProperties.GetOutputTypeNamesFunc
 // (Final, Native, Public)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UCreateMeshObjectTypeProperties::GetOutputTypeNamesFunc(const TArray<class FString>& ReturnValue)
+TArray<class FString> UCreateMeshObjectTypeProperties::GetOutputTypeNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2420,7 +2402,6 @@ void UCreateMeshObjectTypeProperties::GetOutputTypeNamesFunc(const TArray<class 
 
 	Params::UCreateMeshObjectTypeProperties_GetOutputTypeNamesFunc_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2430,15 +2411,17 @@ void UCreateMeshObjectTypeProperties::GetOutputTypeNamesFunc(const TArray<class 
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ModelingComponents.CreateMeshObjectTypeProperties.GetCurrentCreateMeshType
 // (Final, Native, Public, Const)
 // Parameters:
-// enum class ECreateObjectTypeHint   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class ECreateObjectTypeHint   ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UCreateMeshObjectTypeProperties::GetCurrentCreateMeshType(enum class ECreateObjectTypeHint ReturnValue)
+enum class ECreateObjectTypeHint UCreateMeshObjectTypeProperties::GetCurrentCreateMeshType()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2447,7 +2430,6 @@ void UCreateMeshObjectTypeProperties::GetCurrentCreateMeshType(enum class ECreat
 
 	Params::UCreateMeshObjectTypeProperties_GetCurrentCreateMeshType_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2456,6 +2438,8 @@ void UCreateMeshObjectTypeProperties::GetCurrentCreateMeshType(enum class ECreat
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -2519,9 +2503,9 @@ class UPolygroupLayersProperties* UPolygroupLayersProperties::GetDefaultObj()
 // Function ModelingComponents.PolygroupLayersProperties.GetGroupLayersFunc
 // (Final, Native, Public)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UPolygroupLayersProperties::GetGroupLayersFunc(const TArray<class FString>& ReturnValue)
+TArray<class FString> UPolygroupLayersProperties::GetGroupLayersFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2530,7 +2514,6 @@ void UPolygroupLayersProperties::GetGroupLayersFunc(const TArray<class FString>&
 
 	Params::UPolygroupLayersProperties_GetGroupLayersFunc_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2539,6 +2522,8 @@ void UPolygroupLayersProperties::GetGroupLayersFunc(const TArray<class FString>&
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -2574,9 +2559,9 @@ class UWeightMapSetProperties* UWeightMapSetProperties::GetDefaultObj()
 // Function ModelingComponents.WeightMapSetProperties.GetWeightMapsFunc
 // (Final, Native, Public)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UWeightMapSetProperties::GetWeightMapsFunc(const TArray<class FString>& ReturnValue)
+TArray<class FString> UWeightMapSetProperties::GetWeightMapsFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2585,7 +2570,6 @@ void UWeightMapSetProperties::GetWeightMapsFunc(const TArray<class FString>& Ret
 
 	Params::UWeightMapSetProperties_GetWeightMapsFunc_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2594,6 +2578,8 @@ void UWeightMapSetProperties::GetWeightMapsFunc(const TArray<class FString>& Ret
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 

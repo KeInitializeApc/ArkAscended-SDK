@@ -43,7 +43,7 @@ class AStructureItemContainerBaseBP_C* AStructureItemContainerBaseBP_C::GetDefau
 // Function StructureItemContainerBaseBP.StructureItemContainerBaseBP_C.BPOnTransferAll
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UPrimalInventoryComponent*   ToInventory                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, EditConst, InstancedReference, SubobjectReference)
+// class UPrimalInventoryComponent*   ToInventory                                                      (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
 
 void AStructureItemContainerBaseBP_C::BPOnTransferAll(class UPrimalInventoryComponent** ToInventory)
 {

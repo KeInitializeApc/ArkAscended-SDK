@@ -50,9 +50,9 @@ enum class ESubLevelStripMode : uint8
 struct FAutoCompleteCommand
 {
 public:
-	class FString                                Command;                                           // 0x0(0x10)(Edit, BlueprintVisible, ExportObject, Net, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-	class FString                                Desc;                                              // 0x10(0x10)(Edit, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1CFD[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	class FString                                Command;                                           // 0x0(0x10)(Edit, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	class FString                                Desc;                                              // 0x10(0x10)(BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_22BB[0x8];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x30 (0x30 - 0x0)
@@ -61,7 +61,7 @@ struct FGameModeName
 {
 public:
 	class FString                                Name;                                              // 0x0(0x10)(ConstParm, Net, OutParm)
-	struct FSoftClassPath                        GameMode;                                          // 0x10(0x20)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+	struct FSoftClassPath                        GameMode;                                          // 0x10(0x20)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, Transient, GlobalConfig)
 };
 
 // 0x58 (0x58 - 0x0)
@@ -69,9 +69,9 @@ public:
 struct FTemplateMapInfoOverride
 {
 public:
-	struct FSoftObjectPath                       Thumbnail;                                         // 0x0(0x20)(BlueprintVisible, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FSoftObjectPath                       Thumbnail;                                         // 0x0(0x20)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	struct FSoftObjectPath                       Map;                                               // 0x20(0x20)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor)
-	class FText                                  DisplayName;                                       // 0x40(0x18)(Edit, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Transient)
+	class FText                                  DisplayName;                                       // 0x40(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient)
 };
 
 }

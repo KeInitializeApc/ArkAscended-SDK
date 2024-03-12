@@ -43,14 +43,14 @@ class UCustomMouseWidget_C* UCustomMouseWidget_C::GetDefaultObj()
 // Function CustomMouseWidget.CustomMouseWidget_C.SetInnerRingScales
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// double                             Scale0                                                           (ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// double                             Scale1                                                           (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// double                             Scale2                                                           (ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// struct FVector2D                   CallFunc_MakeVector2D_ReturnValue                                (ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-// struct FVector2D                   CallFunc_MakeVector2D_ReturnValue_1                              (ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference, Interp)
-// struct FVector2D                   CallFunc_MakeVector2D_ReturnValue_2                              (ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference, RepNotify, Interp)
+// double                             Scale0                                                           (Net, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// double                             Scale1                                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// double                             Scale2                                                           (ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// struct FVector2D                   CallFunc_MakeVector2D_ReturnValue                                (Edit, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// struct FVector2D                   CallFunc_MakeVector2D_ReturnValue_1                              (Edit, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, Interp)
+// struct FVector2D                   CallFunc_MakeVector2D_ReturnValue_2                              (Edit, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference, RepNotify, Interp)
 
-struct FVector2D UCustomMouseWidget_C::SetInnerRingScales()
+double UCustomMouseWidget_C::SetInnerRingScales(struct FVector2D* CallFunc_MakeVector2D_ReturnValue, struct FVector2D* CallFunc_MakeVector2D_ReturnValue_1, struct FVector2D* CallFunc_MakeVector2D_ReturnValue_2)
 {
 	static class UFunction* Func = nullptr;
 
@@ -62,6 +62,15 @@ struct FVector2D UCustomMouseWidget_C::SetInnerRingScales()
 
 	UObject::ProcessEvent(Func, &Parms);
 
+	if (CallFunc_MakeVector2D_ReturnValue != nullptr)
+		*CallFunc_MakeVector2D_ReturnValue = std::move(Parms.CallFunc_MakeVector2D_ReturnValue);
+
+	if (CallFunc_MakeVector2D_ReturnValue_1 != nullptr)
+		*CallFunc_MakeVector2D_ReturnValue_1 = std::move(Parms.CallFunc_MakeVector2D_ReturnValue_1);
+
+	if (CallFunc_MakeVector2D_ReturnValue_2 != nullptr)
+		*CallFunc_MakeVector2D_ReturnValue_2 = std::move(Parms.CallFunc_MakeVector2D_ReturnValue_2);
+
 	return Parms.ReturnValue;
 
 }
@@ -71,8 +80,8 @@ struct FVector2D UCustomMouseWidget_C::SetInnerRingScales()
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
 // double                             Add                                                              (Edit, ConstParm, Net, Parm, ReturnParm, DisableEditOnTemplate)
-// class UMaterialInstanceDynamic*    CallFunc_GetDynamicMaterial_ReturnValue                          (Edit, EditFixedSize, ReturnParm, GlobalConfig, SubobjectReference)
-// float                              CallFunc_SetScalarParameterValue_Value_ImplicitCast              (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, GlobalConfig, SubobjectReference)
+// class UMaterialInstanceDynamic*    CallFunc_GetDynamicMaterial_ReturnValue                          (Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              CallFunc_SetScalarParameterValue_Value_ImplicitCast              (Edit, ConstParm, EditFixedSize, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
 float UCustomMouseWidget_C::SetPointerColorAdd()
 {
@@ -94,7 +103,7 @@ float UCustomMouseWidget_C::SetPointerColorAdd()
 // Function CustomMouseWidget.CustomMouseWidget_C.ShowReticule
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               Show                                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// bool                               Show                                                             (Edit, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
 bool UCustomMouseWidget_C::ShowReticule()
 {
@@ -116,10 +125,10 @@ bool UCustomMouseWidget_C::ShowReticule()
 // Function CustomMouseWidget.CustomMouseWidget_C.SetPointerScale
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// double                             NewParam                                                         (ExportObject, Net, EditFixedSize, Parm, ReturnParm, GlobalConfig, SubobjectReference)
-// struct FVector2D                   CallFunc_MakeVector2D_ReturnValue                                (ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
+// double                             NewParam                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FVector2D                   CallFunc_MakeVector2D_ReturnValue                                (Edit, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
 
-struct FVector2D UCustomMouseWidget_C::SetPointerScale()
+double UCustomMouseWidget_C::SetPointerScale(struct FVector2D* CallFunc_MakeVector2D_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -131,6 +140,9 @@ struct FVector2D UCustomMouseWidget_C::SetPointerScale()
 
 	UObject::ProcessEvent(Func, &Parms);
 
+	if (CallFunc_MakeVector2D_ReturnValue != nullptr)
+		*CallFunc_MakeVector2D_ReturnValue = std::move(Parms.CallFunc_MakeVector2D_ReturnValue);
+
 	return Parms.ReturnValue;
 
 }
@@ -139,17 +151,17 @@ struct FVector2D UCustomMouseWidget_C::SetPointerScale()
 // Function CustomMouseWidget.CustomMouseWidget_C.SetArrowAlpha
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// double                             LeftRightAlpha                                                   (Net, EditFixedSize, Parm, ReturnParm, GlobalConfig, SubobjectReference)
-// double                             UpDownAlpha                                                      (ExportObject, BlueprintReadOnly, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-// bool                               UseArrow                                                         (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// float                              CallFunc_SetRenderOpacity_InOpacity_ImplicitCast                 (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, GlobalConfig, SubobjectReference)
-// float                              CallFunc_SetRenderOpacity_InOpacity_ImplicitCast_1               (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, GlobalConfig, SubobjectReference, Interp)
-// float                              CallFunc_SetRenderOpacity_InOpacity_ImplicitCast_2               (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, GlobalConfig, SubobjectReference, RepNotify, Interp)
-// float                              CallFunc_SetRenderOpacity_InOpacity_ImplicitCast_3               (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, GlobalConfig, SubobjectReference, NonTransactional)
-// float                              CallFunc_SetRenderOpacity_InOpacity_ImplicitCast_4               (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, GlobalConfig, SubobjectReference, RepNotify, NonTransactional)
-// float                              CallFunc_SetRenderOpacity_InOpacity_ImplicitCast_5               (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, GlobalConfig, SubobjectReference, Interp, NonTransactional)
-// float                              CallFunc_SetRenderOpacity_InOpacity_ImplicitCast_6               (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, GlobalConfig, SubobjectReference, RepNotify, Interp, NonTransactional)
-// float                              CallFunc_SetRenderOpacity_InOpacity_ImplicitCast_7               (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, GlobalConfig, SubobjectReference, EditorOnly)
+// double                             LeftRightAlpha                                                   (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// double                             UpDownAlpha                                                      (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               UseArrow                                                         (BlueprintReadOnly, Net, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// float                              CallFunc_SetRenderOpacity_InOpacity_ImplicitCast                 (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              CallFunc_SetRenderOpacity_InOpacity_ImplicitCast_1               (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
+// float                              CallFunc_SetRenderOpacity_InOpacity_ImplicitCast_2               (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference, RepNotify, Interp)
+// float                              CallFunc_SetRenderOpacity_InOpacity_ImplicitCast_3               (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference, NonTransactional)
+// float                              CallFunc_SetRenderOpacity_InOpacity_ImplicitCast_4               (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference, RepNotify, NonTransactional)
+// float                              CallFunc_SetRenderOpacity_InOpacity_ImplicitCast_5               (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp, NonTransactional)
+// float                              CallFunc_SetRenderOpacity_InOpacity_ImplicitCast_6               (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference, RepNotify, Interp, NonTransactional)
+// float                              CallFunc_SetRenderOpacity_InOpacity_ImplicitCast_7               (ConstParm, ExportObject, Net, OutParm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference, EditorOnly)
 
 float UCustomMouseWidget_C::SetArrowAlpha()
 {
@@ -225,9 +237,9 @@ void UCustomMouseWidget_C::Construct()
 // Function CustomMouseWidget.CustomMouseWidget_C.ExecuteUbergraph_CustomMouseWidget
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
 
-int32 UCustomMouseWidget_C::ExecuteUbergraph_CustomMouseWidget()
+void UCustomMouseWidget_C::ExecuteUbergraph_CustomMouseWidget(int32* EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
@@ -239,7 +251,8 @@ int32 UCustomMouseWidget_C::ExecuteUbergraph_CustomMouseWidget()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (EntryPoint != nullptr)
+		*EntryPoint = Parms.EntryPoint;
 
 }
 

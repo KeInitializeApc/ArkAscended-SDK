@@ -95,11 +95,11 @@ void UUsdAssetCache2::Reset()
 // Function USDClasses.UsdAssetCache2.RemoveAssetReference
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     Asset                                                            (BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// class UObject*                     Referencer                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     Asset                                                            (Edit, ConstParm, Net, EditFixedSize, Parm, Config, EditConst, SubobjectReference)
+// class UObject*                     Referencer                                                       (Edit, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UUsdAssetCache2::RemoveAssetReference(class UObject* Asset, class UObject* Referencer, bool ReturnValue)
+bool UUsdAssetCache2::RemoveAssetReference(class UObject* Asset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -109,36 +109,6 @@ void UUsdAssetCache2::RemoveAssetReference(class UObject* Asset, class UObject* 
 	Params::UUsdAssetCache2_RemoveAssetReference_Params Parms{};
 
 	Parms.Asset = Asset;
-	Parms.Referencer = Referencer;
-	Parms.ReturnValue = ReturnValue;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
-// Function USDClasses.UsdAssetCache2.RemoveAsset
-// (Final, Native, Public, BlueprintCallable)
-// Parameters:
-// class FString                      Hash                                                             (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
-// class UObject*                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-
-class FString UUsdAssetCache2::RemoveAsset(class UObject* ReturnValue)
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("UsdAssetCache2", "RemoveAsset");
-
-	Params::UUsdAssetCache2_RemoveAsset_Params Parms{};
-
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -153,23 +123,21 @@ class FString UUsdAssetCache2::RemoveAsset(class UObject* ReturnValue)
 }
 
 
-// Function USDClasses.UsdAssetCache2.RemoveAllAssetReferences
+// Function USDClasses.UsdAssetCache2.RemoveAsset
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     Referencer                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      Hash                                                             (Edit, Net, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UObject*                     ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UUsdAssetCache2::RemoveAllAssetReferences(class UObject* Referencer, bool ReturnValue)
+class UObject* UUsdAssetCache2::RemoveAsset(class FString* Hash)
 {
 	static class UFunction* Func = nullptr;
 
 	if (!Func)
-		Func = Class->GetFunction("UsdAssetCache2", "RemoveAllAssetReferences");
+		Func = Class->GetFunction("UsdAssetCache2", "RemoveAsset");
 
-	Params::UUsdAssetCache2_RemoveAllAssetReferences_Params Parms{};
+	Params::UUsdAssetCache2_RemoveAsset_Params Parms{};
 
-	Parms.Referencer = Referencer;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -178,6 +146,40 @@ void UUsdAssetCache2::RemoveAllAssetReferences(class UObject* Referencer, bool R
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Hash != nullptr)
+		*Hash = std::move(Parms.Hash);
+
+	return Parms.ReturnValue;
+
+}
+
+
+// Function USDClasses.UsdAssetCache2.RemoveAllAssetReferences
+// (Final, Native, Public, BlueprintCallable)
+// Parameters:
+// class UObject*                     Referencer                                                       (Edit, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+
+bool UUsdAssetCache2::RemoveAllAssetReferences()
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("UsdAssetCache2", "RemoveAllAssetReferences");
+
+	Params::UUsdAssetCache2_RemoveAllAssetReferences_Params Parms{};
+
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -209,10 +211,10 @@ void UUsdAssetCache2::RefreshStorage()
 // Function USDClasses.UsdAssetCache2.IsAssetOwnedByCache
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      AssetPath                                                        (BlueprintVisible, BlueprintReadOnly, OutParm, Transient, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      AssetPath                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UUsdAssetCache2::IsAssetOwnedByCache(class FString* AssetPath, bool ReturnValue)
+bool UUsdAssetCache2::IsAssetOwnedByCache(class FString* AssetPath)
 {
 	static class UFunction* Func = nullptr;
 
@@ -221,7 +223,6 @@ void UUsdAssetCache2::IsAssetOwnedByCache(class FString* AssetPath, bool ReturnV
 
 	Params::UUsdAssetCache2_IsAssetOwnedByCache_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -234,15 +235,17 @@ void UUsdAssetCache2::IsAssetOwnedByCache(class FString* AssetPath, bool ReturnV
 	if (AssetPath != nullptr)
 		*AssetPath = std::move(Parms.AssetPath);
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function USDClasses.UsdAssetCache2.GetNumAssets
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UUsdAssetCache2::GetNumAssets(int32 ReturnValue)
+int32 UUsdAssetCache2::GetNumAssets()
 {
 	static class UFunction* Func = nullptr;
 
@@ -251,7 +254,6 @@ void UUsdAssetCache2::GetNumAssets(int32 ReturnValue)
 
 	Params::UUsdAssetCache2_GetNumAssets_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -261,16 +263,18 @@ void UUsdAssetCache2::GetNumAssets(int32 ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function USDClasses.UsdAssetCache2.GetHashForAsset
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UObject*                     Asset                                                            (BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     Asset                                                            (Edit, ConstParm, Net, EditFixedSize, Parm, Config, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UUsdAssetCache2::GetHashForAsset(class UObject* Asset, const class FString& ReturnValue)
+class FString UUsdAssetCache2::GetHashForAsset(class UObject* Asset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -280,7 +284,6 @@ void UUsdAssetCache2::GetHashForAsset(class UObject* Asset, const class FString&
 	Params::UUsdAssetCache2_GetHashForAsset_Params Parms{};
 
 	Parms.Asset = Asset;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -290,16 +293,18 @@ void UUsdAssetCache2::GetHashForAsset(class UObject* Asset, const class FString&
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function USDClasses.UsdAssetCache2.GetCachedAsset
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Hash                                                             (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
-// class UObject*                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      Hash                                                             (Edit, Net, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UObject*                     ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FString UUsdAssetCache2::GetCachedAsset(class UObject* ReturnValue)
+class UObject* UUsdAssetCache2::GetCachedAsset(class FString* Hash)
 {
 	static class UFunction* Func = nullptr;
 
@@ -308,7 +313,6 @@ class FString UUsdAssetCache2::GetCachedAsset(class UObject* ReturnValue)
 
 	Params::UUsdAssetCache2_GetCachedAsset_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -317,6 +321,9 @@ class FString UUsdAssetCache2::GetCachedAsset(class UObject* ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Hash != nullptr)
+		*Hash = std::move(Parms.Hash);
 
 	return Parms.ReturnValue;
 
@@ -326,9 +333,9 @@ class FString UUsdAssetCache2::GetCachedAsset(class UObject* ReturnValue)
 // Function USDClasses.UsdAssetCache2.GetAllLoadedAssets
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class UObject*>             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class UObject*>             ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UUsdAssetCache2::GetAllLoadedAssets(const TArray<class UObject*>& ReturnValue)
+TArray<class UObject*> UUsdAssetCache2::GetAllLoadedAssets()
 {
 	static class UFunction* Func = nullptr;
 
@@ -337,7 +344,6 @@ void UUsdAssetCache2::GetAllLoadedAssets(const TArray<class UObject*>& ReturnVal
 
 	Params::UUsdAssetCache2_GetAllLoadedAssets_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -347,15 +353,17 @@ void UUsdAssetCache2::GetAllLoadedAssets(const TArray<class UObject*>& ReturnVal
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function USDClasses.UsdAssetCache2.GetAllCachedAssetPaths
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UUsdAssetCache2::GetAllCachedAssetPaths(const TArray<class FString>& ReturnValue)
+TArray<class FString> UUsdAssetCache2::GetAllCachedAssetPaths()
 {
 	static class UFunction* Func = nullptr;
 
@@ -364,7 +372,6 @@ void UUsdAssetCache2::GetAllCachedAssetPaths(const TArray<class FString>& Return
 
 	Params::UUsdAssetCache2_GetAllCachedAssetPaths_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -374,15 +381,17 @@ void UUsdAssetCache2::GetAllCachedAssetPaths(const TArray<class FString>& Return
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function USDClasses.UsdAssetCache2.GetAllAssetHashes
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UUsdAssetCache2::GetAllAssetHashes(const TArray<class FString>& ReturnValue)
+TArray<class FString> UUsdAssetCache2::GetAllAssetHashes()
 {
 	static class UFunction* Func = nullptr;
 
@@ -391,7 +400,6 @@ void UUsdAssetCache2::GetAllAssetHashes(const TArray<class FString>& ReturnValue
 
 	Params::UUsdAssetCache2_GetAllAssetHashes_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -401,16 +409,18 @@ void UUsdAssetCache2::GetAllAssetHashes(const TArray<class FString>& ReturnValue
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function USDClasses.UsdAssetCache2.CanRemoveAsset
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Hash                                                             (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      Hash                                                             (Edit, Net, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FString UUsdAssetCache2::CanRemoveAsset(bool ReturnValue)
+bool UUsdAssetCache2::CanRemoveAsset(class FString* Hash)
 {
 	static class UFunction* Func = nullptr;
 
@@ -419,7 +429,6 @@ class FString UUsdAssetCache2::CanRemoveAsset(bool ReturnValue)
 
 	Params::UUsdAssetCache2_CanRemoveAsset_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -428,6 +437,9 @@ class FString UUsdAssetCache2::CanRemoveAsset(bool ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Hash != nullptr)
+		*Hash = std::move(Parms.Hash);
 
 	return Parms.ReturnValue;
 
@@ -437,11 +449,11 @@ class FString UUsdAssetCache2::CanRemoveAsset(bool ReturnValue)
 // Function USDClasses.UsdAssetCache2.CacheAsset
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Hash                                                             (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
-// class UObject*                     Asset                                                            (BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// class UObject*                     Referencer                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class FString                      Hash                                                             (Edit, Net, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UObject*                     Asset                                                            (Edit, ConstParm, Net, EditFixedSize, Parm, Config, EditConst, SubobjectReference)
+// class UObject*                     Referencer                                                       (Edit, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-class FString UUsdAssetCache2::CacheAsset(class UObject* Asset, class UObject* Referencer)
+class UObject* UUsdAssetCache2::CacheAsset(class FString* Hash, class UObject* Asset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -451,7 +463,40 @@ class FString UUsdAssetCache2::CacheAsset(class UObject* Asset, class UObject* R
 	Params::UUsdAssetCache2_CacheAsset_Params Parms{};
 
 	Parms.Asset = Asset;
-	Parms.Referencer = Referencer;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	if (Hash != nullptr)
+		*Hash = std::move(Parms.Hash);
+
+	return Parms.ReturnValue;
+
+}
+
+
+// Function USDClasses.UsdAssetCache2.AddAssetReference
+// (Final, Native, Public, BlueprintCallable)
+// Parameters:
+// class UObject*                     Asset                                                            (Edit, ConstParm, Net, EditFixedSize, Parm, Config, EditConst, SubobjectReference)
+// class UObject*                     Referencer                                                       (Edit, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+
+bool UUsdAssetCache2::AddAssetReference(class UObject* Asset)
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("UsdAssetCache2", "AddAssetReference");
+
+	Params::UUsdAssetCache2_AddAssetReference_Params Parms{};
+
+	Parms.Asset = Asset;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -462,37 +507,6 @@ class FString UUsdAssetCache2::CacheAsset(class UObject* Asset, class UObject* R
 	Func->FunctionFlags = Flgs;
 
 	return Parms.ReturnValue;
-
-}
-
-
-// Function USDClasses.UsdAssetCache2.AddAssetReference
-// (Final, Native, Public, BlueprintCallable)
-// Parameters:
-// class UObject*                     Asset                                                            (BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// class UObject*                     Referencer                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-
-void UUsdAssetCache2::AddAssetReference(class UObject* Asset, class UObject* Referencer, bool ReturnValue)
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("UsdAssetCache2", "AddAssetReference");
-
-	Params::UUsdAssetCache2_AddAssetReference_Params Parms{};
-
-	Parms.Asset = Asset;
-	Parms.Referencer = Referencer;
-	Parms.ReturnValue = ReturnValue;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
 
 }
 

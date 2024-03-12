@@ -61,10 +61,10 @@ void UUI_Notification_C::Debug()
 // Function UI_Notification.UI_Notification_C.SetSecondaryMessage
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class FText                        InText                                                           (ConstParm, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// class FText                        InText                                                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, EditConst, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
 
-void UUI_Notification_C::SetSecondaryMessage(class FText* InText, bool* CallFunc_IsValid_ReturnValue)
+bool UUI_Notification_C::SetSecondaryMessage(class FText* InText)
 {
 	static class UFunction* Func = nullptr;
 
@@ -79,8 +79,7 @@ void UUI_Notification_C::SetSecondaryMessage(class FText* InText, bool* CallFunc
 	if (InText != nullptr)
 		*InText = Parms.InText;
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -88,10 +87,10 @@ void UUI_Notification_C::SetSecondaryMessage(class FText* InText, bool* CallFunc
 // Function UI_Notification.UI_Notification_C.SetMainMessage
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class FText                        InText                                                           (ConstParm, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// class FText                        InText                                                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, EditConst, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
 
-void UUI_Notification_C::SetMainMessage(class FText* InText, bool* CallFunc_IsValid_ReturnValue)
+bool UUI_Notification_C::SetMainMessage(class FText* InText)
 {
 	static class UFunction* Func = nullptr;
 
@@ -106,8 +105,7 @@ void UUI_Notification_C::SetMainMessage(class FText* InText, bool* CallFunc_IsVa
 	if (InText != nullptr)
 		*InText = Parms.InText;
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -133,9 +131,9 @@ void UUI_Notification_C::OnClicked()
 // Function UI_Notification.UI_Notification_C.OnFail_E84A8D0E4FF41AB6F8FDA4A13C0CED23
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UTexture2DDynamic*           Texture                                                          (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst)
+// class UTexture2DDynamic*           Texture                                                          (ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
 
-void UUI_Notification_C::OnFail_E84A8D0E4FF41AB6F8FDA4A13C0CED23(class UTexture2DDynamic** Texture)
+class UTexture2DDynamic* UUI_Notification_C::OnFail_E84A8D0E4FF41AB6F8FDA4A13C0CED23()
 {
 	static class UFunction* Func = nullptr;
 
@@ -147,8 +145,7 @@ void UUI_Notification_C::OnFail_E84A8D0E4FF41AB6F8FDA4A13C0CED23(class UTexture2
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Texture != nullptr)
-		*Texture = Parms.Texture;
+	return Parms.ReturnValue;
 
 }
 
@@ -156,9 +153,9 @@ void UUI_Notification_C::OnFail_E84A8D0E4FF41AB6F8FDA4A13C0CED23(class UTexture2
 // Function UI_Notification.UI_Notification_C.OnSuccess_E84A8D0E4FF41AB6F8FDA4A13C0CED23
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UTexture2DDynamic*           Texture                                                          (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst)
+// class UTexture2DDynamic*           Texture                                                          (ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
 
-void UUI_Notification_C::OnSuccess_E84A8D0E4FF41AB6F8FDA4A13C0CED23(class UTexture2DDynamic** Texture)
+class UTexture2DDynamic* UUI_Notification_C::OnSuccess_E84A8D0E4FF41AB6F8FDA4A13C0CED23()
 {
 	static class UFunction* Func = nullptr;
 
@@ -170,8 +167,7 @@ void UUI_Notification_C::OnSuccess_E84A8D0E4FF41AB6F8FDA4A13C0CED23(class UTextu
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Texture != nullptr)
-		*Texture = Parms.Texture;
+	return Parms.ReturnValue;
 
 }
 
@@ -197,13 +193,13 @@ void UUI_Notification_C::BndEvt__ModSuccessfullyInsalledWidget_Button_K2Node_Com
 // Function UI_Notification.UI_Notification_C.CreateAndPlayAnimation
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UTexture2D*                  ForcedThumbnail                                                  (ConstParm, ExportObject, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// class UTexture2DDynamic*           Texture                                                          (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst)
-// class FString                      ThumbnailUrl                                                     (Edit, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// class FText                        MainText                                                         (ConstParm, BlueprintVisible, Parm, ZeroConstructor, EditConst, GlobalConfig, SubobjectReference)
-// class FText                        SecondaryText                                                    (Edit, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UTexture2D*                  ForcedThumbnail                                                  (BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UTexture2DDynamic*           Texture                                                          (ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
+// class FString                      ThumbnailUrl                                                     (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FText                        MainText                                                         (ConstParm, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// class FText                        SecondaryText                                                    (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
 
-class FText UUI_Notification_C::CreateAndPlayAnimation(class UTexture2DDynamic** Texture, class FString* ThumbnailUrl, class FText MainText)
+class FText UUI_Notification_C::CreateAndPlayAnimation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -212,15 +208,8 @@ class FText UUI_Notification_C::CreateAndPlayAnimation(class UTexture2DDynamic**
 
 	Params::UUI_Notification_C_CreateAndPlayAnimation_Params Parms{};
 
-	Parms.MainText = MainText;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (Texture != nullptr)
-		*Texture = Parms.Texture;
-
-	if (ThumbnailUrl != nullptr)
-		*ThumbnailUrl = std::move(Parms.ThumbnailUrl);
 
 	return Parms.ReturnValue;
 
@@ -320,9 +309,9 @@ void UUI_Notification_C::RequestExit()
 // Function UI_Notification.UI_Notification_C.PreConstruct
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// bool                               IsDesignTime                                                     (Edit, ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+// bool                               IsDesignTime                                                     (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 
-void UUI_Notification_C::PreConstruct(bool* IsDesignTime)
+bool UUI_Notification_C::PreConstruct()
 {
 	static class UFunction* Func = nullptr;
 
@@ -334,8 +323,7 @@ void UUI_Notification_C::PreConstruct(bool* IsDesignTime)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (IsDesignTime != nullptr)
-		*IsDesignTime = Parms.IsDesignTime;
+	return Parms.ReturnValue;
 
 }
 
@@ -343,9 +331,9 @@ void UUI_Notification_C::PreConstruct(bool* IsDesignTime)
 // Function UI_Notification.UI_Notification_C.Download Thumbnail
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class FString                      ThumbnailUrl                                                     (Edit, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      ThumbnailUrl                                                     (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UUI_Notification_C::Download_Thumbnail(class FString* ThumbnailUrl)
+class FString UUI_Notification_C::Download_Thumbnail()
 {
 	static class UFunction* Func = nullptr;
 
@@ -357,8 +345,7 @@ void UUI_Notification_C::Download_Thumbnail(class FString* ThumbnailUrl)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (ThumbnailUrl != nullptr)
-		*ThumbnailUrl = std::move(Parms.ThumbnailUrl);
+	return Parms.ReturnValue;
 
 }
 
@@ -402,33 +389,33 @@ void UUI_Notification_C::Construct()
 // Function UI_Notification.UI_Notification_C.ExecuteUbergraph_UI_Notification
 // (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// int32                              EntryPoint                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-// class UTexture2DDynamic*           K2Node_CustomEvent_Texture_2                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (BlueprintVisible, ExportObject, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// class UTexture2DDynamic*           K2Node_CustomEvent_Texture_1                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference, Interp)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_1                           (BlueprintVisible, ExportObject, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, Interp)
-// class UTexture2DDynamic*           Temp_object_Variable                                             (ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               Temp_bool_Has_Been_Initd_Variable                                (Edit, EditFixedSize, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// class UTexture2D*                  K2Node_CustomEvent_ForcedThumbnail                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// class UTexture2DDynamic*           K2Node_CustomEvent_Texture                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// class FString                      K2Node_CustomEvent_ThumbnailURL_1                                (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference, Interp)
-// class FText                        K2Node_CustomEvent_MainText                                      (Edit, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// class FText                        K2Node_CustomEvent_SecondaryText                                 (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_1                                   (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, Interp)
-// bool                               CallFunc_IsValid_ReturnValue_2                                   (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, RepNotify, Interp)
-// bool                               CallFunc_IsValid_ReturnValue_3                                   (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, NonTransactional)
-// class UUMGSequencePlayer*          CallFunc_PlayAnimationForward_ReturnValue                        (ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               K2Node_Event_IsDesignTime                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Config, GlobalConfig, SubobjectReference)
-// class FString                      K2Node_CustomEvent_ThumbnailURL                                  (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// class UAsyncTaskDownloadImage*     CallFunc_DownloadImage_ReturnValue                               (ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_EqualEqual_StrStr_ReturnValue                           (Edit, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_4                                   (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, RepNotify, NonTransactional)
-// bool                               Temp_bool_IsClosed_Variable                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_5                                   (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, Interp, NonTransactional)
-// class UUMGSequencePlayer*          CallFunc_PlayAnimationReverse_ReturnValue                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
+// class UTexture2DDynamic*           K2Node_CustomEvent_Texture_2                                     (ConstParm, ExportObject, Net, Parm, OutParm, Config, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
+// class UTexture2DDynamic*           K2Node_CustomEvent_Texture_1                                     (ConstParm, ExportObject, Net, Parm, OutParm, Config, EditConst, GlobalConfig, SubobjectReference, Interp)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_1                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference, Interp)
+// class UTexture2DDynamic*           Temp_object_Variable                                             (EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// bool                               Temp_bool_Has_Been_Initd_Variable                                (Edit, ConstParm, BlueprintVisible, Parm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UTexture2D*                  K2Node_CustomEvent_ForcedThumbnail                               (Edit, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UTexture2DDynamic*           K2Node_CustomEvent_Texture                                       (ConstParm, ExportObject, Net, Parm, OutParm, Config, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      K2Node_CustomEvent_ThumbnailURL_1                                (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference, Interp)
+// class FText                        K2Node_CustomEvent_MainText                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// class FText                        K2Node_CustomEvent_SecondaryText                                 (ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_1                                   (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference, Interp)
+// bool                               CallFunc_IsValid_ReturnValue_2                                   (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference, RepNotify, Interp)
+// bool                               CallFunc_IsValid_ReturnValue_3                                   (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference, NonTransactional)
+// class UUMGSequencePlayer*          CallFunc_PlayAnimationForward_ReturnValue                        (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               K2Node_Event_IsDesignTime                                        (BlueprintVisible, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// class FString                      K2Node_CustomEvent_ThumbnailURL                                  (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UAsyncTaskDownloadImage*     CallFunc_DownloadImage_ReturnValue                               (Edit, Net, EditFixedSize, OutParm, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_EqualEqual_StrStr_ReturnValue                           (ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_4                                   (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference, RepNotify, NonTransactional)
+// bool                               Temp_bool_IsClosed_Variable                                      (Edit, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_5                                   (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference, Interp, NonTransactional)
+// class UUMGSequencePlayer*          CallFunc_PlayAnimationReverse_ReturnValue                        (Edit, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-bool UUI_Notification_C::ExecuteUbergraph_UI_Notification(class UTexture2DDynamic* K2Node_CustomEvent_Texture_2, class UTexture2DDynamic* K2Node_CustomEvent_Texture_1, class UTexture2DDynamic* Temp_object_Variable, bool* CallFunc_IsValid_ReturnValue, class UTexture2DDynamic* K2Node_CustomEvent_Texture, bool* CallFunc_IsValid_ReturnValue_1, bool* CallFunc_IsValid_ReturnValue_2, bool* CallFunc_IsValid_ReturnValue_3, class UUMGSequencePlayer** CallFunc_PlayAnimationForward_ReturnValue, bool* CallFunc_IsValid_ReturnValue_4, bool* CallFunc_IsValid_ReturnValue_5, class UUMGSequencePlayer** CallFunc_PlayAnimationReverse_ReturnValue)
+class UUMGSequencePlayer* UUI_Notification_C::ExecuteUbergraph_UI_Notification(int32* EntryPoint, class UTexture2DDynamic** K2Node_CustomEvent_Texture_2, class UTexture2DDynamic** K2Node_CustomEvent_Texture_1, class UTexture2DDynamic** Temp_object_Variable, class UTexture2DDynamic** K2Node_CustomEvent_Texture, class UAsyncTaskDownloadImage** CallFunc_DownloadImage_ReturnValue, bool CallFunc_EqualEqual_StrStr_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -437,36 +424,27 @@ bool UUI_Notification_C::ExecuteUbergraph_UI_Notification(class UTexture2DDynami
 
 	Params::UUI_Notification_C_ExecuteUbergraph_UI_Notification_Params Parms{};
 
-	Parms.K2Node_CustomEvent_Texture_2 = K2Node_CustomEvent_Texture_2;
-	Parms.K2Node_CustomEvent_Texture_1 = K2Node_CustomEvent_Texture_1;
-	Parms.Temp_object_Variable = Temp_object_Variable;
-	Parms.K2Node_CustomEvent_Texture = K2Node_CustomEvent_Texture;
+	Parms.CallFunc_EqualEqual_StrStr_ReturnValue = CallFunc_EqualEqual_StrStr_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	if (EntryPoint != nullptr)
+		*EntryPoint = Parms.EntryPoint;
 
-	if (CallFunc_IsValid_ReturnValue_1 != nullptr)
-		*CallFunc_IsValid_ReturnValue_1 = Parms.CallFunc_IsValid_ReturnValue_1;
+	if (K2Node_CustomEvent_Texture_2 != nullptr)
+		*K2Node_CustomEvent_Texture_2 = Parms.K2Node_CustomEvent_Texture_2;
 
-	if (CallFunc_IsValid_ReturnValue_2 != nullptr)
-		*CallFunc_IsValid_ReturnValue_2 = Parms.CallFunc_IsValid_ReturnValue_2;
+	if (K2Node_CustomEvent_Texture_1 != nullptr)
+		*K2Node_CustomEvent_Texture_1 = Parms.K2Node_CustomEvent_Texture_1;
 
-	if (CallFunc_IsValid_ReturnValue_3 != nullptr)
-		*CallFunc_IsValid_ReturnValue_3 = Parms.CallFunc_IsValid_ReturnValue_3;
+	if (Temp_object_Variable != nullptr)
+		*Temp_object_Variable = Parms.Temp_object_Variable;
 
-	if (CallFunc_PlayAnimationForward_ReturnValue != nullptr)
-		*CallFunc_PlayAnimationForward_ReturnValue = Parms.CallFunc_PlayAnimationForward_ReturnValue;
+	if (K2Node_CustomEvent_Texture != nullptr)
+		*K2Node_CustomEvent_Texture = Parms.K2Node_CustomEvent_Texture;
 
-	if (CallFunc_IsValid_ReturnValue_4 != nullptr)
-		*CallFunc_IsValid_ReturnValue_4 = Parms.CallFunc_IsValid_ReturnValue_4;
-
-	if (CallFunc_IsValid_ReturnValue_5 != nullptr)
-		*CallFunc_IsValid_ReturnValue_5 = Parms.CallFunc_IsValid_ReturnValue_5;
-
-	if (CallFunc_PlayAnimationReverse_ReturnValue != nullptr)
-		*CallFunc_PlayAnimationReverse_ReturnValue = Parms.CallFunc_PlayAnimationReverse_ReturnValue;
+	if (CallFunc_DownloadImage_ReturnValue != nullptr)
+		*CallFunc_DownloadImage_ReturnValue = Parms.CallFunc_DownloadImage_ReturnValue;
 
 	return Parms.ReturnValue;
 

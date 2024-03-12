@@ -99,9 +99,9 @@ class UModularSynthLibrary* UModularSynthLibrary::GetDefaultObj()
 // Function Synthesis.ModularSynthLibrary.AddModularSynthPresetToBankAsset
 // (Final, Native, Static, Private, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UModularSynthPresetBank*     InBank                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-// struct FModularSynthPreset         Preset                                                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// class FString                      PresetName                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UModularSynthPresetBank*     InBank                                                           (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FModularSynthPreset         Preset                                                           (ExportObject, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      PresetName                                                       (BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void UModularSynthLibrary::AddModularSynthPresetToBankAsset(class UModularSynthPresetBank** InBank, struct FModularSynthPreset* Preset, class FString* PresetName)
 {
@@ -164,9 +164,9 @@ class UModularSynthComponent* UModularSynthComponent::GetDefaultObj()
 // Function Synthesis.ModularSynthComponent.SetSynthPreset
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FModularSynthPreset         SynthPreset                                                      (ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// struct FModularSynthPreset         SynthPreset                                                      (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FModularSynthPreset UModularSynthComponent::SetSynthPreset()
+void UModularSynthComponent::SetSynthPreset(struct FModularSynthPreset* SynthPreset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -184,7 +184,8 @@ struct FModularSynthPreset UModularSynthComponent::SetSynthPreset()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (SynthPreset != nullptr)
+		*SynthPreset = std::move(Parms.SynthPreset);
 
 }
 
@@ -192,7 +193,7 @@ struct FModularSynthPreset UModularSynthComponent::SetSynthPreset()
 // Function Synthesis.ModularSynthComponent.SetSustainGain
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              SustainGain                                                      (BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              SustainGain                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void UModularSynthComponent::SetSustainGain(float SustainGain)
 {
@@ -219,9 +220,9 @@ void UModularSynthComponent::SetSustainGain(float SustainGain)
 // Function Synthesis.ModularSynthComponent.SetStereoDelayWetlevel
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              DelayWetlevel                                                    (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              DelayWetlevel                                                    (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-float UModularSynthComponent::SetStereoDelayWetlevel()
+void UModularSynthComponent::SetStereoDelayWetlevel(float* DelayWetlevel)
 {
 	static class UFunction* Func = nullptr;
 
@@ -239,7 +240,8 @@ float UModularSynthComponent::SetStereoDelayWetlevel()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (DelayWetlevel != nullptr)
+		*DelayWetlevel = Parms.DelayWetlevel;
 
 }
 
@@ -247,9 +249,9 @@ float UModularSynthComponent::SetStereoDelayWetlevel()
 // Function Synthesis.ModularSynthComponent.SetStereoDelayTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              DelayTimeMsec                                                    (BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              DelayTimeMsec                                                    (Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-float UModularSynthComponent::SetStereoDelayTime()
+void UModularSynthComponent::SetStereoDelayTime(float* DelayTimeMsec)
 {
 	static class UFunction* Func = nullptr;
 
@@ -267,7 +269,8 @@ float UModularSynthComponent::SetStereoDelayTime()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (DelayTimeMsec != nullptr)
+		*DelayTimeMsec = Parms.DelayTimeMsec;
 
 }
 
@@ -275,9 +278,9 @@ float UModularSynthComponent::SetStereoDelayTime()
 // Function Synthesis.ModularSynthComponent.SetStereoDelayRatio
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              DelayRatio                                                       (ConstParm, BlueprintVisible, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              DelayRatio                                                       (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-float UModularSynthComponent::SetStereoDelayRatio()
+void UModularSynthComponent::SetStereoDelayRatio(float* DelayRatio)
 {
 	static class UFunction* Func = nullptr;
 
@@ -295,7 +298,8 @@ float UModularSynthComponent::SetStereoDelayRatio()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (DelayRatio != nullptr)
+		*DelayRatio = Parms.DelayRatio;
 
 }
 
@@ -303,9 +307,9 @@ float UModularSynthComponent::SetStereoDelayRatio()
 // Function Synthesis.ModularSynthComponent.SetStereoDelayMode
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ESynthStereoDelayMode   StereoDelayMode                                                  (BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// enum class ESynthStereoDelayMode   StereoDelayMode                                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-void UModularSynthComponent::SetStereoDelayMode(enum class ESynthStereoDelayMode StereoDelayMode)
+enum class ESynthStereoDelayMode UModularSynthComponent::SetStereoDelayMode()
 {
 	static class UFunction* Func = nullptr;
 
@@ -314,7 +318,6 @@ void UModularSynthComponent::SetStereoDelayMode(enum class ESynthStereoDelayMode
 
 	Params::UModularSynthComponent_SetStereoDelayMode_Params Parms{};
 
-	Parms.StereoDelayMode = StereoDelayMode;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -324,15 +327,17 @@ void UModularSynthComponent::SetStereoDelayMode(enum class ESynthStereoDelayMode
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Synthesis.ModularSynthComponent.SetStereoDelayIsEnabled
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               StereoDelayEnabled                                               (BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               StereoDelayEnabled                                               (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UModularSynthComponent::SetStereoDelayIsEnabled()
+void UModularSynthComponent::SetStereoDelayIsEnabled(bool* StereoDelayEnabled)
 {
 	static class UFunction* Func = nullptr;
 
@@ -350,7 +355,8 @@ bool UModularSynthComponent::SetStereoDelayIsEnabled()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (StereoDelayEnabled != nullptr)
+		*StereoDelayEnabled = Parms.StereoDelayEnabled;
 
 }
 
@@ -358,9 +364,9 @@ bool UModularSynthComponent::SetStereoDelayIsEnabled()
 // Function Synthesis.ModularSynthComponent.SetStereoDelayFeedback
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              DelayFeedback                                                    (BlueprintVisible, ExportObject, Net, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              DelayFeedback                                                    (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-float UModularSynthComponent::SetStereoDelayFeedback()
+void UModularSynthComponent::SetStereoDelayFeedback(float* DelayFeedback)
 {
 	static class UFunction* Func = nullptr;
 
@@ -378,7 +384,8 @@ float UModularSynthComponent::SetStereoDelayFeedback()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (DelayFeedback != nullptr)
+		*DelayFeedback = Parms.DelayFeedback;
 
 }
 
@@ -386,9 +393,9 @@ float UModularSynthComponent::SetStereoDelayFeedback()
 // Function Synthesis.ModularSynthComponent.SetSpread
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Spread                                                           (ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              Spread                                                           (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-void UModularSynthComponent::SetSpread(float* Spread)
+void UModularSynthComponent::SetSpread(float Spread)
 {
 	static class UFunction* Func = nullptr;
 
@@ -397,6 +404,7 @@ void UModularSynthComponent::SetSpread(float* Spread)
 
 	Params::UModularSynthComponent_SetSpread_Params Parms{};
 
+	Parms.Spread = Spread;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -406,18 +414,15 @@ void UModularSynthComponent::SetSpread(float* Spread)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Spread != nullptr)
-		*Spread = Parms.Spread;
-
 }
 
 
 // Function Synthesis.ModularSynthComponent.SetReleaseTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              ReleaseTimeMsec                                                  (Edit, ConstParm, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              ReleaseTimeMsec                                                  (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-float UModularSynthComponent::SetReleaseTime()
+void UModularSynthComponent::SetReleaseTime(float* ReleaseTimeMsec)
 {
 	static class UFunction* Func = nullptr;
 
@@ -435,7 +440,8 @@ float UModularSynthComponent::SetReleaseTime()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (ReleaseTimeMsec != nullptr)
+		*ReleaseTimeMsec = Parms.ReleaseTimeMsec;
 
 }
 
@@ -443,9 +449,9 @@ float UModularSynthComponent::SetReleaseTime()
 // Function Synthesis.ModularSynthComponent.SetPortamento
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Portamento                                                       (Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              Portamento                                                       (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-void UModularSynthComponent::SetPortamento(float* Portamento)
+void UModularSynthComponent::SetPortamento(float Portamento)
 {
 	static class UFunction* Func = nullptr;
 
@@ -454,6 +460,7 @@ void UModularSynthComponent::SetPortamento(float* Portamento)
 
 	Params::UModularSynthComponent_SetPortamento_Params Parms{};
 
+	Parms.Portamento = Portamento;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -463,18 +470,15 @@ void UModularSynthComponent::SetPortamento(float* Portamento)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Portamento != nullptr)
-		*Portamento = Parms.Portamento;
-
 }
 
 
 // Function Synthesis.ModularSynthComponent.SetPitchBend
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              PitchBend                                                        (ConstParm, BlueprintVisible, Net, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              PitchBend                                                        (Edit, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-float UModularSynthComponent::SetPitchBend()
+void UModularSynthComponent::SetPitchBend(float* PitchBend)
 {
 	static class UFunction* Func = nullptr;
 
@@ -492,7 +496,8 @@ float UModularSynthComponent::SetPitchBend()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (PitchBend != nullptr)
+		*PitchBend = Parms.PitchBend;
 
 }
 
@@ -500,9 +505,9 @@ float UModularSynthComponent::SetPitchBend()
 // Function Synthesis.ModularSynthComponent.SetPan
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Pan                                                              (Edit, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              Pan                                                              (ConstParm, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-void UModularSynthComponent::SetPan(float* Pan)
+void UModularSynthComponent::SetPan(float Pan)
 {
 	static class UFunction* Func = nullptr;
 
@@ -511,6 +516,7 @@ void UModularSynthComponent::SetPan(float* Pan)
 
 	Params::UModularSynthComponent_SetPan_Params Parms{};
 
+	Parms.Pan = Pan;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -520,19 +526,16 @@ void UModularSynthComponent::SetPan(float* Pan)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Pan != nullptr)
-		*Pan = Parms.Pan;
-
 }
 
 
 // Function Synthesis.ModularSynthComponent.SetOscType
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              OscIndex                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-// enum class ESynth1OscType          OscType                                                          (Edit, Net, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              OscIndex                                                         (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class ESynth1OscType          OscType                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-enum class ESynth1OscType UModularSynthComponent::SetOscType(int32* OscIndex)
+void UModularSynthComponent::SetOscType(int32* OscIndex, enum class ESynth1OscType* OscType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -553,7 +556,8 @@ enum class ESynth1OscType UModularSynthComponent::SetOscType(int32* OscIndex)
 	if (OscIndex != nullptr)
 		*OscIndex = Parms.OscIndex;
 
-	return Parms.ReturnValue;
+	if (OscType != nullptr)
+		*OscType = Parms.OscType;
 
 }
 
@@ -561,9 +565,9 @@ enum class ESynth1OscType UModularSynthComponent::SetOscType(int32* OscIndex)
 // Function Synthesis.ModularSynthComponent.SetOscSync
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bIsSynced                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bIsSynced                                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UModularSynthComponent::SetOscSync()
+void UModularSynthComponent::SetOscSync(bool* bIsSynced)
 {
 	static class UFunction* Func = nullptr;
 
@@ -581,7 +585,8 @@ bool UModularSynthComponent::SetOscSync()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bIsSynced != nullptr)
+		*bIsSynced = Parms.bIsSynced;
 
 }
 
@@ -589,10 +594,10 @@ bool UModularSynthComponent::SetOscSync()
 // Function Synthesis.ModularSynthComponent.SetOscSemitones
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              OscIndex                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-// float                              Semitones                                                        (Edit, BlueprintVisible, BlueprintReadOnly, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              OscIndex                                                         (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              Semitones                                                        (BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-float UModularSynthComponent::SetOscSemitones(int32* OscIndex)
+void UModularSynthComponent::SetOscSemitones(int32* OscIndex, float* Semitones)
 {
 	static class UFunction* Func = nullptr;
 
@@ -613,7 +618,8 @@ float UModularSynthComponent::SetOscSemitones(int32* OscIndex)
 	if (OscIndex != nullptr)
 		*OscIndex = Parms.OscIndex;
 
-	return Parms.ReturnValue;
+	if (Semitones != nullptr)
+		*Semitones = Parms.Semitones;
 
 }
 
@@ -621,10 +627,10 @@ float UModularSynthComponent::SetOscSemitones(int32* OscIndex)
 // Function Synthesis.ModularSynthComponent.SetOscPulsewidth
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              OscIndex                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-// float                              Pulsewidth                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              OscIndex                                                         (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              Pulsewidth                                                       (ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-float UModularSynthComponent::SetOscPulsewidth(int32* OscIndex)
+void UModularSynthComponent::SetOscPulsewidth(int32* OscIndex, float* Pulsewidth)
 {
 	static class UFunction* Func = nullptr;
 
@@ -645,7 +651,8 @@ float UModularSynthComponent::SetOscPulsewidth(int32* OscIndex)
 	if (OscIndex != nullptr)
 		*OscIndex = Parms.OscIndex;
 
-	return Parms.ReturnValue;
+	if (Pulsewidth != nullptr)
+		*Pulsewidth = Parms.Pulsewidth;
 
 }
 
@@ -653,10 +660,10 @@ float UModularSynthComponent::SetOscPulsewidth(int32* OscIndex)
 // Function Synthesis.ModularSynthComponent.SetOscOctave
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              OscIndex                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-// float                              Octave                                                           (Edit, ConstParm, ExportObject, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              OscIndex                                                         (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              Octave                                                           (ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-float UModularSynthComponent::SetOscOctave(int32* OscIndex)
+void UModularSynthComponent::SetOscOctave(int32* OscIndex, float* Octave)
 {
 	static class UFunction* Func = nullptr;
 
@@ -677,7 +684,8 @@ float UModularSynthComponent::SetOscOctave(int32* OscIndex)
 	if (OscIndex != nullptr)
 		*OscIndex = Parms.OscIndex;
 
-	return Parms.ReturnValue;
+	if (Octave != nullptr)
+		*Octave = Parms.Octave;
 
 }
 
@@ -685,10 +693,10 @@ float UModularSynthComponent::SetOscOctave(int32* OscIndex)
 // Function Synthesis.ModularSynthComponent.SetOscGainMod
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              OscIndex                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-// float                              OscGainMod                                                       (Edit, BlueprintVisible, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              OscIndex                                                         (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              OscGainMod                                                       (Net, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-float UModularSynthComponent::SetOscGainMod(int32* OscIndex)
+void UModularSynthComponent::SetOscGainMod(int32* OscIndex, float* OscGainMod)
 {
 	static class UFunction* Func = nullptr;
 
@@ -709,7 +717,8 @@ float UModularSynthComponent::SetOscGainMod(int32* OscIndex)
 	if (OscIndex != nullptr)
 		*OscIndex = Parms.OscIndex;
 
-	return Parms.ReturnValue;
+	if (OscGainMod != nullptr)
+		*OscGainMod = Parms.OscGainMod;
 
 }
 
@@ -717,10 +726,10 @@ float UModularSynthComponent::SetOscGainMod(int32* OscIndex)
 // Function Synthesis.ModularSynthComponent.SetOscGain
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              OscIndex                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-// float                              OscGain                                                          (ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              OscIndex                                                         (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              OscGain                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-float UModularSynthComponent::SetOscGain(int32* OscIndex)
+void UModularSynthComponent::SetOscGain(int32* OscIndex, float* OscGain)
 {
 	static class UFunction* Func = nullptr;
 
@@ -741,7 +750,8 @@ float UModularSynthComponent::SetOscGain(int32* OscIndex)
 	if (OscIndex != nullptr)
 		*OscIndex = Parms.OscIndex;
 
-	return Parms.ReturnValue;
+	if (OscGain != nullptr)
+		*OscGain = Parms.OscGain;
 
 }
 
@@ -749,8 +759,8 @@ float UModularSynthComponent::SetOscGain(int32* OscIndex)
 // Function Synthesis.ModularSynthComponent.SetOscFrequencyMod
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              OscIndex                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-// float                              OscFreqMod                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              OscIndex                                                         (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              OscFreqMod                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 void UModularSynthComponent::SetOscFrequencyMod(int32* OscIndex, float* OscFreqMod)
 {
@@ -782,8 +792,8 @@ void UModularSynthComponent::SetOscFrequencyMod(int32* OscIndex, float* OscFreqM
 // Function Synthesis.ModularSynthComponent.SetOscCents
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              OscIndex                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-// float                              Cents                                                            (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              OscIndex                                                         (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              Cents                                                            (BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 void UModularSynthComponent::SetOscCents(int32* OscIndex, float* Cents)
 {
@@ -815,7 +825,7 @@ void UModularSynthComponent::SetOscCents(int32* OscIndex, float* Cents)
 // Function Synthesis.ModularSynthComponent.SetModEnvSustainGain
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              SustainGain                                                      (BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              SustainGain                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void UModularSynthComponent::SetModEnvSustainGain(float SustainGain)
 {
@@ -842,9 +852,9 @@ void UModularSynthComponent::SetModEnvSustainGain(float SustainGain)
 // Function Synthesis.ModularSynthComponent.SetModEnvReleaseTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Release                                                          (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Transient, DisableEditOnInstance, EditConst)
+// float                              Release                                                          (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, GlobalConfig)
 
-void UModularSynthComponent::SetModEnvReleaseTime(float Release)
+float UModularSynthComponent::SetModEnvReleaseTime()
 {
 	static class UFunction* Func = nullptr;
 
@@ -853,7 +863,6 @@ void UModularSynthComponent::SetModEnvReleaseTime(float Release)
 
 	Params::UModularSynthComponent_SetModEnvReleaseTime_Params Parms{};
 
-	Parms.Release = Release;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -863,13 +872,15 @@ void UModularSynthComponent::SetModEnvReleaseTime(float Release)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Synthesis.ModularSynthComponent.SetModEnvPatch
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ESynthModEnvPatch       InPatchType                                                      (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// enum class ESynthModEnvPatch       InPatchType                                                      (Edit, BlueprintVisible, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 void UModularSynthComponent::SetModEnvPatch(enum class ESynthModEnvPatch* InPatchType)
 {
@@ -898,9 +909,9 @@ void UModularSynthComponent::SetModEnvPatch(enum class ESynthModEnvPatch* InPatc
 // Function Synthesis.ModularSynthComponent.SetModEnvInvert
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInvert                                                          (ConstParm, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bInvert                                                          (ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-bool UModularSynthComponent::SetModEnvInvert()
+void UModularSynthComponent::SetModEnvInvert(bool* bInvert)
 {
 	static class UFunction* Func = nullptr;
 
@@ -918,7 +929,8 @@ bool UModularSynthComponent::SetModEnvInvert()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bInvert != nullptr)
+		*bInvert = Parms.bInvert;
 
 }
 
@@ -926,9 +938,9 @@ bool UModularSynthComponent::SetModEnvInvert()
 // Function Synthesis.ModularSynthComponent.SetModEnvDepth
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Depth                                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst)
+// float                              Depth                                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, EditConst)
 
-float UModularSynthComponent::SetModEnvDepth()
+void UModularSynthComponent::SetModEnvDepth(float* Depth)
 {
 	static class UFunction* Func = nullptr;
 
@@ -946,7 +958,8 @@ float UModularSynthComponent::SetModEnvDepth()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Depth != nullptr)
+		*Depth = Parms.Depth;
 
 }
 
@@ -954,7 +967,7 @@ float UModularSynthComponent::SetModEnvDepth()
 // Function Synthesis.ModularSynthComponent.SetModEnvDecayTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              DecayTimeMsec                                                    (ConstParm, Net, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// float                              DecayTimeMsec                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 void UModularSynthComponent::SetModEnvDecayTime(float* DecayTimeMsec)
 {
@@ -983,7 +996,7 @@ void UModularSynthComponent::SetModEnvDecayTime(float* DecayTimeMsec)
 // Function Synthesis.ModularSynthComponent.SetModEnvBiasPatch
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ESynthModEnvBiasPatch   InPatchType                                                      (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// enum class ESynthModEnvBiasPatch   InPatchType                                                      (Edit, BlueprintVisible, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 void UModularSynthComponent::SetModEnvBiasPatch(enum class ESynthModEnvBiasPatch* InPatchType)
 {
@@ -1012,9 +1025,9 @@ void UModularSynthComponent::SetModEnvBiasPatch(enum class ESynthModEnvBiasPatch
 // Function Synthesis.ModularSynthComponent.SetModEnvBiasInvert
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInvert                                                          (ConstParm, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bInvert                                                          (ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-bool UModularSynthComponent::SetModEnvBiasInvert()
+void UModularSynthComponent::SetModEnvBiasInvert(bool* bInvert)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1032,7 +1045,8 @@ bool UModularSynthComponent::SetModEnvBiasInvert()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bInvert != nullptr)
+		*bInvert = Parms.bInvert;
 
 }
 
@@ -1040,9 +1054,9 @@ bool UModularSynthComponent::SetModEnvBiasInvert()
 // Function Synthesis.ModularSynthComponent.SetModEnvAttackTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              AttackTimeMsec                                                   (BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              AttackTimeMsec                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-float UModularSynthComponent::SetModEnvAttackTime()
+void UModularSynthComponent::SetModEnvAttackTime(float* AttackTimeMsec)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1060,7 +1074,8 @@ float UModularSynthComponent::SetModEnvAttackTime()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (AttackTimeMsec != nullptr)
+		*AttackTimeMsec = Parms.AttackTimeMsec;
 
 }
 
@@ -1068,10 +1083,10 @@ float UModularSynthComponent::SetModEnvAttackTime()
 // Function Synthesis.ModularSynthComponent.SetLFOType
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              LFOIndex                                                         (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-// enum class ESynthLFOType           LFOType                                                          (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              LFOIndex                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class ESynthLFOType           LFOType                                                          (Edit, ConstParm, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-enum class ESynthLFOType UModularSynthComponent::SetLFOType(int32* LFOIndex)
+void UModularSynthComponent::SetLFOType(int32* LFOIndex, enum class ESynthLFOType* LFOType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1092,7 +1107,8 @@ enum class ESynthLFOType UModularSynthComponent::SetLFOType(int32* LFOIndex)
 	if (LFOIndex != nullptr)
 		*LFOIndex = Parms.LFOIndex;
 
-	return Parms.ReturnValue;
+	if (LFOType != nullptr)
+		*LFOType = Parms.LFOType;
 
 }
 
@@ -1100,8 +1116,8 @@ enum class ESynthLFOType UModularSynthComponent::SetLFOType(int32* LFOIndex)
 // Function Synthesis.ModularSynthComponent.SetLFOPatch
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              LFOIndex                                                         (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-// enum class ESynthLFOPatchType      LFOPatchType                                                     (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              LFOIndex                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class ESynthLFOPatchType      LFOPatchType                                                     (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 void UModularSynthComponent::SetLFOPatch(int32* LFOIndex, enum class ESynthLFOPatchType* LFOPatchType)
 {
@@ -1133,8 +1149,8 @@ void UModularSynthComponent::SetLFOPatch(int32* LFOIndex, enum class ESynthLFOPa
 // Function Synthesis.ModularSynthComponent.SetLFOMode
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              LFOIndex                                                         (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-// enum class ESynthLFOMode           LFOMode                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              LFOIndex                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class ESynthLFOMode           LFOMode                                                          (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 void UModularSynthComponent::SetLFOMode(int32* LFOIndex, enum class ESynthLFOMode* LFOMode)
 {
@@ -1166,8 +1182,8 @@ void UModularSynthComponent::SetLFOMode(int32* LFOIndex, enum class ESynthLFOMod
 // Function Synthesis.ModularSynthComponent.SetLFOGainMod
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              LFOIndex                                                         (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-// float                              GainMod                                                          (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              LFOIndex                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              GainMod                                                          (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 void UModularSynthComponent::SetLFOGainMod(int32* LFOIndex, float* GainMod)
 {
@@ -1199,8 +1215,8 @@ void UModularSynthComponent::SetLFOGainMod(int32* LFOIndex, float* GainMod)
 // Function Synthesis.ModularSynthComponent.SetLFOGain
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              LFOIndex                                                         (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-// float                              Gain                                                             (Edit, ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              LFOIndex                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              Gain                                                             (BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 float UModularSynthComponent::SetLFOGain(int32* LFOIndex)
 {
@@ -1231,8 +1247,8 @@ float UModularSynthComponent::SetLFOGain(int32* LFOIndex)
 // Function Synthesis.ModularSynthComponent.SetLFOFrequencyMod
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              LFOIndex                                                         (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-// float                              FrequencyModHz                                                   (Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              LFOIndex                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              FrequencyModHz                                                   (BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 void UModularSynthComponent::SetLFOFrequencyMod(int32* LFOIndex, float* FrequencyModHz)
 {
@@ -1264,10 +1280,10 @@ void UModularSynthComponent::SetLFOFrequencyMod(int32* LFOIndex, float* Frequenc
 // Function Synthesis.ModularSynthComponent.SetLFOFrequency
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              LFOIndex                                                         (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-// float                              FrequencyHz                                                      (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              LFOIndex                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              FrequencyHz                                                      (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
 
-float UModularSynthComponent::SetLFOFrequency(int32* LFOIndex)
+void UModularSynthComponent::SetLFOFrequency(int32* LFOIndex, float* FrequencyHz)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1288,7 +1304,8 @@ float UModularSynthComponent::SetLFOFrequency(int32* LFOIndex)
 	if (LFOIndex != nullptr)
 		*LFOIndex = Parms.LFOIndex;
 
-	return Parms.ReturnValue;
+	if (FrequencyHz != nullptr)
+		*FrequencyHz = Parms.FrequencyHz;
 
 }
 
@@ -1296,9 +1313,9 @@ float UModularSynthComponent::SetLFOFrequency(int32* LFOIndex)
 // Function Synthesis.ModularSynthComponent.SetGainDb
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              GainDb                                                           (Edit, ConstParm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              GainDb                                                           (BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-void UModularSynthComponent::SetGainDb(float* GainDb)
+void UModularSynthComponent::SetGainDb(float GainDb)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1307,6 +1324,7 @@ void UModularSynthComponent::SetGainDb(float* GainDb)
 
 	Params::UModularSynthComponent_SetGainDb_Params Parms{};
 
+	Parms.GainDb = GainDb;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1316,18 +1334,15 @@ void UModularSynthComponent::SetGainDb(float* GainDb)
 
 	Func->FunctionFlags = Flgs;
 
-	if (GainDb != nullptr)
-		*GainDb = Parms.GainDb;
-
 }
 
 
 // Function Synthesis.ModularSynthComponent.SetFilterType
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ESynthFilterType        FilterType                                                       (Edit, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// enum class ESynthFilterType        FilterType                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-void UModularSynthComponent::SetFilterType(enum class ESynthFilterType FilterType)
+enum class ESynthFilterType UModularSynthComponent::SetFilterType()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1336,7 +1351,6 @@ void UModularSynthComponent::SetFilterType(enum class ESynthFilterType FilterTyp
 
 	Params::UModularSynthComponent_SetFilterType_Params Parms{};
 
-	Parms.FilterType = FilterType;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1346,15 +1360,17 @@ void UModularSynthComponent::SetFilterType(enum class ESynthFilterType FilterTyp
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Synthesis.ModularSynthComponent.SetFilterQMod
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              FilterQ                                                          (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              FilterQ                                                          (EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-void UModularSynthComponent::SetFilterQMod(float FilterQ)
+float UModularSynthComponent::SetFilterQMod()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1363,7 +1379,6 @@ void UModularSynthComponent::SetFilterQMod(float FilterQ)
 
 	Params::UModularSynthComponent_SetFilterQMod_Params Parms{};
 
-	Parms.FilterQ = FilterQ;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1373,15 +1388,17 @@ void UModularSynthComponent::SetFilterQMod(float FilterQ)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Synthesis.ModularSynthComponent.SetFilterQ
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              FilterQ                                                          (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              FilterQ                                                          (EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-void UModularSynthComponent::SetFilterQ(float FilterQ)
+float UModularSynthComponent::SetFilterQ()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1390,7 +1407,6 @@ void UModularSynthComponent::SetFilterQ(float FilterQ)
 
 	Params::UModularSynthComponent_SetFilterQ_Params Parms{};
 
-	Parms.FilterQ = FilterQ;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1400,13 +1416,15 @@ void UModularSynthComponent::SetFilterQ(float FilterQ)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Synthesis.ModularSynthComponent.SetFilterFrequencyMod
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              FilterFrequencyHz                                                (ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// float                              FilterFrequencyHz                                                (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 void UModularSynthComponent::SetFilterFrequencyMod(float* FilterFrequencyHz)
 {
@@ -1435,7 +1453,7 @@ void UModularSynthComponent::SetFilterFrequencyMod(float* FilterFrequencyHz)
 // Function Synthesis.ModularSynthComponent.SetFilterFrequency
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              FilterFrequencyHz                                                (ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// float                              FilterFrequencyHz                                                (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 void UModularSynthComponent::SetFilterFrequency(float* FilterFrequencyHz)
 {
@@ -1464,9 +1482,9 @@ void UModularSynthComponent::SetFilterFrequency(float* FilterFrequencyHz)
 // Function Synthesis.ModularSynthComponent.SetFilterAlgorithm
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ESynthFilterAlgorithm   FilterAlgorithm                                                  (BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// enum class ESynthFilterAlgorithm   FilterAlgorithm                                                  (Edit, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-void UModularSynthComponent::SetFilterAlgorithm(enum class ESynthFilterAlgorithm FilterAlgorithm)
+enum class ESynthFilterAlgorithm UModularSynthComponent::SetFilterAlgorithm()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1475,7 +1493,6 @@ void UModularSynthComponent::SetFilterAlgorithm(enum class ESynthFilterAlgorithm
 
 	Params::UModularSynthComponent_SetFilterAlgorithm_Params Parms{};
 
-	Parms.FilterAlgorithm = FilterAlgorithm;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1485,13 +1502,15 @@ void UModularSynthComponent::SetFilterAlgorithm(enum class ESynthFilterAlgorithm
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Synthesis.ModularSynthComponent.SetEnableUnison
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               EnableUnison                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               EnableUnison                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 void UModularSynthComponent::SetEnableUnison(bool* EnableUnison)
 {
@@ -1520,7 +1539,7 @@ void UModularSynthComponent::SetEnableUnison(bool* EnableUnison)
 // Function Synthesis.ModularSynthComponent.SetEnableRetrigger
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               RetriggerEnabled                                                 (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               RetriggerEnabled                                                 (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 void UModularSynthComponent::SetEnableRetrigger(bool* RetriggerEnabled)
 {
@@ -1549,7 +1568,7 @@ void UModularSynthComponent::SetEnableRetrigger(bool* RetriggerEnabled)
 // Function Synthesis.ModularSynthComponent.SetEnablePolyphony
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bEnablePolyphony                                                 (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bEnablePolyphony                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void UModularSynthComponent::SetEnablePolyphony(bool* bEnablePolyphony)
 {
@@ -1578,11 +1597,11 @@ void UModularSynthComponent::SetEnablePolyphony(bool* bEnablePolyphony)
 // Function Synthesis.ModularSynthComponent.SetEnablePatch
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FPatchId                    PatchId                                                          (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm)
-// bool                               bIsEnabled                                                       (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FPatchId                    PatchId                                                          (ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate)
+// bool                               bIsEnabled                                                       (BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FPatchId UModularSynthComponent::SetEnablePatch(bool* bIsEnabled, bool ReturnValue)
+bool UModularSynthComponent::SetEnablePatch(struct FPatchId* PatchId)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1591,7 +1610,6 @@ struct FPatchId UModularSynthComponent::SetEnablePatch(bool* bIsEnabled, bool Re
 
 	Params::UModularSynthComponent_SetEnablePatch_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1601,8 +1619,8 @@ struct FPatchId UModularSynthComponent::SetEnablePatch(bool* bIsEnabled, bool Re
 
 	Func->FunctionFlags = Flgs;
 
-	if (bIsEnabled != nullptr)
-		*bIsEnabled = Parms.bIsEnabled;
+	if (PatchId != nullptr)
+		*PatchId = std::move(Parms.PatchId);
 
 	return Parms.ReturnValue;
 
@@ -1612,7 +1630,7 @@ struct FPatchId UModularSynthComponent::SetEnablePatch(bool* bIsEnabled, bool Re
 // Function Synthesis.ModularSynthComponent.SetEnableLegato
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               LegatoEnabled                                                    (ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               LegatoEnabled                                                    (Edit, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 void UModularSynthComponent::SetEnableLegato(bool* LegatoEnabled)
 {
@@ -1641,7 +1659,7 @@ void UModularSynthComponent::SetEnableLegato(bool* LegatoEnabled)
 // Function Synthesis.ModularSynthComponent.SetDecayTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              DecayTimeMsec                                                    (ConstParm, Net, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// float                              DecayTimeMsec                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 void UModularSynthComponent::SetDecayTime(float* DecayTimeMsec)
 {
@@ -1670,9 +1688,9 @@ void UModularSynthComponent::SetDecayTime(float* DecayTimeMsec)
 // Function Synthesis.ModularSynthComponent.SetChorusFrequency
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Frequency                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              Frequency                                                        (BlueprintVisible, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-float UModularSynthComponent::SetChorusFrequency()
+void UModularSynthComponent::SetChorusFrequency(float* Frequency)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1690,7 +1708,8 @@ float UModularSynthComponent::SetChorusFrequency()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Frequency != nullptr)
+		*Frequency = Parms.Frequency;
 
 }
 
@@ -1698,7 +1717,7 @@ float UModularSynthComponent::SetChorusFrequency()
 // Function Synthesis.ModularSynthComponent.SetChorusFeedback
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Feedback                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              Feedback                                                         (BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void UModularSynthComponent::SetChorusFeedback(float* Feedback)
 {
@@ -1727,7 +1746,7 @@ void UModularSynthComponent::SetChorusFeedback(float* Feedback)
 // Function Synthesis.ModularSynthComponent.SetChorusEnabled
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               EnableChorus                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               EnableChorus                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 void UModularSynthComponent::SetChorusEnabled(bool* EnableChorus)
 {
@@ -1756,9 +1775,9 @@ void UModularSynthComponent::SetChorusEnabled(bool* EnableChorus)
 // Function Synthesis.ModularSynthComponent.SetChorusDepth
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Depth                                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst)
+// float                              Depth                                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, EditConst)
 
-float UModularSynthComponent::SetChorusDepth()
+void UModularSynthComponent::SetChorusDepth(float* Depth)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1776,7 +1795,8 @@ float UModularSynthComponent::SetChorusDepth()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Depth != nullptr)
+		*Depth = Parms.Depth;
 
 }
 
@@ -1784,9 +1804,9 @@ float UModularSynthComponent::SetChorusDepth()
 // Function Synthesis.ModularSynthComponent.SetAttackTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              AttackTimeMsec                                                   (BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              AttackTimeMsec                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-float UModularSynthComponent::SetAttackTime()
+void UModularSynthComponent::SetAttackTime(float* AttackTimeMsec)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1804,7 +1824,8 @@ float UModularSynthComponent::SetAttackTime()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (AttackTimeMsec != nullptr)
+		*AttackTimeMsec = Parms.AttackTimeMsec;
 
 }
 
@@ -1812,11 +1833,11 @@ float UModularSynthComponent::SetAttackTime()
 // Function Synthesis.ModularSynthComponent.NoteOn
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Note                                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst)
-// int32                              Velocity                                                         (Edit, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
-// float                              Duration                                                         (Edit, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, DuplicateTransient)
+// float                              Note                                                             (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig)
+// int32                              Velocity                                                         (Config, EditConst, GlobalConfig)
+// float                              Duration                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, DuplicateTransient)
 
-float UModularSynthComponent::NoteOn(float* Note)
+float UModularSynthComponent::NoteOn(int32 Velocity)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1825,6 +1846,7 @@ float UModularSynthComponent::NoteOn(float* Note)
 
 	Params::UModularSynthComponent_NoteOn_Params Parms{};
 
+	Parms.Velocity = Velocity;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1834,9 +1856,6 @@ float UModularSynthComponent::NoteOn(float* Note)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Note != nullptr)
-		*Note = Parms.Note;
-
 	return Parms.ReturnValue;
 
 }
@@ -1845,11 +1864,11 @@ float UModularSynthComponent::NoteOn(float* Note)
 // Function Synthesis.ModularSynthComponent.NoteOff
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Note                                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst)
-// bool                               bAllNotesOff                                                     (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bKillAllNotes                                                    (BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// float                              Note                                                             (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig)
+// bool                               bAllNotesOff                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bKillAllNotes                                                    (Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UModularSynthComponent::NoteOff(float* Note, bool* bAllNotesOff, bool* bKillAllNotes)
+float UModularSynthComponent::NoteOff(bool* bAllNotesOff, bool* bKillAllNotes)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1867,14 +1886,13 @@ void UModularSynthComponent::NoteOff(float* Note, bool* bAllNotesOff, bool* bKil
 
 	Func->FunctionFlags = Flgs;
 
-	if (Note != nullptr)
-		*Note = Parms.Note;
-
 	if (bAllNotesOff != nullptr)
 		*bAllNotesOff = Parms.bAllNotesOff;
 
 	if (bKillAllNotes != nullptr)
 		*bKillAllNotes = Parms.bKillAllNotes;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -1882,12 +1900,12 @@ void UModularSynthComponent::NoteOff(float* Note, bool* bAllNotesOff, bool* bKil
 // Function Synthesis.ModularSynthComponent.CreatePatch
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// enum class ESynth1PatchSource      PatchSource                                                      (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FSynth1PatchCable>   PatchCables                                                      (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bEnableByDefault                                                 (Edit, ConstParm, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-// struct FPatchId                    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class ESynth1PatchSource      PatchSource                                                      (Edit, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FSynth1PatchCable>   PatchCables                                                      (ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bEnableByDefault                                                 (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FPatchId                    ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UModularSynthComponent::CreatePatch(enum class ESynth1PatchSource* PatchSource, TArray<struct FSynth1PatchCable>* PatchCables, bool* bEnableByDefault, const struct FPatchId& ReturnValue)
+struct FPatchId UModularSynthComponent::CreatePatch(bool* bEnableByDefault)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1896,7 +1914,6 @@ void UModularSynthComponent::CreatePatch(enum class ESynth1PatchSource* PatchSou
 
 	Params::UModularSynthComponent_CreatePatch_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1906,14 +1923,10 @@ void UModularSynthComponent::CreatePatch(enum class ESynth1PatchSource* PatchSou
 
 	Func->FunctionFlags = Flgs;
 
-	if (PatchSource != nullptr)
-		*PatchSource = Parms.PatchSource;
-
-	if (PatchCables != nullptr)
-		*PatchCables = std::move(Parms.PatchCables);
-
 	if (bEnableByDefault != nullptr)
 		*bEnableByDefault = Parms.bEnableByDefault;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -1949,9 +1962,9 @@ class USourceEffectBitCrusherPreset* USourceEffectBitCrusherPreset::GetDefaultOb
 // Function Synthesis.SourceEffectBitCrusherPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSourceEffectBitCrusherBaseSettingsSettings                                                         (Edit, Net, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+// struct FSourceEffectBitCrusherBaseSettingsSettings                                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
 
-void USourceEffectBitCrusherPreset::SetSettings(const struct FSourceEffectBitCrusherBaseSettings& Settings)
+void USourceEffectBitCrusherPreset::SetSettings(struct FSourceEffectBitCrusherBaseSettings* Settings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1960,7 +1973,6 @@ void USourceEffectBitCrusherPreset::SetSettings(const struct FSourceEffectBitCru
 
 	Params::USourceEffectBitCrusherPreset_SetSettings_Params Parms{};
 
-	Parms.Settings = Settings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1970,15 +1982,18 @@ void USourceEffectBitCrusherPreset::SetSettings(const struct FSourceEffectBitCru
 
 	Func->FunctionFlags = Flgs;
 
+	if (Settings != nullptr)
+		*Settings = std::move(Parms.Settings);
+
 }
 
 
 // Function Synthesis.SourceEffectBitCrusherPreset.SetSampleRateModulators
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TSet<class USoundModulatorBase*>   InModulators                                                     (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// TSet<class USoundModulatorBase*>   InModulators                                                     (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-TSet<class USoundModulatorBase*> USourceEffectBitCrusherPreset::SetSampleRateModulators()
+void USourceEffectBitCrusherPreset::SetSampleRateModulators(TSet<class USoundModulatorBase*>* InModulators)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1996,7 +2011,8 @@ TSet<class USoundModulatorBase*> USourceEffectBitCrusherPreset::SetSampleRateMod
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InModulators != nullptr)
+		*InModulators = Parms.InModulators;
 
 }
 
@@ -2004,7 +2020,7 @@ TSet<class USoundModulatorBase*> USourceEffectBitCrusherPreset::SetSampleRateMod
 // Function Synthesis.SourceEffectBitCrusherPreset.SetSampleRateModulator
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USoundModulatorBase*         Modulator                                                        (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class USoundModulatorBase*         Modulator                                                        (ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void USourceEffectBitCrusherPreset::SetSampleRateModulator(class USoundModulatorBase** Modulator)
 {
@@ -2033,7 +2049,7 @@ void USourceEffectBitCrusherPreset::SetSampleRateModulator(class USoundModulator
 // Function Synthesis.SourceEffectBitCrusherPreset.SetSampleRate
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              SampleRate                                                       (ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, DuplicateTransient)
+// float                              SampleRate                                                       (BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, DuplicateTransient)
 
 float USourceEffectBitCrusherPreset::SetSampleRate()
 {
@@ -2061,7 +2077,7 @@ float USourceEffectBitCrusherPreset::SetSampleRate()
 // Function Synthesis.SourceEffectBitCrusherPreset.SetModulationSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSourceEffectBitCrusherSettingsModulationSettings                                               (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FSourceEffectBitCrusherSettingsModulationSettings                                               (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
 
 struct FSourceEffectBitCrusherSettings USourceEffectBitCrusherPreset::SetModulationSettings()
 {
@@ -2089,9 +2105,9 @@ struct FSourceEffectBitCrusherSettings USourceEffectBitCrusherPreset::SetModulat
 // Function Synthesis.SourceEffectBitCrusherPreset.SetBits
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Bits                                                             (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              Bits                                                             (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-float USourceEffectBitCrusherPreset::SetBits()
+void USourceEffectBitCrusherPreset::SetBits(float* Bits)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2109,7 +2125,8 @@ float USourceEffectBitCrusherPreset::SetBits()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Bits != nullptr)
+		*Bits = Parms.Bits;
 
 }
 
@@ -2117,9 +2134,9 @@ float USourceEffectBitCrusherPreset::SetBits()
 // Function Synthesis.SourceEffectBitCrusherPreset.SetBitModulators
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TSet<class USoundModulatorBase*>   InModulators                                                     (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// TSet<class USoundModulatorBase*>   InModulators                                                     (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-TSet<class USoundModulatorBase*> USourceEffectBitCrusherPreset::SetBitModulators()
+void USourceEffectBitCrusherPreset::SetBitModulators(TSet<class USoundModulatorBase*>* InModulators)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2137,7 +2154,8 @@ TSet<class USoundModulatorBase*> USourceEffectBitCrusherPreset::SetBitModulators
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InModulators != nullptr)
+		*InModulators = Parms.InModulators;
 
 }
 
@@ -2145,7 +2163,7 @@ TSet<class USoundModulatorBase*> USourceEffectBitCrusherPreset::SetBitModulators
 // Function Synthesis.SourceEffectBitCrusherPreset.SetBitModulator
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USoundModulatorBase*         Modulator                                                        (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class USoundModulatorBase*         Modulator                                                        (ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void USourceEffectBitCrusherPreset::SetBitModulator(class USoundModulatorBase** Modulator)
 {
@@ -2202,7 +2220,7 @@ class USourceEffectChorusPreset* USourceEffectChorusPreset::GetDefaultObj()
 // Function Synthesis.SourceEffectChorusPreset.SetWetModulators
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TSet<class USoundModulatorBase*>   Modulators                                                       (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// TSet<class USoundModulatorBase*>   Modulators                                                       (ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void USourceEffectChorusPreset::SetWetModulators(TSet<class USoundModulatorBase*>* Modulators)
 {
@@ -2231,7 +2249,7 @@ void USourceEffectChorusPreset::SetWetModulators(TSet<class USoundModulatorBase*
 // Function Synthesis.SourceEffectChorusPreset.SetWetModulator
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USoundModulatorBase*         Modulator                                                        (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class USoundModulatorBase*         Modulator                                                        (ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void USourceEffectChorusPreset::SetWetModulator(class USoundModulatorBase** Modulator)
 {
@@ -2260,9 +2278,9 @@ void USourceEffectChorusPreset::SetWetModulator(class USoundModulatorBase** Modu
 // Function Synthesis.SourceEffectChorusPreset.SetWet
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              WetAmount                                                        (BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              WetAmount                                                        (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-float USourceEffectChorusPreset::SetWet()
+void USourceEffectChorusPreset::SetWet(float* WetAmount)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2280,7 +2298,8 @@ float USourceEffectChorusPreset::SetWet()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (WetAmount != nullptr)
+		*WetAmount = Parms.WetAmount;
 
 }
 
@@ -2288,7 +2307,7 @@ float USourceEffectChorusPreset::SetWet()
 // Function Synthesis.SourceEffectChorusPreset.SetSpreadModulators
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TSet<class USoundModulatorBase*>   Modulators                                                       (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// TSet<class USoundModulatorBase*>   Modulators                                                       (ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void USourceEffectChorusPreset::SetSpreadModulators(TSet<class USoundModulatorBase*>* Modulators)
 {
@@ -2317,7 +2336,7 @@ void USourceEffectChorusPreset::SetSpreadModulators(TSet<class USoundModulatorBa
 // Function Synthesis.SourceEffectChorusPreset.SetSpreadModulator
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USoundModulatorBase*         Modulator                                                        (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class USoundModulatorBase*         Modulator                                                        (ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void USourceEffectChorusPreset::SetSpreadModulator(class USoundModulatorBase** Modulator)
 {
@@ -2346,9 +2365,9 @@ void USourceEffectChorusPreset::SetSpreadModulator(class USoundModulatorBase** M
 // Function Synthesis.SourceEffectChorusPreset.SetSpread
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Spread                                                           (ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              Spread                                                           (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-void USourceEffectChorusPreset::SetSpread(float* Spread)
+void USourceEffectChorusPreset::SetSpread(float Spread)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2357,6 +2376,7 @@ void USourceEffectChorusPreset::SetSpread(float* Spread)
 
 	Params::USourceEffectChorusPreset_SetSpread_Params Parms{};
 
+	Parms.Spread = Spread;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2366,18 +2386,15 @@ void USourceEffectChorusPreset::SetSpread(float* Spread)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Spread != nullptr)
-		*Spread = Parms.Spread;
-
 }
 
 
 // Function Synthesis.SourceEffectChorusPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSourceEffectChorusBaseSettingsSettings                                                         (Edit, Net, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+// struct FSourceEffectChorusBaseSettingsSettings                                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
 
-void USourceEffectChorusPreset::SetSettings(const struct FSourceEffectChorusBaseSettings& Settings)
+void USourceEffectChorusPreset::SetSettings(struct FSourceEffectChorusBaseSettings* Settings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2386,7 +2403,6 @@ void USourceEffectChorusPreset::SetSettings(const struct FSourceEffectChorusBase
 
 	Params::USourceEffectChorusPreset_SetSettings_Params Parms{};
 
-	Parms.Settings = Settings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2396,13 +2412,16 @@ void USourceEffectChorusPreset::SetSettings(const struct FSourceEffectChorusBase
 
 	Func->FunctionFlags = Flgs;
 
+	if (Settings != nullptr)
+		*Settings = std::move(Parms.Settings);
+
 }
 
 
 // Function Synthesis.SourceEffectChorusPreset.SetModulationSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSourceEffectChorusSettings ModulationSettings                                               (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FSourceEffectChorusSettings ModulationSettings                                               (Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
 
 struct FSourceEffectChorusSettings USourceEffectChorusPreset::SetModulationSettings()
 {
@@ -2430,7 +2449,7 @@ struct FSourceEffectChorusSettings USourceEffectChorusPreset::SetModulationSetti
 // Function Synthesis.SourceEffectChorusPreset.SetFrequencyModulators
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TSet<class USoundModulatorBase*>   Modulators                                                       (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// TSet<class USoundModulatorBase*>   Modulators                                                       (ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void USourceEffectChorusPreset::SetFrequencyModulators(TSet<class USoundModulatorBase*>* Modulators)
 {
@@ -2459,7 +2478,7 @@ void USourceEffectChorusPreset::SetFrequencyModulators(TSet<class USoundModulato
 // Function Synthesis.SourceEffectChorusPreset.SetFrequencyModulator
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USoundModulatorBase*         Modulator                                                        (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class USoundModulatorBase*         Modulator                                                        (ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void USourceEffectChorusPreset::SetFrequencyModulator(class USoundModulatorBase** Modulator)
 {
@@ -2488,9 +2507,9 @@ void USourceEffectChorusPreset::SetFrequencyModulator(class USoundModulatorBase*
 // Function Synthesis.SourceEffectChorusPreset.SetFrequency
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Frequency                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              Frequency                                                        (BlueprintVisible, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-float USourceEffectChorusPreset::SetFrequency()
+void USourceEffectChorusPreset::SetFrequency(float* Frequency)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2508,7 +2527,8 @@ float USourceEffectChorusPreset::SetFrequency()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Frequency != nullptr)
+		*Frequency = Parms.Frequency;
 
 }
 
@@ -2516,7 +2536,7 @@ float USourceEffectChorusPreset::SetFrequency()
 // Function Synthesis.SourceEffectChorusPreset.SetFeedbackModulators
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TSet<class USoundModulatorBase*>   Modulators                                                       (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// TSet<class USoundModulatorBase*>   Modulators                                                       (ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void USourceEffectChorusPreset::SetFeedbackModulators(TSet<class USoundModulatorBase*>* Modulators)
 {
@@ -2545,7 +2565,7 @@ void USourceEffectChorusPreset::SetFeedbackModulators(TSet<class USoundModulator
 // Function Synthesis.SourceEffectChorusPreset.SetFeedbackModulator
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USoundModulatorBase*         Modulator                                                        (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class USoundModulatorBase*         Modulator                                                        (ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void USourceEffectChorusPreset::SetFeedbackModulator(class USoundModulatorBase** Modulator)
 {
@@ -2574,7 +2594,7 @@ void USourceEffectChorusPreset::SetFeedbackModulator(class USoundModulatorBase**
 // Function Synthesis.SourceEffectChorusPreset.SetFeedback
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Feedback                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              Feedback                                                         (BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void USourceEffectChorusPreset::SetFeedback(float* Feedback)
 {
@@ -2603,7 +2623,7 @@ void USourceEffectChorusPreset::SetFeedback(float* Feedback)
 // Function Synthesis.SourceEffectChorusPreset.SetDryModulators
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TSet<class USoundModulatorBase*>   Modulators                                                       (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// TSet<class USoundModulatorBase*>   Modulators                                                       (ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void USourceEffectChorusPreset::SetDryModulators(TSet<class USoundModulatorBase*>* Modulators)
 {
@@ -2632,7 +2652,7 @@ void USourceEffectChorusPreset::SetDryModulators(TSet<class USoundModulatorBase*
 // Function Synthesis.SourceEffectChorusPreset.SetDryModulator
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USoundModulatorBase*         Modulator                                                        (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class USoundModulatorBase*         Modulator                                                        (ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void USourceEffectChorusPreset::SetDryModulator(class USoundModulatorBase** Modulator)
 {
@@ -2661,9 +2681,9 @@ void USourceEffectChorusPreset::SetDryModulator(class USoundModulatorBase** Modu
 // Function Synthesis.SourceEffectChorusPreset.SetDry
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              DryAmount                                                        (ConstParm, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              DryAmount                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-float USourceEffectChorusPreset::SetDry()
+void USourceEffectChorusPreset::SetDry(float* DryAmount)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2681,7 +2701,8 @@ float USourceEffectChorusPreset::SetDry()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (DryAmount != nullptr)
+		*DryAmount = Parms.DryAmount;
 
 }
 
@@ -2689,7 +2710,7 @@ float USourceEffectChorusPreset::SetDry()
 // Function Synthesis.SourceEffectChorusPreset.SetDepthModulators
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TSet<class USoundModulatorBase*>   Modulators                                                       (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// TSet<class USoundModulatorBase*>   Modulators                                                       (ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void USourceEffectChorusPreset::SetDepthModulators(TSet<class USoundModulatorBase*>* Modulators)
 {
@@ -2718,7 +2739,7 @@ void USourceEffectChorusPreset::SetDepthModulators(TSet<class USoundModulatorBas
 // Function Synthesis.SourceEffectChorusPreset.SetDepthModulator
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USoundModulatorBase*         Modulator                                                        (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class USoundModulatorBase*         Modulator                                                        (ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void USourceEffectChorusPreset::SetDepthModulator(class USoundModulatorBase** Modulator)
 {
@@ -2747,9 +2768,9 @@ void USourceEffectChorusPreset::SetDepthModulator(class USoundModulatorBase** Mo
 // Function Synthesis.SourceEffectChorusPreset.SetDepth
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Depth                                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst)
+// float                              Depth                                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, EditConst)
 
-float USourceEffectChorusPreset::SetDepth()
+void USourceEffectChorusPreset::SetDepth(float* Depth)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2767,7 +2788,8 @@ float USourceEffectChorusPreset::SetDepth()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (Depth != nullptr)
+		*Depth = Parms.Depth;
 
 }
 
@@ -2803,9 +2825,9 @@ class USourceEffectConvolutionReverbPreset* USourceEffectConvolutionReverbPreset
 // Function Synthesis.SourceEffectConvolutionReverbPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSourceEffectConvolutionReverbSettingsInSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSourceEffectConvolutionReverbSettingsInSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSourceEffectConvolutionReverbSettings USourceEffectConvolutionReverbPreset::SetSettings()
+void USourceEffectConvolutionReverbPreset::SetSettings(const struct FSourceEffectConvolutionReverbSettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2814,6 +2836,7 @@ struct FSourceEffectConvolutionReverbSettings USourceEffectConvolutionReverbPres
 
 	Params::USourceEffectConvolutionReverbPreset_SetSettings_Params Parms{};
 
+	Parms.InSettings = InSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2823,17 +2846,15 @@ struct FSourceEffectConvolutionReverbSettings USourceEffectConvolutionReverbPres
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Synthesis.SourceEffectConvolutionReverbPreset.SetImpulseResponse
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UAudioImpulseResponse*       InImpulseResponse                                                (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// class UAudioImpulseResponse*       InImpulseResponse                                                (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-class UAudioImpulseResponse* USourceEffectConvolutionReverbPreset::SetImpulseResponse()
+void USourceEffectConvolutionReverbPreset::SetImpulseResponse(class UAudioImpulseResponse** InImpulseResponse)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2851,7 +2872,8 @@ class UAudioImpulseResponse* USourceEffectConvolutionReverbPreset::SetImpulseRes
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InImpulseResponse != nullptr)
+		*InImpulseResponse = Parms.InImpulseResponse;
 
 }
 
@@ -2887,9 +2909,9 @@ class USourceEffectDynamicsProcessorPreset* USourceEffectDynamicsProcessorPreset
 // Function Synthesis.SourceEffectDynamicsProcessorPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSourceEffectDynamicsProcessorSettingsInSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSourceEffectDynamicsProcessorSettingsInSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSourceEffectDynamicsProcessorSettings USourceEffectDynamicsProcessorPreset::SetSettings()
+void USourceEffectDynamicsProcessorPreset::SetSettings(const struct FSourceEffectDynamicsProcessorSettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2898,6 +2920,7 @@ struct FSourceEffectDynamicsProcessorSettings USourceEffectDynamicsProcessorPres
 
 	Params::USourceEffectDynamicsProcessorPreset_SetSettings_Params Parms{};
 
+	Parms.InSettings = InSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2906,8 +2929,6 @@ struct FSourceEffectDynamicsProcessorSettings USourceEffectDynamicsProcessorPres
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -2971,9 +2992,9 @@ class USourceEffectEnvelopeFollowerPreset* USourceEffectEnvelopeFollowerPreset::
 // Function Synthesis.SourceEffectEnvelopeFollowerPreset.UnregisterEnvelopeFollowerListener
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UEnvelopeFollowerListener*   EnvelopeFollowerListener                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// class UEnvelopeFollowerListener*   EnvelopeFollowerListener                                         (Edit, BlueprintReadOnly, Net, OutParm, ReturnParm, GlobalConfig)
 
-void USourceEffectEnvelopeFollowerPreset::UnregisterEnvelopeFollowerListener(class UEnvelopeFollowerListener** EnvelopeFollowerListener)
+class UEnvelopeFollowerListener* USourceEffectEnvelopeFollowerPreset::UnregisterEnvelopeFollowerListener()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2991,8 +3012,7 @@ void USourceEffectEnvelopeFollowerPreset::UnregisterEnvelopeFollowerListener(cla
 
 	Func->FunctionFlags = Flgs;
 
-	if (EnvelopeFollowerListener != nullptr)
-		*EnvelopeFollowerListener = Parms.EnvelopeFollowerListener;
+	return Parms.ReturnValue;
 
 }
 
@@ -3000,9 +3020,9 @@ void USourceEffectEnvelopeFollowerPreset::UnregisterEnvelopeFollowerListener(cla
 // Function Synthesis.SourceEffectEnvelopeFollowerPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSourceEffectEnvelopeFollowerSettingsInSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSourceEffectEnvelopeFollowerSettingsInSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSourceEffectEnvelopeFollowerSettings USourceEffectEnvelopeFollowerPreset::SetSettings()
+void USourceEffectEnvelopeFollowerPreset::SetSettings(const struct FSourceEffectEnvelopeFollowerSettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3011,6 +3031,7 @@ struct FSourceEffectEnvelopeFollowerSettings USourceEffectEnvelopeFollowerPreset
 
 	Params::USourceEffectEnvelopeFollowerPreset_SetSettings_Params Parms{};
 
+	Parms.InSettings = InSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3020,17 +3041,15 @@ struct FSourceEffectEnvelopeFollowerSettings USourceEffectEnvelopeFollowerPreset
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Synthesis.SourceEffectEnvelopeFollowerPreset.RegisterEnvelopeFollowerListener
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UEnvelopeFollowerListener*   EnvelopeFollowerListener                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// class UEnvelopeFollowerListener*   EnvelopeFollowerListener                                         (Edit, BlueprintReadOnly, Net, OutParm, ReturnParm, GlobalConfig)
 
-void USourceEffectEnvelopeFollowerPreset::RegisterEnvelopeFollowerListener(class UEnvelopeFollowerListener** EnvelopeFollowerListener)
+class UEnvelopeFollowerListener* USourceEffectEnvelopeFollowerPreset::RegisterEnvelopeFollowerListener()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3048,8 +3067,7 @@ void USourceEffectEnvelopeFollowerPreset::RegisterEnvelopeFollowerListener(class
 
 	Func->FunctionFlags = Flgs;
 
-	if (EnvelopeFollowerListener != nullptr)
-		*EnvelopeFollowerListener = Parms.EnvelopeFollowerListener;
+	return Parms.ReturnValue;
 
 }
 
@@ -3085,9 +3103,9 @@ class USourceEffectEQPreset* USourceEffectEQPreset::GetDefaultObj()
 // Function Synthesis.SourceEffectEQPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSourceEffectEQSettings     InSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSourceEffectEQSettings     InSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSourceEffectEQSettings USourceEffectEQPreset::SetSettings()
+void USourceEffectEQPreset::SetSettings(const struct FSourceEffectEQSettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3096,6 +3114,7 @@ struct FSourceEffectEQSettings USourceEffectEQPreset::SetSettings()
 
 	Params::USourceEffectEQPreset_SetSettings_Params Parms{};
 
+	Parms.InSettings = InSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3104,8 +3123,6 @@ struct FSourceEffectEQSettings USourceEffectEQPreset::SetSettings()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -3141,9 +3158,9 @@ class USourceEffectFilterPreset* USourceEffectFilterPreset::GetDefaultObj()
 // Function Synthesis.SourceEffectFilterPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSourceEffectFilterSettings InSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSourceEffectFilterSettings InSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSourceEffectFilterSettings USourceEffectFilterPreset::SetSettings()
+void USourceEffectFilterPreset::SetSettings(const struct FSourceEffectFilterSettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3152,6 +3169,7 @@ struct FSourceEffectFilterSettings USourceEffectFilterPreset::SetSettings()
 
 	Params::USourceEffectFilterPreset_SetSettings_Params Parms{};
 
+	Parms.InSettings = InSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3160,8 +3178,6 @@ struct FSourceEffectFilterSettings USourceEffectFilterPreset::SetSettings()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -3197,9 +3213,9 @@ class USourceEffectFoldbackDistortionPreset* USourceEffectFoldbackDistortionPres
 // Function Synthesis.SourceEffectFoldbackDistortionPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSourceEffectFoldbackDistortionSettingsInSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSourceEffectFoldbackDistortionSettingsInSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSourceEffectFoldbackDistortionSettings USourceEffectFoldbackDistortionPreset::SetSettings()
+void USourceEffectFoldbackDistortionPreset::SetSettings(const struct FSourceEffectFoldbackDistortionSettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3208,6 +3224,7 @@ struct FSourceEffectFoldbackDistortionSettings USourceEffectFoldbackDistortionPr
 
 	Params::USourceEffectFoldbackDistortionPreset_SetSettings_Params Parms{};
 
+	Parms.InSettings = InSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3216,8 +3233,6 @@ struct FSourceEffectFoldbackDistortionSettings USourceEffectFoldbackDistortionPr
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -3253,9 +3268,9 @@ class USourceEffectMidSideSpreaderPreset* USourceEffectMidSideSpreaderPreset::Ge
 // Function Synthesis.SourceEffectMidSideSpreaderPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSourceEffectMidSideSpreaderSettingsInSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSourceEffectMidSideSpreaderSettingsInSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSourceEffectMidSideSpreaderSettings USourceEffectMidSideSpreaderPreset::SetSettings()
+void USourceEffectMidSideSpreaderPreset::SetSettings(const struct FSourceEffectMidSideSpreaderSettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3264,6 +3279,7 @@ struct FSourceEffectMidSideSpreaderSettings USourceEffectMidSideSpreaderPreset::
 
 	Params::USourceEffectMidSideSpreaderPreset_SetSettings_Params Parms{};
 
+	Parms.InSettings = InSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3272,8 +3288,6 @@ struct FSourceEffectMidSideSpreaderSettings USourceEffectMidSideSpreaderPreset::
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -3309,9 +3323,9 @@ class USourceEffectMotionFilterPreset* USourceEffectMotionFilterPreset::GetDefau
 // Function Synthesis.SourceEffectMotionFilterPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSourceEffectMotionFilterSettingsInSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSourceEffectMotionFilterSettingsInSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSourceEffectMotionFilterSettings USourceEffectMotionFilterPreset::SetSettings()
+void USourceEffectMotionFilterPreset::SetSettings(const struct FSourceEffectMotionFilterSettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3320,6 +3334,7 @@ struct FSourceEffectMotionFilterSettings USourceEffectMotionFilterPreset::SetSet
 
 	Params::USourceEffectMotionFilterPreset_SetSettings_Params Parms{};
 
+	Parms.InSettings = InSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3328,8 +3343,6 @@ struct FSourceEffectMotionFilterSettings USourceEffectMotionFilterPreset::SetSet
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -3365,9 +3378,9 @@ class USourceEffectPannerPreset* USourceEffectPannerPreset::GetDefaultObj()
 // Function Synthesis.SourceEffectPannerPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSourceEffectPannerSettings InSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSourceEffectPannerSettings InSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSourceEffectPannerSettings USourceEffectPannerPreset::SetSettings()
+void USourceEffectPannerPreset::SetSettings(const struct FSourceEffectPannerSettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3376,6 +3389,7 @@ struct FSourceEffectPannerSettings USourceEffectPannerPreset::SetSettings()
 
 	Params::USourceEffectPannerPreset_SetSettings_Params Parms{};
 
+	Parms.InSettings = InSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3384,8 +3398,6 @@ struct FSourceEffectPannerSettings USourceEffectPannerPreset::SetSettings()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -3421,9 +3433,9 @@ class USourceEffectPhaserPreset* USourceEffectPhaserPreset::GetDefaultObj()
 // Function Synthesis.SourceEffectPhaserPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSourceEffectPhaserSettings InSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSourceEffectPhaserSettings InSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSourceEffectPhaserSettings USourceEffectPhaserPreset::SetSettings()
+void USourceEffectPhaserPreset::SetSettings(const struct FSourceEffectPhaserSettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3432,6 +3444,7 @@ struct FSourceEffectPhaserSettings USourceEffectPhaserPreset::SetSettings()
 
 	Params::USourceEffectPhaserPreset_SetSettings_Params Parms{};
 
+	Parms.InSettings = InSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3440,8 +3453,6 @@ struct FSourceEffectPhaserSettings USourceEffectPhaserPreset::SetSettings()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -3477,9 +3488,9 @@ class USourceEffectRingModulationPreset* USourceEffectRingModulationPreset::GetD
 // Function Synthesis.SourceEffectRingModulationPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSourceEffectRingModulationSettingsInSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSourceEffectRingModulationSettingsInSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSourceEffectRingModulationSettings USourceEffectRingModulationPreset::SetSettings()
+void USourceEffectRingModulationPreset::SetSettings(const struct FSourceEffectRingModulationSettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3488,6 +3499,7 @@ struct FSourceEffectRingModulationSettings USourceEffectRingModulationPreset::Se
 
 	Params::USourceEffectRingModulationPreset_SetSettings_Params Parms{};
 
+	Parms.InSettings = InSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3496,8 +3508,6 @@ struct FSourceEffectRingModulationSettings USourceEffectRingModulationPreset::Se
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -3533,9 +3543,9 @@ class USourceEffectSimpleDelayPreset* USourceEffectSimpleDelayPreset::GetDefault
 // Function Synthesis.SourceEffectSimpleDelayPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSourceEffectSimpleDelaySettingsInSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSourceEffectSimpleDelaySettingsInSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSourceEffectSimpleDelaySettings USourceEffectSimpleDelayPreset::SetSettings()
+void USourceEffectSimpleDelayPreset::SetSettings(const struct FSourceEffectSimpleDelaySettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3544,6 +3554,7 @@ struct FSourceEffectSimpleDelaySettings USourceEffectSimpleDelayPreset::SetSetti
 
 	Params::USourceEffectSimpleDelayPreset_SetSettings_Params Parms{};
 
+	Parms.InSettings = InSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3552,8 +3563,6 @@ struct FSourceEffectSimpleDelaySettings USourceEffectSimpleDelayPreset::SetSetti
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -3589,9 +3598,9 @@ class USourceEffectStereoDelayPreset* USourceEffectStereoDelayPreset::GetDefault
 // Function Synthesis.SourceEffectStereoDelayPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSourceEffectStereoDelaySettingsInSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSourceEffectStereoDelaySettingsInSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSourceEffectStereoDelaySettings USourceEffectStereoDelayPreset::SetSettings()
+void USourceEffectStereoDelayPreset::SetSettings(const struct FSourceEffectStereoDelaySettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3600,6 +3609,7 @@ struct FSourceEffectStereoDelaySettings USourceEffectStereoDelayPreset::SetSetti
 
 	Params::USourceEffectStereoDelayPreset_SetSettings_Params Parms{};
 
+	Parms.InSettings = InSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3608,8 +3618,6 @@ struct FSourceEffectStereoDelaySettings USourceEffectStereoDelayPreset::SetSetti
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -3645,9 +3653,9 @@ class USourceEffectWaveShaperPreset* USourceEffectWaveShaperPreset::GetDefaultOb
 // Function Synthesis.SourceEffectWaveShaperPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSourceEffectWaveShaperSettingsInSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSourceEffectWaveShaperSettingsInSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSourceEffectWaveShaperSettings USourceEffectWaveShaperPreset::SetSettings()
+void USourceEffectWaveShaperPreset::SetSettings(const struct FSourceEffectWaveShaperSettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3656,6 +3664,7 @@ struct FSourceEffectWaveShaperSettings USourceEffectWaveShaperPreset::SetSetting
 
 	Params::USourceEffectWaveShaperPreset_SetSettings_Params Parms{};
 
+	Parms.InSettings = InSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3664,8 +3673,6 @@ struct FSourceEffectWaveShaperSettings USourceEffectWaveShaperPreset::SetSetting
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -3701,9 +3708,9 @@ class USubmixEffectConvolutionReverbPreset* USubmixEffectConvolutionReverbPreset
 // Function Synthesis.SubmixEffectConvolutionReverbPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSubmixEffectConvolutionReverbSettingsInSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSubmixEffectConvolutionReverbSettingsInSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSubmixEffectConvolutionReverbSettings USubmixEffectConvolutionReverbPreset::SetSettings()
+void USubmixEffectConvolutionReverbPreset::SetSettings(const struct FSubmixEffectConvolutionReverbSettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3712,6 +3719,7 @@ struct FSubmixEffectConvolutionReverbSettings USubmixEffectConvolutionReverbPres
 
 	Params::USubmixEffectConvolutionReverbPreset_SetSettings_Params Parms{};
 
+	Parms.InSettings = InSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3721,17 +3729,15 @@ struct FSubmixEffectConvolutionReverbSettings USubmixEffectConvolutionReverbPres
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Synthesis.SubmixEffectConvolutionReverbPreset.SetImpulseResponse
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UAudioImpulseResponse*       InImpulseResponse                                                (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// class UAudioImpulseResponse*       InImpulseResponse                                                (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-class UAudioImpulseResponse* USubmixEffectConvolutionReverbPreset::SetImpulseResponse()
+void USubmixEffectConvolutionReverbPreset::SetImpulseResponse(class UAudioImpulseResponse** InImpulseResponse)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3749,7 +3755,8 @@ class UAudioImpulseResponse* USubmixEffectConvolutionReverbPreset::SetImpulseRes
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InImpulseResponse != nullptr)
+		*InImpulseResponse = Parms.InImpulseResponse;
 
 }
 
@@ -3785,11 +3792,11 @@ class USubmixEffectDelayStatics* USubmixEffectDelayStatics::GetDefaultObj()
 // Function Synthesis.SubmixEffectDelayStatics.SetMaximumDelayLength
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSubmixEffectDelaySettings  DelaySettings                                                    (Edit, ExportObject, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// float                              MaximumDelayLength                                               (Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// struct FSubmixEffectDelaySettings  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FSubmixEffectDelaySettings  DelaySettings                                                    (BlueprintVisible, Net, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              MaximumDelayLength                                               (BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FSubmixEffectDelaySettings  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float USubmixEffectDelayStatics::SetMaximumDelayLength(const struct FSubmixEffectDelaySettings& ReturnValue)
+struct FSubmixEffectDelaySettings USubmixEffectDelayStatics::SetMaximumDelayLength()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3798,7 +3805,6 @@ float USubmixEffectDelayStatics::SetMaximumDelayLength(const struct FSubmixEffec
 
 	Params::USubmixEffectDelayStatics_SetMaximumDelayLength_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3816,11 +3822,11 @@ float USubmixEffectDelayStatics::SetMaximumDelayLength(const struct FSubmixEffec
 // Function Synthesis.SubmixEffectDelayStatics.SetInterpolationTime
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSubmixEffectDelaySettings  DelaySettings                                                    (Edit, ExportObject, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// float                              InterpolationTime                                                (Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// struct FSubmixEffectDelaySettings  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FSubmixEffectDelaySettings  DelaySettings                                                    (BlueprintVisible, Net, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              InterpolationTime                                                (ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FSubmixEffectDelaySettings  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float USubmixEffectDelayStatics::SetInterpolationTime(const struct FSubmixEffectDelaySettings& ReturnValue)
+struct FSubmixEffectDelaySettings USubmixEffectDelayStatics::SetInterpolationTime()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3829,7 +3835,6 @@ float USubmixEffectDelayStatics::SetInterpolationTime(const struct FSubmixEffect
 
 	Params::USubmixEffectDelayStatics_SetInterpolationTime_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3847,11 +3852,11 @@ float USubmixEffectDelayStatics::SetInterpolationTime(const struct FSubmixEffect
 // Function Synthesis.SubmixEffectDelayStatics.SetDelayLength
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSubmixEffectDelaySettings  DelaySettings                                                    (Edit, ExportObject, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// float                              DelayLength                                                      (ConstParm, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// struct FSubmixEffectDelaySettings  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FSubmixEffectDelaySettings  DelaySettings                                                    (BlueprintVisible, Net, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              DelayLength                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FSubmixEffectDelaySettings  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float USubmixEffectDelayStatics::SetDelayLength(const struct FSubmixEffectDelaySettings& ReturnValue)
+struct FSubmixEffectDelaySettings USubmixEffectDelayStatics::SetDelayLength()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3860,7 +3865,6 @@ float USubmixEffectDelayStatics::SetDelayLength(const struct FSubmixEffectDelayS
 
 	Params::USubmixEffectDelayStatics_SetDelayLength_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3906,9 +3910,9 @@ class USubmixEffectDelayPreset* USubmixEffectDelayPreset::GetDefaultObj()
 // Function Synthesis.SubmixEffectDelayPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSubmixEffectDelaySettings  InSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSubmixEffectDelaySettings  InSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSubmixEffectDelaySettings USubmixEffectDelayPreset::SetSettings()
+void USubmixEffectDelayPreset::SetSettings(const struct FSubmixEffectDelaySettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3917,6 +3921,7 @@ struct FSubmixEffectDelaySettings USubmixEffectDelayPreset::SetSettings()
 
 	Params::USubmixEffectDelayPreset_SetSettings_Params Parms{};
 
+	Parms.InSettings = InSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3926,15 +3931,13 @@ struct FSubmixEffectDelaySettings USubmixEffectDelayPreset::SetSettings()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Synthesis.SubmixEffectDelayPreset.SetInterpolationTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Time                                                             (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// float                              Time                                                             (Edit, ConstParm, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
 
 float USubmixEffectDelayPreset::SetInterpolationTime()
 {
@@ -3990,9 +3993,9 @@ float USubmixEffectDelayPreset::SetDelay()
 // Function Synthesis.SubmixEffectDelayPreset.SetDefaultSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSubmixEffectDelaySettings  InSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSubmixEffectDelaySettings  InSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSubmixEffectDelaySettings USubmixEffectDelayPreset::SetDefaultSettings()
+void USubmixEffectDelayPreset::SetDefaultSettings(const struct FSubmixEffectDelaySettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4000,6 +4003,33 @@ struct FSubmixEffectDelaySettings USubmixEffectDelayPreset::SetDefaultSettings()
 		Func = Class->GetFunction("SubmixEffectDelayPreset", "SetDefaultSettings");
 
 	Params::USubmixEffectDelayPreset_SetDefaultSettings_Params Parms{};
+
+	Parms.InSettings = InSettings;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+}
+
+
+// Function Synthesis.SubmixEffectDelayPreset.GetMaxDelayInMilliseconds
+// (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
+// Parameters:
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+
+float USubmixEffectDelayPreset::GetMaxDelayInMilliseconds()
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("SubmixEffectDelayPreset", "GetMaxDelayInMilliseconds");
+
+	Params::USubmixEffectDelayPreset_GetMaxDelayInMilliseconds_Params Parms{};
 
 
 	auto Flgs = Func->FunctionFlags;
@@ -4011,33 +4041,6 @@ struct FSubmixEffectDelaySettings USubmixEffectDelayPreset::SetDefaultSettings()
 	Func->FunctionFlags = Flgs;
 
 	return Parms.ReturnValue;
-
-}
-
-
-// Function Synthesis.SubmixEffectDelayPreset.GetMaxDelayInMilliseconds
-// (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
-// Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-
-void USubmixEffectDelayPreset::GetMaxDelayInMilliseconds(float ReturnValue)
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("SubmixEffectDelayPreset", "GetMaxDelayInMilliseconds");
-
-	Params::USubmixEffectDelayPreset_GetMaxDelayInMilliseconds_Params Parms{};
-
-	Parms.ReturnValue = ReturnValue;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
 
 }
 
@@ -4073,9 +4076,9 @@ class USubmixEffectFilterPreset* USubmixEffectFilterPreset::GetDefaultObj()
 // Function Synthesis.SubmixEffectFilterPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSubmixEffectFilterSettings InSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSubmixEffectFilterSettings InSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSubmixEffectFilterSettings USubmixEffectFilterPreset::SetSettings()
+void USubmixEffectFilterPreset::SetSettings(const struct FSubmixEffectFilterSettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4084,6 +4087,7 @@ struct FSubmixEffectFilterSettings USubmixEffectFilterPreset::SetSettings()
 
 	Params::USubmixEffectFilterPreset_SetSettings_Params Parms{};
 
+	Parms.InSettings = InSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4093,15 +4097,13 @@ struct FSubmixEffectFilterSettings USubmixEffectFilterPreset::SetSettings()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Synthesis.SubmixEffectFilterPreset.SetFilterType
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ESubmixFilterType       InType                                                           (Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// enum class ESubmixFilterType       InType                                                           (ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 enum class ESubmixFilterType USubmixEffectFilterPreset::SetFilterType()
 {
@@ -4129,7 +4131,7 @@ enum class ESubmixFilterType USubmixEffectFilterPreset::SetFilterType()
 // Function Synthesis.SubmixEffectFilterPreset.SetFilterQMod
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InQ                                                              (ExportObject, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InQ                                                              (Edit, ConstParm, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USubmixEffectFilterPreset::SetFilterQMod()
 {
@@ -4157,7 +4159,7 @@ float USubmixEffectFilterPreset::SetFilterQMod()
 // Function Synthesis.SubmixEffectFilterPreset.SetFilterQ
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InQ                                                              (ExportObject, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InQ                                                              (Edit, ConstParm, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USubmixEffectFilterPreset::SetFilterQ()
 {
@@ -4185,7 +4187,7 @@ float USubmixEffectFilterPreset::SetFilterQ()
 // Function Synthesis.SubmixEffectFilterPreset.SetFilterCutoffFrequencyMod
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InFrequency                                                      (Edit, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InFrequency                                                      (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USubmixEffectFilterPreset::SetFilterCutoffFrequencyMod()
 {
@@ -4213,7 +4215,7 @@ float USubmixEffectFilterPreset::SetFilterCutoffFrequencyMod()
 // Function Synthesis.SubmixEffectFilterPreset.SetFilterCutoffFrequency
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InFrequency                                                      (Edit, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InFrequency                                                      (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USubmixEffectFilterPreset::SetFilterCutoffFrequency()
 {
@@ -4241,7 +4243,7 @@ float USubmixEffectFilterPreset::SetFilterCutoffFrequency()
 // Function Synthesis.SubmixEffectFilterPreset.SetFilterAlgorithm
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ESubmixFilterAlgorithm  InAlgorithm                                                      (ConstParm, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// enum class ESubmixFilterAlgorithm  InAlgorithm                                                      (Edit, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 enum class ESubmixFilterAlgorithm USubmixEffectFilterPreset::SetFilterAlgorithm()
 {
@@ -4297,9 +4299,9 @@ class USubmixEffectFlexiverbPreset* USubmixEffectFlexiverbPreset::GetDefaultObj(
 // Function Synthesis.SubmixEffectFlexiverbPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSubmixEffectFlexiverbSettingsInSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSubmixEffectFlexiverbSettingsInSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSubmixEffectFlexiverbSettings USubmixEffectFlexiverbPreset::SetSettings()
+void USubmixEffectFlexiverbPreset::SetSettings(const struct FSubmixEffectFlexiverbSettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4308,6 +4310,7 @@ struct FSubmixEffectFlexiverbSettings USubmixEffectFlexiverbPreset::SetSettings(
 
 	Params::USubmixEffectFlexiverbPreset_SetSettings_Params Parms{};
 
+	Parms.InSettings = InSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4316,8 +4319,6 @@ struct FSubmixEffectFlexiverbSettings USubmixEffectFlexiverbPreset::SetSettings(
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -4353,9 +4354,9 @@ class USubmixEffectMultibandCompressorPreset* USubmixEffectMultibandCompressorPr
 // Function Synthesis.SubmixEffectMultibandCompressorPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSubmixEffectMultibandCompressorSettingsInSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSubmixEffectMultibandCompressorSettingsInSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSubmixEffectMultibandCompressorSettings USubmixEffectMultibandCompressorPreset::SetSettings()
+void USubmixEffectMultibandCompressorPreset::SetSettings(const struct FSubmixEffectMultibandCompressorSettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4364,6 +4365,7 @@ struct FSubmixEffectMultibandCompressorSettings USubmixEffectMultibandCompressor
 
 	Params::USubmixEffectMultibandCompressorPreset_SetSettings_Params Parms{};
 
+	Parms.InSettings = InSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4373,15 +4375,13 @@ struct FSubmixEffectMultibandCompressorSettings USubmixEffectMultibandCompressor
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Synthesis.SubmixEffectMultibandCompressorPreset.SetExternalSubmix
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USoundSubmix*                Submix                                                           (ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class USoundSubmix*                Submix                                                           (BlueprintVisible, Net, Parm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
 void USubmixEffectMultibandCompressorPreset::SetExternalSubmix(class USoundSubmix* Submix)
 {
@@ -4408,9 +4408,9 @@ void USubmixEffectMultibandCompressorPreset::SetExternalSubmix(class USoundSubmi
 // Function Synthesis.SubmixEffectMultibandCompressorPreset.SetAudioBus
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UAudioBus*                   AudioBus                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
+// class UAudioBus*                   AudioBus                                                         (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig)
 
-class UAudioBus* USubmixEffectMultibandCompressorPreset::SetAudioBus()
+void USubmixEffectMultibandCompressorPreset::SetAudioBus(class UAudioBus** AudioBus)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4428,7 +4428,8 @@ class UAudioBus* USubmixEffectMultibandCompressorPreset::SetAudioBus()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (AudioBus != nullptr)
+		*AudioBus = Parms.AudioBus;
 
 }
 
@@ -4488,9 +4489,9 @@ class USubmixEffectStereoDelayPreset* USubmixEffectStereoDelayPreset::GetDefault
 // Function Synthesis.SubmixEffectStereoDelayPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSubmixEffectStereoDelaySettingsInSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSubmixEffectStereoDelaySettingsInSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSubmixEffectStereoDelaySettings USubmixEffectStereoDelayPreset::SetSettings()
+void USubmixEffectStereoDelayPreset::SetSettings(const struct FSubmixEffectStereoDelaySettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4499,6 +4500,7 @@ struct FSubmixEffectStereoDelaySettings USubmixEffectStereoDelayPreset::SetSetti
 
 	Params::USubmixEffectStereoDelayPreset_SetSettings_Params Parms{};
 
+	Parms.InSettings = InSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4507,8 +4509,6 @@ struct FSubmixEffectStereoDelaySettings USubmixEffectStereoDelayPreset::SetSetti
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -4544,9 +4544,9 @@ class USubmixEffectStereoToQuadPreset* USubmixEffectStereoToQuadPreset::GetDefau
 // Function Synthesis.SubmixEffectStereoToQuadPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSubmixEffectStereoToQuadSettingsInSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSubmixEffectStereoToQuadSettingsInSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSubmixEffectStereoToQuadSettings USubmixEffectStereoToQuadPreset::SetSettings()
+void USubmixEffectStereoToQuadPreset::SetSettings(const struct FSubmixEffectStereoToQuadSettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4555,6 +4555,7 @@ struct FSubmixEffectStereoToQuadSettings USubmixEffectStereoToQuadPreset::SetSet
 
 	Params::USubmixEffectStereoToQuadPreset_SetSettings_Params Parms{};
 
+	Parms.InSettings = InSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4563,8 +4564,6 @@ struct FSubmixEffectStereoToQuadSettings USubmixEffectStereoToQuadPreset::SetSet
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -4600,8 +4599,8 @@ class USubmixEffectTapDelayPreset* USubmixEffectTapDelayPreset::GetDefaultObj()
 // Function Synthesis.SubmixEffectTapDelayPreset.SetTap
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// int32                              TapId                                                            (BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// struct FTapDelayInfo               TapInfo                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              TapId                                                            (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FTapDelayInfo               TapInfo                                                          (ConstParm, ExportObject, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 struct FTapDelayInfo USubmixEffectTapDelayPreset::SetTap()
 {
@@ -4629,9 +4628,9 @@ struct FTapDelayInfo USubmixEffectTapDelayPreset::SetTap()
 // Function Synthesis.SubmixEffectTapDelayPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSubmixEffectTapDelaySettingsInSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSubmixEffectTapDelaySettingsInSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSubmixEffectTapDelaySettings USubmixEffectTapDelayPreset::SetSettings()
+void USubmixEffectTapDelayPreset::SetSettings(const struct FSubmixEffectTapDelaySettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4640,6 +4639,7 @@ struct FSubmixEffectTapDelaySettings USubmixEffectTapDelayPreset::SetSettings()
 
 	Params::USubmixEffectTapDelayPreset_SetSettings_Params Parms{};
 
+	Parms.InSettings = InSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4649,15 +4649,13 @@ struct FSubmixEffectTapDelaySettings USubmixEffectTapDelayPreset::SetSettings()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function Synthesis.SubmixEffectTapDelayPreset.SetInterpolationTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Time                                                             (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// float                              Time                                                             (Edit, ConstParm, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
 
 float USubmixEffectTapDelayPreset::SetInterpolationTime()
 {
@@ -4685,7 +4683,7 @@ float USubmixEffectTapDelayPreset::SetInterpolationTime()
 // Function Synthesis.SubmixEffectTapDelayPreset.RemoveTap
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              TapId                                                            (BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              TapId                                                            (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 int32 USubmixEffectTapDelayPreset::RemoveTap()
 {
@@ -4713,7 +4711,7 @@ int32 USubmixEffectTapDelayPreset::RemoveTap()
 // Function Synthesis.SubmixEffectTapDelayPreset.GetTapIds
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<int32>                      TapIds                                                           (BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// TArray<int32>                      TapIds                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 TArray<int32> USubmixEffectTapDelayPreset::GetTapIds()
 {
@@ -4741,8 +4739,8 @@ TArray<int32> USubmixEffectTapDelayPreset::GetTapIds()
 // Function Synthesis.SubmixEffectTapDelayPreset.GetTap
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// int32                              TapId                                                            (BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// struct FTapDelayInfo               TapInfo                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              TapId                                                            (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FTapDelayInfo               TapInfo                                                          (ConstParm, ExportObject, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 struct FTapDelayInfo USubmixEffectTapDelayPreset::GetTap()
 {
@@ -4770,9 +4768,9 @@ struct FTapDelayInfo USubmixEffectTapDelayPreset::GetTap()
 // Function Synthesis.SubmixEffectTapDelayPreset.GetMaxDelayInMilliseconds
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void USubmixEffectTapDelayPreset::GetMaxDelayInMilliseconds(float ReturnValue)
+float USubmixEffectTapDelayPreset::GetMaxDelayInMilliseconds()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4781,7 +4779,6 @@ void USubmixEffectTapDelayPreset::GetMaxDelayInMilliseconds(float ReturnValue)
 
 	Params::USubmixEffectTapDelayPreset_GetMaxDelayInMilliseconds_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4791,13 +4788,15 @@ void USubmixEffectTapDelayPreset::GetMaxDelayInMilliseconds(float ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Synthesis.SubmixEffectTapDelayPreset.AddTap
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// int32                              TapId                                                            (BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              TapId                                                            (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 int32 USubmixEffectTapDelayPreset::AddTap()
 {
@@ -4853,7 +4852,7 @@ class UGranularSynth* UGranularSynth::GetDefaultObj()
 // Function Synthesis.GranularSynth.SetSustainGain
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              SustainGain                                                      (BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              SustainGain                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void UGranularSynth::SetSustainGain(float SustainGain)
 {
@@ -4880,7 +4879,7 @@ void UGranularSynth::SetSustainGain(float SustainGain)
 // Function Synthesis.GranularSynth.SetSoundWave
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USoundWave*                  InSoundWave                                                      (Edit, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// class USoundWave*                  InSoundWave                                                      (ExportObject, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 class USoundWave* UGranularSynth::SetSoundWave()
 {
@@ -4908,7 +4907,7 @@ class USoundWave* UGranularSynth::SetSoundWave()
 // Function Synthesis.GranularSynth.SetScrubMode
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bScrubMode                                                       (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bScrubMode                                                       (ConstParm, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 bool UGranularSynth::SetScrubMode()
 {
@@ -4936,9 +4935,9 @@ bool UGranularSynth::SetScrubMode()
 // Function Synthesis.GranularSynth.SetReleaseTimeMsec
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              ReleaseTimeMsec                                                  (Edit, ConstParm, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              ReleaseTimeMsec                                                  (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-float UGranularSynth::SetReleaseTimeMsec()
+void UGranularSynth::SetReleaseTimeMsec(float* ReleaseTimeMsec)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4956,7 +4955,8 @@ float UGranularSynth::SetReleaseTimeMsec()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (ReleaseTimeMsec != nullptr)
+		*ReleaseTimeMsec = Parms.ReleaseTimeMsec;
 
 }
 
@@ -4964,9 +4964,9 @@ float UGranularSynth::SetReleaseTimeMsec()
 // Function Synthesis.GranularSynth.SetPlayheadTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InPositionSec                                                    (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// float                              LerpTimeSec                                                      (ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// enum class EGranularSynthSeekType  SeekType                                                         (Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InPositionSec                                                    (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              LerpTimeSec                                                      (Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class EGranularSynthSeekType  SeekType                                                         (ConstParm, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 enum class EGranularSynthSeekType UGranularSynth::SetPlayheadTime()
 {
@@ -4994,7 +4994,7 @@ enum class EGranularSynthSeekType UGranularSynth::SetPlayheadTime()
 // Function Synthesis.GranularSynth.SetPlaybackSpeed
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InPlayheadRate                                                   (Edit, ConstParm, ExportObject, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InPlayheadRate                                                   (ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float UGranularSynth::SetPlaybackSpeed()
 {
@@ -5022,8 +5022,8 @@ float UGranularSynth::SetPlaybackSpeed()
 // Function Synthesis.GranularSynth.SetGrainVolume
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// float                              BaseVolume                                                       (Edit, BlueprintVisible, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// struct FVector2D                   VolumeRange                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              BaseVolume                                                       (Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FVector2D                   VolumeRange                                                      (Edit, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 struct FVector2D UGranularSynth::SetGrainVolume()
 {
@@ -5051,7 +5051,7 @@ struct FVector2D UGranularSynth::SetGrainVolume()
 // Function Synthesis.GranularSynth.SetGrainsPerSecond
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InGrainsPerSecond                                                (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InGrainsPerSecond                                                (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float UGranularSynth::SetGrainsPerSecond()
 {
@@ -5079,7 +5079,7 @@ float UGranularSynth::SetGrainsPerSecond()
 // Function Synthesis.GranularSynth.SetGrainProbability
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InGrainProbability                                               (ConstParm, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InGrainProbability                                               (Edit, BlueprintVisible, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float UGranularSynth::SetGrainProbability()
 {
@@ -5107,8 +5107,8 @@ float UGranularSynth::SetGrainProbability()
 // Function Synthesis.GranularSynth.SetGrainPitch
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// float                              BasePitch                                                        (BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// struct FVector2D                   PitchRange                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              BasePitch                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FVector2D                   PitchRange                                                       (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 struct FVector2D UGranularSynth::SetGrainPitch()
 {
@@ -5136,8 +5136,8 @@ struct FVector2D UGranularSynth::SetGrainPitch()
 // Function Synthesis.GranularSynth.SetGrainPan
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// float                              BasePan                                                          (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// struct FVector2D                   PanRange                                                         (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              BasePan                                                          (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FVector2D                   PanRange                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 struct FVector2D UGranularSynth::SetGrainPan()
 {
@@ -5165,7 +5165,7 @@ struct FVector2D UGranularSynth::SetGrainPan()
 // Function Synthesis.GranularSynth.SetGrainEnvelopeType
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EGranularSynthEnvelopeTypeEnvelopeType                                                     (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// enum class EGranularSynthEnvelopeTypeEnvelopeType                                                     (ExportObject, Net, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 enum class EGranularSynthEnvelopeType UGranularSynth::SetGrainEnvelopeType()
 {
@@ -5193,8 +5193,8 @@ enum class EGranularSynthEnvelopeType UGranularSynth::SetGrainEnvelopeType()
 // Function Synthesis.GranularSynth.SetGrainDuration
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// float                              BaseDurationMsec                                                 (BlueprintVisible, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// struct FVector2D                   DurationRange                                                    (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              BaseDurationMsec                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FVector2D                   DurationRange                                                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 struct FVector2D UGranularSynth::SetGrainDuration()
 {
@@ -5222,7 +5222,7 @@ struct FVector2D UGranularSynth::SetGrainDuration()
 // Function Synthesis.GranularSynth.SetDecayTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              DecayTimeMsec                                                    (ConstParm, Net, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// float                              DecayTimeMsec                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 void UGranularSynth::SetDecayTime(float* DecayTimeMsec)
 {
@@ -5251,9 +5251,9 @@ void UGranularSynth::SetDecayTime(float* DecayTimeMsec)
 // Function Synthesis.GranularSynth.SetAttackTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              AttackTimeMsec                                                   (BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              AttackTimeMsec                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-float UGranularSynth::SetAttackTime()
+void UGranularSynth::SetAttackTime(float* AttackTimeMsec)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5271,7 +5271,8 @@ float UGranularSynth::SetAttackTime()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (AttackTimeMsec != nullptr)
+		*AttackTimeMsec = Parms.AttackTimeMsec;
 
 }
 
@@ -5279,11 +5280,11 @@ float UGranularSynth::SetAttackTime()
 // Function Synthesis.GranularSynth.NoteOn
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Note                                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst)
-// int32                              Velocity                                                         (Edit, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
-// float                              Duration                                                         (Edit, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, DuplicateTransient)
+// float                              Note                                                             (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig)
+// int32                              Velocity                                                         (Config, EditConst, GlobalConfig)
+// float                              Duration                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, DuplicateTransient)
 
-float UGranularSynth::NoteOn(float* Note)
+float UGranularSynth::NoteOn(int32 Velocity)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5292,6 +5293,7 @@ float UGranularSynth::NoteOn(float* Note)
 
 	Params::UGranularSynth_NoteOn_Params Parms{};
 
+	Parms.Velocity = Velocity;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5301,9 +5303,6 @@ float UGranularSynth::NoteOn(float* Note)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Note != nullptr)
-		*Note = Parms.Note;
-
 	return Parms.ReturnValue;
 
 }
@@ -5312,10 +5311,10 @@ float UGranularSynth::NoteOn(float* Note)
 // Function Synthesis.GranularSynth.NoteOff
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Note                                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst)
-// bool                               bKill                                                            (ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              Note                                                             (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig)
+// bool                               bKill                                                            (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UGranularSynth::NoteOff(float* Note)
+bool UGranularSynth::NoteOff()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5333,9 +5332,6 @@ bool UGranularSynth::NoteOff(float* Note)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Note != nullptr)
-		*Note = Parms.Note;
-
 	return Parms.ReturnValue;
 
 }
@@ -5344,9 +5340,9 @@ bool UGranularSynth::NoteOff(float* Note)
 // Function Synthesis.GranularSynth.IsLoaded
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UGranularSynth::IsLoaded(bool ReturnValue)
+bool UGranularSynth::IsLoaded()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5355,7 +5351,6 @@ void UGranularSynth::IsLoaded(bool ReturnValue)
 
 	Params::UGranularSynth_IsLoaded_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5365,15 +5360,17 @@ void UGranularSynth::IsLoaded(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Synthesis.GranularSynth.GetSampleDuration
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UGranularSynth::GetSampleDuration(float ReturnValue)
+float UGranularSynth::GetSampleDuration()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5382,7 +5379,6 @@ void UGranularSynth::GetSampleDuration(float ReturnValue)
 
 	Params::UGranularSynth_GetSampleDuration_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5392,15 +5388,17 @@ void UGranularSynth::GetSampleDuration(float ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Synthesis.GranularSynth.GetCurrentPlayheadTime
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UGranularSynth::GetCurrentPlayheadTime(float ReturnValue)
+float UGranularSynth::GetCurrentPlayheadTime()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5409,7 +5407,6 @@ void UGranularSynth::GetCurrentPlayheadTime(float ReturnValue)
 
 	Params::UGranularSynth_GetCurrentPlayheadTime_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5418,6 +5415,8 @@ void UGranularSynth::GetCurrentPlayheadTime(float ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -5481,7 +5480,7 @@ class USynthComponentMonoWaveTable* USynthComponentMonoWaveTable::GetDefaultObj(
 // Function Synthesis.SynthComponentMonoWaveTable.SetWaveTablePosition
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InPosition                                                       (Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InPosition                                                       (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 void USynthComponentMonoWaveTable::SetWaveTablePosition(float* InPosition)
 {
@@ -5510,7 +5509,7 @@ void USynthComponentMonoWaveTable::SetWaveTablePosition(float* InPosition)
 // Function Synthesis.SynthComponentMonoWaveTable.SetSustainPedalState
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               InSustainPedalState                                              (ConstParm, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               InSustainPedalState                                              (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 bool USynthComponentMonoWaveTable::SetSustainPedalState()
 {
@@ -5538,7 +5537,7 @@ bool USynthComponentMonoWaveTable::SetSustainPedalState()
 // Function Synthesis.SynthComponentMonoWaveTable.SetPosLfoType
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ESynthLFOType           InLfoType                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// enum class ESynthLFOType           InLfoType                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 enum class ESynthLFOType USynthComponentMonoWaveTable::SetPosLfoType()
 {
@@ -5566,7 +5565,7 @@ enum class ESynthLFOType USynthComponentMonoWaveTable::SetPosLfoType()
 // Function Synthesis.SynthComponentMonoWaveTable.SetPosLfoFrequency
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InLfoFrequency                                                   (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InLfoFrequency                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentMonoWaveTable::SetPosLfoFrequency()
 {
@@ -5594,7 +5593,7 @@ float USynthComponentMonoWaveTable::SetPosLfoFrequency()
 // Function Synthesis.SynthComponentMonoWaveTable.SetPosLfoDepth
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InLfoDepth                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InLfoDepth                                                       (Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentMonoWaveTable::SetPosLfoDepth()
 {
@@ -5622,7 +5621,7 @@ float USynthComponentMonoWaveTable::SetPosLfoDepth()
 // Function Synthesis.SynthComponentMonoWaveTable.SetPositionEnvelopeSustainGain
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InSustainGain                                                    (ExportObject, Net, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InSustainGain                                                    (Edit, ConstParm, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentMonoWaveTable::SetPositionEnvelopeSustainGain()
 {
@@ -5650,7 +5649,7 @@ float USynthComponentMonoWaveTable::SetPositionEnvelopeSustainGain()
 // Function Synthesis.SynthComponentMonoWaveTable.SetPositionEnvelopeReleaseTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InReleaseTimeMsec                                                (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InReleaseTimeMsec                                                (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentMonoWaveTable::SetPositionEnvelopeReleaseTime()
 {
@@ -5678,7 +5677,7 @@ float USynthComponentMonoWaveTable::SetPositionEnvelopeReleaseTime()
 // Function Synthesis.SynthComponentMonoWaveTable.SetPositionEnvelopeInvert
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInInvert                                                        (ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bInInvert                                                        (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 bool USynthComponentMonoWaveTable::SetPositionEnvelopeInvert()
 {
@@ -5706,7 +5705,7 @@ bool USynthComponentMonoWaveTable::SetPositionEnvelopeInvert()
 // Function Synthesis.SynthComponentMonoWaveTable.SetPositionEnvelopeDepth
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InDepth                                                          (ConstParm, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InDepth                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentMonoWaveTable::SetPositionEnvelopeDepth()
 {
@@ -5734,7 +5733,7 @@ float USynthComponentMonoWaveTable::SetPositionEnvelopeDepth()
 // Function Synthesis.SynthComponentMonoWaveTable.SetPositionEnvelopeDecayTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InDecayTimeMsec                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InDecayTimeMsec                                                  (ConstParm, ExportObject, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentMonoWaveTable::SetPositionEnvelopeDecayTime()
 {
@@ -5762,7 +5761,7 @@ float USynthComponentMonoWaveTable::SetPositionEnvelopeDecayTime()
 // Function Synthesis.SynthComponentMonoWaveTable.SetPositionEnvelopeBiasInvert
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInBiasInvert                                                    (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bInBiasInvert                                                    (ConstParm, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 bool USynthComponentMonoWaveTable::SetPositionEnvelopeBiasInvert()
 {
@@ -5790,7 +5789,7 @@ bool USynthComponentMonoWaveTable::SetPositionEnvelopeBiasInvert()
 // Function Synthesis.SynthComponentMonoWaveTable.SetPositionEnvelopeBiasDepth
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InDepth                                                          (ConstParm, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InDepth                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentMonoWaveTable::SetPositionEnvelopeBiasDepth()
 {
@@ -5818,7 +5817,7 @@ float USynthComponentMonoWaveTable::SetPositionEnvelopeBiasDepth()
 // Function Synthesis.SynthComponentMonoWaveTable.SetPositionEnvelopeAttackTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InAttackTimeMsec                                                 (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InAttackTimeMsec                                                 (BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentMonoWaveTable::SetPositionEnvelopeAttackTime()
 {
@@ -5846,7 +5845,7 @@ float USynthComponentMonoWaveTable::SetPositionEnvelopeAttackTime()
 // Function Synthesis.SynthComponentMonoWaveTable.SetLowPassFilterResonance
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InNewQ                                                           (ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InNewQ                                                           (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentMonoWaveTable::SetLowPassFilterResonance()
 {
@@ -5874,7 +5873,7 @@ float USynthComponentMonoWaveTable::SetLowPassFilterResonance()
 // Function Synthesis.SynthComponentMonoWaveTable.SetFrequencyWithMidiNote
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InMidiNote                                                       (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InMidiNote                                                       (ExportObject, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentMonoWaveTable::SetFrequencyWithMidiNote()
 {
@@ -5902,7 +5901,7 @@ float USynthComponentMonoWaveTable::SetFrequencyWithMidiNote()
 // Function Synthesis.SynthComponentMonoWaveTable.SetFrequencyPitchBend
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              FrequencyOffsetCents                                             (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              FrequencyOffsetCents                                             (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentMonoWaveTable::SetFrequencyPitchBend()
 {
@@ -5930,9 +5929,9 @@ float USynthComponentMonoWaveTable::SetFrequencyPitchBend()
 // Function Synthesis.SynthComponentMonoWaveTable.SetFrequency
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              FrequencyHz                                                      (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              FrequencyHz                                                      (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
 
-float USynthComponentMonoWaveTable::SetFrequency()
+void USynthComponentMonoWaveTable::SetFrequency(float* FrequencyHz)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5950,7 +5949,8 @@ float USynthComponentMonoWaveTable::SetFrequency()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (FrequencyHz != nullptr)
+		*FrequencyHz = Parms.FrequencyHz;
 
 }
 
@@ -5958,7 +5958,7 @@ float USynthComponentMonoWaveTable::SetFrequency()
 // Function Synthesis.SynthComponentMonoWaveTable.SetFilterEnvelopeSustainGain
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InSustainGain                                                    (ExportObject, Net, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InSustainGain                                                    (Edit, ConstParm, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentMonoWaveTable::SetFilterEnvelopeSustainGain()
 {
@@ -5986,7 +5986,7 @@ float USynthComponentMonoWaveTable::SetFilterEnvelopeSustainGain()
 // Function Synthesis.SynthComponentMonoWaveTable.SetFilterEnvelopeReleaseTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InReleaseTimeMsec                                                (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InReleaseTimeMsec                                                (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentMonoWaveTable::SetFilterEnvelopeReleaseTime()
 {
@@ -6014,7 +6014,7 @@ float USynthComponentMonoWaveTable::SetFilterEnvelopeReleaseTime()
 // Function Synthesis.SynthComponentMonoWaveTable.SetFilterEnvelopenDecayTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InDecayTimeMsec                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InDecayTimeMsec                                                  (ConstParm, ExportObject, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentMonoWaveTable::SetFilterEnvelopenDecayTime()
 {
@@ -6042,7 +6042,7 @@ float USynthComponentMonoWaveTable::SetFilterEnvelopenDecayTime()
 // Function Synthesis.SynthComponentMonoWaveTable.SetFilterEnvelopeInvert
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInInvert                                                        (ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bInInvert                                                        (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 bool USynthComponentMonoWaveTable::SetFilterEnvelopeInvert()
 {
@@ -6070,7 +6070,7 @@ bool USynthComponentMonoWaveTable::SetFilterEnvelopeInvert()
 // Function Synthesis.SynthComponentMonoWaveTable.SetFilterEnvelopeDepth
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InDepth                                                          (ConstParm, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InDepth                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentMonoWaveTable::SetFilterEnvelopeDepth()
 {
@@ -6098,7 +6098,7 @@ float USynthComponentMonoWaveTable::SetFilterEnvelopeDepth()
 // Function Synthesis.SynthComponentMonoWaveTable.SetFilterEnvelopeBiasInvert
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInBiasInvert                                                    (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bInBiasInvert                                                    (ConstParm, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 bool USynthComponentMonoWaveTable::SetFilterEnvelopeBiasInvert()
 {
@@ -6126,7 +6126,7 @@ bool USynthComponentMonoWaveTable::SetFilterEnvelopeBiasInvert()
 // Function Synthesis.SynthComponentMonoWaveTable.SetFilterEnvelopeBiasDepth
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InDepth                                                          (ConstParm, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InDepth                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentMonoWaveTable::SetFilterEnvelopeBiasDepth()
 {
@@ -6154,7 +6154,7 @@ float USynthComponentMonoWaveTable::SetFilterEnvelopeBiasDepth()
 // Function Synthesis.SynthComponentMonoWaveTable.SetFilterEnvelopeAttackTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InAttackTimeMsec                                                 (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InAttackTimeMsec                                                 (BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentMonoWaveTable::SetFilterEnvelopeAttackTime()
 {
@@ -6182,12 +6182,12 @@ float USynthComponentMonoWaveTable::SetFilterEnvelopeAttackTime()
 // Function Synthesis.SynthComponentMonoWaveTable.SetCurveValue
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              TableIndex                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
-// int32                              KeyframeIndex                                                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// float                              NewValue                                                         (ConstParm, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              TableIndex                                                       (Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+// int32                              KeyframeIndex                                                    (ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              NewValue                                                         (ConstParm, Net, EditFixedSize, ZeroConstructor, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 USynthComponentMonoWaveTable::SetCurveValue(int32 TableIndex, float* NewValue, bool ReturnValue)
+bool USynthComponentMonoWaveTable::SetCurveValue(float NewValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6196,8 +6196,7 @@ int32 USynthComponentMonoWaveTable::SetCurveValue(int32 TableIndex, float* NewVa
 
 	Params::USynthComponentMonoWaveTable_SetCurveValue_Params Parms{};
 
-	Parms.TableIndex = TableIndex;
-	Parms.ReturnValue = ReturnValue;
+	Parms.NewValue = NewValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6207,9 +6206,6 @@ int32 USynthComponentMonoWaveTable::SetCurveValue(int32 TableIndex, float* NewVa
 
 	Func->FunctionFlags = Flgs;
 
-	if (NewValue != nullptr)
-		*NewValue = Parms.NewValue;
-
 	return Parms.ReturnValue;
 
 }
@@ -6218,11 +6214,11 @@ int32 USynthComponentMonoWaveTable::SetCurveValue(int32 TableIndex, float* NewVa
 // Function Synthesis.SynthComponentMonoWaveTable.SetCurveTangent
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              TableIndex                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
-// float                              InNewTangent                                                     (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              TableIndex                                                       (Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+// float                              InNewTangent                                                     (Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float USynthComponentMonoWaveTable::SetCurveTangent(int32 TableIndex, bool ReturnValue)
+bool USynthComponentMonoWaveTable::SetCurveTangent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6231,8 +6227,6 @@ float USynthComponentMonoWaveTable::SetCurveTangent(int32 TableIndex, bool Retur
 
 	Params::USynthComponentMonoWaveTable_SetCurveTangent_Params Parms{};
 
-	Parms.TableIndex = TableIndex;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6250,11 +6244,11 @@ float USynthComponentMonoWaveTable::SetCurveTangent(int32 TableIndex, bool Retur
 // Function Synthesis.SynthComponentMonoWaveTable.SetCurveInterpolationType
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ECurveInterpolationType InterpolationType                                                (ExportObject, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// int32                              TableIndex                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class ECurveInterpolationType InterpolationType                                                (Edit, BlueprintVisible, BlueprintReadOnly, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              TableIndex                                                       (Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void USynthComponentMonoWaveTable::SetCurveInterpolationType(enum class ECurveInterpolationType InterpolationType, int32 TableIndex, bool ReturnValue)
+bool USynthComponentMonoWaveTable::SetCurveInterpolationType(enum class ECurveInterpolationType InterpolationType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6264,8 +6258,6 @@ void USynthComponentMonoWaveTable::SetCurveInterpolationType(enum class ECurveIn
 	Params::USynthComponentMonoWaveTable_SetCurveInterpolationType_Params Parms{};
 
 	Parms.InterpolationType = InterpolationType;
-	Parms.TableIndex = TableIndex;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6275,13 +6267,15 @@ void USynthComponentMonoWaveTable::SetCurveInterpolationType(enum class ECurveIn
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Synthesis.SynthComponentMonoWaveTable.SetAmpEnvelopeSustainGain
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InSustainGain                                                    (ExportObject, Net, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InSustainGain                                                    (Edit, ConstParm, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentMonoWaveTable::SetAmpEnvelopeSustainGain()
 {
@@ -6309,7 +6303,7 @@ float USynthComponentMonoWaveTable::SetAmpEnvelopeSustainGain()
 // Function Synthesis.SynthComponentMonoWaveTable.SetAmpEnvelopeReleaseTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InReleaseTimeMsec                                                (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InReleaseTimeMsec                                                (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentMonoWaveTable::SetAmpEnvelopeReleaseTime()
 {
@@ -6337,7 +6331,7 @@ float USynthComponentMonoWaveTable::SetAmpEnvelopeReleaseTime()
 // Function Synthesis.SynthComponentMonoWaveTable.SetAmpEnvelopeInvert
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInInvert                                                        (ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bInInvert                                                        (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 bool USynthComponentMonoWaveTable::SetAmpEnvelopeInvert()
 {
@@ -6365,7 +6359,7 @@ bool USynthComponentMonoWaveTable::SetAmpEnvelopeInvert()
 // Function Synthesis.SynthComponentMonoWaveTable.SetAmpEnvelopeDepth
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InDepth                                                          (ConstParm, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InDepth                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentMonoWaveTable::SetAmpEnvelopeDepth()
 {
@@ -6393,7 +6387,7 @@ float USynthComponentMonoWaveTable::SetAmpEnvelopeDepth()
 // Function Synthesis.SynthComponentMonoWaveTable.SetAmpEnvelopeDecayTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InDecayTimeMsec                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InDecayTimeMsec                                                  (ConstParm, ExportObject, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentMonoWaveTable::SetAmpEnvelopeDecayTime()
 {
@@ -6421,7 +6415,7 @@ float USynthComponentMonoWaveTable::SetAmpEnvelopeDecayTime()
 // Function Synthesis.SynthComponentMonoWaveTable.SetAmpEnvelopeBiasInvert
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInBiasInvert                                                    (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bInBiasInvert                                                    (ConstParm, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 bool USynthComponentMonoWaveTable::SetAmpEnvelopeBiasInvert()
 {
@@ -6449,7 +6443,7 @@ bool USynthComponentMonoWaveTable::SetAmpEnvelopeBiasInvert()
 // Function Synthesis.SynthComponentMonoWaveTable.SetAmpEnvelopeBiasDepth
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InDepth                                                          (ConstParm, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InDepth                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentMonoWaveTable::SetAmpEnvelopeBiasDepth()
 {
@@ -6477,7 +6471,7 @@ float USynthComponentMonoWaveTable::SetAmpEnvelopeBiasDepth()
 // Function Synthesis.SynthComponentMonoWaveTable.SetAmpEnvelopeAttackTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InAttackTimeMsec                                                 (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InAttackTimeMsec                                                 (BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentMonoWaveTable::SetAmpEnvelopeAttackTime()
 {
@@ -6505,9 +6499,9 @@ float USynthComponentMonoWaveTable::SetAmpEnvelopeAttackTime()
 // Function Synthesis.SynthComponentMonoWaveTable.RefreshWaveTable
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              Index                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+// int32                              Index                                                            (EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
 
-void USynthComponentMonoWaveTable::RefreshWaveTable(int32* Index)
+int32 USynthComponentMonoWaveTable::RefreshWaveTable()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6525,8 +6519,7 @@ void USynthComponentMonoWaveTable::RefreshWaveTable(int32* Index)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Index != nullptr)
-		*Index = Parms.Index;
+	return Parms.ReturnValue;
 
 }
 
@@ -6558,8 +6551,8 @@ void USynthComponentMonoWaveTable::RefreshAllWaveTables()
 // Function Synthesis.SynthComponentMonoWaveTable.NoteOn
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InMidiNote                                                       (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// float                              InVelocity                                                       (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InMidiNote                                                       (ExportObject, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              InVelocity                                                       (ConstParm, BlueprintVisible, ExportObject, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentMonoWaveTable::NoteOn()
 {
@@ -6587,7 +6580,7 @@ float USynthComponentMonoWaveTable::NoteOn()
 // Function Synthesis.SynthComponentMonoWaveTable.NoteOff
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InMidiNote                                                       (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InMidiNote                                                       (ExportObject, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentMonoWaveTable::NoteOff()
 {
@@ -6615,9 +6608,9 @@ float USynthComponentMonoWaveTable::NoteOff()
 // Function Synthesis.SynthComponentMonoWaveTable.GetNumTableEntries
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void USynthComponentMonoWaveTable::GetNumTableEntries(int32 ReturnValue)
+int32 USynthComponentMonoWaveTable::GetNumTableEntries()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6626,7 +6619,6 @@ void USynthComponentMonoWaveTable::GetNumTableEntries(int32 ReturnValue)
 
 	Params::USynthComponentMonoWaveTable_GetNumTableEntries_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6636,15 +6628,17 @@ void USynthComponentMonoWaveTable::GetNumTableEntries(int32 ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Synthesis.SynthComponentMonoWaveTable.GetMaxTableIndex
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void USynthComponentMonoWaveTable::GetMaxTableIndex(int32 ReturnValue)
+int32 USynthComponentMonoWaveTable::GetMaxTableIndex()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6653,7 +6647,6 @@ void USynthComponentMonoWaveTable::GetMaxTableIndex(int32 ReturnValue)
 
 	Params::USynthComponentMonoWaveTable_GetMaxTableIndex_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6663,16 +6656,18 @@ void USynthComponentMonoWaveTable::GetMaxTableIndex(int32 ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Synthesis.SynthComponentMonoWaveTable.GetKeyFrameValuesForTable
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              TableIndex                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
-// TArray<float>                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              TableIndex                                                       (Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+// TArray<float>                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void USynthComponentMonoWaveTable::GetKeyFrameValuesForTable(float TableIndex, const TArray<float>& ReturnValue)
+TArray<float> USynthComponentMonoWaveTable::GetKeyFrameValuesForTable()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6681,8 +6676,6 @@ void USynthComponentMonoWaveTable::GetKeyFrameValuesForTable(float TableIndex, c
 
 	Params::USynthComponentMonoWaveTable_GetKeyFrameValuesForTable_Params Parms{};
 
-	Parms.TableIndex = TableIndex;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6692,16 +6685,18 @@ void USynthComponentMonoWaveTable::GetKeyFrameValuesForTable(float TableIndex, c
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Synthesis.SynthComponentMonoWaveTable.GetCurveTangent
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              TableIndex                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              TableIndex                                                       (Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void USynthComponentMonoWaveTable::GetCurveTangent(int32 TableIndex, float ReturnValue)
+float USynthComponentMonoWaveTable::GetCurveTangent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6710,8 +6705,6 @@ void USynthComponentMonoWaveTable::GetCurveTangent(int32 TableIndex, float Retur
 
 	Params::USynthComponentMonoWaveTable_GetCurveTangent_Params Parms{};
 
-	Parms.TableIndex = TableIndex;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6720,6 +6713,8 @@ void USynthComponentMonoWaveTable::GetCurveTangent(int32 TableIndex, float Retur
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -6755,7 +6750,7 @@ class USynthComponentToneGenerator* USynthComponentToneGenerator::GetDefaultObj(
 // Function Synthesis.SynthComponentToneGenerator.SetVolume
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InVolume                                                         (Edit, ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InVolume                                                         (ConstParm, Net, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentToneGenerator::SetVolume()
 {
@@ -6783,7 +6778,7 @@ float USynthComponentToneGenerator::SetVolume()
 // Function Synthesis.SynthComponentToneGenerator.SetFrequency
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InFrequency                                                      (Edit, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InFrequency                                                      (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthComponentToneGenerator::SetFrequency()
 {
@@ -6839,7 +6834,7 @@ class USynthSamplePlayer* USynthSamplePlayer::GetDefaultObj()
 // Function Synthesis.SynthSamplePlayer.SetSoundWave
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USoundWave*                  InSoundWave                                                      (Edit, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// class USoundWave*                  InSoundWave                                                      (ExportObject, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 class USoundWave* USynthSamplePlayer::SetSoundWave()
 {
@@ -6867,7 +6862,7 @@ class USoundWave* USynthSamplePlayer::SetSoundWave()
 // Function Synthesis.SynthSamplePlayer.SetScrubTimeWidth
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InScrubTimeWidthSec                                              (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// float                              InScrubTimeWidthSec                                              (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float USynthSamplePlayer::SetScrubTimeWidth()
 {
@@ -6895,7 +6890,7 @@ float USynthSamplePlayer::SetScrubTimeWidth()
 // Function Synthesis.SynthSamplePlayer.SetScrubMode
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bScrubMode                                                       (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// bool                               bScrubMode                                                       (ConstParm, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 bool USynthSamplePlayer::SetScrubMode()
 {
@@ -6923,10 +6918,10 @@ bool USynthSamplePlayer::SetScrubMode()
 // Function Synthesis.SynthSamplePlayer.SetPitch
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InPitch                                                          (ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// float                              TimeSec                                                          (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              InPitch                                                          (Edit, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              TimeSec                                                          (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-float USynthSamplePlayer::SetPitch()
+float USynthSamplePlayer::SetPitch(float* TimeSec)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6944,6 +6939,9 @@ float USynthSamplePlayer::SetPitch()
 
 	Func->FunctionFlags = Flgs;
 
+	if (TimeSec != nullptr)
+		*TimeSec = Parms.TimeSec;
+
 	return Parms.ReturnValue;
 
 }
@@ -6952,11 +6950,11 @@ float USynthSamplePlayer::SetPitch()
 // Function Synthesis.SynthSamplePlayer.SeekToTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              TimeSec                                                          (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// enum class ESamplePlayerSeekType   SeekType                                                         (Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bWrap                                                            (Edit, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              TimeSec                                                          (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// enum class ESamplePlayerSeekType   SeekType                                                         (ConstParm, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bWrap                                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-enum class ESamplePlayerSeekType USynthSamplePlayer::SeekToTime(bool* bWrap)
+bool USynthSamplePlayer::SeekToTime(float* TimeSec)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6974,8 +6972,8 @@ enum class ESamplePlayerSeekType USynthSamplePlayer::SeekToTime(bool* bWrap)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bWrap != nullptr)
-		*bWrap = Parms.bWrap;
+	if (TimeSec != nullptr)
+		*TimeSec = Parms.TimeSec;
 
 	return Parms.ReturnValue;
 
@@ -6985,9 +6983,9 @@ enum class ESamplePlayerSeekType USynthSamplePlayer::SeekToTime(bool* bWrap)
 // Function Synthesis.SynthSamplePlayer.IsLoaded
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void USynthSamplePlayer::IsLoaded(bool ReturnValue)
+bool USynthSamplePlayer::IsLoaded()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6996,7 +6994,6 @@ void USynthSamplePlayer::IsLoaded(bool ReturnValue)
 
 	Params::USynthSamplePlayer_IsLoaded_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7006,15 +7003,17 @@ void USynthSamplePlayer::IsLoaded(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Synthesis.SynthSamplePlayer.GetSampleDuration
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void USynthSamplePlayer::GetSampleDuration(float ReturnValue)
+float USynthSamplePlayer::GetSampleDuration()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7023,7 +7022,6 @@ void USynthSamplePlayer::GetSampleDuration(float ReturnValue)
 
 	Params::USynthSamplePlayer_GetSampleDuration_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7033,15 +7031,17 @@ void USynthSamplePlayer::GetSampleDuration(float ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Synthesis.SynthSamplePlayer.GetCurrentPlaybackProgressTime
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void USynthSamplePlayer::GetCurrentPlaybackProgressTime(float ReturnValue)
+float USynthSamplePlayer::GetCurrentPlaybackProgressTime()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7050,7 +7050,6 @@ void USynthSamplePlayer::GetCurrentPlaybackProgressTime(float ReturnValue)
 
 	Params::USynthSamplePlayer_GetCurrentPlaybackProgressTime_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7060,15 +7059,17 @@ void USynthSamplePlayer::GetCurrentPlaybackProgressTime(float ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Synthesis.SynthSamplePlayer.GetCurrentPlaybackProgressPercent
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void USynthSamplePlayer::GetCurrentPlaybackProgressPercent(float ReturnValue)
+float USynthSamplePlayer::GetCurrentPlaybackProgressPercent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7077,7 +7078,6 @@ void USynthSamplePlayer::GetCurrentPlaybackProgressPercent(float ReturnValue)
 
 	Params::USynthSamplePlayer_GetCurrentPlaybackProgressPercent_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7086,6 +7086,8 @@ void USynthSamplePlayer::GetCurrentPlaybackProgressPercent(float ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -7121,14 +7123,14 @@ class USynthesisUtilitiesBlueprintFunctionLibrary* USynthesisUtilitiesBlueprintF
 // Function Synthesis.SynthesisUtilitiesBlueprintFunctionLibrary.GetLogFrequency
 // (Final, Native, Static, Private, BlueprintCallable)
 // Parameters:
-// float                              InLinearValue                                                    (BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// float                              InDomainMin                                                      (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// float                              InDomainMax                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// float                              InRangeMin                                                       (Edit, ConstParm, ExportObject, Net, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
-// float                              InRangeMax                                                       (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              InLinearValue                                                    (Edit, ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              InDomainMin                                                      (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              InDomainMax                                                      (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              InRangeMin                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              InRangeMax                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float USynthesisUtilitiesBlueprintFunctionLibrary::GetLogFrequency(float ReturnValue)
+float USynthesisUtilitiesBlueprintFunctionLibrary::GetLogFrequency(float* InRangeMin, float* InRangeMax)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7137,7 +7139,6 @@ float USynthesisUtilitiesBlueprintFunctionLibrary::GetLogFrequency(float ReturnV
 
 	Params::USynthesisUtilitiesBlueprintFunctionLibrary_GetLogFrequency_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7146,6 +7147,12 @@ float USynthesisUtilitiesBlueprintFunctionLibrary::GetLogFrequency(float ReturnV
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (InRangeMin != nullptr)
+		*InRangeMin = Parms.InRangeMin;
+
+	if (InRangeMax != nullptr)
+		*InRangeMax = Parms.InRangeMax;
 
 	return Parms.ReturnValue;
 
@@ -7155,14 +7162,14 @@ float USynthesisUtilitiesBlueprintFunctionLibrary::GetLogFrequency(float ReturnV
 // Function Synthesis.SynthesisUtilitiesBlueprintFunctionLibrary.GetLinearFrequency
 // (Final, Native, Static, Private, BlueprintCallable)
 // Parameters:
-// float                              InLogFrequencyValue                                              (Edit, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// float                              InDomainMin                                                      (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// float                              InDomainMax                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// float                              InRangeMin                                                       (Edit, ConstParm, ExportObject, Net, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
-// float                              InRangeMax                                                       (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              InLogFrequencyValue                                              (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              InDomainMin                                                      (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              InDomainMax                                                      (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              InRangeMin                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              InRangeMax                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float USynthesisUtilitiesBlueprintFunctionLibrary::GetLinearFrequency(float ReturnValue)
+float USynthesisUtilitiesBlueprintFunctionLibrary::GetLinearFrequency(float* InRangeMin, float* InRangeMax)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7171,7 +7178,6 @@ float USynthesisUtilitiesBlueprintFunctionLibrary::GetLinearFrequency(float Retu
 
 	Params::USynthesisUtilitiesBlueprintFunctionLibrary_GetLinearFrequency_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7180,6 +7186,12 @@ float USynthesisUtilitiesBlueprintFunctionLibrary::GetLinearFrequency(float Retu
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (InRangeMin != nullptr)
+		*InRangeMin = Parms.InRangeMin;
+
+	if (InRangeMax != nullptr)
+		*InRangeMax = Parms.InRangeMax;
 
 	return Parms.ReturnValue;
 
@@ -7217,7 +7229,7 @@ class USynth2DSlider* USynth2DSlider::GetDefaultObj()
 // Function Synthesis.Synth2DSlider.SetValue
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FVector2D USynth2DSlider::SetValue()
 {
@@ -7245,7 +7257,7 @@ struct FVector2D USynth2DSlider::SetValue()
 // Function Synthesis.Synth2DSlider.SetStepSize
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 float USynth2DSlider::SetStepSize()
 {
@@ -7273,7 +7285,7 @@ float USynth2DSlider::SetStepSize()
 // Function Synthesis.Synth2DSlider.SetSliderHandleColor
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FLinearColor                InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 struct FLinearColor USynth2DSlider::SetSliderHandleColor()
 {
@@ -7301,7 +7313,7 @@ struct FLinearColor USynth2DSlider::SetSliderHandleColor()
 // Function Synthesis.Synth2DSlider.SetLocked
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 bool USynth2DSlider::SetLocked()
 {
@@ -7329,7 +7341,7 @@ bool USynth2DSlider::SetLocked()
 // Function Synthesis.Synth2DSlider.SetIndentHandle
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 bool USynth2DSlider::SetIndentHandle()
 {
@@ -7357,9 +7369,9 @@ bool USynth2DSlider::SetIndentHandle()
 // Function Synthesis.Synth2DSlider.GetValue
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void USynth2DSlider::GetValue(const struct FVector2D& ReturnValue)
+struct FVector2D USynth2DSlider::GetValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7368,7 +7380,6 @@ void USynth2DSlider::GetValue(const struct FVector2D& ReturnValue)
 
 	Params::USynth2DSlider_GetValue_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7377,6 +7388,8 @@ void USynth2DSlider::GetValue(const struct FVector2D& ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -7412,7 +7425,7 @@ class USynthKnob* USynthKnob::GetDefaultObj()
 // Function Synthesis.SynthKnob.SetValue
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 float USynthKnob::SetValue()
 {
@@ -7440,7 +7453,7 @@ float USynthKnob::SetValue()
 // Function Synthesis.SynthKnob.SetStepSize
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 float USynthKnob::SetStepSize()
 {
@@ -7468,7 +7481,7 @@ float USynthKnob::SetStepSize()
 // Function Synthesis.SynthKnob.SetLocked
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 bool USynthKnob::SetLocked()
 {
@@ -7496,9 +7509,9 @@ bool USynthKnob::SetLocked()
 // Function Synthesis.SynthKnob.GetValue
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void USynthKnob::GetValue(float ReturnValue)
+float USynthKnob::GetValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7507,7 +7520,6 @@ void USynthKnob::GetValue(float ReturnValue)
 
 	Params::USynthKnob_GetValue_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7516,6 +7528,8 @@ void USynthKnob::GetValue(float ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 

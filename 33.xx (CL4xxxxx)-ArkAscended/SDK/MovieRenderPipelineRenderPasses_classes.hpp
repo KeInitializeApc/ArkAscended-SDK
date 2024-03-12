@@ -14,7 +14,7 @@ namespace SDK
 class UMoviePipelineImagePassBase : public UMoviePipelineRenderPass
 {
 public:
-	uint8                                        Pad_145[0x130];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1317[0x130];                                   // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMoviePipelineImagePassBase* GetDefaultObj();
@@ -26,20 +26,20 @@ public:
 class UMoviePipelineDeferredPassBase : public UMoviePipelineImagePassBase
 {
 public:
-	bool                                         bAccumulatorIncludesAlpha;                         // 0x178(0x1)(Edit, ConstParm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-	bool                                         bDisableMultisampleEffects;                        // 0x179(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, InstancedReference, SubobjectReference)
-	bool                                         bUse32BitPostProcessMaterials;                     // 0x17A(0x1)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, InstancedReference, SubobjectReference)
-	uint8                                        Pad_147[0x5];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FMoviePipelinePostProcessPass> AdditionalPostProcessMaterials;                    // 0x180(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, InstancedReference, SubobjectReference)
-	bool                                         bRenderMainPass;                                   // 0x190(0x1)(BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, InstancedReference, SubobjectReference)
-	bool                                         bAddDefaultLayer;                                  // 0x191(0x1)(Edit, ConstParm, EditFixedSize, Parm, ReturnParm, InstancedReference, SubobjectReference)
-	uint8                                        Pad_148[0x6];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FActorLayer>                   ActorLayers;                                       // 0x198(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
-	uint8                                        Pad_149[0x10];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FSoftObjectPath>               DataLayers;                                        // 0x1B8(0x10)(ConstParm, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	TArray<class UMaterialInterface*>            ActivePostProcessMaterials;                        // 0x1C8(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, InstancedReference, SubobjectReference)
-	class UMaterialInterface*                    StencilLayerMaterial;                              // 0x1D8(0x8)(ConstParm, ExportObject, Net, Parm, ReturnParm, InstancedReference, SubobjectReference)
-	uint8                                        Pad_14B[0x58];                                     // Fixing Size Of Struct > TateDumper <
+	bool                                         bAccumulatorIncludesAlpha;                         // 0x178(0x1)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bDisableMultisampleEffects;                        // 0x179(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bUse32BitPostProcessMaterials;                     // 0x17A(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1318[0x5];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FMoviePipelinePostProcessPass> AdditionalPostProcessMaterials;                    // 0x180(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bRenderMainPass;                                   // 0x190(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bAddDefaultLayer;                                  // 0x191(0x1)(Edit, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_131A[0x6];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FActorLayer>                   ActorLayers;                                       // 0x198(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+	uint8                                        Pad_131B[0x10];                                    // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FSoftObjectPath>               DataLayers;                                        // 0x1B8(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class UMaterialInterface*>            ActivePostProcessMaterials;                        // 0x1C8(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class UMaterialInterface*                    StencilLayerMaterial;                              // 0x1D8(0x8)(BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_131D[0x58];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMoviePipelineDeferredPassBase* GetDefaultObj();
@@ -95,8 +95,8 @@ public:
 class UMoviePipelineDeferredPass_PathTracer : public UMoviePipelineDeferredPassBase
 {
 public:
-	bool                                         bReferenceMotionBlur;                              // 0x238(0x1)(Edit, BlueprintReadOnly, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-	uint8                                        Pad_14D[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	bool                                         bReferenceMotionBlur;                              // 0x238(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_131E[0x7];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMoviePipelineDeferredPass_PathTracer* GetDefaultObj();
@@ -108,7 +108,7 @@ public:
 class UMoviePipelineImageSequenceOutputBase : public UMoviePipelineOutputBase
 {
 public:
-	uint8                                        Pad_14F[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_131F[0x20];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMoviePipelineImageSequenceOutputBase* GetDefaultObj();
@@ -120,9 +120,9 @@ public:
 class UMoviePipelineImageSequenceOutput_EXR : public UMoviePipelineImageSequenceOutputBase
 {
 public:
-	enum class EEXRCompressionFormat             Compression;                                       // 0x68(0x1)(OutParm, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bMultilayer;                                       // 0x69(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-	uint8                                        Pad_150[0x6];                                      // Fixing Size Of Struct > TateDumper <
+	enum class EEXRCompressionFormat             Compression;                                       // 0x68(0x1)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bMultilayer;                                       // 0x69(0x1)(ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1320[0x6];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMoviePipelineImageSequenceOutput_EXR* GetDefaultObj();
@@ -145,8 +145,8 @@ public:
 class UMoviePipelineImageSequenceOutput_PNG : public UMoviePipelineImageSequenceOutputBase
 {
 public:
-	bool                                         bWriteAlpha;                                       // 0x68(0x1)(Edit, ConstParm, Net, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-	uint8                                        Pad_153[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	bool                                         bWriteAlpha;                                       // 0x68(0x1)(Edit, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1321[0x7];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMoviePipelineImageSequenceOutput_PNG* GetDefaultObj();
@@ -169,8 +169,8 @@ public:
 class UMoviePipelineWaveOutput : public UMoviePipelineOutputBase
 {
 public:
-	class FString                                FileNameFormatOverride;                            // 0x48(0x10)(ConstParm, ExportObject, Net, Parm, InstancedReference, SubobjectReference)
-	uint8                                        Pad_154[0x60];                                     // Fixing Size Of Struct > TateDumper <
+	class FString                                FileNameFormatOverride;                            // 0x48(0x10)(BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1322[0x60];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMoviePipelineWaveOutput* GetDefaultObj();

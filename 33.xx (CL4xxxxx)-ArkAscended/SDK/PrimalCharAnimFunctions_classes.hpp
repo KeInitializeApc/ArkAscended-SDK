@@ -18,7 +18,7 @@ public:
 	static class UClass* StaticClass();
 	static class UPrimalCharAnimFunctions_C* GetDefaultObj();
 
-	double UpdateGroundConformingVariables(bool* Has_Hit_The_Ground_Once, class UObject** __WorldContext, bool IsSwimming, bool IsFalling, bool Interpolate, bool* bFallingMovement, bool* bSwimmingMovement, bool* Is_Being_Dragged, float* CallFunc_GetImmersionDepth_ReturnValue, double* CallFunc_GetTimeSeconds_ReturnValue, double* CallFunc_Subtract_DoubleFloat_ReturnValue, float* CallFunc_Subtract_DoubleFloat_B_ImplicitCast);
+	float UpdateGroundConformingVariables(class APrimalCharacter* PrimalCharacter, bool* Has_Hit_The_Ground_Once, class UObject* __WorldContext, bool IsBeingDragged, bool* IsSwimming, bool IsFalling, bool Should_Mark_Has_Hit_Ground_once, bool* Interpolate, bool Ret_Should_Mark_Has_Hit_Ground_once, bool* bFallingMovement, bool* bSwimmingMovement, bool* Is_Being_Dragged, bool Is_Being_Dragged_And_Underwater, bool* K2Node_DynamicCast_bSuccess, float* CallFunc_GetImmersionDepth_ReturnValue, bool CallFunc_Less_DoubleDouble_ReturnValue);
 };
 
 }

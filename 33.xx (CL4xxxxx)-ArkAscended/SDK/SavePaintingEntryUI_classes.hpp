@@ -14,10 +14,10 @@ namespace SDK
 class USavePaintingEntryUI_C : public UUI_SavePainting
 {
 public:
-	class UImage*                                Bracket_SmallText;                                 // 0x7B8(0x8)(BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Config, SubobjectReference)
-	class UCustomButtonWidget*                   Close;                                             // 0x7C0(0x8)(BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+	class UImage*                                Bracket_SmallText;                                 // 0x7B8(0x8)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+	class UCustomButtonWidget*                   Close;                                             // 0x7C0(0x8)(ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst)
 	class UEditableTextBox*                      Filename;                                          // 0x7C8(0x8)(Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm)
-	class UCustomButtonWidget*                   SetButton;                                         // 0x7D0(0x8)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, SubobjectReference)
+	class UCustomButtonWidget*                   SetButton;                                         // 0x7D0(0x8)(Edit, ConstParm, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class USavePaintingEntryUI_C* GetDefaultObj();

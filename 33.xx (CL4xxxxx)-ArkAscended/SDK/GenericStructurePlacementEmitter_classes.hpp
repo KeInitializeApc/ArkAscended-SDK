@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0x5D8 - 0x5D8)
+// 0x0 (0x5E0 - 0x5E0)
 // BlueprintGeneratedClass GenericStructurePlacementEmitter.GenericStructurePlacementEmitter_C
 class AGenericStructurePlacementEmitter_C : public APrimalEmitterSpawnable
 {

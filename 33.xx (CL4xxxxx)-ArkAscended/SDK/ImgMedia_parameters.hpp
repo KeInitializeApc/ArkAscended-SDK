@@ -18,7 +18,7 @@ namespace Params
 struct UImgMediaSource_SetTokenizedSequencePath_Params
 {
 public:
-	class FString                                Path;                                              // 0x0(0x10)(ConstParm, ExportObject, Net, OutParm, DisableEditOnTemplate, Config, SubobjectReference)
+	class FString                                Path;                                              // 0x0(0x10)(BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -26,7 +26,7 @@ public:
 struct UImgMediaSource_SetSequencePath_Params
 {
 public:
-	class FString                                Path;                                              // 0x0(0x10)(ConstParm, ExportObject, Net, OutParm, DisableEditOnTemplate, Config, SubobjectReference)
+	class FString                                Path;                                              // 0x0(0x10)(BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -34,7 +34,7 @@ public:
 struct UImgMediaSource_SetMipLevelDistance_Params
 {
 public:
-	float                                        Distance;                                          // 0x0(0x4)(ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
+	float                                        Distance;                                          // 0x0(0x4)(Edit, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -42,7 +42,7 @@ public:
 struct UImgMediaSource_RemoveTargetObject_Params
 {
 public:
-	class AActor*                                InActor;                                           // 0x0(0x8)(ConstParm, ExportObject, Net, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+	class AActor*                                InActor;                                           // 0x0(0x8)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -50,7 +50,7 @@ public:
 struct UImgMediaSource_RemoveGlobalCamera_Params
 {
 public:
-	class AActor*                                InActor;                                           // 0x0(0x8)(ConstParm, ExportObject, Net, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+	class AActor*                                InActor;                                           // 0x0(0x8)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -58,7 +58,7 @@ public:
 struct UImgMediaSource_GetSequencePath_Params
 {
 public:
-	class FString                                ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FString                                ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -66,7 +66,7 @@ public:
 struct UImgMediaSource_GetProxies_Params
 {
 public:
-	TArray<class FString>                        OutProxies;                                        // 0x0(0x10)(BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	TArray<class FString>                        OutProxies;                                        // 0x0(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -74,7 +74,7 @@ public:
 struct UImgMediaSource_AddTargetObject_Params
 {
 public:
-	class AActor*                                InActor;                                           // 0x0(0x8)(ConstParm, ExportObject, Net, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+	class AActor*                                InActor;                                           // 0x0(0x8)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -82,7 +82,7 @@ public:
 struct UImgMediaSource_AddGlobalCamera_Params
 {
 public:
-	class AActor*                                InActor;                                           // 0x0(0x8)(ConstParm, ExportObject, Net, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+	class AActor*                                InActor;                                           // 0x0(0x8)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 }

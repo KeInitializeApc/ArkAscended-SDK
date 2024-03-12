@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0xED0 - 0xED0)
+// 0x0 (0xEE0 - 0xEE0)
 // BlueprintGeneratedClass PrimalItem_WeaponTekGravityGrenade.PrimalItem_WeaponTekGravityGrenade_C
 class UPrimalItem_WeaponTekGravityGrenade_C : public UPrimalItemWeaponGenericAmmolessConsumeSelf_C
 {

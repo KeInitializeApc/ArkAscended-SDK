@@ -14,9 +14,9 @@ namespace SDK
 class UTimeSynchronizationSource : public UObject
 {
 public:
-	bool                                         bUseForSynchronization;                            // 0x28(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
-	uint8                                        Pad_4FF[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	int32                                        FrameOffset;                                       // 0x2C(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+	bool                                         bUseForSynchronization;                            // 0x28(0x1)(Edit, OutParm, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_10DC[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	int32                                        FrameOffset;                                       // 0x2C(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UTimeSynchronizationSource* GetDefaultObj();
@@ -39,8 +39,8 @@ public:
 class UGenlockedCustomTimeStep : public UFixedFrameRateCustomTimeStep
 {
 public:
-	bool                                         bAutoDetectFormat;                                 // 0x28(0x1)(Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_505[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	bool                                         bAutoDetectFormat;                                 // 0x28(0x1)(ExportObject, BlueprintReadOnly, EditFixedSize, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1118[0x7];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGenlockedCustomTimeStep* GetDefaultObj();
@@ -53,9 +53,9 @@ class UGenlockedFixedRateCustomTimeStep : public UGenlockedCustomTimeStep
 {
 public:
 	struct FFrameRate                            FrameRate;                                         // 0x30(0x8)(ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm)
-	bool                                         bShouldBlock;                                      // 0x38(0x1)(Edit, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	bool                                         bForceSingleFrameDeltaTime;                        // 0x39(0x1)(ConstParm, ExportObject, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_508[0x16];                                     // Fixing Size Of Struct > TateDumper <
+	bool                                         bShouldBlock;                                      // 0x38(0x1)(Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	bool                                         bForceSingleFrameDeltaTime;                        // 0x39(0x1)(ConstParm, Net, EditFixedSize, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1122[0x16];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGenlockedFixedRateCustomTimeStep* GetDefaultObj();
@@ -67,8 +67,8 @@ public:
 class UGenlockedTimecodeProvider : public UTimecodeProvider
 {
 public:
-	bool                                         bUseGenlockToCount;                                // 0x30(0x1)(ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_50C[0x27];                                     // Fixing Size Of Struct > TateDumper <
+	bool                                         bUseGenlockToCount;                                // 0x30(0x1)(BlueprintReadOnly, Net, EditFixedSize, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1129[0x27];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UGenlockedTimecodeProvider* GetDefaultObj();
@@ -84,23 +84,23 @@ public:
 	static class UClass* StaticClass();
 	static class UTimeManagementBlueprintLibrary* GetDefaultObj();
 
-	struct FFrameRate TransformTime(struct FFrameTime* SourceTime, const struct FFrameTime& ReturnValue);
-	int32 Subtract_FrameNumberInteger(const struct FFrameNumber& ReturnValue);
-	struct FFrameNumber Subtract_FrameNumberFrameNumber(const struct FFrameNumber& ReturnValue);
-	struct FFrameRate SnapFrameTimeToRate(struct FFrameTime* SourceTime, const struct FFrameTime& ReturnValue);
-	struct FFrameRate Multiply_SecondsFrameRate(float TimeInSeconds, const struct FFrameTime& ReturnValue);
-	int32 Multiply_FrameNumberInteger(const struct FFrameNumber& ReturnValue);
-	struct FFrameRate IsValid_MultipleOf(bool ReturnValue);
-	struct FFrameRate IsValid_Framerate(bool ReturnValue);
-	void GetTimecodeFrameRate(const struct FFrameRate& ReturnValue);
-	void GetTimecode(const struct FTimecode& ReturnValue);
-	int32 Divide_FrameNumberInteger(const struct FFrameNumber& ReturnValue);
-	bool Conv_TimecodeToString(const class FString& ReturnValue);
-	struct FQualifiedFrameTime Conv_QualifiedFrameTimeToSeconds(float ReturnValue);
-	struct FFrameRate Conv_FrameRateToSeconds(float ReturnValue);
-	struct FFrameNumber Conv_FrameNumberToInteger(int32 ReturnValue);
-	int32 Add_FrameNumberInteger(const struct FFrameNumber& ReturnValue);
-	struct FFrameNumber Add_FrameNumberFrameNumber(const struct FFrameNumber& ReturnValue);
+	struct FFrameTime TransformTime(const struct FFrameTime& SourceTime, const struct FFrameRate& SourceRate, const struct FFrameRate& DestinationRate);
+	struct FFrameNumber Subtract_FrameNumberInteger();
+	struct FFrameNumber Subtract_FrameNumberFrameNumber();
+	struct FFrameTime SnapFrameTimeToRate(const struct FFrameTime& SourceTime, const struct FFrameRate& SourceRate, const struct FFrameRate& SnapToRate);
+	struct FFrameTime Multiply_SecondsFrameRate(float TimeInSeconds);
+	struct FFrameNumber Multiply_FrameNumberInteger();
+	bool IsValid_MultipleOf(const struct FFrameRate& InFrameRate, const struct FFrameRate& OtherFramerate);
+	bool IsValid_Framerate(const struct FFrameRate& InFrameRate);
+	struct FFrameRate GetTimecodeFrameRate();
+	struct FTimecode GetTimecode();
+	struct FFrameNumber Divide_FrameNumberInteger();
+	class FString Conv_TimecodeToString(const struct FTimecode& InTimecode, bool bForceSignDisplay);
+	float Conv_QualifiedFrameTimeToSeconds(const struct FQualifiedFrameTime& InFrameTime);
+	float Conv_FrameRateToSeconds(const struct FFrameRate& InFrameRate);
+	int32 Conv_FrameNumberToInteger();
+	struct FFrameNumber Add_FrameNumberInteger();
+	struct FFrameNumber Add_FrameNumberFrameNumber();
 };
 
 }

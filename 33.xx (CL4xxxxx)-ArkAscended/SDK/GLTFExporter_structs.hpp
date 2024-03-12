@@ -75,9 +75,9 @@ enum class EGLTFMaterialPropertyGroup : uint8
 struct FGLTFExportMessages
 {
 public:
-	TArray<class FString>                        Suggestions;                                       // 0x0(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	TArray<class FString>                        Warnings;                                          // 0x10(0x10)(ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	TArray<class FString>                        Errors;                                            // 0x20(0x10)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class FString>                        Suggestions;                                       // 0x0(0x10)(ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class FString>                        Warnings;                                          // 0x10(0x10)(Edit, BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class FString>                        Errors;                                            // 0x20(0x10)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x6 (0x6 - 0x0)
@@ -85,12 +85,12 @@ public:
 struct FGLTFOverrideMaterialBakeSettings
 {
 public:
-	bool                                         bOverrideSize;                                     // 0x0(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	enum class EGLTFMaterialBakeSizePOT          Size;                                              // 0x1(0x1)(Edit, ConstParm, Parm, OutParm, ReturnParm, Transient, Config)
-	bool                                         bOverrideFilter;                                   // 0x2(0x1)(Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	enum class ETextureFilter                    Filter;                                            // 0x3(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config)
-	bool                                         bOverrideTiling;                                   // 0x4(0x1)(BlueprintVisible, Net, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	enum class ETextureAddress                   Tiling;                                            // 0x5(0x1)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bOverrideSize;                                     // 0x0(0x1)(Edit, ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class EGLTFMaterialBakeSizePOT          Size;                                              // 0x1(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config)
+	bool                                         bOverrideFilter;                                   // 0x2(0x1)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ETextureFilter                    Filter;                                            // 0x3(0x1)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, Config)
+	bool                                         bOverrideTiling;                                   // 0x4(0x1)(Edit, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ETextureAddress                   Tiling;                                            // 0x5(0x1)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 }

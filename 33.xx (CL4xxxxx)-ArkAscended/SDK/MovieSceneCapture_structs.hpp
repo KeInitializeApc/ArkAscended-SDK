@@ -39,7 +39,7 @@ enum class EMovieSceneCaptureProtocolState : uint8
 struct FCompositionGraphCapturePasses
 {
 public:
-	TArray<class FString>                        Value;                                             // 0x0(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+	TArray<class FString>                        Value;                                             // 0x0(0x10)(ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -47,8 +47,8 @@ public:
 struct FCaptureResolution
 {
 public:
-	int32                                        ResX;                                              // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        ResY;                                              // 0x4(0x4)(ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        ResX;                                              // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, InstancedReference, SubobjectReference)
+	int32                                        ResY;                                              // 0x4(0x4)(BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, InstancedReference, SubobjectReference)
 };
 
 // 0x70 (0x70 - 0x0)
@@ -56,31 +56,31 @@ public:
 struct FMovieSceneCaptureSettings
 {
 public:
-	struct FDirectoryPath                        OutputDirectory;                                   // 0x0(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class UClass*                                GameModeOverride;                                  // 0x10(0x8)(Edit, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class FString                                OutputFormat;                                      // 0x18(0x10)(ConstParm, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bOverwriteExisting;                                // 0x28(0x1)(Net, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bUseRelativeFrameNumbers;                          // 0x29(0x1)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1E25[0x2];                                     // Fixing Size After Last Property  > TateDumper <
-	int32                                        HandleFrames;                                      // 0x2C(0x4)(BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class FString                                MovieExtension;                                    // 0x30(0x10)(BlueprintVisible, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        ZeroPadFrameNumbers;                               // 0x40(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1E26[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FDirectoryPath                        OutputDirectory;                                   // 0x0(0x10)(BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, InstancedReference, SubobjectReference)
+	class UClass*                                GameModeOverride;                                  // 0x10(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, InstancedReference, SubobjectReference)
+	class FString                                OutputFormat;                                      // 0x18(0x10)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, InstancedReference, SubobjectReference)
+	bool                                         bOverwriteExisting;                                // 0x28(0x1)(ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, InstancedReference, SubobjectReference)
+	bool                                         bUseRelativeFrameNumbers;                          // 0x29(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1F1C[0x2];                                     // Fixing Size After Last Property  > TateDumper <
+	int32                                        HandleFrames;                                      // 0x2C(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, InstancedReference, SubobjectReference)
+	class FString                                MovieExtension;                                    // 0x30(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, InstancedReference, SubobjectReference)
+	uint8                                        ZeroPadFrameNumbers;                               // 0x40(0x1)(Edit, ConstParm, Net, Parm, ZeroConstructor, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1F1D[0x3];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FFrameRate                            FrameRate;                                         // 0x44(0x8)(ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm)
-	bool                                         bUseCustomFrameRate;                               // 0x4C(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1E28[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FFrameRate                            CustomFrameRate;                                   // 0x50(0x8)(Edit, BlueprintVisible, Net, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FCaptureResolution                    Resolution;                                        // 0x58(0x8)(Edit, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bEnableTextureStreaming;                           // 0x60(0x1)(ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bCinematicEngineScalability;                       // 0x61(0x1)(Edit, ExportObject, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bCinematicMode;                                    // 0x62(0x1)(Edit, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bAllowMovement;                                    // 0x63(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bAllowTurning;                                     // 0x64(0x1)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bShowPlayer;                                       // 0x65(0x1)(ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bShowHUD;                                          // 0x66(0x1)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bUsePathTracer;                                    // 0x67(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        PathTracerSamplePerPixel;                          // 0x68(0x4)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1E30[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	bool                                         bUseCustomFrameRate;                               // 0x4C(0x1)(ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1F1E[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FFrameRate                            CustomFrameRate;                                   // 0x50(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, InstancedReference, SubobjectReference)
+	struct FCaptureResolution                    Resolution;                                        // 0x58(0x8)(BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bEnableTextureStreaming;                           // 0x60(0x1)(ConstParm, Parm, ZeroConstructor, InstancedReference, SubobjectReference)
+	bool                                         bCinematicEngineScalability;                       // 0x61(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+	bool                                         bCinematicMode;                                    // 0x62(0x1)(Edit, ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+	bool                                         bAllowMovement;                                    // 0x63(0x1)(Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+	bool                                         bAllowTurning;                                     // 0x64(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+	bool                                         bShowPlayer;                                       // 0x65(0x1)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+	bool                                         bShowHUD;                                          // 0x66(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+	bool                                         bUsePathTracer;                                    // 0x67(0x1)(Edit, ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, InstancedReference, SubobjectReference)
+	int32                                        PathTracerSamplePerPixel;                          // 0x68(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1F24[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -88,10 +88,10 @@ public:
 struct FFrameMetrics
 {
 public:
-	float                                        TotalElapsedTime;                                  // 0x0(0x4)(ConstParm, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        FrameDelta;                                        // 0x4(0x4)(BlueprintVisible, ExportObject, Parm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        FrameNumber;                                       // 0x8(0x4)(Edit, Net, Parm, Transient, DisableEditOnInstance)
-	int32                                        NumDroppedFrames;                                  // 0xC(0x4)(Edit, ConstParm, Parm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        TotalElapsedTime;                                  // 0x0(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, InstancedReference, SubobjectReference)
+	float                                        FrameDelta;                                        // 0x4(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, InstancedReference, SubobjectReference)
+	int32                                        FrameNumber;                                       // 0x8(0x4)(Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance)
+	int32                                        NumDroppedFrames;                                  // 0xC(0x4)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, InstancedReference, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -99,7 +99,7 @@ public:
 struct FCapturedPixelsID
 {
 public:
-	TMap<class FName, class FName>               Identifiers;                                       // 0x0(0x50)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TMap<class FName, class FName>               Identifiers;                                       // 0x0(0x50)(Edit, BlueprintVisible, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -107,7 +107,7 @@ public:
 struct FCapturedPixels
 {
 public:
-	uint8                                        Pad_1E33[0x10];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1F27[0x10];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 }

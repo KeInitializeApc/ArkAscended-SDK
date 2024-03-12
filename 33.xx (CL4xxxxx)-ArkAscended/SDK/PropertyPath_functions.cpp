@@ -43,7 +43,7 @@ class UPropertyPathTestObject* UPropertyPathTestObject::GetDefaultObj()
 // Function PropertyPath.PropertyPathTestObject.SetStructRef
 // (Final, Native, Public)
 // Parameters:
-// struct FPropertyPathTestStruct     InStruct                                                         (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
+// struct FPropertyPathTestStruct     InStruct                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 struct FPropertyPathTestStruct UPropertyPathTestObject::SetStructRef()
 {
@@ -71,7 +71,7 @@ struct FPropertyPathTestStruct UPropertyPathTestObject::SetStructRef()
 // Function PropertyPath.PropertyPathTestObject.SetStructConstRef
 // (Final, Native, Public)
 // Parameters:
-// struct FPropertyPathTestStruct     InStruct                                                         (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
+// struct FPropertyPathTestStruct     InStruct                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 struct FPropertyPathTestStruct UPropertyPathTestObject::SetStructConstRef()
 {
@@ -99,7 +99,7 @@ struct FPropertyPathTestStruct UPropertyPathTestObject::SetStructConstRef()
 // Function PropertyPath.PropertyPathTestObject.SetStruct
 // (Final, Native, Public)
 // Parameters:
-// struct FPropertyPathTestStruct     InStruct                                                         (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
+// struct FPropertyPathTestStruct     InStruct                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 struct FPropertyPathTestStruct UPropertyPathTestObject::SetStruct()
 {
@@ -127,7 +127,7 @@ struct FPropertyPathTestStruct UPropertyPathTestObject::SetStruct()
 // Function PropertyPath.PropertyPathTestObject.SetFloat
 // (Final, Native, Public)
 // Parameters:
-// float                              InFloat                                                          (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// float                              InFloat                                                          (ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, EditConst, SubobjectReference)
 
 void UPropertyPathTestObject::SetFloat(float InFloat)
 {
@@ -154,9 +154,9 @@ void UPropertyPathTestObject::SetFloat(float InFloat)
 // Function PropertyPath.PropertyPathTestObject.GetStructRef
 // (Final, Native, Public, Const)
 // Parameters:
-// struct FPropertyPathTestStruct     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FPropertyPathTestStruct     ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UPropertyPathTestObject::GetStructRef(const struct FPropertyPathTestStruct& ReturnValue)
+struct FPropertyPathTestStruct UPropertyPathTestObject::GetStructRef()
 {
 	static class UFunction* Func = nullptr;
 
@@ -165,7 +165,6 @@ void UPropertyPathTestObject::GetStructRef(const struct FPropertyPathTestStruct&
 
 	Params::UPropertyPathTestObject_GetStructRef_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -175,15 +174,17 @@ void UPropertyPathTestObject::GetStructRef(const struct FPropertyPathTestStruct&
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function PropertyPath.PropertyPathTestObject.GetStructConstRef
 // (Final, Native, Public, Const)
 // Parameters:
-// struct FPropertyPathTestStruct     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FPropertyPathTestStruct     ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UPropertyPathTestObject::GetStructConstRef(const struct FPropertyPathTestStruct& ReturnValue)
+struct FPropertyPathTestStruct UPropertyPathTestObject::GetStructConstRef()
 {
 	static class UFunction* Func = nullptr;
 
@@ -192,7 +193,6 @@ void UPropertyPathTestObject::GetStructConstRef(const struct FPropertyPathTestSt
 
 	Params::UPropertyPathTestObject_GetStructConstRef_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -202,15 +202,17 @@ void UPropertyPathTestObject::GetStructConstRef(const struct FPropertyPathTestSt
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function PropertyPath.PropertyPathTestObject.GetStruct
 // (Final, Native, Public, Const)
 // Parameters:
-// struct FPropertyPathTestStruct     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FPropertyPathTestStruct     ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UPropertyPathTestObject::GetStruct(const struct FPropertyPathTestStruct& ReturnValue)
+struct FPropertyPathTestStruct UPropertyPathTestObject::GetStruct()
 {
 	static class UFunction* Func = nullptr;
 
@@ -219,7 +221,6 @@ void UPropertyPathTestObject::GetStruct(const struct FPropertyPathTestStruct& Re
 
 	Params::UPropertyPathTestObject_GetStruct_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -229,15 +230,17 @@ void UPropertyPathTestObject::GetStruct(const struct FPropertyPathTestStruct& Re
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function PropertyPath.PropertyPathTestObject.GetFloat
 // (Final, Native, Public, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UPropertyPathTestObject::GetFloat(float ReturnValue)
+float UPropertyPathTestObject::GetFloat()
 {
 	static class UFunction* Func = nullptr;
 
@@ -246,7 +249,6 @@ void UPropertyPathTestObject::GetFloat(float ReturnValue)
 
 	Params::UPropertyPathTestObject_GetFloat_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -255,6 +257,8 @@ void UPropertyPathTestObject::GetFloat(float ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 

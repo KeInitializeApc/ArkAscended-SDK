@@ -99,7 +99,7 @@ class UClothingSimulationInteractorNv* UClothingSimulationInteractorNv::GetDefau
 // Function ClothingSystemRuntimeNv.ClothingSimulationInteractorNv.SetAnimDriveDamperStiffness
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InStiffness                                                      (Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// float                              InStiffness                                                      (ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 float UClothingSimulationInteractorNv::SetAnimDriveDamperStiffness()
 {

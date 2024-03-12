@@ -43,9 +43,9 @@ class UMovieSceneCaptureProtocolBase* UMovieSceneCaptureProtocolBase::GetDefault
 // Function MovieSceneCapture.MovieSceneCaptureProtocolBase.IsCapturing
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMovieSceneCaptureProtocolBase::IsCapturing(bool ReturnValue)
+bool UMovieSceneCaptureProtocolBase::IsCapturing()
 {
 	static class UFunction* Func = nullptr;
 
@@ -54,7 +54,6 @@ void UMovieSceneCaptureProtocolBase::IsCapturing(bool ReturnValue)
 
 	Params::UMovieSceneCaptureProtocolBase_IsCapturing_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -64,15 +63,17 @@ void UMovieSceneCaptureProtocolBase::IsCapturing(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MovieSceneCapture.MovieSceneCaptureProtocolBase.GetState
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EMovieSceneCaptureProtocolStateReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class EMovieSceneCaptureProtocolStateReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMovieSceneCaptureProtocolBase::GetState(enum class EMovieSceneCaptureProtocolState ReturnValue)
+enum class EMovieSceneCaptureProtocolState UMovieSceneCaptureProtocolBase::GetState()
 {
 	static class UFunction* Func = nullptr;
 
@@ -81,7 +82,6 @@ void UMovieSceneCaptureProtocolBase::GetState(enum class EMovieSceneCaptureProto
 
 	Params::UMovieSceneCaptureProtocolBase_GetState_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -90,6 +90,8 @@ void UMovieSceneCaptureProtocolBase::GetState(enum class EMovieSceneCaptureProto
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -489,9 +491,9 @@ class UMovieSceneCapture* UMovieSceneCapture::GetDefaultObj()
 // Function MovieSceneCapture.MovieSceneCapture.SetImageCaptureProtocolType
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      ProtocolType                                                     (Edit, ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UClass*                      ProtocolType                                                     (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UClass* UMovieSceneCapture::SetImageCaptureProtocolType()
+void UMovieSceneCapture::SetImageCaptureProtocolType(class UClass* ProtocolType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -500,6 +502,7 @@ class UClass* UMovieSceneCapture::SetImageCaptureProtocolType()
 
 	Params::UMovieSceneCapture_SetImageCaptureProtocolType_Params Parms{};
 
+	Parms.ProtocolType = ProtocolType;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -509,17 +512,15 @@ class UClass* UMovieSceneCapture::SetImageCaptureProtocolType()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function MovieSceneCapture.MovieSceneCapture.SetAudioCaptureProtocolType
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      ProtocolType                                                     (Edit, ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UClass*                      ProtocolType                                                     (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UClass* UMovieSceneCapture::SetAudioCaptureProtocolType()
+void UMovieSceneCapture::SetAudioCaptureProtocolType(class UClass* ProtocolType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -528,6 +529,33 @@ class UClass* UMovieSceneCapture::SetAudioCaptureProtocolType()
 
 	Params::UMovieSceneCapture_SetAudioCaptureProtocolType_Params Parms{};
 
+	Parms.ProtocolType = ProtocolType;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+}
+
+
+// Function MovieSceneCapture.MovieSceneCapture.GetImageCaptureProtocol
+// (Final, Native, Public, BlueprintCallable)
+// Parameters:
+// class UMovieSceneCaptureProtocolBase*ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+
+class UMovieSceneCaptureProtocolBase* UMovieSceneCapture::GetImageCaptureProtocol()
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("MovieSceneCapture", "GetImageCaptureProtocol");
+
+	Params::UMovieSceneCapture_GetImageCaptureProtocol_Params Parms{};
+
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -542,39 +570,12 @@ class UClass* UMovieSceneCapture::SetAudioCaptureProtocolType()
 }
 
 
-// Function MovieSceneCapture.MovieSceneCapture.GetImageCaptureProtocol
-// (Final, Native, Public, BlueprintCallable)
-// Parameters:
-// class UMovieSceneCaptureProtocolBase*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-
-void UMovieSceneCapture::GetImageCaptureProtocol(class UMovieSceneCaptureProtocolBase* ReturnValue)
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("MovieSceneCapture", "GetImageCaptureProtocol");
-
-	Params::UMovieSceneCapture_GetImageCaptureProtocol_Params Parms{};
-
-	Parms.ReturnValue = ReturnValue;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
 // Function MovieSceneCapture.MovieSceneCapture.GetAudioCaptureProtocol
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMovieSceneCaptureProtocolBase*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UMovieSceneCaptureProtocolBase*ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMovieSceneCapture::GetAudioCaptureProtocol(class UMovieSceneCaptureProtocolBase* ReturnValue)
+class UMovieSceneCaptureProtocolBase* UMovieSceneCapture::GetAudioCaptureProtocol()
 {
 	static class UFunction* Func = nullptr;
 
@@ -583,7 +584,6 @@ void UMovieSceneCapture::GetAudioCaptureProtocol(class UMovieSceneCaptureProtoco
 
 	Params::UMovieSceneCapture_GetAudioCaptureProtocol_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -592,6 +592,8 @@ void UMovieSceneCapture::GetAudioCaptureProtocol(class UMovieSceneCaptureProtoco
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -655,9 +657,9 @@ class UMovieSceneCaptureEnvironment* UMovieSceneCaptureEnvironment::GetDefaultOb
 // Function MovieSceneCapture.MovieSceneCaptureEnvironment.IsCaptureInProgress
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMovieSceneCaptureEnvironment::IsCaptureInProgress(bool ReturnValue)
+bool UMovieSceneCaptureEnvironment::IsCaptureInProgress()
 {
 	static class UFunction* Func = nullptr;
 
@@ -666,7 +668,6 @@ void UMovieSceneCaptureEnvironment::IsCaptureInProgress(bool ReturnValue)
 
 	Params::UMovieSceneCaptureEnvironment_IsCaptureInProgress_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -676,15 +677,17 @@ void UMovieSceneCaptureEnvironment::IsCaptureInProgress(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MovieSceneCapture.MovieSceneCaptureEnvironment.GetCaptureFrameNumber
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMovieSceneCaptureEnvironment::GetCaptureFrameNumber(int32 ReturnValue)
+int32 UMovieSceneCaptureEnvironment::GetCaptureFrameNumber()
 {
 	static class UFunction* Func = nullptr;
 
@@ -693,7 +696,6 @@ void UMovieSceneCaptureEnvironment::GetCaptureFrameNumber(int32 ReturnValue)
 
 	Params::UMovieSceneCaptureEnvironment_GetCaptureFrameNumber_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -703,15 +705,17 @@ void UMovieSceneCaptureEnvironment::GetCaptureFrameNumber(int32 ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MovieSceneCapture.MovieSceneCaptureEnvironment.GetCaptureElapsedTime
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMovieSceneCaptureEnvironment::GetCaptureElapsedTime(float ReturnValue)
+float UMovieSceneCaptureEnvironment::GetCaptureElapsedTime()
 {
 	static class UFunction* Func = nullptr;
 
@@ -720,7 +724,6 @@ void UMovieSceneCaptureEnvironment::GetCaptureElapsedTime(float ReturnValue)
 
 	Params::UMovieSceneCaptureEnvironment_GetCaptureElapsedTime_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -730,15 +733,17 @@ void UMovieSceneCaptureEnvironment::GetCaptureElapsedTime(float ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MovieSceneCapture.MovieSceneCaptureEnvironment.FindImageCaptureProtocol
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UMovieSceneImageCaptureProtocolBase*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UMovieSceneImageCaptureProtocolBase*ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMovieSceneCaptureEnvironment::FindImageCaptureProtocol(class UMovieSceneImageCaptureProtocolBase* ReturnValue)
+class UMovieSceneImageCaptureProtocolBase* UMovieSceneCaptureEnvironment::FindImageCaptureProtocol()
 {
 	static class UFunction* Func = nullptr;
 
@@ -747,7 +752,6 @@ void UMovieSceneCaptureEnvironment::FindImageCaptureProtocol(class UMovieSceneIm
 
 	Params::UMovieSceneCaptureEnvironment_FindImageCaptureProtocol_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -757,15 +761,17 @@ void UMovieSceneCaptureEnvironment::FindImageCaptureProtocol(class UMovieSceneIm
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MovieSceneCapture.MovieSceneCaptureEnvironment.FindAudioCaptureProtocol
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UMovieSceneAudioCaptureProtocolBase*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UMovieSceneAudioCaptureProtocolBase*ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMovieSceneCaptureEnvironment::FindAudioCaptureProtocol(class UMovieSceneAudioCaptureProtocolBase* ReturnValue)
+class UMovieSceneAudioCaptureProtocolBase* UMovieSceneCaptureEnvironment::FindAudioCaptureProtocol()
 {
 	static class UFunction* Func = nullptr;
 
@@ -774,7 +780,6 @@ void UMovieSceneCaptureEnvironment::FindAudioCaptureProtocol(class UMovieSceneAu
 
 	Params::UMovieSceneCaptureEnvironment_FindAudioCaptureProtocol_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -783,6 +788,8 @@ void UMovieSceneCaptureEnvironment::FindAudioCaptureProtocol(class UMovieSceneAu
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -842,9 +849,9 @@ void UUserDefinedCaptureProtocol::StopCapturingFinalPixels()
 // Function MovieSceneCapture.UserDefinedCaptureProtocol.StartCapturingFinalPixels
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FCapturedPixelsID           StreamID                                                         (Edit, ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// struct FCapturedPixelsID           StreamID                                                         (BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FCapturedPixelsID UUserDefinedCaptureProtocol::StartCapturingFinalPixels()
+void UUserDefinedCaptureProtocol::StartCapturingFinalPixels(struct FCapturedPixelsID* StreamID)
 {
 	static class UFunction* Func = nullptr;
 
@@ -862,7 +869,8 @@ struct FCapturedPixelsID UUserDefinedCaptureProtocol::StartCapturingFinalPixels(
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (StreamID != nullptr)
+		*StreamID = std::move(Parms.StreamID);
 
 }
 
@@ -870,10 +878,10 @@ struct FCapturedPixelsID UUserDefinedCaptureProtocol::StartCapturingFinalPixels(
 // Function MovieSceneCapture.UserDefinedCaptureProtocol.ResolveBuffer
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UTexture*                    Buffer                                                           (ConstParm, BlueprintVisible, Net, EditFixedSize, ReturnParm, Transient, InstancedReference, SubobjectReference)
-// struct FCapturedPixelsID           BufferID                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UTexture*                    Buffer                                                           (Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, InstancedReference, SubobjectReference)
+// struct FCapturedPixelsID           BufferID                                                         (Edit, ConstParm, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FCapturedPixelsID UUserDefinedCaptureProtocol::ResolveBuffer()
+void UUserDefinedCaptureProtocol::ResolveBuffer(class UTexture* Buffer, struct FCapturedPixelsID* BufferID)
 {
 	static class UFunction* Func = nullptr;
 
@@ -882,6 +890,7 @@ struct FCapturedPixelsID UUserDefinedCaptureProtocol::ResolveBuffer()
 
 	Params::UUserDefinedCaptureProtocol_ResolveBuffer_Params Parms{};
 
+	Parms.Buffer = Buffer;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -891,7 +900,8 @@ struct FCapturedPixelsID UUserDefinedCaptureProtocol::ResolveBuffer()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (BufferID != nullptr)
+		*BufferID = std::move(Parms.BufferID);
 
 }
 
@@ -953,9 +963,9 @@ void UUserDefinedCaptureProtocol::OnStartCapture()
 // Function MovieSceneCapture.UserDefinedCaptureProtocol.OnSetup
 // (Native, Event, Protected, BlueprintEvent)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UUserDefinedCaptureProtocol::OnSetup(bool ReturnValue)
+bool UUserDefinedCaptureProtocol::OnSetup()
 {
 	static class UFunction* Func = nullptr;
 
@@ -964,7 +974,6 @@ void UUserDefinedCaptureProtocol::OnSetup(bool ReturnValue)
 
 	Params::UUserDefinedCaptureProtocol_OnSetup_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -973,6 +982,8 @@ void UUserDefinedCaptureProtocol::OnSetup(bool ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -998,11 +1009,11 @@ void UUserDefinedCaptureProtocol::OnPreTick()
 // Function MovieSceneCapture.UserDefinedCaptureProtocol.OnPixelsReceived
 // (Event, Protected, HasOutParams, BlueprintEvent)
 // Parameters:
-// struct FCapturedPixels             Pixels                                                           (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// struct FCapturedPixels             Pixels                                                           (Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 // struct FCapturedPixelsID           ID                                                               (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// struct FFrameMetrics               FrameMetrics                                                     (Edit, BlueprintReadOnly, Net, Parm, EditConst)
+// struct FFrameMetrics               FrameMetrics                                                     (ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, EditConst)
 
-struct FCapturedPixels UUserDefinedCaptureProtocol::OnPixelsReceived(struct FCapturedPixelsID* ID, const struct FFrameMetrics& FrameMetrics)
+struct FFrameMetrics UUserDefinedCaptureProtocol::OnPixelsReceived(struct FCapturedPixels* Pixels, struct FCapturedPixelsID* ID)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1011,9 +1022,11 @@ struct FCapturedPixels UUserDefinedCaptureProtocol::OnPixelsReceived(struct FCap
 
 	Params::UUserDefinedCaptureProtocol_OnPixelsReceived_Params Parms{};
 
-	Parms.FrameMetrics = FrameMetrics;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (Pixels != nullptr)
+		*Pixels = std::move(Parms.Pixels);
 
 	if (ID != nullptr)
 		*ID = std::move(Parms.ID);
@@ -1080,9 +1093,9 @@ void UUserDefinedCaptureProtocol::OnCaptureFrame()
 // Function MovieSceneCapture.UserDefinedCaptureProtocol.OnCanFinalize
 // (Native, Event, Protected, BlueprintEvent, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UUserDefinedCaptureProtocol::OnCanFinalize(bool ReturnValue)
+bool UUserDefinedCaptureProtocol::OnCanFinalize()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1091,7 +1104,6 @@ void UUserDefinedCaptureProtocol::OnCanFinalize(bool ReturnValue)
 
 	Params::UUserDefinedCaptureProtocol_OnCanFinalize_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1100,6 +1112,8 @@ void UUserDefinedCaptureProtocol::OnCanFinalize(bool ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -1125,9 +1139,9 @@ void UUserDefinedCaptureProtocol::OnBeginFinalize()
 // Function MovieSceneCapture.UserDefinedCaptureProtocol.GetCurrentFrameMetrics
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FFrameMetrics               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FFrameMetrics               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UUserDefinedCaptureProtocol::GetCurrentFrameMetrics(const struct FFrameMetrics& ReturnValue)
+struct FFrameMetrics UUserDefinedCaptureProtocol::GetCurrentFrameMetrics()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1136,7 +1150,6 @@ void UUserDefinedCaptureProtocol::GetCurrentFrameMetrics(const struct FFrameMetr
 
 	Params::UUserDefinedCaptureProtocol_GetCurrentFrameMetrics_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1146,16 +1159,18 @@ void UUserDefinedCaptureProtocol::GetCurrentFrameMetrics(const struct FFrameMetr
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MovieSceneCapture.UserDefinedCaptureProtocol.GenerateFilename
 // (Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FFrameMetrics               InFrameMetrics                                                   (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FFrameMetrics               InFrameMetrics                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FFrameMetrics UUserDefinedCaptureProtocol::GenerateFilename(const class FString& ReturnValue)
+class FString UUserDefinedCaptureProtocol::GenerateFilename(struct FFrameMetrics* InFrameMetrics)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1164,7 +1179,6 @@ struct FFrameMetrics UUserDefinedCaptureProtocol::GenerateFilename(const class F
 
 	Params::UUserDefinedCaptureProtocol_GenerateFilename_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1173,6 +1187,9 @@ struct FFrameMetrics UUserDefinedCaptureProtocol::GenerateFilename(const class F
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (InFrameMetrics != nullptr)
+		*InFrameMetrics = std::move(Parms.InFrameMetrics);
 
 	return Parms.ReturnValue;
 
@@ -1210,12 +1227,12 @@ class UUserDefinedImageCaptureProtocol* UUserDefinedImageCaptureProtocol::GetDef
 // Function MovieSceneCapture.UserDefinedImageCaptureProtocol.WriteImageToDisk
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FCapturedPixels             PixelData                                                        (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// struct FCapturedPixelsID           StreamID                                                         (Edit, ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// struct FFrameMetrics               FrameMetrics                                                     (Edit, BlueprintReadOnly, Net, Parm, EditConst)
-// bool                               bCopyImageData                                                   (ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// struct FCapturedPixels             PixelData                                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FCapturedPixelsID           StreamID                                                         (BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FFrameMetrics               FrameMetrics                                                     (ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, EditConst)
+// bool                               bCopyImageData                                                   (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-bool UUserDefinedImageCaptureProtocol::WriteImageToDisk(const struct FFrameMetrics& FrameMetrics)
+struct FFrameMetrics UUserDefinedImageCaptureProtocol::WriteImageToDisk(struct FCapturedPixels* PixelData, struct FCapturedPixelsID* StreamID, bool* bCopyImageData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1224,7 +1241,43 @@ bool UUserDefinedImageCaptureProtocol::WriteImageToDisk(const struct FFrameMetri
 
 	Params::UUserDefinedImageCaptureProtocol_WriteImageToDisk_Params Parms{};
 
-	Parms.FrameMetrics = FrameMetrics;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	if (PixelData != nullptr)
+		*PixelData = std::move(Parms.PixelData);
+
+	if (StreamID != nullptr)
+		*StreamID = std::move(Parms.StreamID);
+
+	if (bCopyImageData != nullptr)
+		*bCopyImageData = Parms.bCopyImageData;
+
+	return Parms.ReturnValue;
+
+}
+
+
+// Function MovieSceneCapture.UserDefinedImageCaptureProtocol.GenerateFilenameForCurrentFrame
+// (Final, Native, Public, BlueprintCallable)
+// Parameters:
+// class FString                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+
+class FString UUserDefinedImageCaptureProtocol::GenerateFilenameForCurrentFrame()
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("UserDefinedImageCaptureProtocol", "GenerateFilenameForCurrentFrame");
+
+	Params::UUserDefinedImageCaptureProtocol_GenerateFilenameForCurrentFrame_Params Parms{};
+
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1239,41 +1292,14 @@ bool UUserDefinedImageCaptureProtocol::WriteImageToDisk(const struct FFrameMetri
 }
 
 
-// Function MovieSceneCapture.UserDefinedImageCaptureProtocol.GenerateFilenameForCurrentFrame
-// (Final, Native, Public, BlueprintCallable)
-// Parameters:
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-
-void UUserDefinedImageCaptureProtocol::GenerateFilenameForCurrentFrame(const class FString& ReturnValue)
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("UserDefinedImageCaptureProtocol", "GenerateFilenameForCurrentFrame");
-
-	Params::UUserDefinedImageCaptureProtocol_GenerateFilenameForCurrentFrame_Params Parms{};
-
-	Parms.ReturnValue = ReturnValue;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
 // Function MovieSceneCapture.UserDefinedImageCaptureProtocol.GenerateFilenameForBuffer
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UTexture*                    Buffer                                                           (ConstParm, BlueprintVisible, Net, EditFixedSize, ReturnParm, Transient, InstancedReference, SubobjectReference)
-// struct FCapturedPixelsID           StreamID                                                         (Edit, ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UTexture*                    Buffer                                                           (Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, InstancedReference, SubobjectReference)
+// struct FCapturedPixelsID           StreamID                                                         (BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FCapturedPixelsID UUserDefinedImageCaptureProtocol::GenerateFilenameForBuffer(const class FString& ReturnValue)
+class FString UUserDefinedImageCaptureProtocol::GenerateFilenameForBuffer(class UTexture* Buffer, struct FCapturedPixelsID* StreamID)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1282,7 +1308,7 @@ struct FCapturedPixelsID UUserDefinedImageCaptureProtocol::GenerateFilenameForBu
 
 	Params::UUserDefinedImageCaptureProtocol_GenerateFilenameForBuffer_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.Buffer = Buffer;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1291,6 +1317,9 @@ struct FCapturedPixelsID UUserDefinedImageCaptureProtocol::GenerateFilenameForBu
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (StreamID != nullptr)
+		*StreamID = std::move(Parms.StreamID);
 
 	return Parms.ReturnValue;
 

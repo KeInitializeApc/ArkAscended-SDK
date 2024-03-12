@@ -18,7 +18,7 @@ namespace Params
 struct UBindButtonSystem_SetViewState_Params
 {
 public:
-	enum class EViewState                        NewState;                                          // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	enum class EViewState                        NewState;                                          // 0x0(0x1)(BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -26,7 +26,7 @@ public:
 struct UBindButtonSystem_ControllerAction_Params
 {
 public:
-	struct FKey                                  Key;                                               // 0x0(0x18)(BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+	struct FKey                                  Key;                                               // 0x0(0x18)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -34,8 +34,8 @@ public:
 struct UCFCoreMathHelperFunctionLibrary_Int64_SubOne_Params
 {
 public:
-	int64                                        Value;                                             // 0x0(0x8)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
-	int64                                        ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int64                                        Value;                                             // 0x0(0x8)(ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
+	int64                                        ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -43,8 +43,8 @@ public:
 struct UCFCoreMathHelperFunctionLibrary_Int64_AddOne_Params
 {
 public:
-	int64                                        Value;                                             // 0x0(0x8)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
-	int64                                        ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int64                                        Value;                                             // 0x0(0x8)(ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
+	int64                                        ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -52,8 +52,8 @@ public:
 struct UCFCoreMathHelperFunctionLibrary_Int32_SubOne_Params
 {
 public:
-	int32                                        Value;                                             // 0x0(0x4)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
-	int32                                        ReturnValue;                                       // 0x4(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        Value;                                             // 0x0(0x4)(ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
+	int32                                        ReturnValue;                                       // 0x4(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -61,8 +61,8 @@ public:
 struct UCFCoreMathHelperFunctionLibrary_Int32_AddOne_Params
 {
 public:
-	int32                                        Value;                                             // 0x0(0x4)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
-	int32                                        ReturnValue;                                       // 0x4(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        Value;                                             // 0x0(0x4)(ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
+	int32                                        ReturnValue;                                       // 0x4(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -70,8 +70,8 @@ public:
 struct UCFCoreRichTextBlockImageDecorator_SetImageToMap_Params
 {
 public:
-	class UTexture2DDynamic*                     Image;                                             // 0x0(0x8)(Edit, ConstParm, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-	class FString                                ImageUrl;                                          // 0x8(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, Config, InstancedReference, SubobjectReference)
+	class UTexture2DDynamic*                     Image;                                             // 0x0(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	class FString                                ImageUrl;                                          // 0x8(0x10)(BlueprintReadOnly, EditFixedSize, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x118 (0x118 - 0x0)
@@ -79,9 +79,9 @@ public:
 struct UCFCoreThemeSettings_CommitThemeData_Params
 {
 public:
-	class UDataTable*                            ThemeDataTable;                                    // 0x0(0x8)(BlueprintVisible, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
-	class FString                                ThemeName;                                         // 0x8(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Config, InstancedReference, SubobjectReference)
-	struct FCFCoreThemeRowData                   Data;                                              // 0x18(0x100)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	class UDataTable*                            ThemeDataTable;                                    // 0x0(0x8)(ConstParm, BlueprintVisible, Net, EditFixedSize, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class FString                                ThemeName;                                         // 0x8(0x10)(Net, EditFixedSize, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FCFCoreThemeRowData                   Data;                                              // 0x18(0x100)(BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x60 (0x60 - 0x0)
@@ -89,12 +89,12 @@ public:
 struct ICFCoreUIBaseModel_OnEventReceived_LibraryProgress_Params
 {
 public:
-	enum class EGameModsEvent                    Evt;                                               // 0x0(0x1)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_11CE[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FLibraryProgress                      Progress;                                          // 0x8(0x40)(Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, Config, EditConst, SubobjectReference)
-	TArray<struct FInstallProgressMod>           OutModsList;                                       // 0x48(0x10)(BlueprintVisible, ExportObject, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x58(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_11D0[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	enum class EGameModsEvent                    Evt;                                               // 0x0(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_15B5[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FLibraryProgress                      Progress;                                          // 0x8(0x40)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<struct FInstallProgressMod>           OutModsList;                                       // 0x48(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x58(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_15B7[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x30 (0x30 - 0x0)
@@ -102,12 +102,12 @@ public:
 struct ICFCoreUIBaseModel_OnEventReceived_Installed_Params
 {
 public:
-	enum class EGameModsEvent                    Evt;                                               // 0x0(0x1)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_11DB[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FInstalledMod>                 InModsList;                                        // 0x8(0x10)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
-	TArray<struct FInstallProgressMod>           OutModsList;                                       // 0x18(0x10)(BlueprintVisible, ExportObject, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x28(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_11DC[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	enum class EGameModsEvent                    Evt;                                               // 0x0(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_15BE[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FInstalledMod>                 InModsList;                                        // 0x8(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<struct FInstallProgressMod>           OutModsList;                                       // 0x18(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x28(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_15BF[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x30 (0x30 - 0x0)
@@ -115,12 +115,12 @@ public:
 struct ICFCoreUIBaseModel_OnEventReceived_Params
 {
 public:
-	enum class EGameModsEvent                    Evt;                                               // 0x0(0x1)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_11E6[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FCFCoreMod>                    InModsList;                                        // 0x8(0x10)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
-	TArray<struct FInstallProgressMod>           OutModsList;                                       // 0x18(0x10)(BlueprintVisible, ExportObject, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x28(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_11E7[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	enum class EGameModsEvent                    Evt;                                               // 0x0(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_15C1[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FCFCoreMod>                    InModsList;                                        // 0x8(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<struct FInstallProgressMod>           OutModsList;                                       // 0x18(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x28(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_15C2[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x30 (0x30 - 0x0)
@@ -128,12 +128,12 @@ public:
 struct ICFCoreUIBaseView_OnEventBroadcasted_Params
 {
 public:
-	enum class EGameModsEvent                    Evt;                                               // 0x0(0x1)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_11EB[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FInstallProgressMod>           ModsList;                                          // 0x8(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
-	struct FCFCoreApiResponsePagination          Pagination;                                        // 0x18(0x10)(ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x28(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_11EC[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	enum class EGameModsEvent                    Evt;                                               // 0x0(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_15C8[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FInstallProgressMod>           ModsList;                                          // 0x8(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FCFCoreApiResponsePagination          Pagination;                                        // 0x18(0x10)(Edit, ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x28(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_15CB[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1A0 (0x1A0 - 0x0)
@@ -141,7 +141,7 @@ public:
 struct UCFCoreUISubsystem_UpdateMod_Params
 {
 public:
-	struct FCFCoreMod                            Mod;                                               // 0x0(0x1A0)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FCFCoreMod                            Mod;                                               // 0x0(0x1A0)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -149,8 +149,8 @@ public:
 struct UCFCoreUISubsystem_UnsubscribeViewFromEvents_Params
 {
 public:
-	class UObject*                               View;                                              // 0x0(0x8)(BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Config, EditConst)
-	TArray<enum class EGameModsEvent>            Evts;                                              // 0x8(0x10)(BlueprintReadOnly, Net, OutParm, Config, InstancedReference, SubobjectReference)
+	class UObject*                               View;                                              // 0x0(0x8)(Edit, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst)
+	TArray<enum class EGameModsEvent>            Evts;                                              // 0x8(0x10)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -158,10 +158,10 @@ public:
 struct UCFCoreUISubsystem_UnsubscribeViewFromEvent_Params
 {
 public:
-	class UObject*                               View;                                              // 0x0(0x8)(BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Config, EditConst)
-	enum class EGameModsEvent                    Evt;                                               // 0x8(0x1)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x9(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1201[0x6];                                     // Fixing Size Of Struct > TateDumper <
+	class UObject*                               View;                                              // 0x0(0x8)(Edit, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst)
+	enum class EGameModsEvent                    Evt;                                               // 0x8(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x9(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_15D8[0x6];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -169,9 +169,9 @@ public:
 struct UCFCoreUISubsystem_UnregisterModelClass_Params
 {
 public:
-	class UClass*                                ModelClass;                                        // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x8(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1206[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class UClass*                                ModelClass;                                        // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x8(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_15DC[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1A0 (0x1A0 - 0x0)
@@ -179,7 +179,7 @@ public:
 struct UCFCoreUISubsystem_UninstallMod_Params
 {
 public:
-	struct FCFCoreMod                            Mod;                                               // 0x0(0x1A0)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FCFCoreMod                            Mod;                                               // 0x0(0x1A0)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -187,11 +187,11 @@ public:
 struct UCFCoreUISubsystem_SubscribeViewToEvents_Params
 {
 public:
-	class UObject*                               View;                                              // 0x0(0x8)(BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Config, EditConst)
-	TArray<enum class EGameModsEvent>            Evts;                                              // 0x8(0x10)(BlueprintReadOnly, Net, OutParm, Config, InstancedReference, SubobjectReference)
-	bool                                         InitializeView;                                    // 0x18(0x1)(ExportObject, Net, OutParm, Config, InstancedReference, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x19(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1211[0x6];                                     // Fixing Size Of Struct > TateDumper <
+	class UObject*                               View;                                              // 0x0(0x8)(Edit, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst)
+	TArray<enum class EGameModsEvent>            Evts;                                              // 0x8(0x10)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         InitializeView;                                    // 0x18(0x1)(ConstParm, ExportObject, EditFixedSize, Parm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x19(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_15EA[0x6];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -199,11 +199,11 @@ public:
 struct UCFCoreUISubsystem_SubscribeViewToEvent_Params
 {
 public:
-	class UObject*                               View;                                              // 0x0(0x8)(BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Config, EditConst)
-	enum class EGameModsEvent                    Evt;                                               // 0x8(0x1)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
-	bool                                         InitializeView;                                    // 0x9(0x1)(ExportObject, Net, OutParm, Config, InstancedReference, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0xA(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1218[0x5];                                     // Fixing Size Of Struct > TateDumper <
+	class UObject*                               View;                                              // 0x0(0x8)(Edit, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst)
+	enum class EGameModsEvent                    Evt;                                               // 0x8(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         InitializeView;                                    // 0x9(0x1)(ConstParm, ExportObject, EditFixedSize, Parm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0xA(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_15EF[0x5];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x920 (0x920 - 0x0)
@@ -211,9 +211,9 @@ public:
 struct UCFCoreUISubsystem_SetMod_Params
 {
 public:
-	struct FCFCoreMod                            Mod;                                               // 0x0(0x1A0)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	struct FInstalledMod                         InInstalledMod;                                    // 0x1A0(0x3C0)(Net, OutParm, Config, InstancedReference, SubobjectReference)
-	struct FInstalledMod                         OutInstalledMod;                                   // 0x560(0x3C0)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, Config, InstancedReference, SubobjectReference)
+	struct FCFCoreMod                            Mod;                                               // 0x0(0x1A0)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FInstalledMod                         InInstalledMod;                                    // 0x1A0(0x3C0)(ConstParm, EditFixedSize, Parm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FInstalledMod                         OutInstalledMod;                                   // 0x560(0x3C0)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x38 (0x38 - 0x0)
@@ -221,8 +221,8 @@ public:
 struct UCFCoreUISubsystem_SearchMods_Params
 {
 public:
-	struct FCFCoreSearchModsFilter               Filter;                                            // 0x0(0x30)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config)
-	struct FCFCoreApiRequestPagination           Pagination;                                        // 0x30(0x8)(ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FCFCoreSearchModsFilter               Filter;                                            // 0x0(0x30)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, Config)
+	struct FCFCoreApiRequestPagination           Pagination;                                        // 0x30(0x8)(Edit, ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -230,7 +230,7 @@ public:
 struct UCFCoreUISubsystem_RegisterPurchaseModsDelegate_Params
 {
 public:
-	FDelegateProperty_                           PurchaseModsDelegate;                              // 0x0(0x10)(BlueprintVisible, ExportObject, OutParm, Config, InstancedReference, SubobjectReference)
+	FDelegateProperty_                           PurchaseModsDelegate;                              // 0x0(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -238,7 +238,7 @@ public:
 struct UCFCoreUISubsystem_RegisterPurchaseModDelegate_Params
 {
 public:
-	FDelegateProperty_                           PurchaseModDelegate;                               // 0x0(0x10)(Edit, OutParm, Config, InstancedReference, SubobjectReference)
+	FDelegateProperty_                           PurchaseModDelegate;                               // 0x0(0x10)(Edit, ConstParm, Net, Parm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -246,9 +246,9 @@ public:
 struct UCFCoreUISubsystem_RegisterModelClass_Params
 {
 public:
-	class UClass*                                ModelClass;                                        // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x8(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1237[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class UClass*                                ModelClass;                                        // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x8(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_160E[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -256,7 +256,7 @@ public:
 struct UCFCoreUISubsystem_RegisterErrorDelegate_Params
 {
 public:
-	FDelegateProperty_                           ErrorDelegate;                                     // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
+	FDelegateProperty_                           ErrorDelegate;                                     // 0x0(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -264,7 +264,7 @@ public:
 struct UCFCoreUISubsystem_PurchaseMods_Params
 {
 public:
-	TArray<int64>                                ModsId;                                            // 0x0(0x10)(Edit, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	TArray<int64>                                ModsId;                                            // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -272,7 +272,7 @@ public:
 struct UCFCoreUISubsystem_PurchaseMod_Params
 {
 public:
-	int64                                        ModId;                                             // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+	int64                                        ModId;                                             // 0x0(0x8)(ConstParm, Net, Parm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x3C0 (0x3C0 - 0x0)
@@ -280,7 +280,7 @@ public:
 struct UCFCoreUISubsystem_OnUninstall_Params
 {
 public:
-	struct FInstalledMod                         InstalledMod;                                      // 0x0(0x3C0)(BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient)
+	struct FInstalledMod                         InstalledMod;                                      // 0x0(0x3C0)(ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient)
 };
 
 // 0x38 (0x38 - 0x0)
@@ -296,8 +296,8 @@ public:
 struct UCFCoreUISubsystem_OnSearchMods_Params
 {
 public:
-	TArray<struct FCFCoreMod>                    Mods;                                              // 0x0(0x10)(Edit, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	struct FCFCoreApiResponsePagination          Pagination;                                        // 0x10(0x10)(ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	TArray<struct FCFCoreMod>                    Mods;                                              // 0x0(0x10)(Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FCFCoreApiResponsePagination          Pagination;                                        // 0x10(0x10)(Edit, ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x38 (0x38 - 0x0)
@@ -313,7 +313,7 @@ public:
 struct UCFCoreUISubsystem_OnMyMods_Params
 {
 public:
-	TArray<struct FCFCoreMod>                    Mods;                                              // 0x0(0x10)(Edit, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	TArray<struct FCFCoreMod>                    Mods;                                              // 0x0(0x10)(Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x38 (0x38 - 0x0)
@@ -330,7 +330,7 @@ struct UCFCoreUISubsystem_OnModInstallError_Params
 {
 public:
 	struct FCFCoreError                          Error;                                             // 0x0(0x38)(ExportObject, EditFixedSize, Parm, ReturnParm)
-	struct FCFCoreMod                            InstallingMod;                                     // 0x38(0x1A0)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
+	struct FCFCoreMod                            InstallingMod;                                     // 0x38(0x1A0)(Edit, BlueprintVisible, ExportObject, Parm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x40 (0x40 - 0x0)
@@ -338,7 +338,7 @@ public:
 struct UCFCoreUISubsystem_OnInstallProgress_Params
 {
 public:
-	struct FLibraryProgress                      Progress;                                          // 0x0(0x40)(Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, Config, EditConst, SubobjectReference)
+	struct FLibraryProgress                      Progress;                                          // 0x0(0x40)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -346,7 +346,7 @@ public:
 struct UCFCoreUISubsystem_OnGetModsByIds_Params
 {
 public:
-	TArray<struct FCFCoreMod>                    Mods;                                              // 0x0(0x10)(Edit, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	TArray<struct FCFCoreMod>                    Mods;                                              // 0x0(0x10)(Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x38 (0x38 - 0x0)
@@ -362,7 +362,7 @@ public:
 struct UCFCoreUISubsystem_OnGetInstalledMods_Params
 {
 public:
-	TArray<struct FInstalledMod>                 InstalledMods;                                     // 0x0(0x10)(ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FInstalledMod>                 InstalledMods;                                     // 0x0(0x10)(Edit, ConstParm, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x3C0 (0x3C0 - 0x0)
@@ -370,7 +370,7 @@ public:
 struct UCFCoreUISubsystem_OnFinishedUpdating_Params
 {
 public:
-	struct FInstalledMod                         UpdatedMod;                                        // 0x0(0x3C0)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
+	struct FInstalledMod                         UpdatedMod;                                        // 0x0(0x3C0)(Edit, ConstParm, BlueprintVisible, Parm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x3C0 (0x3C0 - 0x0)
@@ -378,7 +378,7 @@ public:
 struct UCFCoreUISubsystem_OnFinishedInstalling_Params
 {
 public:
-	struct FInstalledMod                         InstalledMod;                                      // 0x0(0x3C0)(BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient)
+	struct FInstalledMod                         InstalledMod;                                      // 0x0(0x3C0)(ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient)
 };
 
 // 0x38 (0x38 - 0x0)
@@ -395,7 +395,7 @@ struct UCFCoreUISubsystem_MakeFInstallProgressModFromID_Params
 {
 public:
 	int64                                        ID;                                                // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor)
-	struct FInstallProgressMod                   ReturnValue;                                       // 0x8(0x498)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FInstallProgressMod                   ReturnValue;                                       // 0x8(0x498)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x638 (0x638 - 0x0)
@@ -403,8 +403,8 @@ public:
 struct UCFCoreUISubsystem_MakeFInstallProgressMod_Params
 {
 public:
-	struct FCFCoreMod                            Mod;                                               // 0x0(0x1A0)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	struct FInstallProgressMod                   ReturnValue;                                       // 0x1A0(0x498)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FCFCoreMod                            Mod;                                               // 0x0(0x1A0)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FInstallProgressMod                   ReturnValue;                                       // 0x1A0(0x498)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -412,7 +412,7 @@ public:
 struct UCFCoreUISubsystem_IsAnyModInstalling_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1A0 (0x1A0 - 0x0)
@@ -420,7 +420,7 @@ public:
 struct UCFCoreUISubsystem_InstallMod_Params
 {
 public:
-	struct FCFCoreMod                            Mod;                                               // 0x0(0x1A0)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FCFCoreMod                            Mod;                                               // 0x0(0x1A0)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x1B0 (0x1B0 - 0x0)
@@ -428,10 +428,10 @@ public:
 struct UCFCoreUISubsystem_InitializeModView_Params
 {
 public:
-	class UObject*                               View;                                              // 0x0(0x8)(BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Config, EditConst)
-	struct FCFCoreMod                            Mod;                                               // 0x8(0x1A0)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x1A8(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1279[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class UObject*                               View;                                              // 0x0(0x8)(Edit, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst)
+	struct FCFCoreMod                            Mod;                                               // 0x8(0x1A0)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x1A8(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1650[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x4A8 (0x4A8 - 0x0)
@@ -439,10 +439,10 @@ public:
 struct UCFCoreUISubsystem_GetModById_Params
 {
 public:
-	struct FInstallProgressMod                   OutMod;                                            // 0x0(0x498)(Edit, Net, EditFixedSize, Parm, Config, InstancedReference, SubobjectReference)
+	struct FInstallProgressMod                   OutMod;                                            // 0x0(0x498)(Edit, ConstParm, Parm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 	int64                                        ID;                                                // 0x498(0x8)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor)
-	bool                                         ReturnValue;                                       // 0x4A0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_127D[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	bool                                         ReturnValue;                                       // 0x4A0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1655[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1A0 (0x1A0 - 0x0)
@@ -450,7 +450,7 @@ public:
 struct UCFCoreUISubsystem_CancelModInstallation_Params
 {
 public:
-	struct FCFCoreMod                            Mod;                                               // 0x0(0x1A0)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FCFCoreMod                            Mod;                                               // 0x0(0x1A0)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -458,7 +458,7 @@ public:
 struct UCFCoreUISubsystem_ApiGetModsById_Params
 {
 public:
-	TArray<int64>                                ModIds;                                            // 0x0(0x10)(ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
+	TArray<int64>                                ModIds;                                            // 0x0(0x10)(BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -466,7 +466,7 @@ public:
 struct UCFCoreVirtualCursorFunctionLibrary_IsCursorOverInteractableWidget_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -474,7 +474,7 @@ public:
 struct UCFCoreVirtualCursorFunctionLibrary_EnableVirtualCursor_Params
 {
 public:
-	class APlayerController*                     PC;                                                // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class APlayerController*                     PC;                                                // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -482,7 +482,7 @@ public:
 struct UCFCoreVirtualCursorFunctionLibrary_DisableVirtualCursor_Params
 {
 public:
-	class APlayerController*                     PC;                                                // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class APlayerController*                     PC;                                                // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
 };
 
 }

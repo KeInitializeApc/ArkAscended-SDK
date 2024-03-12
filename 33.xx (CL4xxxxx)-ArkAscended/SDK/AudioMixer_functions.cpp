@@ -91,7 +91,7 @@ void USynthComponent::Start()
 // Function AudioMixer.SynthComponent.SetVolumeMultiplier
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              VolumeMultiplier                                                 (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// float                              VolumeMultiplier                                                 (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, EditConst, DuplicateTransient)
 
 void USynthComponent::SetVolumeMultiplier(float* VolumeMultiplier)
 {
@@ -120,10 +120,10 @@ void USynthComponent::SetVolumeMultiplier(float* VolumeMultiplier)
 // Function AudioMixer.SynthComponent.SetSubmixSend
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USoundSubmixBase*            Submix                                                           (ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// float                              SendLevel                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class USoundSubmixBase*            Submix                                                           (BlueprintVisible, Net, Parm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// float                              SendLevel                                                        (Edit, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-float USynthComponent::SetSubmixSend(class USoundSubmixBase* Submix)
+void USynthComponent::SetSubmixSend(class USoundSubmixBase* Submix, float* SendLevel)
 {
 	static class UFunction* Func = nullptr;
 
@@ -142,7 +142,8 @@ float USynthComponent::SetSubmixSend(class USoundSubmixBase* Submix)
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (SendLevel != nullptr)
+		*SendLevel = Parms.SendLevel;
 
 }
 
@@ -150,9 +151,9 @@ float USynthComponent::SetSubmixSend(class USoundSubmixBase* Submix)
 // Function AudioMixer.SynthComponent.SetOutputToBusOnly
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInOutputToBusOnly                                               (Edit, BlueprintVisible, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// bool                               bInOutputToBusOnly                                               (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-bool USynthComponent::SetOutputToBusOnly()
+void USynthComponent::SetOutputToBusOnly(bool bInOutputToBusOnly)
 {
 	static class UFunction* Func = nullptr;
 
@@ -161,6 +162,7 @@ bool USynthComponent::SetOutputToBusOnly()
 
 	Params::USynthComponent_SetOutputToBusOnly_Params Parms{};
 
+	Parms.bInOutputToBusOnly = bInOutputToBusOnly;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -170,17 +172,15 @@ bool USynthComponent::SetOutputToBusOnly()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function AudioMixer.SynthComponent.SetLowPassFilterFrequency
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// float                              InLowPassFilterFrequency                                         (ExportObject, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// float                              InLowPassFilterFrequency                                         (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-float USynthComponent::SetLowPassFilterFrequency()
+void USynthComponent::SetLowPassFilterFrequency(float InLowPassFilterFrequency)
 {
 	static class UFunction* Func = nullptr;
 
@@ -189,6 +189,7 @@ float USynthComponent::SetLowPassFilterFrequency()
 
 	Params::USynthComponent_SetLowPassFilterFrequency_Params Parms{};
 
+	Parms.InLowPassFilterFrequency = InLowPassFilterFrequency;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -198,17 +199,15 @@ float USynthComponent::SetLowPassFilterFrequency()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function AudioMixer.SynthComponent.SetLowPassFilterEnabled
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               InLowPassFilterEnabled                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// bool                               InLowPassFilterEnabled                                           (ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-void USynthComponent::SetLowPassFilterEnabled(bool* InLowPassFilterEnabled)
+void USynthComponent::SetLowPassFilterEnabled(bool InLowPassFilterEnabled)
 {
 	static class UFunction* Func = nullptr;
 
@@ -217,6 +216,7 @@ void USynthComponent::SetLowPassFilterEnabled(bool* InLowPassFilterEnabled)
 
 	Params::USynthComponent_SetLowPassFilterEnabled_Params Parms{};
 
+	Parms.InLowPassFilterEnabled = InLowPassFilterEnabled;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -226,18 +226,15 @@ void USynthComponent::SetLowPassFilterEnabled(bool* InLowPassFilterEnabled)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InLowPassFilterEnabled != nullptr)
-		*InLowPassFilterEnabled = Parms.InLowPassFilterEnabled;
-
 }
 
 
 // Function AudioMixer.SynthComponent.IsPlaying
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void USynthComponent::IsPlaying(bool ReturnValue)
+bool USynthComponent::IsPlaying()
 {
 	static class UFunction* Func = nullptr;
 
@@ -246,7 +243,6 @@ void USynthComponent::IsPlaying(bool ReturnValue)
 
 	Params::USynthComponent_IsPlaying_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -256,17 +252,19 @@ void USynthComponent::IsPlaying(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AudioMixer.SynthComponent.FadeOut
 // (Final, Native, Public, BlueprintCallable, Const)
 // Parameters:
-// float                              FadeOutDuration                                                  (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// float                              FadeVolumeLevel                                                  (ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// enum class EAudioFaderCurve        FadeCurve                                                        (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// float                              FadeOutDuration                                                  (Edit, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// float                              FadeVolumeLevel                                                  (BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// enum class EAudioFaderCurve        FadeCurve                                                        (Edit, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-void USynthComponent::FadeOut(float* FadeOutDuration, float* FadeVolumeLevel, enum class EAudioFaderCurve* FadeCurve)
+void USynthComponent::FadeOut(float FadeOutDuration, float FadeVolumeLevel, enum class EAudioFaderCurve FadeCurve)
 {
 	static class UFunction* Func = nullptr;
 
@@ -275,6 +273,9 @@ void USynthComponent::FadeOut(float* FadeOutDuration, float* FadeVolumeLevel, en
 
 	Params::USynthComponent_FadeOut_Params Parms{};
 
+	Parms.FadeOutDuration = FadeOutDuration;
+	Parms.FadeVolumeLevel = FadeVolumeLevel;
+	Parms.FadeCurve = FadeCurve;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -284,27 +285,18 @@ void USynthComponent::FadeOut(float* FadeOutDuration, float* FadeVolumeLevel, en
 
 	Func->FunctionFlags = Flgs;
 
-	if (FadeOutDuration != nullptr)
-		*FadeOutDuration = Parms.FadeOutDuration;
-
-	if (FadeVolumeLevel != nullptr)
-		*FadeVolumeLevel = Parms.FadeVolumeLevel;
-
-	if (FadeCurve != nullptr)
-		*FadeCurve = Parms.FadeCurve;
-
 }
 
 
 // Function AudioMixer.SynthComponent.FadeIn
 // (Final, Native, Public, BlueprintCallable, Const)
 // Parameters:
-// float                              FadeInDuration                                                   (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// float                              FadeVolumeLevel                                                  (ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// float                              StartTime                                                        (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// enum class EAudioFaderCurve        FadeCurve                                                        (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// float                              FadeInDuration                                                   (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// float                              FadeVolumeLevel                                                  (BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// float                              StartTime                                                        (ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// enum class EAudioFaderCurve        FadeCurve                                                        (Edit, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-float USynthComponent::FadeIn(float* FadeInDuration, float* FadeVolumeLevel, enum class EAudioFaderCurve* FadeCurve)
+void USynthComponent::FadeIn(float FadeInDuration, float FadeVolumeLevel, float StartTime, enum class EAudioFaderCurve FadeCurve)
 {
 	static class UFunction* Func = nullptr;
 
@@ -313,6 +305,10 @@ float USynthComponent::FadeIn(float* FadeInDuration, float* FadeVolumeLevel, enu
 
 	Params::USynthComponent_FadeIn_Params Parms{};
 
+	Parms.FadeInDuration = FadeInDuration;
+	Parms.FadeVolumeLevel = FadeVolumeLevel;
+	Parms.StartTime = StartTime;
+	Parms.FadeCurve = FadeCurve;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -322,28 +318,17 @@ float USynthComponent::FadeIn(float* FadeInDuration, float* FadeVolumeLevel, enu
 
 	Func->FunctionFlags = Flgs;
 
-	if (FadeInDuration != nullptr)
-		*FadeInDuration = Parms.FadeInDuration;
-
-	if (FadeVolumeLevel != nullptr)
-		*FadeVolumeLevel = Parms.FadeVolumeLevel;
-
-	if (FadeCurve != nullptr)
-		*FadeCurve = Parms.FadeCurve;
-
-	return Parms.ReturnValue;
-
 }
 
 
 // Function AudioMixer.SynthComponent.AdjustVolume
 // (Final, Native, Public, BlueprintCallable, Const)
 // Parameters:
-// float                              AdjustVolumeDuration                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// float                              AdjustVolumeLevel                                                (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// enum class EAudioFaderCurve        FadeCurve                                                        (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// float                              AdjustVolumeDuration                                             (Edit, BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// float                              AdjustVolumeLevel                                                (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// enum class EAudioFaderCurve        FadeCurve                                                        (Edit, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-void USynthComponent::AdjustVolume(float* AdjustVolumeDuration, float* AdjustVolumeLevel, enum class EAudioFaderCurve* FadeCurve)
+void USynthComponent::AdjustVolume(float AdjustVolumeDuration, float AdjustVolumeLevel, enum class EAudioFaderCurve FadeCurve)
 {
 	static class UFunction* Func = nullptr;
 
@@ -352,6 +337,9 @@ void USynthComponent::AdjustVolume(float* AdjustVolumeDuration, float* AdjustVol
 
 	Params::USynthComponent_AdjustVolume_Params Parms{};
 
+	Parms.AdjustVolumeDuration = AdjustVolumeDuration;
+	Parms.AdjustVolumeLevel = AdjustVolumeLevel;
+	Parms.FadeCurve = FadeCurve;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -360,15 +348,6 @@ void USynthComponent::AdjustVolume(float* AdjustVolumeDuration, float* AdjustVol
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (AdjustVolumeDuration != nullptr)
-		*AdjustVolumeDuration = Parms.AdjustVolumeDuration;
-
-	if (AdjustVolumeLevel != nullptr)
-		*AdjustVolumeLevel = Parms.AdjustVolumeLevel;
-
-	if (FadeCurve != nullptr)
-		*FadeCurve = Parms.FadeCurve;
 
 }
 
@@ -488,10 +467,10 @@ class UAudioMixerBlueprintLibrary* UAudioMixerBlueprintLibrary::GetDefaultObj()
 // Function AudioMixer.AudioMixerBlueprintLibrary.TrimAudioCache
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// float                              InMegabytesToFree                                                (ConstParm, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              InMegabytesToFree                                                (ConstParm, ExportObject, BlueprintReadOnly, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAudioMixerBlueprintLibrary::TrimAudioCache(float InMegabytesToFree, float ReturnValue)
+float UAudioMixerBlueprintLibrary::TrimAudioCache()
 {
 	static class UFunction* Func = nullptr;
 
@@ -500,8 +479,6 @@ void UAudioMixerBlueprintLibrary::TrimAudioCache(float InMegabytesToFree, float 
 
 	Params::UAudioMixerBlueprintLibrary_TrimAudioCache_Params Parms{};
 
-	Parms.InMegabytesToFree = InMegabytesToFree;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -511,17 +488,19 @@ void UAudioMixerBlueprintLibrary::TrimAudioCache(float InMegabytesToFree, float 
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AudioMixer.AudioMixerBlueprintLibrary.SwapAudioOutputDevice
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class FString                      NewDeviceId                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 OnCompletedDeviceSwap                                            (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class FString                      NewDeviceId                                                      (Edit, ConstParm, BlueprintReadOnly, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnCompletedDeviceSwap                                            (Edit, ConstParm, BlueprintVisible, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UAudioMixerBlueprintLibrary::SwapAudioOutputDevice(const class FString& NewDeviceId, FDelegateProperty_ OnCompletedDeviceSwap)
+FDelegateProperty_ UAudioMixerBlueprintLibrary::SwapAudioOutputDevice(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -530,8 +509,6 @@ class UObject* UAudioMixerBlueprintLibrary::SwapAudioOutputDevice(const class FS
 
 	Params::UAudioMixerBlueprintLibrary_SwapAudioOutputDevice_Params Parms{};
 
-	Parms.NewDeviceId = NewDeviceId;
-	Parms.OnCompletedDeviceSwap = OnCompletedDeviceSwap;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -540,6 +517,9 @@ class UObject* UAudioMixerBlueprintLibrary::SwapAudioOutputDevice(const class FS
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -549,15 +529,15 @@ class UObject* UAudioMixerBlueprintLibrary::SwapAudioOutputDevice(const class FS
 // Function AudioMixer.AudioMixerBlueprintLibrary.StopRecordingOutput
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// enum class EAudioRecordingExportTypeExportType                                                       (Edit, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// enum class EAudioRecordingExportTypeExportType                                                       (Edit, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 // class FString                      Name                                                             (ConstParm, Net, OutParm)
-// class FString                      Path                                                             (ConstParm, ExportObject, Net, OutParm, DisableEditOnTemplate, Config, SubobjectReference)
-// class USoundSubmix*                SubmixToRecord                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class USoundWave*                  ExistingSoundWaveToOverwrite                                     (ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class USoundWave*                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      Path                                                             (BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig)
+// class USoundSubmix*                SubmixToRecord                                                   (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class USoundWave*                  ExistingSoundWaveToOverwrite                                     (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class USoundWave*                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UAudioMixerBlueprintLibrary::StopRecordingOutput(enum class EAudioRecordingExportType ExportType, class FString* Name, class FString* Path, class USoundSubmix** SubmixToRecord, class USoundWave* ExistingSoundWaveToOverwrite, class USoundWave* ReturnValue)
+class USoundWave* UAudioMixerBlueprintLibrary::StopRecordingOutput(class UObject** WorldContextObject, class FString* Name, class USoundSubmix** SubmixToRecord, class USoundWave** ExistingSoundWaveToOverwrite)
 {
 	static class UFunction* Func = nullptr;
 
@@ -566,9 +546,6 @@ class UObject* UAudioMixerBlueprintLibrary::StopRecordingOutput(enum class EAudi
 
 	Params::UAudioMixerBlueprintLibrary_StopRecordingOutput_Params Parms{};
 
-	Parms.ExportType = ExportType;
-	Parms.ExistingSoundWaveToOverwrite = ExistingSoundWaveToOverwrite;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -578,14 +555,17 @@ class UObject* UAudioMixerBlueprintLibrary::StopRecordingOutput(enum class EAudi
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
 	if (Name != nullptr)
 		*Name = std::move(Parms.Name);
 
-	if (Path != nullptr)
-		*Path = std::move(Parms.Path);
-
 	if (SubmixToRecord != nullptr)
 		*SubmixToRecord = Parms.SubmixToRecord;
+
+	if (ExistingSoundWaveToOverwrite != nullptr)
+		*ExistingSoundWaveToOverwrite = Parms.ExistingSoundWaveToOverwrite;
 
 	return Parms.ReturnValue;
 
@@ -595,10 +575,10 @@ class UObject* UAudioMixerBlueprintLibrary::StopRecordingOutput(enum class EAudi
 // Function AudioMixer.AudioMixerBlueprintLibrary.StopAudioBus
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class UAudioBus*                   AudioBus                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UAudioBus*                   AudioBus                                                         (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig)
 
-class UAudioBus* UAudioMixerBlueprintLibrary::StopAudioBus()
+void UAudioMixerBlueprintLibrary::StopAudioBus(class UObject** WorldContextObject, class UAudioBus** AudioBus)
 {
 	static class UFunction* Func = nullptr;
 
@@ -616,7 +596,11 @@ class UAudioBus* UAudioMixerBlueprintLibrary::StopAudioBus()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
+	if (AudioBus != nullptr)
+		*AudioBus = Parms.AudioBus;
 
 }
 
@@ -624,10 +608,10 @@ class UAudioBus* UAudioMixerBlueprintLibrary::StopAudioBus()
 // Function AudioMixer.AudioMixerBlueprintLibrary.StopAnalyzingOutput
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class USoundSubmix*                SubmixToStopAnalyzing                                            (ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class USoundSubmix*                SubmixToStopAnalyzing                                            (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UAudioMixerBlueprintLibrary::StopAnalyzingOutput(class USoundSubmix* SubmixToStopAnalyzing)
+void UAudioMixerBlueprintLibrary::StopAnalyzingOutput(class UObject** WorldContextObject, class USoundSubmix** SubmixToStopAnalyzing)
 {
 	static class UFunction* Func = nullptr;
 
@@ -636,7 +620,6 @@ class UObject* UAudioMixerBlueprintLibrary::StopAnalyzingOutput(class USoundSubm
 
 	Params::UAudioMixerBlueprintLibrary_StopAnalyzingOutput_Params Parms{};
 
-	Parms.SubmixToStopAnalyzing = SubmixToStopAnalyzing;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -646,7 +629,11 @@ class UObject* UAudioMixerBlueprintLibrary::StopAnalyzingOutput(class USoundSubm
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
+	if (SubmixToStopAnalyzing != nullptr)
+		*SubmixToStopAnalyzing = Parms.SubmixToStopAnalyzing;
 
 }
 
@@ -654,11 +641,11 @@ class UObject* UAudioMixerBlueprintLibrary::StopAnalyzingOutput(class USoundSubm
 // Function AudioMixer.AudioMixerBlueprintLibrary.StartRecordingOutput
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// float                              ExpectedDuration                                                 (Edit, BlueprintVisible, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class USoundSubmix*                SubmixToRecord                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// float                              ExpectedDuration                                                 (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class USoundSubmix*                SubmixToRecord                                                   (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UAudioMixerBlueprintLibrary::StartRecordingOutput(float ExpectedDuration, class USoundSubmix** SubmixToRecord)
+void UAudioMixerBlueprintLibrary::StartRecordingOutput(class UObject** WorldContextObject, float* ExpectedDuration, class USoundSubmix** SubmixToRecord)
 {
 	static class UFunction* Func = nullptr;
 
@@ -667,7 +654,6 @@ class UObject* UAudioMixerBlueprintLibrary::StartRecordingOutput(float ExpectedD
 
 	Params::UAudioMixerBlueprintLibrary_StartRecordingOutput_Params Parms{};
 
-	Parms.ExpectedDuration = ExpectedDuration;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -677,10 +663,14 @@ class UObject* UAudioMixerBlueprintLibrary::StartRecordingOutput(float ExpectedD
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
+	if (ExpectedDuration != nullptr)
+		*ExpectedDuration = Parms.ExpectedDuration;
+
 	if (SubmixToRecord != nullptr)
 		*SubmixToRecord = Parms.SubmixToRecord;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -688,10 +678,10 @@ class UObject* UAudioMixerBlueprintLibrary::StartRecordingOutput(float ExpectedD
 // Function AudioMixer.AudioMixerBlueprintLibrary.StartAudioBus
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class UAudioBus*                   AudioBus                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UAudioBus*                   AudioBus                                                         (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig)
 
-class UAudioBus* UAudioMixerBlueprintLibrary::StartAudioBus()
+void UAudioMixerBlueprintLibrary::StartAudioBus(class UObject** WorldContextObject, class UAudioBus** AudioBus)
 {
 	static class UFunction* Func = nullptr;
 
@@ -709,7 +699,11 @@ class UAudioBus* UAudioMixerBlueprintLibrary::StartAudioBus()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
+	if (AudioBus != nullptr)
+		*AudioBus = Parms.AudioBus;
 
 }
 
@@ -717,15 +711,15 @@ class UAudioBus* UAudioMixerBlueprintLibrary::StartAudioBus()
 // Function AudioMixer.AudioMixerBlueprintLibrary.StartAnalyzingOutput
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class USoundSubmix*                SubmixToAnalyze                                                  (ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// enum class EFFTSize                FFTSize                                                          (BlueprintVisible, ExportObject, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-// enum class EFFTPeakInterpolationMethodInterpolationMethod                                              (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// enum class EFFTWindowType          WindowType                                                       (ConstParm, BlueprintVisible, OutParm, Transient, Config, InstancedReference, SubobjectReference)
-// float                              HopSize                                                          (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// enum class EAudioSpectrumType      SpectrumType                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class USoundSubmix*                SubmixToAnalyze                                                  (EditFixedSize, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EFFTSize                FFTSize                                                          (ConstParm, BlueprintVisible, ExportObject, Net, Parm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class EFFTPeakInterpolationMethodInterpolationMethod                                              (ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EFFTWindowType          WindowType                                                       (ExportObject, Net, Parm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              HopSize                                                          (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EAudioSpectrumType      SpectrumType                                                     (Edit, Net, Parm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-class UObject* UAudioMixerBlueprintLibrary::StartAnalyzingOutput(class USoundSubmix** SubmixToAnalyze, enum class EFFTSize* FFTSize, enum class EFFTPeakInterpolationMethod* InterpolationMethod, enum class EFFTWindowType* WindowType, float* HopSize, enum class EAudioSpectrumType SpectrumType)
+void UAudioMixerBlueprintLibrary::StartAnalyzingOutput(class UObject** WorldContextObject, class USoundSubmix** SubmixToAnalyze, enum class EFFTSize FFTSize, enum class EFFTPeakInterpolationMethod* InterpolationMethod, enum class EFFTWindowType WindowType, float* HopSize, enum class EAudioSpectrumType SpectrumType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -734,6 +728,8 @@ class UObject* UAudioMixerBlueprintLibrary::StartAnalyzingOutput(class USoundSub
 
 	Params::UAudioMixerBlueprintLibrary_StartAnalyzingOutput_Params Parms{};
 
+	Parms.FFTSize = FFTSize;
+	Parms.WindowType = WindowType;
 	Parms.SpectrumType = SpectrumType;
 
 	auto Flgs = Func->FunctionFlags;
@@ -744,22 +740,17 @@ class UObject* UAudioMixerBlueprintLibrary::StartAnalyzingOutput(class USoundSub
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
 	if (SubmixToAnalyze != nullptr)
 		*SubmixToAnalyze = Parms.SubmixToAnalyze;
-
-	if (FFTSize != nullptr)
-		*FFTSize = Parms.FFTSize;
 
 	if (InterpolationMethod != nullptr)
 		*InterpolationMethod = Parms.InterpolationMethod;
 
-	if (WindowType != nullptr)
-		*WindowType = Parms.WindowType;
-
 	if (HopSize != nullptr)
 		*HopSize = Parms.HopSize;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -767,12 +758,12 @@ class UObject* UAudioMixerBlueprintLibrary::StartAnalyzingOutput(class USoundSub
 // Function AudioMixer.AudioMixerBlueprintLibrary.SetSubmixEffectChainOverride
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class USoundSubmix*                SoundSubmix                                                      (Edit, ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, DuplicateTransient)
-// TArray<class USoundEffectSubmixPreset*>SubmixEffectPresetChain                                          (Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// float                              FadeTimeSec                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class USoundSubmix*                SoundSubmix                                                      (Edit, ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, EditConst, GlobalConfig)
+// TArray<class USoundEffectSubmixPreset*>SubmixEffectPresetChain                                          (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              FadeTimeSec                                                      (Edit, ConstParm, ExportObject, Net, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UAudioMixerBlueprintLibrary::SetSubmixEffectChainOverride(class USoundSubmix* SoundSubmix, TArray<class USoundEffectSubmixPreset*>* SubmixEffectPresetChain, float* FadeTimeSec)
+void UAudioMixerBlueprintLibrary::SetSubmixEffectChainOverride(class UObject** WorldContextObject, class USoundSubmix* SoundSubmix, TArray<class USoundEffectSubmixPreset*>* SubmixEffectPresetChain, float* FadeTimeSec)
 {
 	static class UFunction* Func = nullptr;
 
@@ -791,13 +782,14 @@ class UObject* UAudioMixerBlueprintLibrary::SetSubmixEffectChainOverride(class U
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
 	if (SubmixEffectPresetChain != nullptr)
 		*SubmixEffectPresetChain = std::move(Parms.SubmixEffectPresetChain);
 
 	if (FadeTimeSec != nullptr)
 		*FadeTimeSec = Parms.FadeTimeSec;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -805,12 +797,12 @@ class UObject* UAudioMixerBlueprintLibrary::SetSubmixEffectChainOverride(class U
 // Function AudioMixer.AudioMixerBlueprintLibrary.SetBypassSourceEffectChainEntry
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class USoundEffectSourcePresetChain*PresetChain                                                      (BlueprintVisible, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// int32                              EntryIndex                                                       (ExportObject, Net, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               bBypassed                                                        (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class USoundEffectSourcePresetChain*PresetChain                                                      (BlueprintVisible, Net, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              EntryIndex                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// bool                               bBypassed                                                        (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UAudioMixerBlueprintLibrary::SetBypassSourceEffectChainEntry(class USoundEffectSourcePresetChain** PresetChain, int32 EntryIndex, bool* bBypassed)
+int32 UAudioMixerBlueprintLibrary::SetBypassSourceEffectChainEntry(class UObject** WorldContextObject, class USoundEffectSourcePresetChain** PresetChain, bool* bBypassed)
 {
 	static class UFunction* Func = nullptr;
 
@@ -819,7 +811,6 @@ class UObject* UAudioMixerBlueprintLibrary::SetBypassSourceEffectChainEntry(clas
 
 	Params::UAudioMixerBlueprintLibrary_SetBypassSourceEffectChainEntry_Params Parms{};
 
-	Parms.EntryIndex = EntryIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -828,6 +819,9 @@ class UObject* UAudioMixerBlueprintLibrary::SetBypassSourceEffectChainEntry(clas
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	if (PresetChain != nullptr)
 		*PresetChain = Parms.PresetChain;
@@ -843,10 +837,10 @@ class UObject* UAudioMixerBlueprintLibrary::SetBypassSourceEffectChainEntry(clas
 // Function AudioMixer.AudioMixerBlueprintLibrary.ResumeRecordingOutput
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class USoundSubmix*                SubmixToPause                                                    (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class USoundSubmix*                SubmixToPause                                                    (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UAudioMixerBlueprintLibrary::ResumeRecordingOutput(class USoundSubmix** SubmixToPause)
+void UAudioMixerBlueprintLibrary::ResumeRecordingOutput(class UObject** WorldContextObject, class USoundSubmix** SubmixToPause)
 {
 	static class UFunction* Func = nullptr;
 
@@ -864,10 +858,11 @@ class UObject* UAudioMixerBlueprintLibrary::ResumeRecordingOutput(class USoundSu
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
 	if (SubmixToPause != nullptr)
 		*SubmixToPause = Parms.SubmixToPause;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -875,12 +870,12 @@ class UObject* UAudioMixerBlueprintLibrary::ResumeRecordingOutput(class USoundSu
 // Function AudioMixer.AudioMixerBlueprintLibrary.ReplaceSubmixEffect
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class USoundSubmix*                InSoundSubmix                                                    (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// int32                              SubmixChainIndex                                                 (Edit, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class USoundEffectSubmixPreset*    SubmixEffectPreset                                               (ConstParm, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class USoundSubmix*                InSoundSubmix                                                    (ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              SubmixChainIndex                                                 (Edit, Net, Parm, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class USoundEffectSubmixPreset*    SubmixEffectPreset                                               (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UAudioMixerBlueprintLibrary::ReplaceSubmixEffect(class USoundSubmix** InSoundSubmix, int32* SubmixChainIndex, class USoundEffectSubmixPreset** SubmixEffectPreset)
+void UAudioMixerBlueprintLibrary::ReplaceSubmixEffect(class UObject** WorldContextObject, class USoundSubmix** InSoundSubmix, int32* SubmixChainIndex, class USoundEffectSubmixPreset** SubmixEffectPreset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -898,6 +893,9 @@ class UObject* UAudioMixerBlueprintLibrary::ReplaceSubmixEffect(class USoundSubm
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
 	if (InSoundSubmix != nullptr)
 		*InSoundSubmix = Parms.InSoundSubmix;
 
@@ -907,20 +905,18 @@ class UObject* UAudioMixerBlueprintLibrary::ReplaceSubmixEffect(class USoundSubm
 	if (SubmixEffectPreset != nullptr)
 		*SubmixEffectPreset = Parms.SubmixEffectPreset;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function AudioMixer.AudioMixerBlueprintLibrary.ReplaceSoundEffectSubmix
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class USoundSubmix*                InSoundSubmix                                                    (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// int32                              SubmixChainIndex                                                 (Edit, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class USoundEffectSubmixPreset*    SubmixEffectPreset                                               (ConstParm, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class USoundSubmix*                InSoundSubmix                                                    (ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              SubmixChainIndex                                                 (Edit, Net, Parm, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class USoundEffectSubmixPreset*    SubmixEffectPreset                                               (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UAudioMixerBlueprintLibrary::ReplaceSoundEffectSubmix(class USoundSubmix** InSoundSubmix, int32* SubmixChainIndex, class USoundEffectSubmixPreset** SubmixEffectPreset)
+void UAudioMixerBlueprintLibrary::ReplaceSoundEffectSubmix(class UObject** WorldContextObject, class USoundSubmix** InSoundSubmix, int32* SubmixChainIndex, class USoundEffectSubmixPreset** SubmixEffectPreset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -938,6 +934,9 @@ class UObject* UAudioMixerBlueprintLibrary::ReplaceSoundEffectSubmix(class USoun
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
 	if (InSoundSubmix != nullptr)
 		*InSoundSubmix = Parms.InSoundSubmix;
 
@@ -947,19 +946,17 @@ class UObject* UAudioMixerBlueprintLibrary::ReplaceSoundEffectSubmix(class USoun
 	if (SubmixEffectPreset != nullptr)
 		*SubmixEffectPreset = Parms.SubmixEffectPreset;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function AudioMixer.AudioMixerBlueprintLibrary.RemoveSubmixEffectPresetAtIndex
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class USoundSubmix*                SoundSubmix                                                      (Edit, ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, DuplicateTransient)
-// int32                              SubmixChainIndex                                                 (Edit, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class USoundSubmix*                SoundSubmix                                                      (Edit, ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, EditConst, GlobalConfig)
+// int32                              SubmixChainIndex                                                 (Edit, Net, Parm, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UAudioMixerBlueprintLibrary::RemoveSubmixEffectPresetAtIndex(class USoundSubmix* SoundSubmix, int32* SubmixChainIndex)
+void UAudioMixerBlueprintLibrary::RemoveSubmixEffectPresetAtIndex(class UObject** WorldContextObject, class USoundSubmix* SoundSubmix, int32* SubmixChainIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -978,10 +975,11 @@ class UObject* UAudioMixerBlueprintLibrary::RemoveSubmixEffectPresetAtIndex(clas
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
 	if (SubmixChainIndex != nullptr)
 		*SubmixChainIndex = Parms.SubmixChainIndex;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -989,11 +987,11 @@ class UObject* UAudioMixerBlueprintLibrary::RemoveSubmixEffectPresetAtIndex(clas
 // Function AudioMixer.AudioMixerBlueprintLibrary.RemoveSubmixEffectPreset
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class USoundSubmix*                SoundSubmix                                                      (Edit, ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, DuplicateTransient)
-// class USoundEffectSubmixPreset*    SubmixEffectPreset                                               (ConstParm, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class USoundSubmix*                SoundSubmix                                                      (Edit, ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, EditConst, GlobalConfig)
+// class USoundEffectSubmixPreset*    SubmixEffectPreset                                               (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UAudioMixerBlueprintLibrary::RemoveSubmixEffectPreset(class USoundSubmix* SoundSubmix, class USoundEffectSubmixPreset** SubmixEffectPreset)
+void UAudioMixerBlueprintLibrary::RemoveSubmixEffectPreset(class UObject** WorldContextObject, class USoundSubmix* SoundSubmix, class USoundEffectSubmixPreset** SubmixEffectPreset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1012,10 +1010,11 @@ class UObject* UAudioMixerBlueprintLibrary::RemoveSubmixEffectPreset(class USoun
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
 	if (SubmixEffectPreset != nullptr)
 		*SubmixEffectPreset = Parms.SubmixEffectPreset;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -1023,11 +1022,11 @@ class UObject* UAudioMixerBlueprintLibrary::RemoveSubmixEffectPreset(class USoun
 // Function AudioMixer.AudioMixerBlueprintLibrary.RemoveSubmixEffectAtIndex
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class USoundSubmix*                SoundSubmix                                                      (Edit, ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, DuplicateTransient)
-// int32                              SubmixChainIndex                                                 (Edit, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class USoundSubmix*                SoundSubmix                                                      (Edit, ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, EditConst, GlobalConfig)
+// int32                              SubmixChainIndex                                                 (Edit, Net, Parm, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UAudioMixerBlueprintLibrary::RemoveSubmixEffectAtIndex(class USoundSubmix* SoundSubmix, int32* SubmixChainIndex)
+void UAudioMixerBlueprintLibrary::RemoveSubmixEffectAtIndex(class UObject** WorldContextObject, class USoundSubmix* SoundSubmix, int32* SubmixChainIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1046,10 +1045,11 @@ class UObject* UAudioMixerBlueprintLibrary::RemoveSubmixEffectAtIndex(class USou
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
 	if (SubmixChainIndex != nullptr)
 		*SubmixChainIndex = Parms.SubmixChainIndex;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -1057,11 +1057,11 @@ class UObject* UAudioMixerBlueprintLibrary::RemoveSubmixEffectAtIndex(class USou
 // Function AudioMixer.AudioMixerBlueprintLibrary.RemoveSubmixEffect
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class USoundSubmix*                SoundSubmix                                                      (Edit, ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, DuplicateTransient)
-// class USoundEffectSubmixPreset*    SubmixEffectPreset                                               (ConstParm, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class USoundSubmix*                SoundSubmix                                                      (Edit, ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, EditConst, GlobalConfig)
+// class USoundEffectSubmixPreset*    SubmixEffectPreset                                               (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UAudioMixerBlueprintLibrary::RemoveSubmixEffect(class USoundSubmix* SoundSubmix, class USoundEffectSubmixPreset** SubmixEffectPreset)
+void UAudioMixerBlueprintLibrary::RemoveSubmixEffect(class UObject** WorldContextObject, class USoundSubmix* SoundSubmix, class USoundEffectSubmixPreset** SubmixEffectPreset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1080,10 +1080,11 @@ class UObject* UAudioMixerBlueprintLibrary::RemoveSubmixEffect(class USoundSubmi
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
 	if (SubmixEffectPreset != nullptr)
 		*SubmixEffectPreset = Parms.SubmixEffectPreset;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -1091,11 +1092,11 @@ class UObject* UAudioMixerBlueprintLibrary::RemoveSubmixEffect(class USoundSubmi
 // Function AudioMixer.AudioMixerBlueprintLibrary.RemoveSourceEffectFromPresetChain
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class USoundEffectSourcePresetChain*PresetChain                                                      (BlueprintVisible, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// int32                              EntryIndex                                                       (ExportObject, Net, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class USoundEffectSourcePresetChain*PresetChain                                                      (BlueprintVisible, Net, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              EntryIndex                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
-class UObject* UAudioMixerBlueprintLibrary::RemoveSourceEffectFromPresetChain(class USoundEffectSourcePresetChain** PresetChain, int32 EntryIndex)
+int32 UAudioMixerBlueprintLibrary::RemoveSourceEffectFromPresetChain(class UObject** WorldContextObject, class USoundEffectSourcePresetChain** PresetChain)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1104,7 +1105,6 @@ class UObject* UAudioMixerBlueprintLibrary::RemoveSourceEffectFromPresetChain(cl
 
 	Params::UAudioMixerBlueprintLibrary_RemoveSourceEffectFromPresetChain_Params Parms{};
 
-	Parms.EntryIndex = EntryIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1113,6 +1113,9 @@ class UObject* UAudioMixerBlueprintLibrary::RemoveSourceEffectFromPresetChain(cl
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	if (PresetChain != nullptr)
 		*PresetChain = Parms.PresetChain;
@@ -1125,10 +1128,10 @@ class UObject* UAudioMixerBlueprintLibrary::RemoveSourceEffectFromPresetChain(cl
 // Function AudioMixer.AudioMixerBlueprintLibrary.RemoveMasterSubmixEffect
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class USoundEffectSubmixPreset*    SubmixEffectPreset                                               (ConstParm, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class USoundEffectSubmixPreset*    SubmixEffectPreset                                               (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UAudioMixerBlueprintLibrary::RemoveMasterSubmixEffect(class USoundEffectSubmixPreset** SubmixEffectPreset)
+void UAudioMixerBlueprintLibrary::RemoveMasterSubmixEffect(class UObject** WorldContextObject, class USoundEffectSubmixPreset** SubmixEffectPreset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1146,10 +1149,11 @@ class UObject* UAudioMixerBlueprintLibrary::RemoveMasterSubmixEffect(class USoun
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
 	if (SubmixEffectPreset != nullptr)
 		*SubmixEffectPreset = Parms.SubmixEffectPreset;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -1157,8 +1161,8 @@ class UObject* UAudioMixerBlueprintLibrary::RemoveMasterSubmixEffect(class USoun
 // Function AudioMixer.AudioMixerBlueprintLibrary.PrimeSoundForPlayback
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class USoundWave*                  SoundWave                                                        (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, DuplicateTransient)
-// FDelegateProperty_                 OnLoadCompletion                                                 (EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class USoundWave*                  SoundWave                                                        (BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// FDelegateProperty_                 OnLoadCompletion                                                 (ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 class USoundWave* UAudioMixerBlueprintLibrary::PrimeSoundForPlayback(FDelegateProperty_* OnLoadCompletion)
 {
@@ -1217,10 +1221,10 @@ class USoundCue* UAudioMixerBlueprintLibrary::PrimeSoundCueForPlayback()
 // Function AudioMixer.AudioMixerBlueprintLibrary.PauseRecordingOutput
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class USoundSubmix*                SubmixToPause                                                    (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class USoundSubmix*                SubmixToPause                                                    (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UAudioMixerBlueprintLibrary::PauseRecordingOutput(class USoundSubmix** SubmixToPause)
+void UAudioMixerBlueprintLibrary::PauseRecordingOutput(class UObject** WorldContextObject, class USoundSubmix** SubmixToPause)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1238,10 +1242,11 @@ class UObject* UAudioMixerBlueprintLibrary::PauseRecordingOutput(class USoundSub
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
 	if (SubmixToPause != nullptr)
 		*SubmixToPause = Parms.SubmixToPause;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -1249,13 +1254,13 @@ class UObject* UAudioMixerBlueprintLibrary::PauseRecordingOutput(class USoundSub
 // Function AudioMixer.AudioMixerBlueprintLibrary.MakePresetSpectralAnalysisBandSettings
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EAudioSpectrumBandPresetTypeInBandPresetType                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// int32                              InNumBands                                                       (BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// int32                              InAttackTimeMsec                                                 (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// int32                              InReleaseTimeMsec                                                (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FSoundSubmixSpectralAnalysisBandSettings>ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class EAudioSpectrumBandPresetTypeInBandPresetType                                                 (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              InNumBands                                                       (BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              InAttackTimeMsec                                                 (BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              InReleaseTimeMsec                                                (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FSoundSubmixSpectralAnalysisBandSettings>ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UAudioMixerBlueprintLibrary::MakePresetSpectralAnalysisBandSettings(enum class EAudioSpectrumBandPresetType* InBandPresetType, int32* InNumBands, const TArray<struct FSoundSubmixSpectralAnalysisBandSettings>& ReturnValue)
+TArray<struct FSoundSubmixSpectralAnalysisBandSettings> UAudioMixerBlueprintLibrary::MakePresetSpectralAnalysisBandSettings(enum class EAudioSpectrumBandPresetType* InBandPresetType, int32* InNumBands)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1264,7 +1269,6 @@ int32 UAudioMixerBlueprintLibrary::MakePresetSpectralAnalysisBandSettings(enum c
 
 	Params::UAudioMixerBlueprintLibrary_MakePresetSpectralAnalysisBandSettings_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1288,14 +1292,14 @@ int32 UAudioMixerBlueprintLibrary::MakePresetSpectralAnalysisBandSettings(enum c
 // Function AudioMixer.AudioMixerBlueprintLibrary.MakeMusicalSpectralAnalysisBandSettings
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int32                              InNumSemitones                                                   (Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// enum class EMusicalNoteName        InStartingMusicalNote                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// int32                              InStartingOctave                                                 (ConstParm, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// int32                              InAttackTimeMsec                                                 (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// int32                              InReleaseTimeMsec                                                (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FSoundSubmixSpectralAnalysisBandSettings>ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              InNumSemitones                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EMusicalNoteName        InStartingMusicalNote                                            (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              InStartingOctave                                                 (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              InAttackTimeMsec                                                 (BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              InReleaseTimeMsec                                                (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FSoundSubmixSpectralAnalysisBandSettings>ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UAudioMixerBlueprintLibrary::MakeMusicalSpectralAnalysisBandSettings(int32* InNumSemitones, enum class EMusicalNoteName* InStartingMusicalNote, int32* InStartingOctave, const TArray<struct FSoundSubmixSpectralAnalysisBandSettings>& ReturnValue)
+TArray<struct FSoundSubmixSpectralAnalysisBandSettings> UAudioMixerBlueprintLibrary::MakeMusicalSpectralAnalysisBandSettings(int32* InNumSemitones, enum class EMusicalNoteName* InStartingMusicalNote, int32* InStartingOctave)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1304,7 +1308,6 @@ int32 UAudioMixerBlueprintLibrary::MakeMusicalSpectralAnalysisBandSettings(int32
 
 	Params::UAudioMixerBlueprintLibrary_MakeMusicalSpectralAnalysisBandSettings_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1331,14 +1334,14 @@ int32 UAudioMixerBlueprintLibrary::MakeMusicalSpectralAnalysisBandSettings(int32
 // Function AudioMixer.AudioMixerBlueprintLibrary.MakeFullSpectrumSpectralAnalysisBandSettings
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int32                              InNumBands                                                       (BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// float                              InMinimumFrequency                                               (ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// float                              InMaximumFrequency                                               (ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// int32                              InAttackTimeMsec                                                 (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// int32                              InReleaseTimeMsec                                                (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FSoundSubmixSpectralAnalysisBandSettings>ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              InNumBands                                                       (BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InMinimumFrequency                                               (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              InMaximumFrequency                                               (BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              InAttackTimeMsec                                                 (BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              InReleaseTimeMsec                                                (Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FSoundSubmixSpectralAnalysisBandSettings>ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UAudioMixerBlueprintLibrary::MakeFullSpectrumSpectralAnalysisBandSettings(int32* InNumBands, float* InMinimumFrequency, float* InMaximumFrequency, const TArray<struct FSoundSubmixSpectralAnalysisBandSettings>& ReturnValue)
+TArray<struct FSoundSubmixSpectralAnalysisBandSettings> UAudioMixerBlueprintLibrary::MakeFullSpectrumSpectralAnalysisBandSettings(int32* InNumBands, float* InMinimumFrequency, float* InMaximumFrequency)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1347,7 +1350,6 @@ int32 UAudioMixerBlueprintLibrary::MakeFullSpectrumSpectralAnalysisBandSettings(
 
 	Params::UAudioMixerBlueprintLibrary_MakeFullSpectrumSpectralAnalysisBandSettings_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1374,11 +1376,11 @@ int32 UAudioMixerBlueprintLibrary::MakeFullSpectrumSpectralAnalysisBandSettings(
 // Function AudioMixer.AudioMixerBlueprintLibrary.IsAudioBusActive
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class UAudioBus*                   AudioBus                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UAudioBus*                   AudioBus                                                         (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UAudioBus* UAudioMixerBlueprintLibrary::IsAudioBusActive(bool ReturnValue)
+bool UAudioMixerBlueprintLibrary::IsAudioBusActive(class UObject** WorldContextObject, class UAudioBus** AudioBus)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1387,7 +1389,6 @@ class UAudioBus* UAudioMixerBlueprintLibrary::IsAudioBusActive(bool ReturnValue)
 
 	Params::UAudioMixerBlueprintLibrary_IsAudioBusActive_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1397,6 +1398,12 @@ class UAudioBus* UAudioMixerBlueprintLibrary::IsAudioBusActive(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
+	if (AudioBus != nullptr)
+		*AudioBus = Parms.AudioBus;
+
 	return Parms.ReturnValue;
 
 }
@@ -1405,12 +1412,12 @@ class UAudioBus* UAudioMixerBlueprintLibrary::IsAudioBusActive(bool ReturnValue)
 // Function AudioMixer.AudioMixerBlueprintLibrary.GetPhaseForFrequencies
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// TArray<float>                      Frequencies                                                      (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// TArray<float>                      Phases                                                           (ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class USoundSubmix*                SubmixToAnalyze                                                  (ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// TArray<float>                      Frequencies                                                      (Edit, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<float>                      Phases                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
+// class USoundSubmix*                SubmixToAnalyze                                                  (EditFixedSize, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-TArray<float> UAudioMixerBlueprintLibrary::GetPhaseForFrequencies(TArray<float>* Frequencies, class USoundSubmix** SubmixToAnalyze)
+TArray<float> UAudioMixerBlueprintLibrary::GetPhaseForFrequencies(class UObject** WorldContextObject, TArray<float>* Frequencies, class USoundSubmix** SubmixToAnalyze)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1428,6 +1435,9 @@ TArray<float> UAudioMixerBlueprintLibrary::GetPhaseForFrequencies(TArray<float>*
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
 	if (Frequencies != nullptr)
 		*Frequencies = std::move(Parms.Frequencies);
 
@@ -1442,11 +1452,11 @@ TArray<float> UAudioMixerBlueprintLibrary::GetPhaseForFrequencies(TArray<float>*
 // Function AudioMixer.AudioMixerBlueprintLibrary.GetNumberOfEntriesInSourceEffectChain
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class USoundEffectSourcePresetChain*PresetChain                                                      (BlueprintVisible, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class USoundEffectSourcePresetChain*PresetChain                                                      (BlueprintVisible, Net, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UAudioMixerBlueprintLibrary::GetNumberOfEntriesInSourceEffectChain(class USoundEffectSourcePresetChain** PresetChain, int32 ReturnValue)
+int32 UAudioMixerBlueprintLibrary::GetNumberOfEntriesInSourceEffectChain(class UObject** WorldContextObject, class USoundEffectSourcePresetChain** PresetChain)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1455,7 +1465,6 @@ class UObject* UAudioMixerBlueprintLibrary::GetNumberOfEntriesInSourceEffectChai
 
 	Params::UAudioMixerBlueprintLibrary_GetNumberOfEntriesInSourceEffectChain_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1464,6 +1473,9 @@ class UObject* UAudioMixerBlueprintLibrary::GetNumberOfEntriesInSourceEffectChai
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	if (PresetChain != nullptr)
 		*PresetChain = Parms.PresetChain;
@@ -1476,12 +1488,12 @@ class UObject* UAudioMixerBlueprintLibrary::GetNumberOfEntriesInSourceEffectChai
 // Function AudioMixer.AudioMixerBlueprintLibrary.GetMagnitudeForFrequencies
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// TArray<float>                      Frequencies                                                      (Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// TArray<float>                      Magnitudes                                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
-// class USoundSubmix*                SubmixToAnalyze                                                  (ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// TArray<float>                      Frequencies                                                      (Edit, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<float>                      Magnitudes                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// class USoundSubmix*                SubmixToAnalyze                                                  (EditFixedSize, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-TArray<float> UAudioMixerBlueprintLibrary::GetMagnitudeForFrequencies(TArray<float>* Frequencies, class USoundSubmix** SubmixToAnalyze)
+TArray<float> UAudioMixerBlueprintLibrary::GetMagnitudeForFrequencies(class UObject** WorldContextObject, TArray<float>* Frequencies, class USoundSubmix** SubmixToAnalyze)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1499,6 +1511,9 @@ TArray<float> UAudioMixerBlueprintLibrary::GetMagnitudeForFrequencies(TArray<flo
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
 	if (Frequencies != nullptr)
 		*Frequencies = std::move(Parms.Frequencies);
 
@@ -1513,10 +1528,10 @@ TArray<float> UAudioMixerBlueprintLibrary::GetMagnitudeForFrequencies(TArray<flo
 // Function AudioMixer.AudioMixerBlueprintLibrary.GetCurrentAudioOutputDeviceName
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// FDelegateProperty_                 OnObtainCurrentDeviceEvent                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// FDelegateProperty_                 OnObtainCurrentDeviceEvent                                       (ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UAudioMixerBlueprintLibrary::GetCurrentAudioOutputDeviceName(FDelegateProperty_* OnObtainCurrentDeviceEvent)
+void UAudioMixerBlueprintLibrary::GetCurrentAudioOutputDeviceName(class UObject** WorldContextObject, FDelegateProperty_* OnObtainCurrentDeviceEvent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1534,10 +1549,11 @@ class UObject* UAudioMixerBlueprintLibrary::GetCurrentAudioOutputDeviceName(FDel
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
 	if (OnObtainCurrentDeviceEvent != nullptr)
 		*OnObtainCurrentDeviceEvent = Parms.OnObtainCurrentDeviceEvent;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -1545,10 +1561,10 @@ class UObject* UAudioMixerBlueprintLibrary::GetCurrentAudioOutputDeviceName(FDel
 // Function AudioMixer.AudioMixerBlueprintLibrary.GetAvailableAudioOutputDevices
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// FDelegateProperty_                 OnObtainDevicesEvent                                             (Edit, ConstParm, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// FDelegateProperty_                 OnObtainDevicesEvent                                             (Edit, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-FDelegateProperty_ UAudioMixerBlueprintLibrary::GetAvailableAudioOutputDevices()
+FDelegateProperty_ UAudioMixerBlueprintLibrary::GetAvailableAudioOutputDevices(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1566,6 +1582,9 @@ FDelegateProperty_ UAudioMixerBlueprintLibrary::GetAvailableAudioOutputDevices()
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
 	return Parms.ReturnValue;
 
 }
@@ -1575,9 +1594,9 @@ FDelegateProperty_ UAudioMixerBlueprintLibrary::GetAvailableAudioOutputDevices()
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
 // struct FAudioOutputDeviceInfo      Info                                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm)
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FAudioOutputDeviceInfo UAudioMixerBlueprintLibrary::Conv_AudioOutputDeviceInfoToString(const class FString& ReturnValue)
+class FString UAudioMixerBlueprintLibrary::Conv_AudioOutputDeviceInfoToString()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1586,7 +1605,6 @@ struct FAudioOutputDeviceInfo UAudioMixerBlueprintLibrary::Conv_AudioOutputDevic
 
 	Params::UAudioMixerBlueprintLibrary_Conv_AudioOutputDeviceInfoToString_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1604,10 +1622,10 @@ struct FAudioOutputDeviceInfo UAudioMixerBlueprintLibrary::Conv_AudioOutputDevic
 // Function AudioMixer.AudioMixerBlueprintLibrary.ClearSubmixEffects
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class USoundSubmix*                SoundSubmix                                                      (Edit, ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, DuplicateTransient)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class USoundSubmix*                SoundSubmix                                                      (Edit, ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, EditConst, GlobalConfig)
 
-class UObject* UAudioMixerBlueprintLibrary::ClearSubmixEffects(class USoundSubmix* SoundSubmix)
+void UAudioMixerBlueprintLibrary::ClearSubmixEffects(class UObject** WorldContextObject, class USoundSubmix* SoundSubmix)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1626,7 +1644,8 @@ class UObject* UAudioMixerBlueprintLibrary::ClearSubmixEffects(class USoundSubmi
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 }
 
@@ -1634,11 +1653,11 @@ class UObject* UAudioMixerBlueprintLibrary::ClearSubmixEffects(class USoundSubmi
 // Function AudioMixer.AudioMixerBlueprintLibrary.ClearSubmixEffectChainOverride
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class USoundSubmix*                SoundSubmix                                                      (Edit, ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, DuplicateTransient)
-// float                              FadeTimeSec                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class USoundSubmix*                SoundSubmix                                                      (Edit, ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, EditConst, GlobalConfig)
+// float                              FadeTimeSec                                                      (Edit, ConstParm, ExportObject, Net, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UAudioMixerBlueprintLibrary::ClearSubmixEffectChainOverride(class USoundSubmix* SoundSubmix, float* FadeTimeSec)
+void UAudioMixerBlueprintLibrary::ClearSubmixEffectChainOverride(class UObject** WorldContextObject, class USoundSubmix* SoundSubmix, float* FadeTimeSec)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1657,10 +1676,11 @@ class UObject* UAudioMixerBlueprintLibrary::ClearSubmixEffectChainOverride(class
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
 	if (FadeTimeSec != nullptr)
 		*FadeTimeSec = Parms.FadeTimeSec;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -1668,9 +1688,9 @@ class UObject* UAudioMixerBlueprintLibrary::ClearSubmixEffectChainOverride(class
 // Function AudioMixer.AudioMixerBlueprintLibrary.ClearMasterSubmixEffects
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 
-class UObject* UAudioMixerBlueprintLibrary::ClearMasterSubmixEffects()
+void UAudioMixerBlueprintLibrary::ClearMasterSubmixEffects(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1688,7 +1708,8 @@ class UObject* UAudioMixerBlueprintLibrary::ClearMasterSubmixEffects()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 }
 
@@ -1696,12 +1717,12 @@ class UObject* UAudioMixerBlueprintLibrary::ClearMasterSubmixEffects()
 // Function AudioMixer.AudioMixerBlueprintLibrary.AddSubmixEffect
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class USoundSubmix*                SoundSubmix                                                      (Edit, ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, DuplicateTransient)
-// class USoundEffectSubmixPreset*    SubmixEffectPreset                                               (ConstParm, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class USoundSubmix*                SoundSubmix                                                      (Edit, ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, EditConst, GlobalConfig)
+// class USoundEffectSubmixPreset*    SubmixEffectPreset                                               (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UAudioMixerBlueprintLibrary::AddSubmixEffect(class USoundSubmix* SoundSubmix, class USoundEffectSubmixPreset** SubmixEffectPreset, int32 ReturnValue)
+int32 UAudioMixerBlueprintLibrary::AddSubmixEffect(class UObject** WorldContextObject, class USoundSubmix* SoundSubmix, class USoundEffectSubmixPreset** SubmixEffectPreset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1711,7 +1732,6 @@ class UObject* UAudioMixerBlueprintLibrary::AddSubmixEffect(class USoundSubmix* 
 	Params::UAudioMixerBlueprintLibrary_AddSubmixEffect_Params Parms{};
 
 	Parms.SoundSubmix = SoundSubmix;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1720,6 +1740,9 @@ class UObject* UAudioMixerBlueprintLibrary::AddSubmixEffect(class USoundSubmix* 
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	if (SubmixEffectPreset != nullptr)
 		*SubmixEffectPreset = Parms.SubmixEffectPreset;
@@ -1732,11 +1755,11 @@ class UObject* UAudioMixerBlueprintLibrary::AddSubmixEffect(class USoundSubmix* 
 // Function AudioMixer.AudioMixerBlueprintLibrary.AddSourceEffectToPresetChain
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class USoundEffectSourcePresetChain*PresetChain                                                      (BlueprintVisible, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// struct FSourceEffectChainEntry     Entry                                                            (Edit, ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class USoundEffectSourcePresetChain*PresetChain                                                      (BlueprintVisible, Net, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FSourceEffectChainEntry     Entry                                                            (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, InstancedReference, SubobjectReference)
 
-struct FSourceEffectChainEntry UAudioMixerBlueprintLibrary::AddSourceEffectToPresetChain(class USoundEffectSourcePresetChain** PresetChain)
+struct FSourceEffectChainEntry UAudioMixerBlueprintLibrary::AddSourceEffectToPresetChain(class UObject** WorldContextObject, class USoundEffectSourcePresetChain** PresetChain)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1754,6 +1777,9 @@ struct FSourceEffectChainEntry UAudioMixerBlueprintLibrary::AddSourceEffectToPre
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
 	if (PresetChain != nullptr)
 		*PresetChain = Parms.PresetChain;
 
@@ -1765,10 +1791,10 @@ struct FSourceEffectChainEntry UAudioMixerBlueprintLibrary::AddSourceEffectToPre
 // Function AudioMixer.AudioMixerBlueprintLibrary.AddMasterSubmixEffect
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class USoundEffectSubmixPreset*    SubmixEffectPreset                                               (ConstParm, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class USoundEffectSubmixPreset*    SubmixEffectPreset                                               (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UAudioMixerBlueprintLibrary::AddMasterSubmixEffect(class USoundEffectSubmixPreset** SubmixEffectPreset)
+void UAudioMixerBlueprintLibrary::AddMasterSubmixEffect(class UObject** WorldContextObject, class USoundEffectSubmixPreset** SubmixEffectPreset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1786,10 +1812,11 @@ class UObject* UAudioMixerBlueprintLibrary::AddMasterSubmixEffect(class USoundEf
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
 	if (SubmixEffectPreset != nullptr)
 		*SubmixEffectPreset = Parms.SubmixEffectPreset;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -1853,9 +1880,9 @@ class USubmixEffectDynamicsProcessorPreset* USubmixEffectDynamicsProcessorPreset
 // Function AudioMixer.SubmixEffectDynamicsProcessorPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSubmixEffectDynamicsProcessorSettingsSettings                                                         (Edit, Net, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+// struct FSubmixEffectDynamicsProcessorSettingsSettings                                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
 
-void USubmixEffectDynamicsProcessorPreset::SetSettings(const struct FSubmixEffectDynamicsProcessorSettings& Settings)
+void USubmixEffectDynamicsProcessorPreset::SetSettings(struct FSubmixEffectDynamicsProcessorSettings* Settings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1864,7 +1891,6 @@ void USubmixEffectDynamicsProcessorPreset::SetSettings(const struct FSubmixEffec
 
 	Params::USubmixEffectDynamicsProcessorPreset_SetSettings_Params Parms{};
 
-	Parms.Settings = Settings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1874,13 +1900,16 @@ void USubmixEffectDynamicsProcessorPreset::SetSettings(const struct FSubmixEffec
 
 	Func->FunctionFlags = Flgs;
 
+	if (Settings != nullptr)
+		*Settings = std::move(Parms.Settings);
+
 }
 
 
 // Function AudioMixer.SubmixEffectDynamicsProcessorPreset.SetExternalSubmix
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USoundSubmix*                Submix                                                           (ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class USoundSubmix*                Submix                                                           (BlueprintVisible, Net, Parm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
 void USubmixEffectDynamicsProcessorPreset::SetExternalSubmix(class USoundSubmix* Submix)
 {
@@ -1907,9 +1936,9 @@ void USubmixEffectDynamicsProcessorPreset::SetExternalSubmix(class USoundSubmix*
 // Function AudioMixer.SubmixEffectDynamicsProcessorPreset.SetAudioBus
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UAudioBus*                   AudioBus                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
+// class UAudioBus*                   AudioBus                                                         (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig)
 
-class UAudioBus* USubmixEffectDynamicsProcessorPreset::SetAudioBus()
+void USubmixEffectDynamicsProcessorPreset::SetAudioBus(class UAudioBus** AudioBus)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1927,7 +1956,8 @@ class UAudioBus* USubmixEffectDynamicsProcessorPreset::SetAudioBus()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (AudioBus != nullptr)
+		*AudioBus = Parms.AudioBus;
 
 }
 
@@ -1987,9 +2017,9 @@ class USubmixEffectSubmixEQPreset* USubmixEffectSubmixEQPreset::GetDefaultObj()
 // Function AudioMixer.SubmixEffectSubmixEQPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSubmixEffectSubmixEQSettingsInSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSubmixEffectSubmixEQSettingsInSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSubmixEffectSubmixEQSettings USubmixEffectSubmixEQPreset::SetSettings()
+void USubmixEffectSubmixEQPreset::SetSettings(const struct FSubmixEffectSubmixEQSettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1998,6 +2028,7 @@ struct FSubmixEffectSubmixEQSettings USubmixEffectSubmixEQPreset::SetSettings()
 
 	Params::USubmixEffectSubmixEQPreset_SetSettings_Params Parms{};
 
+	Parms.InSettings = InSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2006,8 +2037,6 @@ struct FSubmixEffectSubmixEQSettings USubmixEffectSubmixEQPreset::SetSettings()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -2043,11 +2072,11 @@ class USubmixEffectReverbPreset* USubmixEffectReverbPreset::GetDefaultObj()
 // Function AudioMixer.SubmixEffectReverbPreset.SetSettingsWithReverbEffect
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UReverbEffect*               InReverbEffect                                                   (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// float                              WetLevel                                                         (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// float                              DryLevel                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UReverbEffect*               InReverbEffect                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              WetLevel                                                         (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              DryLevel                                                         (ConstParm, Net, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-void USubmixEffectReverbPreset::SetSettingsWithReverbEffect(class UReverbEffect* InReverbEffect, float* WetLevel, float* DryLevel)
+class UReverbEffect* USubmixEffectReverbPreset::SetSettingsWithReverbEffect(float* WetLevel, float* DryLevel)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2056,7 +2085,6 @@ void USubmixEffectReverbPreset::SetSettingsWithReverbEffect(class UReverbEffect*
 
 	Params::USubmixEffectReverbPreset_SetSettingsWithReverbEffect_Params Parms{};
 
-	Parms.InReverbEffect = InReverbEffect;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2072,15 +2100,17 @@ void USubmixEffectReverbPreset::SetSettingsWithReverbEffect(class UReverbEffect*
 	if (DryLevel != nullptr)
 		*DryLevel = Parms.DryLevel;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AudioMixer.SubmixEffectReverbPreset.SetSettings
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSubmixEffectReverbSettings InSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FSubmixEffectReverbSettings InSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FSubmixEffectReverbSettings USubmixEffectReverbPreset::SetSettings()
+void USubmixEffectReverbPreset::SetSettings(const struct FSubmixEffectReverbSettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2089,6 +2119,7 @@ struct FSubmixEffectReverbSettings USubmixEffectReverbPreset::SetSettings()
 
 	Params::USubmixEffectReverbPreset_SetSettings_Params Parms{};
 
+	Parms.InSettings = InSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2097,8 +2128,6 @@ struct FSubmixEffectReverbSettings USubmixEffectReverbPreset::SetSettings()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -2134,11 +2163,11 @@ class UQuartzClockHandle* UQuartzClockHandle::GetDefaultObj()
 // Function AudioMixer.QuartzClockHandle.UnsubscribeFromTimeDivision
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// enum class EQuartzCommandQuantizationInQuantizationBoundary                                           (ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// enum class EQuartzCommandQuantizationInQuantizationBoundary                                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UQuartzClockHandle::UnsubscribeFromTimeDivision(enum class EQuartzCommandQuantization InQuantizationBoundary, class UQuartzClockHandle* ClockHandle)
+class UQuartzClockHandle* UQuartzClockHandle::UnsubscribeFromTimeDivision(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2147,8 +2176,6 @@ class UObject* UQuartzClockHandle::UnsubscribeFromTimeDivision(enum class EQuart
 
 	Params::UQuartzClockHandle_UnsubscribeFromTimeDivision_Params Parms{};
 
-	Parms.InQuantizationBoundary = InQuantizationBoundary;
-	Parms.ClockHandle = ClockHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2157,6 +2184,9 @@ class UObject* UQuartzClockHandle::UnsubscribeFromTimeDivision(enum class EQuart
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2166,10 +2196,10 @@ class UObject* UQuartzClockHandle::UnsubscribeFromTimeDivision(enum class EQuart
 // Function AudioMixer.QuartzClockHandle.UnsubscribeFromAllTimeDivisions
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UQuartzClockHandle::UnsubscribeFromAllTimeDivisions(class UQuartzClockHandle* ClockHandle)
+class UQuartzClockHandle* UQuartzClockHandle::UnsubscribeFromAllTimeDivisions(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2178,7 +2208,6 @@ class UObject* UQuartzClockHandle::UnsubscribeFromAllTimeDivisions(class UQuartz
 
 	Params::UQuartzClockHandle_UnsubscribeFromAllTimeDivisions_Params Parms{};
 
-	Parms.ClockHandle = ClockHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2187,6 +2216,9 @@ class UObject* UQuartzClockHandle::UnsubscribeFromAllTimeDivisions(class UQuartz
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2196,12 +2228,12 @@ class UObject* UQuartzClockHandle::UnsubscribeFromAllTimeDivisions(class UQuartz
 // Function AudioMixer.QuartzClockHandle.SubscribeToQuantizationEvent
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// enum class EQuartzCommandQuantizationInQuantizationBoundary                                           (ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 OnQuantizationEvent                                              (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// enum class EQuartzCommandQuantizationInQuantizationBoundary                                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 OnQuantizationEvent                                              (ConstParm, BlueprintReadOnly, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UQuartzClockHandle::SubscribeToQuantizationEvent(enum class EQuartzCommandQuantization InQuantizationBoundary, FDelegateProperty_ OnQuantizationEvent, class UQuartzClockHandle* ClockHandle)
+class UQuartzClockHandle* UQuartzClockHandle::SubscribeToQuantizationEvent(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2210,9 +2242,6 @@ class UObject* UQuartzClockHandle::SubscribeToQuantizationEvent(enum class EQuar
 
 	Params::UQuartzClockHandle_SubscribeToQuantizationEvent_Params Parms{};
 
-	Parms.InQuantizationBoundary = InQuantizationBoundary;
-	Parms.OnQuantizationEvent = OnQuantizationEvent;
-	Parms.ClockHandle = ClockHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2221,6 +2250,9 @@ class UObject* UQuartzClockHandle::SubscribeToQuantizationEvent(enum class EQuar
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2230,11 +2262,11 @@ class UObject* UQuartzClockHandle::SubscribeToQuantizationEvent(enum class EQuar
 // Function AudioMixer.QuartzClockHandle.SubscribeToAllQuantizationEvents
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// FDelegateProperty_                 OnQuantizationEvent                                              (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// FDelegateProperty_                 OnQuantizationEvent                                              (ConstParm, BlueprintReadOnly, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UQuartzClockHandle::SubscribeToAllQuantizationEvents(FDelegateProperty_ OnQuantizationEvent, class UQuartzClockHandle* ClockHandle)
+class UQuartzClockHandle* UQuartzClockHandle::SubscribeToAllQuantizationEvents(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2243,8 +2275,6 @@ class UObject* UQuartzClockHandle::SubscribeToAllQuantizationEvents(FDelegatePro
 
 	Params::UQuartzClockHandle_SubscribeToAllQuantizationEvents_Params Parms{};
 
-	Parms.OnQuantizationEvent = OnQuantizationEvent;
-	Parms.ClockHandle = ClockHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2253,6 +2283,9 @@ class UObject* UQuartzClockHandle::SubscribeToAllQuantizationEvents(FDelegatePro
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2262,11 +2295,11 @@ class UObject* UQuartzClockHandle::SubscribeToAllQuantizationEvents(FDelegatePro
 // Function AudioMixer.QuartzClockHandle.StopClock
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// bool                               CancelPendingEvents                                              (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// bool                               CancelPendingEvents                                              (Edit, ConstParm, BlueprintVisible, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UQuartzClockHandle::StopClock(bool CancelPendingEvents, class UQuartzClockHandle* ClockHandle)
+class UQuartzClockHandle* UQuartzClockHandle::StopClock(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2275,8 +2308,6 @@ class UObject* UQuartzClockHandle::StopClock(bool CancelPendingEvents, class UQu
 
 	Params::UQuartzClockHandle_StopClock_Params Parms{};
 
-	Parms.CancelPendingEvents = CancelPendingEvents;
-	Parms.ClockHandle = ClockHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2285,6 +2316,9 @@ class UObject* UQuartzClockHandle::StopClock(bool CancelPendingEvents, class UQu
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2294,12 +2328,12 @@ class UObject* UQuartzClockHandle::StopClock(bool CancelPendingEvents, class UQu
 // Function AudioMixer.QuartzClockHandle.StartOtherClock
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class FName                        OtherClockName                                                   (Edit, ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// struct FQuartzQuantizationBoundary InQuantizationBoundary                                           (ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 InDelegate                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class FName                        OtherClockName                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FQuartzQuantizationBoundary InQuantizationBoundary                                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 InDelegate                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UQuartzClockHandle::StartOtherClock(class FName OtherClockName, const struct FQuartzQuantizationBoundary& InQuantizationBoundary, FDelegateProperty_ InDelegate)
+struct FQuartzQuantizationBoundary UQuartzClockHandle::StartOtherClock(class UObject** WorldContextObject, FDelegateProperty_ InDelegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2308,8 +2342,6 @@ class UObject* UQuartzClockHandle::StartOtherClock(class FName OtherClockName, c
 
 	Params::UQuartzClockHandle_StartOtherClock_Params Parms{};
 
-	Parms.OtherClockName = OtherClockName;
-	Parms.InQuantizationBoundary = InQuantizationBoundary;
 	Parms.InDelegate = InDelegate;
 
 	auto Flgs = Func->FunctionFlags;
@@ -2319,6 +2351,9 @@ class UObject* UQuartzClockHandle::StartOtherClock(class FName OtherClockName, c
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2328,10 +2363,10 @@ class UObject* UQuartzClockHandle::StartOtherClock(class FName OtherClockName, c
 // Function AudioMixer.QuartzClockHandle.StartClock
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UQuartzClockHandle::StartClock(class UQuartzClockHandle* ClockHandle)
+class UQuartzClockHandle* UQuartzClockHandle::StartClock(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2340,7 +2375,6 @@ class UObject* UQuartzClockHandle::StartClock(class UQuartzClockHandle* ClockHan
 
 	Params::UQuartzClockHandle_StartClock_Params Parms{};
 
-	Parms.ClockHandle = ClockHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2349,6 +2383,9 @@ class UObject* UQuartzClockHandle::StartClock(class UQuartzClockHandle* ClockHan
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2358,13 +2395,13 @@ class UObject* UQuartzClockHandle::StartClock(class UQuartzClockHandle* ClockHan
 // Function AudioMixer.QuartzClockHandle.SetTicksPerSecond
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FQuartzQuantizationBoundary QuantizationBoundary                                             (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 Delegate                                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// float                              TicksPerSecond                                                   (ConstParm, BlueprintVisible, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FQuartzQuantizationBoundary QuantizationBoundary                                             (ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 Delegate                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, EditConst, SubobjectReference)
+// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              TicksPerSecond                                                   (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-class UObject* UQuartzClockHandle::SetTicksPerSecond(const struct FQuartzQuantizationBoundary& QuantizationBoundary, FDelegateProperty_ Delegate, class UQuartzClockHandle* ClockHandle, float* TicksPerSecond)
+float UQuartzClockHandle::SetTicksPerSecond(class UObject** WorldContextObject, FDelegateProperty_ Delegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2373,9 +2410,7 @@ class UObject* UQuartzClockHandle::SetTicksPerSecond(const struct FQuartzQuantiz
 
 	Params::UQuartzClockHandle_SetTicksPerSecond_Params Parms{};
 
-	Parms.QuantizationBoundary = QuantizationBoundary;
 	Parms.Delegate = Delegate;
-	Parms.ClockHandle = ClockHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2385,8 +2420,8 @@ class UObject* UQuartzClockHandle::SetTicksPerSecond(const struct FQuartzQuantiz
 
 	Func->FunctionFlags = Flgs;
 
-	if (TicksPerSecond != nullptr)
-		*TicksPerSecond = Parms.TicksPerSecond;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2396,13 +2431,13 @@ class UObject* UQuartzClockHandle::SetTicksPerSecond(const struct FQuartzQuantiz
 // Function AudioMixer.QuartzClockHandle.SetThirtySecondNotesPerMinute
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FQuartzQuantizationBoundary QuantizationBoundary                                             (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 Delegate                                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// float                              ThirtySecondsNotesPerMinute                                      (ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FQuartzQuantizationBoundary QuantizationBoundary                                             (ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 Delegate                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, EditConst, SubobjectReference)
+// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              ThirtySecondsNotesPerMinute                                      (BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UQuartzClockHandle::SetThirtySecondNotesPerMinute(const struct FQuartzQuantizationBoundary& QuantizationBoundary, FDelegateProperty_ Delegate, class UQuartzClockHandle* ClockHandle, float ThirtySecondsNotesPerMinute)
+float UQuartzClockHandle::SetThirtySecondNotesPerMinute(class UObject** WorldContextObject, FDelegateProperty_ Delegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2411,10 +2446,7 @@ class UObject* UQuartzClockHandle::SetThirtySecondNotesPerMinute(const struct FQ
 
 	Params::UQuartzClockHandle_SetThirtySecondNotesPerMinute_Params Parms{};
 
-	Parms.QuantizationBoundary = QuantizationBoundary;
 	Parms.Delegate = Delegate;
-	Parms.ClockHandle = ClockHandle;
-	Parms.ThirtySecondsNotesPerMinute = ThirtySecondsNotesPerMinute;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2423,6 +2455,9 @@ class UObject* UQuartzClockHandle::SetThirtySecondNotesPerMinute(const struct FQ
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2432,13 +2467,13 @@ class UObject* UQuartzClockHandle::SetThirtySecondNotesPerMinute(const struct FQ
 // Function AudioMixer.QuartzClockHandle.SetSecondsPerTick
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FQuartzQuantizationBoundary QuantizationBoundary                                             (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 Delegate                                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// float                              SecondsPerTick                                                   (BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FQuartzQuantizationBoundary QuantizationBoundary                                             (ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 Delegate                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, EditConst, SubobjectReference)
+// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              SecondsPerTick                                                   (ExportObject, Net, EditFixedSize, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UQuartzClockHandle::SetSecondsPerTick(const struct FQuartzQuantizationBoundary& QuantizationBoundary, FDelegateProperty_ Delegate, class UQuartzClockHandle* ClockHandle, float SecondsPerTick)
+float UQuartzClockHandle::SetSecondsPerTick(class UObject** WorldContextObject, FDelegateProperty_ Delegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2447,10 +2482,7 @@ class UObject* UQuartzClockHandle::SetSecondsPerTick(const struct FQuartzQuantiz
 
 	Params::UQuartzClockHandle_SetSecondsPerTick_Params Parms{};
 
-	Parms.QuantizationBoundary = QuantizationBoundary;
 	Parms.Delegate = Delegate;
-	Parms.ClockHandle = ClockHandle;
-	Parms.SecondsPerTick = SecondsPerTick;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2459,6 +2491,9 @@ class UObject* UQuartzClockHandle::SetSecondsPerTick(const struct FQuartzQuantiz
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2468,13 +2503,13 @@ class UObject* UQuartzClockHandle::SetSecondsPerTick(const struct FQuartzQuantiz
 // Function AudioMixer.QuartzClockHandle.SetMillisecondsPerTick
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FQuartzQuantizationBoundary QuantizationBoundary                                             (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 Delegate                                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// float                              MillisecondsPerTick                                              (Edit, BlueprintVisible, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FQuartzQuantizationBoundary QuantizationBoundary                                             (ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 Delegate                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, EditConst, SubobjectReference)
+// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              MillisecondsPerTick                                              (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UQuartzClockHandle::SetMillisecondsPerTick(const struct FQuartzQuantizationBoundary& QuantizationBoundary, FDelegateProperty_ Delegate, class UQuartzClockHandle* ClockHandle, float MillisecondsPerTick)
+float UQuartzClockHandle::SetMillisecondsPerTick(class UObject** WorldContextObject, FDelegateProperty_ Delegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2483,10 +2518,7 @@ class UObject* UQuartzClockHandle::SetMillisecondsPerTick(const struct FQuartzQu
 
 	Params::UQuartzClockHandle_SetMillisecondsPerTick_Params Parms{};
 
-	Parms.QuantizationBoundary = QuantizationBoundary;
 	Parms.Delegate = Delegate;
-	Parms.ClockHandle = ClockHandle;
-	Parms.MillisecondsPerTick = MillisecondsPerTick;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2495,6 +2527,9 @@ class UObject* UQuartzClockHandle::SetMillisecondsPerTick(const struct FQuartzQu
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2504,13 +2539,13 @@ class UObject* UQuartzClockHandle::SetMillisecondsPerTick(const struct FQuartzQu
 // Function AudioMixer.QuartzClockHandle.SetBeatsPerMinute
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FQuartzQuantizationBoundary QuantizationBoundary                                             (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 Delegate                                                         (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// float                              BeatsPerMinute                                                   (ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FQuartzQuantizationBoundary QuantizationBoundary                                             (ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 Delegate                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, EditConst, SubobjectReference)
+// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              BeatsPerMinute                                                   (ConstParm, ExportObject, EditFixedSize, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UQuartzClockHandle::SetBeatsPerMinute(const struct FQuartzQuantizationBoundary& QuantizationBoundary, FDelegateProperty_ Delegate, class UQuartzClockHandle* ClockHandle, float BeatsPerMinute)
+float UQuartzClockHandle::SetBeatsPerMinute(class UObject** WorldContextObject, FDelegateProperty_ Delegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2519,10 +2554,7 @@ class UObject* UQuartzClockHandle::SetBeatsPerMinute(const struct FQuartzQuantiz
 
 	Params::UQuartzClockHandle_SetBeatsPerMinute_Params Parms{};
 
-	Parms.QuantizationBoundary = QuantizationBoundary;
 	Parms.Delegate = Delegate;
-	Parms.ClockHandle = ClockHandle;
-	Parms.BeatsPerMinute = BeatsPerMinute;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2531,6 +2563,9 @@ class UObject* UQuartzClockHandle::SetBeatsPerMinute(const struct FQuartzQuantiz
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2540,10 +2575,10 @@ class UObject* UQuartzClockHandle::SetBeatsPerMinute(const struct FQuartzQuantiz
 // Function AudioMixer.QuartzClockHandle.ResumeClock
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UQuartzClockHandle::ResumeClock(class UQuartzClockHandle* ClockHandle)
+class UQuartzClockHandle* UQuartzClockHandle::ResumeClock(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2552,7 +2587,6 @@ class UObject* UQuartzClockHandle::ResumeClock(class UQuartzClockHandle* ClockHa
 
 	Params::UQuartzClockHandle_ResumeClock_Params Parms{};
 
-	Parms.ClockHandle = ClockHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2561,6 +2595,9 @@ class UObject* UQuartzClockHandle::ResumeClock(class UQuartzClockHandle* ClockHa
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2570,12 +2607,12 @@ class UObject* UQuartzClockHandle::ResumeClock(class UQuartzClockHandle* ClockHa
 // Function AudioMixer.QuartzClockHandle.ResetTransportQuantized
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FQuartzQuantizationBoundary InQuantizationBoundary                                           (ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 InDelegate                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FQuartzQuantizationBoundary InQuantizationBoundary                                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// FDelegateProperty_                 InDelegate                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
+// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UQuartzClockHandle::ResetTransportQuantized(const struct FQuartzQuantizationBoundary& InQuantizationBoundary, FDelegateProperty_ InDelegate, class UQuartzClockHandle* ClockHandle)
+class UQuartzClockHandle* UQuartzClockHandle::ResetTransportQuantized(class UObject** WorldContextObject, FDelegateProperty_ InDelegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2584,9 +2621,7 @@ class UObject* UQuartzClockHandle::ResetTransportQuantized(const struct FQuartzQ
 
 	Params::UQuartzClockHandle_ResetTransportQuantized_Params Parms{};
 
-	Parms.InQuantizationBoundary = InQuantizationBoundary;
 	Parms.InDelegate = InDelegate;
-	Parms.ClockHandle = ClockHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2596,6 +2631,9 @@ class UObject* UQuartzClockHandle::ResetTransportQuantized(const struct FQuartzQ
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
 	return Parms.ReturnValue;
 
 }
@@ -2604,10 +2642,10 @@ class UObject* UQuartzClockHandle::ResetTransportQuantized(const struct FQuartzQ
 // Function AudioMixer.QuartzClockHandle.ResetTransport
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// FDelegateProperty_                 InDelegate                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// FDelegateProperty_                 InDelegate                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UQuartzClockHandle::ResetTransport(FDelegateProperty_ InDelegate)
+void UQuartzClockHandle::ResetTransport(class UObject** WorldContextObject, FDelegateProperty_ InDelegate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2626,7 +2664,8 @@ class UObject* UQuartzClockHandle::ResetTransport(FDelegateProperty_ InDelegate)
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 }
 
@@ -2634,10 +2673,10 @@ class UObject* UQuartzClockHandle::ResetTransport(FDelegateProperty_ InDelegate)
 // Function AudioMixer.QuartzClockHandle.PauseClock
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UQuartzClockHandle*          ClockHandle                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UQuartzClockHandle::PauseClock(class UQuartzClockHandle* ClockHandle)
+class UQuartzClockHandle* UQuartzClockHandle::PauseClock(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2646,7 +2685,6 @@ class UObject* UQuartzClockHandle::PauseClock(class UQuartzClockHandle* ClockHan
 
 	Params::UQuartzClockHandle_PauseClock_Params Parms{};
 
-	Parms.ClockHandle = ClockHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2655,6 +2693,9 @@ class UObject* UQuartzClockHandle::PauseClock(class UQuartzClockHandle* ClockHan
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2664,10 +2705,10 @@ class UObject* UQuartzClockHandle::PauseClock(class UQuartzClockHandle* ClockHan
 // Function AudioMixer.QuartzClockHandle.IsClockRunning
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UQuartzClockHandle::IsClockRunning(bool ReturnValue)
+bool UQuartzClockHandle::IsClockRunning(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2676,7 +2717,6 @@ class UObject* UQuartzClockHandle::IsClockRunning(bool ReturnValue)
 
 	Params::UQuartzClockHandle_IsClockRunning_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2685,6 +2725,9 @@ class UObject* UQuartzClockHandle::IsClockRunning(bool ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2694,10 +2737,10 @@ class UObject* UQuartzClockHandle::IsClockRunning(bool ReturnValue)
 // Function AudioMixer.QuartzClockHandle.GetTicksPerSecond
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UQuartzClockHandle::GetTicksPerSecond(float ReturnValue)
+float UQuartzClockHandle::GetTicksPerSecond(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2706,7 +2749,6 @@ class UObject* UQuartzClockHandle::GetTicksPerSecond(float ReturnValue)
 
 	Params::UQuartzClockHandle_GetTicksPerSecond_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2715,6 +2757,9 @@ class UObject* UQuartzClockHandle::GetTicksPerSecond(float ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2724,10 +2769,10 @@ class UObject* UQuartzClockHandle::GetTicksPerSecond(float ReturnValue)
 // Function AudioMixer.QuartzClockHandle.GetThirtySecondNotesPerMinute
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UQuartzClockHandle::GetThirtySecondNotesPerMinute(float ReturnValue)
+float UQuartzClockHandle::GetThirtySecondNotesPerMinute(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2736,7 +2781,6 @@ class UObject* UQuartzClockHandle::GetThirtySecondNotesPerMinute(float ReturnVal
 
 	Params::UQuartzClockHandle_GetThirtySecondNotesPerMinute_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2745,6 +2789,9 @@ class UObject* UQuartzClockHandle::GetThirtySecondNotesPerMinute(float ReturnVal
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2754,10 +2801,10 @@ class UObject* UQuartzClockHandle::GetThirtySecondNotesPerMinute(float ReturnVal
 // Function AudioMixer.QuartzClockHandle.GetSecondsPerTick
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UQuartzClockHandle::GetSecondsPerTick(float ReturnValue)
+float UQuartzClockHandle::GetSecondsPerTick(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2766,7 +2813,6 @@ class UObject* UQuartzClockHandle::GetSecondsPerTick(float ReturnValue)
 
 	Params::UQuartzClockHandle_GetSecondsPerTick_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2775,6 +2821,9 @@ class UObject* UQuartzClockHandle::GetSecondsPerTick(float ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2784,10 +2833,10 @@ class UObject* UQuartzClockHandle::GetSecondsPerTick(float ReturnValue)
 // Function AudioMixer.QuartzClockHandle.GetMillisecondsPerTick
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UQuartzClockHandle::GetMillisecondsPerTick(float ReturnValue)
+float UQuartzClockHandle::GetMillisecondsPerTick(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2796,7 +2845,6 @@ class UObject* UQuartzClockHandle::GetMillisecondsPerTick(float ReturnValue)
 
 	Params::UQuartzClockHandle_GetMillisecondsPerTick_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2805,6 +2853,9 @@ class UObject* UQuartzClockHandle::GetMillisecondsPerTick(float ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2814,10 +2865,10 @@ class UObject* UQuartzClockHandle::GetMillisecondsPerTick(float ReturnValue)
 // Function AudioMixer.QuartzClockHandle.GetEstimatedRunTime
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UQuartzClockHandle::GetEstimatedRunTime(float ReturnValue)
+float UQuartzClockHandle::GetEstimatedRunTime(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2826,7 +2877,6 @@ class UObject* UQuartzClockHandle::GetEstimatedRunTime(float ReturnValue)
 
 	Params::UQuartzClockHandle_GetEstimatedRunTime_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2835,6 +2885,9 @@ class UObject* UQuartzClockHandle::GetEstimatedRunTime(float ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2844,12 +2897,12 @@ class UObject* UQuartzClockHandle::GetEstimatedRunTime(float ReturnValue)
 // Function AudioMixer.QuartzClockHandle.GetDurationOfQuantizationTypeInSeconds
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// enum class EQuartzCommandQuantizationQuantizationType                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Config, EditConst, SubobjectReference)
-// float                              Multiplier                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// enum class EQuartzCommandQuantizationQuantizationType                                                 (Edit, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, EditConst, SubobjectReference)
+// float                              Multiplier                                                       (Edit, ConstParm, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float UQuartzClockHandle::GetDurationOfQuantizationTypeInSeconds(float ReturnValue)
+float UQuartzClockHandle::GetDurationOfQuantizationTypeInSeconds(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2858,7 +2911,6 @@ float UQuartzClockHandle::GetDurationOfQuantizationTypeInSeconds(float ReturnVal
 
 	Params::UQuartzClockHandle_GetDurationOfQuantizationTypeInSeconds_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2867,6 +2919,9 @@ float UQuartzClockHandle::GetDurationOfQuantizationTypeInSeconds(float ReturnVal
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2876,10 +2931,10 @@ float UQuartzClockHandle::GetDurationOfQuantizationTypeInSeconds(float ReturnVal
 // Function AudioMixer.QuartzClockHandle.GetCurrentTimestamp
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FQuartzTransportTimeStamp   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FQuartzTransportTimeStamp   ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UQuartzClockHandle::GetCurrentTimestamp(const struct FQuartzTransportTimeStamp& ReturnValue)
+struct FQuartzTransportTimeStamp UQuartzClockHandle::GetCurrentTimestamp(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2888,7 +2943,6 @@ class UObject* UQuartzClockHandle::GetCurrentTimestamp(const struct FQuartzTrans
 
 	Params::UQuartzClockHandle_GetCurrentTimestamp_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2897,6 +2951,9 @@ class UObject* UQuartzClockHandle::GetCurrentTimestamp(const struct FQuartzTrans
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2906,10 +2963,10 @@ class UObject* UQuartzClockHandle::GetCurrentTimestamp(const struct FQuartzTrans
 // Function AudioMixer.QuartzClockHandle.GetBeatsPerMinute
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UQuartzClockHandle::GetBeatsPerMinute(float ReturnValue)
+float UQuartzClockHandle::GetBeatsPerMinute(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2918,7 +2975,6 @@ class UObject* UQuartzClockHandle::GetBeatsPerMinute(float ReturnValue)
 
 	Params::UQuartzClockHandle_GetBeatsPerMinute_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2927,6 +2983,9 @@ class UObject* UQuartzClockHandle::GetBeatsPerMinute(float ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2964,9 +3023,9 @@ class UQuartzSubsystem* UQuartzSubsystem::GetDefaultObj()
 // Function AudioMixer.QuartzSubsystem.IsQuartzEnabled
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UQuartzSubsystem::IsQuartzEnabled(bool ReturnValue)
+bool UQuartzSubsystem::IsQuartzEnabled()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2975,7 +3034,6 @@ void UQuartzSubsystem::IsQuartzEnabled(bool ReturnValue)
 
 	Params::UQuartzSubsystem_IsQuartzEnabled_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2985,17 +3043,19 @@ void UQuartzSubsystem::IsQuartzEnabled(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AudioMixer.QuartzSubsystem.IsClockRunning
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class FName                        ClockName                                                        (Edit, Net, Parm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class FName                        ClockName                                                        (ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UQuartzSubsystem::IsClockRunning(bool ReturnValue)
+bool UQuartzSubsystem::IsClockRunning(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3004,7 +3064,6 @@ class FName UQuartzSubsystem::IsClockRunning(bool ReturnValue)
 
 	Params::UQuartzSubsystem_IsClockRunning_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3013,6 +3072,9 @@ class FName UQuartzSubsystem::IsClockRunning(bool ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -3022,10 +3084,10 @@ class FName UQuartzSubsystem::IsClockRunning(bool ReturnValue)
 // Function AudioMixer.QuartzSubsystem.GetRoundTripMinLatency
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UQuartzSubsystem::GetRoundTripMinLatency(float ReturnValue)
+float UQuartzSubsystem::GetRoundTripMinLatency(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3034,7 +3096,6 @@ class UObject* UQuartzSubsystem::GetRoundTripMinLatency(float ReturnValue)
 
 	Params::UQuartzSubsystem_GetRoundTripMinLatency_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3043,6 +3104,9 @@ class UObject* UQuartzSubsystem::GetRoundTripMinLatency(float ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -3052,10 +3116,10 @@ class UObject* UQuartzSubsystem::GetRoundTripMinLatency(float ReturnValue)
 // Function AudioMixer.QuartzSubsystem.GetRoundTripMaxLatency
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UQuartzSubsystem::GetRoundTripMaxLatency(float ReturnValue)
+float UQuartzSubsystem::GetRoundTripMaxLatency(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3064,7 +3128,6 @@ class UObject* UQuartzSubsystem::GetRoundTripMaxLatency(float ReturnValue)
 
 	Params::UQuartzSubsystem_GetRoundTripMaxLatency_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3073,6 +3136,9 @@ class UObject* UQuartzSubsystem::GetRoundTripMaxLatency(float ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -3082,10 +3148,10 @@ class UObject* UQuartzSubsystem::GetRoundTripMaxLatency(float ReturnValue)
 // Function AudioMixer.QuartzSubsystem.GetRoundTripAverageLatency
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UQuartzSubsystem::GetRoundTripAverageLatency(float ReturnValue)
+float UQuartzSubsystem::GetRoundTripAverageLatency(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3094,7 +3160,6 @@ class UObject* UQuartzSubsystem::GetRoundTripAverageLatency(float ReturnValue)
 
 	Params::UQuartzSubsystem_GetRoundTripAverageLatency_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3103,6 +3168,9 @@ class UObject* UQuartzSubsystem::GetRoundTripAverageLatency(float ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -3112,11 +3180,11 @@ class UObject* UQuartzSubsystem::GetRoundTripAverageLatency(float ReturnValue)
 // Function AudioMixer.QuartzSubsystem.GetHandleForClock
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class FName                        ClockName                                                        (Edit, Net, Parm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
-// class UQuartzClockHandle*          ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class FName                        ClockName                                                        (ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// class UQuartzClockHandle*          ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UQuartzSubsystem::GetHandleForClock(class UQuartzClockHandle* ReturnValue)
+class UQuartzClockHandle* UQuartzSubsystem::GetHandleForClock(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3125,7 +3193,6 @@ class FName UQuartzSubsystem::GetHandleForClock(class UQuartzClockHandle* Return
 
 	Params::UQuartzSubsystem_GetHandleForClock_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3134,6 +3201,9 @@ class FName UQuartzSubsystem::GetHandleForClock(class UQuartzClockHandle* Return
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -3143,10 +3213,10 @@ class FName UQuartzSubsystem::GetHandleForClock(class UQuartzClockHandle* Return
 // Function AudioMixer.QuartzSubsystem.GetGameThreadToAudioRenderThreadMinLatency
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UQuartzSubsystem::GetGameThreadToAudioRenderThreadMinLatency(float ReturnValue)
+float UQuartzSubsystem::GetGameThreadToAudioRenderThreadMinLatency(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3155,7 +3225,6 @@ class UObject* UQuartzSubsystem::GetGameThreadToAudioRenderThreadMinLatency(floa
 
 	Params::UQuartzSubsystem_GetGameThreadToAudioRenderThreadMinLatency_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3164,6 +3233,9 @@ class UObject* UQuartzSubsystem::GetGameThreadToAudioRenderThreadMinLatency(floa
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -3173,10 +3245,10 @@ class UObject* UQuartzSubsystem::GetGameThreadToAudioRenderThreadMinLatency(floa
 // Function AudioMixer.QuartzSubsystem.GetGameThreadToAudioRenderThreadMaxLatency
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UQuartzSubsystem::GetGameThreadToAudioRenderThreadMaxLatency(float ReturnValue)
+float UQuartzSubsystem::GetGameThreadToAudioRenderThreadMaxLatency(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3185,7 +3257,6 @@ class UObject* UQuartzSubsystem::GetGameThreadToAudioRenderThreadMaxLatency(floa
 
 	Params::UQuartzSubsystem_GetGameThreadToAudioRenderThreadMaxLatency_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3194,6 +3265,9 @@ class UObject* UQuartzSubsystem::GetGameThreadToAudioRenderThreadMaxLatency(floa
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -3203,10 +3277,10 @@ class UObject* UQuartzSubsystem::GetGameThreadToAudioRenderThreadMaxLatency(floa
 // Function AudioMixer.QuartzSubsystem.GetGameThreadToAudioRenderThreadAverageLatency
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UQuartzSubsystem::GetGameThreadToAudioRenderThreadAverageLatency(float ReturnValue)
+float UQuartzSubsystem::GetGameThreadToAudioRenderThreadAverageLatency(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3215,7 +3289,6 @@ class UObject* UQuartzSubsystem::GetGameThreadToAudioRenderThreadAverageLatency(
 
 	Params::UQuartzSubsystem_GetGameThreadToAudioRenderThreadAverageLatency_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3224,6 +3297,9 @@ class UObject* UQuartzSubsystem::GetGameThreadToAudioRenderThreadAverageLatency(
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -3233,11 +3309,11 @@ class UObject* UQuartzSubsystem::GetGameThreadToAudioRenderThreadAverageLatency(
 // Function AudioMixer.QuartzSubsystem.GetEstimatedClockRunTime
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class FName                        InClockName                                                      (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class FName                        InClockName                                                      (BlueprintVisible, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UQuartzSubsystem::GetEstimatedClockRunTime(class FName InClockName, float ReturnValue)
+float UQuartzSubsystem::GetEstimatedClockRunTime(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3246,8 +3322,6 @@ class UObject* UQuartzSubsystem::GetEstimatedClockRunTime(class FName InClockNam
 
 	Params::UQuartzSubsystem_GetEstimatedClockRunTime_Params Parms{};
 
-	Parms.InClockName = InClockName;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3256,6 +3330,9 @@ class UObject* UQuartzSubsystem::GetEstimatedClockRunTime(class FName InClockNam
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -3265,13 +3342,13 @@ class UObject* UQuartzSubsystem::GetEstimatedClockRunTime(class FName InClockNam
 // Function AudioMixer.QuartzSubsystem.GetDurationOfQuantizationTypeInSeconds
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class FName                        ClockName                                                        (Edit, Net, Parm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
-// enum class EQuartzCommandQuantizationQuantizationType                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Config, EditConst, SubobjectReference)
-// float                              Multiplier                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class FName                        ClockName                                                        (ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// enum class EQuartzCommandQuantizationQuantizationType                                                 (Edit, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, EditConst, SubobjectReference)
+// float                              Multiplier                                                       (Edit, ConstParm, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float UQuartzSubsystem::GetDurationOfQuantizationTypeInSeconds(float ReturnValue)
+float UQuartzSubsystem::GetDurationOfQuantizationTypeInSeconds(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3280,7 +3357,6 @@ float UQuartzSubsystem::GetDurationOfQuantizationTypeInSeconds(float ReturnValue
 
 	Params::UQuartzSubsystem_GetDurationOfQuantizationTypeInSeconds_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3289,6 +3365,9 @@ float UQuartzSubsystem::GetDurationOfQuantizationTypeInSeconds(float ReturnValue
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -3298,11 +3377,11 @@ float UQuartzSubsystem::GetDurationOfQuantizationTypeInSeconds(float ReturnValue
 // Function AudioMixer.QuartzSubsystem.GetCurrentClockTimestamp
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class FName                        InClockName                                                      (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// struct FQuartzTransportTimeStamp   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class FName                        InClockName                                                      (BlueprintVisible, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FQuartzTransportTimeStamp   ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UQuartzSubsystem::GetCurrentClockTimestamp(class FName InClockName, const struct FQuartzTransportTimeStamp& ReturnValue)
+struct FQuartzTransportTimeStamp UQuartzSubsystem::GetCurrentClockTimestamp(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3311,8 +3390,6 @@ class UObject* UQuartzSubsystem::GetCurrentClockTimestamp(class FName InClockNam
 
 	Params::UQuartzSubsystem_GetCurrentClockTimestamp_Params Parms{};
 
-	Parms.InClockName = InClockName;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3321,6 +3398,9 @@ class UObject* UQuartzSubsystem::GetCurrentClockTimestamp(class FName InClockNam
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -3330,9 +3410,9 @@ class UObject* UQuartzSubsystem::GetCurrentClockTimestamp(class FName InClockNam
 // Function AudioMixer.QuartzSubsystem.GetAudioRenderThreadToGameThreadMinLatency
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UQuartzSubsystem::GetAudioRenderThreadToGameThreadMinLatency(float ReturnValue)
+float UQuartzSubsystem::GetAudioRenderThreadToGameThreadMinLatency()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3341,90 +3421,6 @@ void UQuartzSubsystem::GetAudioRenderThreadToGameThreadMinLatency(float ReturnVa
 
 	Params::UQuartzSubsystem_GetAudioRenderThreadToGameThreadMinLatency_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
-// Function AudioMixer.QuartzSubsystem.GetAudioRenderThreadToGameThreadMaxLatency
-// (Final, Native, Public, BlueprintCallable)
-// Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-
-void UQuartzSubsystem::GetAudioRenderThreadToGameThreadMaxLatency(float ReturnValue)
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("QuartzSubsystem", "GetAudioRenderThreadToGameThreadMaxLatency");
-
-	Params::UQuartzSubsystem_GetAudioRenderThreadToGameThreadMaxLatency_Params Parms{};
-
-	Parms.ReturnValue = ReturnValue;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
-// Function AudioMixer.QuartzSubsystem.GetAudioRenderThreadToGameThreadAverageLatency
-// (Final, Native, Public, BlueprintCallable)
-// Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-
-void UQuartzSubsystem::GetAudioRenderThreadToGameThreadAverageLatency(float ReturnValue)
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("QuartzSubsystem", "GetAudioRenderThreadToGameThreadAverageLatency");
-
-	Params::UQuartzSubsystem_GetAudioRenderThreadToGameThreadAverageLatency_Params Parms{};
-
-	Parms.ReturnValue = ReturnValue;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
-// Function AudioMixer.QuartzSubsystem.DoesClockExist
-// (Final, Native, Public, BlueprintCallable)
-// Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class FName                        ClockName                                                        (Edit, Net, Parm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-
-class FName UQuartzSubsystem::DoesClockExist(bool ReturnValue)
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("QuartzSubsystem", "DoesClockExist");
-
-	Params::UQuartzSubsystem_DoesClockExist_Params Parms{};
-
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3439,13 +3435,102 @@ class FName UQuartzSubsystem::DoesClockExist(bool ReturnValue)
 }
 
 
+// Function AudioMixer.QuartzSubsystem.GetAudioRenderThreadToGameThreadMaxLatency
+// (Final, Native, Public, BlueprintCallable)
+// Parameters:
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+
+float UQuartzSubsystem::GetAudioRenderThreadToGameThreadMaxLatency()
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("QuartzSubsystem", "GetAudioRenderThreadToGameThreadMaxLatency");
+
+	Params::UQuartzSubsystem_GetAudioRenderThreadToGameThreadMaxLatency_Params Parms{};
+
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
+
+}
+
+
+// Function AudioMixer.QuartzSubsystem.GetAudioRenderThreadToGameThreadAverageLatency
+// (Final, Native, Public, BlueprintCallable)
+// Parameters:
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+
+float UQuartzSubsystem::GetAudioRenderThreadToGameThreadAverageLatency()
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("QuartzSubsystem", "GetAudioRenderThreadToGameThreadAverageLatency");
+
+	Params::UQuartzSubsystem_GetAudioRenderThreadToGameThreadAverageLatency_Params Parms{};
+
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
+
+}
+
+
+// Function AudioMixer.QuartzSubsystem.DoesClockExist
+// (Final, Native, Public, BlueprintCallable)
+// Parameters:
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class FName                        ClockName                                                        (ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+
+bool UQuartzSubsystem::DoesClockExist(class UObject** WorldContextObject)
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("QuartzSubsystem", "DoesClockExist");
+
+	Params::UQuartzSubsystem_DoesClockExist_Params Parms{};
+
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
+	return Parms.ReturnValue;
+
+}
+
+
 // Function AudioMixer.QuartzSubsystem.DeleteClockByName
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class FName                        ClockName                                                        (Edit, Net, Parm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class FName                        ClockName                                                        (ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
 
-class FName UQuartzSubsystem::DeleteClockByName()
+class FName UQuartzSubsystem::DeleteClockByName(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3463,6 +3548,9 @@ class FName UQuartzSubsystem::DeleteClockByName()
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
 	return Parms.ReturnValue;
 
 }
@@ -3471,10 +3559,10 @@ class FName UQuartzSubsystem::DeleteClockByName()
 // Function AudioMixer.QuartzSubsystem.DeleteClockByHandle
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class UQuartzClockHandle*          InClockHandle                                                    (BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UQuartzClockHandle*          InClockHandle                                                    (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-class UObject* UQuartzSubsystem::DeleteClockByHandle(class UQuartzClockHandle* InClockHandle)
+class UQuartzClockHandle* UQuartzSubsystem::DeleteClockByHandle(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3483,7 +3571,6 @@ class UObject* UQuartzSubsystem::DeleteClockByHandle(class UQuartzClockHandle* I
 
 	Params::UQuartzSubsystem_DeleteClockByHandle_Params Parms{};
 
-	Parms.InClockHandle = InClockHandle;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3492,6 +3579,9 @@ class UObject* UQuartzSubsystem::DeleteClockByHandle(class UQuartzClockHandle* I
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -3501,14 +3591,14 @@ class UObject* UQuartzSubsystem::DeleteClockByHandle(class UQuartzClockHandle* I
 // Function AudioMixer.QuartzSubsystem.CreateNewClock
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class FName                        ClockName                                                        (Edit, Net, Parm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
-// struct FQuartzClockSettings        InSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bOverrideSettingsIfClockExists                                   (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               bUseAudioEngineClockManager                                      (Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class UQuartzClockHandle*          ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class FName                        ClockName                                                        (ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// struct FQuartzClockSettings        InSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bOverrideSettingsIfClockExists                                   (BlueprintVisible, ExportObject, Net, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bUseAudioEngineClockManager                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UQuartzClockHandle*          ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FQuartzClockSettings UQuartzSubsystem::CreateNewClock(bool bOverrideSettingsIfClockExists, bool bUseAudioEngineClockManager, class UQuartzClockHandle* ReturnValue)
+class UQuartzClockHandle* UQuartzSubsystem::CreateNewClock(class UObject** WorldContextObject, const struct FQuartzClockSettings& InSettings)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3517,9 +3607,7 @@ struct FQuartzClockSettings UQuartzSubsystem::CreateNewClock(bool bOverrideSetti
 
 	Params::UQuartzSubsystem_CreateNewClock_Params Parms{};
 
-	Parms.bOverrideSettingsIfClockExists = bOverrideSettingsIfClockExists;
-	Parms.bUseAudioEngineClockManager = bUseAudioEngineClockManager;
-	Parms.ReturnValue = ReturnValue;
+	Parms.InSettings = InSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3528,6 +3616,9 @@ struct FQuartzClockSettings UQuartzSubsystem::CreateNewClock(bool bOverrideSetti
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 

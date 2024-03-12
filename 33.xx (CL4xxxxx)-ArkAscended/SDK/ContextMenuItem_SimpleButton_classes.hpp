@@ -14,8 +14,8 @@ namespace SDK
 class UContextMenuItem_SimpleButton_C : public UContextMenuItem
 {
 public:
-	class UCustomButtonWidget*                   Button;                                            // 0x428(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	class UInputKeyDisplayWidget*                ShortcutKey;                                       // 0x430(0x8)(Edit, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+	class UCustomButtonWidget*                   Button;                                            // 0x428(0x8)(ConstParm, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig)
+	class UInputKeyDisplayWidget*                ShortcutKey;                                       // 0x430(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UContextMenuItem_SimpleButton_C* GetDefaultObj();

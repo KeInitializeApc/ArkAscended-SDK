@@ -48,7 +48,7 @@ enum class EGameplayTaskRunResult : uint8
 struct FGameplayResourceSet
 {
 public:
-	uint8                                        Pad_D44[0x2];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_266A[0x2];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 }

@@ -43,7 +43,7 @@ class UUI_ZoomImage_C* UUI_ZoomImage_C::GetDefaultObj()
 // Function UI_ZoomImage.UI_ZoomImage_C.SequenceEvent__ENTRYPOINTUI_ZoomImage
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UImage*                      IMG_ScreenshotImg                                                (ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+// class UImage*                      IMG_ScreenshotImg                                                (BlueprintVisible, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void UUI_ZoomImage_C::SequenceEvent__ENTRYPOINTUI_ZoomImage(class UImage* IMG_ScreenshotImg)
 {
@@ -64,12 +64,12 @@ void UUI_ZoomImage_C::SequenceEvent__ENTRYPOINTUI_ZoomImage(class UImage* IMG_Sc
 // Function UI_ZoomImage.UI_ZoomImage_C.BPGamepadReleased
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// struct FKey                        TheKey                                                           (ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_1                         (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
+// struct FKey                        TheKey                                                           (ExportObject, Net, OutParm, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue                           (BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_1                         (BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference, Interp)
 
-struct FKey UUI_ZoomImage_C::BPGamepadReleased(bool ReturnValue, bool CallFunc_EqualEqual_KeyKey_ReturnValue, bool CallFunc_EqualEqual_KeyKey_ReturnValue_1)
+bool UUI_ZoomImage_C::BPGamepadReleased(struct FKey* TheKey, bool* CallFunc_EqualEqual_KeyKey_ReturnValue, bool* CallFunc_EqualEqual_KeyKey_ReturnValue_1)
 {
 	static class UFunction* Func = nullptr;
 
@@ -78,11 +78,17 @@ struct FKey UUI_ZoomImage_C::BPGamepadReleased(bool ReturnValue, bool CallFunc_E
 
 	Params::UUI_ZoomImage_C_BPGamepadReleased_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
-	Parms.CallFunc_EqualEqual_KeyKey_ReturnValue = CallFunc_EqualEqual_KeyKey_ReturnValue;
-	Parms.CallFunc_EqualEqual_KeyKey_ReturnValue_1 = CallFunc_EqualEqual_KeyKey_ReturnValue_1;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (TheKey != nullptr)
+		*TheKey = std::move(Parms.TheKey);
+
+	if (CallFunc_EqualEqual_KeyKey_ReturnValue != nullptr)
+		*CallFunc_EqualEqual_KeyKey_ReturnValue = Parms.CallFunc_EqualEqual_KeyKey_ReturnValue;
+
+	if (CallFunc_EqualEqual_KeyKey_ReturnValue_1 != nullptr)
+		*CallFunc_EqualEqual_KeyKey_ReturnValue_1 = Parms.CallFunc_EqualEqual_KeyKey_ReturnValue_1;
 
 	return Parms.ReturnValue;
 
@@ -92,9 +98,9 @@ struct FKey UUI_ZoomImage_C::BPGamepadReleased(bool ReturnValue, bool CallFunc_E
 // Function UI_ZoomImage.UI_ZoomImage_C.BPEscapeClosed
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UUI_ZoomImage_C::BPEscapeClosed(bool ReturnValue)
+bool UUI_ZoomImage_C::BPEscapeClosed()
 {
 	static class UFunction* Func = nullptr;
 
@@ -103,9 +109,10 @@ void UUI_ZoomImage_C::BPEscapeClosed(bool ReturnValue)
 
 	Params::UUI_ZoomImage_C_BPEscapeClosed_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -113,9 +120,9 @@ void UUI_ZoomImage_C::BPEscapeClosed(bool ReturnValue)
 // Function UI_ZoomImage.UI_ZoomImage_C.BPHighlightWidgetOnStart
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UUI_ZoomImage_C::BPHighlightWidgetOnStart(bool ReturnValue)
+bool UUI_ZoomImage_C::BPHighlightWidgetOnStart()
 {
 	static class UFunction* Func = nullptr;
 
@@ -124,9 +131,10 @@ void UUI_ZoomImage_C::BPHighlightWidgetOnStart(bool ReturnValue)
 
 	Params::UUI_ZoomImage_C_BPHighlightWidgetOnStart_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -134,9 +142,9 @@ void UUI_ZoomImage_C::BPHighlightWidgetOnStart(bool ReturnValue)
 // Function UI_ZoomImage.UI_ZoomImage_C.BPCycleHighlighted
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UUI_ZoomImage_C::BPCycleHighlighted(bool ReturnValue)
+bool UUI_ZoomImage_C::BPCycleHighlighted()
 {
 	static class UFunction* Func = nullptr;
 
@@ -145,9 +153,10 @@ void UUI_ZoomImage_C::BPCycleHighlighted(bool ReturnValue)
 
 	Params::UUI_ZoomImage_C_BPCycleHighlighted_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -155,10 +164,10 @@ void UUI_ZoomImage_C::BPCycleHighlighted(bool ReturnValue)
 // Function UI_ZoomImage.UI_ZoomImage_C.PlayFadeInOnBeginPlayAnim
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UUMGSequencePlayer*          CallFunc_PlayAnimation_ReturnValue                               (BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// class UUMGSequencePlayer*          CallFunc_PlayAnimation_ReturnValue                               (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
 
-void UUI_ZoomImage_C::PlayFadeInOnBeginPlayAnim(class UUMGSequencePlayer* CallFunc_PlayAnimation_ReturnValue, bool* CallFunc_IsValid_ReturnValue)
+bool UUI_ZoomImage_C::PlayFadeInOnBeginPlayAnim()
 {
 	static class UFunction* Func = nullptr;
 
@@ -167,12 +176,10 @@ void UUI_ZoomImage_C::PlayFadeInOnBeginPlayAnim(class UUMGSequencePlayer* CallFu
 
 	Params::UUI_ZoomImage_C_PlayFadeInOnBeginPlayAnim_Params Parms{};
 
-	Parms.CallFunc_PlayAnimation_ReturnValue = CallFunc_PlayAnimation_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -180,13 +187,13 @@ void UUI_ZoomImage_C::PlayFadeInOnBeginPlayAnim(class UUMGSequencePlayer* CallFu
 // Function UI_ZoomImage.UI_ZoomImage_C.UpdateToCurrentImage
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<class UTexture2DDynamic*>   CallFunc_GetScreenshotsInfo_Screenshots                          (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// TArray<class FString>              CallFunc_GetScreenshotsInfo_Descriptions                         (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// class UTexture2DDynamic*           CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_1                                   (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, Interp)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// TArray<class UTexture2DDynamic*>   CallFunc_GetScreenshotsInfo_Screenshots                          (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<class FString>              CallFunc_GetScreenshotsInfo_Descriptions                         (BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UTexture2DDynamic*           CallFunc_Array_Get_Item                                          (EditFixedSize, ZeroConstructor, Transient, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_1                                   (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference, Interp)
 
-class UTexture2DDynamic* UUI_ZoomImage_C::UpdateToCurrentImage(bool* CallFunc_IsValid_ReturnValue, TArray<class UTexture2DDynamic*>* CallFunc_GetScreenshotsInfo_Screenshots, TArray<class FString>* CallFunc_GetScreenshotsInfo_Descriptions, bool* CallFunc_IsValid_ReturnValue_1)
+bool UUI_ZoomImage_C::UpdateToCurrentImage(class UTexture2DDynamic* CallFunc_Array_Get_Item)
 {
 	static class UFunction* Func = nullptr;
 
@@ -195,20 +202,9 @@ class UTexture2DDynamic* UUI_ZoomImage_C::UpdateToCurrentImage(bool* CallFunc_Is
 
 	Params::UUI_ZoomImage_C_UpdateToCurrentImage_Params Parms{};
 
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
-
-	if (CallFunc_GetScreenshotsInfo_Screenshots != nullptr)
-		*CallFunc_GetScreenshotsInfo_Screenshots = std::move(Parms.CallFunc_GetScreenshotsInfo_Screenshots);
-
-	if (CallFunc_GetScreenshotsInfo_Descriptions != nullptr)
-		*CallFunc_GetScreenshotsInfo_Descriptions = std::move(Parms.CallFunc_GetScreenshotsInfo_Descriptions);
-
-	if (CallFunc_IsValid_ReturnValue_1 != nullptr)
-		*CallFunc_IsValid_ReturnValue_1 = Parms.CallFunc_IsValid_ReturnValue_1;
 
 	return Parms.ReturnValue;
 
@@ -218,11 +214,11 @@ class UTexture2DDynamic* UUI_ZoomImage_C::UpdateToCurrentImage(bool* CallFunc_Is
 // Function UI_ZoomImage.UI_ZoomImage_C.GetScreenshotsInfo
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent, BlueprintPure)
 // Parameters:
-// TArray<class UTexture2DDynamic*>   Screenshots                                                      (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// TArray<class FString>              Descriptions                                                     (Edit, ConstParm, Net, Parm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<class UTexture2DDynamic*>   Screenshots                                                      (Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class FString>              Descriptions                                                     (BlueprintReadOnly, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
 
-void UUI_ZoomImage_C::GetScreenshotsInfo(TArray<class UTexture2DDynamic*>* Screenshots, const TArray<class FString>& Descriptions, bool* CallFunc_IsValid_ReturnValue)
+bool UUI_ZoomImage_C::GetScreenshotsInfo(const TArray<class FString>& Descriptions)
 {
 	static class UFunction* Func = nullptr;
 
@@ -235,11 +231,7 @@ void UUI_ZoomImage_C::GetScreenshotsInfo(TArray<class UTexture2DDynamic*>* Scree
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Screenshots != nullptr)
-		*Screenshots = std::move(Parms.Screenshots);
-
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -247,13 +239,13 @@ void UUI_ZoomImage_C::GetScreenshotsInfo(TArray<class UTexture2DDynamic*>* Scree
 // Function UI_ZoomImage.UI_ZoomImage_C.UpdateScreenshotDescription
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<class UTexture2DDynamic*>   CallFunc_GetScreenshotsInfo_Screenshots                          (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// TArray<class FString>              CallFunc_GetScreenshotsInfo_Descriptions                         (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// class FString                      CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// class FText                        CallFunc_Conv_StringToText_ReturnValue                           (ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// TArray<class UTexture2DDynamic*>   CallFunc_GetScreenshotsInfo_Screenshots                          (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<class FString>              CallFunc_GetScreenshotsInfo_Descriptions                         (BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      CallFunc_Array_Get_Item                                          (EditFixedSize, ZeroConstructor, Transient, SubobjectReference)
+// class FText                        CallFunc_Conv_StringToText_ReturnValue                           (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
 
-class FString UUI_ZoomImage_C::UpdateScreenshotDescription(bool* CallFunc_IsValid_ReturnValue, TArray<class UTexture2DDynamic*>* CallFunc_GetScreenshotsInfo_Screenshots, TArray<class FString>* CallFunc_GetScreenshotsInfo_Descriptions, class FText* CallFunc_Conv_StringToText_ReturnValue)
+class FText UUI_ZoomImage_C::UpdateScreenshotDescription(const class FString& CallFunc_Array_Get_Item)
 {
 	static class UFunction* Func = nullptr;
 
@@ -262,20 +254,9 @@ class FString UUI_ZoomImage_C::UpdateScreenshotDescription(bool* CallFunc_IsVali
 
 	Params::UUI_ZoomImage_C_UpdateScreenshotDescription_Params Parms{};
 
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
-
-	if (CallFunc_GetScreenshotsInfo_Screenshots != nullptr)
-		*CallFunc_GetScreenshotsInfo_Screenshots = std::move(Parms.CallFunc_GetScreenshotsInfo_Screenshots);
-
-	if (CallFunc_GetScreenshotsInfo_Descriptions != nullptr)
-		*CallFunc_GetScreenshotsInfo_Descriptions = std::move(Parms.CallFunc_GetScreenshotsInfo_Descriptions);
-
-	if (CallFunc_Conv_StringToText_ReturnValue != nullptr)
-		*CallFunc_Conv_StringToText_ReturnValue = Parms.CallFunc_Conv_StringToText_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -285,11 +266,11 @@ class FString UUI_ZoomImage_C::UpdateScreenshotDescription(bool* CallFunc_IsVali
 // Function UI_ZoomImage.UI_ZoomImage_C.UpdatePageCounter
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_1                                   (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, Interp)
-// class FText                        CallFunc_GetScrrenshotPaginationText_ReturnValue                 (BlueprintVisible, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_1                                   (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference, Interp)
+// class FText                        CallFunc_GetScrrenshotPaginationText_ReturnValue                 (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-void UUI_ZoomImage_C::UpdatePageCounter(bool* CallFunc_IsValid_ReturnValue, bool* CallFunc_IsValid_ReturnValue_1, class FText CallFunc_GetScrrenshotPaginationText_ReturnValue)
+class FText UUI_ZoomImage_C::UpdatePageCounter()
 {
 	static class UFunction* Func = nullptr;
 
@@ -298,15 +279,10 @@ void UUI_ZoomImage_C::UpdatePageCounter(bool* CallFunc_IsValid_ReturnValue, bool
 
 	Params::UUI_ZoomImage_C_UpdatePageCounter_Params Parms{};
 
-	Parms.CallFunc_GetScrrenshotPaginationText_ReturnValue = CallFunc_GetScrrenshotPaginationText_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
-
-	if (CallFunc_IsValid_ReturnValue_1 != nullptr)
-		*CallFunc_IsValid_ReturnValue_1 = Parms.CallFunc_IsValid_ReturnValue_1;
+	return Parms.ReturnValue;
 
 }
 
@@ -314,13 +290,13 @@ void UUI_ZoomImage_C::UpdatePageCounter(bool* CallFunc_IsValid_ReturnValue, bool
 // Function UI_ZoomImage.UI_ZoomImage_C.UpdateScreenshotImage
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// class UUMGSequencePlayer*          CallFunc_PlayAnimation_ReturnValue                               (BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// TArray<class UTexture2DDynamic*>   CallFunc_GetScreenshotsInfo_Screenshots                          (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// TArray<class FString>              CallFunc_GetScreenshotsInfo_Descriptions                         (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_Array_IsValidIndex_ReturnValue                          (ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// class UUMGSequencePlayer*          CallFunc_PlayAnimation_ReturnValue                               (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// TArray<class UTexture2DDynamic*>   CallFunc_GetScreenshotsInfo_Screenshots                          (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<class FString>              CallFunc_GetScreenshotsInfo_Descriptions                         (BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_Array_IsValidIndex_ReturnValue                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
 
-bool UUI_ZoomImage_C::UpdateScreenshotImage(bool* CallFunc_IsValid_ReturnValue, class UUMGSequencePlayer* CallFunc_PlayAnimation_ReturnValue, TArray<class UTexture2DDynamic*>* CallFunc_GetScreenshotsInfo_Screenshots, TArray<class FString>* CallFunc_GetScreenshotsInfo_Descriptions)
+TArray<class FString> UUI_ZoomImage_C::UpdateScreenshotImage(bool* CallFunc_Array_IsValidIndex_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -329,18 +305,11 @@ bool UUI_ZoomImage_C::UpdateScreenshotImage(bool* CallFunc_IsValid_ReturnValue, 
 
 	Params::UUI_ZoomImage_C_UpdateScreenshotImage_Params Parms{};
 
-	Parms.CallFunc_PlayAnimation_ReturnValue = CallFunc_PlayAnimation_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
-
-	if (CallFunc_GetScreenshotsInfo_Screenshots != nullptr)
-		*CallFunc_GetScreenshotsInfo_Screenshots = std::move(Parms.CallFunc_GetScreenshotsInfo_Screenshots);
-
-	if (CallFunc_GetScreenshotsInfo_Descriptions != nullptr)
-		*CallFunc_GetScreenshotsInfo_Descriptions = std::move(Parms.CallFunc_GetScreenshotsInfo_Descriptions);
+	if (CallFunc_Array_IsValidIndex_ReturnValue != nullptr)
+		*CallFunc_Array_IsValidIndex_ReturnValue = Parms.CallFunc_Array_IsValidIndex_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -368,15 +337,15 @@ void UUI_ZoomImage_C::UpdateAllScreenshotInformation()
 // Function UI_ZoomImage.UI_ZoomImage_C.UpdateButtonsStyle
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// TArray<class UTexture2DDynamic*>   CallFunc_GetScreenshotsInfo_Screenshots                          (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// TArray<class FString>              CallFunc_GetScreenshotsInfo_Descriptions                         (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              CallFunc_Int32_SubOne_ReturnValue                                (ConstParm, ExportObject, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_EqualEqual_IntInt_ReturnValue                           (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, SubobjectReference)
-// bool                               CallFunc_EqualEqual_IntInt_ReturnValue_1                         (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, SubobjectReference, Interp)
-// bool                               CallFunc_EqualEqual_IntInt_ReturnValue_2                         (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, SubobjectReference, RepNotify, Interp)
+// TArray<class UTexture2DDynamic*>   CallFunc_GetScreenshotsInfo_Screenshots                          (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<class FString>              CallFunc_GetScreenshotsInfo_Descriptions                         (BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// int32                              CallFunc_Int32_SubOne_ReturnValue                                (ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_EqualEqual_IntInt_ReturnValue                           (BlueprintVisible, Net, OutParm, ZeroConstructor, Transient, Config, SubobjectReference)
+// bool                               CallFunc_EqualEqual_IntInt_ReturnValue_1                         (BlueprintVisible, Net, OutParm, ZeroConstructor, Transient, Config, SubobjectReference, Interp)
+// bool                               CallFunc_EqualEqual_IntInt_ReturnValue_2                         (BlueprintVisible, Net, OutParm, ZeroConstructor, Transient, Config, SubobjectReference, RepNotify, Interp)
 
-int32 UUI_ZoomImage_C::UpdateButtonsStyle(TArray<class UTexture2DDynamic*>* CallFunc_GetScreenshotsInfo_Screenshots, TArray<class FString>* CallFunc_GetScreenshotsInfo_Descriptions, int32* CallFunc_Int32_SubOne_ReturnValue, bool* CallFunc_EqualEqual_IntInt_ReturnValue, bool* CallFunc_EqualEqual_IntInt_ReturnValue_1, bool* CallFunc_EqualEqual_IntInt_ReturnValue_2)
+int32 UUI_ZoomImage_C::UpdateButtonsStyle(bool* CallFunc_EqualEqual_IntInt_ReturnValue, bool* CallFunc_EqualEqual_IntInt_ReturnValue_1, bool* CallFunc_EqualEqual_IntInt_ReturnValue_2)
 {
 	static class UFunction* Func = nullptr;
 
@@ -387,15 +356,6 @@ int32 UUI_ZoomImage_C::UpdateButtonsStyle(TArray<class UTexture2DDynamic*>* Call
 
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (CallFunc_GetScreenshotsInfo_Screenshots != nullptr)
-		*CallFunc_GetScreenshotsInfo_Screenshots = std::move(Parms.CallFunc_GetScreenshotsInfo_Screenshots);
-
-	if (CallFunc_GetScreenshotsInfo_Descriptions != nullptr)
-		*CallFunc_GetScreenshotsInfo_Descriptions = std::move(Parms.CallFunc_GetScreenshotsInfo_Descriptions);
-
-	if (CallFunc_Int32_SubOne_ReturnValue != nullptr)
-		*CallFunc_Int32_SubOne_ReturnValue = Parms.CallFunc_Int32_SubOne_ReturnValue;
 
 	if (CallFunc_EqualEqual_IntInt_ReturnValue != nullptr)
 		*CallFunc_EqualEqual_IntInt_ReturnValue = Parms.CallFunc_EqualEqual_IntInt_ReturnValue;
@@ -414,15 +374,15 @@ int32 UUI_ZoomImage_C::UpdateButtonsStyle(TArray<class UTexture2DDynamic*>* Call
 // Function UI_ZoomImage.UI_ZoomImage_C.OnKeyDown
 // (BlueprintCosmetic, Event, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FKeyEvent                   InKeyEvent                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// struct FEventReply                 ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// struct FKey                        CallFunc_GetKey_ReturnValue                                      (ConstParm, EditFixedSize, Parm, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// class APlayerController*           CallFunc_GetOwningPlayer_ReturnValue                             (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// struct FKeyEvent                   InKeyEvent                                                       (Edit, OutParm, Config, DisableEditOnInstance, SubobjectReference)
+// struct FEventReply                 ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FKey                        CallFunc_GetKey_ReturnValue                                      (EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue                           (BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class APlayerController*           CallFunc_GetOwningPlayer_ReturnValue                             (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, SubobjectReference)
 
-struct FGeometry UUI_ZoomImage_C::OnKeyDown(const struct FKeyEvent& InKeyEvent, const struct FEventReply& ReturnValue, const struct FKey& CallFunc_GetKey_ReturnValue, bool* CallFunc_IsValid_ReturnValue, bool CallFunc_EqualEqual_KeyKey_ReturnValue, class APlayerController** CallFunc_GetOwningPlayer_ReturnValue)
+bool UUI_ZoomImage_C::OnKeyDown(struct FGeometry* MyGeometry, struct FKeyEvent* InKeyEvent, struct FKey* CallFunc_GetKey_ReturnValue, bool* CallFunc_EqualEqual_KeyKey_ReturnValue, class APlayerController* CallFunc_GetOwningPlayer_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -431,18 +391,21 @@ struct FGeometry UUI_ZoomImage_C::OnKeyDown(const struct FKeyEvent& InKeyEvent, 
 
 	Params::UUI_ZoomImage_C_OnKeyDown_Params Parms{};
 
-	Parms.InKeyEvent = InKeyEvent;
-	Parms.ReturnValue = ReturnValue;
-	Parms.CallFunc_GetKey_ReturnValue = CallFunc_GetKey_ReturnValue;
-	Parms.CallFunc_EqualEqual_KeyKey_ReturnValue = CallFunc_EqualEqual_KeyKey_ReturnValue;
+	Parms.CallFunc_GetOwningPlayer_ReturnValue = CallFunc_GetOwningPlayer_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
 
-	if (CallFunc_GetOwningPlayer_ReturnValue != nullptr)
-		*CallFunc_GetOwningPlayer_ReturnValue = Parms.CallFunc_GetOwningPlayer_ReturnValue;
+	if (InKeyEvent != nullptr)
+		*InKeyEvent = std::move(Parms.InKeyEvent);
+
+	if (CallFunc_GetKey_ReturnValue != nullptr)
+		*CallFunc_GetKey_ReturnValue = std::move(Parms.CallFunc_GetKey_ReturnValue);
+
+	if (CallFunc_EqualEqual_KeyKey_ReturnValue != nullptr)
+		*CallFunc_EqualEqual_KeyKey_ReturnValue = Parms.CallFunc_EqualEqual_KeyKey_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -452,7 +415,7 @@ struct FGeometry UUI_ZoomImage_C::OnKeyDown(const struct FKeyEvent& InKeyEvent, 
 // Function UI_ZoomImage.UI_ZoomImage_C.Animation_SwapBetweenImages
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UImage*                      IMG_ScreenshotImg                                                (ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+// class UImage*                      IMG_ScreenshotImg                                                (BlueprintVisible, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 void UUI_ZoomImage_C::Animation_SwapBetweenImages(class UImage* IMG_ScreenshotImg)
 {
@@ -491,10 +454,10 @@ void UUI_ZoomImage_C::Construct()
 // Function UI_ZoomImage.UI_ZoomImage_C.ButtonCall
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// struct FKey                        Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// struct FKey                        Key                                                              (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance)
 // enum class EViewState              State                                                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor)
 
-struct FKey UUI_ZoomImage_C::ButtonCall(enum class EViewState State)
+void UUI_ZoomImage_C::ButtonCall(const struct FKey& Key, enum class EViewState State)
 {
 	static class UFunction* Func = nullptr;
 
@@ -503,11 +466,10 @@ struct FKey UUI_ZoomImage_C::ButtonCall(enum class EViewState State)
 
 	Params::UUI_ZoomImage_C_ButtonCall_Params Parms{};
 
+	Parms.Key = Key;
 	Parms.State = State;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -605,10 +567,10 @@ void UUI_ZoomImage_C::BndEvt__UI_ZoomImage_UI_Button_Ark_Global_Back_C_0_K2Node_
 // Function UI_ZoomImage.UI_ZoomImage_C.Tick
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              InDeltaTime                                                      (ConstParm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// float                              InDeltaTime                                                      (ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UUI_ZoomImage_C::Tick()
+float UUI_ZoomImage_C::Tick(struct FGeometry* MyGeometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -619,6 +581,9 @@ float UUI_ZoomImage_C::Tick()
 
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
 
 	return Parms.ReturnValue;
 
@@ -700,30 +665,30 @@ void UUI_ZoomImage_C::BndEvt__UI_ZoomImage_ButtonNextMouse_K2Node_ComponentBound
 // Function UI_ZoomImage.UI_ZoomImage_C.ExecuteUbergraph_UI_ZoomImage
 // (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// int32                              EntryPoint                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-// int32                              Temp_int_Variable                                                (ConstParm, ExportObject, EditFixedSize, ReturnParm, Config, SubobjectReference)
-// class UImage*                      K2Node_CustomEvent_IMG_ScreenshotImg                             (BlueprintVisible, Net, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// int32                              CallFunc_Add_IntInt_ReturnValue                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              CallFunc_Subtract_IntInt_ReturnValue                             (BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
-// int32                              Temp_int_Variable_1                                              (ConstParm, ExportObject, EditFixedSize, ReturnParm, Config, SubobjectReference, Interp)
-// class APlayerController*           CallFunc_GetOwningPlayer_ReturnValue                             (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// class APlayerController*           CallFunc_GetOwningPlayer_ReturnValue_1                           (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, Interp)
-// struct FKey                        K2Node_CustomEvent_Key                                           (Edit, ConstParm, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// enum class EViewState              K2Node_CustomEvent_State                                         (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue                         (BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_1                         (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, Interp)
-// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_2                         (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference, RepNotify, Interp)
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_CanGoToNextImage_ReturnValue                            (BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_CanGoToPreviousImage_ReturnValue                        (BlueprintVisible, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (BlueprintVisible, ExportObject, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// class UBindButtonSystem*           CallFunc_GetEngineSubsystem_ReturnValue                          (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue_1                                   (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, Interp)
-// struct FGeometry                   K2Node_Event_MyGeometry                                          (BlueprintVisible, ZeroConstructor, Config, SubobjectReference)
-// float                              K2Node_Event_InDeltaTime                                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Config, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
+// int32                              Temp_int_Variable                                                (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class UImage*                      K2Node_CustomEvent_IMG_ScreenshotImg                             (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              CallFunc_Add_IntInt_ReturnValue                                  (ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// int32                              CallFunc_Subtract_IntInt_ReturnValue                             (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnInstance, SubobjectReference)
+// int32                              Temp_int_Variable_1                                              (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference, Interp)
+// class APlayerController*           CallFunc_GetOwningPlayer_ReturnValue                             (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, SubobjectReference)
+// class APlayerController*           CallFunc_GetOwningPlayer_ReturnValue_1                           (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, SubobjectReference, Interp)
+// struct FKey                        K2Node_CustomEvent_Key                                           (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// enum class EViewState              K2Node_CustomEvent_State                                         (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_EqualEqual_ByteByte_ReturnValue                         (BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue                           (BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_1                         (BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference, Interp)
+// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue_2                         (BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// bool                               CallFunc_CanGoToNextImage_ReturnValue                            (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_CanGoToPreviousImage_ReturnValue                        (ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
+// class UBindButtonSystem*           CallFunc_GetEngineSubsystem_ReturnValue                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue_1                                   (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference, Interp)
+// struct FGeometry                   K2Node_Event_MyGeometry                                          (Edit, ConstParm, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// float                              K2Node_Event_InDeltaTime                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-FDelegateProperty_ UUI_ZoomImage_C::ExecuteUbergraph_UI_ZoomImage(class UImage* K2Node_CustomEvent_IMG_ScreenshotImg, class APlayerController** CallFunc_GetOwningPlayer_ReturnValue, class APlayerController** CallFunc_GetOwningPlayer_ReturnValue_1, const struct FKey& K2Node_CustomEvent_Key, enum class EViewState K2Node_CustomEvent_State, bool CallFunc_EqualEqual_KeyKey_ReturnValue, bool CallFunc_EqualEqual_KeyKey_ReturnValue_1, bool CallFunc_EqualEqual_KeyKey_ReturnValue_2, bool* CallFunc_IsValid_ReturnValue, bool* CallFunc_CanGoToNextImage_ReturnValue, bool* CallFunc_CanGoToPreviousImage_ReturnValue, class UBindButtonSystem* CallFunc_GetEngineSubsystem_ReturnValue, bool* CallFunc_IsValid_ReturnValue_1, const struct FGeometry& K2Node_Event_MyGeometry, float* K2Node_Event_InDeltaTime)
+bool UUI_ZoomImage_C::ExecuteUbergraph_UI_ZoomImage(int32* EntryPoint, int32* Temp_int_Variable, class UImage* K2Node_CustomEvent_IMG_ScreenshotImg, int32 CallFunc_Subtract_IntInt_ReturnValue, int32* Temp_int_Variable_1, class APlayerController* CallFunc_GetOwningPlayer_ReturnValue, class APlayerController* CallFunc_GetOwningPlayer_ReturnValue_1, struct FKey* K2Node_CustomEvent_Key, bool* CallFunc_EqualEqual_KeyKey_ReturnValue, bool* CallFunc_EqualEqual_KeyKey_ReturnValue_1, bool* CallFunc_EqualEqual_KeyKey_ReturnValue_2, const struct FGeometry& K2Node_Event_MyGeometry, float K2Node_Event_InDeltaTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -733,36 +698,34 @@ FDelegateProperty_ UUI_ZoomImage_C::ExecuteUbergraph_UI_ZoomImage(class UImage* 
 	Params::UUI_ZoomImage_C_ExecuteUbergraph_UI_ZoomImage_Params Parms{};
 
 	Parms.K2Node_CustomEvent_IMG_ScreenshotImg = K2Node_CustomEvent_IMG_ScreenshotImg;
-	Parms.K2Node_CustomEvent_Key = K2Node_CustomEvent_Key;
-	Parms.K2Node_CustomEvent_State = K2Node_CustomEvent_State;
-	Parms.CallFunc_EqualEqual_KeyKey_ReturnValue = CallFunc_EqualEqual_KeyKey_ReturnValue;
-	Parms.CallFunc_EqualEqual_KeyKey_ReturnValue_1 = CallFunc_EqualEqual_KeyKey_ReturnValue_1;
-	Parms.CallFunc_EqualEqual_KeyKey_ReturnValue_2 = CallFunc_EqualEqual_KeyKey_ReturnValue_2;
-	Parms.CallFunc_GetEngineSubsystem_ReturnValue = CallFunc_GetEngineSubsystem_ReturnValue;
+	Parms.CallFunc_Subtract_IntInt_ReturnValue = CallFunc_Subtract_IntInt_ReturnValue;
+	Parms.CallFunc_GetOwningPlayer_ReturnValue = CallFunc_GetOwningPlayer_ReturnValue;
+	Parms.CallFunc_GetOwningPlayer_ReturnValue_1 = CallFunc_GetOwningPlayer_ReturnValue_1;
 	Parms.K2Node_Event_MyGeometry = K2Node_Event_MyGeometry;
+	Parms.K2Node_Event_InDeltaTime = K2Node_Event_InDeltaTime;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_GetOwningPlayer_ReturnValue != nullptr)
-		*CallFunc_GetOwningPlayer_ReturnValue = Parms.CallFunc_GetOwningPlayer_ReturnValue;
+	if (EntryPoint != nullptr)
+		*EntryPoint = Parms.EntryPoint;
 
-	if (CallFunc_GetOwningPlayer_ReturnValue_1 != nullptr)
-		*CallFunc_GetOwningPlayer_ReturnValue_1 = Parms.CallFunc_GetOwningPlayer_ReturnValue_1;
+	if (Temp_int_Variable != nullptr)
+		*Temp_int_Variable = Parms.Temp_int_Variable;
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	if (Temp_int_Variable_1 != nullptr)
+		*Temp_int_Variable_1 = Parms.Temp_int_Variable_1;
 
-	if (CallFunc_CanGoToNextImage_ReturnValue != nullptr)
-		*CallFunc_CanGoToNextImage_ReturnValue = Parms.CallFunc_CanGoToNextImage_ReturnValue;
+	if (K2Node_CustomEvent_Key != nullptr)
+		*K2Node_CustomEvent_Key = std::move(Parms.K2Node_CustomEvent_Key);
 
-	if (CallFunc_CanGoToPreviousImage_ReturnValue != nullptr)
-		*CallFunc_CanGoToPreviousImage_ReturnValue = Parms.CallFunc_CanGoToPreviousImage_ReturnValue;
+	if (CallFunc_EqualEqual_KeyKey_ReturnValue != nullptr)
+		*CallFunc_EqualEqual_KeyKey_ReturnValue = Parms.CallFunc_EqualEqual_KeyKey_ReturnValue;
 
-	if (CallFunc_IsValid_ReturnValue_1 != nullptr)
-		*CallFunc_IsValid_ReturnValue_1 = Parms.CallFunc_IsValid_ReturnValue_1;
+	if (CallFunc_EqualEqual_KeyKey_ReturnValue_1 != nullptr)
+		*CallFunc_EqualEqual_KeyKey_ReturnValue_1 = Parms.CallFunc_EqualEqual_KeyKey_ReturnValue_1;
 
-	if (K2Node_Event_InDeltaTime != nullptr)
-		*K2Node_Event_InDeltaTime = Parms.K2Node_Event_InDeltaTime;
+	if (CallFunc_EqualEqual_KeyKey_ReturnValue_2 != nullptr)
+		*CallFunc_EqualEqual_KeyKey_ReturnValue_2 = Parms.CallFunc_EqualEqual_KeyKey_ReturnValue_2;
 
 	return Parms.ReturnValue;
 

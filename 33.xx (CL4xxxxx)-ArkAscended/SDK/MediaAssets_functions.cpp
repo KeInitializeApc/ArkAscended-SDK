@@ -43,9 +43,9 @@ class UMediaSource* UMediaSource::GetDefaultObj()
 // Function MediaAssets.MediaSource.Validate
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaSource::Validate(bool ReturnValue)
+bool UMediaSource::Validate()
 {
 	static class UFunction* Func = nullptr;
 
@@ -54,7 +54,6 @@ void UMediaSource::Validate(bool ReturnValue)
 
 	Params::UMediaSource_Validate_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -64,16 +63,18 @@ void UMediaSource::Validate(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaSource.SetMediaOptionString
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
-// class FString                      Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+// class FName                        Key                                                              (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance)
+// class FString                      Value                                                            (ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
 
-class FName UMediaSource::SetMediaOptionString(class FString* Value)
+void UMediaSource::SetMediaOptionString(class FName Key, class FString* Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -82,6 +83,7 @@ class FName UMediaSource::SetMediaOptionString(class FString* Value)
 
 	Params::UMediaSource_SetMediaOptionString_Params Parms{};
 
+	Parms.Key = Key;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -94,18 +96,16 @@ class FName UMediaSource::SetMediaOptionString(class FString* Value)
 	if (Value != nullptr)
 		*Value = std::move(Parms.Value);
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function MediaAssets.MediaSource.SetMediaOptionInt64
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
-// int64                              Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+// class FName                        Key                                                              (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance)
+// int64                              Value                                                            (ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
 
-class FName UMediaSource::SetMediaOptionInt64(int64* Value)
+void UMediaSource::SetMediaOptionInt64(class FName Key, int64* Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -114,6 +114,7 @@ class FName UMediaSource::SetMediaOptionInt64(int64* Value)
 
 	Params::UMediaSource_SetMediaOptionInt64_Params Parms{};
 
+	Parms.Key = Key;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -126,18 +127,16 @@ class FName UMediaSource::SetMediaOptionInt64(int64* Value)
 	if (Value != nullptr)
 		*Value = Parms.Value;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function MediaAssets.MediaSource.SetMediaOptionFloat
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
-// float                              Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+// class FName                        Key                                                              (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance)
+// float                              Value                                                            (ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
 
-class FName UMediaSource::SetMediaOptionFloat(float* Value)
+void UMediaSource::SetMediaOptionFloat(class FName Key, float* Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -146,6 +145,7 @@ class FName UMediaSource::SetMediaOptionFloat(float* Value)
 
 	Params::UMediaSource_SetMediaOptionFloat_Params Parms{};
 
+	Parms.Key = Key;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -158,18 +158,16 @@ class FName UMediaSource::SetMediaOptionFloat(float* Value)
 	if (Value != nullptr)
 		*Value = Parms.Value;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function MediaAssets.MediaSource.SetMediaOptionBool
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        Key                                                              (BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
-// bool                               Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+// class FName                        Key                                                              (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance)
+// bool                               Value                                                            (ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
 
-class FName UMediaSource::SetMediaOptionBool(bool* Value)
+void UMediaSource::SetMediaOptionBool(class FName Key, bool* Value)
 {
 	static class UFunction* Func = nullptr;
 
@@ -178,6 +176,7 @@ class FName UMediaSource::SetMediaOptionBool(bool* Value)
 
 	Params::UMediaSource_SetMediaOptionBool_Params Parms{};
 
+	Parms.Key = Key;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -190,17 +189,15 @@ class FName UMediaSource::SetMediaOptionBool(bool* Value)
 	if (Value != nullptr)
 		*Value = Parms.Value;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function MediaAssets.MediaSource.GetUrl
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaSource::GetUrl(const class FString& ReturnValue)
+class FString UMediaSource::GetUrl()
 {
 	static class UFunction* Func = nullptr;
 
@@ -209,7 +206,6 @@ void UMediaSource::GetUrl(const class FString& ReturnValue)
 
 	Params::UMediaSource_GetUrl_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -218,6 +214,8 @@ void UMediaSource::GetUrl(const class FString& ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -333,7 +331,7 @@ void UMediaTexture::UpdateResource()
 // Function MediaAssets.MediaTexture.SetMediaPlayer
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMediaPlayer*                NewMediaPlayer                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UMediaPlayer*                NewMediaPlayer                                                   (Edit, ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 class UMediaPlayer* UMediaTexture::SetMediaPlayer()
 {
@@ -361,9 +359,9 @@ class UMediaPlayer* UMediaTexture::SetMediaPlayer()
 // Function MediaAssets.MediaTexture.GetWidth
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaTexture::GetWidth(int32 ReturnValue)
+int32 UMediaTexture::GetWidth()
 {
 	static class UFunction* Func = nullptr;
 
@@ -372,7 +370,6 @@ void UMediaTexture::GetWidth(int32 ReturnValue)
 
 	Params::UMediaTexture_GetWidth_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -382,15 +379,17 @@ void UMediaTexture::GetWidth(int32 ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaTexture.GetTextureNumMips
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaTexture::GetTextureNumMips(int32 ReturnValue)
+int32 UMediaTexture::GetTextureNumMips()
 {
 	static class UFunction* Func = nullptr;
 
@@ -399,7 +398,6 @@ void UMediaTexture::GetTextureNumMips(int32 ReturnValue)
 
 	Params::UMediaTexture_GetTextureNumMips_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -409,15 +407,17 @@ void UMediaTexture::GetTextureNumMips(int32 ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaTexture.GetMediaPlayer
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UMediaPlayer*                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UMediaPlayer*                ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaTexture::GetMediaPlayer(class UMediaPlayer* ReturnValue)
+class UMediaPlayer* UMediaTexture::GetMediaPlayer()
 {
 	static class UFunction* Func = nullptr;
 
@@ -426,7 +426,6 @@ void UMediaTexture::GetMediaPlayer(class UMediaPlayer* ReturnValue)
 
 	Params::UMediaTexture_GetMediaPlayer_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -436,15 +435,17 @@ void UMediaTexture::GetMediaPlayer(class UMediaPlayer* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaTexture.GetHeight
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaTexture::GetHeight(int32 ReturnValue)
+int32 UMediaTexture::GetHeight()
 {
 	static class UFunction* Func = nullptr;
 
@@ -453,7 +454,6 @@ void UMediaTexture::GetHeight(int32 ReturnValue)
 
 	Params::UMediaTexture_GetHeight_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -463,15 +463,17 @@ void UMediaTexture::GetHeight(int32 ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaTexture.GetAspectRatio
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaTexture::GetAspectRatio(float ReturnValue)
+float UMediaTexture::GetAspectRatio()
 {
 	static class UFunction* Func = nullptr;
 
@@ -480,7 +482,6 @@ void UMediaTexture::GetAspectRatio(float ReturnValue)
 
 	Params::UMediaTexture_GetAspectRatio_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -489,6 +490,8 @@ void UMediaTexture::GetAspectRatio(float ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -524,9 +527,9 @@ class UFileMediaSource* UFileMediaSource::GetDefaultObj()
 // Function MediaAssets.FileMediaSource.SetFilePath
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      Path                                                             (ConstParm, ExportObject, Net, OutParm, DisableEditOnTemplate, Config, SubobjectReference)
+// class FString                      Path                                                             (BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig)
 
-void UFileMediaSource::SetFilePath(class FString* Path)
+class FString UFileMediaSource::SetFilePath()
 {
 	static class UFunction* Func = nullptr;
 
@@ -544,8 +547,7 @@ void UFileMediaSource::SetFilePath(class FString* Path)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Path != nullptr)
-		*Path = std::move(Parms.Path);
+	return Parms.ReturnValue;
 
 }
 
@@ -581,9 +583,9 @@ class UMediaComponent* UMediaComponent::GetDefaultObj()
 // Function MediaAssets.MediaComponent.GetMediaTexture
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UMediaTexture*               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UMediaTexture*               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaComponent::GetMediaTexture(class UMediaTexture* ReturnValue)
+class UMediaTexture* UMediaComponent::GetMediaTexture()
 {
 	static class UFunction* Func = nullptr;
 
@@ -592,7 +594,6 @@ void UMediaComponent::GetMediaTexture(class UMediaTexture* ReturnValue)
 
 	Params::UMediaComponent_GetMediaTexture_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -602,15 +603,17 @@ void UMediaComponent::GetMediaTexture(class UMediaTexture* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaComponent.GetMediaPlayer
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UMediaPlayer*                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UMediaPlayer*                ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaComponent::GetMediaPlayer(class UMediaPlayer* ReturnValue)
+class UMediaPlayer* UMediaComponent::GetMediaPlayer()
 {
 	static class UFunction* Func = nullptr;
 
@@ -619,7 +622,6 @@ void UMediaComponent::GetMediaPlayer(class UMediaPlayer* ReturnValue)
 
 	Params::UMediaComponent_GetMediaPlayer_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -628,6 +630,8 @@ void UMediaComponent::GetMediaPlayer(class UMediaPlayer* ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -691,9 +695,9 @@ class UMediaPlayer* UMediaPlayer::GetDefaultObj()
 // Function MediaAssets.MediaPlayer.SupportsSeeking
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::SupportsSeeking(bool ReturnValue)
+bool UMediaPlayer::SupportsSeeking()
 {
 	static class UFunction* Func = nullptr;
 
@@ -702,63 +706,6 @@ void UMediaPlayer::SupportsSeeking(bool ReturnValue)
 
 	Params::UMediaPlayer_SupportsSeeking_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
-// Function MediaAssets.MediaPlayer.SupportsScrubbing
-// (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
-// Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-
-void UMediaPlayer::SupportsScrubbing(bool ReturnValue)
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("MediaPlayer", "SupportsScrubbing");
-
-	Params::UMediaPlayer_SupportsScrubbing_Params Parms{};
-
-	Parms.ReturnValue = ReturnValue;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
-// Function MediaAssets.MediaPlayer.SupportsRate
-// (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
-// Parameters:
-// float                              Rate                                                             (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-// bool                               Unthinned                                                        (BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-
-bool UMediaPlayer::SupportsRate(bool ReturnValue)
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("MediaPlayer", "SupportsRate");
-
-	Params::UMediaPlayer_SupportsRate_Params Parms{};
-
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -773,14 +720,75 @@ bool UMediaPlayer::SupportsRate(bool ReturnValue)
 }
 
 
+// Function MediaAssets.MediaPlayer.SupportsScrubbing
+// (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
+// Parameters:
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+
+bool UMediaPlayer::SupportsScrubbing()
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("MediaPlayer", "SupportsScrubbing");
+
+	Params::UMediaPlayer_SupportsScrubbing_Params Parms{};
+
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
+
+}
+
+
+// Function MediaAssets.MediaPlayer.SupportsRate
+// (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
+// Parameters:
+// float                              Rate                                                             (Edit, BlueprintVisible, OutParm, Transient, EditConst, SubobjectReference)
+// bool                               Unthinned                                                        (Edit, ConstParm, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+
+bool UMediaPlayer::SupportsRate(float* Rate)
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("MediaPlayer", "SupportsRate");
+
+	Params::UMediaPlayer_SupportsRate_Params Parms{};
+
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	if (Rate != nullptr)
+		*Rate = Parms.Rate;
+
+	return Parms.ReturnValue;
+
+}
+
+
 // Function MediaAssets.MediaPlayer.SetViewRotation
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
 // struct FRotator                    Rotation                                                         (BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// bool                               Absolute                                                         (Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               Absolute                                                         (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool UMediaPlayer::SetViewRotation(struct FRotator* Rotation, bool ReturnValue)
+bool UMediaPlayer::SetViewRotation(struct FRotator* Rotation, bool* Absolute)
 {
 	static class UFunction* Func = nullptr;
 
@@ -789,7 +797,6 @@ bool UMediaPlayer::SetViewRotation(struct FRotator* Rotation, bool ReturnValue)
 
 	Params::UMediaPlayer_SetViewRotation_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -802,6 +809,9 @@ bool UMediaPlayer::SetViewRotation(struct FRotator* Rotation, bool ReturnValue)
 	if (Rotation != nullptr)
 		*Rotation = std::move(Parms.Rotation);
 
+	if (Absolute != nullptr)
+		*Absolute = Parms.Absolute;
+
 	return Parms.ReturnValue;
 
 }
@@ -810,12 +820,12 @@ bool UMediaPlayer::SetViewRotation(struct FRotator* Rotation, bool ReturnValue)
 // Function MediaAssets.MediaPlayer.SetViewField
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Horizontal                                                       (Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// float                              Vertical                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               Absolute                                                         (Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              Horizontal                                                       (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              Vertical                                                         (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               Absolute                                                         (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool UMediaPlayer::SetViewField(bool ReturnValue)
+bool UMediaPlayer::SetViewField(bool* Absolute)
 {
 	static class UFunction* Func = nullptr;
 
@@ -824,7 +834,6 @@ bool UMediaPlayer::SetViewField(bool ReturnValue)
 
 	Params::UMediaPlayer_SetViewField_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -833,6 +842,9 @@ bool UMediaPlayer::SetViewField(bool ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Absolute != nullptr)
+		*Absolute = Parms.Absolute;
 
 	return Parms.ReturnValue;
 
@@ -842,12 +854,12 @@ bool UMediaPlayer::SetViewField(bool ReturnValue)
 // Function MediaAssets.MediaPlayer.SetVideoTrackFrameRate
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              TrackIndex                                                       (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              FormatIndex                                                      (Edit, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// int32                              TrackIndex                                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// int32                              FormatIndex                                                      (Edit, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 // float                              FrameRate                                                        (ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float UMediaPlayer::SetVideoTrackFrameRate(bool ReturnValue)
+bool UMediaPlayer::SetVideoTrackFrameRate(int32* TrackIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -856,7 +868,6 @@ float UMediaPlayer::SetVideoTrackFrameRate(bool ReturnValue)
 
 	Params::UMediaPlayer_SetVideoTrackFrameRate_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -865,6 +876,9 @@ float UMediaPlayer::SetVideoTrackFrameRate(bool ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (TrackIndex != nullptr)
+		*TrackIndex = Parms.TrackIndex;
 
 	return Parms.ReturnValue;
 
@@ -874,12 +888,12 @@ float UMediaPlayer::SetVideoTrackFrameRate(bool ReturnValue)
 // Function MediaAssets.MediaPlayer.SetTrackFormat
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EMediaPlayerTrack       TrackType                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              TrackIndex                                                       (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              FormatIndex                                                      (Edit, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class EMediaPlayerTrack       TrackType                                                        (ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              TrackIndex                                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// int32                              FormatIndex                                                      (Edit, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UMediaPlayer::SetTrackFormat(bool ReturnValue)
+bool UMediaPlayer::SetTrackFormat(enum class EMediaPlayerTrack TrackType, int32* TrackIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -888,7 +902,7 @@ int32 UMediaPlayer::SetTrackFormat(bool ReturnValue)
 
 	Params::UMediaPlayer_SetTrackFormat_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.TrackType = TrackType;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -898,6 +912,9 @@ int32 UMediaPlayer::SetTrackFormat(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	if (TrackIndex != nullptr)
+		*TrackIndex = Parms.TrackIndex;
+
 	return Parms.ReturnValue;
 
 }
@@ -906,7 +923,7 @@ int32 UMediaPlayer::SetTrackFormat(bool ReturnValue)
 // Function MediaAssets.MediaPlayer.SetTimeDelay
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FTimespan                   TimeDelay                                                        (Edit, ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
+// struct FTimespan                   TimeDelay                                                        (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, EditConst)
 
 struct FTimespan UMediaPlayer::SetTimeDelay()
 {
@@ -934,10 +951,10 @@ struct FTimespan UMediaPlayer::SetTimeDelay()
 // Function MediaAssets.MediaPlayer.SetRate
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Rate                                                             (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              Rate                                                             (Edit, BlueprintVisible, OutParm, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float UMediaPlayer::SetRate(bool ReturnValue)
+bool UMediaPlayer::SetRate(float* Rate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -946,7 +963,6 @@ float UMediaPlayer::SetRate(bool ReturnValue)
 
 	Params::UMediaPlayer_SetRate_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -956,6 +972,9 @@ float UMediaPlayer::SetRate(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	if (Rate != nullptr)
+		*Rate = Parms.Rate;
+
 	return Parms.ReturnValue;
 
 }
@@ -964,10 +983,10 @@ float UMediaPlayer::SetRate(bool ReturnValue)
 // Function MediaAssets.MediaPlayer.SetNativeVolume
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Volume                                                           (ConstParm, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, Config)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              Volume                                                           (EditFixedSize, OutParm, ReturnParm, Transient, Config)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float UMediaPlayer::SetNativeVolume(bool ReturnValue)
+bool UMediaPlayer::SetNativeVolume()
 {
 	static class UFunction* Func = nullptr;
 
@@ -976,7 +995,6 @@ float UMediaPlayer::SetNativeVolume(bool ReturnValue)
 
 	Params::UMediaPlayer_SetNativeVolume_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -994,9 +1012,9 @@ float UMediaPlayer::SetNativeVolume(bool ReturnValue)
 // Function MediaAssets.MediaPlayer.SetMediaOptions
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMediaSource*                Options                                                          (Edit, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// class UMediaSource*                Options                                                          (Edit, ExportObject, Parm, ZeroConstructor, GlobalConfig, SubobjectReference)
 
-class UMediaSource* UMediaPlayer::SetMediaOptions()
+void UMediaPlayer::SetMediaOptions(class UMediaSource* Options)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1004,6 +1022,34 @@ class UMediaSource* UMediaPlayer::SetMediaOptions()
 		Func = Class->GetFunction("MediaPlayer", "SetMediaOptions");
 
 	Params::UMediaPlayer_SetMediaOptions_Params Parms{};
+
+	Parms.Options = Options;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+}
+
+
+// Function MediaAssets.MediaPlayer.SetLooping
+// (Final, Native, Public, BlueprintCallable)
+// Parameters:
+// bool                               Looping                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+
+bool UMediaPlayer::SetLooping()
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("MediaPlayer", "SetLooping");
+
+	Params::UMediaPlayer_SetLooping_Params Parms{};
 
 
 	auto Flgs = Func->FunctionFlags;
@@ -1019,41 +1065,10 @@ class UMediaSource* UMediaPlayer::SetMediaOptions()
 }
 
 
-// Function MediaAssets.MediaPlayer.SetLooping
-// (Final, Native, Public, BlueprintCallable)
-// Parameters:
-// bool                               Looping                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Config, EditConst, GlobalConfig, InstancedReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-
-void UMediaPlayer::SetLooping(bool* Looping, bool ReturnValue)
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("MediaPlayer", "SetLooping");
-
-	Params::UMediaPlayer_SetLooping_Params Parms{};
-
-	Parms.ReturnValue = ReturnValue;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-	if (Looping != nullptr)
-		*Looping = Parms.Looping;
-
-}
-
-
 // Function MediaAssets.MediaPlayer.SetDesiredPlayerName
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        PlayerName                                                       (ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// class FName                        PlayerName                                                       (ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, EditConst, SubobjectReference)
 
 class FName UMediaPlayer::SetDesiredPlayerName()
 {
@@ -1081,7 +1096,7 @@ class FName UMediaPlayer::SetDesiredPlayerName()
 // Function MediaAssets.MediaPlayer.SetBlockOnTime
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FTimespan                   Time                                                             (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// struct FTimespan                   Time                                                             (Edit, ConstParm, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
 
 struct FTimespan UMediaPlayer::SetBlockOnTime()
 {
@@ -1109,11 +1124,11 @@ struct FTimespan UMediaPlayer::SetBlockOnTime()
 // Function MediaAssets.MediaPlayer.SelectTrack
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class EMediaPlayerTrack       TrackType                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              TrackIndex                                                       (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class EMediaPlayerTrack       TrackType                                                        (ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              TrackIndex                                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UMediaPlayer::SelectTrack(bool ReturnValue)
+bool UMediaPlayer::SelectTrack(enum class EMediaPlayerTrack TrackType, int32* TrackIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1122,7 +1137,7 @@ int32 UMediaPlayer::SelectTrack(bool ReturnValue)
 
 	Params::UMediaPlayer_SelectTrack_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.TrackType = TrackType;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1132,6 +1147,9 @@ int32 UMediaPlayer::SelectTrack(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	if (TrackIndex != nullptr)
+		*TrackIndex = Parms.TrackIndex;
+
 	return Parms.ReturnValue;
 
 }
@@ -1140,10 +1158,10 @@ int32 UMediaPlayer::SelectTrack(bool ReturnValue)
 // Function MediaAssets.MediaPlayer.Seek
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FTimespan                   Time                                                             (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FTimespan                   Time                                                             (Edit, ConstParm, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FTimespan UMediaPlayer::Seek(bool ReturnValue)
+bool UMediaPlayer::Seek()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1152,7 +1170,6 @@ struct FTimespan UMediaPlayer::Seek(bool ReturnValue)
 
 	Params::UMediaPlayer_Seek_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1170,9 +1187,9 @@ struct FTimespan UMediaPlayer::Seek(bool ReturnValue)
 // Function MediaAssets.MediaPlayer.Rewind
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::Rewind(bool ReturnValue)
+bool UMediaPlayer::Rewind()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1181,7 +1198,6 @@ void UMediaPlayer::Rewind(bool ReturnValue)
 
 	Params::UMediaPlayer_Rewind_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1191,15 +1207,17 @@ void UMediaPlayer::Rewind(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.Reopen
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::Reopen(bool ReturnValue)
+bool UMediaPlayer::Reopen()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1208,7 +1226,6 @@ void UMediaPlayer::Reopen(bool ReturnValue)
 
 	Params::UMediaPlayer_Reopen_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1218,15 +1235,17 @@ void UMediaPlayer::Reopen(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.Previous
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::Previous(bool ReturnValue)
+bool UMediaPlayer::Previous()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1235,7 +1254,6 @@ void UMediaPlayer::Previous(bool ReturnValue)
 
 	Params::UMediaPlayer_Previous_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1244,6 +1262,8 @@ void UMediaPlayer::Previous(bool ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -1275,9 +1295,9 @@ void UMediaPlayer::PlayAndSeek()
 // Function MediaAssets.MediaPlayer.Play
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::Play(bool ReturnValue)
+bool UMediaPlayer::Play()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1286,7 +1306,6 @@ void UMediaPlayer::Play(bool ReturnValue)
 
 	Params::UMediaPlayer_Play_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1296,15 +1315,17 @@ void UMediaPlayer::Play(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.Pause
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::Pause(bool ReturnValue)
+bool UMediaPlayer::Pause()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1313,7 +1334,6 @@ void UMediaPlayer::Pause(bool ReturnValue)
 
 	Params::UMediaPlayer_Pause_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1323,16 +1343,18 @@ void UMediaPlayer::Pause(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.OpenUrl
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      URL                                                              (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, EditConst)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      URL                                                              (Edit, ConstParm, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, EditConst)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FString UMediaPlayer::OpenUrl(bool ReturnValue)
+bool UMediaPlayer::OpenUrl()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1341,7 +1363,6 @@ class FString UMediaPlayer::OpenUrl(bool ReturnValue)
 
 	Params::UMediaPlayer_OpenUrl_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1359,11 +1380,11 @@ class FString UMediaPlayer::OpenUrl(bool ReturnValue)
 // Function MediaAssets.MediaPlayer.OpenSourceWithOptions
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UMediaSource*                MediaSource                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// struct FMediaPlayerOptions         Options                                                          (Edit, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UMediaSource*                MediaSource                                                      (BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, GlobalConfig)
+// struct FMediaPlayerOptions         Options                                                          (Edit, ExportObject, Parm, ZeroConstructor, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FMediaPlayerOptions UMediaPlayer::OpenSourceWithOptions(bool ReturnValue)
+bool UMediaPlayer::OpenSourceWithOptions(class UMediaSource* MediaSource, const struct FMediaPlayerOptions& Options)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1372,7 +1393,8 @@ struct FMediaPlayerOptions UMediaPlayer::OpenSourceWithOptions(bool ReturnValue)
 
 	Params::UMediaPlayer_OpenSourceWithOptions_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.MediaSource = MediaSource;
+	Parms.Options = Options;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1390,13 +1412,13 @@ struct FMediaPlayerOptions UMediaPlayer::OpenSourceWithOptions(bool ReturnValue)
 // Function MediaAssets.MediaPlayer.OpenSourceLatent
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FLatentActionInfo           LatentInfo                                                       (BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// class UMediaSource*                MediaSource                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// struct FMediaPlayerOptions         Options                                                          (Edit, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-// bool                               bSuccess                                                         (Edit, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FLatentActionInfo           LatentInfo                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UMediaSource*                MediaSource                                                      (BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, GlobalConfig)
+// struct FMediaPlayerOptions         Options                                                          (Edit, ExportObject, Parm, ZeroConstructor, GlobalConfig, SubobjectReference)
+// bool                               bSuccess                                                         (Edit, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool UMediaPlayer::OpenSourceLatent()
+bool UMediaPlayer::OpenSourceLatent(class UObject** WorldContextObject, class UMediaSource* MediaSource, const struct FMediaPlayerOptions& Options)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1405,6 +1427,8 @@ bool UMediaPlayer::OpenSourceLatent()
 
 	Params::UMediaPlayer_OpenSourceLatent_Params Parms{};
 
+	Parms.MediaSource = MediaSource;
+	Parms.Options = Options;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1414,6 +1438,9 @@ bool UMediaPlayer::OpenSourceLatent()
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
 	return Parms.ReturnValue;
 
 }
@@ -1422,10 +1449,10 @@ bool UMediaPlayer::OpenSourceLatent()
 // Function MediaAssets.MediaPlayer.OpenSource
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMediaSource*                MediaSource                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UMediaSource*                MediaSource                                                      (BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, GlobalConfig)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UMediaSource* UMediaPlayer::OpenSource(bool ReturnValue)
+bool UMediaPlayer::OpenSource(class UMediaSource* MediaSource)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1434,7 +1461,7 @@ class UMediaSource* UMediaPlayer::OpenSource(bool ReturnValue)
 
 	Params::UMediaPlayer_OpenSource_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.MediaSource = MediaSource;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1452,11 +1479,11 @@ class UMediaSource* UMediaPlayer::OpenSource(bool ReturnValue)
 // Function MediaAssets.MediaPlayer.OpenPlaylistIndex
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMediaPlaylist*              InPlaylist                                                       (Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// int32                              Index                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UMediaPlaylist*              InPlaylist                                                       (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              Index                                                            (EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UMediaPlaylist* UMediaPlayer::OpenPlaylistIndex(int32* Index, bool ReturnValue)
+bool UMediaPlayer::OpenPlaylistIndex()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1465,7 +1492,6 @@ class UMediaPlaylist* UMediaPlayer::OpenPlaylistIndex(int32* Index, bool ReturnV
 
 	Params::UMediaPlayer_OpenPlaylistIndex_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1475,9 +1501,6 @@ class UMediaPlaylist* UMediaPlayer::OpenPlaylistIndex(int32* Index, bool ReturnV
 
 	Func->FunctionFlags = Flgs;
 
-	if (Index != nullptr)
-		*Index = Parms.Index;
-
 	return Parms.ReturnValue;
 
 }
@@ -1486,10 +1509,10 @@ class UMediaPlaylist* UMediaPlayer::OpenPlaylistIndex(int32* Index, bool ReturnV
 // Function MediaAssets.MediaPlayer.OpenPlaylist
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMediaPlaylist*              InPlaylist                                                       (Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UMediaPlaylist*              InPlaylist                                                       (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UMediaPlaylist* UMediaPlayer::OpenPlaylist(bool ReturnValue)
+bool UMediaPlayer::OpenPlaylist()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1498,7 +1521,6 @@ class UMediaPlaylist* UMediaPlayer::OpenPlaylist(bool ReturnValue)
 
 	Params::UMediaPlayer_OpenPlaylist_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1516,10 +1538,10 @@ class UMediaPlaylist* UMediaPlayer::OpenPlaylist(bool ReturnValue)
 // Function MediaAssets.MediaPlayer.OpenFile
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      FilePath                                                         (Edit, ConstParm, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      FilePath                                                         (Edit, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FString UMediaPlayer::OpenFile(bool ReturnValue)
+bool UMediaPlayer::OpenFile()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1528,7 +1550,6 @@ class FString UMediaPlayer::OpenFile(bool ReturnValue)
 
 	Params::UMediaPlayer_OpenFile_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1546,9 +1567,9 @@ class FString UMediaPlayer::OpenFile(bool ReturnValue)
 // Function MediaAssets.MediaPlayer.Next
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::Next(bool ReturnValue)
+bool UMediaPlayer::Next()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1557,7 +1578,6 @@ void UMediaPlayer::Next(bool ReturnValue)
 
 	Params::UMediaPlayer_Next_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1567,15 +1587,17 @@ void UMediaPlayer::Next(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.IsReady
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::IsReady(bool ReturnValue)
+bool UMediaPlayer::IsReady()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1584,7 +1606,6 @@ void UMediaPlayer::IsReady(bool ReturnValue)
 
 	Params::UMediaPlayer_IsReady_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1594,15 +1615,17 @@ void UMediaPlayer::IsReady(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.IsPreparing
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::IsPreparing(bool ReturnValue)
+bool UMediaPlayer::IsPreparing()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1611,7 +1634,6 @@ void UMediaPlayer::IsPreparing(bool ReturnValue)
 
 	Params::UMediaPlayer_IsPreparing_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1621,15 +1643,17 @@ void UMediaPlayer::IsPreparing(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.IsPlaying
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::IsPlaying(bool ReturnValue)
+bool UMediaPlayer::IsPlaying()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1638,7 +1662,6 @@ void UMediaPlayer::IsPlaying(bool ReturnValue)
 
 	Params::UMediaPlayer_IsPlaying_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1648,15 +1671,17 @@ void UMediaPlayer::IsPlaying(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.IsPaused
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::IsPaused(bool ReturnValue)
+bool UMediaPlayer::IsPaused()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1665,7 +1690,6 @@ void UMediaPlayer::IsPaused(bool ReturnValue)
 
 	Params::UMediaPlayer_IsPaused_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1675,15 +1699,17 @@ void UMediaPlayer::IsPaused(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.IsLooping
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::IsLooping(bool ReturnValue)
+bool UMediaPlayer::IsLooping()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1692,7 +1718,6 @@ void UMediaPlayer::IsLooping(bool ReturnValue)
 
 	Params::UMediaPlayer_IsLooping_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1702,15 +1727,17 @@ void UMediaPlayer::IsLooping(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.IsConnecting
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::IsConnecting(bool ReturnValue)
+bool UMediaPlayer::IsConnecting()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1719,7 +1746,6 @@ void UMediaPlayer::IsConnecting(bool ReturnValue)
 
 	Params::UMediaPlayer_IsConnecting_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1729,15 +1755,17 @@ void UMediaPlayer::IsConnecting(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.IsClosed
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::IsClosed(bool ReturnValue)
+bool UMediaPlayer::IsClosed()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1746,7 +1774,6 @@ void UMediaPlayer::IsClosed(bool ReturnValue)
 
 	Params::UMediaPlayer_IsClosed_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1756,15 +1783,17 @@ void UMediaPlayer::IsClosed(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.IsBuffering
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::IsBuffering(bool ReturnValue)
+bool UMediaPlayer::IsBuffering()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1773,7 +1802,6 @@ void UMediaPlayer::IsBuffering(bool ReturnValue)
 
 	Params::UMediaPlayer_IsBuffering_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1783,15 +1811,17 @@ void UMediaPlayer::IsBuffering(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.HasError
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::HasError(bool ReturnValue)
+bool UMediaPlayer::HasError()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1800,7 +1830,6 @@ void UMediaPlayer::HasError(bool ReturnValue)
 
 	Params::UMediaPlayer_HasError_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1810,15 +1839,17 @@ void UMediaPlayer::HasError(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.GetViewRotation
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRotator                    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRotator                    ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::GetViewRotation(const struct FRotator& ReturnValue)
+struct FRotator UMediaPlayer::GetViewRotation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1827,7 +1858,6 @@ void UMediaPlayer::GetViewRotation(const struct FRotator& ReturnValue)
 
 	Params::UMediaPlayer_GetViewRotation_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1837,17 +1867,19 @@ void UMediaPlayer::GetViewRotation(const struct FRotator& ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.GetVideoTrackType
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              TrackIndex                                                       (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              FormatIndex                                                      (Edit, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              TrackIndex                                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// int32                              FormatIndex                                                      (Edit, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UMediaPlayer::GetVideoTrackType(const class FString& ReturnValue)
+class FString UMediaPlayer::GetVideoTrackType(int32* TrackIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1856,7 +1888,6 @@ int32 UMediaPlayer::GetVideoTrackType(const class FString& ReturnValue)
 
 	Params::UMediaPlayer_GetVideoTrackType_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1865,6 +1896,9 @@ int32 UMediaPlayer::GetVideoTrackType(const class FString& ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (TrackIndex != nullptr)
+		*TrackIndex = Parms.TrackIndex;
 
 	return Parms.ReturnValue;
 
@@ -1874,11 +1908,11 @@ int32 UMediaPlayer::GetVideoTrackType(const class FString& ReturnValue)
 // Function MediaAssets.MediaPlayer.GetVideoTrackFrameRates
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              TrackIndex                                                       (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              FormatIndex                                                      (Edit, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// struct FFloatRange                 ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              TrackIndex                                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// int32                              FormatIndex                                                      (Edit, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FFloatRange                 ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UMediaPlayer::GetVideoTrackFrameRates(const struct FFloatRange& ReturnValue)
+struct FFloatRange UMediaPlayer::GetVideoTrackFrameRates(int32* TrackIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1887,7 +1921,6 @@ int32 UMediaPlayer::GetVideoTrackFrameRates(const struct FFloatRange& ReturnValu
 
 	Params::UMediaPlayer_GetVideoTrackFrameRates_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1896,6 +1929,9 @@ int32 UMediaPlayer::GetVideoTrackFrameRates(const struct FFloatRange& ReturnValu
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (TrackIndex != nullptr)
+		*TrackIndex = Parms.TrackIndex;
 
 	return Parms.ReturnValue;
 
@@ -1905,11 +1941,11 @@ int32 UMediaPlayer::GetVideoTrackFrameRates(const struct FFloatRange& ReturnValu
 // Function MediaAssets.MediaPlayer.GetVideoTrackFrameRate
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              TrackIndex                                                       (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              FormatIndex                                                      (Edit, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              TrackIndex                                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// int32                              FormatIndex                                                      (Edit, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UMediaPlayer::GetVideoTrackFrameRate(float ReturnValue)
+float UMediaPlayer::GetVideoTrackFrameRate(int32* TrackIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1918,7 +1954,6 @@ int32 UMediaPlayer::GetVideoTrackFrameRate(float ReturnValue)
 
 	Params::UMediaPlayer_GetVideoTrackFrameRate_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1927,6 +1962,9 @@ int32 UMediaPlayer::GetVideoTrackFrameRate(float ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (TrackIndex != nullptr)
+		*TrackIndex = Parms.TrackIndex;
 
 	return Parms.ReturnValue;
 
@@ -1936,11 +1974,11 @@ int32 UMediaPlayer::GetVideoTrackFrameRate(float ReturnValue)
 // Function MediaAssets.MediaPlayer.GetVideoTrackDimensions
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              TrackIndex                                                       (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              FormatIndex                                                      (Edit, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// struct FIntPoint                   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              TrackIndex                                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// int32                              FormatIndex                                                      (Edit, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FIntPoint                   ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UMediaPlayer::GetVideoTrackDimensions(const struct FIntPoint& ReturnValue)
+struct FIntPoint UMediaPlayer::GetVideoTrackDimensions(int32* TrackIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1949,7 +1987,6 @@ int32 UMediaPlayer::GetVideoTrackDimensions(const struct FIntPoint& ReturnValue)
 
 	Params::UMediaPlayer_GetVideoTrackDimensions_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1958,6 +1995,9 @@ int32 UMediaPlayer::GetVideoTrackDimensions(const struct FIntPoint& ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (TrackIndex != nullptr)
+		*TrackIndex = Parms.TrackIndex;
 
 	return Parms.ReturnValue;
 
@@ -1967,11 +2007,11 @@ int32 UMediaPlayer::GetVideoTrackDimensions(const struct FIntPoint& ReturnValue)
 // Function MediaAssets.MediaPlayer.GetVideoTrackAspectRatio
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              TrackIndex                                                       (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              FormatIndex                                                      (Edit, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              TrackIndex                                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// int32                              FormatIndex                                                      (Edit, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UMediaPlayer::GetVideoTrackAspectRatio(float ReturnValue)
+float UMediaPlayer::GetVideoTrackAspectRatio(int32* TrackIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1980,7 +2020,6 @@ int32 UMediaPlayer::GetVideoTrackAspectRatio(float ReturnValue)
 
 	Params::UMediaPlayer_GetVideoTrackAspectRatio_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1989,6 +2028,9 @@ int32 UMediaPlayer::GetVideoTrackAspectRatio(float ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (TrackIndex != nullptr)
+		*TrackIndex = Parms.TrackIndex;
 
 	return Parms.ReturnValue;
 
@@ -1998,9 +2040,9 @@ int32 UMediaPlayer::GetVideoTrackAspectRatio(float ReturnValue)
 // Function MediaAssets.MediaPlayer.GetVerticalFieldOfView
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::GetVerticalFieldOfView(float ReturnValue)
+float UMediaPlayer::GetVerticalFieldOfView()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2009,7 +2051,6 @@ void UMediaPlayer::GetVerticalFieldOfView(float ReturnValue)
 
 	Params::UMediaPlayer_GetVerticalFieldOfView_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2019,15 +2060,17 @@ void UMediaPlayer::GetVerticalFieldOfView(float ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.GetUrl
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::GetUrl(const class FString& ReturnValue)
+class FString UMediaPlayer::GetUrl()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2036,7 +2079,6 @@ void UMediaPlayer::GetUrl(const class FString& ReturnValue)
 
 	Params::UMediaPlayer_GetUrl_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2046,17 +2088,19 @@ void UMediaPlayer::GetUrl(const class FString& ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.GetTrackLanguage
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EMediaPlayerTrack       TrackType                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              TrackIndex                                                       (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class EMediaPlayerTrack       TrackType                                                        (ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              TrackIndex                                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UMediaPlayer::GetTrackLanguage(const class FString& ReturnValue)
+class FString UMediaPlayer::GetTrackLanguage(enum class EMediaPlayerTrack TrackType, int32* TrackIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2065,7 +2109,7 @@ int32 UMediaPlayer::GetTrackLanguage(const class FString& ReturnValue)
 
 	Params::UMediaPlayer_GetTrackLanguage_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.TrackType = TrackType;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2074,6 +2118,9 @@ int32 UMediaPlayer::GetTrackLanguage(const class FString& ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (TrackIndex != nullptr)
+		*TrackIndex = Parms.TrackIndex;
 
 	return Parms.ReturnValue;
 
@@ -2083,11 +2130,11 @@ int32 UMediaPlayer::GetTrackLanguage(const class FString& ReturnValue)
 // Function MediaAssets.MediaPlayer.GetTrackFormat
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EMediaPlayerTrack       TrackType                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              TrackIndex                                                       (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class EMediaPlayerTrack       TrackType                                                        (ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              TrackIndex                                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UMediaPlayer::GetTrackFormat(int32 ReturnValue)
+int32 UMediaPlayer::GetTrackFormat(enum class EMediaPlayerTrack TrackType, int32* TrackIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2096,7 +2143,7 @@ int32 UMediaPlayer::GetTrackFormat(int32 ReturnValue)
 
 	Params::UMediaPlayer_GetTrackFormat_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.TrackType = TrackType;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2105,6 +2152,9 @@ int32 UMediaPlayer::GetTrackFormat(int32 ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (TrackIndex != nullptr)
+		*TrackIndex = Parms.TrackIndex;
 
 	return Parms.ReturnValue;
 
@@ -2114,11 +2164,11 @@ int32 UMediaPlayer::GetTrackFormat(int32 ReturnValue)
 // Function MediaAssets.MediaPlayer.GetTrackDisplayName
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EMediaPlayerTrack       TrackType                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              TrackIndex                                                       (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class EMediaPlayerTrack       TrackType                                                        (ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              TrackIndex                                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UMediaPlayer::GetTrackDisplayName(class FText ReturnValue)
+class FText UMediaPlayer::GetTrackDisplayName(enum class EMediaPlayerTrack TrackType, int32* TrackIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2127,7 +2177,38 @@ int32 UMediaPlayer::GetTrackDisplayName(class FText ReturnValue)
 
 	Params::UMediaPlayer_GetTrackDisplayName_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.TrackType = TrackType;
+
+	auto Flgs = Func->FunctionFlags;
+	Func->FunctionFlags |= 0x400;
+
+	UObject::ProcessEvent(Func, &Parms);
+
+
+	Func->FunctionFlags = Flgs;
+
+	if (TrackIndex != nullptr)
+		*TrackIndex = Parms.TrackIndex;
+
+	return Parms.ReturnValue;
+
+}
+
+
+// Function MediaAssets.MediaPlayer.GetTimeStamp
+// (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
+// Parameters:
+// class UMediaTimeStampInfo*         ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+
+class UMediaTimeStampInfo* UMediaPlayer::GetTimeStamp()
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("MediaPlayer", "GetTimeStamp");
+
+	Params::UMediaPlayer_GetTimeStamp_Params Parms{};
+
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2142,39 +2223,12 @@ int32 UMediaPlayer::GetTrackDisplayName(class FText ReturnValue)
 }
 
 
-// Function MediaAssets.MediaPlayer.GetTimeStamp
-// (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
-// Parameters:
-// class UMediaTimeStampInfo*         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-
-void UMediaPlayer::GetTimeStamp(class UMediaTimeStampInfo* ReturnValue)
-{
-	static class UFunction* Func = nullptr;
-
-	if (!Func)
-		Func = Class->GetFunction("MediaPlayer", "GetTimeStamp");
-
-	Params::UMediaPlayer_GetTimeStamp_Params Parms{};
-
-	Parms.ReturnValue = ReturnValue;
-
-	auto Flgs = Func->FunctionFlags;
-	Func->FunctionFlags |= 0x400;
-
-	UObject::ProcessEvent(Func, &Parms);
-
-
-	Func->FunctionFlags = Flgs;
-
-}
-
-
 // Function MediaAssets.MediaPlayer.GetTimeDelay
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FTimespan                   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FTimespan                   ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::GetTimeDelay(const struct FTimespan& ReturnValue)
+struct FTimespan UMediaPlayer::GetTimeDelay()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2183,7 +2237,6 @@ void UMediaPlayer::GetTimeDelay(const struct FTimespan& ReturnValue)
 
 	Params::UMediaPlayer_GetTimeDelay_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2193,15 +2246,17 @@ void UMediaPlayer::GetTimeDelay(const struct FTimespan& ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.GetTime
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FTimespan                   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FTimespan                   ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::GetTime(const struct FTimespan& ReturnValue)
+struct FTimespan UMediaPlayer::GetTime()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2210,7 +2265,6 @@ void UMediaPlayer::GetTime(const struct FTimespan& ReturnValue)
 
 	Params::UMediaPlayer_GetTime_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2220,14 +2274,16 @@ void UMediaPlayer::GetTime(const struct FTimespan& ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.GetSupportedRates
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<struct FFloatRange>         OutRates                                                         (BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               Unthinned                                                        (BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// TArray<struct FFloatRange>         OutRates                                                         (ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               Unthinned                                                        (Edit, ConstParm, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
 
 bool UMediaPlayer::GetSupportedRates()
 {
@@ -2255,10 +2311,10 @@ bool UMediaPlayer::GetSupportedRates()
 // Function MediaAssets.MediaPlayer.GetSelectedTrack
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EMediaPlayerTrack       TrackType                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class EMediaPlayerTrack       TrackType                                                        (ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-enum class EMediaPlayerTrack UMediaPlayer::GetSelectedTrack(int32 ReturnValue)
+int32 UMediaPlayer::GetSelectedTrack(enum class EMediaPlayerTrack TrackType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2267,7 +2323,7 @@ enum class EMediaPlayerTrack UMediaPlayer::GetSelectedTrack(int32 ReturnValue)
 
 	Params::UMediaPlayer_GetSelectedTrack_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.TrackType = TrackType;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2285,9 +2341,9 @@ enum class EMediaPlayerTrack UMediaPlayer::GetSelectedTrack(int32 ReturnValue)
 // Function MediaAssets.MediaPlayer.GetRate
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::GetRate(float ReturnValue)
+float UMediaPlayer::GetRate()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2296,7 +2352,6 @@ void UMediaPlayer::GetRate(float ReturnValue)
 
 	Params::UMediaPlayer_GetRate_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2306,15 +2361,17 @@ void UMediaPlayer::GetRate(float ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.GetPlaylistIndex
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::GetPlaylistIndex(int32 ReturnValue)
+int32 UMediaPlayer::GetPlaylistIndex()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2323,7 +2380,6 @@ void UMediaPlayer::GetPlaylistIndex(int32 ReturnValue)
 
 	Params::UMediaPlayer_GetPlaylistIndex_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2333,15 +2389,17 @@ void UMediaPlayer::GetPlaylistIndex(int32 ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.GetPlaylist
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UMediaPlaylist*              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UMediaPlaylist*              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::GetPlaylist(class UMediaPlaylist* ReturnValue)
+class UMediaPlaylist* UMediaPlayer::GetPlaylist()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2350,7 +2408,6 @@ void UMediaPlayer::GetPlaylist(class UMediaPlaylist* ReturnValue)
 
 	Params::UMediaPlayer_GetPlaylist_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2360,15 +2417,17 @@ void UMediaPlayer::GetPlaylist(class UMediaPlaylist* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.GetPlayerName
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::GetPlayerName(class FName ReturnValue)
+class FName UMediaPlayer::GetPlayerName()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2377,7 +2436,6 @@ void UMediaPlayer::GetPlayerName(class FName ReturnValue)
 
 	Params::UMediaPlayer_GetPlayerName_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2387,16 +2445,18 @@ void UMediaPlayer::GetPlayerName(class FName ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.GetNumTracks
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EMediaPlayerTrack       TrackType                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class EMediaPlayerTrack       TrackType                                                        (ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-enum class EMediaPlayerTrack UMediaPlayer::GetNumTracks(int32 ReturnValue)
+int32 UMediaPlayer::GetNumTracks(enum class EMediaPlayerTrack TrackType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2405,7 +2465,7 @@ enum class EMediaPlayerTrack UMediaPlayer::GetNumTracks(int32 ReturnValue)
 
 	Params::UMediaPlayer_GetNumTracks_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.TrackType = TrackType;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2423,11 +2483,11 @@ enum class EMediaPlayerTrack UMediaPlayer::GetNumTracks(int32 ReturnValue)
 // Function MediaAssets.MediaPlayer.GetNumTrackFormats
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EMediaPlayerTrack       TrackType                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              TrackIndex                                                       (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class EMediaPlayerTrack       TrackType                                                        (ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              TrackIndex                                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UMediaPlayer::GetNumTrackFormats(int32 ReturnValue)
+int32 UMediaPlayer::GetNumTrackFormats(enum class EMediaPlayerTrack TrackType, int32* TrackIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2436,7 +2496,7 @@ int32 UMediaPlayer::GetNumTrackFormats(int32 ReturnValue)
 
 	Params::UMediaPlayer_GetNumTrackFormats_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.TrackType = TrackType;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2445,6 +2505,9 @@ int32 UMediaPlayer::GetNumTrackFormats(int32 ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (TrackIndex != nullptr)
+		*TrackIndex = Parms.TrackIndex;
 
 	return Parms.ReturnValue;
 
@@ -2454,9 +2517,9 @@ int32 UMediaPlayer::GetNumTrackFormats(int32 ReturnValue)
 // Function MediaAssets.MediaPlayer.GetMediaName
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::GetMediaName(class FText ReturnValue)
+class FText UMediaPlayer::GetMediaName()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2465,7 +2528,6 @@ void UMediaPlayer::GetMediaName(class FText ReturnValue)
 
 	Params::UMediaPlayer_GetMediaName_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2475,15 +2537,17 @@ void UMediaPlayer::GetMediaName(class FText ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.GetHorizontalFieldOfView
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::GetHorizontalFieldOfView(float ReturnValue)
+float UMediaPlayer::GetHorizontalFieldOfView()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2492,7 +2556,6 @@ void UMediaPlayer::GetHorizontalFieldOfView(float ReturnValue)
 
 	Params::UMediaPlayer_GetHorizontalFieldOfView_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2502,15 +2565,17 @@ void UMediaPlayer::GetHorizontalFieldOfView(float ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.GetDuration
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FTimespan                   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FTimespan                   ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::GetDuration(const struct FTimespan& ReturnValue)
+struct FTimespan UMediaPlayer::GetDuration()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2519,7 +2584,6 @@ void UMediaPlayer::GetDuration(const struct FTimespan& ReturnValue)
 
 	Params::UMediaPlayer_GetDuration_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2529,15 +2593,17 @@ void UMediaPlayer::GetDuration(const struct FTimespan& ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.GetDesiredPlayerName
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::GetDesiredPlayerName(class FName ReturnValue)
+class FName UMediaPlayer::GetDesiredPlayerName()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2546,7 +2612,6 @@ void UMediaPlayer::GetDesiredPlayerName(class FName ReturnValue)
 
 	Params::UMediaPlayer_GetDesiredPlayerName_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2556,17 +2621,19 @@ void UMediaPlayer::GetDesiredPlayerName(class FName ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlayer.GetAudioTrackType
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              TrackIndex                                                       (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              FormatIndex                                                      (Edit, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              TrackIndex                                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// int32                              FormatIndex                                                      (Edit, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UMediaPlayer::GetAudioTrackType(const class FString& ReturnValue)
+class FString UMediaPlayer::GetAudioTrackType(int32* TrackIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2575,7 +2642,6 @@ int32 UMediaPlayer::GetAudioTrackType(const class FString& ReturnValue)
 
 	Params::UMediaPlayer_GetAudioTrackType_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2584,6 +2650,9 @@ int32 UMediaPlayer::GetAudioTrackType(const class FString& ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (TrackIndex != nullptr)
+		*TrackIndex = Parms.TrackIndex;
 
 	return Parms.ReturnValue;
 
@@ -2593,11 +2662,11 @@ int32 UMediaPlayer::GetAudioTrackType(const class FString& ReturnValue)
 // Function MediaAssets.MediaPlayer.GetAudioTrackSampleRate
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              TrackIndex                                                       (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              FormatIndex                                                      (Edit, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              TrackIndex                                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// int32                              FormatIndex                                                      (Edit, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UMediaPlayer::GetAudioTrackSampleRate(int32 ReturnValue)
+int32 UMediaPlayer::GetAudioTrackSampleRate(int32* TrackIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2606,7 +2675,6 @@ int32 UMediaPlayer::GetAudioTrackSampleRate(int32 ReturnValue)
 
 	Params::UMediaPlayer_GetAudioTrackSampleRate_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2615,6 +2683,9 @@ int32 UMediaPlayer::GetAudioTrackSampleRate(int32 ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (TrackIndex != nullptr)
+		*TrackIndex = Parms.TrackIndex;
 
 	return Parms.ReturnValue;
 
@@ -2624,11 +2695,11 @@ int32 UMediaPlayer::GetAudioTrackSampleRate(int32 ReturnValue)
 // Function MediaAssets.MediaPlayer.GetAudioTrackChannels
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              TrackIndex                                                       (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              FormatIndex                                                      (Edit, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              TrackIndex                                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// int32                              FormatIndex                                                      (Edit, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UMediaPlayer::GetAudioTrackChannels(int32 ReturnValue)
+int32 UMediaPlayer::GetAudioTrackChannels(int32* TrackIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2637,7 +2708,6 @@ int32 UMediaPlayer::GetAudioTrackChannels(int32 ReturnValue)
 
 	Params::UMediaPlayer_GetAudioTrackChannels_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2646,6 +2716,9 @@ int32 UMediaPlayer::GetAudioTrackChannels(int32 ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (TrackIndex != nullptr)
+		*TrackIndex = Parms.TrackIndex;
 
 	return Parms.ReturnValue;
 
@@ -2679,10 +2752,10 @@ void UMediaPlayer::Close()
 // Function MediaAssets.MediaPlayer.CanPlayUrl
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      URL                                                              (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, EditConst)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      URL                                                              (Edit, ConstParm, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, EditConst)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FString UMediaPlayer::CanPlayUrl(bool ReturnValue)
+bool UMediaPlayer::CanPlayUrl()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2691,7 +2764,6 @@ class FString UMediaPlayer::CanPlayUrl(bool ReturnValue)
 
 	Params::UMediaPlayer_CanPlayUrl_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2709,10 +2781,10 @@ class FString UMediaPlayer::CanPlayUrl(bool ReturnValue)
 // Function MediaAssets.MediaPlayer.CanPlaySource
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMediaSource*                MediaSource                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UMediaSource*                MediaSource                                                      (BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, GlobalConfig)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UMediaSource* UMediaPlayer::CanPlaySource(bool ReturnValue)
+bool UMediaPlayer::CanPlaySource(class UMediaSource* MediaSource)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2721,7 +2793,7 @@ class UMediaSource* UMediaPlayer::CanPlaySource(bool ReturnValue)
 
 	Params::UMediaPlayer_CanPlaySource_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.MediaSource = MediaSource;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2739,9 +2811,9 @@ class UMediaSource* UMediaPlayer::CanPlaySource(bool ReturnValue)
 // Function MediaAssets.MediaPlayer.CanPause
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlayer::CanPause(bool ReturnValue)
+bool UMediaPlayer::CanPause()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2750,7 +2822,6 @@ void UMediaPlayer::CanPause(bool ReturnValue)
 
 	Params::UMediaPlayer_CanPause_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2759,6 +2830,8 @@ void UMediaPlayer::CanPause(bool ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -2822,11 +2895,11 @@ class UMediaPlaylist* UMediaPlaylist::GetDefaultObj()
 // Function MediaAssets.MediaPlaylist.Replace
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              Index                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
-// class UMediaSource*                Replacement                                                      (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              Index                                                            (EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+// class UMediaSource*                Replacement                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UMediaSource* UMediaPlaylist::Replace(int32* Index, bool ReturnValue)
+bool UMediaPlaylist::Replace()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2835,7 +2908,6 @@ class UMediaSource* UMediaPlaylist::Replace(int32* Index, bool ReturnValue)
 
 	Params::UMediaPlaylist_Replace_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2844,9 +2916,6 @@ class UMediaSource* UMediaPlaylist::Replace(int32* Index, bool ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (Index != nullptr)
-		*Index = Parms.Index;
 
 	return Parms.ReturnValue;
 
@@ -2856,10 +2925,10 @@ class UMediaSource* UMediaPlaylist::Replace(int32* Index, bool ReturnValue)
 // Function MediaAssets.MediaPlaylist.RemoveAt
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              Index                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              Index                                                            (EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlaylist::RemoveAt(int32* Index, bool ReturnValue)
+bool UMediaPlaylist::RemoveAt()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2868,7 +2937,6 @@ void UMediaPlaylist::RemoveAt(int32* Index, bool ReturnValue)
 
 	Params::UMediaPlaylist_RemoveAt_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2878,8 +2946,7 @@ void UMediaPlaylist::RemoveAt(int32* Index, bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Index != nullptr)
-		*Index = Parms.Index;
+	return Parms.ReturnValue;
 
 }
 
@@ -2887,10 +2954,10 @@ void UMediaPlaylist::RemoveAt(int32* Index, bool ReturnValue)
 // Function MediaAssets.MediaPlaylist.Remove
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMediaSource*                MediaSource                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UMediaSource*                MediaSource                                                      (BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, GlobalConfig)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UMediaSource* UMediaPlaylist::Remove(bool ReturnValue)
+bool UMediaPlaylist::Remove(class UMediaSource* MediaSource)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2899,7 +2966,7 @@ class UMediaSource* UMediaPlaylist::Remove(bool ReturnValue)
 
 	Params::UMediaPlaylist_Remove_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.MediaSource = MediaSource;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2917,9 +2984,9 @@ class UMediaSource* UMediaPlaylist::Remove(bool ReturnValue)
 // Function MediaAssets.MediaPlaylist.Num
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlaylist::Num(int32 ReturnValue)
+int32 UMediaPlaylist::Num()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2928,7 +2995,6 @@ void UMediaPlaylist::Num(int32 ReturnValue)
 
 	Params::UMediaPlaylist_Num_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2938,16 +3004,18 @@ void UMediaPlaylist::Num(int32 ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaPlaylist.Insert
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMediaSource*                MediaSource                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// int32                              Index                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+// class UMediaSource*                MediaSource                                                      (BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, GlobalConfig)
+// int32                              Index                                                            (EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
 
-class UMediaSource* UMediaPlaylist::Insert(int32* Index)
+int32 UMediaPlaylist::Insert(class UMediaSource* MediaSource)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2956,6 +3024,7 @@ class UMediaSource* UMediaPlaylist::Insert(int32* Index)
 
 	Params::UMediaPlaylist_Insert_Params Parms{};
 
+	Parms.MediaSource = MediaSource;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2964,9 +3033,6 @@ class UMediaSource* UMediaPlaylist::Insert(int32* Index)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (Index != nullptr)
-		*Index = Parms.Index;
 
 	return Parms.ReturnValue;
 
@@ -2976,10 +3042,10 @@ class UMediaSource* UMediaPlaylist::Insert(int32* Index)
 // Function MediaAssets.MediaPlaylist.GetRandom
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// int32                              OutIndex                                                         (Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class UMediaSource*                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              OutIndex                                                         (ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UMediaSource*                ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UMediaPlaylist::GetRandom(class UMediaSource* ReturnValue)
+class UMediaSource* UMediaPlaylist::GetRandom()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2988,7 +3054,6 @@ int32 UMediaPlaylist::GetRandom(class UMediaSource* ReturnValue)
 
 	Params::UMediaPlaylist_GetRandom_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3006,10 +3071,10 @@ int32 UMediaPlaylist::GetRandom(class UMediaSource* ReturnValue)
 // Function MediaAssets.MediaPlaylist.GetPrevious
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// int32                              InOutIndex                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class UMediaSource*                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              InOutIndex                                                       (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UMediaSource*                ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UMediaPlaylist::GetPrevious(class UMediaSource* ReturnValue)
+class UMediaSource* UMediaPlaylist::GetPrevious()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3018,7 +3083,6 @@ int32 UMediaPlaylist::GetPrevious(class UMediaSource* ReturnValue)
 
 	Params::UMediaPlaylist_GetPrevious_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3036,10 +3100,10 @@ int32 UMediaPlaylist::GetPrevious(class UMediaSource* ReturnValue)
 // Function MediaAssets.MediaPlaylist.GetNext
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// int32                              InOutIndex                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class UMediaSource*                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              InOutIndex                                                       (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UMediaSource*                ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UMediaPlaylist::GetNext(class UMediaSource* ReturnValue)
+class UMediaSource* UMediaPlaylist::GetNext()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3048,7 +3112,6 @@ int32 UMediaPlaylist::GetNext(class UMediaSource* ReturnValue)
 
 	Params::UMediaPlaylist_GetNext_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3066,10 +3129,10 @@ int32 UMediaPlaylist::GetNext(class UMediaSource* ReturnValue)
 // Function MediaAssets.MediaPlaylist.Get
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              Index                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
-// class UMediaSource*                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              Index                                                            (EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+// class UMediaSource*                ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlaylist::Get(int32* Index, class UMediaSource* ReturnValue)
+class UMediaSource* UMediaPlaylist::Get()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3078,7 +3141,6 @@ void UMediaPlaylist::Get(int32* Index, class UMediaSource* ReturnValue)
 
 	Params::UMediaPlaylist_Get_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3088,8 +3150,7 @@ void UMediaPlaylist::Get(int32* Index, class UMediaSource* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Index != nullptr)
-		*Index = Parms.Index;
+	return Parms.ReturnValue;
 
 }
 
@@ -3097,10 +3158,10 @@ void UMediaPlaylist::Get(int32* Index, class UMediaSource* ReturnValue)
 // Function MediaAssets.MediaPlaylist.AddUrl
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      URL                                                              (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, EditConst)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      URL                                                              (Edit, ConstParm, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, EditConst)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FString UMediaPlaylist::AddUrl(bool ReturnValue)
+bool UMediaPlaylist::AddUrl()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3109,7 +3170,6 @@ class FString UMediaPlaylist::AddUrl(bool ReturnValue)
 
 	Params::UMediaPlaylist_AddUrl_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3127,10 +3187,10 @@ class FString UMediaPlaylist::AddUrl(bool ReturnValue)
 // Function MediaAssets.MediaPlaylist.AddFile
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      FilePath                                                         (Edit, ConstParm, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      FilePath                                                         (Edit, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FString UMediaPlaylist::AddFile(bool ReturnValue)
+bool UMediaPlaylist::AddFile()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3139,7 +3199,6 @@ class FString UMediaPlaylist::AddFile(bool ReturnValue)
 
 	Params::UMediaPlaylist_AddFile_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3157,10 +3216,10 @@ class FString UMediaPlaylist::AddFile(bool ReturnValue)
 // Function MediaAssets.MediaPlaylist.Add
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMediaSource*                MediaSource                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UMediaSource*                MediaSource                                                      (BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, GlobalConfig)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UMediaSource* UMediaPlaylist::Add(bool ReturnValue)
+bool UMediaPlaylist::Add(class UMediaSource* MediaSource)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3169,7 +3228,7 @@ class UMediaSource* UMediaPlaylist::Add(bool ReturnValue)
 
 	Params::UMediaPlaylist_Add_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.MediaSource = MediaSource;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3215,8 +3274,8 @@ class UMediaSoundComponent* UMediaSoundComponent::GetDefaultObj()
 // Function MediaAssets.MediaSoundComponent.SetSpectralAnalysisSettings
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// TArray<float>                      InFrequenciesToAnalyze                                           (BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// enum class EMediaSoundComponentFFTSizeInFFTSize                                                        (ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// TArray<float>                      InFrequenciesToAnalyze                                           (ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EMediaSoundComponentFFTSizeInFFTSize                                                        (ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 enum class EMediaSoundComponentFFTSize UMediaSoundComponent::SetSpectralAnalysisSettings()
 {
@@ -3244,7 +3303,7 @@ enum class EMediaSoundComponentFFTSize UMediaSoundComponent::SetSpectralAnalysis
 // Function MediaAssets.MediaSoundComponent.SetMediaPlayer
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMediaPlayer*                NewMediaPlayer                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UMediaPlayer*                NewMediaPlayer                                                   (Edit, ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 class UMediaPlayer* UMediaSoundComponent::SetMediaPlayer()
 {
@@ -3272,10 +3331,10 @@ class UMediaPlayer* UMediaSoundComponent::SetMediaPlayer()
 // Function MediaAssets.MediaSoundComponent.SetEnvelopeFollowingsettings
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              AttackTimeMsec                                                   (BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// int32                              ReleaseTimeMsec                                                  (Edit, ConstParm, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              AttackTimeMsec                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              ReleaseTimeMsec                                                  (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-int32 UMediaSoundComponent::SetEnvelopeFollowingsettings()
+void UMediaSoundComponent::SetEnvelopeFollowingsettings(int32* AttackTimeMsec, int32* ReleaseTimeMsec)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3293,7 +3352,11 @@ int32 UMediaSoundComponent::SetEnvelopeFollowingsettings()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (AttackTimeMsec != nullptr)
+		*AttackTimeMsec = Parms.AttackTimeMsec;
+
+	if (ReleaseTimeMsec != nullptr)
+		*ReleaseTimeMsec = Parms.ReleaseTimeMsec;
 
 }
 
@@ -3301,7 +3364,7 @@ int32 UMediaSoundComponent::SetEnvelopeFollowingsettings()
 // Function MediaAssets.MediaSoundComponent.SetEnableSpectralAnalysis
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInSpectralAnalysisEnabled                                       (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// bool                               bInSpectralAnalysisEnabled                                       (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 bool UMediaSoundComponent::SetEnableSpectralAnalysis()
 {
@@ -3329,7 +3392,7 @@ bool UMediaSoundComponent::SetEnableSpectralAnalysis()
 // Function MediaAssets.MediaSoundComponent.SetEnableEnvelopeFollowing
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInEnvelopeFollowing                                             (Edit, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// bool                               bInEnvelopeFollowing                                             (Edit, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 bool UMediaSoundComponent::SetEnableEnvelopeFollowing()
 {
@@ -3357,9 +3420,9 @@ bool UMediaSoundComponent::SetEnableEnvelopeFollowing()
 // Function MediaAssets.MediaSoundComponent.GetSpectralData
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// TArray<struct FMediaSoundComponentSpectralData>ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<struct FMediaSoundComponentSpectralData>ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaSoundComponent::GetSpectralData(const TArray<struct FMediaSoundComponentSpectralData>& ReturnValue)
+TArray<struct FMediaSoundComponentSpectralData> UMediaSoundComponent::GetSpectralData()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3368,7 +3431,6 @@ void UMediaSoundComponent::GetSpectralData(const TArray<struct FMediaSoundCompon
 
 	Params::UMediaSoundComponent_GetSpectralData_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3378,15 +3440,17 @@ void UMediaSoundComponent::GetSpectralData(const TArray<struct FMediaSoundCompon
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaSoundComponent.GetNormalizedSpectralData
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// TArray<struct FMediaSoundComponentSpectralData>ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<struct FMediaSoundComponentSpectralData>ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaSoundComponent::GetNormalizedSpectralData(const TArray<struct FMediaSoundComponentSpectralData>& ReturnValue)
+TArray<struct FMediaSoundComponentSpectralData> UMediaSoundComponent::GetNormalizedSpectralData()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3395,7 +3459,6 @@ void UMediaSoundComponent::GetNormalizedSpectralData(const TArray<struct FMediaS
 
 	Params::UMediaSoundComponent_GetNormalizedSpectralData_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3405,15 +3468,17 @@ void UMediaSoundComponent::GetNormalizedSpectralData(const TArray<struct FMediaS
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaSoundComponent.GetMediaPlayer
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UMediaPlayer*                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UMediaPlayer*                ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaSoundComponent::GetMediaPlayer(class UMediaPlayer* ReturnValue)
+class UMediaPlayer* UMediaSoundComponent::GetMediaPlayer()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3422,7 +3487,6 @@ void UMediaSoundComponent::GetMediaPlayer(class UMediaPlayer* ReturnValue)
 
 	Params::UMediaSoundComponent_GetMediaPlayer_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3432,15 +3496,17 @@ void UMediaSoundComponent::GetMediaPlayer(class UMediaPlayer* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaSoundComponent.GetEnvelopeValue
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaSoundComponent::GetEnvelopeValue(float ReturnValue)
+float UMediaSoundComponent::GetEnvelopeValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3449,7 +3515,6 @@ void UMediaSoundComponent::GetEnvelopeValue(float ReturnValue)
 
 	Params::UMediaSoundComponent_GetEnvelopeValue_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3459,16 +3524,18 @@ void UMediaSoundComponent::GetEnvelopeValue(float ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaAssets.MediaSoundComponent.BP_GetAttenuationSettingsToApply
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FSoundAttenuationSettings   OutAttenuationSettings                                           (Edit, BlueprintVisible, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FSoundAttenuationSettings   OutAttenuationSettings                                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FSoundAttenuationSettings UMediaSoundComponent::BP_GetAttenuationSettingsToApply(bool ReturnValue)
+bool UMediaSoundComponent::BP_GetAttenuationSettingsToApply()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3477,7 +3544,6 @@ struct FSoundAttenuationSettings UMediaSoundComponent::BP_GetAttenuationSettings
 
 	Params::UMediaSoundComponent_BP_GetAttenuationSettingsToApply_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3607,8 +3673,8 @@ class UMediaBlueprintFunctionLibrary* UMediaBlueprintFunctionLibrary::GetDefault
 // Function MediaAssets.MediaBlueprintFunctionLibrary.EnumerateWebcamCaptureDevices
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FMediaCaptureDevice> OutDevices                                                       (ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// int32                              Filter                                                           (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config)
+// TArray<struct FMediaCaptureDevice> OutDevices                                                       (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              Filter                                                           (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, Config)
 
 int32 UMediaBlueprintFunctionLibrary::EnumerateWebcamCaptureDevices()
 {
@@ -3636,8 +3702,8 @@ int32 UMediaBlueprintFunctionLibrary::EnumerateWebcamCaptureDevices()
 // Function MediaAssets.MediaBlueprintFunctionLibrary.EnumerateVideoCaptureDevices
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FMediaCaptureDevice> OutDevices                                                       (ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// int32                              Filter                                                           (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config)
+// TArray<struct FMediaCaptureDevice> OutDevices                                                       (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              Filter                                                           (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, Config)
 
 int32 UMediaBlueprintFunctionLibrary::EnumerateVideoCaptureDevices()
 {
@@ -3665,8 +3731,8 @@ int32 UMediaBlueprintFunctionLibrary::EnumerateVideoCaptureDevices()
 // Function MediaAssets.MediaBlueprintFunctionLibrary.EnumerateAudioCaptureDevices
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FMediaCaptureDevice> OutDevices                                                       (ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// int32                              Filter                                                           (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config)
+// TArray<struct FMediaCaptureDevice> OutDevices                                                       (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              Filter                                                           (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, Config)
 
 int32 UMediaBlueprintFunctionLibrary::EnumerateAudioCaptureDevices()
 {

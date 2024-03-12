@@ -18,9 +18,9 @@ namespace Params
 struct USteelShieldSubsystem_Start_Params
 {
 public:
-	int32                                        TokenNum;                                          // 0x0(0x4)(ExportObject, Net, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x4(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_F9C[0x3];                                      // Fixing Size Of Struct > TateDumper <
+	int32                                        TokenNum;                                          // 0x0(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x4(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_13B0[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -28,8 +28,8 @@ public:
 struct USteelShieldSubsystem_SetTokenProvider_Params
 {
 public:
-	class UClass*                                TokenProviderClass;                                // 0x0(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	class USteelShieldTokenProvider*             ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UClass*                                TokenProviderClass;                                // 0x0(0x8)(ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	class USteelShieldTokenProvider*             ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -37,7 +37,7 @@ public:
 struct USteelShieldSubsystem_OnInitializedBP__DelegateSignature_Params
 {
 public:
-	bool                                         bSuccessful;                                       // 0x0(0x1)(Edit, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	bool                                         bSuccessful;                                       // 0x0(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -45,7 +45,7 @@ public:
 struct USteelShieldSubsystem_IsRolloverInProgress_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -53,7 +53,7 @@ public:
 struct USteelShieldSubsystem_IsEnabled_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -61,7 +61,7 @@ public:
 struct USteelShieldSubsystem_GetTokenProvider_Params
 {
 public:
-	class USteelShieldTokenProvider*             ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class USteelShieldTokenProvider*             ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 }

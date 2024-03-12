@@ -14,20 +14,20 @@ namespace SDK
 class UUI_Button_SignIn_C : public UPrimalUserWidget
 {
 public:
-	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x330(0x8)(BlueprintReadOnly, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-	class UButton*                               Button_SingIn;                                     // 0x338(0x8)(Edit, ExportObject, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	class UImage*                                Image_138;                                         // 0x340(0x8)(Edit, ConstParm, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, RepNotify, Interp, EditorOnly, ContainsInstancedReference)
-	bool                                         IsLogedin;                                         // 0x348(0x1)(Edit, ConstParm, Net, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_2BBB[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	FMulticastInlineDelegateProperty_            OnSignInClicked;                                   // 0x350(0x10)(Edit, ExportObject, Net, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x330(0x8)(Edit, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, SubobjectReference)
+	class UButton*                               Button_SingIn;                                     // 0x338(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UImage*                                Image_138;                                         // 0x340(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, RepNotify, Interp, EditorOnly, ContainsInstancedReference)
+	bool                                         IsLogedin;                                         // 0x348(0x1)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_3331[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	FMulticastInlineDelegateProperty_            OnSignInClicked;                                   // 0x350(0x10)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UUI_Button_SignIn_C* GetDefaultObj();
 
 	void RemoveMenu();
 	void BndEvt__SignIn_Button_20_K2Node_ComponentBoundEvent_0_OnButtonClickedEvent__DelegateSignature();
-	void PreConstruct(bool* IsDesignTime);
-	bool ExecuteUbergraph_UI_Button_SignIn();
+	bool PreConstruct();
+	bool ExecuteUbergraph_UI_Button_SignIn(int32* EntryPoint);
 	void OnSignInClicked__DelegateSignature();
 };
 

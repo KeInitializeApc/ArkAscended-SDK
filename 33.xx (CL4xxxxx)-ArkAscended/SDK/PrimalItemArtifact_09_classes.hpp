@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0xED0 - 0xED0)
+// 0x0 (0xEE0 - 0xEE0)
 // BlueprintGeneratedClass PrimalItemArtifact_09.PrimalItemArtifact_09_C
 class UPrimalItemArtifact_09_C : public UPrimalItemArtifactGeneric_C
 {

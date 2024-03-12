@@ -18,10 +18,10 @@ public:
 	static class UClass* StaticClass();
 	static class UStaticMeshDescription* GetDefaultObj();
 
-	void SetVertexInstanceUV(struct FVertexInstanceID* VertexInstanceID, const struct FVector2D& UV, int32 UVIndex);
-	class FName SetPolygonGroupMaterialSlotName(struct FPolygonGroupID* PolygonGroupID);
-	void GetVertexInstanceUV(struct FVertexInstanceID* VertexInstanceID, int32 UVIndex, const struct FVector2D& ReturnValue);
-	struct FVector CreateCube(struct FVector* Center, struct FPolygonGroupID* PolygonGroup, struct FPolygonID* PolygonID_PlusX, struct FPolygonID* PolygonID_MinusX, struct FPolygonID* PolygonID_PlusY, struct FPolygonID* PolygonID_MinusY, const struct FPolygonID& PolygonID_PlusZ, const struct FPolygonID& PolygonID_MinusZ);
+	int32 SetVertexInstanceUV();
+	struct FPolygonGroupID SetPolygonGroupMaterialSlotName(class FName* SlotName);
+	struct FVector2D GetVertexInstanceUV();
+	struct FPolygonID CreateCube(struct FVector* HalfExtents);
 };
 
 }

@@ -43,9 +43,9 @@ class UBakeInputMeshProperties* UBakeInputMeshProperties::GetDefaultObj()
 // Function MeshModelingToolsExp.BakeInputMeshProperties.GetTargetUVLayerNamesFunc
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBakeInputMeshProperties::GetTargetUVLayerNamesFunc(const TArray<class FString>& ReturnValue)
+TArray<class FString> UBakeInputMeshProperties::GetTargetUVLayerNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -54,7 +54,6 @@ void UBakeInputMeshProperties::GetTargetUVLayerNamesFunc(const TArray<class FStr
 
 	Params::UBakeInputMeshProperties_GetTargetUVLayerNamesFunc_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -64,15 +63,17 @@ void UBakeInputMeshProperties::GetTargetUVLayerNamesFunc(const TArray<class FStr
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MeshModelingToolsExp.BakeInputMeshProperties.GetSourceUVLayerNamesFunc
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBakeInputMeshProperties::GetSourceUVLayerNamesFunc(const TArray<class FString>& ReturnValue)
+TArray<class FString> UBakeInputMeshProperties::GetSourceUVLayerNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -81,7 +82,6 @@ void UBakeInputMeshProperties::GetSourceUVLayerNamesFunc(const TArray<class FStr
 
 	Params::UBakeInputMeshProperties_GetSourceUVLayerNamesFunc_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -90,6 +90,8 @@ void UBakeInputMeshProperties::GetSourceUVLayerNamesFunc(const TArray<class FStr
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -209,9 +211,9 @@ class UBakeTexture2DProperties* UBakeTexture2DProperties::GetDefaultObj()
 // Function MeshModelingToolsExp.BakeTexture2DProperties.GetUVLayerNamesFunc
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBakeTexture2DProperties::GetUVLayerNamesFunc(const TArray<class FString>& ReturnValue)
+TArray<class FString> UBakeTexture2DProperties::GetUVLayerNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -220,7 +222,6 @@ void UBakeTexture2DProperties::GetUVLayerNamesFunc(const TArray<class FString>& 
 
 	Params::UBakeTexture2DProperties_GetUVLayerNamesFunc_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -229,6 +230,8 @@ void UBakeTexture2DProperties::GetUVLayerNamesFunc(const TArray<class FString>& 
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -264,9 +267,9 @@ class UBakeMultiTexture2DProperties* UBakeMultiTexture2DProperties::GetDefaultOb
 // Function MeshModelingToolsExp.BakeMultiTexture2DProperties.GetUVLayerNamesFunc
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBakeMultiTexture2DProperties::GetUVLayerNamesFunc(const TArray<class FString>& ReturnValue)
+TArray<class FString> UBakeMultiTexture2DProperties::GetUVLayerNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -275,7 +278,6 @@ void UBakeMultiTexture2DProperties::GetUVLayerNamesFunc(const TArray<class FStri
 
 	Params::UBakeMultiTexture2DProperties_GetUVLayerNamesFunc_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -284,6 +286,8 @@ void UBakeMultiTexture2DProperties::GetUVLayerNamesFunc(const TArray<class FStri
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -1747,9 +1751,9 @@ class UBakeMeshAttributeMapsToolProperties* UBakeMeshAttributeMapsToolProperties
 // Function MeshModelingToolsExp.BakeMeshAttributeMapsToolProperties.GetMapPreviewNamesFunc
 // (Final, Native, Public)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBakeMeshAttributeMapsToolProperties::GetMapPreviewNamesFunc(const TArray<class FString>& ReturnValue)
+TArray<class FString> UBakeMeshAttributeMapsToolProperties::GetMapPreviewNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1758,7 +1762,6 @@ void UBakeMeshAttributeMapsToolProperties::GetMapPreviewNamesFunc(const TArray<c
 
 	Params::UBakeMeshAttributeMapsToolProperties_GetMapPreviewNamesFunc_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1767,6 +1770,8 @@ void UBakeMeshAttributeMapsToolProperties::GetMapPreviewNamesFunc(const TArray<c
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -2026,9 +2031,9 @@ class UBakeMultiMeshAttributeMapsToolProperties* UBakeMultiMeshAttributeMapsTool
 // Function MeshModelingToolsExp.BakeMultiMeshAttributeMapsToolProperties.GetMapPreviewNamesFunc
 // (Final, Native, Public)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBakeMultiMeshAttributeMapsToolProperties::GetMapPreviewNamesFunc(const TArray<class FString>& ReturnValue)
+TArray<class FString> UBakeMultiMeshAttributeMapsToolProperties::GetMapPreviewNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2037,7 +2042,6 @@ void UBakeMultiMeshAttributeMapsToolProperties::GetMapPreviewNamesFunc(const TAr
 
 	Params::UBakeMultiMeshAttributeMapsToolProperties_GetMapPreviewNamesFunc_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2046,6 +2050,8 @@ void UBakeMultiMeshAttributeMapsToolProperties::GetMapPreviewNamesFunc(const TAr
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -2081,9 +2087,9 @@ class UBakeMultiMeshInputToolProperties* UBakeMultiMeshInputToolProperties::GetD
 // Function MeshModelingToolsExp.BakeMultiMeshInputToolProperties.GetTargetUVLayerNamesFunc
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBakeMultiMeshInputToolProperties::GetTargetUVLayerNamesFunc(const TArray<class FString>& ReturnValue)
+TArray<class FString> UBakeMultiMeshInputToolProperties::GetTargetUVLayerNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2092,7 +2098,6 @@ void UBakeMultiMeshInputToolProperties::GetTargetUVLayerNamesFunc(const TArray<c
 
 	Params::UBakeMultiMeshInputToolProperties_GetTargetUVLayerNamesFunc_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2101,6 +2106,8 @@ void UBakeMultiMeshInputToolProperties::GetTargetUVLayerNamesFunc(const TArray<c
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -2248,9 +2255,9 @@ class UBakeRenderCaptureToolProperties* UBakeRenderCaptureToolProperties::GetDef
 // Function MeshModelingToolsExp.BakeRenderCaptureToolProperties.GetMapPreviewNamesFunc
 // (Final, Native, Public)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBakeRenderCaptureToolProperties::GetMapPreviewNamesFunc(const TArray<class FString>& ReturnValue)
+TArray<class FString> UBakeRenderCaptureToolProperties::GetMapPreviewNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2259,7 +2266,6 @@ void UBakeRenderCaptureToolProperties::GetMapPreviewNamesFunc(const TArray<class
 
 	Params::UBakeRenderCaptureToolProperties_GetMapPreviewNamesFunc_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2268,6 +2274,8 @@ void UBakeRenderCaptureToolProperties::GetMapPreviewNamesFunc(const TArray<class
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -2303,9 +2311,9 @@ class UBakeRenderCaptureInputToolProperties* UBakeRenderCaptureInputToolProperti
 // Function MeshModelingToolsExp.BakeRenderCaptureInputToolProperties.GetTargetUVLayerNamesFunc
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBakeRenderCaptureInputToolProperties::GetTargetUVLayerNamesFunc(const TArray<class FString>& ReturnValue)
+TArray<class FString> UBakeRenderCaptureInputToolProperties::GetTargetUVLayerNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2314,7 +2322,6 @@ void UBakeRenderCaptureInputToolProperties::GetTargetUVLayerNamesFunc(const TArr
 
 	Params::UBakeRenderCaptureInputToolProperties_GetTargetUVLayerNamesFunc_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2324,15 +2331,17 @@ void UBakeRenderCaptureInputToolProperties::GetTargetUVLayerNamesFunc(const TArr
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MeshModelingToolsExp.BakeRenderCaptureInputToolProperties.GetTargetUVLayerIndex
 // (Final, Native, Public, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UBakeRenderCaptureInputToolProperties::GetTargetUVLayerIndex(int32 ReturnValue)
+int32 UBakeRenderCaptureInputToolProperties::GetTargetUVLayerIndex()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2341,7 +2350,6 @@ void UBakeRenderCaptureInputToolProperties::GetTargetUVLayerIndex(int32 ReturnVa
 
 	Params::UBakeRenderCaptureInputToolProperties_GetTargetUVLayerIndex_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2350,6 +2358,8 @@ void UBakeRenderCaptureInputToolProperties::GetTargetUVLayerIndex(int32 ReturnVa
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -2665,9 +2675,9 @@ class UOutputPolygroupLayerProperties* UOutputPolygroupLayerProperties::GetDefau
 // Function MeshModelingToolsExp.OutputPolygroupLayerProperties.GetGroupOptionsList
 // (Final, Native, Public)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UOutputPolygroupLayerProperties::GetGroupOptionsList(const TArray<class FString>& ReturnValue)
+TArray<class FString> UOutputPolygroupLayerProperties::GetGroupOptionsList()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2676,7 +2686,6 @@ void UOutputPolygroupLayerProperties::GetGroupOptionsList(const TArray<class FSt
 
 	Params::UOutputPolygroupLayerProperties_GetGroupOptionsList_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2685,6 +2694,8 @@ void UOutputPolygroupLayerProperties::GetGroupOptionsList(const TArray<class FSt
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -3216,9 +3227,9 @@ class UDisplaceMeshCommonProperties* UDisplaceMeshCommonProperties::GetDefaultOb
 // Function MeshModelingToolsExp.DisplaceMeshCommonProperties.GetWeightMapsFunc
 // (Final, Native, Public)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UDisplaceMeshCommonProperties::GetWeightMapsFunc(const TArray<class FString>& ReturnValue)
+TArray<class FString> UDisplaceMeshCommonProperties::GetWeightMapsFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3227,7 +3238,6 @@ void UDisplaceMeshCommonProperties::GetWeightMapsFunc(const TArray<class FString
 
 	Params::UDisplaceMeshCommonProperties_GetWeightMapsFunc_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3236,6 +3246,8 @@ void UDisplaceMeshCommonProperties::GetWeightMapsFunc(const TArray<class FString
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -3271,9 +3283,9 @@ class USelectiveTessellationProperties* USelectiveTessellationProperties::GetDef
 // Function MeshModelingToolsExp.SelectiveTessellationProperties.GetMaterialIDsFunc
 // (Final, Native, Public)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void USelectiveTessellationProperties::GetMaterialIDsFunc(const TArray<class FString>& ReturnValue)
+TArray<class FString> USelectiveTessellationProperties::GetMaterialIDsFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3282,7 +3294,6 @@ void USelectiveTessellationProperties::GetMaterialIDsFunc(const TArray<class FSt
 
 	Params::USelectiveTessellationProperties_GetMaterialIDsFunc_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3291,6 +3302,8 @@ void USelectiveTessellationProperties::GetMaterialIDsFunc(const TArray<class FSt
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -4814,9 +4827,9 @@ class UMeshAttributePaintToolProperties* UMeshAttributePaintToolProperties::GetD
 // Function MeshModelingToolsExp.MeshAttributePaintToolProperties.GetAttributeNames
 // (Final, Native, Public)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMeshAttributePaintToolProperties::GetAttributeNames(const TArray<class FString>& ReturnValue)
+TArray<class FString> UMeshAttributePaintToolProperties::GetAttributeNames()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4825,7 +4838,6 @@ void UMeshAttributePaintToolProperties::GetAttributeNames(const TArray<class FSt
 
 	Params::UMeshAttributePaintToolProperties_GetAttributeNames_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4834,6 +4846,8 @@ void UMeshAttributePaintToolProperties::GetAttributeNames(const TArray<class FSt
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -5369,9 +5383,9 @@ class UMeshInspectorMaterialProperties* UMeshInspectorMaterialProperties::GetDef
 // Function MeshModelingToolsExp.MeshInspectorMaterialProperties.GetUVChannelNamesFunc
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMeshInspectorMaterialProperties::GetUVChannelNamesFunc(const TArray<class FString>& ReturnValue)
+TArray<class FString> UMeshInspectorMaterialProperties::GetUVChannelNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5380,7 +5394,6 @@ void UMeshInspectorMaterialProperties::GetUVChannelNamesFunc(const TArray<class 
 
 	Params::UMeshInspectorMaterialProperties_GetUVChannelNamesFunc_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5389,6 +5402,8 @@ void UMeshInspectorMaterialProperties::GetUVChannelNamesFunc(const TArray<class 
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -8508,9 +8523,9 @@ class UTransferMeshToolProperties* UTransferMeshToolProperties::GetDefaultObj()
 // Function MeshModelingToolsExp.TransferMeshToolProperties.GetTargetLODNamesFunc
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UTransferMeshToolProperties::GetTargetLODNamesFunc(const TArray<class FString>& ReturnValue)
+TArray<class FString> UTransferMeshToolProperties::GetTargetLODNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -8519,7 +8534,6 @@ void UTransferMeshToolProperties::GetTargetLODNamesFunc(const TArray<class FStri
 
 	Params::UTransferMeshToolProperties_GetTargetLODNamesFunc_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8529,15 +8543,17 @@ void UTransferMeshToolProperties::GetTargetLODNamesFunc(const TArray<class FStri
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MeshModelingToolsExp.TransferMeshToolProperties.GetSourceLODNamesFunc
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UTransferMeshToolProperties::GetSourceLODNamesFunc(const TArray<class FString>& ReturnValue)
+TArray<class FString> UTransferMeshToolProperties::GetSourceLODNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -8546,7 +8562,6 @@ void UTransferMeshToolProperties::GetSourceLODNamesFunc(const TArray<class FStri
 
 	Params::UTransferMeshToolProperties_GetSourceLODNamesFunc_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8555,6 +8570,8 @@ void UTransferMeshToolProperties::GetSourceLODNamesFunc(const TArray<class FStri
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 

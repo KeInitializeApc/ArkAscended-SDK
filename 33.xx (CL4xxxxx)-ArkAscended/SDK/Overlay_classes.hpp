@@ -25,7 +25,7 @@ public:
 class UBasicOverlays : public UOverlays
 {
 public:
-	TArray<struct FOverlayItem>                  Overlays;                                          // 0x28(0x10)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, SubobjectReference)
+	TArray<struct FOverlayItem>                  Overlays;                                          // 0x28(0x10)(BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, EditConst, GlobalConfig)
 
 	static class UClass* StaticClass();
 	static class UBasicOverlays* GetDefaultObj();
@@ -37,8 +37,8 @@ public:
 class ULocalizedOverlays : public UOverlays
 {
 public:
-	class UBasicOverlays*                        DefaultOverlays;                                   // 0x28(0x8)(BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, GlobalConfig, InstancedReference, SubobjectReference)
-	TMap<class FString, class UBasicOverlays*>   LocaleToOverlaysMap;                               // 0x30(0x50)(ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	class UBasicOverlays*                        DefaultOverlays;                                   // 0x28(0x8)(BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	TMap<class FString, class UBasicOverlays*>   LocaleToOverlaysMap;                               // 0x30(0x50)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class ULocalizedOverlays* GetDefaultObj();

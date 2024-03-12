@@ -61,9 +61,9 @@ void UUI_Button_ScreenshotNavigation_C::BndEvt__UI_Button_ScreenshotNavigation_I
 // Function UI_Button_ScreenshotNavigation.UI_Button_ScreenshotNavigation_C.ExecuteUbergraph_UI_Button_ScreenshotNavigation
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
 
-int32 UUI_Button_ScreenshotNavigation_C::ExecuteUbergraph_UI_Button_ScreenshotNavigation()
+void UUI_Button_ScreenshotNavigation_C::ExecuteUbergraph_UI_Button_ScreenshotNavigation(int32* EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
@@ -75,7 +75,8 @@ int32 UUI_Button_ScreenshotNavigation_C::ExecuteUbergraph_UI_Button_ScreenshotNa
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (EntryPoint != nullptr)
+		*EntryPoint = Parms.EntryPoint;
 
 }
 

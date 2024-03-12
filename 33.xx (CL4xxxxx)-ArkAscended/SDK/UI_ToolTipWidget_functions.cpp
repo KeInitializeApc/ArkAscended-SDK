@@ -43,9 +43,9 @@ class UUI_ToolTipWidget_C* UUI_ToolTipWidget_C::GetDefaultObj()
 // Function UI_ToolTipWidget.UI_ToolTipWidget_C.PreConstruct
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// bool                               IsDesignTime                                                     (Edit, ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+// bool                               IsDesignTime                                                     (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 
-void UUI_ToolTipWidget_C::PreConstruct(bool* IsDesignTime)
+bool UUI_ToolTipWidget_C::PreConstruct()
 {
 	static class UFunction* Func = nullptr;
 
@@ -57,8 +57,7 @@ void UUI_ToolTipWidget_C::PreConstruct(bool* IsDesignTime)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (IsDesignTime != nullptr)
-		*IsDesignTime = Parms.IsDesignTime;
+	return Parms.ReturnValue;
 
 }
 
@@ -66,11 +65,11 @@ void UUI_ToolTipWidget_C::PreConstruct(bool* IsDesignTime)
 // Function UI_ToolTipWidget.UI_ToolTipWidget_C.ExecuteUbergraph_UI_ToolTipWidget
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-// bool                               K2Node_Event_IsDesignTime                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Config, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_TextIsEmpty_ReturnValue                                 (Edit, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
+// bool                               K2Node_Event_IsDesignTime                                        (BlueprintVisible, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_TextIsEmpty_ReturnValue                                 (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
 
-bool UUI_ToolTipWidget_C::ExecuteUbergraph_UI_ToolTipWidget()
+bool UUI_ToolTipWidget_C::ExecuteUbergraph_UI_ToolTipWidget(int32* EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
@@ -81,6 +80,9 @@ bool UUI_ToolTipWidget_C::ExecuteUbergraph_UI_ToolTipWidget()
 
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (EntryPoint != nullptr)
+		*EntryPoint = Parms.EntryPoint;
 
 	return Parms.ReturnValue;
 

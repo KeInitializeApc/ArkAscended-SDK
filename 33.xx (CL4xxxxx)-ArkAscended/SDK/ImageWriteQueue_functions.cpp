@@ -43,11 +43,11 @@ class UImageWriteBlueprintLibrary* UImageWriteBlueprintLibrary::GetDefaultObj()
 // Function ImageWriteQueue.ImageWriteBlueprintLibrary.ExportToDisk
 // (Final, RequiredAPI, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UTexture*                    Texture                                                          (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst)
+// class UTexture*                    Texture                                                          (ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
 // class FString                      Filename                                                         (Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm)
-// struct FImageWriteOptions          Options                                                          (Edit, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+// struct FImageWriteOptions          Options                                                          (Edit, ExportObject, Parm, ZeroConstructor, GlobalConfig, SubobjectReference)
 
-struct FImageWriteOptions UImageWriteBlueprintLibrary::ExportToDisk(class UTexture** Texture)
+class FString UImageWriteBlueprintLibrary::ExportToDisk(const struct FImageWriteOptions& Options)
 {
 	static class UFunction* Func = nullptr;
 
@@ -56,6 +56,7 @@ struct FImageWriteOptions UImageWriteBlueprintLibrary::ExportToDisk(class UTextu
 
 	Params::UImageWriteBlueprintLibrary_ExportToDisk_Params Parms{};
 
+	Parms.Options = Options;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -64,9 +65,6 @@ struct FImageWriteOptions UImageWriteBlueprintLibrary::ExportToDisk(class UTextu
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (Texture != nullptr)
-		*Texture = Parms.Texture;
 
 	return Parms.ReturnValue;
 

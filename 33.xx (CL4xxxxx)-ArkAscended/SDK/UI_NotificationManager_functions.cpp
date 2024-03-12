@@ -43,12 +43,12 @@ class UUI_NotificationManager_C* UUI_NotificationManager_C::GetDefaultObj()
 // Function UI_NotificationManager.UI_NotificationManager_C.CreateNotify
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UUI_Notification_C*          ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// class UUI_Notification_C*          CallFunc_Create_ReturnValue                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
-// class UOverlaySlot*                CallFunc_AddChildToOverlay_ReturnValue                           (Edit, ConstParm, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
+// class UUI_Notification_C*          ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// class UUI_Notification_C*          CallFunc_Create_ReturnValue                                      (Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// class UOverlaySlot*                CallFunc_AddChildToOverlay_ReturnValue                           (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-class UUI_Notification_C* UUI_NotificationManager_C::CreateNotify(class UUI_Notification_C* ReturnValue, bool* CallFunc_IsValid_ReturnValue, class UOverlaySlot** CallFunc_AddChildToOverlay_ReturnValue)
+class UOverlaySlot* UUI_NotificationManager_C::CreateNotify(class UUI_Notification_C* CallFunc_Create_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -57,15 +57,9 @@ class UUI_Notification_C* UUI_NotificationManager_C::CreateNotify(class UUI_Noti
 
 	Params::UUI_NotificationManager_C_CreateNotify_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.CallFunc_Create_ReturnValue = CallFunc_Create_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
-
-	if (CallFunc_AddChildToOverlay_ReturnValue != nullptr)
-		*CallFunc_AddChildToOverlay_ReturnValue = Parms.CallFunc_AddChildToOverlay_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -75,7 +69,7 @@ class UUI_Notification_C* UUI_NotificationManager_C::CreateNotify(class UUI_Noti
 // Function UI_NotificationManager.UI_NotificationManager_C.PlayInstalledNotification
 // (HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// struct FInstallProgressMod         InstallProgressMod                                               (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config)
+// struct FInstallProgressMod         InstallProgressMod                                               (Edit, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config)
 
 void UUI_NotificationManager_C::PlayInstalledNotification(struct FInstallProgressMod* InstallProgressMod)
 {
@@ -170,17 +164,17 @@ void UUI_NotificationManager_C::PlayCantJoinServer()
 // Function UI_NotificationManager.UI_NotificationManager_C.ExecuteUbergraph_UI_NotificationManager
 // (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// int32                              EntryPoint                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-// class UUI_Notification_C*          CallFunc_CreateNotify_ReturnValue                                (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FInstallProgressMod         K2Node_CustomEvent_InstallProgressMod                            (BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// class FString                      CallFunc_GetModName_Name                                         (Edit, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
-// class FText                        CallFunc_Conv_StringToText_ReturnValue                           (ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
-// class UUI_Notification_C*          CallFunc_CreateNotify_ReturnValue_1                              (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference, Interp)
-// class UUI_Notification_C*          CallFunc_CreateNotify_ReturnValue_2                              (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
-// class UUI_Notification_C*          CallFunc_CreateNotify_ReturnValue_3                              (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference, NonTransactional)
+// int32                              EntryPoint                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
+// class UUI_Notification_C*          CallFunc_CreateNotify_ReturnValue                                (BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// struct FInstallProgressMod         K2Node_CustomEvent_InstallProgressMod                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      CallFunc_GetModName_Name                                         (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FText                        CallFunc_Conv_StringToText_ReturnValue                           (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// class UUI_Notification_C*          CallFunc_CreateNotify_ReturnValue_1                              (BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// class UUI_Notification_C*          CallFunc_CreateNotify_ReturnValue_2                              (BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
+// class UUI_Notification_C*          CallFunc_CreateNotify_ReturnValue_3                              (BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, NonTransactional)
 
-int32 UUI_NotificationManager_C::ExecuteUbergraph_UI_NotificationManager(class UUI_Notification_C** CallFunc_CreateNotify_ReturnValue, bool* CallFunc_IsValid_ReturnValue, struct FInstallProgressMod* K2Node_CustomEvent_InstallProgressMod, class FString* CallFunc_GetModName_Name, class FText* CallFunc_Conv_StringToText_ReturnValue, class UUI_Notification_C** CallFunc_CreateNotify_ReturnValue_1, class UUI_Notification_C** CallFunc_CreateNotify_ReturnValue_2, class UUI_Notification_C** CallFunc_CreateNotify_ReturnValue_3)
+class UUI_Notification_C* UUI_NotificationManager_C::ExecuteUbergraph_UI_NotificationManager(int32* EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
@@ -192,29 +186,8 @@ int32 UUI_NotificationManager_C::ExecuteUbergraph_UI_NotificationManager(class U
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_CreateNotify_ReturnValue != nullptr)
-		*CallFunc_CreateNotify_ReturnValue = Parms.CallFunc_CreateNotify_ReturnValue;
-
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
-
-	if (K2Node_CustomEvent_InstallProgressMod != nullptr)
-		*K2Node_CustomEvent_InstallProgressMod = std::move(Parms.K2Node_CustomEvent_InstallProgressMod);
-
-	if (CallFunc_GetModName_Name != nullptr)
-		*CallFunc_GetModName_Name = std::move(Parms.CallFunc_GetModName_Name);
-
-	if (CallFunc_Conv_StringToText_ReturnValue != nullptr)
-		*CallFunc_Conv_StringToText_ReturnValue = Parms.CallFunc_Conv_StringToText_ReturnValue;
-
-	if (CallFunc_CreateNotify_ReturnValue_1 != nullptr)
-		*CallFunc_CreateNotify_ReturnValue_1 = Parms.CallFunc_CreateNotify_ReturnValue_1;
-
-	if (CallFunc_CreateNotify_ReturnValue_2 != nullptr)
-		*CallFunc_CreateNotify_ReturnValue_2 = Parms.CallFunc_CreateNotify_ReturnValue_2;
-
-	if (CallFunc_CreateNotify_ReturnValue_3 != nullptr)
-		*CallFunc_CreateNotify_ReturnValue_3 = Parms.CallFunc_CreateNotify_ReturnValue_3;
+	if (EntryPoint != nullptr)
+		*EntryPoint = Parms.EntryPoint;
 
 	return Parms.ReturnValue;
 

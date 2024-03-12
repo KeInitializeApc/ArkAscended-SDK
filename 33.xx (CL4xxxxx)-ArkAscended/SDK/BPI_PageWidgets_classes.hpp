@@ -18,9 +18,9 @@ public:
 	static class UClass* StaticClass();
 	static class IBPI_PageWidgets_C* GetDefaultObj();
 
-	void UpdateSearch(class FText SearchInput);
-	class UWidget* GetClose_B();
-	void OnSearch(class FText* Search_Input);
+	class FText UpdateSearch();
+	void GetClose_B(class UWidget* Widget);
+	class FText OnSearch();
 };
 
 }

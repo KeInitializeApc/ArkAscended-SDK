@@ -9,19 +9,19 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x18 (0x6F0 - 0x6D8)
+// 0x10 (0x6E0 - 0x6D0)
 // Class CustomMeshComponent.CustomMeshComponent
 class UCustomMeshComponent : public UMeshComponent
 {
 public:
-	uint8                                        Pad_177D[0x18];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1B5B[0x10];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UCustomMeshComponent* GetDefaultObj();
 
-	void SetCustomMeshTriangles(TArray<struct FCustomMeshTriangle>* Triangles, bool ReturnValue);
+	bool SetCustomMeshTriangles();
 	void ClearCustomMeshTriangles();
-	void AddCustomMeshTriangles(TArray<struct FCustomMeshTriangle>* Triangles);
+	TArray<struct FCustomMeshTriangle> AddCustomMeshTriangles();
 };
 
 }

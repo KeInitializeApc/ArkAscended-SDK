@@ -18,7 +18,7 @@ public:
 	static class UClass* StaticClass();
 	static class UImageWriteBlueprintLibrary* GetDefaultObj();
 
-	struct FImageWriteOptions ExportToDisk(class UTexture** Texture);
+	class FString ExportToDisk(const struct FImageWriteOptions& Options);
 };
 
 }

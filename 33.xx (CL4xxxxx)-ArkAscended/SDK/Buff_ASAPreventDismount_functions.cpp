@@ -43,15 +43,15 @@ class ABuff_ASAPreventDismount_C* ABuff_ASAPreventDismount_C::GetDefaultObj()
 // Function Buff_ASAPreventDismount.Buff_ASAPreventDismount_C.BPBypassPreventDinoDismount
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               FromRider                                                        (Edit, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bCancelForceLand                                                 (BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               SpawnDinoDefaultController                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// int32                              OverrideUnboardDirection                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bForceEvenIfBuffPreventsClear                                    (Edit, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bFromUse                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               FromRider                                                        (Edit, BlueprintReadOnly, Net, Parm, EditConst, InstancedReference, SubobjectReference)
+// bool                               bCancelForceLand                                                 (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               SpawnDinoDefaultController                                       (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// int32                              OverrideUnboardDirection                                         (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               bForceEvenIfBuffPreventsClear                                    (ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               bFromUse                                                         (Edit, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool ABuff_ASAPreventDismount_C::BPBypassPreventDinoDismount(bool ReturnValue)
+bool ABuff_ASAPreventDismount_C::BPBypassPreventDinoDismount(bool FromRider, bool* bCancelForceLand, bool* SpawnDinoDefaultController, int32* OverrideUnboardDirection, bool* bForceEvenIfBuffPreventsClear, bool* bFromUse)
 {
 	static class UFunction* Func = nullptr;
 
@@ -60,9 +60,24 @@ bool ABuff_ASAPreventDismount_C::BPBypassPreventDinoDismount(bool ReturnValue)
 
 	Params::ABuff_ASAPreventDismount_C_BPBypassPreventDinoDismount_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.FromRider = FromRider;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (bCancelForceLand != nullptr)
+		*bCancelForceLand = Parms.bCancelForceLand;
+
+	if (SpawnDinoDefaultController != nullptr)
+		*SpawnDinoDefaultController = Parms.SpawnDinoDefaultController;
+
+	if (OverrideUnboardDirection != nullptr)
+		*OverrideUnboardDirection = Parms.OverrideUnboardDirection;
+
+	if (bForceEvenIfBuffPreventsClear != nullptr)
+		*bForceEvenIfBuffPreventsClear = Parms.bForceEvenIfBuffPreventsClear;
+
+	if (bFromUse != nullptr)
+		*bFromUse = Parms.bFromUse;
 
 	return Parms.ReturnValue;
 

@@ -43,9 +43,9 @@ class UCustomButton_HUB_ASA_C* UCustomButton_HUB_ASA_C::GetDefaultObj()
 // Function CustomButton_HUB_ASA.CustomButton_HUB_ASA_C.BPSetToggledState
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// bool                               IsToggled                                                        (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               IsToggled                                                        (ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UCustomButton_HUB_ASA_C::BPSetToggledState(bool* IsToggled)
+bool UCustomButton_HUB_ASA_C::BPSetToggledState()
 {
 	static class UFunction* Func = nullptr;
 
@@ -57,8 +57,7 @@ void UCustomButton_HUB_ASA_C::BPSetToggledState(bool* IsToggled)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (IsToggled != nullptr)
-		*IsToggled = Parms.IsToggled;
+	return Parms.ReturnValue;
 
 }
 
@@ -66,10 +65,10 @@ void UCustomButton_HUB_ASA_C::BPSetToggledState(bool* IsToggled)
 // Function CustomButton_HUB_ASA.CustomButton_HUB_ASA_C.ExecuteUbergraph_CustomButton_HUB_ASA
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-// bool                               K2Node_Event_IsToggled                                           (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Config, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
+// bool                               K2Node_Event_IsToggled                                           (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-int32 UCustomButton_HUB_ASA_C::ExecuteUbergraph_CustomButton_HUB_ASA(bool* K2Node_Event_IsToggled)
+void UCustomButton_HUB_ASA_C::ExecuteUbergraph_CustomButton_HUB_ASA(int32* EntryPoint, bool K2Node_Event_IsToggled)
 {
 	static class UFunction* Func = nullptr;
 
@@ -78,13 +77,12 @@ int32 UCustomButton_HUB_ASA_C::ExecuteUbergraph_CustomButton_HUB_ASA(bool* K2Nod
 
 	Params::UCustomButton_HUB_ASA_C_ExecuteUbergraph_CustomButton_HUB_ASA_Params Parms{};
 
+	Parms.K2Node_Event_IsToggled = K2Node_Event_IsToggled;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (K2Node_Event_IsToggled != nullptr)
-		*K2Node_Event_IsToggled = Parms.K2Node_Event_IsToggled;
-
-	return Parms.ReturnValue;
+	if (EntryPoint != nullptr)
+		*EntryPoint = Parms.EntryPoint;
 
 }
 

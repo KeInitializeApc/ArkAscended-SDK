@@ -14,7 +14,7 @@ namespace SDK
 class UMovieSceneScriptingKey : public UObject
 {
 public:
-	uint8                                        Pad_4B8[0x18];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_304[0x18];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneScriptingKey* GetDefaultObj();
@@ -26,15 +26,15 @@ public:
 class UMovieSceneScriptingActorReferenceKey : public UMovieSceneScriptingKey
 {
 public:
-	uint8                                        Pad_4C6[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_31A[0x20];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneScriptingActorReferenceKey* GetDefaultObj();
 
-	struct FMovieSceneObjectBindingID SetValue();
-	enum class ESequenceTimeUnit SetTime(float* SubFrame);
-	void GetValue(const struct FMovieSceneObjectBindingID& ReturnValue);
-	enum class ESequenceTimeUnit GetTime(const struct FFrameTime& ReturnValue);
+	void SetValue(struct FMovieSceneObjectBindingID* InNewValue);
+	float SetTime(struct FFrameNumber* NewFrameNumber, enum class ESequenceTimeUnit* TimeUnit);
+	struct FMovieSceneObjectBindingID GetValue();
+	struct FFrameTime GetTime(enum class ESequenceTimeUnit* TimeUnit);
 };
 
 // 0x8 (0x30 - 0x28)
@@ -42,7 +42,7 @@ public:
 class UMovieSceneScriptingChannel : public UObject
 {
 public:
-	class FName                                  ChannelName;                                       // 0x28(0x8)(EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  ChannelName;                                       // 0x28(0x8)(Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UMovieSceneScriptingChannel* GetDefaultObj();
@@ -54,18 +54,18 @@ public:
 class UMovieSceneScriptingActorReferenceChannel : public UMovieSceneScriptingChannel
 {
 public:
-	uint8                                        Pad_4D5[0x30];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_342[0x30];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneScriptingActorReferenceChannel* GetDefaultObj();
 
-	struct FMovieSceneObjectBindingID SetDefault();
-	class UMovieSceneScriptingKey* RemoveKey();
+	void SetDefault(struct FMovieSceneObjectBindingID* InDefaultValue);
+	void RemoveKey(class UMovieSceneScriptingKey* Key);
 	void RemoveDefault();
-	void HasDefault(bool ReturnValue);
-	void GetKeys(const TArray<class UMovieSceneScriptingKey*>& ReturnValue);
-	void GetDefault(const struct FMovieSceneObjectBindingID& ReturnValue);
-	enum class ESequenceTimeUnit AddKey(struct FMovieSceneObjectBindingID* NewValue, float* SubFrame, class UMovieSceneScriptingActorReferenceKey* ReturnValue);
+	bool HasDefault();
+	TArray<class UMovieSceneScriptingKey*> GetKeys();
+	struct FMovieSceneObjectBindingID GetDefault();
+	class UMovieSceneScriptingActorReferenceKey* AddKey(const struct FFrameNumber& InTime, const struct FMovieSceneObjectBindingID& NewValue, enum class ESequenceTimeUnit* TimeUnit);
 };
 
 // 0x20 (0x60 - 0x40)
@@ -73,15 +73,15 @@ public:
 class UMovieSceneScriptingBoolKey : public UMovieSceneScriptingKey
 {
 public:
-	uint8                                        Pad_4E4[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_358[0x20];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneScriptingBoolKey* GetDefaultObj();
 
-	bool SetValue();
-	enum class ESequenceTimeUnit SetTime(float* SubFrame);
-	void GetValue(bool ReturnValue);
-	enum class ESequenceTimeUnit GetTime(const struct FFrameTime& ReturnValue);
+	void SetValue(bool* InNewValue);
+	float SetTime(struct FFrameNumber* NewFrameNumber, enum class ESequenceTimeUnit* TimeUnit);
+	bool GetValue();
+	struct FFrameTime GetTime(enum class ESequenceTimeUnit* TimeUnit);
 };
 
 // 0x30 (0x60 - 0x30)
@@ -89,21 +89,21 @@ public:
 class UMovieSceneScriptingBoolChannel : public UMovieSceneScriptingChannel
 {
 public:
-	uint8                                        Pad_504[0x30];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_38B[0x30];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneScriptingBoolChannel* GetDefaultObj();
 
-	bool SetDefault();
-	class UMovieSceneScriptingKey* RemoveKey();
+	void SetDefault(bool* InDefaultValue);
+	void RemoveKey(class UMovieSceneScriptingKey* Key);
 	void RemoveDefault();
-	void HasDefault(bool ReturnValue);
-	void GetNumKeys(int32 ReturnValue);
-	void GetKeys(const TArray<class UMovieSceneScriptingKey*>& ReturnValue);
-	void GetDefault(bool ReturnValue);
-	struct FFrameRate EvaluateKeys(const TArray<bool>& ReturnValue);
-	void ComputeEffectiveRange(const struct FSequencerScriptingRange& ReturnValue);
-	enum class ESequenceTimeUnit AddKey(bool* NewValue, float* SubFrame, class UMovieSceneScriptingBoolKey* ReturnValue);
+	bool HasDefault();
+	int32 GetNumKeys();
+	TArray<class UMovieSceneScriptingKey*> GetKeys();
+	bool GetDefault();
+	TArray<bool> EvaluateKeys();
+	struct FSequencerScriptingRange ComputeEffectiveRange();
+	class UMovieSceneScriptingBoolKey* AddKey(const struct FFrameNumber& InTime, bool NewValue, enum class ESequenceTimeUnit* TimeUnit);
 };
 
 // 0x20 (0x60 - 0x40)
@@ -111,15 +111,15 @@ public:
 class UMovieSceneScriptingByteKey : public UMovieSceneScriptingKey
 {
 public:
-	uint8                                        Pad_513[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_3A1[0x20];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneScriptingByteKey* GetDefaultObj();
 
-	uint8 SetValue();
-	enum class ESequenceTimeUnit SetTime(float* SubFrame);
-	void GetValue(uint8 ReturnValue);
-	enum class ESequenceTimeUnit GetTime(const struct FFrameTime& ReturnValue);
+	void SetValue(uint8* InNewValue);
+	float SetTime(struct FFrameNumber* NewFrameNumber, enum class ESequenceTimeUnit* TimeUnit);
+	uint8 GetValue();
+	struct FFrameTime GetTime(enum class ESequenceTimeUnit* TimeUnit);
 };
 
 // 0x30 (0x60 - 0x30)
@@ -127,18 +127,18 @@ public:
 class UMovieSceneScriptingByteChannel : public UMovieSceneScriptingChannel
 {
 public:
-	uint8                                        Pad_521[0x30];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_3BD[0x30];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneScriptingByteChannel* GetDefaultObj();
 
-	uint8 SetDefault();
-	class UMovieSceneScriptingKey* RemoveKey();
+	void SetDefault(uint8* InDefaultValue);
+	void RemoveKey(class UMovieSceneScriptingKey* Key);
 	void RemoveDefault();
-	void HasDefault(bool ReturnValue);
-	void GetKeys(const TArray<class UMovieSceneScriptingKey*>& ReturnValue);
-	void GetDefault(uint8 ReturnValue);
-	enum class EMovieSceneKeyInterpolation AddKey(uint8* NewValue, float* SubFrame, class UMovieSceneScriptingByteKey* ReturnValue);
+	bool HasDefault();
+	TArray<class UMovieSceneScriptingKey*> GetKeys();
+	uint8 GetDefault();
+	class UMovieSceneScriptingByteKey* AddKey(const struct FFrameNumber& InTime, uint8 NewValue, enum class ESequenceTimeUnit* TimeUnit, enum class EMovieSceneKeyInterpolation* InInterpolation);
 };
 
 // 0x20 (0x60 - 0x40)
@@ -146,29 +146,29 @@ public:
 class UMovieSceneScriptingDoubleKey : public UMovieSceneScriptingKey
 {
 public:
-	uint8                                        Pad_547[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_40E[0x20];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneScriptingDoubleKey* GetDefaultObj();
 
-	double SetValue();
-	enum class ESequenceTimeUnit SetTime(float* SubFrame);
-	enum class ERichCurveTangentWeightMode SetTangentWeightMode();
-	enum class ERichCurveTangentMode SetTangentMode();
-	float SetLeaveTangentWeight();
-	float SetLeaveTangent();
-	enum class ERichCurveInterpMode SetInterpolationMode();
-	float SetArriveTangentWeight();
-	float SetArriveTangent();
-	void GetValue(double ReturnValue);
-	enum class ESequenceTimeUnit GetTime(const struct FFrameTime& ReturnValue);
-	void GetTangentWeightMode(enum class ERichCurveTangentWeightMode ReturnValue);
-	void GetTangentMode(enum class ERichCurveTangentMode ReturnValue);
-	void GetLeaveTangentWeight(float ReturnValue);
-	void GetLeaveTangent(float ReturnValue);
-	void GetInterpolationMode(enum class ERichCurveInterpMode ReturnValue);
-	void GetArriveTangentWeight(float ReturnValue);
-	void GetArriveTangent(float ReturnValue);
+	void SetValue(double* InNewValue);
+	float SetTime(struct FFrameNumber* NewFrameNumber, enum class ESequenceTimeUnit* TimeUnit);
+	void SetTangentWeightMode(enum class ERichCurveTangentWeightMode* InNewValue);
+	void SetTangentMode(enum class ERichCurveTangentMode* InNewValue);
+	void SetLeaveTangentWeight(float* InNewValue);
+	void SetLeaveTangent(float* InNewValue);
+	void SetInterpolationMode(enum class ERichCurveInterpMode* InNewValue);
+	void SetArriveTangentWeight(float* InNewValue);
+	void SetArriveTangent(float* InNewValue);
+	double GetValue();
+	struct FFrameTime GetTime(enum class ESequenceTimeUnit* TimeUnit);
+	enum class ERichCurveTangentWeightMode GetTangentWeightMode();
+	enum class ERichCurveTangentMode GetTangentMode();
+	float GetLeaveTangentWeight();
+	float GetLeaveTangent();
+	enum class ERichCurveInterpMode GetInterpolationMode();
+	float GetArriveTangentWeight();
+	float GetArriveTangent();
 };
 
 // 0x30 (0x60 - 0x30)
@@ -176,25 +176,25 @@ public:
 class UMovieSceneScriptingDoubleChannel : public UMovieSceneScriptingChannel
 {
 public:
-	uint8                                        Pad_573[0x30];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_44B[0x30];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneScriptingDoubleChannel* GetDefaultObj();
 
-	enum class ERichCurveExtrapolation SetPreInfinityExtrapolation();
-	enum class ERichCurveExtrapolation SetPostInfinityExtrapolation();
-	double SetDefault();
-	class UMovieSceneScriptingKey* RemoveKey();
+	void SetPreInfinityExtrapolation(enum class ERichCurveExtrapolation* InExtrapolation);
+	void SetPostInfinityExtrapolation(enum class ERichCurveExtrapolation* InExtrapolation);
+	void SetDefault(double* InDefaultValue);
+	void RemoveKey(class UMovieSceneScriptingKey* Key);
 	void RemoveDefault();
-	void HasDefault(bool ReturnValue);
-	void GetPreInfinityExtrapolation(enum class ERichCurveExtrapolation ReturnValue);
-	void GetPostInfinityExtrapolation(enum class ERichCurveExtrapolation ReturnValue);
-	void GetNumKeys(int32 ReturnValue);
-	void GetKeys(const TArray<class UMovieSceneScriptingKey*>& ReturnValue);
-	void GetDefault(double ReturnValue);
-	struct FFrameRate EvaluateKeys(const TArray<double>& ReturnValue);
-	void ComputeEffectiveRange(const struct FSequencerScriptingRange& ReturnValue);
-	enum class EMovieSceneKeyInterpolation AddKey(double* NewValue, float* SubFrame, class UMovieSceneScriptingDoubleKey* ReturnValue);
+	bool HasDefault();
+	enum class ERichCurveExtrapolation GetPreInfinityExtrapolation();
+	enum class ERichCurveExtrapolation GetPostInfinityExtrapolation();
+	int32 GetNumKeys();
+	TArray<class UMovieSceneScriptingKey*> GetKeys();
+	double GetDefault();
+	TArray<double> EvaluateKeys();
+	struct FSequencerScriptingRange ComputeEffectiveRange();
+	class UMovieSceneScriptingDoubleKey* AddKey(const struct FFrameNumber& InTime, double NewValue, enum class ESequenceTimeUnit* TimeUnit, enum class EMovieSceneKeyInterpolation* InInterpolation);
 };
 
 // 0x20 (0x60 - 0x40)
@@ -202,15 +202,15 @@ public:
 class UMovieSceneScriptingEventKey : public UMovieSceneScriptingKey
 {
 public:
-	uint8                                        Pad_587[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_467[0x20];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneScriptingEventKey* GetDefaultObj();
 
-	struct FMovieSceneEvent SetValue();
-	enum class ESequenceTimeUnit SetTime(float* SubFrame);
-	void GetValue(const struct FMovieSceneEvent& ReturnValue);
-	enum class ESequenceTimeUnit GetTime(const struct FFrameTime& ReturnValue);
+	void SetValue(struct FMovieSceneEvent* InNewValue);
+	float SetTime(struct FFrameNumber* NewFrameNumber, enum class ESequenceTimeUnit* TimeUnit);
+	struct FMovieSceneEvent GetValue();
+	struct FFrameTime GetTime(enum class ESequenceTimeUnit* TimeUnit);
 };
 
 // 0x30 (0x60 - 0x30)
@@ -218,14 +218,14 @@ public:
 class UMovieSceneScriptingEventChannel : public UMovieSceneScriptingChannel
 {
 public:
-	uint8                                        Pad_597[0x30];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_481[0x30];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneScriptingEventChannel* GetDefaultObj();
 
-	class UMovieSceneScriptingKey* RemoveKey();
-	void GetKeys(const TArray<class UMovieSceneScriptingKey*>& ReturnValue);
-	enum class ESequenceTimeUnit AddKey(struct FMovieSceneEvent* NewValue, float* SubFrame, class UMovieSceneScriptingEventKey* ReturnValue);
+	void RemoveKey(class UMovieSceneScriptingKey* Key);
+	TArray<class UMovieSceneScriptingKey*> GetKeys();
+	class UMovieSceneScriptingEventKey* AddKey(const struct FFrameNumber& InTime, const struct FMovieSceneEvent& NewValue, enum class ESequenceTimeUnit* TimeUnit);
 };
 
 // 0x0 (0x40 - 0x40)
@@ -237,24 +237,24 @@ public:
 	static class UClass* StaticClass();
 	static class UMovieSceneScriptingFloatKey* GetDefaultObj();
 
-	float SetValue();
-	enum class ESequenceTimeUnit SetTime(float* SubFrame);
-	enum class ERichCurveTangentWeightMode SetTangentWeightMode();
-	enum class ERichCurveTangentMode SetTangentMode();
-	float SetLeaveTangentWeight();
-	float SetLeaveTangent();
-	enum class ERichCurveInterpMode SetInterpolationMode();
-	float SetArriveTangentWeight();
-	float SetArriveTangent();
-	void GetValue(float ReturnValue);
-	enum class ESequenceTimeUnit GetTime(const struct FFrameTime& ReturnValue);
-	void GetTangentWeightMode(enum class ERichCurveTangentWeightMode ReturnValue);
-	void GetTangentMode(enum class ERichCurveTangentMode ReturnValue);
-	void GetLeaveTangentWeight(float ReturnValue);
-	void GetLeaveTangent(float ReturnValue);
-	void GetInterpolationMode(enum class ERichCurveInterpMode ReturnValue);
-	void GetArriveTangentWeight(float ReturnValue);
-	void GetArriveTangent(float ReturnValue);
+	void SetValue(float* InNewValue);
+	float SetTime(struct FFrameNumber* NewFrameNumber, enum class ESequenceTimeUnit* TimeUnit);
+	void SetTangentWeightMode(enum class ERichCurveTangentWeightMode* InNewValue);
+	void SetTangentMode(enum class ERichCurveTangentMode* InNewValue);
+	void SetLeaveTangentWeight(float* InNewValue);
+	void SetLeaveTangent(float* InNewValue);
+	void SetInterpolationMode(enum class ERichCurveInterpMode* InNewValue);
+	void SetArriveTangentWeight(float* InNewValue);
+	void SetArriveTangent(float* InNewValue);
+	float GetValue();
+	struct FFrameTime GetTime(enum class ESequenceTimeUnit* TimeUnit);
+	enum class ERichCurveTangentWeightMode GetTangentWeightMode();
+	enum class ERichCurveTangentMode GetTangentMode();
+	float GetLeaveTangentWeight();
+	float GetLeaveTangent();
+	enum class ERichCurveInterpMode GetInterpolationMode();
+	float GetArriveTangentWeight();
+	float GetArriveTangent();
 };
 
 // 0x20 (0x60 - 0x40)
@@ -262,7 +262,7 @@ public:
 class UMovieSceneScriptingActualFloatKey : public UMovieSceneScriptingFloatKey
 {
 public:
-	uint8                                        Pad_5D1[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_4D2[0x20];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneScriptingActualFloatKey* GetDefaultObj();
@@ -274,7 +274,7 @@ public:
 class UMovieSceneScriptingDoubleAsFloatKey : public UMovieSceneScriptingFloatKey
 {
 public:
-	uint8                                        Pad_5D6[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_4D4[0x20];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneScriptingDoubleAsFloatKey* GetDefaultObj();
@@ -286,25 +286,25 @@ public:
 class UMovieSceneScriptingFloatChannel : public UMovieSceneScriptingChannel
 {
 public:
-	uint8                                        Pad_613[0x50];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_511[0x50];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneScriptingFloatChannel* GetDefaultObj();
 
-	enum class ERichCurveExtrapolation SetPreInfinityExtrapolation();
-	enum class ERichCurveExtrapolation SetPostInfinityExtrapolation();
-	float SetDefault();
-	class UMovieSceneScriptingKey* RemoveKey();
+	void SetPreInfinityExtrapolation(enum class ERichCurveExtrapolation* InExtrapolation);
+	void SetPostInfinityExtrapolation(enum class ERichCurveExtrapolation* InExtrapolation);
+	void SetDefault(float* InDefaultValue);
+	void RemoveKey(class UMovieSceneScriptingKey* Key);
 	void RemoveDefault();
-	void HasDefault(bool ReturnValue);
-	void GetPreInfinityExtrapolation(enum class ERichCurveExtrapolation ReturnValue);
-	void GetPostInfinityExtrapolation(enum class ERichCurveExtrapolation ReturnValue);
-	void GetNumKeys(int32 ReturnValue);
-	void GetKeys(const TArray<class UMovieSceneScriptingKey*>& ReturnValue);
-	void GetDefault(float ReturnValue);
-	struct FFrameRate EvaluateKeys(const TArray<float>& ReturnValue);
-	void ComputeEffectiveRange(const struct FSequencerScriptingRange& ReturnValue);
-	enum class EMovieSceneKeyInterpolation AddKey(float* NewValue, float* SubFrame, class UMovieSceneScriptingFloatKey* ReturnValue);
+	bool HasDefault();
+	enum class ERichCurveExtrapolation GetPreInfinityExtrapolation();
+	enum class ERichCurveExtrapolation GetPostInfinityExtrapolation();
+	int32 GetNumKeys();
+	TArray<class UMovieSceneScriptingKey*> GetKeys();
+	float GetDefault();
+	TArray<float> EvaluateKeys();
+	struct FSequencerScriptingRange ComputeEffectiveRange();
+	class UMovieSceneScriptingFloatKey* AddKey(const struct FFrameNumber& InTime, float NewValue, enum class ESequenceTimeUnit* TimeUnit, enum class EMovieSceneKeyInterpolation* InInterpolation);
 };
 
 // 0x20 (0x60 - 0x40)
@@ -312,15 +312,15 @@ public:
 class UMovieSceneScriptingIntegerKey : public UMovieSceneScriptingKey
 {
 public:
-	uint8                                        Pad_626[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_528[0x20];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneScriptingIntegerKey* GetDefaultObj();
 
-	int32 SetValue();
-	enum class ESequenceTimeUnit SetTime(float* SubFrame);
-	void GetValue(int32 ReturnValue);
-	enum class ESequenceTimeUnit GetTime(const struct FFrameTime& ReturnValue);
+	void SetValue(int32* InNewValue);
+	float SetTime(struct FFrameNumber* NewFrameNumber, enum class ESequenceTimeUnit* TimeUnit);
+	int32 GetValue();
+	struct FFrameTime GetTime(enum class ESequenceTimeUnit* TimeUnit);
 };
 
 // 0x30 (0x60 - 0x30)
@@ -328,18 +328,18 @@ public:
 class UMovieSceneScriptingIntegerChannel : public UMovieSceneScriptingChannel
 {
 public:
-	uint8                                        Pad_64A[0x30];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_539[0x30];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneScriptingIntegerChannel* GetDefaultObj();
 
-	int32 SetDefault();
-	class UMovieSceneScriptingKey* RemoveKey();
+	void SetDefault(int32* InDefaultValue);
+	void RemoveKey(class UMovieSceneScriptingKey* Key);
 	void RemoveDefault();
-	void HasDefault(bool ReturnValue);
-	void GetKeys(const TArray<class UMovieSceneScriptingKey*>& ReturnValue);
-	void GetDefault(int32 ReturnValue);
-	enum class ESequenceTimeUnit AddKey(int32* NewValue, float* SubFrame, class UMovieSceneScriptingIntegerKey* ReturnValue);
+	bool HasDefault();
+	TArray<class UMovieSceneScriptingKey*> GetKeys();
+	int32 GetDefault();
+	class UMovieSceneScriptingIntegerKey* AddKey(const struct FFrameNumber& InTime, int32 NewValue, enum class ESequenceTimeUnit* TimeUnit);
 };
 
 // 0x20 (0x60 - 0x40)
@@ -347,15 +347,15 @@ public:
 class UMovieSceneScriptingObjectPathKey : public UMovieSceneScriptingKey
 {
 public:
-	uint8                                        Pad_666[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_546[0x20];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneScriptingObjectPathKey* GetDefaultObj();
 
-	class UObject* SetValue();
-	enum class ESequenceTimeUnit SetTime(float* SubFrame);
-	void GetValue(class UObject* ReturnValue);
-	enum class ESequenceTimeUnit GetTime(const struct FFrameTime& ReturnValue);
+	void SetValue(class UObject** InNewValue);
+	float SetTime(struct FFrameNumber* NewFrameNumber, enum class ESequenceTimeUnit* TimeUnit);
+	class UObject* GetValue();
+	struct FFrameTime GetTime(enum class ESequenceTimeUnit* TimeUnit);
 };
 
 // 0x30 (0x60 - 0x30)
@@ -363,18 +363,18 @@ public:
 class UMovieSceneScriptingObjectPathChannel : public UMovieSceneScriptingChannel
 {
 public:
-	uint8                                        Pad_68E[0x30];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_560[0x30];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneScriptingObjectPathChannel* GetDefaultObj();
 
-	class UObject* SetDefault();
-	class UMovieSceneScriptingKey* RemoveKey();
+	void SetDefault(class UObject** InDefaultValue);
+	void RemoveKey(class UMovieSceneScriptingKey* Key);
 	void RemoveDefault();
-	void HasDefault(bool ReturnValue);
-	void GetKeys(const TArray<class UMovieSceneScriptingKey*>& ReturnValue);
-	void GetDefault(class UObject* ReturnValue);
-	enum class ESequenceTimeUnit AddKey(class UObject** NewValue, float* SubFrame, class UMovieSceneScriptingObjectPathKey* ReturnValue);
+	bool HasDefault();
+	TArray<class UMovieSceneScriptingKey*> GetKeys();
+	class UObject* GetDefault();
+	class UMovieSceneScriptingObjectPathKey* AddKey(const struct FFrameNumber& InTime, class UObject* NewValue, enum class ESequenceTimeUnit* TimeUnit);
 };
 
 // 0x20 (0x60 - 0x40)
@@ -382,15 +382,15 @@ public:
 class UMovieSceneScriptingStringKey : public UMovieSceneScriptingKey
 {
 public:
-	uint8                                        Pad_6A0[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_56F[0x20];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneScriptingStringKey* GetDefaultObj();
 
-	class FString SetValue();
-	enum class ESequenceTimeUnit SetTime(float* SubFrame);
-	void GetValue(const class FString& ReturnValue);
-	enum class ESequenceTimeUnit GetTime(const struct FFrameTime& ReturnValue);
+	void SetValue(class FString* InNewValue);
+	float SetTime(struct FFrameNumber* NewFrameNumber, enum class ESequenceTimeUnit* TimeUnit);
+	class FString GetValue();
+	struct FFrameTime GetTime(enum class ESequenceTimeUnit* TimeUnit);
 };
 
 // 0x30 (0x60 - 0x30)
@@ -398,18 +398,18 @@ public:
 class UMovieSceneScriptingStringChannel : public UMovieSceneScriptingChannel
 {
 public:
-	uint8                                        Pad_6B3[0x30];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_584[0x30];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneScriptingStringChannel* GetDefaultObj();
 
-	class FString SetDefault();
-	class UMovieSceneScriptingKey* RemoveKey();
+	void SetDefault(class FString* InDefaultValue);
+	void RemoveKey(class UMovieSceneScriptingKey* Key);
 	void RemoveDefault();
-	void HasDefault(bool ReturnValue);
-	void GetKeys(const TArray<class UMovieSceneScriptingKey*>& ReturnValue);
-	void GetDefault(const class FString& ReturnValue);
-	enum class ESequenceTimeUnit AddKey(class FString* NewValue, float* SubFrame, class UMovieSceneScriptingStringKey* ReturnValue);
+	bool HasDefault();
+	TArray<class UMovieSceneScriptingKey*> GetKeys();
+	class FString GetDefault();
+	class UMovieSceneScriptingStringKey* AddKey(const struct FFrameNumber& InTime, const class FString& NewValue, enum class ESequenceTimeUnit* TimeUnit);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -421,27 +421,27 @@ public:
 	static class UClass* StaticClass();
 	static class UMovieSceneBindingExtensions* GetDefaultObj();
 
-	struct FMovieSceneObjectBindingID SetSpawnableBindingID();
-	int32 SetSortingOrder();
-	struct FMovieSceneBindingProxy SetParent();
-	class FString SetName();
-	class FText SetDisplayName();
-	class UMovieSceneTrack* RemoveTrack();
-	struct FMovieSceneBindingProxy Remove();
-	struct FMovieSceneBindingProxy MoveBindingContents();
-	struct FMovieSceneBindingProxy IsValid(bool ReturnValue);
-	struct FMovieSceneBindingProxy GetTracks(const TArray<class UMovieSceneTrack*>& ReturnValue);
-	struct FMovieSceneBindingProxy GetSortingOrder(int32 ReturnValue);
-	struct FMovieSceneBindingProxy GetPossessedObjectClass(class UClass* ReturnValue);
-	struct FMovieSceneBindingProxy GetParent(const struct FMovieSceneBindingProxy& ReturnValue);
-	struct FMovieSceneBindingProxy GetObjectTemplate(class UObject* ReturnValue);
-	struct FMovieSceneBindingProxy GetName(const class FString& ReturnValue);
-	struct FMovieSceneBindingProxy GetId(const struct FGuid& ReturnValue);
-	struct FMovieSceneBindingProxy GetDisplayName(class FText ReturnValue);
-	struct FMovieSceneBindingProxy GetChildPossessables(const TArray<struct FMovieSceneBindingProxy>& ReturnValue);
-	class UClass* FindTracksByType(const TArray<class UMovieSceneTrack*>& ReturnValue);
-	class UClass* FindTracksByExactType(const TArray<class UMovieSceneTrack*>& ReturnValue);
-	class UClass* AddTrack(class UMovieSceneTrack* ReturnValue);
+	void SetSpawnableBindingID(struct FMovieSceneBindingProxy* InBinding, struct FMovieSceneObjectBindingID* SpawnableBindingID);
+	void SetSortingOrder(struct FMovieSceneBindingProxy* InBinding, int32* SortingOrder);
+	void SetParent(struct FMovieSceneBindingProxy* InBinding, struct FMovieSceneBindingProxy* InParentBinding);
+	void SetName(struct FMovieSceneBindingProxy* InBinding, class FString* InName);
+	void SetDisplayName(struct FMovieSceneBindingProxy* InBinding, class FText* InDisplayName);
+	void RemoveTrack(struct FMovieSceneBindingProxy* InBinding, class UMovieSceneTrack** TrackToRemove);
+	void Remove(struct FMovieSceneBindingProxy* InBinding);
+	void MoveBindingContents(struct FMovieSceneBindingProxy* SourceBindingId, struct FMovieSceneBindingProxy* DestinationBindingId);
+	bool IsValid(struct FMovieSceneBindingProxy* InBinding);
+	TArray<class UMovieSceneTrack*> GetTracks(struct FMovieSceneBindingProxy* InBinding);
+	int32 GetSortingOrder(struct FMovieSceneBindingProxy* InBinding);
+	class UClass* GetPossessedObjectClass(struct FMovieSceneBindingProxy* InBinding);
+	struct FMovieSceneBindingProxy GetParent(struct FMovieSceneBindingProxy* InBinding);
+	class UObject* GetObjectTemplate(struct FMovieSceneBindingProxy* InBinding);
+	class FString GetName(struct FMovieSceneBindingProxy* InBinding);
+	struct FGuid GetId(struct FMovieSceneBindingProxy* InBinding);
+	class FText GetDisplayName(struct FMovieSceneBindingProxy* InBinding);
+	TArray<struct FMovieSceneBindingProxy> GetChildPossessables(struct FMovieSceneBindingProxy* InBinding);
+	TArray<class UMovieSceneTrack*> FindTracksByType(struct FMovieSceneBindingProxy* InBinding, class UClass* TrackType);
+	TArray<class UMovieSceneTrack*> FindTracksByExactType(struct FMovieSceneBindingProxy* InBinding, class UClass* TrackType);
+	class UMovieSceneTrack* AddTrack(struct FMovieSceneBindingProxy* InBinding, class UClass* TrackType);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -453,9 +453,9 @@ public:
 	static class UClass* StaticClass();
 	static class UMovieSceneEventTrackExtensions* GetDefaultObj();
 
-	struct FMovieSceneEvent GetBoundObjectPropertyClass(class UClass* ReturnValue);
-	class UMovieSceneEventTrack* AddEventTriggerSection(class UMovieSceneEventTriggerSection* ReturnValue);
-	class UMovieSceneEventTrack* AddEventRepeaterSection(class UMovieSceneEventRepeaterSection* ReturnValue);
+	class UClass* GetBoundObjectPropertyClass(struct FMovieSceneEvent* EventKey);
+	class UMovieSceneEventTriggerSection* AddEventTriggerSection(class UMovieSceneEventTrack** InTrack);
+	class UMovieSceneEventRepeaterSection* AddEventRepeaterSection(class UMovieSceneEventTrack** InTrack);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -467,22 +467,22 @@ public:
 	static class UClass* StaticClass();
 	static class UMovieSceneFolderExtensions* GetDefaultObj();
 
-	class FName SetFolderName(bool ReturnValue);
-	struct FColor SetFolderColor(bool ReturnValue);
-	class UMovieSceneTrack* RemoveChildTrack(bool ReturnValue);
-	struct FMovieSceneBindingProxy RemoveChildObjectBinding(bool ReturnValue);
-	class UMovieSceneTrack* RemoveChildMasterTrack(bool ReturnValue);
-	class UMovieSceneFolder* RemoveChildFolder(bool ReturnValue);
-	class UMovieSceneFolder* GetFolderName(class FName ReturnValue);
-	class UMovieSceneFolder* GetFolderColor(const struct FColor& ReturnValue);
-	class UMovieSceneFolder* GetChildTracks(const TArray<class UMovieSceneTrack*>& ReturnValue);
-	class UMovieSceneFolder* GetChildObjectBindings(const TArray<struct FMovieSceneBindingProxy>& ReturnValue);
-	class UMovieSceneFolder* GetChildMasterTracks(const TArray<class UMovieSceneTrack*>& ReturnValue);
-	class UMovieSceneFolder* GetChildFolders(const TArray<class UMovieSceneFolder*>& ReturnValue);
-	class UMovieSceneTrack* AddChildTrack(bool ReturnValue);
-	struct FMovieSceneBindingProxy AddChildObjectBinding(bool ReturnValue);
-	class UMovieSceneTrack* AddChildMasterTrack(bool ReturnValue);
-	class UMovieSceneFolder* AddChildFolder(bool ReturnValue);
+	bool SetFolderName();
+	bool SetFolderColor();
+	bool RemoveChildTrack(class UMovieSceneTrack** InTrack);
+	bool RemoveChildObjectBinding();
+	bool RemoveChildMasterTrack(class UMovieSceneTrack** InTrack);
+	bool RemoveChildFolder();
+	class FName GetFolderName();
+	struct FColor GetFolderColor();
+	TArray<class UMovieSceneTrack*> GetChildTracks();
+	TArray<struct FMovieSceneBindingProxy> GetChildObjectBindings();
+	TArray<class UMovieSceneTrack*> GetChildMasterTracks();
+	TArray<class UMovieSceneFolder*> GetChildFolders();
+	bool AddChildTrack(class UMovieSceneTrack** InTrack);
+	bool AddChildObjectBinding();
+	bool AddChildMasterTrack(class UMovieSceneTrack** InTrack);
+	bool AddChildFolder();
 };
 
 // 0x0 (0x28 - 0x28)
@@ -494,8 +494,8 @@ public:
 	static class UClass* StaticClass();
 	static class UMovieSceneMaterialTrackExtensions* GetDefaultObj();
 
-	class UMovieSceneComponentMaterialTrack* SetMaterialIndex(int32 MaterialIndex);
-	class UMovieSceneComponentMaterialTrack* GetMaterialIndex(int32 ReturnValue);
+	int32 SetMaterialIndex();
+	int32 GetMaterialIndex();
 };
 
 // 0x0 (0x28 - 0x28)
@@ -507,8 +507,8 @@ public:
 	static class UClass* StaticClass();
 	static class UMovieScenePrimitiveMaterialTrackExtensions* GetDefaultObj();
 
-	class UMovieScenePrimitiveMaterialTrack* SetMaterialIndex(int32 MaterialIndex);
-	class UMovieScenePrimitiveMaterialTrack* GetMaterialIndex(int32 ReturnValue);
+	int32 SetMaterialIndex();
+	int32 GetMaterialIndex();
 };
 
 // 0x0 (0x28 - 0x28)
@@ -521,13 +521,13 @@ public:
 	static class UMovieScenePropertyTrackExtensions* GetDefaultObj();
 
 	class FString SetPropertyNameAndPath();
-	class UMovieSceneObjectPropertyTrack* SetObjectPropertyClass(class UClass* PropertyClass);
+	class UClass* SetObjectPropertyClass();
 	class UEnum* SetByteTrackEnum();
-	class UMovieScenePropertyTrack* GetUniqueTrackName(class FName ReturnValue);
-	class UMovieScenePropertyTrack* GetPropertyPath(const class FString& ReturnValue);
-	class UMovieScenePropertyTrack* GetPropertyName(class FName ReturnValue);
-	class UMovieSceneObjectPropertyTrack* GetObjectPropertyClass(class UClass* ReturnValue);
-	class UMovieSceneByteTrack* GetByteTrackEnum(class UEnum* ReturnValue);
+	class FName GetUniqueTrackName();
+	class FString GetPropertyPath();
+	class FName GetPropertyName();
+	class UClass* GetObjectPropertyClass();
+	class UEnum* GetByteTrackEnum();
 };
 
 // 0x0 (0x28 - 0x28)
@@ -539,31 +539,31 @@ public:
 	static class UClass* StaticClass();
 	static class UMovieSceneSectionExtensions* GetDefaultObj();
 
-	float SetStartFrameSeconds();
+	class UMovieSceneSection* SetStartFrameSeconds(float StartTime);
 	bool SetStartFrameBounded();
 	int32 SetStartFrame();
-	float SetRangeSeconds();
+	class UMovieSceneSection* SetRangeSeconds(float StartTime, float EndTime);
 	int32 SetRange();
-	float SetEndFrameSeconds();
+	class UMovieSceneSection* SetEndFrameSeconds(float EndTime);
 	bool SetEndFrameBounded();
 	int32 SetEndFrame();
-	class UMovieSceneSection* HasStartFrame(bool ReturnValue);
-	class UMovieSceneSection* HasEndFrame(bool ReturnValue);
-	class UMovieSceneSection* GetStartFrameSeconds(float ReturnValue);
-	class UMovieSceneSection* GetStartFrame(int32 ReturnValue);
-	class UMovieSceneSequence* GetParentSequenceFrame(int32 ReturnValue);
-	class UMovieSceneSection* GetEndFrameSeconds(float ReturnValue);
-	class UMovieSceneSection* GetEndFrame(int32 ReturnValue);
-	class UClass* GetChannelsByType(const TArray<class UMovieSceneScriptingChannel*>& ReturnValue);
-	class UMovieSceneSection* GetChannels(const TArray<class UMovieSceneScriptingChannel*>& ReturnValue);
-	class UMovieSceneSection* GetAutoSizeStartFrameSeconds(float ReturnValue);
-	class UMovieSceneSection* GetAutoSizeStartFrame(int32 ReturnValue);
-	class UMovieSceneSection* GetAutoSizeHasStartFrame(bool ReturnValue);
-	class UMovieSceneSection* GetAutoSizeHasEndFrame(bool ReturnValue);
-	class UMovieSceneSection* GetAutoSizeEndFrameSeconds(float ReturnValue);
-	class UMovieSceneSection* GetAutoSizeEndFrame(int32 ReturnValue);
-	class UMovieSceneSection* GetAllChannels(const TArray<class UMovieSceneScriptingChannel*>& ReturnValue);
-	class UClass* FindChannelsByType(const TArray<class UMovieSceneScriptingChannel*>& ReturnValue);
+	bool HasStartFrame();
+	bool HasEndFrame();
+	float GetStartFrameSeconds();
+	int32 GetStartFrame();
+	int32 GetParentSequenceFrame();
+	float GetEndFrameSeconds();
+	int32 GetEndFrame();
+	TArray<class UMovieSceneScriptingChannel*> GetChannelsByType();
+	TArray<class UMovieSceneScriptingChannel*> GetChannels();
+	float GetAutoSizeStartFrameSeconds();
+	int32 GetAutoSizeStartFrame();
+	bool GetAutoSizeHasStartFrame();
+	bool GetAutoSizeHasEndFrame();
+	float GetAutoSizeEndFrameSeconds();
+	int32 GetAutoSizeEndFrame();
+	TArray<class UMovieSceneScriptingChannel*> GetAllChannels();
+	TArray<class UMovieSceneScriptingChannel*> FindChannelsByType();
 };
 
 // 0x0 (0x28 - 0x28)
@@ -575,73 +575,73 @@ public:
 	static class UClass* StaticClass();
 	static class UMovieSceneSequenceExtensions* GetDefaultObj();
 
-	void SortMarkedFrames(class UMovieSceneSequence* Sequence);
+	void SortMarkedFrames(class UMovieSceneSequence** Sequence);
 	float SetWorkRangeStart(class UMovieSceneSequence* InSequence);
 	float SetWorkRangeEnd(class UMovieSceneSequence* InSequence);
 	float SetViewRangeStart(class UMovieSceneSequence* InSequence);
 	float SetViewRangeEnd(class UMovieSceneSequence* InSequence);
-	void SetTickResolutionDirectly(class UMovieSceneSequence* Sequence, struct FFrameRate* TickResolution);
-	void SetTickResolution(class UMovieSceneSequence* Sequence, struct FFrameRate* TickResolution);
-	bool SetReadOnly(class UMovieSceneSequence* Sequence);
-	float SetPlaybackStartSeconds(class UMovieSceneSequence* Sequence);
-	int32 SetPlaybackStart(class UMovieSceneSequence* Sequence);
-	float SetPlaybackEndSeconds(class UMovieSceneSequence* Sequence);
-	int32 SetPlaybackEnd(class UMovieSceneSequence* Sequence);
-	struct FFrameNumber SetMarkedFrame(class UMovieSceneSequence* Sequence);
+	void SetTickResolutionDirectly(class UMovieSceneSequence** Sequence, const struct FFrameRate& TickResolution);
+	void SetTickResolution(class UMovieSceneSequence** Sequence, const struct FFrameRate& TickResolution);
+	bool SetReadOnly(class UMovieSceneSequence** Sequence);
+	void SetPlaybackStartSeconds(class UMovieSceneSequence** Sequence, float StartTime);
+	int32 SetPlaybackStart(class UMovieSceneSequence** Sequence);
+	void SetPlaybackEndSeconds(class UMovieSceneSequence** Sequence, float EndTime);
+	int32 SetPlaybackEnd(class UMovieSceneSequence** Sequence);
+	struct FFrameNumber SetMarkedFrame(class UMovieSceneSequence** Sequence);
 	enum class EMovieSceneEvaluationType SetEvaluationType(class UMovieSceneSequence* InSequence);
-	void SetDisplayRate(class UMovieSceneSequence* Sequence, struct FFrameRate* DisplayRate);
+	void SetDisplayRate(class UMovieSceneSequence** Sequence, const struct FFrameRate& DisplayRate);
 	enum class EUpdateClockSource SetClockSource(class UMovieSceneSequence* InSequence);
-	struct FMovieSceneObjectBindingID ResolveBindingID(const struct FMovieSceneBindingProxy& ReturnValue);
-	class UMovieSceneTrack* RemoveTrack(class UMovieSceneSequence* Sequence, bool ReturnValue);
-	class UMovieSceneFolder* RemoveRootFolderFromSequence(class UMovieSceneSequence* Sequence);
-	class UMovieSceneTrack* RemoveMasterTrack(class UMovieSceneSequence* Sequence, bool ReturnValue);
-	float MakeRangeSeconds(class UMovieSceneSequence* Sequence, const struct FSequencerScriptingRange& ReturnValue);
-	int32 MakeRange(class UMovieSceneSequence* Sequence, const struct FSequencerScriptingRange& ReturnValue);
-	struct FMovieSceneBindingProxy MakeBindingID(class UMovieSceneSequence* Sequence, enum class EMovieSceneObjectBindingSpace Space, const struct FMovieSceneObjectBindingID& ReturnValue);
-	struct FMovieSceneBindingProxy LocateBoundObjects(class UMovieSceneSequence* Sequence, class UObject** Context, const TArray<class UObject*>& ReturnValue);
-	void IsReadOnly(class UMovieSceneSequence* Sequence, bool ReturnValue);
-	void GetWorkRangeStart(class UMovieSceneSequence* InSequence, float ReturnValue);
-	void GetWorkRangeEnd(class UMovieSceneSequence* InSequence, float ReturnValue);
-	void GetViewRangeStart(class UMovieSceneSequence* InSequence, float ReturnValue);
-	void GetViewRangeEnd(class UMovieSceneSequence* InSequence, float ReturnValue);
-	void GetTracks(class UMovieSceneSequence* Sequence, const TArray<class UMovieSceneTrack*>& ReturnValue);
-	void GetTimecodeSource(class UMovieSceneSequence* Sequence, const struct FTimecode& ReturnValue);
-	void GetTickResolution(class UMovieSceneSequence* Sequence, const struct FFrameRate& ReturnValue);
-	void GetSpawnables(class UMovieSceneSequence* Sequence, const TArray<struct FMovieSceneBindingProxy>& ReturnValue);
-	void GetRootFoldersInSequence(class UMovieSceneSequence* Sequence, const TArray<class UMovieSceneFolder*>& ReturnValue);
-	void GetPossessables(class UMovieSceneSequence* Sequence, const TArray<struct FMovieSceneBindingProxy>& ReturnValue);
-	struct FMovieSceneBindingProxy GetPortableBindingID(const struct FMovieSceneObjectBindingID& ReturnValue);
-	void GetPlaybackStartSeconds(class UMovieSceneSequence* Sequence, float ReturnValue);
-	void GetPlaybackStart(class UMovieSceneSequence* Sequence, int32 ReturnValue);
-	void GetPlaybackRange(class UMovieSceneSequence* Sequence, const struct FSequencerScriptingRange& ReturnValue);
-	void GetPlaybackEndSeconds(class UMovieSceneSequence* Sequence, float ReturnValue);
-	void GetPlaybackEnd(class UMovieSceneSequence* Sequence, int32 ReturnValue);
-	void GetMovieScene(class UMovieSceneSequence* Sequence, class UMovieScene* ReturnValue);
-	void GetMasterTracks(class UMovieSceneSequence* Sequence, const TArray<class UMovieSceneTrack*>& ReturnValue);
-	void GetMarkedFrames(class UMovieSceneSequence* Sequence, const TArray<struct FMovieSceneMarkedFrame>& ReturnValue);
-	void GetEvaluationType(class UMovieSceneSequence* InSequence, enum class EMovieSceneEvaluationType ReturnValue);
-	void GetDisplayRate(class UMovieSceneSequence* Sequence, const struct FFrameRate& ReturnValue);
-	void GetClockSource(class UMovieSceneSequence* InSequence, enum class EUpdateClockSource ReturnValue);
-	void GetBindings(class UMovieSceneSequence* Sequence, const TArray<struct FMovieSceneBindingProxy>& ReturnValue);
-	struct FMovieSceneBindingProxy GetBindingID(const struct FMovieSceneObjectBindingID& ReturnValue);
-	class UClass* FindTracksByType(class UMovieSceneSequence* Sequence, const TArray<class UMovieSceneTrack*>& ReturnValue);
-	class UClass* FindTracksByExactType(class UMovieSceneSequence* Sequence, const TArray<class UMovieSceneTrack*>& ReturnValue);
-	bool FindNextMarkedFrame(class UMovieSceneSequence* Sequence, int32 ReturnValue);
-	class UClass* FindMasterTracksByType(class UMovieSceneSequence* Sequence, const TArray<class UMovieSceneTrack*>& ReturnValue);
-	class UClass* FindMasterTracksByExactType(class UMovieSceneSequence* Sequence, const TArray<class UMovieSceneTrack*>& ReturnValue);
-	class FString FindMarkedFrameByLabel(class UMovieSceneSequence* Sequence, int32 ReturnValue);
-	struct FFrameNumber FindMarkedFrameByFrameNumber(class UMovieSceneSequence* Sequence, int32 ReturnValue);
-	void FindBindingByName(class UMovieSceneSequence* Sequence, class FString* Name, const struct FMovieSceneBindingProxy& ReturnValue);
-	void FindBindingById(class UMovieSceneSequence* Sequence, const struct FGuid& BindingId, const struct FMovieSceneBindingProxy& ReturnValue);
-	void DeleteMarkedFrames(class UMovieSceneSequence* Sequence);
-	int32 DeleteMarkedFrame(class UMovieSceneSequence* Sequence);
-	class UClass* AddTrack(class UMovieSceneSequence* Sequence, class UMovieSceneTrack* ReturnValue);
-	class UObject* AddSpawnableFromInstance(class UMovieSceneSequence* Sequence, const struct FMovieSceneBindingProxy& ReturnValue);
-	class UClass* AddSpawnableFromClass(class UMovieSceneSequence* Sequence, const struct FMovieSceneBindingProxy& ReturnValue);
-	class FString AddRootFolderToSequence(class UMovieSceneSequence* Sequence, class UMovieSceneFolder* ReturnValue);
-	class UObject* AddPossessable(class UMovieSceneSequence* Sequence, const struct FMovieSceneBindingProxy& ReturnValue);
-	class UClass* AddMasterTrack(class UMovieSceneSequence* Sequence, class UMovieSceneTrack* ReturnValue);
-	struct FMovieSceneMarkedFrame AddMarkedFrame(class UMovieSceneSequence* Sequence, int32 ReturnValue);
+	struct FMovieSceneBindingProxy ResolveBindingID();
+	bool RemoveTrack(class UMovieSceneSequence** Sequence);
+	class UMovieSceneFolder* RemoveRootFolderFromSequence(class UMovieSceneSequence** Sequence);
+	bool RemoveMasterTrack(class UMovieSceneSequence** Sequence);
+	struct FSequencerScriptingRange MakeRangeSeconds(class UMovieSceneSequence** Sequence, float StartTime);
+	struct FSequencerScriptingRange MakeRange(class UMovieSceneSequence** Sequence);
+	struct FMovieSceneObjectBindingID MakeBindingID(class UMovieSceneSequence** Sequence, struct FMovieSceneBindingProxy* InBinding, enum class EMovieSceneObjectBindingSpace Space);
+	TArray<class UObject*> LocateBoundObjects(class UMovieSceneSequence** Sequence, struct FMovieSceneBindingProxy* InBinding, class UObject** Context);
+	bool IsReadOnly(class UMovieSceneSequence** Sequence);
+	float GetWorkRangeStart(class UMovieSceneSequence* InSequence);
+	float GetWorkRangeEnd(class UMovieSceneSequence* InSequence);
+	float GetViewRangeStart(class UMovieSceneSequence* InSequence);
+	float GetViewRangeEnd(class UMovieSceneSequence* InSequence);
+	TArray<class UMovieSceneTrack*> GetTracks(class UMovieSceneSequence** Sequence);
+	struct FTimecode GetTimecodeSource(class UMovieSceneSequence** Sequence);
+	struct FFrameRate GetTickResolution(class UMovieSceneSequence** Sequence);
+	TArray<struct FMovieSceneBindingProxy> GetSpawnables(class UMovieSceneSequence** Sequence);
+	TArray<class UMovieSceneFolder*> GetRootFoldersInSequence(class UMovieSceneSequence** Sequence);
+	TArray<struct FMovieSceneBindingProxy> GetPossessables(class UMovieSceneSequence** Sequence);
+	struct FMovieSceneObjectBindingID GetPortableBindingID(struct FMovieSceneBindingProxy* InBinding);
+	float GetPlaybackStartSeconds(class UMovieSceneSequence** Sequence);
+	int32 GetPlaybackStart(class UMovieSceneSequence** Sequence);
+	struct FSequencerScriptingRange GetPlaybackRange(class UMovieSceneSequence** Sequence);
+	float GetPlaybackEndSeconds(class UMovieSceneSequence** Sequence);
+	int32 GetPlaybackEnd(class UMovieSceneSequence** Sequence);
+	class UMovieScene* GetMovieScene(class UMovieSceneSequence** Sequence);
+	TArray<class UMovieSceneTrack*> GetMasterTracks(class UMovieSceneSequence** Sequence);
+	TArray<struct FMovieSceneMarkedFrame> GetMarkedFrames(class UMovieSceneSequence** Sequence);
+	enum class EMovieSceneEvaluationType GetEvaluationType(class UMovieSceneSequence* InSequence);
+	struct FFrameRate GetDisplayRate(class UMovieSceneSequence** Sequence);
+	enum class EUpdateClockSource GetClockSource(class UMovieSceneSequence* InSequence);
+	TArray<struct FMovieSceneBindingProxy> GetBindings(class UMovieSceneSequence** Sequence);
+	struct FMovieSceneObjectBindingID GetBindingID(struct FMovieSceneBindingProxy* InBinding);
+	TArray<class UMovieSceneTrack*> FindTracksByType(class UMovieSceneSequence** Sequence, class UClass* TrackType);
+	TArray<class UMovieSceneTrack*> FindTracksByExactType(class UMovieSceneSequence** Sequence, class UClass* TrackType);
+	int32 FindNextMarkedFrame(class UMovieSceneSequence** Sequence);
+	TArray<class UMovieSceneTrack*> FindMasterTracksByType(class UMovieSceneSequence** Sequence, class UClass* TrackType);
+	TArray<class UMovieSceneTrack*> FindMasterTracksByExactType(class UMovieSceneSequence** Sequence, class UClass* TrackType);
+	int32 FindMarkedFrameByLabel(class UMovieSceneSequence** Sequence);
+	int32 FindMarkedFrameByFrameNumber(class UMovieSceneSequence** Sequence);
+	struct FMovieSceneBindingProxy FindBindingByName(class UMovieSceneSequence** Sequence, class FString* Name);
+	struct FMovieSceneBindingProxy FindBindingById(class UMovieSceneSequence** Sequence);
+	void DeleteMarkedFrames(class UMovieSceneSequence** Sequence);
+	int32 DeleteMarkedFrame(class UMovieSceneSequence** Sequence);
+	class UMovieSceneTrack* AddTrack(class UMovieSceneSequence** Sequence, class UClass* TrackType);
+	struct FMovieSceneBindingProxy AddSpawnableFromInstance(class UMovieSceneSequence** Sequence);
+	struct FMovieSceneBindingProxy AddSpawnableFromClass(class UMovieSceneSequence** Sequence);
+	class UMovieSceneFolder* AddRootFolderToSequence(class UMovieSceneSequence** Sequence);
+	struct FMovieSceneBindingProxy AddPossessable(class UMovieSceneSequence** Sequence);
+	class UMovieSceneTrack* AddMasterTrack(class UMovieSceneSequence** Sequence, class UClass* TrackType);
+	int32 AddMarkedFrame(class UMovieSceneSequence** Sequence);
 };
 
 // 0x0 (0x28 - 0x28)
@@ -653,19 +653,19 @@ public:
 	static class UClass* StaticClass();
 	static class UMovieSceneTrackExtensions* GetDefaultObj();
 
-	class FText SetTrackRowDisplayName(int32* RowIndex);
-	int32 SetSortingOrder();
+	class UMovieSceneTrack* SetTrackRowDisplayName(class FText* InName, int32* RowIndex);
+	class UMovieSceneTrack* SetSortingOrder(int32* SortingOrder);
 	class UMovieSceneSection* SetSectionToKey();
-	class FText SetDisplayName();
+	class UMovieSceneTrack* SetDisplayName(class FText* InName);
 	struct FColor SetColorTint();
 	class UMovieSceneSection* RemoveSection();
-	class UMovieSceneTrack* GetTrackRowDisplayName(int32* RowIndex, class FText ReturnValue);
-	class UMovieSceneTrack* GetSortingOrder(int32 ReturnValue);
-	class UMovieSceneTrack* GetSectionToKey(class UMovieSceneSection* ReturnValue);
-	class UMovieSceneTrack* GetSections(const TArray<class UMovieSceneSection*>& ReturnValue);
-	class UMovieSceneTrack* GetDisplayName(class FText ReturnValue);
-	class UMovieSceneTrack* GetColorTint(const struct FColor& ReturnValue);
-	class UMovieSceneTrack* AddSection(class UMovieSceneSection* ReturnValue);
+	class FText GetTrackRowDisplayName(int32* RowIndex);
+	int32 GetSortingOrder();
+	class UMovieSceneSection* GetSectionToKey();
+	TArray<class UMovieSceneSection*> GetSections();
+	class FText GetDisplayName();
+	struct FColor GetColorTint();
+	class UMovieSceneSection* AddSection();
 };
 
 // 0x0 (0x28 - 0x28)
@@ -678,7 +678,7 @@ public:
 	static class UMovieSceneFloatVectorTrackExtensions* GetDefaultObj();
 
 	int32 SetNumChannelsUsed();
-	class UMovieSceneFloatVectorTrack* GetNumChannelsUsed(int32 ReturnValue);
+	int32 GetNumChannelsUsed();
 };
 
 // 0x0 (0x28 - 0x28)
@@ -691,7 +691,7 @@ public:
 	static class UMovieSceneDoubleVectorTrackExtensions* GetDefaultObj();
 
 	int32 SetNumChannelsUsed();
-	class UMovieSceneDoubleVectorTrack* GetNumChannelsUsed(int32 ReturnValue);
+	int32 GetNumChannelsUsed();
 };
 
 // 0x0 (0x28 - 0x28)
@@ -703,18 +703,18 @@ public:
 	static class UClass* StaticClass();
 	static class USequencerScriptingRangeExtensions* GetDefaultObj();
 
-	float SetStartSeconds();
-	int32 SetStartFrame();
-	float SetEndSeconds();
-	int32 SetEndFrame();
+	struct FSequencerScriptingRange SetStartSeconds(float* Start);
+	struct FSequencerScriptingRange SetStartFrame(int32* Start);
+	struct FSequencerScriptingRange SetEndSeconds(float* End);
+	struct FSequencerScriptingRange SetEndFrame(int32* End);
 	struct FSequencerScriptingRange RemoveStart();
 	struct FSequencerScriptingRange RemoveEnd();
-	struct FSequencerScriptingRange HasStart(bool ReturnValue);
-	struct FSequencerScriptingRange HasEnd(bool ReturnValue);
-	struct FSequencerScriptingRange GetStartSeconds(float ReturnValue);
-	struct FSequencerScriptingRange GetStartFrame(int32 ReturnValue);
-	struct FSequencerScriptingRange GetEndSeconds(float ReturnValue);
-	struct FSequencerScriptingRange GetEndFrame(int32 ReturnValue);
+	bool HasStart();
+	bool HasEnd();
+	float GetStartSeconds();
+	int32 GetStartFrame();
+	float GetEndSeconds();
+	int32 GetEndFrame();
 };
 
 }

@@ -14,16 +14,16 @@ namespace SDK
 class UMetasoundGeneratorHandle : public UObject
 {
 public:
-	class UAudioComponent*                       AudioComponent;                                    // 0x28(0x8)(ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-	uint8                                        Pad_C66[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	class UMetaSoundSource*                      CachedMetasoundSource;                             // 0x38(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_C67[0x30];                                     // Fixing Size Of Struct > TateDumper <
+	class UAudioComponent*                       AudioComponent;                                    // 0x28(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig)
+	uint8                                        Pad_1BBB[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	class UMetaSoundSource*                      CachedMetasoundSource;                             // 0x38(0x8)(Edit, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1BBC[0x30];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMetasoundGeneratorHandle* GetDefaultObj();
 
-	class UAudioComponent* CreateMetaSoundGeneratorHandle(class UMetasoundGeneratorHandle* ReturnValue);
-	class UMetasoundParameterPack* ApplyParameterPack(bool ReturnValue);
+	class UMetasoundGeneratorHandle* CreateMetaSoundGeneratorHandle();
+	bool ApplyParameterPack();
 };
 
 // 0x48 (0x80 - 0x38)
@@ -31,15 +31,15 @@ public:
 class UMetaSoundSettings : public UDeveloperSettings
 {
 public:
-	bool                                         bAutoUpdateEnabled;                                // 0x38(0x1)(Edit, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_C6C[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FMetasoundFrontendClassName>   AutoUpdateDenylist;                                // 0x40(0x10)(EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, SubobjectReference)
-	TArray<struct FDefaultMetaSoundAssetAutoUpdateSettings> AutoUpdateAssetDenylist;                           // 0x50(0x10)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	bool                                         bAutoUpdateLogWarningOnDroppedConnection;          // 0x60(0x1)(Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_C6F[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FDirectoryPath>                DirectoriesToRegister;                             // 0x68(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	int32                                        DenyListCacheChangeID;                             // 0x78(0x4)(Edit, ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_C72[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	bool                                         bAutoUpdateEnabled;                                // 0x38(0x1)(Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1BBE[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FMetasoundFrontendClassName>   AutoUpdateDenylist;                                // 0x40(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+	TArray<struct FDefaultMetaSoundAssetAutoUpdateSettings> AutoUpdateAssetDenylist;                           // 0x50(0x10)(ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bAutoUpdateLogWarningOnDroppedConnection;          // 0x60(0x1)(Edit, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1BC1[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FDirectoryPath>                DirectoriesToRegister;                             // 0x68(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	int32                                        DenyListCacheChangeID;                             // 0x78(0x4)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1BC2[0x4];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMetaSoundSettings* GetDefaultObj();
@@ -62,12 +62,12 @@ public:
 class UMetaSoundPatch : public UObject
 {
 public:
-	uint8                                        Pad_C77[0x68];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FMetasoundFrontendDocument            RootMetaSoundDocument;                             // 0x90(0x1C8)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	TSet<class FString>                          ReferencedAssetClassKeys;                          // 0x258(0x50)(Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	TSet<class UObject*>                         ReferencedAssetClassObjects;                       // 0x2A8(0x50)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	TSet<struct FSoftObjectPath>                 ReferenceAssetClassCache;                          // 0x2F8(0x50)(Edit, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	struct FGuid                                 AssetClassID;                                      // 0x348(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor)
+	uint8                                        Pad_1BC6[0x68];                                    // Fixing Size After Last Property  > TateDumper <
+	struct FMetasoundFrontendDocument            RootMetaSoundDocument;                             // 0x90(0x1C8)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TSet<class FString>                          ReferencedAssetClassKeys;                          // 0x258(0x50)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TSet<class UObject*>                         ReferencedAssetClassObjects;                       // 0x2A8(0x50)(ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TSet<struct FSoftObjectPath>                 ReferenceAssetClassCache;                          // 0x2F8(0x50)(Edit, ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FGuid                                 AssetClassID;                                      // 0x348(0x10)(BlueprintVisible, ZeroConstructor, ReturnParm)
 
 	static class UClass* StaticClass();
 	static class UMetaSoundPatch* GetDefaultObj();
@@ -79,9 +79,9 @@ public:
 class UMetaSoundAssetSubsystem : public UEngineSubsystem
 {
 public:
-	uint8                                        Pad_C8A[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FMetaSoundAsyncAssetDependencies> LoadingDependencies;                               // 0x38(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_C8C[0x198];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1BD1[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FMetaSoundAsyncAssetDependencies> LoadingDependencies;                               // 0x38(0x10)(Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1BD2[0x198];                                   // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMetaSoundAssetSubsystem* GetDefaultObj();
@@ -95,15 +95,15 @@ public:
 class UMetaSoundSource : public USoundWaveProcedural
 {
 public:
-	uint8                                        Pad_C97[0x68];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FMetasoundFrontendDocument            RootMetaSoundDocument;                             // 0x528(0x1C8)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	TSet<class FString>                          ReferencedAssetClassKeys;                          // 0x6F0(0x50)(Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	TSet<class UObject*>                         ReferencedAssetClassObjects;                       // 0x740(0x50)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	TSet<struct FSoftObjectPath>                 ReferenceAssetClassCache;                          // 0x790(0x50)(Edit, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	enum class EMetasoundSourceAudioFormat       OutputFormat;                                      // 0x7E0(0x1)(ConstParm, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_C9C[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FGuid                                 AssetClassID;                                      // 0x7E4(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor)
-	uint8                                        Pad_C9D[0x6C];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1BD6[0x68];                                    // Fixing Size After Last Property  > TateDumper <
+	struct FMetasoundFrontendDocument            RootMetaSoundDocument;                             // 0x528(0x1C8)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TSet<class FString>                          ReferencedAssetClassKeys;                          // 0x6F0(0x50)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TSet<class UObject*>                         ReferencedAssetClassObjects;                       // 0x740(0x50)(ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TSet<struct FSoftObjectPath>                 ReferenceAssetClassCache;                          // 0x790(0x50)(Edit, ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EMetasoundSourceAudioFormat       OutputFormat;                                      // 0x7E0(0x1)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1BD8[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FGuid                                 AssetClassID;                                      // 0x7E4(0x10)(BlueprintVisible, ZeroConstructor, ReturnParm)
+	uint8                                        Pad_1BD9[0x6C];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMetaSoundSource* GetDefaultObj();

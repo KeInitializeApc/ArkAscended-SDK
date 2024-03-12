@@ -14,9 +14,9 @@ namespace SDK
 class UMovieSceneMediaPlayerPropertySection : public UMovieSceneSection
 {
 public:
-	class UMediaSource*                          MediaSource;                                       // 0xF0(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	bool                                         bLoop;                                             // 0xF8(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_16C4[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class UMediaSource*                          MediaSource;                                       // 0xF0(0x8)(BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, GlobalConfig)
+	bool                                         bLoop;                                             // 0xF8(0x1)(BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1A95[0x7];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneMediaPlayerPropertySection* GetDefaultObj();
@@ -28,7 +28,7 @@ public:
 class UMovieSceneMediaPlayerPropertyTrack : public UMovieScenePropertyTrack
 {
 public:
-	uint8                                        Pad_16C8[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1A98[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMovieSceneMediaPlayerPropertyTrack* GetDefaultObj();
@@ -40,22 +40,22 @@ public:
 class UMovieSceneMediaSection : public UMovieSceneSection
 {
 public:
-	class UMediaSource*                          MediaSource;                                       // 0xF0(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	int32                                        MediaSourceProxyIndex;                             // 0xF8(0x4)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bLooping;                                          // 0xFC(0x1)(ConstParm, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst)
-	uint8                                        Pad_16CD[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FFrameNumber                          StartFrameOffset;                                  // 0x100(0x4)(Edit, BlueprintVisible, Net, Parm, OutParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_16D1[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	class UMediaTexture*                         MediaTexture;                                      // 0x108(0x8)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, DuplicateTransient)
-	class UMediaSoundComponent*                  MediaSoundComponent;                               // 0x110(0x8)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	bool                                         bUseExternalMediaPlayer;                           // 0x118(0x1)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_16D3[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	class UMediaPlayer*                          ExternalMediaPlayer;                               // 0x120(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	struct FMediaSourceCacheSettings             CacheSettings;                                     // 0x128(0x8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	int32                                        TextureIndex;                                      // 0x130(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bHasMediaPlayerProxy;                              // 0x134(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_16D6[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FMovieSceneObjectBindingID            MediaSourceProxyBindingID;                         // 0x138(0x18)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	class UMediaSource*                          MediaSource;                                       // 0xF0(0x8)(BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, GlobalConfig)
+	int32                                        MediaSourceProxyIndex;                             // 0xF8(0x4)(Edit, ConstParm, BlueprintVisible, Parm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bLooping;                                          // 0xFC(0x1)(Edit, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig)
+	uint8                                        Pad_1A9B[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FFrameNumber                          StartFrameOffset;                                  // 0x100(0x4)(ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1A9D[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	class UMediaTexture*                         MediaTexture;                                      // 0x108(0x8)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig)
+	class UMediaSoundComponent*                  MediaSoundComponent;                               // 0x110(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig)
+	bool                                         bUseExternalMediaPlayer;                           // 0x118(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1A9F[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	class UMediaPlayer*                          ExternalMediaPlayer;                               // 0x120(0x8)(Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FMediaSourceCacheSettings             CacheSettings;                                     // 0x128(0x8)(Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	int32                                        TextureIndex;                                      // 0x130(0x4)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bHasMediaPlayerProxy;                              // 0x134(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1AA0[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FMovieSceneObjectBindingID            MediaSourceProxyBindingID;                         // 0x138(0x18)(BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UMovieSceneMediaSection* GetDefaultObj();
@@ -67,8 +67,8 @@ public:
 class UMovieSceneMediaTrack : public UMovieSceneNameableTrack
 {
 public:
-	uint8                                        Pad_16D8[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<class UMovieSceneSection*>            MediaSections;                                     // 0xA0(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1AA1[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<class UMovieSceneSection*>            MediaSections;                                     // 0xA0(0x10)(Edit, ExportObject, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UMovieSceneMediaTrack* GetDefaultObj();

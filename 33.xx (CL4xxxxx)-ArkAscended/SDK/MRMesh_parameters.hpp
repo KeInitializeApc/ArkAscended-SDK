@@ -18,12 +18,12 @@ namespace Params
 struct UMockDataMeshTrackerComponent_OnMockDataMeshTrackerUpdated__DelegateSignature_Params
 {
 public:
-	int32                                        Index;                                             // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
-	uint8                                        Pad_1CDC[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FVector>                       Vertices;                                          // 0x8(0x10)(Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance)
-	TArray<int32>                                Triangles;                                         // 0x18(0x10)(Edit, BlueprintVisible, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
-	TArray<struct FVector>                       Normals;                                           // 0x28(0x10)(ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-	TArray<float>                                Confidence;                                        // 0x38(0x10)(ConstParm, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+	int32                                        Index;                                             // 0x0(0x4)(EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	uint8                                        Pad_22DC[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FVector>                       Vertices;                                          // 0x8(0x10)(Edit, BlueprintVisible, EditFixedSize, Transient, Config, DisableEditOnInstance)
+	TArray<int32>                                Triangles;                                         // 0x18(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
+	TArray<struct FVector>                       Normals;                                           // 0x28(0x10)(Edit, ConstParm, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	TArray<float>                                Confidence;                                        // 0x38(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -31,7 +31,7 @@ public:
 struct UMockDataMeshTrackerComponent_DisconnectMRMesh_Params
 {
 public:
-	class UMRMeshComponent*                      InMRMeshPtr;                                       // 0x0(0x8)(ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+	class UMRMeshComponent*                      InMRMeshPtr;                                       // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -39,7 +39,7 @@ public:
 struct UMockDataMeshTrackerComponent_ConnectMRMesh_Params
 {
 public:
-	class UMRMeshComponent*                      InMRMeshPtr;                                       // 0x0(0x8)(ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+	class UMRMeshComponent*                      InMRMeshPtr;                                       // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -47,7 +47,7 @@ public:
 struct UMRMeshComponent_SetWireframeMaterial_Params
 {
 public:
-	class UMaterialInterface*                    InMaterial;                                        // 0x0(0x8)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	class UMaterialInterface*                    InMaterial;                                        // 0x0(0x8)(BlueprintVisible, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -55,7 +55,7 @@ public:
 struct UMRMeshComponent_SetWireframeColor_Params
 {
 public:
-	struct FLinearColor                          InColor;                                           // 0x0(0x10)(ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	struct FLinearColor                          InColor;                                           // 0x0(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -63,7 +63,7 @@ public:
 struct UMRMeshComponent_SetUseWireframe_Params
 {
 public:
-	bool                                         bUseWireframe;                                     // 0x0(0x1)(BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bUseWireframe;                                     // 0x0(0x1)(BlueprintVisible, Net, ZeroConstructor, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -71,7 +71,7 @@ public:
 struct UMRMeshComponent_SetEnableMeshOcclusion_Params
 {
 public:
-	bool                                         bEnable;                                           // 0x0(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bEnable;                                           // 0x0(0x1)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -79,7 +79,7 @@ public:
 struct UMRMeshComponent_IsConnected_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -87,7 +87,7 @@ public:
 struct UMRMeshComponent_GetWireframeColor_Params
 {
 public:
-	struct FLinearColor                          ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FLinearColor                          ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -95,7 +95,7 @@ public:
 struct UMRMeshComponent_GetUseWireframe_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -103,7 +103,7 @@ public:
 struct UMRMeshComponent_GetEnableMeshOcclusion_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -111,7 +111,7 @@ public:
 struct UMeshReconstructorBase_IsReconstructionStarted_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -119,7 +119,7 @@ public:
 struct UMeshReconstructorBase_IsReconstructionPaused_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -127,7 +127,7 @@ public:
 struct UMeshReconstructorBase_ConnectMRMesh_Params
 {
 public:
-	class UMRMeshComponent*                      Mesh;                                              // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, Transient, EditConst, GlobalConfig, SubobjectReference)
+	class UMRMeshComponent*                      Mesh;                                              // 0x0(0x8)(ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
 };
 
 }

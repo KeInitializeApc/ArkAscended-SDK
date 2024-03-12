@@ -18,7 +18,7 @@ namespace Params
 struct UUI_Downloads_C_SetNumberOfDownloadsText_Params
 {
 public:
-	class FText                                  InText;                                            // 0x0(0x18)(ConstParm, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	class FText                                  InText;                                            // 0x0(0x18)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, EditConst, SubobjectReference)
 };
 
 }

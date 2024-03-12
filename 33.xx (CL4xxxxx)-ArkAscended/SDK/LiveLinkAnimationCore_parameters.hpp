@@ -18,7 +18,7 @@ namespace Params
 struct ULiveLinkInstance_SetSubject_Params
 {
 public:
-	struct FLiveLinkSubjectName                  SubjectName;                                       // 0x0(0x8)(Edit, Net, ReturnParm, DisableEditOnInstance, EditConst)
+	struct FLiveLinkSubjectName                  SubjectName;                                       // 0x0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -26,7 +26,7 @@ public:
 struct ULiveLinkInstance_SetRetargetAsset_Params
 {
 public:
-	class UClass*                                RetargetAsset;                                     // 0x0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+	class UClass*                                RetargetAsset;                                     // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -34,7 +34,7 @@ public:
 struct ULiveLinkRemapAsset_RemapCurveElements_Params
 {
 public:
-	TMap<class FName, float>                     CurveItems;                                        // 0x0(0x50)(Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	TMap<class FName, float>                     CurveItems;                                        // 0x0(0x50)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -42,8 +42,8 @@ public:
 struct ULiveLinkRemapAsset_GetRemappedCurveName_Params
 {
 public:
-	class FName                                  CurveName;                                         // 0x0(0x8)(BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-	class FName                                  ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FName                                  CurveName;                                         // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+	class FName                                  ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -51,8 +51,8 @@ public:
 struct ULiveLinkRemapAsset_GetRemappedBoneName_Params
 {
 public:
-	class FName                                  BoneName;                                          // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
-	class FName                                  ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FName                                  BoneName;                                          // 0x0(0x8)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
+	class FName                                  ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 }

@@ -44,9 +44,9 @@ class UUI_CustomizeSlot_MainBackground_C* UUI_CustomizeSlot_MainBackground_C::Ge
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
 // struct FLinearColor                Color                                                            (Edit, ConstParm, BlueprintReadOnly, Net, OutParm)
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
 
-void UUI_CustomizeSlot_MainBackground_C::SetColor(struct FLinearColor* Color, bool* CallFunc_IsValid_ReturnValue)
+bool UUI_CustomizeSlot_MainBackground_C::SetColor(struct FLinearColor* Color)
 {
 	static class UFunction* Func = nullptr;
 
@@ -61,8 +61,7 @@ void UUI_CustomizeSlot_MainBackground_C::SetColor(struct FLinearColor* Color, bo
 	if (Color != nullptr)
 		*Color = std::move(Parms.Color);
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -71,9 +70,9 @@ void UUI_CustomizeSlot_MainBackground_C::SetColor(struct FLinearColor* Color, bo
 // (Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent, BlueprintPure)
 // Parameters:
 // struct FLinearColor                Color                                                            (Edit, ConstParm, BlueprintReadOnly, Net, OutParm)
-// struct FCFCoreThemeRowData         CallFunc_GetCurrentTheme_CurrentTheme                            (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, EditConst, GlobalConfig, SubobjectReference)
+// struct FCFCoreThemeRowData         CallFunc_GetCurrentTheme_CurrentTheme                            (Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-void UUI_CustomizeSlot_MainBackground_C::GetColor(struct FLinearColor* Color, struct FCFCoreThemeRowData* CallFunc_GetCurrentTheme_CurrentTheme)
+struct FCFCoreThemeRowData UUI_CustomizeSlot_MainBackground_C::GetColor(struct FLinearColor* Color)
 {
 	static class UFunction* Func = nullptr;
 
@@ -88,8 +87,7 @@ void UUI_CustomizeSlot_MainBackground_C::GetColor(struct FLinearColor* Color, st
 	if (Color != nullptr)
 		*Color = std::move(Parms.Color);
 
-	if (CallFunc_GetCurrentTheme_CurrentTheme != nullptr)
-		*CallFunc_GetCurrentTheme_CurrentTheme = std::move(Parms.CallFunc_GetCurrentTheme_CurrentTheme);
+	return Parms.ReturnValue;
 
 }
 

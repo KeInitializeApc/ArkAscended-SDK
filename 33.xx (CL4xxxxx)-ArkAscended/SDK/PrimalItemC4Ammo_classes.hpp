@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0xED0 - 0xED0)
+// 0x0 (0xEE0 - 0xEE0)
 // BlueprintGeneratedClass PrimalItemC4Ammo.PrimalItemC4Ammo_C
 class UPrimalItemC4Ammo_C : public UPrimalItemAmmo_Base_C
 {

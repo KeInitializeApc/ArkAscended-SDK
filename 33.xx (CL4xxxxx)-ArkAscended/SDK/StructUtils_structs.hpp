@@ -69,7 +69,7 @@ enum class EStructUtilsResult : uint8
 struct FInstancedStruct
 {
 public:
-	uint8                                        Pad_F10[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_73B[0x10];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -77,7 +77,7 @@ public:
 struct FInstancedPropertyBag
 {
 public:
-	struct FInstancedStruct                      Value;                                             // 0x0(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+	struct FInstancedStruct                      Value;                                             // 0x0(0x10)(ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -85,7 +85,7 @@ public:
 struct FInstancedStructContainer
 {
 public:
-	uint8                                        Pad_F13[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_73C[0x10];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -93,8 +93,8 @@ public:
 struct FPropertyBagPropertyDescMetaData
 {
 public:
-	class FName                                  Key;                                               // 0x0(0x8)(BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
-	class FString                                Value;                                             // 0x8(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+	class FName                                  Key;                                               // 0x0(0x8)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance)
+	class FString                                Value;                                             // 0x8(0x10)(ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
 };
 
 // 0x30 (0x30 - 0x0)
@@ -102,12 +102,12 @@ public:
 struct FPropertyBagPropertyDesc
 {
 public:
-	class UObject*                               ValueTypeObject;                                   // 0x0(0x8)(BlueprintVisible, Net, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UObject*                               ValueTypeObject;                                   // 0x0(0x8)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	struct FGuid                                 ID;                                                // 0x8(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor)
 	class FName                                  Name;                                              // 0x18(0x8)(ConstParm, Net, OutParm)
-	enum class EPropertyBagPropertyType          ValueType;                                         // 0x20(0x1)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	enum class EPropertyBagContainerType         ContainerType;                                     // 0x21(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_F1E[0xE];                                      // Fixing Size Of Struct > TateDumper <
+	enum class EPropertyBagPropertyType          ValueType;                                         // 0x20(0x1)(Edit, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	enum class EPropertyBagContainerType         ContainerType;                                     // 0x21(0x1)(Edit, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_742[0xE];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1 (0x1 - 0x0)
@@ -115,7 +115,7 @@ public:
 struct FPropertyBagMissingStruct
 {
 public:
-	uint8                                        Pad_F20[0x1];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_743[0x1];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -123,7 +123,7 @@ public:
 struct FConstSharedStruct
 {
 public:
-	uint8                                        Pad_F21[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_744[0x10];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x0 (0x10 - 0x10)

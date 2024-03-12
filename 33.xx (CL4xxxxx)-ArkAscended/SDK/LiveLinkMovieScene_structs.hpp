@@ -19,12 +19,12 @@ namespace SDK
 struct FLiveLinkPropertyData
 {
 public:
-	class FName                                  PropertyName;                                      // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-	TArray<struct FMovieSceneFloatChannel>       FloatChannel;                                      // 0x8(0x10)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FMovieSceneStringChannel>      StringChannel;                                     // 0x18(0x10)(Edit, ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FMovieSceneIntegerChannel>     IntegerChannel;                                    // 0x28(0x10)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FMovieSceneBoolChannel>        BoolChannel;                                       // 0x38(0x10)(BlueprintVisible, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FMovieSceneByteChannel>        ByteChannel;                                       // 0x48(0x10)(BlueprintVisible, Net, EditFixedSize, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  PropertyName;                                      // 0x0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Config, EditConst, SubobjectReference)
+	TArray<struct FMovieSceneFloatChannel>       FloatChannel;                                      // 0x8(0x10)(ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FMovieSceneStringChannel>      StringChannel;                                     // 0x18(0x10)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FMovieSceneIntegerChannel>     IntegerChannel;                                    // 0x28(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FMovieSceneBoolChannel>        BoolChannel;                                       // 0x38(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FMovieSceneByteChannel>        ByteChannel;                                       // 0x48(0x10)(Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -32,7 +32,7 @@ public:
 struct FLiveLinkSubSectionData
 {
 public:
-	TArray<struct FLiveLinkPropertyData>         Properties;                                        // 0x0(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FLiveLinkPropertyData>         Properties;                                        // 0x0(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x80 (0xB8 - 0x38)
@@ -40,10 +40,10 @@ public:
 struct FMovieSceneLiveLinkSectionTemplate : public FMovieScenePropertySectionTemplate
 {
 public:
-	struct FLiveLinkSubjectPreset                SubjectPreset;                                     // 0x38(0x38)(ConstParm, Parm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	TArray<bool>                                 ChannelMask;                                       // 0x70(0x10)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FLiveLinkSubSectionData>       SubSectionsData;                                   // 0x80(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_307[0x28];                                     // Fixing Size Of Struct > TateDumper <
+	struct FLiveLinkSubjectPreset                SubjectPreset;                                     // 0x38(0x38)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<bool>                                 ChannelMask;                                       // 0x70(0x10)(Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FLiveLinkSubSectionData>       SubSectionsData;                                   // 0x80(0x10)(ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1196[0x28];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 }

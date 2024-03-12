@@ -43,10 +43,10 @@ class URigHierarchy* URigHierarchy::GetDefaultObj()
 // Function ControlRig.RigHierarchy.UnsetCurveValueByIndex
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              InElementIndex                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              InElementIndex                                                   (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool URigHierarchy::UnsetCurveValueByIndex(int32* InElementIndex)
+void URigHierarchy::UnsetCurveValueByIndex(int32 InElementIndex, bool bSetupUndo)
 {
 	static class UFunction* Func = nullptr;
 
@@ -55,6 +55,8 @@ bool URigHierarchy::UnsetCurveValueByIndex(int32* InElementIndex)
 
 	Params::URigHierarchy_UnsetCurveValueByIndex_Params Parms{};
 
+	Parms.InElementIndex = InElementIndex;
+	Parms.bSetupUndo = bSetupUndo;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -64,21 +66,16 @@ bool URigHierarchy::UnsetCurveValueByIndex(int32* InElementIndex)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InElementIndex != nullptr)
-		*InElementIndex = Parms.InElementIndex;
-
-	return Parms.ReturnValue;
-
 }
 
 
 // Function ControlRig.RigHierarchy.UnsetCurveValue
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool URigHierarchy::UnsetCurveValue(struct FRigElementKey* InKey)
+void URigHierarchy::UnsetCurveValue(struct FRigElementKey* InKey, bool bSetupUndo)
 {
 	static class UFunction* Func = nullptr;
 
@@ -87,6 +84,7 @@ bool URigHierarchy::UnsetCurveValue(struct FRigElementKey* InKey)
 
 	Params::URigHierarchy_UnsetCurveValue_Params Parms{};
 
+	Parms.bSetupUndo = bSetupUndo;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -99,20 +97,18 @@ bool URigHierarchy::UnsetCurveValue(struct FRigElementKey* InKey)
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function ControlRig.RigHierarchy.SwitchToWorldSpace
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InChild                                                          (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAffectChildren                                                  (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InChild                                                          (Edit, ConstParm, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAffectChildren                                                  (Edit, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::SwitchToWorldSpace(struct FRigElementKey* InChild, bool* bAffectChildren, bool ReturnValue)
+bool URigHierarchy::SwitchToWorldSpace(const struct FRigElementKey& InChild, bool* bInitial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -121,7 +117,7 @@ bool URigHierarchy::SwitchToWorldSpace(struct FRigElementKey* InChild, bool* bAf
 
 	Params::URigHierarchy_SwitchToWorldSpace_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InChild = InChild;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -131,11 +127,8 @@ bool URigHierarchy::SwitchToWorldSpace(struct FRigElementKey* InChild, bool* bAf
 
 	Func->FunctionFlags = Flgs;
 
-	if (InChild != nullptr)
-		*InChild = std::move(Parms.InChild);
-
-	if (bAffectChildren != nullptr)
-		*bAffectChildren = Parms.bAffectChildren;
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -145,13 +138,13 @@ bool URigHierarchy::SwitchToWorldSpace(struct FRigElementKey* InChild, bool* bAf
 // Function ControlRig.RigHierarchy.SwitchToParent
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InChild                                                          (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigElementKey              InParent                                                         (OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAffectChildren                                                  (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InChild                                                          (Edit, ConstParm, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigElementKey              InParent                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAffectChildren                                                  (Edit, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::SwitchToParent(struct FRigElementKey* InChild, struct FRigElementKey* InParent, bool* bAffectChildren, bool ReturnValue)
+bool URigHierarchy::SwitchToParent(const struct FRigElementKey& InChild, struct FRigElementKey* InParent, bool* bInitial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -160,7 +153,7 @@ bool URigHierarchy::SwitchToParent(struct FRigElementKey* InChild, struct FRigEl
 
 	Params::URigHierarchy_SwitchToParent_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InChild = InChild;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -170,14 +163,11 @@ bool URigHierarchy::SwitchToParent(struct FRigElementKey* InChild, struct FRigEl
 
 	Func->FunctionFlags = Flgs;
 
-	if (InChild != nullptr)
-		*InChild = std::move(Parms.InChild);
-
 	if (InParent != nullptr)
 		*InParent = std::move(Parms.InParent);
 
-	if (bAffectChildren != nullptr)
-		*bAffectChildren = Parms.bAffectChildren;
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -187,12 +177,12 @@ bool URigHierarchy::SwitchToParent(struct FRigElementKey* InChild, struct FRigEl
 // Function ControlRig.RigHierarchy.SwitchToDefaultParent
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InChild                                                          (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAffectChildren                                                  (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InChild                                                          (Edit, ConstParm, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAffectChildren                                                  (Edit, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::SwitchToDefaultParent(struct FRigElementKey* InChild, bool* bAffectChildren, bool ReturnValue)
+bool URigHierarchy::SwitchToDefaultParent(const struct FRigElementKey& InChild, bool* bInitial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -201,7 +191,7 @@ bool URigHierarchy::SwitchToDefaultParent(struct FRigElementKey* InChild, bool* 
 
 	Params::URigHierarchy_SwitchToDefaultParent_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InChild = InChild;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -211,11 +201,8 @@ bool URigHierarchy::SwitchToDefaultParent(struct FRigElementKey* InChild, bool* 
 
 	Func->FunctionFlags = Flgs;
 
-	if (InChild != nullptr)
-		*InChild = std::move(Parms.InChild);
-
-	if (bAffectChildren != nullptr)
-		*bAffectChildren = Parms.bAffectChildren;
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -225,10 +212,10 @@ bool URigHierarchy::SwitchToDefaultParent(struct FRigElementKey* InChild, bool* 
 // Function ControlRig.RigHierarchy.SortKeys
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<struct FRigElementKey>      InKeys                                                           (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// TArray<struct FRigElementKey>      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<struct FRigElementKey>      InKeys                                                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// TArray<struct FRigElementKey>      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-TArray<struct FRigElementKey> URigHierarchy::SortKeys(const TArray<struct FRigElementKey>& ReturnValue)
+TArray<struct FRigElementKey> URigHierarchy::SortKeys(TArray<struct FRigElementKey>* InKeys)
 {
 	static class UFunction* Func = nullptr;
 
@@ -237,7 +224,6 @@ TArray<struct FRigElementKey> URigHierarchy::SortKeys(const TArray<struct FRigEl
 
 	Params::URigHierarchy_SortKeys_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -246,6 +232,9 @@ TArray<struct FRigElementKey> URigHierarchy::SortKeys(const TArray<struct FRigEl
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (InKeys != nullptr)
+		*InKeys = std::move(Parms.InKeys);
 
 	return Parms.ReturnValue;
 
@@ -255,12 +244,12 @@ TArray<struct FRigElementKey> URigHierarchy::SortKeys(const TArray<struct FRigEl
 // Function ControlRig.RigHierarchy.SetVectorMetadata
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FVector                     InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FVector                     InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FVector URigHierarchy::SetVectorMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, bool ReturnValue)
+bool URigHierarchy::SetVectorMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -269,7 +258,8 @@ struct FVector URigHierarchy::SetVectorMetadata(struct FRigElementKey* InItem, c
 
 	Params::URigHierarchy_SetVectorMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -278,12 +268,6 @@ struct FVector URigHierarchy::SetVectorMetadata(struct FRigElementKey* InItem, c
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
 
 	return Parms.ReturnValue;
 
@@ -293,12 +277,12 @@ struct FVector URigHierarchy::SetVectorMetadata(struct FRigElementKey* InItem, c
 // Function ControlRig.RigHierarchy.SetVectorArrayMetadata
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FVector>             InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FVector>             InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-TArray<struct FVector> URigHierarchy::SetVectorArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, bool ReturnValue)
+bool URigHierarchy::SetVectorArrayMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -307,7 +291,8 @@ TArray<struct FVector> URigHierarchy::SetVectorArrayMetadata(struct FRigElementK
 
 	Params::URigHierarchy_SetVectorArrayMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -316,12 +301,6 @@ TArray<struct FVector> URigHierarchy::SetVectorArrayMetadata(struct FRigElementK
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
 
 	return Parms.ReturnValue;
 
@@ -331,12 +310,12 @@ TArray<struct FVector> URigHierarchy::SetVectorArrayMetadata(struct FRigElementK
 // Function ControlRig.RigHierarchy.SetTransformMetadata
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FTransform                  InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FTransform                  InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FTransform URigHierarchy::SetTransformMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, bool ReturnValue)
+bool URigHierarchy::SetTransformMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -345,7 +324,8 @@ struct FTransform URigHierarchy::SetTransformMetadata(struct FRigElementKey* InI
 
 	Params::URigHierarchy_SetTransformMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -354,12 +334,6 @@ struct FTransform URigHierarchy::SetTransformMetadata(struct FRigElementKey* InI
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
 
 	return Parms.ReturnValue;
 
@@ -369,12 +343,12 @@ struct FTransform URigHierarchy::SetTransformMetadata(struct FRigElementKey* InI
 // Function ControlRig.RigHierarchy.SetTransformArrayMetadata
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FTransform>          InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FTransform>          InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-TArray<struct FTransform> URigHierarchy::SetTransformArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, bool ReturnValue)
+bool URigHierarchy::SetTransformArrayMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -383,7 +357,8 @@ TArray<struct FTransform> URigHierarchy::SetTransformArrayMetadata(struct FRigEl
 
 	Params::URigHierarchy_SetTransformArrayMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -392,12 +367,6 @@ TArray<struct FTransform> URigHierarchy::SetTransformArrayMetadata(struct FRigEl
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
 
 	return Parms.ReturnValue;
 
@@ -407,11 +376,11 @@ TArray<struct FTransform> URigHierarchy::SetTransformArrayMetadata(struct FRigEl
 // Function ControlRig.RigHierarchy.SetTag
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InTag                                                            (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InTag                                                            (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::SetTag(struct FRigElementKey* InItem, class FName* InTag, bool ReturnValue)
+bool URigHierarchy::SetTag(const struct FRigElementKey& InItem, class FName InTag)
 {
 	static class UFunction* Func = nullptr;
 
@@ -420,7 +389,8 @@ void URigHierarchy::SetTag(struct FRigElementKey* InItem, class FName* InTag, bo
 
 	Params::URigHierarchy_SetTag_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InTag = InTag;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -430,11 +400,7 @@ void URigHierarchy::SetTag(struct FRigElementKey* InItem, class FName* InTag, bo
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InTag != nullptr)
-		*InTag = Parms.InTag;
+	return Parms.ReturnValue;
 
 }
 
@@ -442,12 +408,12 @@ void URigHierarchy::SetTag(struct FRigElementKey* InItem, class FName* InTag, bo
 // Function ControlRig.RigHierarchy.SetRotatorMetadata
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRotator                    InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRotator                    InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FRotator URigHierarchy::SetRotatorMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, bool ReturnValue)
+bool URigHierarchy::SetRotatorMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -456,7 +422,8 @@ struct FRotator URigHierarchy::SetRotatorMetadata(struct FRigElementKey* InItem,
 
 	Params::URigHierarchy_SetRotatorMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -465,12 +432,6 @@ struct FRotator URigHierarchy::SetRotatorMetadata(struct FRigElementKey* InItem,
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
 
 	return Parms.ReturnValue;
 
@@ -480,12 +441,12 @@ struct FRotator URigHierarchy::SetRotatorMetadata(struct FRigElementKey* InItem,
 // Function ControlRig.RigHierarchy.SetRotatorArrayMetadata
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FRotator>            InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FRotator>            InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-TArray<struct FRotator> URigHierarchy::SetRotatorArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, bool ReturnValue)
+bool URigHierarchy::SetRotatorArrayMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -494,7 +455,8 @@ TArray<struct FRotator> URigHierarchy::SetRotatorArrayMetadata(struct FRigElemen
 
 	Params::URigHierarchy_SetRotatorArrayMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -503,12 +465,6 @@ TArray<struct FRotator> URigHierarchy::SetRotatorArrayMetadata(struct FRigElemen
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
 
 	return Parms.ReturnValue;
 
@@ -518,12 +474,12 @@ TArray<struct FRotator> URigHierarchy::SetRotatorArrayMetadata(struct FRigElemen
 // Function ControlRig.RigHierarchy.SetRigElementKeyMetadata
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigElementKey              InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigElementKey              InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FRigElementKey URigHierarchy::SetRigElementKeyMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, bool ReturnValue)
+bool URigHierarchy::SetRigElementKeyMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -532,7 +488,8 @@ struct FRigElementKey URigHierarchy::SetRigElementKeyMetadata(struct FRigElement
 
 	Params::URigHierarchy_SetRigElementKeyMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -541,12 +498,6 @@ struct FRigElementKey URigHierarchy::SetRigElementKeyMetadata(struct FRigElement
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
 
 	return Parms.ReturnValue;
 
@@ -556,12 +507,12 @@ struct FRigElementKey URigHierarchy::SetRigElementKeyMetadata(struct FRigElement
 // Function ControlRig.RigHierarchy.SetRigElementKeyArrayMetadata
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FRigElementKey>      InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FRigElementKey>      InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-TArray<struct FRigElementKey> URigHierarchy::SetRigElementKeyArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, bool ReturnValue)
+bool URigHierarchy::SetRigElementKeyArrayMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -570,7 +521,8 @@ TArray<struct FRigElementKey> URigHierarchy::SetRigElementKeyArrayMetadata(struc
 
 	Params::URigHierarchy_SetRigElementKeyArrayMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -579,12 +531,6 @@ TArray<struct FRigElementKey> URigHierarchy::SetRigElementKeyArrayMetadata(struc
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
 
 	return Parms.ReturnValue;
 
@@ -594,12 +540,12 @@ TArray<struct FRigElementKey> URigHierarchy::SetRigElementKeyArrayMetadata(struc
 // Function ControlRig.RigHierarchy.SetQuatMetadata
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FQuat                       InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FQuat                       InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FQuat URigHierarchy::SetQuatMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, bool ReturnValue)
+bool URigHierarchy::SetQuatMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -608,7 +554,8 @@ struct FQuat URigHierarchy::SetQuatMetadata(struct FRigElementKey* InItem, class
 
 	Params::URigHierarchy_SetQuatMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -617,12 +564,6 @@ struct FQuat URigHierarchy::SetQuatMetadata(struct FRigElementKey* InItem, class
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
 
 	return Parms.ReturnValue;
 
@@ -632,12 +573,12 @@ struct FQuat URigHierarchy::SetQuatMetadata(struct FRigElementKey* InItem, class
 // Function ControlRig.RigHierarchy.SetQuatArrayMetadata
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FQuat>               InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FQuat>               InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-TArray<struct FQuat> URigHierarchy::SetQuatArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, bool ReturnValue)
+bool URigHierarchy::SetQuatArrayMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -646,7 +587,8 @@ TArray<struct FQuat> URigHierarchy::SetQuatArrayMetadata(struct FRigElementKey* 
 
 	Params::URigHierarchy_SetQuatArrayMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -656,12 +598,6 @@ TArray<struct FQuat> URigHierarchy::SetQuatArrayMetadata(struct FRigElementKey* 
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
-
 	return Parms.ReturnValue;
 
 }
@@ -670,9 +606,9 @@ TArray<struct FQuat> URigHierarchy::SetQuatArrayMetadata(struct FRigElementKey* 
 // Function ControlRig.RigHierarchy.SetPose_ForBlueprint
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigPose                    InPose                                                           (ConstParm, BlueprintVisible, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
+// struct FRigPose                    InPose                                                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst)
 
-struct FRigPose URigHierarchy::SetPose_ForBlueprint()
+void URigHierarchy::SetPose_ForBlueprint(struct FRigPose* InPose)
 {
 	static class UFunction* Func = nullptr;
 
@@ -690,7 +626,8 @@ struct FRigPose URigHierarchy::SetPose_ForBlueprint()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InPose != nullptr)
+		*InPose = std::move(Parms.InPose);
 
 }
 
@@ -698,13 +635,13 @@ struct FRigPose URigHierarchy::SetPose_ForBlueprint()
 // Function ControlRig.RigHierarchy.SetParentWeightArray
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InChild                                                          (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FRigElementWeight>   InWeights                                                        (BlueprintVisible, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAffectChildren                                                  (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InChild                                                          (Edit, ConstParm, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FRigElementWeight>   InWeights                                                        (ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAffectChildren                                                  (Edit, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::SetParentWeightArray(struct FRigElementKey* InChild, bool* bAffectChildren, bool ReturnValue)
+bool URigHierarchy::SetParentWeightArray(const struct FRigElementKey& InChild, const TArray<struct FRigElementWeight>& InWeights, bool* bInitial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -713,7 +650,8 @@ bool URigHierarchy::SetParentWeightArray(struct FRigElementKey* InChild, bool* b
 
 	Params::URigHierarchy_SetParentWeightArray_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InChild = InChild;
+	Parms.InWeights = InWeights;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -723,11 +661,8 @@ bool URigHierarchy::SetParentWeightArray(struct FRigElementKey* InChild, bool* b
 
 	Func->FunctionFlags = Flgs;
 
-	if (InChild != nullptr)
-		*InChild = std::move(Parms.InChild);
-
-	if (bAffectChildren != nullptr)
-		*bAffectChildren = Parms.bAffectChildren;
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -737,14 +672,14 @@ bool URigHierarchy::SetParentWeightArray(struct FRigElementKey* InChild, bool* b
 // Function ControlRig.RigHierarchy.SetParentWeight
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InChild                                                          (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigElementKey              InParent                                                         (OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// struct FRigElementWeight           InWeight                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAffectChildren                                                  (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InChild                                                          (Edit, ConstParm, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigElementKey              InParent                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FRigElementWeight           InWeight                                                         (Edit, ExportObject, Net, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAffectChildren                                                  (Edit, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::SetParentWeight(struct FRigElementKey* InChild, struct FRigElementKey* InParent, bool* bAffectChildren, bool ReturnValue)
+bool URigHierarchy::SetParentWeight(const struct FRigElementKey& InChild, struct FRigElementKey* InParent, const struct FRigElementWeight& InWeight, bool* bInitial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -753,7 +688,8 @@ bool URigHierarchy::SetParentWeight(struct FRigElementKey* InChild, struct FRigE
 
 	Params::URigHierarchy_SetParentWeight_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InChild = InChild;
+	Parms.InWeight = InWeight;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -763,14 +699,11 @@ bool URigHierarchy::SetParentWeight(struct FRigElementKey* InChild, struct FRigE
 
 	Func->FunctionFlags = Flgs;
 
-	if (InChild != nullptr)
-		*InChild = std::move(Parms.InChild);
-
 	if (InParent != nullptr)
 		*InParent = std::move(Parms.InParent);
 
-	if (bAffectChildren != nullptr)
-		*bAffectChildren = Parms.bAffectChildren;
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -780,12 +713,12 @@ bool URigHierarchy::SetParentWeight(struct FRigElementKey* InChild, struct FRigE
 // Function ControlRig.RigHierarchy.SetNameMetadata
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName URigHierarchy::SetNameMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, bool ReturnValue)
+bool URigHierarchy::SetNameMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -794,7 +727,8 @@ class FName URigHierarchy::SetNameMetadata(struct FRigElementKey* InItem, class 
 
 	Params::URigHierarchy_SetNameMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -803,12 +737,6 @@ class FName URigHierarchy::SetNameMetadata(struct FRigElementKey* InItem, class 
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
 
 	return Parms.ReturnValue;
 
@@ -818,12 +746,12 @@ class FName URigHierarchy::SetNameMetadata(struct FRigElementKey* InItem, class 
 // Function ControlRig.RigHierarchy.SetNameArrayMetadata
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<class FName>                InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<class FName>                InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-TArray<class FName> URigHierarchy::SetNameArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, bool ReturnValue)
+bool URigHierarchy::SetNameArrayMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -832,7 +760,8 @@ TArray<class FName> URigHierarchy::SetNameArrayMetadata(struct FRigElementKey* I
 
 	Params::URigHierarchy_SetNameArrayMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -841,12 +770,6 @@ TArray<class FName> URigHierarchy::SetNameArrayMetadata(struct FRigElementKey* I
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
 
 	return Parms.ReturnValue;
 
@@ -856,14 +779,14 @@ TArray<class FName> URigHierarchy::SetNameArrayMetadata(struct FRigElementKey* I
 // Function ControlRig.RigHierarchy.SetLocalTransformByIndex
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// int32                              InElementIndex                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FTransform                  InTransform                                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, GlobalConfig, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAffectChildren                                                  (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommands                                             (ConstParm, BlueprintVisible, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              InElementIndex                                                   (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FTransform                  InTransform                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAffectChildren                                                  (Edit, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommands                                             (ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool URigHierarchy::SetLocalTransformByIndex(int32* InElementIndex, const struct FTransform& InTransform, bool* bAffectChildren)
+bool URigHierarchy::SetLocalTransformByIndex(int32 InElementIndex, bool* bInitial, bool bSetupUndo, bool bPrintPythonCommands)
 {
 	static class UFunction* Func = nullptr;
 
@@ -872,7 +795,9 @@ bool URigHierarchy::SetLocalTransformByIndex(int32* InElementIndex, const struct
 
 	Params::URigHierarchy_SetLocalTransformByIndex_Params Parms{};
 
-	Parms.InTransform = InTransform;
+	Parms.InElementIndex = InElementIndex;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommands = bPrintPythonCommands;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -882,11 +807,8 @@ bool URigHierarchy::SetLocalTransformByIndex(int32* InElementIndex, const struct
 
 	Func->FunctionFlags = Flgs;
 
-	if (InElementIndex != nullptr)
-		*InElementIndex = Parms.InElementIndex;
-
-	if (bAffectChildren != nullptr)
-		*bAffectChildren = Parms.bAffectChildren;
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -896,14 +818,14 @@ bool URigHierarchy::SetLocalTransformByIndex(int32* InElementIndex, const struct
 // Function ControlRig.RigHierarchy.SetLocalTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FTransform                  InTransform                                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, GlobalConfig, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAffectChildren                                                  (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommands                                             (ConstParm, BlueprintVisible, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FTransform                  InTransform                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAffectChildren                                                  (Edit, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommands                                             (ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool URigHierarchy::SetLocalTransform(struct FRigElementKey* InKey, const struct FTransform& InTransform, bool* bAffectChildren)
+bool URigHierarchy::SetLocalTransform(struct FRigElementKey* InKey, bool* bInitial, bool bSetupUndo, bool bPrintPythonCommands)
 {
 	static class UFunction* Func = nullptr;
 
@@ -912,7 +834,8 @@ bool URigHierarchy::SetLocalTransform(struct FRigElementKey* InKey, const struct
 
 	Params::URigHierarchy_SetLocalTransform_Params Parms{};
 
-	Parms.InTransform = InTransform;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommands = bPrintPythonCommands;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -925,8 +848,8 @@ bool URigHierarchy::SetLocalTransform(struct FRigElementKey* InKey, const struct
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
-	if (bAffectChildren != nullptr)
-		*bAffectChildren = Parms.bAffectChildren;
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -936,12 +859,12 @@ bool URigHierarchy::SetLocalTransform(struct FRigElementKey* InKey, const struct
 // Function ControlRig.RigHierarchy.SetLinearColorMetadata
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FLinearColor                InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FLinearColor                InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FLinearColor URigHierarchy::SetLinearColorMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, bool ReturnValue)
+bool URigHierarchy::SetLinearColorMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -950,7 +873,8 @@ struct FLinearColor URigHierarchy::SetLinearColorMetadata(struct FRigElementKey*
 
 	Params::URigHierarchy_SetLinearColorMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -959,12 +883,6 @@ struct FLinearColor URigHierarchy::SetLinearColorMetadata(struct FRigElementKey*
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
 
 	return Parms.ReturnValue;
 
@@ -974,12 +892,12 @@ struct FLinearColor URigHierarchy::SetLinearColorMetadata(struct FRigElementKey*
 // Function ControlRig.RigHierarchy.SetLinearColorArrayMetadata
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FLinearColor>        InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FLinearColor>        InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-TArray<struct FLinearColor> URigHierarchy::SetLinearColorArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, bool ReturnValue)
+bool URigHierarchy::SetLinearColorArrayMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -988,7 +906,8 @@ TArray<struct FLinearColor> URigHierarchy::SetLinearColorArrayMetadata(struct FR
 
 	Params::URigHierarchy_SetLinearColorArrayMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -997,12 +916,6 @@ TArray<struct FLinearColor> URigHierarchy::SetLinearColorArrayMetadata(struct FR
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
 
 	return Parms.ReturnValue;
 
@@ -1012,12 +925,12 @@ TArray<struct FLinearColor> URigHierarchy::SetLinearColorArrayMetadata(struct FR
 // Function ControlRig.RigHierarchy.SetInt32Metadata
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// int32                              InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 URigHierarchy::SetInt32Metadata(struct FRigElementKey* InItem, class FName* InMetadataName, bool ReturnValue)
+bool URigHierarchy::SetInt32Metadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1026,7 +939,8 @@ int32 URigHierarchy::SetInt32Metadata(struct FRigElementKey* InItem, class FName
 
 	Params::URigHierarchy_SetInt32Metadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1035,12 +949,6 @@ int32 URigHierarchy::SetInt32Metadata(struct FRigElementKey* InItem, class FName
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
 
 	return Parms.ReturnValue;
 
@@ -1050,12 +958,12 @@ int32 URigHierarchy::SetInt32Metadata(struct FRigElementKey* InItem, class FName
 // Function ControlRig.RigHierarchy.SetInt32ArrayMetadata
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<int32>                      InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<int32>                      InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-TArray<int32> URigHierarchy::SetInt32ArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, bool ReturnValue)
+bool URigHierarchy::SetInt32ArrayMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1064,7 +972,8 @@ TArray<int32> URigHierarchy::SetInt32ArrayMetadata(struct FRigElementKey* InItem
 
 	Params::URigHierarchy_SetInt32ArrayMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1073,12 +982,6 @@ TArray<int32> URigHierarchy::SetInt32ArrayMetadata(struct FRigElementKey* InItem
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
 
 	return Parms.ReturnValue;
 
@@ -1088,14 +991,14 @@ TArray<int32> URigHierarchy::SetInt32ArrayMetadata(struct FRigElementKey* InItem
 // Function ControlRig.RigHierarchy.SetGlobalTransformByIndex
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// int32                              InElementIndex                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FTransform                  InTransform                                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, GlobalConfig, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAffectChildren                                                  (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommand                                              (BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              InElementIndex                                                   (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FTransform                  InTransform                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAffectChildren                                                  (Edit, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommand                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool URigHierarchy::SetGlobalTransformByIndex(int32* InElementIndex, const struct FTransform& InTransform, bool* bAffectChildren)
+bool URigHierarchy::SetGlobalTransformByIndex(int32 InElementIndex, bool* bInitial, bool bSetupUndo, bool bPrintPythonCommand)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1104,7 +1007,9 @@ bool URigHierarchy::SetGlobalTransformByIndex(int32* InElementIndex, const struc
 
 	Params::URigHierarchy_SetGlobalTransformByIndex_Params Parms{};
 
-	Parms.InTransform = InTransform;
+	Parms.InElementIndex = InElementIndex;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommand = bPrintPythonCommand;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1114,11 +1019,8 @@ bool URigHierarchy::SetGlobalTransformByIndex(int32* InElementIndex, const struc
 
 	Func->FunctionFlags = Flgs;
 
-	if (InElementIndex != nullptr)
-		*InElementIndex = Parms.InElementIndex;
-
-	if (bAffectChildren != nullptr)
-		*bAffectChildren = Parms.bAffectChildren;
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -1128,14 +1030,14 @@ bool URigHierarchy::SetGlobalTransformByIndex(int32* InElementIndex, const struc
 // Function ControlRig.RigHierarchy.SetGlobalTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FTransform                  InTransform                                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, GlobalConfig, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAffectChildren                                                  (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommand                                              (BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FTransform                  InTransform                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAffectChildren                                                  (Edit, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommand                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool URigHierarchy::SetGlobalTransform(struct FRigElementKey* InKey, const struct FTransform& InTransform, bool* bAffectChildren)
+bool URigHierarchy::SetGlobalTransform(struct FRigElementKey* InKey, bool* bInitial, bool bSetupUndo, bool bPrintPythonCommand)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1144,7 +1046,8 @@ bool URigHierarchy::SetGlobalTransform(struct FRigElementKey* InKey, const struc
 
 	Params::URigHierarchy_SetGlobalTransform_Params Parms{};
 
-	Parms.InTransform = InTransform;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommand = bPrintPythonCommand;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1157,8 +1060,8 @@ bool URigHierarchy::SetGlobalTransform(struct FRigElementKey* InKey, const struc
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
-	if (bAffectChildren != nullptr)
-		*bAffectChildren = Parms.bAffectChildren;
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -1168,12 +1071,12 @@ bool URigHierarchy::SetGlobalTransform(struct FRigElementKey* InKey, const struc
 // Function ControlRig.RigHierarchy.SetFloatMetadata
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// float                              InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float URigHierarchy::SetFloatMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, bool ReturnValue)
+bool URigHierarchy::SetFloatMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1182,7 +1085,8 @@ float URigHierarchy::SetFloatMetadata(struct FRigElementKey* InItem, class FName
 
 	Params::URigHierarchy_SetFloatMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1191,12 +1095,6 @@ float URigHierarchy::SetFloatMetadata(struct FRigElementKey* InItem, class FName
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
 
 	return Parms.ReturnValue;
 
@@ -1206,12 +1104,12 @@ float URigHierarchy::SetFloatMetadata(struct FRigElementKey* InItem, class FName
 // Function ControlRig.RigHierarchy.SetFloatArrayMetadata
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<float>                      InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<float>                      InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-TArray<float> URigHierarchy::SetFloatArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, bool ReturnValue)
+bool URigHierarchy::SetFloatArrayMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1220,7 +1118,8 @@ TArray<float> URigHierarchy::SetFloatArrayMetadata(struct FRigElementKey* InItem
 
 	Params::URigHierarchy_SetFloatArrayMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1229,12 +1128,6 @@ TArray<float> URigHierarchy::SetFloatArrayMetadata(struct FRigElementKey* InItem
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
 
 	return Parms.ReturnValue;
 
@@ -1244,11 +1137,11 @@ TArray<float> URigHierarchy::SetFloatArrayMetadata(struct FRigElementKey* InItem
 // Function ControlRig.RigHierarchy.SetCurveValueByIndex
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              InElementIndex                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// float                              InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              InElementIndex                                                   (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool URigHierarchy::SetCurveValueByIndex(int32* InElementIndex)
+float URigHierarchy::SetCurveValueByIndex(int32 InElementIndex, bool bSetupUndo)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1257,6 +1150,8 @@ bool URigHierarchy::SetCurveValueByIndex(int32* InElementIndex)
 
 	Params::URigHierarchy_SetCurveValueByIndex_Params Parms{};
 
+	Parms.InElementIndex = InElementIndex;
+	Parms.bSetupUndo = bSetupUndo;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1266,9 +1161,6 @@ bool URigHierarchy::SetCurveValueByIndex(int32* InElementIndex)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InElementIndex != nullptr)
-		*InElementIndex = Parms.InElementIndex;
-
 	return Parms.ReturnValue;
 
 }
@@ -1277,11 +1169,11 @@ bool URigHierarchy::SetCurveValueByIndex(int32* InElementIndex)
 // Function ControlRig.RigHierarchy.SetCurveValue
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// float                              InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool URigHierarchy::SetCurveValue(struct FRigElementKey* InKey)
+float URigHierarchy::SetCurveValue(struct FRigElementKey* InKey, bool bSetupUndo)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1290,6 +1182,7 @@ bool URigHierarchy::SetCurveValue(struct FRigElementKey* InKey)
 
 	Params::URigHierarchy_SetCurveValue_Params Parms{};
 
+	Parms.bSetupUndo = bSetupUndo;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1310,10 +1203,10 @@ bool URigHierarchy::SetCurveValue(struct FRigElementKey* InKey)
 // Function ControlRig.RigHierarchy.SetControlVisibilityByIndex
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              InElementIndex                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bVisibility                                                      (Edit, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              InElementIndex                                                   (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bVisibility                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool URigHierarchy::SetControlVisibilityByIndex(int32* InElementIndex)
+void URigHierarchy::SetControlVisibilityByIndex(int32 InElementIndex, bool bVisibility)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1322,6 +1215,8 @@ bool URigHierarchy::SetControlVisibilityByIndex(int32* InElementIndex)
 
 	Params::URigHierarchy_SetControlVisibilityByIndex_Params Parms{};
 
+	Parms.InElementIndex = InElementIndex;
+	Parms.bVisibility = bVisibility;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1331,21 +1226,16 @@ bool URigHierarchy::SetControlVisibilityByIndex(int32* InElementIndex)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InElementIndex != nullptr)
-		*InElementIndex = Parms.InElementIndex;
-
-	return Parms.ReturnValue;
-
 }
 
 
 // Function ControlRig.RigHierarchy.SetControlVisibility
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bVisibility                                                      (Edit, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bVisibility                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool URigHierarchy::SetControlVisibility(struct FRigElementKey* InKey)
+void URigHierarchy::SetControlVisibility(struct FRigElementKey* InKey, bool bVisibility)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1354,6 +1244,7 @@ bool URigHierarchy::SetControlVisibility(struct FRigElementKey* InKey)
 
 	Params::URigHierarchy_SetControlVisibility_Params Parms{};
 
+	Parms.bVisibility = bVisibility;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1366,21 +1257,19 @@ bool URigHierarchy::SetControlVisibility(struct FRigElementKey* InKey)
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function ControlRig.RigHierarchy.SetControlValueByIndex
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              InElementIndex                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigControlValue            InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// enum class ERigControlValueType    InValueType                                                      (Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommands                                             (ConstParm, BlueprintVisible, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              InElementIndex                                                   (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigControlValue            InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class ERigControlValueType    InValueType                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommands                                             (ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool URigHierarchy::SetControlValueByIndex(int32* InElementIndex, enum class ERigControlValueType* InValueType)
+struct FRigControlValue URigHierarchy::SetControlValueByIndex(int32 InElementIndex, enum class ERigControlValueType InValueType, bool bSetupUndo, bool bPrintPythonCommands)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1389,6 +1278,10 @@ bool URigHierarchy::SetControlValueByIndex(int32* InElementIndex, enum class ERi
 
 	Params::URigHierarchy_SetControlValueByIndex_Params Parms{};
 
+	Parms.InElementIndex = InElementIndex;
+	Parms.InValueType = InValueType;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommands = bPrintPythonCommands;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1397,12 +1290,6 @@ bool URigHierarchy::SetControlValueByIndex(int32* InElementIndex, enum class ERi
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InElementIndex != nullptr)
-		*InElementIndex = Parms.InElementIndex;
-
-	if (InValueType != nullptr)
-		*InValueType = Parms.InValueType;
 
 	return Parms.ReturnValue;
 
@@ -1412,13 +1299,13 @@ bool URigHierarchy::SetControlValueByIndex(int32* InElementIndex, enum class ERi
 // Function ControlRig.RigHierarchy.SetControlValue
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigControlValue            InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// enum class ERigControlValueType    InValueType                                                      (Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommands                                             (ConstParm, BlueprintVisible, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigControlValue            InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class ERigControlValueType    InValueType                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommands                                             (ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool URigHierarchy::SetControlValue(struct FRigElementKey* InKey, enum class ERigControlValueType* InValueType)
+struct FRigControlValue URigHierarchy::SetControlValue(struct FRigElementKey* InKey, enum class ERigControlValueType InValueType, bool bSetupUndo, bool bPrintPythonCommands)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1427,6 +1314,9 @@ bool URigHierarchy::SetControlValue(struct FRigElementKey* InKey, enum class ERi
 
 	Params::URigHierarchy_SetControlValue_Params Parms{};
 
+	Parms.InValueType = InValueType;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommands = bPrintPythonCommands;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1438,9 +1328,6 @@ bool URigHierarchy::SetControlValue(struct FRigElementKey* InKey, enum class ERi
 
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
-
-	if (InValueType != nullptr)
-		*InValueType = Parms.InValueType;
 
 	return Parms.ReturnValue;
 
@@ -1450,12 +1337,12 @@ bool URigHierarchy::SetControlValue(struct FRigElementKey* InKey, enum class ERi
 // Function ControlRig.RigHierarchy.SetControlShapeTransformByIndex
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// int32                              InElementIndex                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FTransform                  InTransform                                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, GlobalConfig, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              InElementIndex                                                   (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FTransform                  InTransform                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool URigHierarchy::SetControlShapeTransformByIndex(int32* InElementIndex, const struct FTransform& InTransform)
+struct FTransform URigHierarchy::SetControlShapeTransformByIndex(int32 InElementIndex, bool* bInitial, bool bSetupUndo)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1464,7 +1351,8 @@ bool URigHierarchy::SetControlShapeTransformByIndex(int32* InElementIndex, const
 
 	Params::URigHierarchy_SetControlShapeTransformByIndex_Params Parms{};
 
-	Parms.InTransform = InTransform;
+	Parms.InElementIndex = InElementIndex;
+	Parms.bSetupUndo = bSetupUndo;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1474,8 +1362,8 @@ bool URigHierarchy::SetControlShapeTransformByIndex(int32* InElementIndex, const
 
 	Func->FunctionFlags = Flgs;
 
-	if (InElementIndex != nullptr)
-		*InElementIndex = Parms.InElementIndex;
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -1485,12 +1373,12 @@ bool URigHierarchy::SetControlShapeTransformByIndex(int32* InElementIndex, const
 // Function ControlRig.RigHierarchy.SetControlShapeTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FTransform                  InTransform                                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, GlobalConfig, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FTransform                  InTransform                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool URigHierarchy::SetControlShapeTransform(struct FRigElementKey* InKey, const struct FTransform& InTransform)
+struct FTransform URigHierarchy::SetControlShapeTransform(struct FRigElementKey* InKey, bool* bInitial, bool bSetupUndo)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1499,7 +1387,7 @@ bool URigHierarchy::SetControlShapeTransform(struct FRigElementKey* InKey, const
 
 	Params::URigHierarchy_SetControlShapeTransform_Params Parms{};
 
-	Parms.InTransform = InTransform;
+	Parms.bSetupUndo = bSetupUndo;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1512,6 +1400,9 @@ bool URigHierarchy::SetControlShapeTransform(struct FRigElementKey* InKey, const
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
+
 	return Parms.ReturnValue;
 
 }
@@ -1520,13 +1411,13 @@ bool URigHierarchy::SetControlShapeTransform(struct FRigElementKey* InKey, const
 // Function ControlRig.RigHierarchy.SetControlSettingsByIndex
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              InElementIndex                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigControlSettings         InSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bForce                                                           (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               bPrintPythonCommands                                             (ConstParm, BlueprintVisible, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              InElementIndex                                                   (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigControlSettings         InSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bForce                                                           (Edit, EditFixedSize, Parm, ReturnParm, GlobalConfig, SubobjectReference)
+// bool                               bPrintPythonCommands                                             (ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool URigHierarchy::SetControlSettingsByIndex(int32* InElementIndex, bool bForce)
+bool URigHierarchy::SetControlSettingsByIndex(int32 InElementIndex, const struct FRigControlSettings& InSettings, bool bSetupUndo, bool bPrintPythonCommands)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1535,7 +1426,10 @@ bool URigHierarchy::SetControlSettingsByIndex(int32* InElementIndex, bool bForce
 
 	Params::URigHierarchy_SetControlSettingsByIndex_Params Parms{};
 
-	Parms.bForce = bForce;
+	Parms.InElementIndex = InElementIndex;
+	Parms.InSettings = InSettings;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommands = bPrintPythonCommands;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1545,9 +1439,6 @@ bool URigHierarchy::SetControlSettingsByIndex(int32* InElementIndex, bool bForce
 
 	Func->FunctionFlags = Flgs;
 
-	if (InElementIndex != nullptr)
-		*InElementIndex = Parms.InElementIndex;
-
 	return Parms.ReturnValue;
 
 }
@@ -1556,13 +1447,13 @@ bool URigHierarchy::SetControlSettingsByIndex(int32* InElementIndex, bool bForce
 // Function ControlRig.RigHierarchy.SetControlSettings
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigControlSettings         InSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bForce                                                           (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               bPrintPythonCommands                                             (ConstParm, BlueprintVisible, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigControlSettings         InSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bForce                                                           (Edit, EditFixedSize, Parm, ReturnParm, GlobalConfig, SubobjectReference)
+// bool                               bPrintPythonCommands                                             (ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool URigHierarchy::SetControlSettings(struct FRigElementKey* InKey, bool bForce)
+bool URigHierarchy::SetControlSettings(struct FRigElementKey* InKey, const struct FRigControlSettings& InSettings, bool bSetupUndo, bool bPrintPythonCommands)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1571,7 +1462,9 @@ bool URigHierarchy::SetControlSettings(struct FRigElementKey* InKey, bool bForce
 
 	Params::URigHierarchy_SetControlSettings_Params Parms{};
 
-	Parms.bForce = bForce;
+	Parms.InSettings = InSettings;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommands = bPrintPythonCommands;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1592,12 +1485,12 @@ bool URigHierarchy::SetControlSettings(struct FRigElementKey* InKey, bool bForce
 // Function ControlRig.RigHierarchy.SetControlPreferredRotatorByIndex
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// int32                              InElementIndex                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRotator                    InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bFixEulerFlips                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              InElementIndex                                                   (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRotator                    InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bFixEulerFlips                                                   (Edit, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool URigHierarchy::SetControlPreferredRotatorByIndex(int32* InElementIndex)
+struct FRotator URigHierarchy::SetControlPreferredRotatorByIndex(int32 InElementIndex, bool* bInitial, bool bFixEulerFlips)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1606,6 +1499,8 @@ bool URigHierarchy::SetControlPreferredRotatorByIndex(int32* InElementIndex)
 
 	Params::URigHierarchy_SetControlPreferredRotatorByIndex_Params Parms{};
 
+	Parms.InElementIndex = InElementIndex;
+	Parms.bFixEulerFlips = bFixEulerFlips;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1615,8 +1510,8 @@ bool URigHierarchy::SetControlPreferredRotatorByIndex(int32* InElementIndex)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InElementIndex != nullptr)
-		*InElementIndex = Parms.InElementIndex;
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -1626,12 +1521,12 @@ bool URigHierarchy::SetControlPreferredRotatorByIndex(int32* InElementIndex)
 // Function ControlRig.RigHierarchy.SetControlPreferredRotator
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRotator                    InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bFixEulerFlips                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRotator                    InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bFixEulerFlips                                                   (Edit, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool URigHierarchy::SetControlPreferredRotator(struct FRigElementKey* InKey)
+struct FRotator URigHierarchy::SetControlPreferredRotator(struct FRigElementKey* InKey, bool* bInitial, bool bFixEulerFlips)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1640,6 +1535,7 @@ bool URigHierarchy::SetControlPreferredRotator(struct FRigElementKey* InKey)
 
 	Params::URigHierarchy_SetControlPreferredRotator_Params Parms{};
 
+	Parms.bFixEulerFlips = bFixEulerFlips;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1651,6 +1547,9 @@ bool URigHierarchy::SetControlPreferredRotator(struct FRigElementKey* InKey)
 
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
+
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -1660,14 +1559,14 @@ bool URigHierarchy::SetControlPreferredRotator(struct FRigElementKey* InKey)
 // Function ControlRig.RigHierarchy.SetControlOffsetTransformByIndex
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// int32                              InElementIndex                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FTransform                  InTransform                                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, GlobalConfig, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAffectChildren                                                  (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommands                                             (ConstParm, BlueprintVisible, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// int32                              InElementIndex                                                   (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FTransform                  InTransform                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAffectChildren                                                  (Edit, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommands                                             (ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool URigHierarchy::SetControlOffsetTransformByIndex(int32* InElementIndex, const struct FTransform& InTransform, bool* bAffectChildren)
+bool URigHierarchy::SetControlOffsetTransformByIndex(int32 InElementIndex, bool* bInitial, bool bSetupUndo, bool bPrintPythonCommands)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1676,7 +1575,9 @@ bool URigHierarchy::SetControlOffsetTransformByIndex(int32* InElementIndex, cons
 
 	Params::URigHierarchy_SetControlOffsetTransformByIndex_Params Parms{};
 
-	Parms.InTransform = InTransform;
+	Parms.InElementIndex = InElementIndex;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommands = bPrintPythonCommands;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1686,11 +1587,8 @@ bool URigHierarchy::SetControlOffsetTransformByIndex(int32* InElementIndex, cons
 
 	Func->FunctionFlags = Flgs;
 
-	if (InElementIndex != nullptr)
-		*InElementIndex = Parms.InElementIndex;
-
-	if (bAffectChildren != nullptr)
-		*bAffectChildren = Parms.bAffectChildren;
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -1700,14 +1598,14 @@ bool URigHierarchy::SetControlOffsetTransformByIndex(int32* InElementIndex, cons
 // Function ControlRig.RigHierarchy.SetControlOffsetTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FTransform                  InTransform                                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, GlobalConfig, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bAffectChildren                                                  (BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommands                                             (ConstParm, BlueprintVisible, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FTransform                  InTransform                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bAffectChildren                                                  (Edit, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommands                                             (ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool URigHierarchy::SetControlOffsetTransform(struct FRigElementKey* InKey, const struct FTransform& InTransform, bool* bAffectChildren)
+bool URigHierarchy::SetControlOffsetTransform(struct FRigElementKey* InKey, bool* bInitial, bool bSetupUndo, bool bPrintPythonCommands)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1716,7 +1614,8 @@ bool URigHierarchy::SetControlOffsetTransform(struct FRigElementKey* InKey, cons
 
 	Params::URigHierarchy_SetControlOffsetTransform_Params Parms{};
 
-	Parms.InTransform = InTransform;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommands = bPrintPythonCommands;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1729,8 +1628,8 @@ bool URigHierarchy::SetControlOffsetTransform(struct FRigElementKey* InKey, cons
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
-	if (bAffectChildren != nullptr)
-		*bAffectChildren = Parms.bAffectChildren;
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -1740,12 +1639,12 @@ bool URigHierarchy::SetControlOffsetTransform(struct FRigElementKey* InKey, cons
 // Function ControlRig.RigHierarchy.SetBoolMetadata
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::SetBoolMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, bool ReturnValue)
+bool URigHierarchy::SetBoolMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1754,7 +1653,8 @@ bool URigHierarchy::SetBoolMetadata(struct FRigElementKey* InItem, class FName* 
 
 	Params::URigHierarchy_SetBoolMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1763,12 +1663,6 @@ bool URigHierarchy::SetBoolMetadata(struct FRigElementKey* InItem, class FName* 
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
 
 	return Parms.ReturnValue;
 
@@ -1778,12 +1672,12 @@ bool URigHierarchy::SetBoolMetadata(struct FRigElementKey* InItem, class FName* 
 // Function ControlRig.RigHierarchy.SetBoolArrayMetadata
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<bool>                       InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<bool>                       InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-TArray<bool> URigHierarchy::SetBoolArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, bool ReturnValue)
+bool URigHierarchy::SetBoolArrayMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1792,7 +1686,8 @@ TArray<bool> URigHierarchy::SetBoolArrayMetadata(struct FRigElementKey* InItem, 
 
 	Params::URigHierarchy_SetBoolArrayMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1801,12 +1696,6 @@ TArray<bool> URigHierarchy::SetBoolArrayMetadata(struct FRigElementKey* InItem, 
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
 
 	return Parms.ReturnValue;
 
@@ -1816,11 +1705,11 @@ TArray<bool> URigHierarchy::SetBoolArrayMetadata(struct FRigElementKey* InItem, 
 // Function ControlRig.RigHierarchy.SendAutoKeyEvent
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InElement                                                        (ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// float                              InOffsetInSeconds                                                (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bAsynchronous                                                    (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// struct FRigElementKey              InElement                                                        (ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              InOffsetInSeconds                                                (ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bAsynchronous                                                    (Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FRigElementKey URigHierarchy::SendAutoKeyEvent(float* InOffsetInSeconds, bool* bAsynchronous)
+void URigHierarchy::SendAutoKeyEvent(const struct FRigElementKey& InElement, float InOffsetInSeconds, bool bAsynchronous)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1829,6 +1718,9 @@ struct FRigElementKey URigHierarchy::SendAutoKeyEvent(float* InOffsetInSeconds, 
 
 	Params::URigHierarchy_SendAutoKeyEvent_Params Parms{};
 
+	Parms.InElement = InElement;
+	Parms.InOffsetInSeconds = InOffsetInSeconds;
+	Parms.bAsynchronous = bAsynchronous;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1837,14 +1729,6 @@ struct FRigElementKey URigHierarchy::SendAutoKeyEvent(float* InOffsetInSeconds, 
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InOffsetInSeconds != nullptr)
-		*InOffsetInSeconds = Parms.InOffsetInSeconds;
-
-	if (bAsynchronous != nullptr)
-		*bAsynchronous = Parms.bAsynchronous;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -1876,9 +1760,9 @@ void URigHierarchy::ResetToDefault()
 // Function ControlRig.RigHierarchy.ResetPoseToInitial
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ERigElementType         InTypeFilter                                                     (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// enum class ERigElementType         InTypeFilter                                                     (BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void URigHierarchy::ResetPoseToInitial(enum class ERigElementType* InTypeFilter)
+void URigHierarchy::ResetPoseToInitial(enum class ERigElementType InTypeFilter)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1887,6 +1771,7 @@ void URigHierarchy::ResetPoseToInitial(enum class ERigElementType* InTypeFilter)
 
 	Params::URigHierarchy_ResetPoseToInitial_Params Parms{};
 
+	Parms.InTypeFilter = InTypeFilter;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1895,9 +1780,6 @@ void URigHierarchy::ResetPoseToInitial(enum class ERigElementType* InTypeFilter)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InTypeFilter != nullptr)
-		*InTypeFilter = Parms.InTypeFilter;
 
 }
 
@@ -1953,11 +1835,11 @@ void URigHierarchy::Reset()
 // Function ControlRig.RigHierarchy.RemoveMetadata
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::RemoveMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, bool ReturnValue)
+bool URigHierarchy::RemoveMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1966,7 +1848,8 @@ void URigHierarchy::RemoveMetadata(struct FRigElementKey* InItem, class FName* I
 
 	Params::URigHierarchy_RemoveMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1976,11 +1859,7 @@ void URigHierarchy::RemoveMetadata(struct FRigElementKey* InItem, class FName* I
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
+	return Parms.ReturnValue;
 
 }
 
@@ -1988,10 +1867,10 @@ void URigHierarchy::RemoveMetadata(struct FRigElementKey* InItem, class FName* I
 // Function ControlRig.RigHierarchy.RemoveAllMetadata
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::RemoveAllMetadata(struct FRigElementKey* InItem, bool ReturnValue)
+bool URigHierarchy::RemoveAllMetadata(const struct FRigElementKey& InItem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2000,7 +1879,7 @@ void URigHierarchy::RemoveAllMetadata(struct FRigElementKey* InItem, bool Return
 
 	Params::URigHierarchy_RemoveAllMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2010,8 +1889,7 @@ void URigHierarchy::RemoveAllMetadata(struct FRigElementKey* InItem, bool Return
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
+	return Parms.ReturnValue;
 
 }
 
@@ -2019,9 +1897,9 @@ void URigHierarchy::RemoveAllMetadata(struct FRigElementKey* InItem, bool Return
 // Function ControlRig.RigHierarchy.Num
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::Num(int32 ReturnValue)
+int32 URigHierarchy::Num()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2030,7 +1908,6 @@ void URigHierarchy::Num(int32 ReturnValue)
 
 	Params::URigHierarchy_Num_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2040,16 +1917,18 @@ void URigHierarchy::Num(int32 ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.RigHierarchy.MakeControlValueFromVector2D
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FRigControlValue            ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FVector2D                   InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FRigControlValue            ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FVector2D URigHierarchy::MakeControlValueFromVector2D(const struct FRigControlValue& ReturnValue)
+struct FRigControlValue URigHierarchy::MakeControlValueFromVector2D()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2058,7 +1937,6 @@ struct FVector2D URigHierarchy::MakeControlValueFromVector2D(const struct FRigCo
 
 	Params::URigHierarchy_MakeControlValueFromVector2D_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2076,10 +1954,10 @@ struct FVector2D URigHierarchy::MakeControlValueFromVector2D(const struct FRigCo
 // Function ControlRig.RigHierarchy.MakeControlValueFromVector
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector                     InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FRigControlValue            ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FVector                     InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FRigControlValue            ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FVector URigHierarchy::MakeControlValueFromVector(const struct FRigControlValue& ReturnValue)
+struct FRigControlValue URigHierarchy::MakeControlValueFromVector()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2088,7 +1966,6 @@ struct FVector URigHierarchy::MakeControlValueFromVector(const struct FRigContro
 
 	Params::URigHierarchy_MakeControlValueFromVector_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2106,10 +1983,10 @@ struct FVector URigHierarchy::MakeControlValueFromVector(const struct FRigContro
 // Function ControlRig.RigHierarchy.MakeControlValueFromTransformNoScale
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// struct FTransformNoScale           InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FRigControlValue            ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FTransformNoScale           InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FRigControlValue            ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FTransformNoScale URigHierarchy::MakeControlValueFromTransformNoScale(const struct FRigControlValue& ReturnValue)
+struct FRigControlValue URigHierarchy::MakeControlValueFromTransformNoScale()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2118,7 +1995,6 @@ struct FTransformNoScale URigHierarchy::MakeControlValueFromTransformNoScale(con
 
 	Params::URigHierarchy_MakeControlValueFromTransformNoScale_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2136,10 +2012,10 @@ struct FTransformNoScale URigHierarchy::MakeControlValueFromTransformNoScale(con
 // Function ControlRig.RigHierarchy.MakeControlValueFromTransform
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FTransform                  InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FRigControlValue            ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FTransform                  InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FRigControlValue            ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FTransform URigHierarchy::MakeControlValueFromTransform(const struct FRigControlValue& ReturnValue)
+struct FRigControlValue URigHierarchy::MakeControlValueFromTransform()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2148,7 +2024,6 @@ struct FTransform URigHierarchy::MakeControlValueFromTransform(const struct FRig
 
 	Params::URigHierarchy_MakeControlValueFromTransform_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2166,10 +2041,10 @@ struct FTransform URigHierarchy::MakeControlValueFromTransform(const struct FRig
 // Function ControlRig.RigHierarchy.MakeControlValueFromRotator
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FRotator                    InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FRigControlValue            ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRotator                    InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FRigControlValue            ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FRotator URigHierarchy::MakeControlValueFromRotator(const struct FRigControlValue& ReturnValue)
+struct FRigControlValue URigHierarchy::MakeControlValueFromRotator()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2178,7 +2053,6 @@ struct FRotator URigHierarchy::MakeControlValueFromRotator(const struct FRigCont
 
 	Params::URigHierarchy_MakeControlValueFromRotator_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2196,10 +2070,10 @@ struct FRotator URigHierarchy::MakeControlValueFromRotator(const struct FRigCont
 // Function ControlRig.RigHierarchy.MakeControlValueFromInt
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// int32                              InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FRigControlValue            ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FRigControlValue            ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 URigHierarchy::MakeControlValueFromInt(const struct FRigControlValue& ReturnValue)
+struct FRigControlValue URigHierarchy::MakeControlValueFromInt()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2208,7 +2082,6 @@ int32 URigHierarchy::MakeControlValueFromInt(const struct FRigControlValue& Retu
 
 	Params::URigHierarchy_MakeControlValueFromInt_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2226,10 +2099,10 @@ int32 URigHierarchy::MakeControlValueFromInt(const struct FRigControlValue& Retu
 // Function ControlRig.RigHierarchy.MakeControlValueFromFloat
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// float                              InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FRigControlValue            ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FRigControlValue            ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float URigHierarchy::MakeControlValueFromFloat(const struct FRigControlValue& ReturnValue)
+struct FRigControlValue URigHierarchy::MakeControlValueFromFloat()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2238,7 +2111,6 @@ float URigHierarchy::MakeControlValueFromFloat(const struct FRigControlValue& Re
 
 	Params::URigHierarchy_MakeControlValueFromFloat_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2256,10 +2128,10 @@ float URigHierarchy::MakeControlValueFromFloat(const struct FRigControlValue& Re
 // Function ControlRig.RigHierarchy.MakeControlValueFromEulerTransform
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// struct FEulerTransform             InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FRigControlValue            ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FEulerTransform             InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FRigControlValue            ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FEulerTransform URigHierarchy::MakeControlValueFromEulerTransform(const struct FRigControlValue& ReturnValue)
+struct FRigControlValue URigHierarchy::MakeControlValueFromEulerTransform()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2268,7 +2140,6 @@ struct FEulerTransform URigHierarchy::MakeControlValueFromEulerTransform(const s
 
 	Params::URigHierarchy_MakeControlValueFromEulerTransform_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2286,10 +2157,10 @@ struct FEulerTransform URigHierarchy::MakeControlValueFromEulerTransform(const s
 // Function ControlRig.RigHierarchy.MakeControlValueFromBool
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// bool                               InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FRigControlValue            ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FRigControlValue            ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::MakeControlValueFromBool(const struct FRigControlValue& ReturnValue)
+struct FRigControlValue URigHierarchy::MakeControlValueFromBool()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2298,7 +2169,6 @@ bool URigHierarchy::MakeControlValueFromBool(const struct FRigControlValue& Retu
 
 	Params::URigHierarchy_MakeControlValueFromBool_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2316,10 +2186,10 @@ bool URigHierarchy::MakeControlValueFromBool(const struct FRigControlValue& Retu
 // Function ControlRig.RigHierarchy.IsValidIndex
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              InElementIndex                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              InElementIndex                                                   (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::IsValidIndex(int32* InElementIndex, bool ReturnValue)
+bool URigHierarchy::IsValidIndex(int32 InElementIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2328,7 +2198,7 @@ void URigHierarchy::IsValidIndex(int32* InElementIndex, bool ReturnValue)
 
 	Params::URigHierarchy_IsValidIndex_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InElementIndex = InElementIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2338,8 +2208,7 @@ void URigHierarchy::IsValidIndex(int32* InElementIndex, bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InElementIndex != nullptr)
-		*InElementIndex = Parms.InElementIndex;
+	return Parms.ReturnValue;
 
 }
 
@@ -2347,10 +2216,10 @@ void URigHierarchy::IsValidIndex(int32* InElementIndex, bool ReturnValue)
 // Function ControlRig.RigHierarchy.IsSelectedByIndex
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              InIndex                                                          (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              InIndex                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::IsSelectedByIndex(int32* InIndex, bool ReturnValue)
+bool URigHierarchy::IsSelectedByIndex(int32 InIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2359,7 +2228,7 @@ void URigHierarchy::IsSelectedByIndex(int32* InIndex, bool ReturnValue)
 
 	Params::URigHierarchy_IsSelectedByIndex_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InIndex = InIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2369,8 +2238,7 @@ void URigHierarchy::IsSelectedByIndex(int32* InIndex, bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InIndex != nullptr)
-		*InIndex = Parms.InIndex;
+	return Parms.ReturnValue;
 
 }
 
@@ -2378,10 +2246,10 @@ void URigHierarchy::IsSelectedByIndex(int32* InIndex, bool ReturnValue)
 // Function ControlRig.RigHierarchy.IsSelected
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::IsSelected(struct FRigElementKey* InKey, bool ReturnValue)
+bool URigHierarchy::IsSelected(struct FRigElementKey* InKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2390,7 +2258,6 @@ void URigHierarchy::IsSelected(struct FRigElementKey* InKey, bool ReturnValue)
 
 	Params::URigHierarchy_IsSelected_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2403,16 +2270,18 @@ void URigHierarchy::IsSelected(struct FRigElementKey* InKey, bool ReturnValue)
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.RigHierarchy.IsProcedural
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::IsProcedural(struct FRigElementKey* InKey, bool ReturnValue)
+bool URigHierarchy::IsProcedural(struct FRigElementKey* InKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2421,7 +2290,6 @@ void URigHierarchy::IsProcedural(struct FRigElementKey* InKey, bool ReturnValue)
 
 	Params::URigHierarchy_IsProcedural_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2434,17 +2302,19 @@ void URigHierarchy::IsProcedural(struct FRigElementKey* InKey, bool ReturnValue)
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.RigHierarchy.IsParentedTo
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InChild                                                          (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigElementKey              InParent                                                         (OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InChild                                                          (Edit, ConstParm, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigElementKey              InParent                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::IsParentedTo(struct FRigElementKey* InChild, struct FRigElementKey* InParent, bool ReturnValue)
+bool URigHierarchy::IsParentedTo(const struct FRigElementKey& InChild, struct FRigElementKey* InParent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2453,7 +2323,7 @@ void URigHierarchy::IsParentedTo(struct FRigElementKey* InChild, struct FRigElem
 
 	Params::URigHierarchy_IsParentedTo_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InChild = InChild;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2463,11 +2333,10 @@ void URigHierarchy::IsParentedTo(struct FRigElementKey* InChild, struct FRigElem
 
 	Func->FunctionFlags = Flgs;
 
-	if (InChild != nullptr)
-		*InChild = std::move(Parms.InChild);
-
 	if (InParent != nullptr)
 		*InParent = std::move(Parms.InParent);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -2475,10 +2344,10 @@ void URigHierarchy::IsParentedTo(struct FRigElementKey* InChild, struct FRigElem
 // Function ControlRig.RigHierarchy.IsCurveValueSetByIndex
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              InElementIndex                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              InElementIndex                                                   (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::IsCurveValueSetByIndex(int32* InElementIndex, bool ReturnValue)
+bool URigHierarchy::IsCurveValueSetByIndex(int32 InElementIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2487,7 +2356,7 @@ void URigHierarchy::IsCurveValueSetByIndex(int32* InElementIndex, bool ReturnVal
 
 	Params::URigHierarchy_IsCurveValueSetByIndex_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InElementIndex = InElementIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2497,8 +2366,7 @@ void URigHierarchy::IsCurveValueSetByIndex(int32* InElementIndex, bool ReturnVal
 
 	Func->FunctionFlags = Flgs;
 
-	if (InElementIndex != nullptr)
-		*InElementIndex = Parms.InElementIndex;
+	return Parms.ReturnValue;
 
 }
 
@@ -2506,10 +2374,10 @@ void URigHierarchy::IsCurveValueSetByIndex(int32* InElementIndex, bool ReturnVal
 // Function ControlRig.RigHierarchy.IsCurveValueSet
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::IsCurveValueSet(struct FRigElementKey* InKey, bool ReturnValue)
+bool URigHierarchy::IsCurveValueSet(struct FRigElementKey* InKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2518,7 +2386,6 @@ void URigHierarchy::IsCurveValueSet(struct FRigElementKey* InKey, bool ReturnVal
 
 	Params::URigHierarchy_IsCurveValueSet_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2531,15 +2398,17 @@ void URigHierarchy::IsCurveValueSet(struct FRigElementKey* InKey, bool ReturnVal
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.RigHierarchy.IsControllerAvailable
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::IsControllerAvailable(bool ReturnValue)
+bool URigHierarchy::IsControllerAvailable()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2548,7 +2417,6 @@ void URigHierarchy::IsControllerAvailable(bool ReturnValue)
 
 	Params::URigHierarchy_IsControllerAvailable_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2558,17 +2426,19 @@ void URigHierarchy::IsControllerAvailable(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.RigHierarchy.HasTag
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InTag                                                            (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InTag                                                            (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::HasTag(struct FRigElementKey* InItem, class FName* InTag, bool ReturnValue)
+bool URigHierarchy::HasTag(const struct FRigElementKey& InItem, class FName InTag)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2577,7 +2447,8 @@ void URigHierarchy::HasTag(struct FRigElementKey* InItem, class FName* InTag, bo
 
 	Params::URigHierarchy_HasTag_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InTag = InTag;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2587,11 +2458,7 @@ void URigHierarchy::HasTag(struct FRigElementKey* InItem, class FName* InTag, bo
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InTag != nullptr)
-		*InTag = Parms.InTag;
+	return Parms.ReturnValue;
 
 }
 
@@ -2599,12 +2466,12 @@ void URigHierarchy::HasTag(struct FRigElementKey* InItem, class FName* InTag, bo
 // Function ControlRig.RigHierarchy.GetVectorMetadata
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FVector                     DefaultValue                                                     (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FVector                     DefaultValue                                                     (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetVectorMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, struct FVector* DefaultValue, const struct FVector& ReturnValue)
+struct FVector URigHierarchy::GetVectorMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2613,7 +2480,8 @@ void URigHierarchy::GetVectorMetadata(struct FRigElementKey* InItem, class FName
 
 	Params::URigHierarchy_GetVectorMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2623,14 +2491,7 @@ void URigHierarchy::GetVectorMetadata(struct FRigElementKey* InItem, class FName
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
-
-	if (DefaultValue != nullptr)
-		*DefaultValue = std::move(Parms.DefaultValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -2638,10 +2499,10 @@ void URigHierarchy::GetVectorMetadata(struct FRigElementKey* InItem, class FName
 // Function ControlRig.RigHierarchy.GetVectorFromControlValue
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FRigControlValue            InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigControlValue            InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FRigControlValue URigHierarchy::GetVectorFromControlValue(const struct FVector& ReturnValue)
+struct FVector URigHierarchy::GetVectorFromControlValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2650,7 +2511,6 @@ struct FRigControlValue URigHierarchy::GetVectorFromControlValue(const struct FV
 
 	Params::URigHierarchy_GetVectorFromControlValue_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2668,11 +2528,11 @@ struct FRigControlValue URigHierarchy::GetVectorFromControlValue(const struct FV
 // Function ControlRig.RigHierarchy.GetVectorArrayMetadata
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FVector>             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FVector>             ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetVectorArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, const TArray<struct FVector>& ReturnValue)
+TArray<struct FVector> URigHierarchy::GetVectorArrayMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2681,7 +2541,8 @@ void URigHierarchy::GetVectorArrayMetadata(struct FRigElementKey* InItem, class 
 
 	Params::URigHierarchy_GetVectorArrayMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2691,11 +2552,7 @@ void URigHierarchy::GetVectorArrayMetadata(struct FRigElementKey* InItem, class 
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
+	return Parms.ReturnValue;
 
 }
 
@@ -2703,10 +2560,10 @@ void URigHierarchy::GetVectorArrayMetadata(struct FRigElementKey* InItem, class 
 // Function ControlRig.RigHierarchy.GetVector2DFromControlValue
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FRigControlValue            InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigControlValue            InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FRigControlValue URigHierarchy::GetVector2DFromControlValue(const struct FVector2D& ReturnValue)
+struct FVector2D URigHierarchy::GetVector2DFromControlValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2715,7 +2572,6 @@ struct FRigControlValue URigHierarchy::GetVector2DFromControlValue(const struct 
 
 	Params::URigHierarchy_GetVector2DFromControlValue_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2733,10 +2589,10 @@ struct FRigControlValue URigHierarchy::GetVector2DFromControlValue(const struct 
 // Function ControlRig.RigHierarchy.GetTransformNoScaleFromControlValue
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// struct FRigControlValue            InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FTransformNoScale           ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigControlValue            InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTransformNoScale           ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FRigControlValue URigHierarchy::GetTransformNoScaleFromControlValue(const struct FTransformNoScale& ReturnValue)
+struct FTransformNoScale URigHierarchy::GetTransformNoScaleFromControlValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2745,7 +2601,6 @@ struct FRigControlValue URigHierarchy::GetTransformNoScaleFromControlValue(const
 
 	Params::URigHierarchy_GetTransformNoScaleFromControlValue_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2763,12 +2618,12 @@ struct FRigControlValue URigHierarchy::GetTransformNoScaleFromControlValue(const
 // Function ControlRig.RigHierarchy.GetTransformMetadata
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FTransform                  DefaultValue                                                     (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FTransform                  DefaultValue                                                     (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetTransformMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, struct FTransform* DefaultValue, const struct FTransform& ReturnValue)
+struct FTransform URigHierarchy::GetTransformMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2777,7 +2632,8 @@ void URigHierarchy::GetTransformMetadata(struct FRigElementKey* InItem, class FN
 
 	Params::URigHierarchy_GetTransformMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2787,14 +2643,7 @@ void URigHierarchy::GetTransformMetadata(struct FRigElementKey* InItem, class FN
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
-
-	if (DefaultValue != nullptr)
-		*DefaultValue = std::move(Parms.DefaultValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -2802,10 +2651,10 @@ void URigHierarchy::GetTransformMetadata(struct FRigElementKey* InItem, class FN
 // Function ControlRig.RigHierarchy.GetTransformFromControlValue
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FRigControlValue            InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigControlValue            InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FRigControlValue URigHierarchy::GetTransformFromControlValue(const struct FTransform& ReturnValue)
+struct FTransform URigHierarchy::GetTransformFromControlValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2814,7 +2663,6 @@ struct FRigControlValue URigHierarchy::GetTransformFromControlValue(const struct
 
 	Params::URigHierarchy_GetTransformFromControlValue_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2832,11 +2680,11 @@ struct FRigControlValue URigHierarchy::GetTransformFromControlValue(const struct
 // Function ControlRig.RigHierarchy.GetTransformArrayMetadata
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FTransform>          ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FTransform>          ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetTransformArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, const TArray<struct FTransform>& ReturnValue)
+TArray<struct FTransform> URigHierarchy::GetTransformArrayMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2845,7 +2693,8 @@ void URigHierarchy::GetTransformArrayMetadata(struct FRigElementKey* InItem, cla
 
 	Params::URigHierarchy_GetTransformArrayMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2855,11 +2704,7 @@ void URigHierarchy::GetTransformArrayMetadata(struct FRigElementKey* InItem, cla
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
+	return Parms.ReturnValue;
 
 }
 
@@ -2867,10 +2712,10 @@ void URigHierarchy::GetTransformArrayMetadata(struct FRigElementKey* InItem, cla
 // Function ControlRig.RigHierarchy.GetTags
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<class FName>                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<class FName>                ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetTags(struct FRigElementKey* InItem, const TArray<class FName>& ReturnValue)
+TArray<class FName> URigHierarchy::GetTags(const struct FRigElementKey& InItem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2879,7 +2724,7 @@ void URigHierarchy::GetTags(struct FRigElementKey* InItem, const TArray<class FN
 
 	Params::URigHierarchy_GetTags_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2889,8 +2734,7 @@ void URigHierarchy::GetTags(struct FRigElementKey* InItem, const TArray<class FN
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
+	return Parms.ReturnValue;
 
 }
 
@@ -2898,10 +2742,10 @@ void URigHierarchy::GetTags(struct FRigElementKey* InItem, const TArray<class FN
 // Function ControlRig.RigHierarchy.GetSelectedKeys
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class ERigElementType         InTypeFilter                                                     (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FRigElementKey>      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class ERigElementType         InTypeFilter                                                     (BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FRigElementKey>      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetSelectedKeys(enum class ERigElementType* InTypeFilter, const TArray<struct FRigElementKey>& ReturnValue)
+TArray<struct FRigElementKey> URigHierarchy::GetSelectedKeys(enum class ERigElementType InTypeFilter)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2910,7 +2754,7 @@ void URigHierarchy::GetSelectedKeys(enum class ERigElementType* InTypeFilter, co
 
 	Params::URigHierarchy_GetSelectedKeys_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InTypeFilter = InTypeFilter;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2920,8 +2764,7 @@ void URigHierarchy::GetSelectedKeys(enum class ERigElementType* InTypeFilter, co
 
 	Func->FunctionFlags = Flgs;
 
-	if (InTypeFilter != nullptr)
-		*InTypeFilter = Parms.InTypeFilter;
+	return Parms.ReturnValue;
 
 }
 
@@ -2929,12 +2772,12 @@ void URigHierarchy::GetSelectedKeys(enum class ERigElementType* InTypeFilter, co
 // Function ControlRig.RigHierarchy.GetRotatorMetadata
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRotator                    DefaultValue                                                     (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// struct FRotator                    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRotator                    DefaultValue                                                     (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FRotator                    ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetRotatorMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, struct FRotator* DefaultValue, const struct FRotator& ReturnValue)
+struct FRotator URigHierarchy::GetRotatorMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2943,7 +2786,8 @@ void URigHierarchy::GetRotatorMetadata(struct FRigElementKey* InItem, class FNam
 
 	Params::URigHierarchy_GetRotatorMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2953,14 +2797,7 @@ void URigHierarchy::GetRotatorMetadata(struct FRigElementKey* InItem, class FNam
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
-
-	if (DefaultValue != nullptr)
-		*DefaultValue = std::move(Parms.DefaultValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -2968,10 +2805,10 @@ void URigHierarchy::GetRotatorMetadata(struct FRigElementKey* InItem, class FNam
 // Function ControlRig.RigHierarchy.GetRotatorFromControlValue
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FRigControlValue            InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FRotator                    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigControlValue            InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FRotator                    ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FRigControlValue URigHierarchy::GetRotatorFromControlValue(const struct FRotator& ReturnValue)
+struct FRotator URigHierarchy::GetRotatorFromControlValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2980,7 +2817,6 @@ struct FRigControlValue URigHierarchy::GetRotatorFromControlValue(const struct F
 
 	Params::URigHierarchy_GetRotatorFromControlValue_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2998,11 +2834,11 @@ struct FRigControlValue URigHierarchy::GetRotatorFromControlValue(const struct F
 // Function ControlRig.RigHierarchy.GetRotatorArrayMetadata
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FRotator>            ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FRotator>            ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetRotatorArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, const TArray<struct FRotator>& ReturnValue)
+TArray<struct FRotator> URigHierarchy::GetRotatorArrayMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3011,7 +2847,8 @@ void URigHierarchy::GetRotatorArrayMetadata(struct FRigElementKey* InItem, class
 
 	Params::URigHierarchy_GetRotatorArrayMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3021,11 +2858,7 @@ void URigHierarchy::GetRotatorArrayMetadata(struct FRigElementKey* InItem, class
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
+	return Parms.ReturnValue;
 
 }
 
@@ -3033,9 +2866,9 @@ void URigHierarchy::GetRotatorArrayMetadata(struct FRigElementKey* InItem, class
 // Function ControlRig.RigHierarchy.GetRootElementKeys
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<struct FRigElementKey>      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<struct FRigElementKey>      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetRootElementKeys(const TArray<struct FRigElementKey>& ReturnValue)
+TArray<struct FRigElementKey> URigHierarchy::GetRootElementKeys()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3044,7 +2877,6 @@ void URigHierarchy::GetRootElementKeys(const TArray<struct FRigElementKey>& Retu
 
 	Params::URigHierarchy_GetRootElementKeys_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3054,16 +2886,18 @@ void URigHierarchy::GetRootElementKeys(const TArray<struct FRigElementKey>& Retu
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.RigHierarchy.GetRigidBodyKeys
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               bTraverse                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FRigElementKey>      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               bTraverse                                                        (Edit, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FRigElementKey>      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetRigidBodyKeys(bool* bTraverse, const TArray<struct FRigElementKey>& ReturnValue)
+TArray<struct FRigElementKey> URigHierarchy::GetRigidBodyKeys(bool bTraverse)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3072,7 +2906,7 @@ void URigHierarchy::GetRigidBodyKeys(bool* bTraverse, const TArray<struct FRigEl
 
 	Params::URigHierarchy_GetRigidBodyKeys_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.bTraverse = bTraverse;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3082,8 +2916,7 @@ void URigHierarchy::GetRigidBodyKeys(bool* bTraverse, const TArray<struct FRigEl
 
 	Func->FunctionFlags = Flgs;
 
-	if (bTraverse != nullptr)
-		*bTraverse = Parms.bTraverse;
+	return Parms.ReturnValue;
 
 }
 
@@ -3091,12 +2924,12 @@ void URigHierarchy::GetRigidBodyKeys(bool* bTraverse, const TArray<struct FRigEl
 // Function ControlRig.RigHierarchy.GetRigElementKeyMetadata
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigElementKey              DefaultValue                                                     (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// struct FRigElementKey              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigElementKey              DefaultValue                                                     (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FRigElementKey              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetRigElementKeyMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, struct FRigElementKey* DefaultValue, const struct FRigElementKey& ReturnValue)
+struct FRigElementKey URigHierarchy::GetRigElementKeyMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3105,7 +2938,8 @@ void URigHierarchy::GetRigElementKeyMetadata(struct FRigElementKey* InItem, clas
 
 	Params::URigHierarchy_GetRigElementKeyMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3115,14 +2949,7 @@ void URigHierarchy::GetRigElementKeyMetadata(struct FRigElementKey* InItem, clas
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
-
-	if (DefaultValue != nullptr)
-		*DefaultValue = std::move(Parms.DefaultValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -3130,11 +2957,11 @@ void URigHierarchy::GetRigElementKeyMetadata(struct FRigElementKey* InItem, clas
 // Function ControlRig.RigHierarchy.GetRigElementKeyArrayMetadata
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FRigElementKey>      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FRigElementKey>      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetRigElementKeyArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, const TArray<struct FRigElementKey>& ReturnValue)
+TArray<struct FRigElementKey> URigHierarchy::GetRigElementKeyArrayMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3143,7 +2970,8 @@ void URigHierarchy::GetRigElementKeyArrayMetadata(struct FRigElementKey* InItem,
 
 	Params::URigHierarchy_GetRigElementKeyArrayMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3153,11 +2981,7 @@ void URigHierarchy::GetRigElementKeyArrayMetadata(struct FRigElementKey* InItem,
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
+	return Parms.ReturnValue;
 
 }
 
@@ -3165,10 +2989,10 @@ void URigHierarchy::GetRigElementKeyArrayMetadata(struct FRigElementKey* InItem,
 // Function ControlRig.RigHierarchy.GetReferenceKeys
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               bTraverse                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FRigElementKey>      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               bTraverse                                                        (Edit, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FRigElementKey>      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetReferenceKeys(bool* bTraverse, const TArray<struct FRigElementKey>& ReturnValue)
+TArray<struct FRigElementKey> URigHierarchy::GetReferenceKeys(bool bTraverse)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3177,7 +3001,7 @@ void URigHierarchy::GetReferenceKeys(bool* bTraverse, const TArray<struct FRigEl
 
 	Params::URigHierarchy_GetReferenceKeys_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.bTraverse = bTraverse;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3187,8 +3011,7 @@ void URigHierarchy::GetReferenceKeys(bool* bTraverse, const TArray<struct FRigEl
 
 	Func->FunctionFlags = Flgs;
 
-	if (bTraverse != nullptr)
-		*bTraverse = Parms.bTraverse;
+	return Parms.ReturnValue;
 
 }
 
@@ -3196,12 +3019,12 @@ void URigHierarchy::GetReferenceKeys(bool* bTraverse, const TArray<struct FRigEl
 // Function ControlRig.RigHierarchy.GetQuatMetadata
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FQuat                       DefaultValue                                                     (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// struct FQuat                       ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FQuat                       DefaultValue                                                     (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FQuat                       ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetQuatMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, struct FQuat* DefaultValue, const struct FQuat& ReturnValue)
+struct FQuat URigHierarchy::GetQuatMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3210,7 +3033,8 @@ void URigHierarchy::GetQuatMetadata(struct FRigElementKey* InItem, class FName* 
 
 	Params::URigHierarchy_GetQuatMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3220,14 +3044,7 @@ void URigHierarchy::GetQuatMetadata(struct FRigElementKey* InItem, class FName* 
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
-
-	if (DefaultValue != nullptr)
-		*DefaultValue = std::move(Parms.DefaultValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -3235,11 +3052,11 @@ void URigHierarchy::GetQuatMetadata(struct FRigElementKey* InItem, class FName* 
 // Function ControlRig.RigHierarchy.GetQuatArrayMetadata
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FQuat>               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FQuat>               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetQuatArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, const TArray<struct FQuat>& ReturnValue)
+TArray<struct FQuat> URigHierarchy::GetQuatArrayMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3248,7 +3065,8 @@ void URigHierarchy::GetQuatArrayMetadata(struct FRigElementKey* InItem, class FN
 
 	Params::URigHierarchy_GetQuatArrayMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3258,11 +3076,7 @@ void URigHierarchy::GetQuatArrayMetadata(struct FRigElementKey* InItem, class FN
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
+	return Parms.ReturnValue;
 
 }
 
@@ -3270,10 +3084,10 @@ void URigHierarchy::GetQuatArrayMetadata(struct FRigElementKey* InItem, class FN
 // Function ControlRig.RigHierarchy.GetPreviousParent
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigElementKey              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigElementKey              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetPreviousParent(struct FRigElementKey* InKey, const struct FRigElementKey& ReturnValue)
+struct FRigElementKey URigHierarchy::GetPreviousParent(struct FRigElementKey* InKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3282,7 +3096,6 @@ void URigHierarchy::GetPreviousParent(struct FRigElementKey* InKey, const struct
 
 	Params::URigHierarchy_GetPreviousParent_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3295,16 +3108,18 @@ void URigHierarchy::GetPreviousParent(struct FRigElementKey* InKey, const struct
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.RigHierarchy.GetPreviousName
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetPreviousName(struct FRigElementKey* InKey, class FName ReturnValue)
+class FName URigHierarchy::GetPreviousName(struct FRigElementKey* InKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3313,7 +3128,6 @@ void URigHierarchy::GetPreviousName(struct FRigElementKey* InKey, class FName Re
 
 	Params::URigHierarchy_GetPreviousName_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3326,16 +3140,18 @@ void URigHierarchy::GetPreviousName(struct FRigElementKey* InKey, class FName Re
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.RigHierarchy.GetPose
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FRigPose                    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FRigPose                    ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::GetPose(const struct FRigPose& ReturnValue)
+struct FRigPose URigHierarchy::GetPose(bool* bInitial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3344,7 +3160,6 @@ bool URigHierarchy::GetPose(const struct FRigPose& ReturnValue)
 
 	Params::URigHierarchy_GetPose_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3353,6 +3168,9 @@ bool URigHierarchy::GetPose(const struct FRigPose& ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -3362,11 +3180,11 @@ bool URigHierarchy::GetPose(const struct FRigPose& ReturnValue)
 // Function ControlRig.RigHierarchy.GetParentWeightArray
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InChild                                                          (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FRigElementWeight>   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InChild                                                          (Edit, ConstParm, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FRigElementWeight>   ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::GetParentWeightArray(struct FRigElementKey* InChild, const TArray<struct FRigElementWeight>& ReturnValue)
+TArray<struct FRigElementWeight> URigHierarchy::GetParentWeightArray(const struct FRigElementKey& InChild, bool* bInitial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3375,7 +3193,7 @@ bool URigHierarchy::GetParentWeightArray(struct FRigElementKey* InChild, const T
 
 	Params::URigHierarchy_GetParentWeightArray_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InChild = InChild;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3385,8 +3203,8 @@ bool URigHierarchy::GetParentWeightArray(struct FRigElementKey* InChild, const T
 
 	Func->FunctionFlags = Flgs;
 
-	if (InChild != nullptr)
-		*InChild = std::move(Parms.InChild);
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -3396,12 +3214,12 @@ bool URigHierarchy::GetParentWeightArray(struct FRigElementKey* InChild, const T
 // Function ControlRig.RigHierarchy.GetParentWeight
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InChild                                                          (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigElementKey              InParent                                                         (OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FRigElementWeight           ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InChild                                                          (Edit, ConstParm, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigElementKey              InParent                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FRigElementWeight           ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::GetParentWeight(struct FRigElementKey* InChild, struct FRigElementKey* InParent, const struct FRigElementWeight& ReturnValue)
+struct FRigElementWeight URigHierarchy::GetParentWeight(const struct FRigElementKey& InChild, struct FRigElementKey* InParent, bool* bInitial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3410,7 +3228,7 @@ bool URigHierarchy::GetParentWeight(struct FRigElementKey* InChild, struct FRigE
 
 	Params::URigHierarchy_GetParentWeight_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InChild = InChild;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3420,11 +3238,11 @@ bool URigHierarchy::GetParentWeight(struct FRigElementKey* InChild, struct FRigE
 
 	Func->FunctionFlags = Flgs;
 
-	if (InChild != nullptr)
-		*InChild = std::move(Parms.InChild);
-
 	if (InParent != nullptr)
 		*InParent = std::move(Parms.InParent);
+
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -3434,11 +3252,11 @@ bool URigHierarchy::GetParentWeight(struct FRigElementKey* InChild, struct FRigE
 // Function ControlRig.RigHierarchy.GetParentTransformByIndex
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              InElementIndex                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              InElementIndex                                                   (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::GetParentTransformByIndex(int32* InElementIndex, const struct FTransform& ReturnValue)
+struct FTransform URigHierarchy::GetParentTransformByIndex(int32 InElementIndex, bool* bInitial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3447,7 +3265,7 @@ bool URigHierarchy::GetParentTransformByIndex(int32* InElementIndex, const struc
 
 	Params::URigHierarchy_GetParentTransformByIndex_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InElementIndex = InElementIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3457,8 +3275,8 @@ bool URigHierarchy::GetParentTransformByIndex(int32* InElementIndex, const struc
 
 	Func->FunctionFlags = Flgs;
 
-	if (InElementIndex != nullptr)
-		*InElementIndex = Parms.InElementIndex;
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -3468,11 +3286,11 @@ bool URigHierarchy::GetParentTransformByIndex(int32* InElementIndex, const struc
 // Function ControlRig.RigHierarchy.GetParentTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::GetParentTransform(struct FRigElementKey* InKey, const struct FTransform& ReturnValue)
+struct FTransform URigHierarchy::GetParentTransform(struct FRigElementKey* InKey, bool* bInitial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3481,7 +3299,6 @@ bool URigHierarchy::GetParentTransform(struct FRigElementKey* InKey, const struc
 
 	Params::URigHierarchy_GetParentTransform_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3494,6 +3311,9 @@ bool URigHierarchy::GetParentTransform(struct FRigElementKey* InKey, const struc
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
+
 	return Parms.ReturnValue;
 
 }
@@ -3502,11 +3322,11 @@ bool URigHierarchy::GetParentTransform(struct FRigElementKey* InKey, const struc
 // Function ControlRig.RigHierarchy.GetParents
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bRecursive                                                       (Edit, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FRigElementKey>      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bRecursive                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FRigElementKey>      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::GetParents(struct FRigElementKey* InKey, const TArray<struct FRigElementKey>& ReturnValue)
+TArray<struct FRigElementKey> URigHierarchy::GetParents(struct FRigElementKey* InKey, bool bRecursive)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3515,7 +3335,7 @@ bool URigHierarchy::GetParents(struct FRigElementKey* InKey, const TArray<struct
 
 	Params::URigHierarchy_GetParents_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.bRecursive = bRecursive;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3536,10 +3356,10 @@ bool URigHierarchy::GetParents(struct FRigElementKey* InKey, const TArray<struct
 // Function ControlRig.RigHierarchy.GetNumberOfParents
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetNumberOfParents(struct FRigElementKey* InKey, int32 ReturnValue)
+int32 URigHierarchy::GetNumberOfParents(struct FRigElementKey* InKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3548,7 +3368,6 @@ void URigHierarchy::GetNumberOfParents(struct FRigElementKey* InKey, int32 Retur
 
 	Params::URigHierarchy_GetNumberOfParents_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3561,16 +3380,18 @@ void URigHierarchy::GetNumberOfParents(struct FRigElementKey* InKey, int32 Retur
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.RigHierarchy.GetNullKeys
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               bTraverse                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FRigElementKey>      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               bTraverse                                                        (Edit, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FRigElementKey>      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetNullKeys(bool* bTraverse, const TArray<struct FRigElementKey>& ReturnValue)
+TArray<struct FRigElementKey> URigHierarchy::GetNullKeys(bool bTraverse)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3579,7 +3400,7 @@ void URigHierarchy::GetNullKeys(bool* bTraverse, const TArray<struct FRigElement
 
 	Params::URigHierarchy_GetNullKeys_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.bTraverse = bTraverse;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3589,8 +3410,7 @@ void URigHierarchy::GetNullKeys(bool* bTraverse, const TArray<struct FRigElement
 
 	Func->FunctionFlags = Flgs;
 
-	if (bTraverse != nullptr)
-		*bTraverse = Parms.bTraverse;
+	return Parms.ReturnValue;
 
 }
 
@@ -3598,12 +3418,12 @@ void URigHierarchy::GetNullKeys(bool* bTraverse, const TArray<struct FRigElement
 // Function ControlRig.RigHierarchy.GetNameMetadata
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        DefaultValue                                                     (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// class FName                        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        DefaultValue                                                     (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetNameMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, class FName* DefaultValue, class FName ReturnValue)
+class FName URigHierarchy::GetNameMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3612,7 +3432,8 @@ void URigHierarchy::GetNameMetadata(struct FRigElementKey* InItem, class FName* 
 
 	Params::URigHierarchy_GetNameMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3622,14 +3443,7 @@ void URigHierarchy::GetNameMetadata(struct FRigElementKey* InItem, class FName* 
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
-
-	if (DefaultValue != nullptr)
-		*DefaultValue = Parms.DefaultValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -3637,11 +3451,11 @@ void URigHierarchy::GetNameMetadata(struct FRigElementKey* InItem, class FName* 
 // Function ControlRig.RigHierarchy.GetNameArrayMetadata
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<class FName>                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<class FName>                ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetNameArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, const TArray<class FName>& ReturnValue)
+TArray<class FName> URigHierarchy::GetNameArrayMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3650,7 +3464,8 @@ void URigHierarchy::GetNameArrayMetadata(struct FRigElementKey* InItem, class FN
 
 	Params::URigHierarchy_GetNameArrayMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3660,11 +3475,7 @@ void URigHierarchy::GetNameArrayMetadata(struct FRigElementKey* InItem, class FN
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
+	return Parms.ReturnValue;
 
 }
 
@@ -3672,11 +3483,11 @@ void URigHierarchy::GetNameArrayMetadata(struct FRigElementKey* InItem, class FN
 // Function ControlRig.RigHierarchy.GetMetadataType
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// enum class ERigMetadataType        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class ERigMetadataType        ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetMetadataType(struct FRigElementKey* InItem, class FName* InMetadataName, enum class ERigMetadataType ReturnValue)
+enum class ERigMetadataType URigHierarchy::GetMetadataType(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3685,7 +3496,8 @@ void URigHierarchy::GetMetadataType(struct FRigElementKey* InItem, class FName* 
 
 	Params::URigHierarchy_GetMetadataType_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3695,11 +3507,7 @@ void URigHierarchy::GetMetadataType(struct FRigElementKey* InItem, class FName* 
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
+	return Parms.ReturnValue;
 
 }
 
@@ -3707,10 +3515,10 @@ void URigHierarchy::GetMetadataType(struct FRigElementKey* InItem, class FName* 
 // Function ControlRig.RigHierarchy.GetMetadataNames
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<class FName>                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<class FName>                ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetMetadataNames(struct FRigElementKey* InItem, const TArray<class FName>& ReturnValue)
+TArray<class FName> URigHierarchy::GetMetadataNames(const struct FRigElementKey& InItem)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3719,7 +3527,7 @@ void URigHierarchy::GetMetadataNames(struct FRigElementKey* InItem, const TArray
 
 	Params::URigHierarchy_GetMetadataNames_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3729,8 +3537,7 @@ void URigHierarchy::GetMetadataNames(struct FRigElementKey* InItem, const TArray
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
+	return Parms.ReturnValue;
 
 }
 
@@ -3738,11 +3545,11 @@ void URigHierarchy::GetMetadataNames(struct FRigElementKey* InItem, const TArray
 // Function ControlRig.RigHierarchy.GetLocalTransformByIndex
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              InElementIndex                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              InElementIndex                                                   (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::GetLocalTransformByIndex(int32* InElementIndex, const struct FTransform& ReturnValue)
+struct FTransform URigHierarchy::GetLocalTransformByIndex(int32 InElementIndex, bool* bInitial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3751,7 +3558,7 @@ bool URigHierarchy::GetLocalTransformByIndex(int32* InElementIndex, const struct
 
 	Params::URigHierarchy_GetLocalTransformByIndex_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InElementIndex = InElementIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3761,8 +3568,8 @@ bool URigHierarchy::GetLocalTransformByIndex(int32* InElementIndex, const struct
 
 	Func->FunctionFlags = Flgs;
 
-	if (InElementIndex != nullptr)
-		*InElementIndex = Parms.InElementIndex;
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -3772,11 +3579,11 @@ bool URigHierarchy::GetLocalTransformByIndex(int32* InElementIndex, const struct
 // Function ControlRig.RigHierarchy.GetLocalTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::GetLocalTransform(struct FRigElementKey* InKey, const struct FTransform& ReturnValue)
+struct FTransform URigHierarchy::GetLocalTransform(struct FRigElementKey* InKey, bool* bInitial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3785,7 +3592,6 @@ bool URigHierarchy::GetLocalTransform(struct FRigElementKey* InKey, const struct
 
 	Params::URigHierarchy_GetLocalTransform_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3797,6 +3603,9 @@ bool URigHierarchy::GetLocalTransform(struct FRigElementKey* InKey, const struct
 
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
+
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -3806,10 +3615,10 @@ bool URigHierarchy::GetLocalTransform(struct FRigElementKey* InKey, const struct
 // Function ControlRig.RigHierarchy.GetLocalIndex_ForBlueprint
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetLocalIndex_ForBlueprint(struct FRigElementKey* InKey, int32 ReturnValue)
+int32 URigHierarchy::GetLocalIndex_ForBlueprint(struct FRigElementKey* InKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3818,7 +3627,6 @@ void URigHierarchy::GetLocalIndex_ForBlueprint(struct FRigElementKey* InKey, int
 
 	Params::URigHierarchy_GetLocalIndex_ForBlueprint_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3831,17 +3639,19 @@ void URigHierarchy::GetLocalIndex_ForBlueprint(struct FRigElementKey* InKey, int
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.RigHierarchy.GetLocalControlShapeTransformByIndex
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              InElementIndex                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              InElementIndex                                                   (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::GetLocalControlShapeTransformByIndex(int32* InElementIndex, const struct FTransform& ReturnValue)
+struct FTransform URigHierarchy::GetLocalControlShapeTransformByIndex(int32 InElementIndex, bool* bInitial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3850,7 +3660,7 @@ bool URigHierarchy::GetLocalControlShapeTransformByIndex(int32* InElementIndex, 
 
 	Params::URigHierarchy_GetLocalControlShapeTransformByIndex_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InElementIndex = InElementIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3860,8 +3670,8 @@ bool URigHierarchy::GetLocalControlShapeTransformByIndex(int32* InElementIndex, 
 
 	Func->FunctionFlags = Flgs;
 
-	if (InElementIndex != nullptr)
-		*InElementIndex = Parms.InElementIndex;
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -3871,11 +3681,11 @@ bool URigHierarchy::GetLocalControlShapeTransformByIndex(int32* InElementIndex, 
 // Function ControlRig.RigHierarchy.GetLocalControlShapeTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::GetLocalControlShapeTransform(struct FRigElementKey* InKey, const struct FTransform& ReturnValue)
+struct FTransform URigHierarchy::GetLocalControlShapeTransform(struct FRigElementKey* InKey, bool* bInitial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3884,7 +3694,6 @@ bool URigHierarchy::GetLocalControlShapeTransform(struct FRigElementKey* InKey, 
 
 	Params::URigHierarchy_GetLocalControlShapeTransform_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3897,6 +3706,9 @@ bool URigHierarchy::GetLocalControlShapeTransform(struct FRigElementKey* InKey, 
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
+
 	return Parms.ReturnValue;
 
 }
@@ -3905,12 +3717,12 @@ bool URigHierarchy::GetLocalControlShapeTransform(struct FRigElementKey* InKey, 
 // Function ControlRig.RigHierarchy.GetLinearColorMetadata
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FLinearColor                DefaultValue                                                     (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// struct FLinearColor                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FLinearColor                DefaultValue                                                     (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FLinearColor                ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetLinearColorMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, struct FLinearColor* DefaultValue, const struct FLinearColor& ReturnValue)
+struct FLinearColor URigHierarchy::GetLinearColorMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3919,7 +3731,8 @@ void URigHierarchy::GetLinearColorMetadata(struct FRigElementKey* InItem, class 
 
 	Params::URigHierarchy_GetLinearColorMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3929,14 +3742,7 @@ void URigHierarchy::GetLinearColorMetadata(struct FRigElementKey* InItem, class 
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
-
-	if (DefaultValue != nullptr)
-		*DefaultValue = std::move(Parms.DefaultValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -3944,11 +3750,11 @@ void URigHierarchy::GetLinearColorMetadata(struct FRigElementKey* InItem, class 
 // Function ControlRig.RigHierarchy.GetLinearColorArrayMetadata
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FLinearColor>        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FLinearColor>        ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetLinearColorArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, const TArray<struct FLinearColor>& ReturnValue)
+TArray<struct FLinearColor> URigHierarchy::GetLinearColorArrayMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3957,7 +3763,8 @@ void URigHierarchy::GetLinearColorArrayMetadata(struct FRigElementKey* InItem, c
 
 	Params::URigHierarchy_GetLinearColorArrayMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3967,11 +3774,7 @@ void URigHierarchy::GetLinearColorArrayMetadata(struct FRigElementKey* InItem, c
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
+	return Parms.ReturnValue;
 
 }
 
@@ -3979,10 +3782,10 @@ void URigHierarchy::GetLinearColorArrayMetadata(struct FRigElementKey* InItem, c
 // Function ControlRig.RigHierarchy.GetKeys
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<int32>                      InElementIndices                                                 (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FRigElementKey>      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<int32>                      InElementIndices                                                 (ConstParm, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FRigElementKey>      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetKeys(TArray<int32>* InElementIndices, const TArray<struct FRigElementKey>& ReturnValue)
+TArray<struct FRigElementKey> URigHierarchy::GetKeys(const TArray<int32>& InElementIndices)
 {
 	static class UFunction* Func = nullptr;
 
@@ -3991,7 +3794,7 @@ void URigHierarchy::GetKeys(TArray<int32>* InElementIndices, const TArray<struct
 
 	Params::URigHierarchy_GetKeys_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InElementIndices = InElementIndices;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4001,8 +3804,7 @@ void URigHierarchy::GetKeys(TArray<int32>* InElementIndices, const TArray<struct
 
 	Func->FunctionFlags = Flgs;
 
-	if (InElementIndices != nullptr)
-		*InElementIndices = std::move(Parms.InElementIndices);
+	return Parms.ReturnValue;
 
 }
 
@@ -4010,10 +3812,10 @@ void URigHierarchy::GetKeys(TArray<int32>* InElementIndices, const TArray<struct
 // Function ControlRig.RigHierarchy.GetKey
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              InElementIndex                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigElementKey              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              InElementIndex                                                   (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigElementKey              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetKey(int32* InElementIndex, const struct FRigElementKey& ReturnValue)
+struct FRigElementKey URigHierarchy::GetKey(int32 InElementIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4022,7 +3824,7 @@ void URigHierarchy::GetKey(int32* InElementIndex, const struct FRigElementKey& R
 
 	Params::URigHierarchy_GetKey_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InElementIndex = InElementIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4032,8 +3834,7 @@ void URigHierarchy::GetKey(int32* InElementIndex, const struct FRigElementKey& R
 
 	Func->FunctionFlags = Flgs;
 
-	if (InElementIndex != nullptr)
-		*InElementIndex = Parms.InElementIndex;
+	return Parms.ReturnValue;
 
 }
 
@@ -4041,10 +3842,10 @@ void URigHierarchy::GetKey(int32* InElementIndex, const struct FRigElementKey& R
 // Function ControlRig.RigHierarchy.GetIntFromControlValue
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// struct FRigControlValue            InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigControlValue            InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FRigControlValue URigHierarchy::GetIntFromControlValue(int32 ReturnValue)
+int32 URigHierarchy::GetIntFromControlValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4053,7 +3854,6 @@ struct FRigControlValue URigHierarchy::GetIntFromControlValue(int32 ReturnValue)
 
 	Params::URigHierarchy_GetIntFromControlValue_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4071,12 +3871,12 @@ struct FRigControlValue URigHierarchy::GetIntFromControlValue(int32 ReturnValue)
 // Function ControlRig.RigHierarchy.GetInt32Metadata
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// int32                              DefaultValue                                                     (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              DefaultValue                                                     (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetInt32Metadata(struct FRigElementKey* InItem, class FName* InMetadataName, int32* DefaultValue, int32 ReturnValue)
+int32 URigHierarchy::GetInt32Metadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4085,7 +3885,8 @@ void URigHierarchy::GetInt32Metadata(struct FRigElementKey* InItem, class FName*
 
 	Params::URigHierarchy_GetInt32Metadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4095,14 +3896,7 @@ void URigHierarchy::GetInt32Metadata(struct FRigElementKey* InItem, class FName*
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
-
-	if (DefaultValue != nullptr)
-		*DefaultValue = Parms.DefaultValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4110,11 +3904,11 @@ void URigHierarchy::GetInt32Metadata(struct FRigElementKey* InItem, class FName*
 // Function ControlRig.RigHierarchy.GetInt32ArrayMetadata
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<int32>                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<int32>                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetInt32ArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, const TArray<int32>& ReturnValue)
+TArray<int32> URigHierarchy::GetInt32ArrayMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4123,7 +3917,8 @@ void URigHierarchy::GetInt32ArrayMetadata(struct FRigElementKey* InItem, class F
 
 	Params::URigHierarchy_GetInt32ArrayMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4133,11 +3928,7 @@ void URigHierarchy::GetInt32ArrayMetadata(struct FRigElementKey* InItem, class F
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
+	return Parms.ReturnValue;
 
 }
 
@@ -4145,10 +3936,10 @@ void URigHierarchy::GetInt32ArrayMetadata(struct FRigElementKey* InItem, class F
 // Function ControlRig.RigHierarchy.GetIndex_ForBlueprint
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetIndex_ForBlueprint(struct FRigElementKey* InKey, int32 ReturnValue)
+int32 URigHierarchy::GetIndex_ForBlueprint(struct FRigElementKey* InKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4157,7 +3948,6 @@ void URigHierarchy::GetIndex_ForBlueprint(struct FRigElementKey* InKey, int32 Re
 
 	Params::URigHierarchy_GetIndex_ForBlueprint_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4170,17 +3960,19 @@ void URigHierarchy::GetIndex_ForBlueprint(struct FRigElementKey* InKey, int32 Re
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.RigHierarchy.GetGlobalTransformByIndex
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              InElementIndex                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              InElementIndex                                                   (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::GetGlobalTransformByIndex(int32* InElementIndex, const struct FTransform& ReturnValue)
+struct FTransform URigHierarchy::GetGlobalTransformByIndex(int32 InElementIndex, bool* bInitial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4189,7 +3981,7 @@ bool URigHierarchy::GetGlobalTransformByIndex(int32* InElementIndex, const struc
 
 	Params::URigHierarchy_GetGlobalTransformByIndex_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InElementIndex = InElementIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4199,8 +3991,8 @@ bool URigHierarchy::GetGlobalTransformByIndex(int32* InElementIndex, const struc
 
 	Func->FunctionFlags = Flgs;
 
-	if (InElementIndex != nullptr)
-		*InElementIndex = Parms.InElementIndex;
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -4210,11 +4002,11 @@ bool URigHierarchy::GetGlobalTransformByIndex(int32* InElementIndex, const struc
 // Function ControlRig.RigHierarchy.GetGlobalTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::GetGlobalTransform(struct FRigElementKey* InKey, const struct FTransform& ReturnValue)
+struct FTransform URigHierarchy::GetGlobalTransform(struct FRigElementKey* InKey, bool* bInitial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4223,7 +4015,6 @@ bool URigHierarchy::GetGlobalTransform(struct FRigElementKey* InKey, const struc
 
 	Params::URigHierarchy_GetGlobalTransform_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4235,6 +4026,9 @@ bool URigHierarchy::GetGlobalTransform(struct FRigElementKey* InKey, const struc
 
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
+
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -4244,11 +4038,11 @@ bool URigHierarchy::GetGlobalTransform(struct FRigElementKey* InKey, const struc
 // Function ControlRig.RigHierarchy.GetGlobalControlShapeTransformByIndex
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              InElementIndex                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              InElementIndex                                                   (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::GetGlobalControlShapeTransformByIndex(int32* InElementIndex, const struct FTransform& ReturnValue)
+struct FTransform URigHierarchy::GetGlobalControlShapeTransformByIndex(int32 InElementIndex, bool* bInitial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4257,7 +4051,7 @@ bool URigHierarchy::GetGlobalControlShapeTransformByIndex(int32* InElementIndex,
 
 	Params::URigHierarchy_GetGlobalControlShapeTransformByIndex_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InElementIndex = InElementIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4267,8 +4061,8 @@ bool URigHierarchy::GetGlobalControlShapeTransformByIndex(int32* InElementIndex,
 
 	Func->FunctionFlags = Flgs;
 
-	if (InElementIndex != nullptr)
-		*InElementIndex = Parms.InElementIndex;
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -4278,11 +4072,11 @@ bool URigHierarchy::GetGlobalControlShapeTransformByIndex(int32* InElementIndex,
 // Function ControlRig.RigHierarchy.GetGlobalControlShapeTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::GetGlobalControlShapeTransform(struct FRigElementKey* InKey, const struct FTransform& ReturnValue)
+struct FTransform URigHierarchy::GetGlobalControlShapeTransform(struct FRigElementKey* InKey, bool* bInitial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4291,7 +4085,6 @@ bool URigHierarchy::GetGlobalControlShapeTransform(struct FRigElementKey* InKey,
 
 	Params::URigHierarchy_GetGlobalControlShapeTransform_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4303,6 +4096,9 @@ bool URigHierarchy::GetGlobalControlShapeTransform(struct FRigElementKey* InKey,
 
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
+
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -4312,11 +4108,11 @@ bool URigHierarchy::GetGlobalControlShapeTransform(struct FRigElementKey* InKey,
 // Function ControlRig.RigHierarchy.GetGlobalControlOffsetTransformByIndex
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              InElementIndex                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              InElementIndex                                                   (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::GetGlobalControlOffsetTransformByIndex(int32* InElementIndex, const struct FTransform& ReturnValue)
+struct FTransform URigHierarchy::GetGlobalControlOffsetTransformByIndex(int32 InElementIndex, bool* bInitial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4325,7 +4121,7 @@ bool URigHierarchy::GetGlobalControlOffsetTransformByIndex(int32* InElementIndex
 
 	Params::URigHierarchy_GetGlobalControlOffsetTransformByIndex_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InElementIndex = InElementIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4335,8 +4131,8 @@ bool URigHierarchy::GetGlobalControlOffsetTransformByIndex(int32* InElementIndex
 
 	Func->FunctionFlags = Flgs;
 
-	if (InElementIndex != nullptr)
-		*InElementIndex = Parms.InElementIndex;
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -4346,11 +4142,11 @@ bool URigHierarchy::GetGlobalControlOffsetTransformByIndex(int32* InElementIndex
 // Function ControlRig.RigHierarchy.GetGlobalControlOffsetTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::GetGlobalControlOffsetTransform(struct FRigElementKey* InKey, const struct FTransform& ReturnValue)
+struct FTransform URigHierarchy::GetGlobalControlOffsetTransform(struct FRigElementKey* InKey, bool* bInitial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4359,7 +4155,6 @@ bool URigHierarchy::GetGlobalControlOffsetTransform(struct FRigElementKey* InKey
 
 	Params::URigHierarchy_GetGlobalControlOffsetTransform_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4372,6 +4167,9 @@ bool URigHierarchy::GetGlobalControlOffsetTransform(struct FRigElementKey* InKey
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
+
 	return Parms.ReturnValue;
 
 }
@@ -4380,12 +4178,12 @@ bool URigHierarchy::GetGlobalControlOffsetTransform(struct FRigElementKey* InKey
 // Function ControlRig.RigHierarchy.GetFloatMetadata
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// float                              DefaultValue                                                     (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              DefaultValue                                                     (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetFloatMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, float* DefaultValue, float ReturnValue)
+float URigHierarchy::GetFloatMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4394,7 +4192,8 @@ void URigHierarchy::GetFloatMetadata(struct FRigElementKey* InItem, class FName*
 
 	Params::URigHierarchy_GetFloatMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4404,14 +4203,7 @@ void URigHierarchy::GetFloatMetadata(struct FRigElementKey* InItem, class FName*
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
-
-	if (DefaultValue != nullptr)
-		*DefaultValue = Parms.DefaultValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4419,10 +4211,10 @@ void URigHierarchy::GetFloatMetadata(struct FRigElementKey* InItem, class FName*
 // Function ControlRig.RigHierarchy.GetFloatFromControlValue
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// struct FRigControlValue            InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigControlValue            InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FRigControlValue URigHierarchy::GetFloatFromControlValue(float ReturnValue)
+float URigHierarchy::GetFloatFromControlValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4431,7 +4223,6 @@ struct FRigControlValue URigHierarchy::GetFloatFromControlValue(float ReturnValu
 
 	Params::URigHierarchy_GetFloatFromControlValue_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4449,11 +4240,11 @@ struct FRigControlValue URigHierarchy::GetFloatFromControlValue(float ReturnValu
 // Function ControlRig.RigHierarchy.GetFloatArrayMetadata
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<float>                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<float>                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetFloatArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, const TArray<float>& ReturnValue)
+TArray<float> URigHierarchy::GetFloatArrayMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4462,7 +4253,8 @@ void URigHierarchy::GetFloatArrayMetadata(struct FRigElementKey* InItem, class F
 
 	Params::URigHierarchy_GetFloatArrayMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4472,11 +4264,7 @@ void URigHierarchy::GetFloatArrayMetadata(struct FRigElementKey* InItem, class F
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
+	return Parms.ReturnValue;
 
 }
 
@@ -4484,10 +4272,10 @@ void URigHierarchy::GetFloatArrayMetadata(struct FRigElementKey* InItem, class F
 // Function ControlRig.RigHierarchy.GetFirstParent
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigElementKey              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigElementKey              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetFirstParent(struct FRigElementKey* InKey, const struct FRigElementKey& ReturnValue)
+struct FRigElementKey URigHierarchy::GetFirstParent(struct FRigElementKey* InKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4496,7 +4284,6 @@ void URigHierarchy::GetFirstParent(struct FRigElementKey* InKey, const struct FR
 
 	Params::URigHierarchy_GetFirstParent_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4509,16 +4296,18 @@ void URigHierarchy::GetFirstParent(struct FRigElementKey* InKey, const struct FR
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.RigHierarchy.GetEulerTransformFromControlValue
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// struct FRigControlValue            InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FEulerTransform             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigControlValue            InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FEulerTransform             ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FRigControlValue URigHierarchy::GetEulerTransformFromControlValue(const struct FEulerTransform& ReturnValue)
+struct FEulerTransform URigHierarchy::GetEulerTransformFromControlValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4527,7 +4316,6 @@ struct FRigControlValue URigHierarchy::GetEulerTransformFromControlValue(const s
 
 	Params::URigHierarchy_GetEulerTransformFromControlValue_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4545,10 +4333,10 @@ struct FRigControlValue URigHierarchy::GetEulerTransformFromControlValue(const s
 // Function ControlRig.RigHierarchy.GetDefaultParent
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigElementKey              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigElementKey              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetDefaultParent(struct FRigElementKey* InKey, const struct FRigElementKey& ReturnValue)
+struct FRigElementKey URigHierarchy::GetDefaultParent(struct FRigElementKey* InKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4557,7 +4345,6 @@ void URigHierarchy::GetDefaultParent(struct FRigElementKey* InKey, const struct 
 
 	Params::URigHierarchy_GetDefaultParent_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4570,16 +4357,18 @@ void URigHierarchy::GetDefaultParent(struct FRigElementKey* InKey, const struct 
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.RigHierarchy.GetCurveValueByIndex
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              InElementIndex                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              InElementIndex                                                   (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetCurveValueByIndex(int32* InElementIndex, float ReturnValue)
+float URigHierarchy::GetCurveValueByIndex(int32 InElementIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4588,7 +4377,7 @@ void URigHierarchy::GetCurveValueByIndex(int32* InElementIndex, float ReturnValu
 
 	Params::URigHierarchy_GetCurveValueByIndex_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InElementIndex = InElementIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4598,8 +4387,7 @@ void URigHierarchy::GetCurveValueByIndex(int32* InElementIndex, float ReturnValu
 
 	Func->FunctionFlags = Flgs;
 
-	if (InElementIndex != nullptr)
-		*InElementIndex = Parms.InElementIndex;
+	return Parms.ReturnValue;
 
 }
 
@@ -4607,10 +4395,10 @@ void URigHierarchy::GetCurveValueByIndex(int32* InElementIndex, float ReturnValu
 // Function ControlRig.RigHierarchy.GetCurveValue
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetCurveValue(struct FRigElementKey* InKey, float ReturnValue)
+float URigHierarchy::GetCurveValue(struct FRigElementKey* InKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4619,7 +4407,6 @@ void URigHierarchy::GetCurveValue(struct FRigElementKey* InKey, float ReturnValu
 
 	Params::URigHierarchy_GetCurveValue_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4632,15 +4419,17 @@ void URigHierarchy::GetCurveValue(struct FRigElementKey* InKey, float ReturnValu
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.RigHierarchy.GetCurveKeys
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<struct FRigElementKey>      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<struct FRigElementKey>      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetCurveKeys(const TArray<struct FRigElementKey>& ReturnValue)
+TArray<struct FRigElementKey> URigHierarchy::GetCurveKeys()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4649,7 +4438,6 @@ void URigHierarchy::GetCurveKeys(const TArray<struct FRigElementKey>& ReturnValu
 
 	Params::URigHierarchy_GetCurveKeys_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4659,17 +4447,19 @@ void URigHierarchy::GetCurveKeys(const TArray<struct FRigElementKey>& ReturnValu
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.RigHierarchy.GetControlValueByIndex
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              InElementIndex                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// enum class ERigControlValueType    InValueType                                                      (Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigControlValue            ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              InElementIndex                                                   (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class ERigControlValueType    InValueType                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigControlValue            ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetControlValueByIndex(int32* InElementIndex, enum class ERigControlValueType* InValueType, const struct FRigControlValue& ReturnValue)
+struct FRigControlValue URigHierarchy::GetControlValueByIndex(int32 InElementIndex, enum class ERigControlValueType InValueType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4678,7 +4468,8 @@ void URigHierarchy::GetControlValueByIndex(int32* InElementIndex, enum class ERi
 
 	Params::URigHierarchy_GetControlValueByIndex_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InElementIndex = InElementIndex;
+	Parms.InValueType = InValueType;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4688,11 +4479,7 @@ void URigHierarchy::GetControlValueByIndex(int32* InElementIndex, enum class ERi
 
 	Func->FunctionFlags = Flgs;
 
-	if (InElementIndex != nullptr)
-		*InElementIndex = Parms.InElementIndex;
-
-	if (InValueType != nullptr)
-		*InValueType = Parms.InValueType;
+	return Parms.ReturnValue;
 
 }
 
@@ -4700,11 +4487,11 @@ void URigHierarchy::GetControlValueByIndex(int32* InElementIndex, enum class ERi
 // Function ControlRig.RigHierarchy.GetControlValue
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// enum class ERigControlValueType    InValueType                                                      (Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigControlValue            ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class ERigControlValueType    InValueType                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigControlValue            ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetControlValue(struct FRigElementKey* InKey, enum class ERigControlValueType* InValueType, const struct FRigControlValue& ReturnValue)
+struct FRigControlValue URigHierarchy::GetControlValue(struct FRigElementKey* InKey, enum class ERigControlValueType InValueType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4713,7 +4500,7 @@ void URigHierarchy::GetControlValue(struct FRigElementKey* InKey, enum class ERi
 
 	Params::URigHierarchy_GetControlValue_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InValueType = InValueType;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4726,8 +4513,7 @@ void URigHierarchy::GetControlValue(struct FRigElementKey* InKey, enum class ERi
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
-	if (InValueType != nullptr)
-		*InValueType = Parms.InValueType;
+	return Parms.ReturnValue;
 
 }
 
@@ -4735,11 +4521,11 @@ void URigHierarchy::GetControlValue(struct FRigElementKey* InKey, enum class ERi
 // Function ControlRig.RigHierarchy.GetControlPreferredRotatorByIndex
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              InElementIndex                                                   (Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FRotator                    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              InElementIndex                                                   (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FRotator                    ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::GetControlPreferredRotatorByIndex(int32* InElementIndex, const struct FRotator& ReturnValue)
+struct FRotator URigHierarchy::GetControlPreferredRotatorByIndex(int32 InElementIndex, bool* bInitial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4748,7 +4534,7 @@ bool URigHierarchy::GetControlPreferredRotatorByIndex(int32* InElementIndex, con
 
 	Params::URigHierarchy_GetControlPreferredRotatorByIndex_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InElementIndex = InElementIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4758,8 +4544,8 @@ bool URigHierarchy::GetControlPreferredRotatorByIndex(int32* InElementIndex, con
 
 	Func->FunctionFlags = Flgs;
 
-	if (InElementIndex != nullptr)
-		*InElementIndex = Parms.InElementIndex;
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 	return Parms.ReturnValue;
 
@@ -4769,11 +4555,11 @@ bool URigHierarchy::GetControlPreferredRotatorByIndex(int32* InElementIndex, con
 // Function ControlRig.RigHierarchy.GetControlPreferredRotator
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FRotator                    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FRotator                    ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::GetControlPreferredRotator(struct FRigElementKey* InKey, const struct FRotator& ReturnValue)
+struct FRotator URigHierarchy::GetControlPreferredRotator(struct FRigElementKey* InKey, bool* bInitial)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4782,7 +4568,6 @@ bool URigHierarchy::GetControlPreferredRotator(struct FRigElementKey* InKey, con
 
 	Params::URigHierarchy_GetControlPreferredRotator_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4795,6 +4580,9 @@ bool URigHierarchy::GetControlPreferredRotator(struct FRigElementKey* InKey, con
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
+
 	return Parms.ReturnValue;
 
 }
@@ -4803,10 +4591,10 @@ bool URigHierarchy::GetControlPreferredRotator(struct FRigElementKey* InKey, con
 // Function ControlRig.RigHierarchy.GetController
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bCreateIfNeeded                                                  (ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// class URigHierarchyController*     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               bCreateIfNeeded                                                  (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class URigHierarchyController*     ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetController(bool bCreateIfNeeded, class URigHierarchyController* ReturnValue)
+class URigHierarchyController* URigHierarchy::GetController()
 {
 	static class UFunction* Func = nullptr;
 
@@ -4815,8 +4603,6 @@ void URigHierarchy::GetController(bool bCreateIfNeeded, class URigHierarchyContr
 
 	Params::URigHierarchy_GetController_Params Parms{};
 
-	Parms.bCreateIfNeeded = bCreateIfNeeded;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4826,16 +4612,18 @@ void URigHierarchy::GetController(bool bCreateIfNeeded, class URigHierarchyContr
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.RigHierarchy.GetControlKeys
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               bTraverse                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FRigElementKey>      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               bTraverse                                                        (Edit, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FRigElementKey>      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetControlKeys(bool* bTraverse, const TArray<struct FRigElementKey>& ReturnValue)
+TArray<struct FRigElementKey> URigHierarchy::GetControlKeys(bool bTraverse)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4844,7 +4632,7 @@ void URigHierarchy::GetControlKeys(bool* bTraverse, const TArray<struct FRigElem
 
 	Params::URigHierarchy_GetControlKeys_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.bTraverse = bTraverse;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4854,8 +4642,7 @@ void URigHierarchy::GetControlKeys(bool* bTraverse, const TArray<struct FRigElem
 
 	Func->FunctionFlags = Flgs;
 
-	if (bTraverse != nullptr)
-		*bTraverse = Parms.bTraverse;
+	return Parms.ReturnValue;
 
 }
 
@@ -4863,11 +4650,11 @@ void URigHierarchy::GetControlKeys(bool* bTraverse, const TArray<struct FRigElem
 // Function ControlRig.RigHierarchy.GetChildren
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bRecursive                                                       (Edit, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FRigElementKey>      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bRecursive                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FRigElementKey>      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchy::GetChildren(struct FRigElementKey* InKey, const TArray<struct FRigElementKey>& ReturnValue)
+TArray<struct FRigElementKey> URigHierarchy::GetChildren(struct FRigElementKey* InKey, bool bRecursive)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4876,7 +4663,7 @@ bool URigHierarchy::GetChildren(struct FRigElementKey* InKey, const TArray<struc
 
 	Params::URigHierarchy_GetChildren_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.bRecursive = bRecursive;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4897,12 +4684,12 @@ bool URigHierarchy::GetChildren(struct FRigElementKey* InKey, const TArray<struc
 // Function ControlRig.RigHierarchy.GetBoolMetadata
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               DefaultValue                                                     (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               DefaultValue                                                     (BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetBoolMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, bool* DefaultValue, bool ReturnValue)
+bool URigHierarchy::GetBoolMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4911,7 +4698,8 @@ void URigHierarchy::GetBoolMetadata(struct FRigElementKey* InItem, class FName* 
 
 	Params::URigHierarchy_GetBoolMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4921,14 +4709,7 @@ void URigHierarchy::GetBoolMetadata(struct FRigElementKey* InItem, class FName* 
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
-
-	if (DefaultValue != nullptr)
-		*DefaultValue = Parms.DefaultValue;
+	return Parms.ReturnValue;
 
 }
 
@@ -4936,11 +4717,11 @@ void URigHierarchy::GetBoolMetadata(struct FRigElementKey* InItem, class FName* 
 // Function ControlRig.RigHierarchy.GetBoolArrayMetadata
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InItem                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InMetadataName                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<bool>                       ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InItem                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InMetadataName                                                   (Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<bool>                       ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetBoolArrayMetadata(struct FRigElementKey* InItem, class FName* InMetadataName, const TArray<bool>& ReturnValue)
+TArray<bool> URigHierarchy::GetBoolArrayMetadata(const struct FRigElementKey& InItem, class FName InMetadataName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4949,7 +4730,8 @@ void URigHierarchy::GetBoolArrayMetadata(struct FRigElementKey* InItem, class FN
 
 	Params::URigHierarchy_GetBoolArrayMetadata_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InItem = InItem;
+	Parms.InMetadataName = InMetadataName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4959,11 +4741,7 @@ void URigHierarchy::GetBoolArrayMetadata(struct FRigElementKey* InItem, class FN
 
 	Func->FunctionFlags = Flgs;
 
-	if (InItem != nullptr)
-		*InItem = std::move(Parms.InItem);
-
-	if (InMetadataName != nullptr)
-		*InMetadataName = Parms.InMetadataName;
+	return Parms.ReturnValue;
 
 }
 
@@ -4971,10 +4749,10 @@ void URigHierarchy::GetBoolArrayMetadata(struct FRigElementKey* InItem, class FN
 // Function ControlRig.RigHierarchy.GetBoneKeys
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               bTraverse                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FRigElementKey>      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               bTraverse                                                        (Edit, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FRigElementKey>      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetBoneKeys(bool* bTraverse, const TArray<struct FRigElementKey>& ReturnValue)
+TArray<struct FRigElementKey> URigHierarchy::GetBoneKeys(bool bTraverse)
 {
 	static class UFunction* Func = nullptr;
 
@@ -4983,7 +4761,7 @@ void URigHierarchy::GetBoneKeys(bool* bTraverse, const TArray<struct FRigElement
 
 	Params::URigHierarchy_GetBoneKeys_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.bTraverse = bTraverse;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -4993,8 +4771,7 @@ void URigHierarchy::GetBoneKeys(bool* bTraverse, const TArray<struct FRigElement
 
 	Func->FunctionFlags = Flgs;
 
-	if (bTraverse != nullptr)
-		*bTraverse = Parms.bTraverse;
+	return Parms.ReturnValue;
 
 }
 
@@ -5002,10 +4779,10 @@ void URigHierarchy::GetBoneKeys(bool* bTraverse, const TArray<struct FRigElement
 // Function ControlRig.RigHierarchy.GetAllKeys_ForBlueprint
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               bTraverse                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FRigElementKey>      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               bTraverse                                                        (Edit, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FRigElementKey>      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::GetAllKeys_ForBlueprint(bool* bTraverse, const TArray<struct FRigElementKey>& ReturnValue)
+TArray<struct FRigElementKey> URigHierarchy::GetAllKeys_ForBlueprint(bool bTraverse)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5014,7 +4791,7 @@ void URigHierarchy::GetAllKeys_ForBlueprint(bool* bTraverse, const TArray<struct
 
 	Params::URigHierarchy_GetAllKeys_ForBlueprint_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.bTraverse = bTraverse;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5024,8 +4801,7 @@ void URigHierarchy::GetAllKeys_ForBlueprint(bool* bTraverse, const TArray<struct
 
 	Func->FunctionFlags = Flgs;
 
-	if (bTraverse != nullptr)
-		*bTraverse = Parms.bTraverse;
+	return Parms.ReturnValue;
 
 }
 
@@ -5033,10 +4809,10 @@ void URigHierarchy::GetAllKeys_ForBlueprint(bool* bTraverse, const TArray<struct
 // Function ControlRig.RigHierarchy.FindNull_ForBlueprintOnly
 // (Final, Native, Private, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigNullElement             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigNullElement             ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::FindNull_ForBlueprintOnly(struct FRigElementKey* InKey, const struct FRigNullElement& ReturnValue)
+struct FRigNullElement URigHierarchy::FindNull_ForBlueprintOnly(struct FRigElementKey* InKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5045,7 +4821,6 @@ void URigHierarchy::FindNull_ForBlueprintOnly(struct FRigElementKey* InKey, cons
 
 	Params::URigHierarchy_FindNull_ForBlueprintOnly_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5058,16 +4833,18 @@ void URigHierarchy::FindNull_ForBlueprintOnly(struct FRigElementKey* InKey, cons
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.RigHierarchy.FindControl_ForBlueprintOnly
 // (Final, Native, Private, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigControlElement          ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigControlElement          ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::FindControl_ForBlueprintOnly(struct FRigElementKey* InKey, const struct FRigControlElement& ReturnValue)
+struct FRigControlElement URigHierarchy::FindControl_ForBlueprintOnly(struct FRigElementKey* InKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5076,7 +4853,6 @@ void URigHierarchy::FindControl_ForBlueprintOnly(struct FRigElementKey* InKey, c
 
 	Params::URigHierarchy_FindControl_ForBlueprintOnly_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5089,16 +4865,18 @@ void URigHierarchy::FindControl_ForBlueprintOnly(struct FRigElementKey* InKey, c
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.RigHierarchy.FindBone_ForBlueprintOnly
 // (Final, Native, Private, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigBoneElement             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigBoneElement             ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::FindBone_ForBlueprintOnly(struct FRigElementKey* InKey, const struct FRigBoneElement& ReturnValue)
+struct FRigBoneElement URigHierarchy::FindBone_ForBlueprintOnly(struct FRigElementKey* InKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5107,7 +4885,6 @@ void URigHierarchy::FindBone_ForBlueprintOnly(struct FRigElementKey* InKey, cons
 
 	Params::URigHierarchy_FindBone_ForBlueprintOnly_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5120,19 +4897,21 @@ void URigHierarchy::FindBone_ForBlueprintOnly(struct FRigElementKey* InKey, cons
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.RigHierarchy.CopyPose
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class URigHierarchy*               InHierarchy                                                      (ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bCurrent                                                         (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bInitial                                                         (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bWeights                                                         (Edit, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bMatchPoseInGlobalIfNeeded                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class URigHierarchy*               InHierarchy                                                      (ConstParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bCurrent                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInitial                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bWeights                                                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bMatchPoseInGlobalIfNeeded                                       (Edit, ExportObject, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool URigHierarchy::CopyPose(class URigHierarchy** InHierarchy, bool* bCurrent, bool* bWeights, bool* bMatchPoseInGlobalIfNeeded)
+void URigHierarchy::CopyPose(class URigHierarchy* InHierarchy, bool bCurrent, bool* bInitial, bool bWeights, bool bMatchPoseInGlobalIfNeeded)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5141,6 +4920,10 @@ bool URigHierarchy::CopyPose(class URigHierarchy** InHierarchy, bool* bCurrent, 
 
 	Params::URigHierarchy_CopyPose_Params Parms{};
 
+	Parms.InHierarchy = InHierarchy;
+	Parms.bCurrent = bCurrent;
+	Parms.bWeights = bWeights;
+	Parms.bMatchPoseInGlobalIfNeeded = bMatchPoseInGlobalIfNeeded;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5150,19 +4933,8 @@ bool URigHierarchy::CopyPose(class URigHierarchy** InHierarchy, bool* bCurrent, 
 
 	Func->FunctionFlags = Flgs;
 
-	if (InHierarchy != nullptr)
-		*InHierarchy = Parms.InHierarchy;
-
-	if (bCurrent != nullptr)
-		*bCurrent = Parms.bCurrent;
-
-	if (bWeights != nullptr)
-		*bWeights = Parms.bWeights;
-
-	if (bMatchPoseInGlobalIfNeeded != nullptr)
-		*bMatchPoseInGlobalIfNeeded = Parms.bMatchPoseInGlobalIfNeeded;
-
-	return Parms.ReturnValue;
+	if (bInitial != nullptr)
+		*bInitial = Parms.bInitial;
 
 }
 
@@ -5170,9 +4942,9 @@ bool URigHierarchy::CopyPose(class URigHierarchy** InHierarchy, bool* bCurrent, 
 // Function ControlRig.RigHierarchy.CopyHierarchy
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class URigHierarchy*               InHierarchy                                                      (ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class URigHierarchy*               InHierarchy                                                      (ConstParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void URigHierarchy::CopyHierarchy(class URigHierarchy** InHierarchy)
+void URigHierarchy::CopyHierarchy(class URigHierarchy* InHierarchy)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5181,6 +4953,7 @@ void URigHierarchy::CopyHierarchy(class URigHierarchy** InHierarchy)
 
 	Params::URigHierarchy_CopyHierarchy_Params Parms{};
 
+	Parms.InHierarchy = InHierarchy;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5190,19 +4963,16 @@ void URigHierarchy::CopyHierarchy(class URigHierarchy** InHierarchy)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InHierarchy != nullptr)
-		*InHierarchy = Parms.InHierarchy;
-
 }
 
 
 // Function ControlRig.RigHierarchy.Contains_ForBlueprint
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchy::Contains_ForBlueprint(struct FRigElementKey* InKey, bool ReturnValue)
+bool URigHierarchy::Contains_ForBlueprint(struct FRigElementKey* InKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5211,7 +4981,6 @@ void URigHierarchy::Contains_ForBlueprint(struct FRigElementKey* InKey, bool Ret
 
 	Params::URigHierarchy_Contains_ForBlueprint_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5223,6 +4992,8 @@ void URigHierarchy::Contains_ForBlueprint(struct FRigElementKey* InKey, bool Ret
 
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -5286,9 +5057,9 @@ class UControlRig* UControlRig::GetDefaultObj()
 // Function ControlRig.ControlRig.SetInteractionRigClass
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      InInteractionRigClass                                            (ConstParm, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UClass*                      InInteractionRigClass                                            (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UControlRig::SetInteractionRigClass(class UClass** InInteractionRigClass)
+class UClass* UControlRig::SetInteractionRigClass()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5306,8 +5077,7 @@ void UControlRig::SetInteractionRigClass(class UClass** InInteractionRigClass)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InInteractionRigClass != nullptr)
-		*InInteractionRigClass = Parms.InInteractionRigClass;
+	return Parms.ReturnValue;
 
 }
 
@@ -5315,9 +5085,9 @@ void UControlRig::SetInteractionRigClass(class UClass** InInteractionRigClass)
 // Function ControlRig.ControlRig.SetInteractionRig
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UControlRig*                 InInteractionRig                                                 (Edit, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UControlRig*                 InInteractionRig                                                 (BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UControlRig::SetInteractionRig(class UControlRig** InInteractionRig)
+class UControlRig* UControlRig::SetInteractionRig()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5335,8 +5105,7 @@ void UControlRig::SetInteractionRig(class UControlRig** InInteractionRig)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InInteractionRig != nullptr)
-		*InInteractionRig = Parms.InInteractionRig;
+	return Parms.ReturnValue;
 
 }
 
@@ -5344,10 +5113,10 @@ void UControlRig::SetInteractionRig(class UControlRig** InInteractionRig)
 // Function ControlRig.ControlRig.SelectControl
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        InControlName                                                    (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               bSelect                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class FName                        InControlName                                                    (Edit, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bSelect                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class FName UControlRig::SelectControl(bool* bSelect)
+bool UControlRig::SelectControl()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5364,9 +5133,6 @@ class FName UControlRig::SelectControl(bool* bSelect)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (bSelect != nullptr)
-		*bSelect = Parms.bSelect;
 
 	return Parms.ReturnValue;
 
@@ -5400,11 +5166,11 @@ void UControlRig::RequestConstruction()
 // SparseDelegateFunction ControlRig.ControlRig.OnControlSelectedBP__DelegateSignature
 // (MulticastDelegate, Public, Delegate, HasOutParams)
 // Parameters:
-// class UControlRig*                 Rig                                                              (ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, DuplicateTransient)
+// class UControlRig*                 Rig                                                              (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig)
 // struct FRigControlElement          Control                                                          (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// bool                               bSelected                                                        (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bSelected                                                        (BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-bool UControlRig::OnControlSelectedBP__DelegateSignature(struct FRigControlElement* Control)
+bool UControlRig::OnControlSelectedBP__DelegateSignature(class UControlRig* Rig, struct FRigControlElement* Control)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5413,6 +5179,7 @@ bool UControlRig::OnControlSelectedBP__DelegateSignature(struct FRigControlEleme
 
 	Params::UControlRig_OnControlSelectedBP__DelegateSignature_Params Parms{};
 
+	Parms.Rig = Rig;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -5427,10 +5194,10 @@ bool UControlRig::OnControlSelectedBP__DelegateSignature(struct FRigControlEleme
 // Function ControlRig.ControlRig.IsControlSelected
 // (Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FName                        InControlName                                                    (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        InControlName                                                    (Edit, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UControlRig::IsControlSelected(bool ReturnValue)
+bool UControlRig::IsControlSelected()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5439,7 +5206,6 @@ class FName UControlRig::IsControlSelected(bool ReturnValue)
 
 	Params::UControlRig_IsControlSelected_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5457,9 +5223,9 @@ class FName UControlRig::IsControlSelected(bool ReturnValue)
 // Function ControlRig.ControlRig.GetInteractionRigClass
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UClass*                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UClass*                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRig::GetInteractionRigClass(class UClass* ReturnValue)
+class UClass* UControlRig::GetInteractionRigClass()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5468,7 +5234,6 @@ void UControlRig::GetInteractionRigClass(class UClass* ReturnValue)
 
 	Params::UControlRig_GetInteractionRigClass_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5478,15 +5243,17 @@ void UControlRig::GetInteractionRigClass(class UClass* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRig.GetInteractionRig
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UControlRig*                 ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UControlRig*                 ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRig::GetInteractionRig(class UControlRig* ReturnValue)
+class UControlRig* UControlRig::GetInteractionRig()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5495,7 +5262,6 @@ void UControlRig::GetInteractionRig(class UControlRig* ReturnValue)
 
 	Params::UControlRig_GetInteractionRig_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5505,15 +5271,17 @@ void UControlRig::GetInteractionRig(class UControlRig* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRig.GetHostingActor
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class AActor*                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class AActor*                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRig::GetHostingActor(class AActor* ReturnValue)
+class AActor* UControlRig::GetHostingActor()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5522,7 +5290,6 @@ void UControlRig::GetHostingActor(class AActor* ReturnValue)
 
 	Params::UControlRig_GetHostingActor_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5532,15 +5299,17 @@ void UControlRig::GetHostingActor(class AActor* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRig.GetHierarchy
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class URigHierarchy*               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class URigHierarchy*               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRig::GetHierarchy(class URigHierarchy* ReturnValue)
+class URigHierarchy* UControlRig::GetHierarchy()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5549,7 +5318,6 @@ void UControlRig::GetHierarchy(class URigHierarchy* ReturnValue)
 
 	Params::UControlRig_GetHierarchy_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5559,6 +5327,8 @@ void UControlRig::GetHierarchy(class URigHierarchy* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
@@ -5566,10 +5336,10 @@ void UControlRig::GetHierarchy(class URigHierarchy* ReturnValue)
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
 // class UObject*                     Outer                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor)
-// class UClass*                      OptionalClass                                                    (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// TArray<class UControlRig*>         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UClass*                      OptionalClass                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TArray<class UControlRig*>         ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UClass* UControlRig::FindControlRigs(class UObject* Outer, const TArray<class UControlRig*>& ReturnValue)
+TArray<class UControlRig*> UControlRig::FindControlRigs(class UObject* Outer)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5579,7 +5349,6 @@ class UClass* UControlRig::FindControlRigs(class UObject* Outer, const TArray<cl
 	Params::UControlRig_FindControlRigs_Params Parms{};
 
 	Parms.Outer = Outer;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5597,9 +5366,9 @@ class UClass* UControlRig::FindControlRigs(class UObject* Outer, const TArray<cl
 // Function ControlRig.ControlRig.CurrentControlSelection
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class FName>                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FName>                ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRig::CurrentControlSelection(const TArray<class FName>& ReturnValue)
+TArray<class FName> UControlRig::CurrentControlSelection()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5608,7 +5377,6 @@ void UControlRig::CurrentControlSelection(const TArray<class FName>& ReturnValue
 
 	Params::UControlRig_CurrentControlSelection_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5618,6 +5386,8 @@ void UControlRig::CurrentControlSelection(const TArray<class FName>& ReturnValue
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
@@ -5625,10 +5395,10 @@ void UControlRig::CurrentControlSelection(const TArray<class FName>& ReturnValue
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
 // class UObject*                     Outer                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor)
-// class FName                        ControlName                                                      (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// class UTransformableControlHandle* ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        ControlName                                                      (ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class UTransformableControlHandle* ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UControlRig::CreateTransformableControlHandle(class UObject* Outer, class UTransformableControlHandle* ReturnValue)
+class UTransformableControlHandle* UControlRig::CreateTransformableControlHandle(class UObject* Outer)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5638,7 +5408,6 @@ class FName UControlRig::CreateTransformableControlHandle(class UObject* Outer, 
 	Params::UControlRig_CreateTransformableControlHandle_Params Parms{};
 
 	Parms.Outer = Outer;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5656,9 +5425,9 @@ class FName UControlRig::CreateTransformableControlHandle(class UObject* Outer, 
 // Function ControlRig.ControlRig.ClearControlSelection
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRig::ClearControlSelection(bool ReturnValue)
+bool UControlRig::ClearControlSelection()
 {
 	static class UFunction* Func = nullptr;
 
@@ -5667,7 +5436,6 @@ void UControlRig::ClearControlSelection(bool ReturnValue)
 
 	Params::UControlRig_ClearControlSelection_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5676,6 +5444,8 @@ void UControlRig::ClearControlSelection(bool ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -5767,7 +5537,7 @@ class UControlRigComponent* UControlRigComponent::GetDefaultObj()
 // Function ControlRig.ControlRigComponent.Update
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              DeltaTime                                                        (BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// float                              DeltaTime                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
 float UControlRigComponent::Update()
 {
@@ -5795,7 +5565,7 @@ float UControlRigComponent::Update()
 // Function ControlRig.ControlRigComponent.SetObjectBinding
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     InObjectToBind                                                   (Edit, ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class UObject*                     InObjectToBind                                                   (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 class UObject* UControlRigComponent::SetObjectBinding()
 {
@@ -5823,7 +5593,7 @@ class UObject* UControlRigComponent::SetObjectBinding()
 // Function ControlRig.ControlRigComponent.SetMappedElements
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// TArray<struct FControlRigComponentMappedElement>NewMappedElements                                                (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// TArray<struct FControlRigComponentMappedElement>NewMappedElements                                                (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 TArray<struct FControlRigComponentMappedElement> UControlRigComponent::SetMappedElements()
 {
@@ -5851,11 +5621,11 @@ TArray<struct FControlRigComponentMappedElement> UControlRigComponent::SetMapped
 // Function ControlRig.ControlRigComponent.SetInitialSpaceTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        SpaceName                                                        (ConstParm, ExportObject, Parm, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
-// struct FTransform                  InitialTransform                                                 (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
-// enum class EControlRigComponentSpaceSpace                                                            (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        SpaceName                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FTransform                  InitialTransform                                                 (Edit, ExportObject, Net, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// enum class EControlRigComponentSpaceSpace                                                            (BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-struct FTransform UControlRigComponent::SetInitialSpaceTransform(enum class EControlRigComponentSpace Space)
+void UControlRigComponent::SetInitialSpaceTransform(class FName* SpaceName, struct FTransform* InitialTransform, enum class EControlRigComponentSpace Space)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5874,7 +5644,11 @@ struct FTransform UControlRigComponent::SetInitialSpaceTransform(enum class ECon
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (SpaceName != nullptr)
+		*SpaceName = Parms.SpaceName;
+
+	if (InitialTransform != nullptr)
+		*InitialTransform = std::move(Parms.InitialTransform);
 
 }
 
@@ -5882,12 +5656,12 @@ struct FTransform UControlRigComponent::SetInitialSpaceTransform(enum class ECon
 // Function ControlRig.ControlRigComponent.SetInitialBoneTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        BoneName                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
-// struct FTransform                  InitialTransform                                                 (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
-// enum class EControlRigComponentSpaceSpace                                                            (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bPropagateToChildren                                             (Edit, ConstParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+// class FName                        BoneName                                                         (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
+// struct FTransform                  InitialTransform                                                 (Edit, ExportObject, Net, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// enum class EControlRigComponentSpaceSpace                                                            (BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bPropagateToChildren                                             (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-bool UControlRigComponent::SetInitialBoneTransform(class FName* BoneName, enum class EControlRigComponentSpace Space)
+void UControlRigComponent::SetInitialBoneTransform(class FName* BoneName, struct FTransform* InitialTransform, enum class EControlRigComponentSpace Space, bool bPropagateToChildren)
 {
 	static class UFunction* Func = nullptr;
 
@@ -5897,6 +5671,7 @@ bool UControlRigComponent::SetInitialBoneTransform(class FName* BoneName, enum c
 	Params::UControlRigComponent_SetInitialBoneTransform_Params Parms{};
 
 	Parms.Space = Space;
+	Parms.bPropagateToChildren = bPropagateToChildren;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -5909,7 +5684,8 @@ bool UControlRigComponent::SetInitialBoneTransform(class FName* BoneName, enum c
 	if (BoneName != nullptr)
 		*BoneName = Parms.BoneName;
 
-	return Parms.ReturnValue;
+	if (InitialTransform != nullptr)
+		*InitialTransform = std::move(Parms.InitialTransform);
 
 }
 
@@ -5917,8 +5693,8 @@ bool UControlRigComponent::SetInitialBoneTransform(class FName* BoneName, enum c
 // Function ControlRig.ControlRigComponent.SetControlVector2D
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        ControlName                                                      (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector2D                   Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+// class FName                        ControlName                                                      (ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   Value                                                            (ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
 
 class FName UControlRigComponent::SetControlVector2D(struct FVector2D* Value)
 {
@@ -5949,9 +5725,9 @@ class FName UControlRigComponent::SetControlVector2D(struct FVector2D* Value)
 // Function ControlRig.ControlRigComponent.SetControlTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        ControlName                                                      (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FTransform                  Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
-// enum class EControlRigComponentSpaceSpace                                                            (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        ControlName                                                      (ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTransform                  Value                                                            (ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
+// enum class EControlRigComponentSpaceSpace                                                            (BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 class FName UControlRigComponent::SetControlTransform(struct FTransform* Value, enum class EControlRigComponentSpace Space)
 {
@@ -5983,9 +5759,9 @@ class FName UControlRigComponent::SetControlTransform(struct FTransform* Value, 
 // Function ControlRig.ControlRigComponent.SetControlScale
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        ControlName                                                      (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector                     Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
-// enum class EControlRigComponentSpaceSpace                                                            (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        ControlName                                                      (ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     Value                                                            (ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
+// enum class EControlRigComponentSpaceSpace                                                            (BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 class FName UControlRigComponent::SetControlScale(struct FVector* Value, enum class EControlRigComponentSpace Space)
 {
@@ -6017,9 +5793,9 @@ class FName UControlRigComponent::SetControlScale(struct FVector* Value, enum cl
 // Function ControlRig.ControlRigComponent.SetControlRotator
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        ControlName                                                      (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FRotator                    Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
-// enum class EControlRigComponentSpaceSpace                                                            (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        ControlName                                                      (ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FRotator                    Value                                                            (ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
+// enum class EControlRigComponentSpaceSpace                                                            (BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 class FName UControlRigComponent::SetControlRotator(struct FRotator* Value, enum class EControlRigComponentSpace Space)
 {
@@ -6051,7 +5827,7 @@ class FName UControlRigComponent::SetControlRotator(struct FRotator* Value, enum
 // Function ControlRig.ControlRigComponent.SetControlRigClass
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      InControlRigClass                                                (Edit, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class UClass*                      InControlRigClass                                                (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 class UClass* UControlRigComponent::SetControlRigClass()
 {
@@ -6079,9 +5855,9 @@ class UClass* UControlRigComponent::SetControlRigClass()
 // Function ControlRig.ControlRigComponent.SetControlPosition
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        ControlName                                                      (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector                     Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
-// enum class EControlRigComponentSpaceSpace                                                            (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        ControlName                                                      (ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector                     Value                                                            (ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
+// enum class EControlRigComponentSpaceSpace                                                            (BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 class FName UControlRigComponent::SetControlPosition(struct FVector* Value, enum class EControlRigComponentSpace Space)
 {
@@ -6113,11 +5889,11 @@ class FName UControlRigComponent::SetControlPosition(struct FVector* Value, enum
 // Function ControlRig.ControlRigComponent.SetControlOffset
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        ControlName                                                      (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FTransform                  OffsetTransform                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
-// enum class EControlRigComponentSpaceSpace                                                            (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        ControlName                                                      (ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FTransform                  OffsetTransform                                                  (ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// enum class EControlRigComponentSpaceSpace                                                            (BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-struct FTransform UControlRigComponent::SetControlOffset(enum class EControlRigComponentSpace Space)
+class FName UControlRigComponent::SetControlOffset(struct FTransform* OffsetTransform, enum class EControlRigComponentSpace Space)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6136,6 +5912,9 @@ struct FTransform UControlRigComponent::SetControlOffset(enum class EControlRigC
 
 	Func->FunctionFlags = Flgs;
 
+	if (OffsetTransform != nullptr)
+		*OffsetTransform = std::move(Parms.OffsetTransform);
+
 	return Parms.ReturnValue;
 
 }
@@ -6144,8 +5923,8 @@ struct FTransform UControlRigComponent::SetControlOffset(enum class EControlRigC
 // Function ControlRig.ControlRigComponent.SetControlInt
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        ControlName                                                      (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// int32                              Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+// class FName                        ControlName                                                      (ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              Value                                                            (ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
 
 class FName UControlRigComponent::SetControlInt(int32* Value)
 {
@@ -6176,8 +5955,8 @@ class FName UControlRigComponent::SetControlInt(int32* Value)
 // Function ControlRig.ControlRigComponent.SetControlFloat
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        ControlName                                                      (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+// class FName                        ControlName                                                      (ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              Value                                                            (ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
 
 class FName UControlRigComponent::SetControlFloat(float* Value)
 {
@@ -6208,8 +5987,8 @@ class FName UControlRigComponent::SetControlFloat(float* Value)
 // Function ControlRig.ControlRigComponent.SetControlBool
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        ControlName                                                      (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               Value                                                            (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+// class FName                        ControlName                                                      (ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               Value                                                            (ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
 
 class FName UControlRigComponent::SetControlBool(bool* Value)
 {
@@ -6240,13 +6019,13 @@ class FName UControlRigComponent::SetControlBool(bool* Value)
 // Function ControlRig.ControlRigComponent.SetBoneTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        BoneName                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
+// class FName                        BoneName                                                         (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
 // struct FTransform                  Transform                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm)
-// enum class EControlRigComponentSpaceSpace                                                            (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, EditConst, GlobalConfig, SubobjectReference)
-// float                              Weight                                                           (ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, EditConst)
-// bool                               bPropagateToChildren                                             (Edit, ConstParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+// enum class EControlRigComponentSpaceSpace                                                            (BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              Weight                                                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, EditConst)
+// bool                               bPropagateToChildren                                             (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-bool UControlRigComponent::SetBoneTransform(class FName* BoneName, struct FTransform* Transform, enum class EControlRigComponentSpace Space, float* Weight)
+float UControlRigComponent::SetBoneTransform(class FName* BoneName, struct FTransform* Transform, enum class EControlRigComponentSpace Space, bool bPropagateToChildren)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6256,6 +6035,7 @@ bool UControlRigComponent::SetBoneTransform(class FName* BoneName, struct FTrans
 	Params::UControlRigComponent_SetBoneTransform_Params Parms{};
 
 	Parms.Space = Space;
+	Parms.bPropagateToChildren = bPropagateToChildren;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6271,9 +6051,6 @@ bool UControlRigComponent::SetBoneTransform(class FName* BoneName, struct FTrans
 	if (Transform != nullptr)
 		*Transform = std::move(Parms.Transform);
 
-	if (Weight != nullptr)
-		*Weight = Parms.Weight;
-
 	return Parms.ReturnValue;
 
 }
@@ -6282,7 +6059,7 @@ bool UControlRigComponent::SetBoneTransform(class FName* BoneName, struct FTrans
 // Function ControlRig.ControlRigComponent.SetBoneInitialTransformsFromSkeletalMesh
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USkeletalMesh*               InSkeletalMesh                                                   (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class USkeletalMesh*               InSkeletalMesh                                                   (Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 class USkeletalMesh* UControlRigComponent::SetBoneInitialTransformsFromSkeletalMesh()
 {
@@ -6310,9 +6087,9 @@ class USkeletalMesh* UControlRigComponent::SetBoneInitialTransformsFromSkeletalM
 // Function ControlRig.ControlRigComponent.OnPreInitialize
 // (Native, Event, Public, BlueprintEvent)
 // Parameters:
-// class UControlRigComponent*        Component                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, EditConst, SubobjectReference)
+// class UControlRigComponent*        Component                                                        (ConstParm, ExportObject, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRigComponent::OnPreInitialize(class UControlRigComponent* Component)
+class UControlRigComponent* UControlRigComponent::OnPreInitialize()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6321,7 +6098,6 @@ void UControlRigComponent::OnPreInitialize(class UControlRigComponent* Component
 
 	Params::UControlRigComponent_OnPreInitialize_Params Parms{};
 
-	Parms.Component = Component;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6331,15 +6107,17 @@ void UControlRigComponent::OnPreInitialize(class UControlRigComponent* Component
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigComponent.OnPreForwardsSolve
 // (Native, Event, Public, BlueprintEvent)
 // Parameters:
-// class UControlRigComponent*        Component                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, EditConst, SubobjectReference)
+// class UControlRigComponent*        Component                                                        (ConstParm, ExportObject, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRigComponent::OnPreForwardsSolve(class UControlRigComponent* Component)
+class UControlRigComponent* UControlRigComponent::OnPreForwardsSolve()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6348,7 +6126,6 @@ void UControlRigComponent::OnPreForwardsSolve(class UControlRigComponent* Compon
 
 	Params::UControlRigComponent_OnPreForwardsSolve_Params Parms{};
 
-	Parms.Component = Component;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6358,15 +6135,17 @@ void UControlRigComponent::OnPreForwardsSolve(class UControlRigComponent* Compon
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigComponent.OnPreConstruction
 // (Native, Event, Public, BlueprintEvent)
 // Parameters:
-// class UControlRigComponent*        Component                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, EditConst, SubobjectReference)
+// class UControlRigComponent*        Component                                                        (ConstParm, ExportObject, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRigComponent::OnPreConstruction(class UControlRigComponent* Component)
+class UControlRigComponent* UControlRigComponent::OnPreConstruction()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6375,7 +6154,6 @@ void UControlRigComponent::OnPreConstruction(class UControlRigComponent* Compone
 
 	Params::UControlRigComponent_OnPreConstruction_Params Parms{};
 
-	Parms.Component = Component;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6385,15 +6163,17 @@ void UControlRigComponent::OnPreConstruction(class UControlRigComponent* Compone
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigComponent.OnPostInitialize
 // (Native, Event, Public, BlueprintEvent)
 // Parameters:
-// class UControlRigComponent*        Component                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, EditConst, SubobjectReference)
+// class UControlRigComponent*        Component                                                        (ConstParm, ExportObject, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRigComponent::OnPostInitialize(class UControlRigComponent* Component)
+class UControlRigComponent* UControlRigComponent::OnPostInitialize()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6402,7 +6182,6 @@ void UControlRigComponent::OnPostInitialize(class UControlRigComponent* Componen
 
 	Params::UControlRigComponent_OnPostInitialize_Params Parms{};
 
-	Parms.Component = Component;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6412,15 +6191,17 @@ void UControlRigComponent::OnPostInitialize(class UControlRigComponent* Componen
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigComponent.OnPostForwardsSolve
 // (Native, Event, Public, BlueprintEvent)
 // Parameters:
-// class UControlRigComponent*        Component                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, EditConst, SubobjectReference)
+// class UControlRigComponent*        Component                                                        (ConstParm, ExportObject, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRigComponent::OnPostForwardsSolve(class UControlRigComponent* Component)
+class UControlRigComponent* UControlRigComponent::OnPostForwardsSolve()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6429,7 +6210,6 @@ void UControlRigComponent::OnPostForwardsSolve(class UControlRigComponent* Compo
 
 	Params::UControlRigComponent_OnPostForwardsSolve_Params Parms{};
 
-	Parms.Component = Component;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6439,15 +6219,17 @@ void UControlRigComponent::OnPostForwardsSolve(class UControlRigComponent* Compo
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigComponent.OnPostConstruction
 // (Native, Event, Public, BlueprintEvent)
 // Parameters:
-// class UControlRigComponent*        Component                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, EditConst, SubobjectReference)
+// class UControlRigComponent*        Component                                                        (ConstParm, ExportObject, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRigComponent::OnPostConstruction(class UControlRigComponent* Component)
+class UControlRigComponent* UControlRigComponent::OnPostConstruction()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6456,7 +6238,6 @@ void UControlRigComponent::OnPostConstruction(class UControlRigComponent* Compon
 
 	Params::UControlRigComponent_OnPostConstruction_Params Parms{};
 
-	Parms.Component = Component;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6465,6 +6246,8 @@ void UControlRigComponent::OnPostConstruction(class UControlRigComponent* Compon
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -6496,11 +6279,11 @@ void UControlRigComponent::Initialize()
 // Function ControlRig.ControlRigComponent.GetSpaceTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class FName                        SpaceName                                                        (ConstParm, ExportObject, Parm, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
-// enum class EControlRigComponentSpaceSpace                                                            (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, EditConst, GlobalConfig, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        SpaceName                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// enum class EControlRigComponentSpaceSpace                                                            (BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UControlRigComponent::GetSpaceTransform(enum class EControlRigComponentSpace Space, const struct FTransform& ReturnValue)
+struct FTransform UControlRigComponent::GetSpaceTransform(class FName* SpaceName, enum class EControlRigComponentSpace Space)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6510,7 +6293,6 @@ class FName UControlRigComponent::GetSpaceTransform(enum class EControlRigCompon
 	Params::UControlRigComponent_GetSpaceTransform_Params Parms{};
 
 	Parms.Space = Space;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6519,6 +6301,9 @@ class FName UControlRigComponent::GetSpaceTransform(enum class EControlRigCompon
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (SpaceName != nullptr)
+		*SpaceName = Parms.SpaceName;
 
 	return Parms.ReturnValue;
 
@@ -6528,11 +6313,11 @@ class FName UControlRigComponent::GetSpaceTransform(enum class EControlRigCompon
 // Function ControlRig.ControlRigComponent.GetInitialSpaceTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class FName                        SpaceName                                                        (ConstParm, ExportObject, Parm, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
-// enum class EControlRigComponentSpaceSpace                                                            (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, EditConst, GlobalConfig, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        SpaceName                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// enum class EControlRigComponentSpaceSpace                                                            (BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UControlRigComponent::GetInitialSpaceTransform(enum class EControlRigComponentSpace Space, const struct FTransform& ReturnValue)
+struct FTransform UControlRigComponent::GetInitialSpaceTransform(class FName* SpaceName, enum class EControlRigComponentSpace Space)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6542,7 +6327,6 @@ class FName UControlRigComponent::GetInitialSpaceTransform(enum class EControlRi
 	Params::UControlRigComponent_GetInitialSpaceTransform_Params Parms{};
 
 	Parms.Space = Space;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6552,6 +6336,9 @@ class FName UControlRigComponent::GetInitialSpaceTransform(enum class EControlRi
 
 	Func->FunctionFlags = Flgs;
 
+	if (SpaceName != nullptr)
+		*SpaceName = Parms.SpaceName;
+
 	return Parms.ReturnValue;
 
 }
@@ -6560,11 +6347,11 @@ class FName UControlRigComponent::GetInitialSpaceTransform(enum class EControlRi
 // Function ControlRig.ControlRigComponent.GetInitialBoneTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class FName                        BoneName                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
-// enum class EControlRigComponentSpaceSpace                                                            (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, EditConst, GlobalConfig, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        BoneName                                                         (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
+// enum class EControlRigComponentSpaceSpace                                                            (BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRigComponent::GetInitialBoneTransform(class FName* BoneName, enum class EControlRigComponentSpace Space, const struct FTransform& ReturnValue)
+struct FTransform UControlRigComponent::GetInitialBoneTransform(class FName* BoneName, enum class EControlRigComponentSpace Space)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6574,7 +6361,6 @@ void UControlRigComponent::GetInitialBoneTransform(class FName* BoneName, enum c
 	Params::UControlRigComponent_GetInitialBoneTransform_Params Parms{};
 
 	Parms.Space = Space;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6587,16 +6373,18 @@ void UControlRigComponent::GetInitialBoneTransform(class FName* BoneName, enum c
 	if (BoneName != nullptr)
 		*BoneName = Parms.BoneName;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigComponent.GetElementNames
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class ERigElementType         ElementType                                                      (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, EditConst, GlobalConfig, SubobjectReference)
-// TArray<class FName>                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class ERigElementType         ElementType                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// TArray<class FName>                ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRigComponent::GetElementNames(enum class ERigElementType ElementType, const TArray<class FName>& ReturnValue)
+TArray<class FName> UControlRigComponent::GetElementNames(enum class ERigElementType ElementType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6606,7 +6394,6 @@ void UControlRigComponent::GetElementNames(enum class ERigElementType ElementTyp
 	Params::UControlRigComponent_GetElementNames_Params Parms{};
 
 	Parms.ElementType = ElementType;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6616,16 +6403,18 @@ void UControlRigComponent::GetElementNames(enum class ERigElementType ElementTyp
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigComponent.GetControlVector2D
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class FName                        ControlName                                                      (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        ControlName                                                      (ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UControlRigComponent::GetControlVector2D(const struct FVector2D& ReturnValue)
+struct FVector2D UControlRigComponent::GetControlVector2D()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6634,7 +6423,6 @@ class FName UControlRigComponent::GetControlVector2D(const struct FVector2D& Ret
 
 	Params::UControlRigComponent_GetControlVector2D_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6652,11 +6440,11 @@ class FName UControlRigComponent::GetControlVector2D(const struct FVector2D& Ret
 // Function ControlRig.ControlRigComponent.GetControlTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class FName                        ControlName                                                      (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// enum class EControlRigComponentSpaceSpace                                                            (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, EditConst, GlobalConfig, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        ControlName                                                      (ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EControlRigComponentSpaceSpace                                                            (BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UControlRigComponent::GetControlTransform(enum class EControlRigComponentSpace Space, const struct FTransform& ReturnValue)
+struct FTransform UControlRigComponent::GetControlTransform(enum class EControlRigComponentSpace Space)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6666,7 +6454,6 @@ class FName UControlRigComponent::GetControlTransform(enum class EControlRigComp
 	Params::UControlRigComponent_GetControlTransform_Params Parms{};
 
 	Parms.Space = Space;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6684,11 +6471,11 @@ class FName UControlRigComponent::GetControlTransform(enum class EControlRigComp
 // Function ControlRig.ControlRigComponent.GetControlScale
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class FName                        ControlName                                                      (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// enum class EControlRigComponentSpaceSpace                                                            (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, EditConst, GlobalConfig, SubobjectReference)
-// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        ControlName                                                      (ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EControlRigComponentSpaceSpace                                                            (BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UControlRigComponent::GetControlScale(enum class EControlRigComponentSpace Space, const struct FVector& ReturnValue)
+struct FVector UControlRigComponent::GetControlScale(enum class EControlRigComponentSpace Space)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6698,7 +6485,6 @@ class FName UControlRigComponent::GetControlScale(enum class EControlRigComponen
 	Params::UControlRigComponent_GetControlScale_Params Parms{};
 
 	Parms.Space = Space;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6716,11 +6502,11 @@ class FName UControlRigComponent::GetControlScale(enum class EControlRigComponen
 // Function ControlRig.ControlRigComponent.GetControlRotator
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class FName                        ControlName                                                      (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// enum class EControlRigComponentSpaceSpace                                                            (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, EditConst, GlobalConfig, SubobjectReference)
-// struct FRotator                    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        ControlName                                                      (ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EControlRigComponentSpaceSpace                                                            (BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FRotator                    ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UControlRigComponent::GetControlRotator(enum class EControlRigComponentSpace Space, const struct FRotator& ReturnValue)
+struct FRotator UControlRigComponent::GetControlRotator(enum class EControlRigComponentSpace Space)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6730,7 +6516,6 @@ class FName UControlRigComponent::GetControlRotator(enum class EControlRigCompon
 	Params::UControlRigComponent_GetControlRotator_Params Parms{};
 
 	Parms.Space = Space;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6748,9 +6533,9 @@ class FName UControlRigComponent::GetControlRotator(enum class EControlRigCompon
 // Function ControlRig.ControlRigComponent.GetControlRig
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UControlRig*                 ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UControlRig*                 ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRigComponent::GetControlRig(class UControlRig* ReturnValue)
+class UControlRig* UControlRigComponent::GetControlRig()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6759,7 +6544,6 @@ void UControlRigComponent::GetControlRig(class UControlRig* ReturnValue)
 
 	Params::UControlRigComponent_GetControlRig_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6769,17 +6553,19 @@ void UControlRigComponent::GetControlRig(class UControlRig* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigComponent.GetControlPosition
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class FName                        ControlName                                                      (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// enum class EControlRigComponentSpaceSpace                                                            (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, EditConst, GlobalConfig, SubobjectReference)
-// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        ControlName                                                      (ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EControlRigComponentSpaceSpace                                                            (BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UControlRigComponent::GetControlPosition(enum class EControlRigComponentSpace Space, const struct FVector& ReturnValue)
+struct FVector UControlRigComponent::GetControlPosition(enum class EControlRigComponentSpace Space)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6789,7 +6575,6 @@ class FName UControlRigComponent::GetControlPosition(enum class EControlRigCompo
 	Params::UControlRigComponent_GetControlPosition_Params Parms{};
 
 	Parms.Space = Space;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6807,11 +6592,11 @@ class FName UControlRigComponent::GetControlPosition(enum class EControlRigCompo
 // Function ControlRig.ControlRigComponent.GetControlOffset
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        ControlName                                                      (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// enum class EControlRigComponentSpaceSpace                                                            (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, EditConst, GlobalConfig, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        ControlName                                                      (ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EControlRigComponentSpaceSpace                                                            (BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UControlRigComponent::GetControlOffset(enum class EControlRigComponentSpace Space, const struct FTransform& ReturnValue)
+struct FTransform UControlRigComponent::GetControlOffset(enum class EControlRigComponentSpace Space)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6821,7 +6606,6 @@ class FName UControlRigComponent::GetControlOffset(enum class EControlRigCompone
 	Params::UControlRigComponent_GetControlOffset_Params Parms{};
 
 	Parms.Space = Space;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6839,10 +6623,10 @@ class FName UControlRigComponent::GetControlOffset(enum class EControlRigCompone
 // Function ControlRig.ControlRigComponent.GetControlInt
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class FName                        ControlName                                                      (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        ControlName                                                      (ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UControlRigComponent::GetControlInt(int32 ReturnValue)
+int32 UControlRigComponent::GetControlInt()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6851,7 +6635,6 @@ class FName UControlRigComponent::GetControlInt(int32 ReturnValue)
 
 	Params::UControlRigComponent_GetControlInt_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6869,10 +6652,10 @@ class FName UControlRigComponent::GetControlInt(int32 ReturnValue)
 // Function ControlRig.ControlRigComponent.GetControlFloat
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class FName                        ControlName                                                      (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        ControlName                                                      (ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UControlRigComponent::GetControlFloat(float ReturnValue)
+float UControlRigComponent::GetControlFloat()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6881,7 +6664,6 @@ class FName UControlRigComponent::GetControlFloat(float ReturnValue)
 
 	Params::UControlRigComponent_GetControlFloat_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6899,10 +6681,10 @@ class FName UControlRigComponent::GetControlFloat(float ReturnValue)
 // Function ControlRig.ControlRigComponent.GetControlBool
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class FName                        ControlName                                                      (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        ControlName                                                      (ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UControlRigComponent::GetControlBool(bool ReturnValue)
+bool UControlRigComponent::GetControlBool()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6911,7 +6693,6 @@ class FName UControlRigComponent::GetControlBool(bool ReturnValue)
 
 	Params::UControlRigComponent_GetControlBool_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6929,11 +6710,11 @@ class FName UControlRigComponent::GetControlBool(bool ReturnValue)
 // Function ControlRig.ControlRigComponent.GetBoneTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class FName                        BoneName                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
-// enum class EControlRigComponentSpaceSpace                                                            (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, EditConst, GlobalConfig, SubobjectReference)
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        BoneName                                                         (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
+// enum class EControlRigComponentSpaceSpace                                                            (BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRigComponent::GetBoneTransform(class FName* BoneName, enum class EControlRigComponentSpace Space, const struct FTransform& ReturnValue)
+struct FTransform UControlRigComponent::GetBoneTransform(class FName* BoneName, enum class EControlRigComponentSpace Space)
 {
 	static class UFunction* Func = nullptr;
 
@@ -6943,7 +6724,6 @@ void UControlRigComponent::GetBoneTransform(class FName* BoneName, enum class EC
 	Params::UControlRigComponent_GetBoneTransform_Params Parms{};
 
 	Parms.Space = Space;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6956,15 +6736,17 @@ void UControlRigComponent::GetBoneTransform(class FName* BoneName, enum class EC
 	if (BoneName != nullptr)
 		*BoneName = Parms.BoneName;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigComponent.GetAbsoluteTime
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRigComponent::GetAbsoluteTime(float ReturnValue)
+float UControlRigComponent::GetAbsoluteTime()
 {
 	static class UFunction* Func = nullptr;
 
@@ -6973,7 +6755,6 @@ void UControlRigComponent::GetAbsoluteTime(float ReturnValue)
 
 	Params::UControlRigComponent_GetAbsoluteTime_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -6983,6 +6764,8 @@ void UControlRigComponent::GetAbsoluteTime(float ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
@@ -6990,10 +6773,10 @@ void UControlRigComponent::GetAbsoluteTime(float ReturnValue)
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
 // class FName                        Name                                                             (ConstParm, Net, OutParm)
-// enum class ERigElementType         ElementType                                                      (ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class ERigElementType         ElementType                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRigComponent::DoesElementExist(class FName* Name, enum class ERigElementType ElementType, bool ReturnValue)
+bool UControlRigComponent::DoesElementExist(class FName* Name, enum class ERigElementType ElementType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7003,7 +6786,6 @@ void UControlRigComponent::DoesElementExist(class FName* Name, enum class ERigEl
 	Params::UControlRigComponent_DoesElementExist_Params Parms{};
 
 	Parms.ElementType = ElementType;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7015,6 +6797,8 @@ void UControlRigComponent::DoesElementExist(class FName* Name, enum class ERigEl
 
 	if (Name != nullptr)
 		*Name = Parms.Name;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -7046,9 +6830,9 @@ void UControlRigComponent::ClearMappedElements()
 // Function ControlRig.ControlRigComponent.CanExecute
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRigComponent::CanExecute(bool ReturnValue)
+bool UControlRigComponent::CanExecute()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7057,7 +6841,6 @@ void UControlRigComponent::CanExecute(bool ReturnValue)
 
 	Params::UControlRigComponent_CanExecute_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7067,17 +6850,19 @@ void UControlRigComponent::CanExecute(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigComponent.AddMappedSkeletalMesh
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USkeletalMeshComponent*      SkeletalMeshComponent                                            (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
-// TArray<struct FControlRigComponentMappedBone>Bones                                                            (ConstParm, OutParm, ZeroConstructor, Config, EditConst)
-// TArray<struct FControlRigComponentMappedCurve>Curves                                                           (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, Transient, EditConst)
+// class USkeletalMeshComponent*      SkeletalMeshComponent                                            (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst)
+// TArray<struct FControlRigComponentMappedBone>Bones                                                            (Edit, ConstParm, BlueprintVisible, Parm, DisableEditOnTemplate, Config, EditConst)
+// TArray<struct FControlRigComponentMappedCurve>Curves                                                           (Edit, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
 
-class USkeletalMeshComponent* UControlRigComponent::AddMappedSkeletalMesh(TArray<struct FControlRigComponentMappedBone>* Bones, const TArray<struct FControlRigComponentMappedCurve>& Curves)
+TArray<struct FControlRigComponentMappedCurve> UControlRigComponent::AddMappedSkeletalMesh(class USkeletalMeshComponent** SkeletalMeshComponent, const TArray<struct FControlRigComponentMappedBone>& Bones)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7086,7 +6871,7 @@ class USkeletalMeshComponent* UControlRigComponent::AddMappedSkeletalMesh(TArray
 
 	Params::UControlRigComponent_AddMappedSkeletalMesh_Params Parms{};
 
-	Parms.Curves = Curves;
+	Parms.Bones = Bones;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7096,8 +6881,8 @@ class USkeletalMeshComponent* UControlRigComponent::AddMappedSkeletalMesh(TArray
 
 	Func->FunctionFlags = Flgs;
 
-	if (Bones != nullptr)
-		*Bones = std::move(Parms.Bones);
+	if (SkeletalMeshComponent != nullptr)
+		*SkeletalMeshComponent = Parms.SkeletalMeshComponent;
 
 	return Parms.ReturnValue;
 
@@ -7107,7 +6892,7 @@ class USkeletalMeshComponent* UControlRigComponent::AddMappedSkeletalMesh(TArray
 // Function ControlRig.ControlRigComponent.AddMappedElements
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// TArray<struct FControlRigComponentMappedElement>NewMappedElements                                                (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// TArray<struct FControlRigComponentMappedElement>NewMappedElements                                                (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 TArray<struct FControlRigComponentMappedElement> UControlRigComponent::AddMappedElements()
 {
@@ -7162,9 +6947,9 @@ void UControlRigComponent::AddMappedComponents(const TArray<struct FControlRigCo
 // Function ControlRig.ControlRigComponent.AddMappedCompleteSkeletalMesh
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USkeletalMeshComponent*      SkeletalMeshComponent                                            (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
+// class USkeletalMeshComponent*      SkeletalMeshComponent                                            (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst)
 
-class USkeletalMeshComponent* UControlRigComponent::AddMappedCompleteSkeletalMesh()
+void UControlRigComponent::AddMappedCompleteSkeletalMesh(class USkeletalMeshComponent** SkeletalMeshComponent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -7182,7 +6967,8 @@ class USkeletalMeshComponent* UControlRigComponent::AddMappedCompleteSkeletalMes
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (SkeletalMeshComponent != nullptr)
+		*SkeletalMeshComponent = Parms.SkeletalMeshComponent;
 
 }
 
@@ -7318,9 +7104,9 @@ class AControlRigShapeActor* AControlRigShapeActor::GetDefaultObj()
 // Function ControlRig.ControlRigShapeActor.SetSelected
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInSelected                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, InstancedReference, SubobjectReference)
+// bool                               bInSelected                                                      (ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void AControlRigShapeActor::SetSelected(bool bInSelected)
+bool AControlRigShapeActor::SetSelected()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7329,7 +7115,6 @@ void AControlRigShapeActor::SetSelected(bool bInSelected)
 
 	Params::AControlRigShapeActor_SetSelected_Params Parms{};
 
-	Parms.bInSelected = bInSelected;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7339,15 +7124,17 @@ void AControlRigShapeActor::SetSelected(bool bInSelected)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigShapeActor.SetSelectable
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInSelectable                                                    (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, InstancedReference, SubobjectReference)
+// bool                               bInSelectable                                                    (OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void AControlRigShapeActor::SetSelectable(bool bInSelectable)
+bool AControlRigShapeActor::SetSelectable()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7356,7 +7143,6 @@ void AControlRigShapeActor::SetSelectable(bool bInSelectable)
 
 	Params::AControlRigShapeActor_SetSelectable_Params Parms{};
 
-	Parms.bInSelectable = bInSelectable;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7366,15 +7152,17 @@ void AControlRigShapeActor::SetSelectable(bool bInSelectable)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigShapeActor.SetHovered
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInHovered                                                       (BlueprintReadOnly, Parm, InstancedReference, SubobjectReference)
+// bool                               bInHovered                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void AControlRigShapeActor::SetHovered(bool bInHovered)
+bool AControlRigShapeActor::SetHovered()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7383,7 +7171,6 @@ void AControlRigShapeActor::SetHovered(bool bInHovered)
 
 	Params::AControlRigShapeActor_SetHovered_Params Parms{};
 
-	Parms.bInHovered = bInHovered;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7393,15 +7180,17 @@ void AControlRigShapeActor::SetHovered(bool bInHovered)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigShapeActor.SetGlobalTransform
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FTransform                  InTransform                                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, GlobalConfig, SubobjectReference)
+// struct FTransform                  InTransform                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-void AControlRigShapeActor::SetGlobalTransform(const struct FTransform& InTransform)
+struct FTransform AControlRigShapeActor::SetGlobalTransform()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7410,7 +7199,6 @@ void AControlRigShapeActor::SetGlobalTransform(const struct FTransform& InTransf
 
 	Params::AControlRigShapeActor_SetGlobalTransform_Params Parms{};
 
-	Parms.InTransform = InTransform;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7420,15 +7208,17 @@ void AControlRigShapeActor::SetGlobalTransform(const struct FTransform& InTransf
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigShapeActor.SetEnabled
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInEnabled                                                       (ConstParm, ExportObject, Parm, InstancedReference, SubobjectReference)
+// bool                               bInEnabled                                                       (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void AControlRigShapeActor::SetEnabled(bool bInEnabled)
+bool AControlRigShapeActor::SetEnabled()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7437,7 +7227,6 @@ void AControlRigShapeActor::SetEnabled(bool bInEnabled)
 
 	Params::AControlRigShapeActor_SetEnabled_Params Parms{};
 
-	Parms.bInEnabled = bInEnabled;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7447,13 +7236,15 @@ void AControlRigShapeActor::SetEnabled(bool bInEnabled)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigShapeActor.OnTransformChanged
 // (Event, Public, HasOutParams, HasDefaults, BlueprintEvent)
 // Parameters:
-// struct FTransform                  NewTransform                                                     (ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+// struct FTransform                  NewTransform                                                     (Edit, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
 void AControlRigShapeActor::OnTransformChanged(struct FTransform* NewTransform)
 {
@@ -7476,9 +7267,9 @@ void AControlRigShapeActor::OnTransformChanged(struct FTransform* NewTransform)
 // Function ControlRig.ControlRigShapeActor.OnSelectionChanged
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// bool                               bIsSelected                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, GlobalConfig, SubobjectReference)
+// bool                               bIsSelected                                                      (Edit, ConstParm, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-void AControlRigShapeActor::OnSelectionChanged(bool* bIsSelected)
+bool AControlRigShapeActor::OnSelectionChanged()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7490,8 +7281,7 @@ void AControlRigShapeActor::OnSelectionChanged(bool* bIsSelected)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (bIsSelected != nullptr)
-		*bIsSelected = Parms.bIsSelected;
+	return Parms.ReturnValue;
 
 }
 
@@ -7499,9 +7289,9 @@ void AControlRigShapeActor::OnSelectionChanged(bool* bIsSelected)
 // Function ControlRig.ControlRigShapeActor.OnManipulatingChanged
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// bool                               bIsManipulating                                                  (Edit, Parm, InstancedReference, SubobjectReference)
+// bool                               bIsManipulating                                                  (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void AControlRigShapeActor::OnManipulatingChanged(bool bIsManipulating)
+bool AControlRigShapeActor::OnManipulatingChanged()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7510,9 +7300,10 @@ void AControlRigShapeActor::OnManipulatingChanged(bool bIsManipulating)
 
 	Params::AControlRigShapeActor_OnManipulatingChanged_Params Parms{};
 
-	Parms.bIsManipulating = bIsManipulating;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -7520,9 +7311,9 @@ void AControlRigShapeActor::OnManipulatingChanged(bool bIsManipulating)
 // Function ControlRig.ControlRigShapeActor.OnHoveredChanged
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// bool                               bIsSelected                                                      (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, GlobalConfig, SubobjectReference)
+// bool                               bIsSelected                                                      (Edit, ConstParm, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 
-void AControlRigShapeActor::OnHoveredChanged(bool* bIsSelected)
+bool AControlRigShapeActor::OnHoveredChanged()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7534,8 +7325,7 @@ void AControlRigShapeActor::OnHoveredChanged(bool* bIsSelected)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (bIsSelected != nullptr)
-		*bIsSelected = Parms.bIsSelected;
+	return Parms.ReturnValue;
 
 }
 
@@ -7543,9 +7333,9 @@ void AControlRigShapeActor::OnHoveredChanged(bool* bIsSelected)
 // Function ControlRig.ControlRigShapeActor.OnEnabledChanged
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// bool                               bIsEnabled                                                       (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst)
+// bool                               bIsEnabled                                                       (BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
 
-void AControlRigShapeActor::OnEnabledChanged(bool* bIsEnabled)
+bool AControlRigShapeActor::OnEnabledChanged()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7557,8 +7347,7 @@ void AControlRigShapeActor::OnEnabledChanged(bool* bIsEnabled)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (bIsEnabled != nullptr)
-		*bIsEnabled = Parms.bIsEnabled;
+	return Parms.ReturnValue;
 
 }
 
@@ -7566,9 +7355,9 @@ void AControlRigShapeActor::OnEnabledChanged(bool* bIsEnabled)
 // Function ControlRig.ControlRigShapeActor.IsSelectedInEditor
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void AControlRigShapeActor::IsSelectedInEditor(bool ReturnValue)
+bool AControlRigShapeActor::IsSelectedInEditor()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7577,7 +7366,6 @@ void AControlRigShapeActor::IsSelectedInEditor(bool ReturnValue)
 
 	Params::AControlRigShapeActor_IsSelectedInEditor_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7587,15 +7375,17 @@ void AControlRigShapeActor::IsSelectedInEditor(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigShapeActor.IsHovered
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void AControlRigShapeActor::IsHovered(bool ReturnValue)
+bool AControlRigShapeActor::IsHovered()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7604,7 +7394,6 @@ void AControlRigShapeActor::IsHovered(bool ReturnValue)
 
 	Params::AControlRigShapeActor_IsHovered_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7614,15 +7403,17 @@ void AControlRigShapeActor::IsHovered(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigShapeActor.IsEnabled
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void AControlRigShapeActor::IsEnabled(bool ReturnValue)
+bool AControlRigShapeActor::IsEnabled()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7631,7 +7422,6 @@ void AControlRigShapeActor::IsEnabled(bool ReturnValue)
 
 	Params::AControlRigShapeActor_IsEnabled_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7641,15 +7431,17 @@ void AControlRigShapeActor::IsEnabled(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigShapeActor.GetGlobalTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FTransform                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FTransform                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void AControlRigShapeActor::GetGlobalTransform(const struct FTransform& ReturnValue)
+struct FTransform AControlRigShapeActor::GetGlobalTransform()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7658,7 +7450,6 @@ void AControlRigShapeActor::GetGlobalTransform(const struct FTransform& ReturnVa
 
 	Params::AControlRigShapeActor_GetGlobalTransform_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7667,6 +7458,8 @@ void AControlRigShapeActor::GetGlobalTransform(const struct FTransform& ReturnVa
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -7730,11 +7523,11 @@ class UControlRigTestData* UControlRigTestData::GetDefaultObj()
 // Function ControlRig.ControlRigTestData.SetupReplay
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UControlRig*                 InControlRig                                                     (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, InstancedReference, SubobjectReference)
-// bool                               bGroundTruth                                                     (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UControlRig*                 InControlRig                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bGroundTruth                                                     (ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRigTestData::SetupReplay(class UControlRig* InControlRig, bool bGroundTruth, bool ReturnValue)
+bool UControlRigTestData::SetupReplay()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7743,9 +7536,6 @@ void UControlRigTestData::SetupReplay(class UControlRig* InControlRig, bool bGro
 
 	Params::UControlRigTestData_SetupReplay_Params Parms{};
 
-	Parms.InControlRig = InControlRig;
-	Parms.bGroundTruth = bGroundTruth;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7754,6 +7544,8 @@ void UControlRigTestData::SetupReplay(class UControlRig* InControlRig, bool bGro
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -7785,11 +7577,11 @@ void UControlRigTestData::ReleaseReplay()
 // Function ControlRig.ControlRigTestData.Record
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UControlRig*                 InControlRig                                                     (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, InstancedReference, SubobjectReference)
-// double                             InRecordingDuration                                              (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UControlRig*                 InControlRig                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// double                             InRecordingDuration                                              (BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRigTestData::Record(class UControlRig* InControlRig, double InRecordingDuration, bool ReturnValue)
+bool UControlRigTestData::Record()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7798,9 +7590,6 @@ void UControlRigTestData::Record(class UControlRig* InControlRig, double InRecor
 
 	Params::UControlRigTestData_Record_Params Parms{};
 
-	Parms.InControlRig = InControlRig;
-	Parms.InRecordingDuration = InRecordingDuration;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7810,15 +7599,17 @@ void UControlRigTestData::Record(class UControlRig* InControlRig, double InRecor
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigTestData.IsReplaying
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRigTestData::IsReplaying(bool ReturnValue)
+bool UControlRigTestData::IsReplaying()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7827,7 +7618,6 @@ void UControlRigTestData::IsReplaying(bool ReturnValue)
 
 	Params::UControlRigTestData_IsReplaying_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7837,15 +7627,17 @@ void UControlRigTestData::IsReplaying(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigTestData.IsRecording
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRigTestData::IsRecording(bool ReturnValue)
+bool UControlRigTestData::IsRecording()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7854,7 +7646,6 @@ void UControlRigTestData::IsRecording(bool ReturnValue)
 
 	Params::UControlRigTestData_IsRecording_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7864,16 +7655,18 @@ void UControlRigTestData::IsRecording(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigTestData.GetTimeRange
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               bInput                                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, InstancedReference, SubobjectReference)
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               bInput                                                           (ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRigTestData::GetTimeRange(bool bInput, const struct FVector2D& ReturnValue)
+struct FVector2D UControlRigTestData::GetTimeRange()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7882,8 +7675,6 @@ void UControlRigTestData::GetTimeRange(bool bInput, const struct FVector2D& Retu
 
 	Params::UControlRigTestData_GetTimeRange_Params Parms{};
 
-	Parms.bInput = bInput;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7893,15 +7684,17 @@ void UControlRigTestData::GetTimeRange(bool bInput, const struct FVector2D& Retu
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigTestData.GetPlaybackMode
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class EControlRigTestDataPlaybackModeReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class EControlRigTestDataPlaybackModeReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRigTestData::GetPlaybackMode(enum class EControlRigTestDataPlaybackMode ReturnValue)
+enum class EControlRigTestDataPlaybackMode UControlRigTestData::GetPlaybackMode()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7910,7 +7703,6 @@ void UControlRigTestData::GetPlaybackMode(enum class EControlRigTestDataPlayback
 
 	Params::UControlRigTestData_GetPlaybackMode_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7920,17 +7712,19 @@ void UControlRigTestData::GetPlaybackMode(enum class EControlRigTestDataPlayback
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigTestData.GetFrameIndexForTime
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// double                             InSeconds                                                        (Net, EditFixedSize, Parm, InstancedReference, SubobjectReference)
-// bool                               bInput                                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// double                             InSeconds                                                        (ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bInput                                                           (ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRigTestData::GetFrameIndexForTime(double InSeconds, bool bInput, int32 ReturnValue)
+int32 UControlRigTestData::GetFrameIndexForTime()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7939,9 +7733,6 @@ void UControlRigTestData::GetFrameIndexForTime(double InSeconds, bool bInput, in
 
 	Params::UControlRigTestData_GetFrameIndexForTime_Params Parms{};
 
-	Parms.InSeconds = InSeconds;
-	Parms.bInput = bInput;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7951,17 +7742,19 @@ void UControlRigTestData::GetFrameIndexForTime(double InSeconds, bool bInput, in
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigTestData.CreateNewAsset
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InDesiredPackagePath                                             (Edit, BlueprintReadOnly, EditFixedSize, Parm, InstancedReference, SubobjectReference)
-// class FString                      InBlueprintPathName                                              (ConstParm, BlueprintVisible, EditFixedSize, Parm, InstancedReference, SubobjectReference)
-// class UControlRigTestData*         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      InDesiredPackagePath                                             (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      InBlueprintPathName                                              (BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UControlRigTestData*         ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRigTestData::CreateNewAsset(const class FString& InDesiredPackagePath, const class FString& InBlueprintPathName, class UControlRigTestData* ReturnValue)
+class UControlRigTestData* UControlRigTestData::CreateNewAsset()
 {
 	static class UFunction* Func = nullptr;
 
@@ -7970,9 +7763,6 @@ void UControlRigTestData::CreateNewAsset(const class FString& InDesiredPackagePa
 
 	Params::UControlRigTestData_CreateNewAsset_Params Parms{};
 
-	Parms.InDesiredPackagePath = InDesiredPackagePath;
-	Parms.InBlueprintPathName = InBlueprintPathName;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -7981,6 +7771,8 @@ void UControlRigTestData::CreateNewAsset(const class FString& InDesiredPackagePa
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -8128,11 +7920,11 @@ class URigHierarchyController* URigHierarchyController::GetDefaultObj()
 // Function ControlRig.RigHierarchyController.SetSelection
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FRigElementKey>      InKeys                                                           (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// bool                               bPrintPythonCommand                                              (BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<struct FRigElementKey>      InKeys                                                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// bool                               bPrintPythonCommand                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchyController::SetSelection(bool ReturnValue)
+bool URigHierarchyController::SetSelection(TArray<struct FRigElementKey>* InKeys, bool bPrintPythonCommand)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8141,7 +7933,7 @@ bool URigHierarchyController::SetSelection(bool ReturnValue)
 
 	Params::URigHierarchyController_SetSelection_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.bPrintPythonCommand = bPrintPythonCommand;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8150,6 +7942,9 @@ bool URigHierarchyController::SetSelection(bool ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (InKeys != nullptr)
+		*InKeys = std::move(Parms.InKeys);
 
 	return Parms.ReturnValue;
 
@@ -8159,14 +7954,14 @@ bool URigHierarchyController::SetSelection(bool ReturnValue)
 // Function ControlRig.RigHierarchyController.SetParent
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InChild                                                          (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigElementKey              InParent                                                         (OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// bool                               bMaintainGlobalTransform                                         (Edit, BlueprintVisible, EditFixedSize, OutParm, InstancedReference, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommand                                              (BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InChild                                                          (Edit, ConstParm, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigElementKey              InParent                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bMaintainGlobalTransform                                         (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommand                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchyController::SetParent(struct FRigElementKey* InChild, struct FRigElementKey* InParent, bool* bMaintainGlobalTransform, bool ReturnValue)
+bool URigHierarchyController::SetParent(const struct FRigElementKey& InChild, struct FRigElementKey* InParent, bool bSetupUndo, bool bPrintPythonCommand)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8175,7 +7970,9 @@ bool URigHierarchyController::SetParent(struct FRigElementKey* InChild, struct F
 
 	Params::URigHierarchyController_SetParent_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InChild = InChild;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommand = bPrintPythonCommand;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8185,14 +7982,8 @@ bool URigHierarchyController::SetParent(struct FRigElementKey* InChild, struct F
 
 	Func->FunctionFlags = Flgs;
 
-	if (InChild != nullptr)
-		*InChild = std::move(Parms.InChild);
-
 	if (InParent != nullptr)
 		*InParent = std::move(Parms.InParent);
-
-	if (bMaintainGlobalTransform != nullptr)
-		*bMaintainGlobalTransform = Parms.bMaintainGlobalTransform;
 
 	return Parms.ReturnValue;
 
@@ -8202,9 +7993,9 @@ bool URigHierarchyController::SetParent(struct FRigElementKey* InChild, struct F
 // Function ControlRig.RigHierarchyController.SetHierarchy
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class URigHierarchy*               InHierarchy                                                      (ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// class URigHierarchy*               InHierarchy                                                      (ConstParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void URigHierarchyController::SetHierarchy(class URigHierarchy** InHierarchy)
+void URigHierarchyController::SetHierarchy(class URigHierarchy* InHierarchy)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8213,6 +8004,7 @@ void URigHierarchyController::SetHierarchy(class URigHierarchy** InHierarchy)
 
 	Params::URigHierarchyController_SetHierarchy_Params Parms{};
 
+	Parms.InHierarchy = InHierarchy;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8222,23 +8014,20 @@ void URigHierarchyController::SetHierarchy(class URigHierarchy** InHierarchy)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InHierarchy != nullptr)
-		*InHierarchy = Parms.InHierarchy;
-
 }
 
 
 // Function ControlRig.RigHierarchyController.SetDisplayName
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InControl                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, InstancedReference, SubobjectReference)
-// class FName                        InDisplayName                                                    (ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// bool                               bRenameElement                                                   (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, InstancedReference, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommand                                              (BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InControl                                                        (ConstParm, BlueprintVisible, Net, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InDisplayName                                                    (BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// bool                               bRenameElement                                                   (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommand                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchyController::SetDisplayName(struct FRigElementKey* InControl, bool* bRenameElement, class FName ReturnValue)
+class FName URigHierarchyController::SetDisplayName(const struct FRigElementKey& InControl, class FName* InDisplayName, bool bRenameElement, bool bSetupUndo, bool bPrintPythonCommand)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8247,7 +8036,10 @@ bool URigHierarchyController::SetDisplayName(struct FRigElementKey* InControl, b
 
 	Params::URigHierarchyController_SetDisplayName_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InControl = InControl;
+	Parms.bRenameElement = bRenameElement;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommand = bPrintPythonCommand;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8257,11 +8049,8 @@ bool URigHierarchyController::SetDisplayName(struct FRigElementKey* InControl, b
 
 	Func->FunctionFlags = Flgs;
 
-	if (InControl != nullptr)
-		*InControl = std::move(Parms.InControl);
-
-	if (bRenameElement != nullptr)
-		*bRenameElement = Parms.bRenameElement;
+	if (InDisplayName != nullptr)
+		*InDisplayName = Parms.InDisplayName;
 
 	return Parms.ReturnValue;
 
@@ -8271,12 +8060,12 @@ bool URigHierarchyController::SetDisplayName(struct FRigElementKey* InControl, b
 // Function ControlRig.RigHierarchyController.SetControlSettings
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigControlSettings         InSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigControlSettings         InSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchyController::SetControlSettings(struct FRigElementKey* InKey, bool ReturnValue)
+bool URigHierarchyController::SetControlSettings(struct FRigElementKey* InKey, const struct FRigControlSettings& InSettings, bool bSetupUndo)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8285,7 +8074,8 @@ bool URigHierarchyController::SetControlSettings(struct FRigElementKey* InKey, b
 
 	Params::URigHierarchyController_SetControlSettings_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InSettings = InSettings;
+	Parms.bSetupUndo = bSetupUndo;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8306,12 +8096,12 @@ bool URigHierarchyController::SetControlSettings(struct FRigElementKey* InKey, b
 // Function ControlRig.RigHierarchyController.SelectElement
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bSelect                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               bClearSelection                                                  (Edit, ConstParm, ExportObject, Net, Parm, OutParm, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSelect                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bClearSelection                                                  (Edit, BlueprintVisible, BlueprintReadOnly, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchyController::SelectElement(struct FRigElementKey* InKey, bool* bSelect, bool* bClearSelection, bool ReturnValue)
+bool URigHierarchyController::SelectElement(struct FRigElementKey* InKey, bool bClearSelection)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8320,7 +8110,7 @@ void URigHierarchyController::SelectElement(struct FRigElementKey* InKey, bool* 
 
 	Params::URigHierarchyController_SelectElement_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.bClearSelection = bClearSelection;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8333,11 +8123,7 @@ void URigHierarchyController::SelectElement(struct FRigElementKey* InKey, bool* 
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
-	if (bSelect != nullptr)
-		*bSelect = Parms.bSelect;
-
-	if (bClearSelection != nullptr)
-		*bClearSelection = Parms.bClearSelection;
+	return Parms.ReturnValue;
 
 }
 
@@ -8345,13 +8131,13 @@ void URigHierarchyController::SelectElement(struct FRigElementKey* InKey, bool* 
 // Function ControlRig.RigHierarchyController.ReorderElement
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InElement                                                        (ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// int32                              InIndex                                                          (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommand                                              (BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InElement                                                        (ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              InIndex                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommand                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchyController::ReorderElement(int32* InIndex, bool ReturnValue)
+bool URigHierarchyController::ReorderElement(const struct FRigElementKey& InElement, int32 InIndex, bool bSetupUndo, bool bPrintPythonCommand)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8360,7 +8146,10 @@ bool URigHierarchyController::ReorderElement(int32* InIndex, bool ReturnValue)
 
 	Params::URigHierarchyController_ReorderElement_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InElement = InElement;
+	Parms.InIndex = InIndex;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommand = bPrintPythonCommand;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8369,9 +8158,6 @@ bool URigHierarchyController::ReorderElement(int32* InIndex, bool ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InIndex != nullptr)
-		*InIndex = Parms.InIndex;
 
 	return Parms.ReturnValue;
 
@@ -8381,14 +8167,14 @@ bool URigHierarchyController::ReorderElement(int32* InIndex, bool ReturnValue)
 // Function ControlRig.RigHierarchyController.RenameElement
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InElement                                                        (ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// class FName                        InName                                                           (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommand                                              (BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bClearSelection                                                  (Edit, ConstParm, ExportObject, Net, Parm, OutParm, InstancedReference, SubobjectReference)
-// struct FRigElementKey              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InElement                                                        (ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InName                                                           (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommand                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bClearSelection                                                  (Edit, BlueprintVisible, BlueprintReadOnly, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigElementKey              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchyController::RenameElement(bool* bClearSelection, const struct FRigElementKey& ReturnValue)
+struct FRigElementKey URigHierarchyController::RenameElement(const struct FRigElementKey& InElement, class FName* InName, bool bSetupUndo, bool bPrintPythonCommand, bool bClearSelection)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8397,7 +8183,10 @@ bool URigHierarchyController::RenameElement(bool* bClearSelection, const struct 
 
 	Params::URigHierarchyController_RenameElement_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InElement = InElement;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommand = bPrintPythonCommand;
+	Parms.bClearSelection = bClearSelection;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8407,8 +8196,8 @@ bool URigHierarchyController::RenameElement(bool* bClearSelection, const struct 
 
 	Func->FunctionFlags = Flgs;
 
-	if (bClearSelection != nullptr)
-		*bClearSelection = Parms.bClearSelection;
+	if (InName != nullptr)
+		*InName = Parms.InName;
 
 	return Parms.ReturnValue;
 
@@ -8418,14 +8207,14 @@ bool URigHierarchyController::RenameElement(bool* bClearSelection, const struct 
 // Function ControlRig.RigHierarchyController.RemoveParent
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InChild                                                          (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigElementKey              InParent                                                         (OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// bool                               bMaintainGlobalTransform                                         (Edit, BlueprintVisible, EditFixedSize, OutParm, InstancedReference, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommand                                              (BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InChild                                                          (Edit, ConstParm, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigElementKey              InParent                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               bMaintainGlobalTransform                                         (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommand                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchyController::RemoveParent(struct FRigElementKey* InChild, struct FRigElementKey* InParent, bool* bMaintainGlobalTransform, bool ReturnValue)
+bool URigHierarchyController::RemoveParent(const struct FRigElementKey& InChild, struct FRigElementKey* InParent, bool bSetupUndo, bool bPrintPythonCommand)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8434,7 +8223,9 @@ bool URigHierarchyController::RemoveParent(struct FRigElementKey* InChild, struc
 
 	Params::URigHierarchyController_RemoveParent_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InChild = InChild;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommand = bPrintPythonCommand;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8444,14 +8235,8 @@ bool URigHierarchyController::RemoveParent(struct FRigElementKey* InChild, struc
 
 	Func->FunctionFlags = Flgs;
 
-	if (InChild != nullptr)
-		*InChild = std::move(Parms.InChild);
-
 	if (InParent != nullptr)
 		*InParent = std::move(Parms.InParent);
-
-	if (bMaintainGlobalTransform != nullptr)
-		*bMaintainGlobalTransform = Parms.bMaintainGlobalTransform;
 
 	return Parms.ReturnValue;
 
@@ -8461,12 +8246,12 @@ bool URigHierarchyController::RemoveParent(struct FRigElementKey* InChild, struc
 // Function ControlRig.RigHierarchyController.RemoveElement
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InElement                                                        (ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommand                                              (BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InElement                                                        (ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommand                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchyController::RemoveElement(bool ReturnValue)
+bool URigHierarchyController::RemoveElement(const struct FRigElementKey& InElement, bool bSetupUndo, bool bPrintPythonCommand)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8475,7 +8260,9 @@ bool URigHierarchyController::RemoveElement(bool ReturnValue)
 
 	Params::URigHierarchyController_RemoveElement_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InElement = InElement;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommand = bPrintPythonCommand;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8493,13 +8280,13 @@ bool URigHierarchyController::RemoveElement(bool ReturnValue)
 // Function ControlRig.RigHierarchyController.RemoveAllParents
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InChild                                                          (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bMaintainGlobalTransform                                         (Edit, BlueprintVisible, EditFixedSize, OutParm, InstancedReference, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommand                                              (BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InChild                                                          (Edit, ConstParm, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bMaintainGlobalTransform                                         (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommand                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchyController::RemoveAllParents(struct FRigElementKey* InChild, bool* bMaintainGlobalTransform, bool ReturnValue)
+bool URigHierarchyController::RemoveAllParents(const struct FRigElementKey& InChild, bool bSetupUndo, bool bPrintPythonCommand)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8508,7 +8295,9 @@ bool URigHierarchyController::RemoveAllParents(struct FRigElementKey* InChild, b
 
 	Params::URigHierarchyController_RemoveAllParents_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InChild = InChild;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommand = bPrintPythonCommand;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8517,12 +8306,6 @@ bool URigHierarchyController::RemoveAllParents(struct FRigElementKey* InChild, b
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InChild != nullptr)
-		*InChild = std::move(Parms.InChild);
-
-	if (bMaintainGlobalTransform != nullptr)
-		*bMaintainGlobalTransform = Parms.bMaintainGlobalTransform;
 
 	return Parms.ReturnValue;
 
@@ -8532,14 +8315,14 @@ bool URigHierarchyController::RemoveAllParents(struct FRigElementKey* InChild, b
 // Function ControlRig.RigHierarchyController.MirrorElements
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// TArray<struct FRigElementKey>      InKeys                                                           (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// struct FRigVMMirrorSettings        InSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bSelectNewElements                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, InstancedReference, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommands                                             (ConstParm, BlueprintVisible, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FRigElementKey>      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<struct FRigElementKey>      InKeys                                                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// struct FRigVMMirrorSettings        InSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSelectNewElements                                               (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommands                                             (ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FRigElementKey>      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchyController::MirrorElements(bool* bSelectNewElements, const TArray<struct FRigElementKey>& ReturnValue)
+TArray<struct FRigElementKey> URigHierarchyController::MirrorElements(TArray<struct FRigElementKey>* InKeys, const struct FRigVMMirrorSettings& InSettings, bool bSetupUndo, bool bPrintPythonCommands)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8548,7 +8331,9 @@ bool URigHierarchyController::MirrorElements(bool* bSelectNewElements, const TAr
 
 	Params::URigHierarchyController_MirrorElements_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InSettings = InSettings;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommands = bPrintPythonCommands;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8558,8 +8343,8 @@ bool URigHierarchyController::MirrorElements(bool* bSelectNewElements, const TAr
 
 	Func->FunctionFlags = Flgs;
 
-	if (bSelectNewElements != nullptr)
-		*bSelectNewElements = Parms.bSelectNewElements;
+	if (InKeys != nullptr)
+		*InKeys = std::move(Parms.InKeys);
 
 	return Parms.ReturnValue;
 
@@ -8569,14 +8354,14 @@ bool URigHierarchyController::MirrorElements(bool* bSelectNewElements, const TAr
 // Function ControlRig.RigHierarchyController.ImportFromText
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      InContent                                                        (Edit, BlueprintVisible, Net, Parm, OutParm, InstancedReference, SubobjectReference)
-// bool                               bReplaceExistingElements                                         (ExportObject, BlueprintReadOnly, Parm, OutParm, InstancedReference, SubobjectReference)
-// bool                               bSelectNewElements                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, InstancedReference, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommands                                             (ConstParm, BlueprintVisible, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FRigElementKey>      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      InContent                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bReplaceExistingElements                                         (ConstParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSelectNewElements                                               (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommands                                             (ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FRigElementKey>      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchyController::ImportFromText(class FString* InContent, bool* bReplaceExistingElements, bool* bSelectNewElements, const TArray<struct FRigElementKey>& ReturnValue)
+TArray<struct FRigElementKey> URigHierarchyController::ImportFromText(const class FString& InContent, bool bReplaceExistingElements, bool bSetupUndo, bool bPrintPythonCommands)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8585,7 +8370,10 @@ bool URigHierarchyController::ImportFromText(class FString* InContent, bool* bRe
 
 	Params::URigHierarchyController_ImportFromText_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InContent = InContent;
+	Parms.bReplaceExistingElements = bReplaceExistingElements;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommands = bPrintPythonCommands;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8594,15 +8382,6 @@ bool URigHierarchyController::ImportFromText(class FString* InContent, bool* bRe
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InContent != nullptr)
-		*InContent = std::move(Parms.InContent);
-
-	if (bReplaceExistingElements != nullptr)
-		*bReplaceExistingElements = Parms.bReplaceExistingElements;
-
-	if (bSelectNewElements != nullptr)
-		*bSelectNewElements = Parms.bSelectNewElements;
 
 	return Parms.ReturnValue;
 
@@ -8612,14 +8391,14 @@ bool URigHierarchyController::ImportFromText(class FString* InContent, bool* bRe
 // Function ControlRig.RigHierarchyController.ImportCurves
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USkeleton*                   InSkeleton                                                       (ConstParm, ExportObject, Parm, OutParm, InstancedReference, SubobjectReference)
-// class FName                        InNameSpace                                                      (Edit, ConstParm, Parm, OutParm, InstancedReference, SubobjectReference)
-// bool                               bSelectCurves                                                    (BlueprintReadOnly, Parm, OutParm, InstancedReference, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommand                                              (BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FRigElementKey>      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class USkeleton*                   InSkeleton                                                       (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InNameSpace                                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSelectCurves                                                    (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommand                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FRigElementKey>      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchyController::ImportCurves(class USkeleton** InSkeleton, class FName* InNameSpace, bool* bSelectCurves, const TArray<struct FRigElementKey>& ReturnValue)
+TArray<struct FRigElementKey> URigHierarchyController::ImportCurves(bool bSetupUndo, bool bPrintPythonCommand)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8628,7 +8407,8 @@ bool URigHierarchyController::ImportCurves(class USkeleton** InSkeleton, class F
 
 	Params::URigHierarchyController_ImportCurves_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommand = bPrintPythonCommand;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8637,15 +8417,6 @@ bool URigHierarchyController::ImportCurves(class USkeleton** InSkeleton, class F
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InSkeleton != nullptr)
-		*InSkeleton = Parms.InSkeleton;
-
-	if (InNameSpace != nullptr)
-		*InNameSpace = Parms.InNameSpace;
-
-	if (bSelectCurves != nullptr)
-		*bSelectCurves = Parms.bSelectCurves;
 
 	return Parms.ReturnValue;
 
@@ -8655,16 +8426,16 @@ bool URigHierarchyController::ImportCurves(class USkeleton** InSkeleton, class F
 // Function ControlRig.RigHierarchyController.ImportBones
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USkeleton*                   InSkeleton                                                       (ConstParm, ExportObject, Parm, OutParm, InstancedReference, SubobjectReference)
-// class FName                        InNameSpace                                                      (Edit, ConstParm, Parm, OutParm, InstancedReference, SubobjectReference)
-// bool                               bReplaceExistingBones                                            (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, InstancedReference, SubobjectReference)
-// bool                               bRemoveObsoleteBones                                             (BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, InstancedReference, SubobjectReference)
-// bool                               bSelectBones                                                     (Edit, BlueprintVisible, Net, EditFixedSize, OutParm, InstancedReference, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommand                                              (BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FRigElementKey>      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class USkeleton*                   InSkeleton                                                       (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        InNameSpace                                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bReplaceExistingBones                                            (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bRemoveObsoleteBones                                             (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSelectBones                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommand                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FRigElementKey>      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchyController::ImportBones(class USkeleton** InSkeleton, class FName* InNameSpace, bool* bReplaceExistingBones, bool* bRemoveObsoleteBones, bool* bSelectBones, const TArray<struct FRigElementKey>& ReturnValue)
+TArray<struct FRigElementKey> URigHierarchyController::ImportBones(bool bSetupUndo, bool bPrintPythonCommand)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8673,7 +8444,8 @@ bool URigHierarchyController::ImportBones(class USkeleton** InSkeleton, class FN
 
 	Params::URigHierarchyController_ImportBones_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommand = bPrintPythonCommand;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8682,21 +8454,6 @@ bool URigHierarchyController::ImportBones(class USkeleton** InSkeleton, class FN
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InSkeleton != nullptr)
-		*InSkeleton = Parms.InSkeleton;
-
-	if (InNameSpace != nullptr)
-		*InNameSpace = Parms.InNameSpace;
-
-	if (bReplaceExistingBones != nullptr)
-		*bReplaceExistingBones = Parms.bReplaceExistingBones;
-
-	if (bRemoveObsoleteBones != nullptr)
-		*bRemoveObsoleteBones = Parms.bRemoveObsoleteBones;
-
-	if (bSelectBones != nullptr)
-		*bSelectBones = Parms.bSelectBones;
 
 	return Parms.ReturnValue;
 
@@ -8706,9 +8463,9 @@ bool URigHierarchyController::ImportBones(class USkeleton** InSkeleton, class FN
 // Function ControlRig.RigHierarchyController.GetHierarchy
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class URigHierarchy*               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class URigHierarchy*               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchyController::GetHierarchy(class URigHierarchy* ReturnValue)
+class URigHierarchy* URigHierarchyController::GetHierarchy()
 {
 	static class UFunction* Func = nullptr;
 
@@ -8717,7 +8474,6 @@ void URigHierarchyController::GetHierarchy(class URigHierarchy* ReturnValue)
 
 	Params::URigHierarchyController_GetHierarchy_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8727,16 +8483,18 @@ void URigHierarchyController::GetHierarchy(class URigHierarchy* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.RigHierarchyController.GetControlSettings
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigControlSettings         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigControlSettings         ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchyController::GetControlSettings(struct FRigElementKey* InKey, const struct FRigControlSettings& ReturnValue)
+struct FRigControlSettings URigHierarchyController::GetControlSettings(struct FRigElementKey* InKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8745,7 +8503,6 @@ void URigHierarchyController::GetControlSettings(struct FRigElementKey* InKey, c
 
 	Params::URigHierarchyController_GetControlSettings_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8758,16 +8515,18 @@ void URigHierarchyController::GetControlSettings(struct FRigElementKey* InKey, c
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.RigHierarchyController.ExportToText
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<struct FRigElementKey>      InKeys                                                           (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<struct FRigElementKey>      InKeys                                                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-TArray<struct FRigElementKey> URigHierarchyController::ExportToText(const class FString& ReturnValue)
+class FString URigHierarchyController::ExportToText(TArray<struct FRigElementKey>* InKeys)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8776,7 +8535,6 @@ TArray<struct FRigElementKey> URigHierarchyController::ExportToText(const class 
 
 	Params::URigHierarchyController_ExportToText_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8785,6 +8543,9 @@ TArray<struct FRigElementKey> URigHierarchyController::ExportToText(const class 
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (InKeys != nullptr)
+		*InKeys = std::move(Parms.InKeys);
 
 	return Parms.ReturnValue;
 
@@ -8794,9 +8555,9 @@ TArray<struct FRigElementKey> URigHierarchyController::ExportToText(const class 
 // Function ControlRig.RigHierarchyController.ExportSelectionToText
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchyController::ExportSelectionToText(const class FString& ReturnValue)
+class FString URigHierarchyController::ExportSelectionToText()
 {
 	static class UFunction* Func = nullptr;
 
@@ -8805,7 +8566,6 @@ void URigHierarchyController::ExportSelectionToText(const class FString& ReturnV
 
 	Params::URigHierarchyController_ExportSelectionToText_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8815,19 +8575,21 @@ void URigHierarchyController::ExportSelectionToText(const class FString& ReturnV
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.RigHierarchyController.DuplicateElements
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// TArray<struct FRigElementKey>      InKeys                                                           (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
-// bool                               bSelectNewElements                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, InstancedReference, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommands                                             (ConstParm, BlueprintVisible, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// TArray<struct FRigElementKey>      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<struct FRigElementKey>      InKeys                                                           (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// bool                               bSelectNewElements                                               (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommands                                             (ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FRigElementKey>      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchyController::DuplicateElements(bool* bSelectNewElements, const TArray<struct FRigElementKey>& ReturnValue)
+TArray<struct FRigElementKey> URigHierarchyController::DuplicateElements(TArray<struct FRigElementKey>* InKeys, bool bSetupUndo, bool bPrintPythonCommands)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8836,7 +8598,8 @@ bool URigHierarchyController::DuplicateElements(bool* bSelectNewElements, const 
 
 	Params::URigHierarchyController_DuplicateElements_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommands = bPrintPythonCommands;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8846,8 +8609,8 @@ bool URigHierarchyController::DuplicateElements(bool* bSelectNewElements, const 
 
 	Func->FunctionFlags = Flgs;
 
-	if (bSelectNewElements != nullptr)
-		*bSelectNewElements = Parms.bSelectNewElements;
+	if (InKeys != nullptr)
+		*InKeys = std::move(Parms.InKeys);
 
 	return Parms.ReturnValue;
 
@@ -8857,10 +8620,10 @@ bool URigHierarchyController::DuplicateElements(bool* bSelectNewElements, const 
 // Function ControlRig.RigHierarchyController.DeselectElement
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InKey                                                            (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InKey                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchyController::DeselectElement(struct FRigElementKey* InKey, bool ReturnValue)
+bool URigHierarchyController::DeselectElement(struct FRigElementKey* InKey)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8869,7 +8632,6 @@ void URigHierarchyController::DeselectElement(struct FRigElementKey* InKey, bool
 
 	Params::URigHierarchyController_DeselectElement_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8882,15 +8644,17 @@ void URigHierarchyController::DeselectElement(struct FRigElementKey* InKey, bool
 	if (InKey != nullptr)
 		*InKey = std::move(Parms.InKey);
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.RigHierarchyController.ClearSelection
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void URigHierarchyController::ClearSelection(bool ReturnValue)
+bool URigHierarchyController::ClearSelection()
 {
 	static class UFunction* Func = nullptr;
 
@@ -8899,7 +8663,6 @@ void URigHierarchyController::ClearSelection(bool ReturnValue)
 
 	Params::URigHierarchyController_ClearSelection_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8909,21 +8672,23 @@ void URigHierarchyController::ClearSelection(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.RigHierarchyController.AddRigidBody
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InName                                                           (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// struct FRigElementKey              InParent                                                         (OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// struct FRigRigidBodySettings       InSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FTransform                  InLocalTransform                                                 (ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, InstancedReference, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommand                                              (BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigElementKey              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        InName                                                           (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// struct FRigElementKey              InParent                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FRigRigidBodySettings       InSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FTransform                  InLocalTransform                                                 (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommand                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigElementKey              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchyController::AddRigidBody(struct FRigElementKey* InParent, struct FTransform* InLocalTransform, const struct FRigElementKey& ReturnValue)
+struct FRigElementKey URigHierarchyController::AddRigidBody(class FName* InName, struct FRigElementKey* InParent, const struct FRigRigidBodySettings& InSettings, bool bSetupUndo, bool bPrintPythonCommand)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8932,7 +8697,9 @@ bool URigHierarchyController::AddRigidBody(struct FRigElementKey* InParent, stru
 
 	Params::URigHierarchyController_AddRigidBody_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InSettings = InSettings;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommand = bPrintPythonCommand;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8942,11 +8709,11 @@ bool URigHierarchyController::AddRigidBody(struct FRigElementKey* InParent, stru
 
 	Func->FunctionFlags = Flgs;
 
+	if (InName != nullptr)
+		*InName = Parms.InName;
+
 	if (InParent != nullptr)
 		*InParent = std::move(Parms.InParent);
-
-	if (InLocalTransform != nullptr)
-		*InLocalTransform = std::move(Parms.InLocalTransform);
 
 	return Parms.ReturnValue;
 
@@ -8956,14 +8723,14 @@ bool URigHierarchyController::AddRigidBody(struct FRigElementKey* InParent, stru
 // Function ControlRig.RigHierarchyController.AddParent
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FRigElementKey              InChild                                                          (Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigElementKey              InParent                                                         (OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// float                              InWeight                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bMaintainGlobalTransform                                         (Edit, BlueprintVisible, EditFixedSize, OutParm, InstancedReference, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRigElementKey              InChild                                                          (Edit, ConstParm, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigElementKey              InParent                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// float                              InWeight                                                         (Edit, ExportObject, Net, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bMaintainGlobalTransform                                         (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchyController::AddParent(struct FRigElementKey* InChild, struct FRigElementKey* InParent, bool* bMaintainGlobalTransform, bool ReturnValue)
+bool URigHierarchyController::AddParent(const struct FRigElementKey& InChild, struct FRigElementKey* InParent, float InWeight, bool bSetupUndo)
 {
 	static class UFunction* Func = nullptr;
 
@@ -8972,7 +8739,9 @@ bool URigHierarchyController::AddParent(struct FRigElementKey* InChild, struct F
 
 	Params::URigHierarchyController_AddParent_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InChild = InChild;
+	Parms.InWeight = InWeight;
+	Parms.bSetupUndo = bSetupUndo;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -8982,14 +8751,8 @@ bool URigHierarchyController::AddParent(struct FRigElementKey* InChild, struct F
 
 	Func->FunctionFlags = Flgs;
 
-	if (InChild != nullptr)
-		*InChild = std::move(Parms.InChild);
-
 	if (InParent != nullptr)
 		*InParent = std::move(Parms.InParent);
-
-	if (bMaintainGlobalTransform != nullptr)
-		*bMaintainGlobalTransform = Parms.bMaintainGlobalTransform;
 
 	return Parms.ReturnValue;
 
@@ -8999,15 +8762,15 @@ bool URigHierarchyController::AddParent(struct FRigElementKey* InChild, struct F
 // Function ControlRig.RigHierarchyController.AddNull
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InName                                                           (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// struct FRigElementKey              InParent                                                         (OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// struct FTransform                  InTransform                                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, GlobalConfig, SubobjectReference)
-// bool                               bTransformInGlobal                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, InstancedReference, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommand                                              (BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigElementKey              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        InName                                                           (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// struct FRigElementKey              InParent                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FTransform                  InTransform                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// bool                               bTransformInGlobal                                               (Edit, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommand                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigElementKey              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchyController::AddNull(struct FRigElementKey* InParent, const struct FTransform& InTransform, bool* bTransformInGlobal, const struct FRigElementKey& ReturnValue)
+struct FRigElementKey URigHierarchyController::AddNull(class FName* InName, struct FRigElementKey* InParent, bool bSetupUndo, bool bPrintPythonCommand)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9016,8 +8779,8 @@ bool URigHierarchyController::AddNull(struct FRigElementKey* InParent, const str
 
 	Params::URigHierarchyController_AddNull_Params Parms{};
 
-	Parms.InTransform = InTransform;
-	Parms.ReturnValue = ReturnValue;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommand = bPrintPythonCommand;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9027,11 +8790,11 @@ bool URigHierarchyController::AddNull(struct FRigElementKey* InParent, const str
 
 	Func->FunctionFlags = Flgs;
 
+	if (InName != nullptr)
+		*InName = Parms.InName;
+
 	if (InParent != nullptr)
 		*InParent = std::move(Parms.InParent);
-
-	if (bTransformInGlobal != nullptr)
-		*bTransformInGlobal = Parms.bTransformInGlobal;
 
 	return Parms.ReturnValue;
 
@@ -9041,13 +8804,13 @@ bool URigHierarchyController::AddNull(struct FRigElementKey* InParent, const str
 // Function ControlRig.RigHierarchyController.AddCurve
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InName                                                           (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// float                              InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommand                                              (BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigElementKey              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        InName                                                           (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// float                              InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommand                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigElementKey              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchyController::AddCurve(const struct FRigElementKey& ReturnValue)
+struct FRigElementKey URigHierarchyController::AddCurve(class FName* InName, bool bSetupUndo, bool bPrintPythonCommand)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9056,7 +8819,8 @@ bool URigHierarchyController::AddCurve(const struct FRigElementKey& ReturnValue)
 
 	Params::URigHierarchyController_AddCurve_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommand = bPrintPythonCommand;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9065,6 +8829,9 @@ bool URigHierarchyController::AddCurve(const struct FRigElementKey& ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (InName != nullptr)
+		*InName = Parms.InName;
 
 	return Parms.ReturnValue;
 
@@ -9074,15 +8841,15 @@ bool URigHierarchyController::AddCurve(const struct FRigElementKey& ReturnValue)
 // Function ControlRig.RigHierarchyController.AddControl_ForBlueprint
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InName                                                           (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// struct FRigElementKey              InParent                                                         (OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// struct FRigControlSettings         InSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigControlValue            InValue                                                          (Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommand                                              (BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigElementKey              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        InName                                                           (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// struct FRigElementKey              InParent                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FRigControlSettings         InSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigControlValue            InValue                                                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommand                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigElementKey              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchyController::AddControl_ForBlueprint(struct FRigElementKey* InParent, const struct FRigElementKey& ReturnValue)
+struct FRigElementKey URigHierarchyController::AddControl_ForBlueprint(class FName* InName, struct FRigElementKey* InParent, const struct FRigControlSettings& InSettings, bool bSetupUndo, bool bPrintPythonCommand)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9091,7 +8858,9 @@ bool URigHierarchyController::AddControl_ForBlueprint(struct FRigElementKey* InP
 
 	Params::URigHierarchyController_AddControl_ForBlueprint_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InSettings = InSettings;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommand = bPrintPythonCommand;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9100,6 +8869,9 @@ bool URigHierarchyController::AddControl_ForBlueprint(struct FRigElementKey* InP
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (InName != nullptr)
+		*InName = Parms.InName;
 
 	if (InParent != nullptr)
 		*InParent = std::move(Parms.InParent);
@@ -9112,16 +8884,16 @@ bool URigHierarchyController::AddControl_ForBlueprint(struct FRigElementKey* InP
 // Function ControlRig.RigHierarchyController.AddBone
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        InName                                                           (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// struct FRigElementKey              InParent                                                         (OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-// struct FTransform                  InTransform                                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, GlobalConfig, SubobjectReference)
-// bool                               bTransformInGlobal                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, InstancedReference, SubobjectReference)
-// enum class ERigBoneType            InBoneType                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, InstancedReference, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommand                                              (BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigElementKey              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        InName                                                           (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// struct FRigElementKey              InParent                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FTransform                  InTransform                                                      (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// bool                               bTransformInGlobal                                               (Edit, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class ERigBoneType            InBoneType                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommand                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigElementKey              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchyController::AddBone(struct FRigElementKey* InParent, const struct FTransform& InTransform, bool* bTransformInGlobal, enum class ERigBoneType* InBoneType, const struct FRigElementKey& ReturnValue)
+struct FRigElementKey URigHierarchyController::AddBone(class FName* InName, struct FRigElementKey* InParent, bool bSetupUndo, bool bPrintPythonCommand)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9130,8 +8902,8 @@ bool URigHierarchyController::AddBone(struct FRigElementKey* InParent, const str
 
 	Params::URigHierarchyController_AddBone_Params Parms{};
 
-	Parms.InTransform = InTransform;
-	Parms.ReturnValue = ReturnValue;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommand = bPrintPythonCommand;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9141,14 +8913,11 @@ bool URigHierarchyController::AddBone(struct FRigElementKey* InParent, const str
 
 	Func->FunctionFlags = Flgs;
 
+	if (InName != nullptr)
+		*InName = Parms.InName;
+
 	if (InParent != nullptr)
 		*InParent = std::move(Parms.InParent);
-
-	if (bTransformInGlobal != nullptr)
-		*bTransformInGlobal = Parms.bTransformInGlobal;
-
-	if (InBoneType != nullptr)
-		*InBoneType = Parms.InBoneType;
 
 	return Parms.ReturnValue;
 
@@ -9158,14 +8927,14 @@ bool URigHierarchyController::AddBone(struct FRigElementKey* InParent, const str
 // Function ControlRig.RigHierarchyController.AddAnimationChannel_ForBlueprint
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FName                        InName                                                           (ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// struct FRigElementKey              InParentControl                                                  (BlueprintVisible, ExportObject, Net, OutParm, InstancedReference, SubobjectReference)
-// struct FRigControlSettings         InSettings                                                       (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bSetupUndo                                                       (Edit, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// bool                               bPrintPythonCommand                                              (BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRigElementKey              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        InName                                                           (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// struct FRigElementKey              InParentControl                                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigControlSettings         InSettings                                                       (Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bSetupUndo                                                       (Edit, ConstParm, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bPrintPythonCommand                                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRigElementKey              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool URigHierarchyController::AddAnimationChannel_ForBlueprint(struct FRigElementKey* InParentControl, const struct FRigElementKey& ReturnValue)
+struct FRigElementKey URigHierarchyController::AddAnimationChannel_ForBlueprint(class FName* InName, const struct FRigControlSettings& InSettings, bool bSetupUndo, bool bPrintPythonCommand)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9174,7 +8943,9 @@ bool URigHierarchyController::AddAnimationChannel_ForBlueprint(struct FRigElemen
 
 	Params::URigHierarchyController_AddAnimationChannel_ForBlueprint_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InSettings = InSettings;
+	Parms.bSetupUndo = bSetupUndo;
+	Parms.bPrintPythonCommand = bPrintPythonCommand;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9184,8 +8955,8 @@ bool URigHierarchyController::AddAnimationChannel_ForBlueprint(struct FRigElemen
 
 	Func->FunctionFlags = Flgs;
 
-	if (InParentControl != nullptr)
-		*InParentControl = std::move(Parms.InParentControl);
+	if (InName != nullptr)
+		*InName = Parms.InName;
 
 	return Parms.ReturnValue;
 
@@ -9419,10 +9190,10 @@ class UControlRigPoseAsset* UControlRigPoseAsset::GetDefaultObj()
 // Function ControlRig.ControlRigPoseAsset.SelectControls
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UControlRig*                 InControlRig                                                     (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, InstancedReference, SubobjectReference)
-// bool                               bDoMirror                                                        (Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// class UControlRig*                 InControlRig                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bDoMirror                                                        (Edit, BlueprintReadOnly, Parm, OutParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UControlRigPoseAsset::SelectControls(class UControlRig* InControlRig, bool* bDoMirror)
+class UControlRig* UControlRigPoseAsset::SelectControls(bool* bDoMirror)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9431,7 +9202,6 @@ void UControlRigPoseAsset::SelectControls(class UControlRig* InControlRig, bool*
 
 	Params::UControlRigPoseAsset_SelectControls_Params Parms{};
 
-	Parms.InControlRig = InControlRig;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9444,16 +9214,18 @@ void UControlRigPoseAsset::SelectControls(class UControlRig* InControlRig, bool*
 	if (bDoMirror != nullptr)
 		*bDoMirror = Parms.bDoMirror;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigPoseAsset.SavePose
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UControlRig*                 InControlRig                                                     (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, InstancedReference, SubobjectReference)
-// bool                               bUseAll                                                          (ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// class UControlRig*                 InControlRig                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bUseAll                                                          (ConstParm, Net, Parm, OutParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UControlRigPoseAsset::SavePose(class UControlRig* InControlRig, bool* bUseAll)
+class UControlRig* UControlRigPoseAsset::SavePose(bool* bUseAll)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9462,7 +9234,6 @@ void UControlRigPoseAsset::SavePose(class UControlRig* InControlRig, bool* bUseA
 
 	Params::UControlRigPoseAsset_SavePose_Params Parms{};
 
-	Parms.InControlRig = InControlRig;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9475,14 +9246,16 @@ void UControlRigPoseAsset::SavePose(class UControlRig* InControlRig, bool* bUseA
 	if (bUseAll != nullptr)
 		*bUseAll = Parms.bUseAll;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigPoseAsset.ReplaceControlName
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FName                        CurrentName                                                      (Edit, BlueprintReadOnly, Net, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
-// class FName                        NewName                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        CurrentName                                                      (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        NewName                                                          (ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
 
 void UControlRigPoseAsset::ReplaceControlName(class FName* CurrentName, class FName* NewName)
 {
@@ -9514,11 +9287,11 @@ void UControlRigPoseAsset::ReplaceControlName(class FName* CurrentName, class FN
 // Function ControlRig.ControlRigPoseAsset.PastePose
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UControlRig*                 InControlRig                                                     (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, InstancedReference, SubobjectReference)
-// bool                               bDoKey                                                           (Edit, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
-// bool                               bDoMirror                                                        (Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// class UControlRig*                 InControlRig                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bDoKey                                                           (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               bDoMirror                                                        (Edit, BlueprintReadOnly, Parm, OutParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UControlRigPoseAsset::PastePose(class UControlRig* InControlRig, bool* bDoKey, bool* bDoMirror)
+class UControlRig* UControlRigPoseAsset::PastePose(bool* bDoKey, bool* bDoMirror)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9527,7 +9300,6 @@ void UControlRigPoseAsset::PastePose(class UControlRig* InControlRig, bool* bDoK
 
 	Params::UControlRigPoseAsset_PastePose_Params Parms{};
 
-	Parms.InControlRig = InControlRig;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9543,16 +9315,18 @@ void UControlRigPoseAsset::PastePose(class UControlRig* InControlRig, bool* bDoK
 	if (bDoMirror != nullptr)
 		*bDoMirror = Parms.bDoMirror;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigPoseAsset.GetCurrentPose
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UControlRig*                 InControlRig                                                     (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, InstancedReference, SubobjectReference)
-// struct FControlRigControlPose      OutPose                                                          (ConstParm, Net, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+// class UControlRig*                 InControlRig                                                     (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FControlRigControlPose      OutPose                                                          (BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UControlRigPoseAsset::GetCurrentPose(class UControlRig* InControlRig, struct FControlRigControlPose* OutPose)
+class UControlRig* UControlRigPoseAsset::GetCurrentPose(struct FControlRigControlPose* OutPose)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9561,7 +9335,6 @@ void UControlRigPoseAsset::GetCurrentPose(class UControlRig* InControlRig, struc
 
 	Params::UControlRigPoseAsset_GetCurrentPose_Params Parms{};
 
-	Parms.InControlRig = InControlRig;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9574,15 +9347,17 @@ void UControlRigPoseAsset::GetCurrentPose(class UControlRig* InControlRig, struc
 	if (OutPose != nullptr)
 		*OutPose = std::move(Parms.OutPose);
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigPoseAsset.GetControlNames
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class FName>                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FName>                ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRigPoseAsset::GetControlNames(const TArray<class FName>& ReturnValue)
+TArray<class FName> UControlRigPoseAsset::GetControlNames()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9591,7 +9366,6 @@ void UControlRigPoseAsset::GetControlNames(const TArray<class FName>& ReturnValu
 
 	Params::UControlRigPoseAsset_GetControlNames_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9601,17 +9375,19 @@ void UControlRigPoseAsset::GetControlNames(const TArray<class FName>& ReturnValu
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function ControlRig.ControlRigPoseAsset.DoesMirrorMatch
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class UControlRig*                 ControlRig                                                       (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
-// class FName                        ControlName                                                      (BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UControlRig*                 ControlRig                                                       (ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, DisableEditOnInstance, EditConst)
+// class FName                        ControlName                                                      (ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UControlRigPoseAsset::DoesMirrorMatch(class UControlRig** ControlRig, bool ReturnValue)
+bool UControlRigPoseAsset::DoesMirrorMatch(class UControlRig** ControlRig)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9620,7 +9396,6 @@ class FName UControlRigPoseAsset::DoesMirrorMatch(class UControlRig** ControlRig
 
 	Params::UControlRigPoseAsset_DoesMirrorMatch_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9753,9 +9528,9 @@ class UControlRigWorkflowOptions* UControlRigWorkflowOptions::GetDefaultObj()
 // Function ControlRig.ControlRigWorkflowOptions.EnsureAtLeastOneRigElementSelected
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRigWorkflowOptions::EnsureAtLeastOneRigElementSelected(bool ReturnValue)
+bool UControlRigWorkflowOptions::EnsureAtLeastOneRigElementSelected()
 {
 	static class UFunction* Func = nullptr;
 
@@ -9764,7 +9539,6 @@ void UControlRigWorkflowOptions::EnsureAtLeastOneRigElementSelected(bool ReturnV
 
 	Params::UControlRigWorkflowOptions_EnsureAtLeastOneRigElementSelected_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9773,6 +9547,8 @@ void UControlRigWorkflowOptions::EnsureAtLeastOneRigElementSelected(bool ReturnV
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -9808,10 +9584,10 @@ class UControlRigTransformWorkflowOptions* UControlRigTransformWorkflowOptions::
 // Function ControlRig.ControlRigTransformWorkflowOptions.ProvideWorkflows
 // (Final, Native, Public)
 // Parameters:
-// class UObject*                     InSubject                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
-// TArray<struct FRigVMUserWorkflow>  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     InSubject                                                        (Edit, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<struct FRigVMUserWorkflow>  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UControlRigTransformWorkflowOptions::ProvideWorkflows(class UObject** InSubject, const TArray<struct FRigVMUserWorkflow>& ReturnValue)
+TArray<struct FRigVMUserWorkflow> UControlRigTransformWorkflowOptions::ProvideWorkflows(class UObject** InSubject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -9820,7 +9596,6 @@ void UControlRigTransformWorkflowOptions::ProvideWorkflows(class UObject** InSub
 
 	Params::UControlRigTransformWorkflowOptions_ProvideWorkflows_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -9832,6 +9607,8 @@ void UControlRigTransformWorkflowOptions::ProvideWorkflows(class UObject** InSub
 
 	if (InSubject != nullptr)
 		*InSubject = Parms.InSubject;
+
+	return Parms.ReturnValue;
 
 }
 

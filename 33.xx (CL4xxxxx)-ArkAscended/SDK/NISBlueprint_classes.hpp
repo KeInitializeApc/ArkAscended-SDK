@@ -21,12 +21,12 @@ public:
 	float SetNISSharpness();
 	enum class EUNISMode SetNISMode();
 	float SetNISCustomScreenPercentage();
-	void IsNISSupported(bool ReturnValue);
-	enum class EUNISMode IsNISModeSupported(bool ReturnValue);
-	void GetSupportedNISModes(const TArray<enum class EUNISMode>& ReturnValue);
-	float GetNISScreenPercentageRange();
-	enum class EUNISMode GetNISRecommendedScreenPercentage(float ReturnValue);
-	void GetDefaultNISMode(enum class EUNISMode ReturnValue);
+	bool IsNISSupported();
+	bool IsNISModeSupported();
+	TArray<enum class EUNISMode> GetSupportedNISModes();
+	float GetNISScreenPercentageRange(float* MaxScreenPercentage);
+	float GetNISRecommendedScreenPercentage();
+	enum class EUNISMode GetDefaultNISMode();
 };
 
 }

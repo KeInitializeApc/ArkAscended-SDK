@@ -14,15 +14,15 @@ namespace SDK
 class UAudioCapture : public UAudioGenerator
 {
 public:
-	uint8                                        Pad_1729[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1B13[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UAudioCapture* GetDefaultObj();
 
 	void StopCapturingAudio();
 	void StartCapturingAudio();
-	void IsCapturingAudio(bool ReturnValue);
-	struct FAudioCaptureDeviceInfo GetAudioCaptureDeviceInfo(bool ReturnValue);
+	bool IsCapturingAudio();
+	bool GetAudioCaptureDeviceInfo();
 };
 
 // 0x0 (0x28 - 0x28)
@@ -34,7 +34,7 @@ public:
 	static class UClass* StaticClass();
 	static class UAudioCaptureFunctionLibrary* GetDefaultObj();
 
-	void CreateAudioCapture(class UAudioCapture* ReturnValue);
+	class UAudioCapture* CreateAudioCapture();
 };
 
 // 0x0 (0x28 - 0x28)
@@ -46,8 +46,8 @@ public:
 	static class UClass* StaticClass();
 	static class UAudioCaptureBlueprintLibrary* GetDefaultObj();
 
-	FDelegateProperty_ GetAvailableAudioInputDevices();
-	struct FAudioInputDeviceInfo Conv_AudioInputDeviceInfoToString(const class FString& ReturnValue);
+	FDelegateProperty_ GetAvailableAudioInputDevices(class UObject** WorldContextObject);
+	class FString Conv_AudioInputDeviceInfoToString();
 };
 
 // 0xC0 (0x880 - 0x7C0)
@@ -55,8 +55,8 @@ public:
 class UAudioCaptureComponent : public USynthComponent
 {
 public:
-	int32                                        JitterLatencyFrames;                               // 0x7C0(0x4)(ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1735[0xBC];                                    // Fixing Size Of Struct > TateDumper <
+	int32                                        JitterLatencyFrames;                               // 0x7C0(0x4)(BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1B1D[0xBC];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UAudioCaptureComponent* GetDefaultObj();

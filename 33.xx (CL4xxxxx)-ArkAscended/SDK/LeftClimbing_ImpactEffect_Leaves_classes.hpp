@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0x518 - 0x518)
+// 0x0 (0x510 - 0x510)
 // BlueprintGeneratedClass LeftClimbing_ImpactEffect_Leaves.LeftClimbing_ImpactEffect_Leaves_C
 class ALeftClimbing_ImpactEffect_Leaves_C : public AClimbing_ImpactEffect_C
 {

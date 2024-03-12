@@ -47,8 +47,8 @@ enum class EMPMatchOutcome : uint8
 struct FNamedInterface
 {
 public:
-	class FName                                  InterfaceName;                                     // 0x0(0x8)(ExportObject, EditFixedSize, Config, EditConst, GlobalConfig, SubobjectReference)
-	class UObject*                               InterfaceObject;                                   // 0x8(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Config, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  InterfaceName;                                     // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UObject*                               InterfaceObject;                                   // 0x8(0x8)(ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -56,8 +56,8 @@ public:
 struct FNamedInterfaceDef
 {
 public:
-	class FName                                  InterfaceName;                                     // 0x0(0x8)(ExportObject, EditFixedSize, Config, EditConst, GlobalConfig, SubobjectReference)
-	class FString                                InterfaceClassName;                                // 0x8(0x10)(BlueprintReadOnly, EditFixedSize, Config, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  InterfaceName;                                     // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	class FString                                InterfaceClassName;                                // 0x8(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 }

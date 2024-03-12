@@ -43,10 +43,10 @@ class UStreamlineLibrary* UStreamlineLibrary::GetDefaultObj()
 // Function StreamlineBlueprint.StreamlineLibrary.QueryStreamlineFeatureSupport
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EUStreamlineFeature     Feature                                                          (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-// enum class EUStreamlineFeatureSupportReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class EUStreamlineFeature     Feature                                                          (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// enum class EUStreamlineFeatureSupportReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-enum class EUStreamlineFeature UStreamlineLibrary::QueryStreamlineFeatureSupport(enum class EUStreamlineFeatureSupport ReturnValue)
+enum class EUStreamlineFeatureSupport UStreamlineLibrary::QueryStreamlineFeatureSupport()
 {
 	static class UFunction* Func = nullptr;
 
@@ -55,7 +55,6 @@ enum class EUStreamlineFeature UStreamlineLibrary::QueryStreamlineFeatureSupport
 
 	Params::UStreamlineLibrary_QueryStreamlineFeatureSupport_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -73,10 +72,10 @@ enum class EUStreamlineFeature UStreamlineLibrary::QueryStreamlineFeatureSupport
 // Function StreamlineBlueprint.StreamlineLibrary.IsStreamlineFeatureSupported
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EUStreamlineFeature     Feature                                                          (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class EUStreamlineFeature     Feature                                                          (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-enum class EUStreamlineFeature UStreamlineLibrary::IsStreamlineFeatureSupported(bool ReturnValue)
+bool UStreamlineLibrary::IsStreamlineFeatureSupported()
 {
 	static class UFunction* Func = nullptr;
 
@@ -85,7 +84,6 @@ enum class EUStreamlineFeature UStreamlineLibrary::IsStreamlineFeatureSupported(
 
 	Params::UStreamlineLibrary_IsStreamlineFeatureSupported_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -103,10 +101,10 @@ enum class EUStreamlineFeature UStreamlineLibrary::IsStreamlineFeatureSupported(
 // Function StreamlineBlueprint.StreamlineLibrary.GetStreamlineFeatureInformation
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EUStreamlineFeature     Feature                                                          (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-// struct FStreamlineFeatureRequirementsReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class EUStreamlineFeature     Feature                                                          (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FStreamlineFeatureRequirementsReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-enum class EUStreamlineFeature UStreamlineLibrary::GetStreamlineFeatureInformation(const struct FStreamlineFeatureRequirements& ReturnValue)
+struct FStreamlineFeatureRequirements UStreamlineLibrary::GetStreamlineFeatureInformation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -115,7 +113,6 @@ enum class EUStreamlineFeature UStreamlineLibrary::GetStreamlineFeatureInformati
 
 	Params::UStreamlineLibrary_GetStreamlineFeatureInformation_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -133,14 +130,14 @@ enum class EUStreamlineFeature UStreamlineLibrary::GetStreamlineFeatureInformati
 // Function StreamlineBlueprint.StreamlineLibrary.BreakStreamlineFeatureRequirements
 // (Final, RequiredAPI, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EUStreamlineFeatureRequirementsFlagsRequirements                                                     (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// bool                               D3D11Supported                                                   (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-// bool                               D3D12Supported                                                   (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-// bool                               VulkanSupported                                                  (ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-// bool                               VSyncOffRequired                                                 (Edit, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-// bool                               HardwareSchedulingRequired                                       (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// enum class EUStreamlineFeatureRequirementsFlagsRequirements                                                     (BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               D3D11Supported                                                   (Edit, BlueprintVisible, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               D3D12Supported                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               VulkanSupported                                                  (BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               VSyncOffRequired                                                 (Edit, ConstParm, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               HardwareSchedulingRequired                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UStreamlineLibrary::BreakStreamlineFeatureRequirements(enum class EUStreamlineFeatureRequirementsFlags* Requirements)
+bool UStreamlineLibrary::BreakStreamlineFeatureRequirements()
 {
 	static class UFunction* Func = nullptr;
 
@@ -157,9 +154,6 @@ bool UStreamlineLibrary::BreakStreamlineFeatureRequirements(enum class EUStreaml
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (Requirements != nullptr)
-		*Requirements = Parms.Requirements;
 
 	return Parms.ReturnValue;
 
@@ -197,7 +191,7 @@ class UStreamlineLibraryDLSSG* UStreamlineLibraryDLSSG::GetDefaultObj()
 // Function StreamlineBlueprint.StreamlineLibraryDLSSG.SetDLSSGMode
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// enum class EUStreamlineDLSSGMode   DLSSGMode                                                        (ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// enum class EUStreamlineDLSSGMode   DLSSGMode                                                        (BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 enum class EUStreamlineDLSSGMode UStreamlineLibraryDLSSG::SetDLSSGMode()
 {
@@ -225,9 +219,9 @@ enum class EUStreamlineDLSSGMode UStreamlineLibraryDLSSG::SetDLSSGMode()
 // Function StreamlineBlueprint.StreamlineLibraryDLSSG.QueryDLSSGSupport
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EUStreamlineFeatureSupportReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class EUStreamlineFeatureSupportReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UStreamlineLibraryDLSSG::QueryDLSSGSupport(enum class EUStreamlineFeatureSupport ReturnValue)
+enum class EUStreamlineFeatureSupport UStreamlineLibraryDLSSG::QueryDLSSGSupport()
 {
 	static class UFunction* Func = nullptr;
 
@@ -236,7 +230,6 @@ void UStreamlineLibraryDLSSG::QueryDLSSGSupport(enum class EUStreamlineFeatureSu
 
 	Params::UStreamlineLibraryDLSSG_QueryDLSSGSupport_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -246,15 +239,17 @@ void UStreamlineLibraryDLSSG::QueryDLSSGSupport(enum class EUStreamlineFeatureSu
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function StreamlineBlueprint.StreamlineLibraryDLSSG.IsDLSSGSupported
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UStreamlineLibraryDLSSG::IsDLSSGSupported(bool ReturnValue)
+bool UStreamlineLibraryDLSSG::IsDLSSGSupported()
 {
 	static class UFunction* Func = nullptr;
 
@@ -263,7 +258,6 @@ void UStreamlineLibraryDLSSG::IsDLSSGSupported(bool ReturnValue)
 
 	Params::UStreamlineLibraryDLSSG_IsDLSSGSupported_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -273,16 +267,18 @@ void UStreamlineLibraryDLSSG::IsDLSSGSupported(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function StreamlineBlueprint.StreamlineLibraryDLSSG.IsDLSSGModeSupported
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EUStreamlineDLSSGMode   DLSSGMode                                                        (ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class EUStreamlineDLSSGMode   DLSSGMode                                                        (BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-enum class EUStreamlineDLSSGMode UStreamlineLibraryDLSSG::IsDLSSGModeSupported(bool ReturnValue)
+bool UStreamlineLibraryDLSSG::IsDLSSGModeSupported()
 {
 	static class UFunction* Func = nullptr;
 
@@ -291,7 +287,6 @@ enum class EUStreamlineDLSSGMode UStreamlineLibraryDLSSG::IsDLSSGModeSupported(b
 
 	Params::UStreamlineLibraryDLSSG_IsDLSSGModeSupported_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -309,9 +304,9 @@ enum class EUStreamlineDLSSGMode UStreamlineLibraryDLSSG::IsDLSSGModeSupported(b
 // Function StreamlineBlueprint.StreamlineLibraryDLSSG.GetSupportedDLSSGModes
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// TArray<enum class EUStreamlineDLSSGMode>ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<enum class EUStreamlineDLSSGMode>ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UStreamlineLibraryDLSSG::GetSupportedDLSSGModes(const TArray<enum class EUStreamlineDLSSGMode>& ReturnValue)
+TArray<enum class EUStreamlineDLSSGMode> UStreamlineLibraryDLSSG::GetSupportedDLSSGModes()
 {
 	static class UFunction* Func = nullptr;
 
@@ -320,7 +315,6 @@ void UStreamlineLibraryDLSSG::GetSupportedDLSSGModes(const TArray<enum class EUS
 
 	Params::UStreamlineLibraryDLSSG_GetSupportedDLSSGModes_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -330,15 +324,17 @@ void UStreamlineLibraryDLSSG::GetSupportedDLSSGModes(const TArray<enum class EUS
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function StreamlineBlueprint.StreamlineLibraryDLSSG.GetDLSSGMode
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EUStreamlineDLSSGMode   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class EUStreamlineDLSSGMode   ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UStreamlineLibraryDLSSG::GetDLSSGMode(enum class EUStreamlineDLSSGMode ReturnValue)
+enum class EUStreamlineDLSSGMode UStreamlineLibraryDLSSG::GetDLSSGMode()
 {
 	static class UFunction* Func = nullptr;
 
@@ -347,7 +343,6 @@ void UStreamlineLibraryDLSSG::GetDLSSGMode(enum class EUStreamlineDLSSGMode Retu
 
 	Params::UStreamlineLibraryDLSSG_GetDLSSGMode_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -357,14 +352,16 @@ void UStreamlineLibraryDLSSG::GetDLSSGMode(enum class EUStreamlineDLSSGMode Retu
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function StreamlineBlueprint.StreamlineLibraryDLSSG.GetDLSSGFrameTiming
 // (Final, RequiredAPI, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              FrameRateInHertz                                                 (Edit, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-// int32                              FramesPresented                                                  (ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// float                              FrameRateInHertz                                                 (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              FramesPresented                                                  (ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 int32 UStreamlineLibraryDLSSG::GetDLSSGFrameTiming()
 {
@@ -392,9 +389,9 @@ int32 UStreamlineLibraryDLSSG::GetDLSSGFrameTiming()
 // Function StreamlineBlueprint.StreamlineLibraryDLSSG.GetDefaultDLSSGMode
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EUStreamlineDLSSGMode   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class EUStreamlineDLSSGMode   ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UStreamlineLibraryDLSSG::GetDefaultDLSSGMode(enum class EUStreamlineDLSSGMode ReturnValue)
+enum class EUStreamlineDLSSGMode UStreamlineLibraryDLSSG::GetDefaultDLSSGMode()
 {
 	static class UFunction* Func = nullptr;
 
@@ -403,7 +400,6 @@ void UStreamlineLibraryDLSSG::GetDefaultDLSSGMode(enum class EUStreamlineDLSSGMo
 
 	Params::UStreamlineLibraryDLSSG_GetDefaultDLSSGMode_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -412,6 +408,8 @@ void UStreamlineLibraryDLSSG::GetDefaultDLSSGMode(enum class EUStreamlineDLSSGMo
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -447,9 +445,9 @@ class UStreamlineLibraryReflex* UStreamlineLibraryReflex::GetDefaultObj()
 // Function StreamlineBlueprint.StreamlineLibraryReflex.SetReflexMode
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// enum class EUStreamlineReflexMode  Mode                                                             (BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
+// enum class EUStreamlineReflexMode  Mode                                                             (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
 
-void UStreamlineLibraryReflex::SetReflexMode(enum class EUStreamlineReflexMode Mode)
+void UStreamlineLibraryReflex::SetReflexMode(enum class EUStreamlineReflexMode* Mode)
 {
 	static class UFunction* Func = nullptr;
 
@@ -458,7 +456,6 @@ void UStreamlineLibraryReflex::SetReflexMode(enum class EUStreamlineReflexMode M
 
 	Params::UStreamlineLibraryReflex_SetReflexMode_Params Parms{};
 
-	Parms.Mode = Mode;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -468,15 +465,18 @@ void UStreamlineLibraryReflex::SetReflexMode(enum class EUStreamlineReflexMode M
 
 	Func->FunctionFlags = Flgs;
 
+	if (Mode != nullptr)
+		*Mode = Parms.Mode;
+
 }
 
 
 // Function StreamlineBlueprint.StreamlineLibraryReflex.QueryReflexSupport
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EUStreamlineFeatureSupportReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class EUStreamlineFeatureSupportReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UStreamlineLibraryReflex::QueryReflexSupport(enum class EUStreamlineFeatureSupport ReturnValue)
+enum class EUStreamlineFeatureSupport UStreamlineLibraryReflex::QueryReflexSupport()
 {
 	static class UFunction* Func = nullptr;
 
@@ -485,7 +485,6 @@ void UStreamlineLibraryReflex::QueryReflexSupport(enum class EUStreamlineFeature
 
 	Params::UStreamlineLibraryReflex_QueryReflexSupport_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -495,15 +494,17 @@ void UStreamlineLibraryReflex::QueryReflexSupport(enum class EUStreamlineFeature
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function StreamlineBlueprint.StreamlineLibraryReflex.IsReflexSupported
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UStreamlineLibraryReflex::IsReflexSupported(bool ReturnValue)
+bool UStreamlineLibraryReflex::IsReflexSupported()
 {
 	static class UFunction* Func = nullptr;
 
@@ -512,7 +513,6 @@ void UStreamlineLibraryReflex::IsReflexSupported(bool ReturnValue)
 
 	Params::UStreamlineLibraryReflex_IsReflexSupported_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -522,15 +522,17 @@ void UStreamlineLibraryReflex::IsReflexSupported(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function StreamlineBlueprint.StreamlineLibraryReflex.GetRenderLatencyInMs
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UStreamlineLibraryReflex::GetRenderLatencyInMs(float ReturnValue)
+float UStreamlineLibraryReflex::GetRenderLatencyInMs()
 {
 	static class UFunction* Func = nullptr;
 
@@ -539,7 +541,6 @@ void UStreamlineLibraryReflex::GetRenderLatencyInMs(float ReturnValue)
 
 	Params::UStreamlineLibraryReflex_GetRenderLatencyInMs_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -549,15 +550,17 @@ void UStreamlineLibraryReflex::GetRenderLatencyInMs(float ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function StreamlineBlueprint.StreamlineLibraryReflex.GetReflexMode
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EUStreamlineReflexMode  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class EUStreamlineReflexMode  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UStreamlineLibraryReflex::GetReflexMode(enum class EUStreamlineReflexMode ReturnValue)
+enum class EUStreamlineReflexMode UStreamlineLibraryReflex::GetReflexMode()
 {
 	static class UFunction* Func = nullptr;
 
@@ -566,7 +569,6 @@ void UStreamlineLibraryReflex::GetReflexMode(enum class EUStreamlineReflexMode R
 
 	Params::UStreamlineLibraryReflex_GetReflexMode_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -576,15 +578,17 @@ void UStreamlineLibraryReflex::GetReflexMode(enum class EUStreamlineReflexMode R
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function StreamlineBlueprint.StreamlineLibraryReflex.GetGameToRenderLatencyInMs
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UStreamlineLibraryReflex::GetGameToRenderLatencyInMs(float ReturnValue)
+float UStreamlineLibraryReflex::GetGameToRenderLatencyInMs()
 {
 	static class UFunction* Func = nullptr;
 
@@ -593,7 +597,6 @@ void UStreamlineLibraryReflex::GetGameToRenderLatencyInMs(float ReturnValue)
 
 	Params::UStreamlineLibraryReflex_GetGameToRenderLatencyInMs_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -603,15 +606,17 @@ void UStreamlineLibraryReflex::GetGameToRenderLatencyInMs(float ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function StreamlineBlueprint.StreamlineLibraryReflex.GetGameLatencyInMs
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UStreamlineLibraryReflex::GetGameLatencyInMs(float ReturnValue)
+float UStreamlineLibraryReflex::GetGameLatencyInMs()
 {
 	static class UFunction* Func = nullptr;
 
@@ -620,7 +625,6 @@ void UStreamlineLibraryReflex::GetGameLatencyInMs(float ReturnValue)
 
 	Params::UStreamlineLibraryReflex_GetGameLatencyInMs_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -630,15 +634,17 @@ void UStreamlineLibraryReflex::GetGameLatencyInMs(float ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function StreamlineBlueprint.StreamlineLibraryReflex.GetDefaultReflexMode
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EUStreamlineReflexMode  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class EUStreamlineReflexMode  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UStreamlineLibraryReflex::GetDefaultReflexMode(enum class EUStreamlineReflexMode ReturnValue)
+enum class EUStreamlineReflexMode UStreamlineLibraryReflex::GetDefaultReflexMode()
 {
 	static class UFunction* Func = nullptr;
 
@@ -647,7 +653,6 @@ void UStreamlineLibraryReflex::GetDefaultReflexMode(enum class EUStreamlineRefle
 
 	Params::UStreamlineLibraryReflex_GetDefaultReflexMode_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -656,6 +661,8 @@ void UStreamlineLibraryReflex::GetDefaultReflexMode(enum class EUStreamlineRefle
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 

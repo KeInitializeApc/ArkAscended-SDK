@@ -43,11 +43,11 @@ class UUI_Prompt_GoToComments_C* UUI_Prompt_GoToComments_C::GetDefaultObj()
 // Function UI_Prompt_GoToComments.UI_Prompt_GoToComments_C.BPGamepadReleased
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// struct FKey                        TheKey                                                           (ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FKey                        TheKey                                                           (ExportObject, Net, OutParm, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               CallFunc_EqualEqual_KeyKey_ReturnValue                           (BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-struct FKey UUI_Prompt_GoToComments_C::BPGamepadReleased(bool ReturnValue, bool CallFunc_EqualEqual_KeyKey_ReturnValue)
+bool UUI_Prompt_GoToComments_C::BPGamepadReleased(struct FKey* TheKey, bool* CallFunc_EqualEqual_KeyKey_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -56,10 +56,14 @@ struct FKey UUI_Prompt_GoToComments_C::BPGamepadReleased(bool ReturnValue, bool 
 
 	Params::UUI_Prompt_GoToComments_C_BPGamepadReleased_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
-	Parms.CallFunc_EqualEqual_KeyKey_ReturnValue = CallFunc_EqualEqual_KeyKey_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (TheKey != nullptr)
+		*TheKey = std::move(Parms.TheKey);
+
+	if (CallFunc_EqualEqual_KeyKey_ReturnValue != nullptr)
+		*CallFunc_EqualEqual_KeyKey_ReturnValue = Parms.CallFunc_EqualEqual_KeyKey_ReturnValue;
 
 	return Parms.ReturnValue;
 
@@ -69,9 +73,9 @@ struct FKey UUI_Prompt_GoToComments_C::BPGamepadReleased(bool ReturnValue, bool 
 // Function UI_Prompt_GoToComments.UI_Prompt_GoToComments_C.BPEscapeClosed
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UUI_Prompt_GoToComments_C::BPEscapeClosed(bool ReturnValue)
+bool UUI_Prompt_GoToComments_C::BPEscapeClosed()
 {
 	static class UFunction* Func = nullptr;
 
@@ -80,9 +84,10 @@ void UUI_Prompt_GoToComments_C::BPEscapeClosed(bool ReturnValue)
 
 	Params::UUI_Prompt_GoToComments_C_BPEscapeClosed_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -90,9 +95,9 @@ void UUI_Prompt_GoToComments_C::BPEscapeClosed(bool ReturnValue)
 // Function UI_Prompt_GoToComments.UI_Prompt_GoToComments_C.BPHighlightWidgetOnStart
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UUI_Prompt_GoToComments_C::BPHighlightWidgetOnStart(bool ReturnValue)
+bool UUI_Prompt_GoToComments_C::BPHighlightWidgetOnStart()
 {
 	static class UFunction* Func = nullptr;
 
@@ -101,9 +106,10 @@ void UUI_Prompt_GoToComments_C::BPHighlightWidgetOnStart(bool ReturnValue)
 
 	Params::UUI_Prompt_GoToComments_C_BPHighlightWidgetOnStart_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -129,10 +135,10 @@ void UUI_Prompt_GoToComments_C::UpdateThemeSettings()
 // Function UI_Prompt_GoToComments.UI_Prompt_GoToComments_C.Tick
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              InDeltaTime                                                      (ConstParm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// float                              InDeltaTime                                                      (ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UUI_Prompt_GoToComments_C::Tick()
+float UUI_Prompt_GoToComments_C::Tick(struct FGeometry* MyGeometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -143,6 +149,9 @@ float UUI_Prompt_GoToComments_C::Tick()
 
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
 
 	return Parms.ReturnValue;
 
@@ -170,11 +179,11 @@ void UUI_Prompt_GoToComments_C::Construct()
 // Function UI_Prompt_GoToComments.UI_Prompt_GoToComments_C.ExecuteUbergraph_UI_Prompt_GoToComments
 // (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// int32                              EntryPoint                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-// struct FGeometry                   K2Node_Event_MyGeometry                                          (BlueprintVisible, ZeroConstructor, Config, SubobjectReference)
-// float                              K2Node_Event_InDeltaTime                                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Config, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
+// struct FGeometry                   K2Node_Event_MyGeometry                                          (Edit, ConstParm, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// float                              K2Node_Event_InDeltaTime                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
-int32 UUI_Prompt_GoToComments_C::ExecuteUbergraph_UI_Prompt_GoToComments(const struct FGeometry& K2Node_Event_MyGeometry, float* K2Node_Event_InDeltaTime)
+void UUI_Prompt_GoToComments_C::ExecuteUbergraph_UI_Prompt_GoToComments(int32* EntryPoint, const struct FGeometry& K2Node_Event_MyGeometry, float K2Node_Event_InDeltaTime)
 {
 	static class UFunction* Func = nullptr;
 
@@ -184,13 +193,12 @@ int32 UUI_Prompt_GoToComments_C::ExecuteUbergraph_UI_Prompt_GoToComments(const s
 	Params::UUI_Prompt_GoToComments_C_ExecuteUbergraph_UI_Prompt_GoToComments_Params Parms{};
 
 	Parms.K2Node_Event_MyGeometry = K2Node_Event_MyGeometry;
+	Parms.K2Node_Event_InDeltaTime = K2Node_Event_InDeltaTime;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (K2Node_Event_InDeltaTime != nullptr)
-		*K2Node_Event_InDeltaTime = Parms.K2Node_Event_InDeltaTime;
-
-	return Parms.ReturnValue;
+	if (EntryPoint != nullptr)
+		*EntryPoint = Parms.EntryPoint;
 
 }
 

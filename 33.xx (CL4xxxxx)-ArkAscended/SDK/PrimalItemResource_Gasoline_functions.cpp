@@ -43,16 +43,16 @@ class UPrimalItemResource_Gasoline_C* UPrimalItemResource_Gasoline_C::GetDefault
 // Function PrimalItemResource_Gasoline.PrimalItemResource_Gasoline_C.CheckForGasolineData
 // (Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UPrimalItem*                 DestinationItem                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               SupportsDragOn                                                   (BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               ReturnValue_Loc                                                  (Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FCustomItemData             CallFunc_GetCustomItemData_OutData                               (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_GetCustomItemData_ReturnValue                           (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_Less_DoubleDouble_ReturnValue                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// double                             CallFunc_Less_DoubleDouble_A_ImplicitCast                        (Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// class UPrimalItem*                 DestinationItem                                                  (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               SupportsDragOn                                                   (Edit, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, SubobjectReference)
+// bool                               ReturnValue_Loc                                                  (ExportObject, Parm, OutParm, ZeroConstructor, Transient, SubobjectReference)
+// struct FCustomItemData             CallFunc_GetCustomItemData_OutData                               (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, SubobjectReference)
+// bool                               CallFunc_GetCustomItemData_ReturnValue                           (ExportObject, Parm, ZeroConstructor, Transient, SubobjectReference)
+// float                              CallFunc_Array_Get_Item                                          (EditFixedSize, ZeroConstructor, Transient, SubobjectReference)
+// bool                               CallFunc_Less_DoubleDouble_ReturnValue                           (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, SubobjectReference)
+// double                             CallFunc_Less_DoubleDouble_A_ImplicitCast                        (ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Transient, SubobjectReference)
 
-double UPrimalItemResource_Gasoline_C::CheckForGasolineData(class UPrimalItem* DestinationItem)
+class UPrimalItem* UPrimalItemResource_Gasoline_C::CheckForGasolineData(bool* SupportsDragOn, bool* ReturnValue_Loc, const struct FCustomItemData& CallFunc_GetCustomItemData_OutData, bool CallFunc_GetCustomItemData_ReturnValue, float CallFunc_Array_Get_Item, bool CallFunc_Less_DoubleDouble_ReturnValue, double CallFunc_Less_DoubleDouble_A_ImplicitCast)
 {
 	static class UFunction* Func = nullptr;
 
@@ -61,9 +61,19 @@ double UPrimalItemResource_Gasoline_C::CheckForGasolineData(class UPrimalItem* D
 
 	Params::UPrimalItemResource_Gasoline_C_CheckForGasolineData_Params Parms{};
 
-	Parms.DestinationItem = DestinationItem;
+	Parms.CallFunc_GetCustomItemData_OutData = CallFunc_GetCustomItemData_OutData;
+	Parms.CallFunc_GetCustomItemData_ReturnValue = CallFunc_GetCustomItemData_ReturnValue;
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
+	Parms.CallFunc_Less_DoubleDouble_ReturnValue = CallFunc_Less_DoubleDouble_ReturnValue;
+	Parms.CallFunc_Less_DoubleDouble_A_ImplicitCast = CallFunc_Less_DoubleDouble_A_ImplicitCast;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (SupportsDragOn != nullptr)
+		*SupportsDragOn = Parms.SupportsDragOn;
+
+	if (ReturnValue_Loc != nullptr)
+		*ReturnValue_Loc = Parms.ReturnValue_Loc;
 
 	return Parms.ReturnValue;
 
@@ -73,22 +83,22 @@ double UPrimalItemResource_Gasoline_C::CheckForGasolineData(class UPrimalItem* D
 // Function PrimalItemResource_Gasoline.PrimalItemResource_Gasoline_C.RefillGasoline
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UPrimalItem*                 DestinationItem                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// TArray<double>                     CustomFloats_Loc                                                 (ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// double                             CallFunc_MakeLiteralDouble_ReturnValue                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// class UObject*                     CallFunc_GetDefaultObject_ReturnValue                            (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// class UPrimalItem*                 K2Node_DynamicCast_AsPrimal_Item                                 (BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FCustomItemData             CallFunc_GetCustomItemData_OutData                               (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_GetCustomItemData_ReturnValue                           (Edit, ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// class FString                      CallFunc_Concat_StrStr_ReturnValue                               (Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// class FString                      CallFunc_Concat_StrStr_ReturnValue_1                             (Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, Interp)
-// int32                              CallFunc_IncrementItemQuantity_ReturnValue                       (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FCustomItemData             K2Node_MakeStruct_CustomItemData                                 (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<double>                     K2Node_VariableSet_CustomFloats_Loc_ImplicitCast                 (ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<float>                      K2Node_MakeStruct_CustomDataFloats_ImplicitCast                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// class UPrimalItem*                 DestinationItem                                                  (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// TArray<double>                     CustomFloats_Loc                                                 (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, Transient, SubobjectReference)
+// double                             CallFunc_MakeLiteralDouble_ReturnValue                           (BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, SubobjectReference)
+// class UObject*                     CallFunc_GetDefaultObject_ReturnValue                            (BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Transient, SubobjectReference)
+// class UPrimalItem*                 K2Node_DynamicCast_AsPrimal_Item                                 (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, SubobjectReference)
+// struct FCustomItemData             CallFunc_GetCustomItemData_OutData                               (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, SubobjectReference)
+// bool                               CallFunc_GetCustomItemData_ReturnValue                           (ExportObject, Parm, ZeroConstructor, Transient, SubobjectReference)
+// class FString                      CallFunc_Concat_StrStr_ReturnValue                               (BlueprintVisible, Net, EditFixedSize, ZeroConstructor, Transient, SubobjectReference)
+// class FString                      CallFunc_Concat_StrStr_ReturnValue_1                             (BlueprintVisible, Net, EditFixedSize, ZeroConstructor, Transient, SubobjectReference, Interp)
+// int32                              CallFunc_IncrementItemQuantity_ReturnValue                       (BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, SubobjectReference)
+// struct FCustomItemData             K2Node_MakeStruct_CustomItemData                                 (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, SubobjectReference)
+// TArray<double>                     K2Node_VariableSet_CustomFloats_Loc_ImplicitCast                 (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, SubobjectReference)
+// TArray<float>                      K2Node_MakeStruct_CustomDataFloats_ImplicitCast                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, SubobjectReference)
 
-TArray<float> UPrimalItemResource_Gasoline_C::RefillGasoline(class UPrimalItem* DestinationItem)
+class UPrimalItem* UPrimalItemResource_Gasoline_C::RefillGasoline(TArray<double>* CustomFloats_Loc, double CallFunc_MakeLiteralDouble_ReturnValue, class UObject* CallFunc_GetDefaultObject_ReturnValue, class UPrimalItem** K2Node_DynamicCast_AsPrimal_Item, bool* K2Node_DynamicCast_bSuccess, const struct FCustomItemData& CallFunc_GetCustomItemData_OutData, bool CallFunc_GetCustomItemData_ReturnValue, const class FString& CallFunc_Concat_StrStr_ReturnValue, const class FString& CallFunc_Concat_StrStr_ReturnValue_1, int32 CallFunc_IncrementItemQuantity_ReturnValue, struct FCustomItemData* K2Node_MakeStruct_CustomItemData, TArray<double>* K2Node_VariableSet_CustomFloats_Loc_ImplicitCast, TArray<float>* K2Node_MakeStruct_CustomDataFloats_ImplicitCast)
 {
 	static class UFunction* Func = nullptr;
 
@@ -97,9 +107,33 @@ TArray<float> UPrimalItemResource_Gasoline_C::RefillGasoline(class UPrimalItem* 
 
 	Params::UPrimalItemResource_Gasoline_C_RefillGasoline_Params Parms{};
 
-	Parms.DestinationItem = DestinationItem;
+	Parms.CallFunc_MakeLiteralDouble_ReturnValue = CallFunc_MakeLiteralDouble_ReturnValue;
+	Parms.CallFunc_GetDefaultObject_ReturnValue = CallFunc_GetDefaultObject_ReturnValue;
+	Parms.CallFunc_GetCustomItemData_OutData = CallFunc_GetCustomItemData_OutData;
+	Parms.CallFunc_GetCustomItemData_ReturnValue = CallFunc_GetCustomItemData_ReturnValue;
+	Parms.CallFunc_Concat_StrStr_ReturnValue = CallFunc_Concat_StrStr_ReturnValue;
+	Parms.CallFunc_Concat_StrStr_ReturnValue_1 = CallFunc_Concat_StrStr_ReturnValue_1;
+	Parms.CallFunc_IncrementItemQuantity_ReturnValue = CallFunc_IncrementItemQuantity_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (CustomFloats_Loc != nullptr)
+		*CustomFloats_Loc = std::move(Parms.CustomFloats_Loc);
+
+	if (K2Node_DynamicCast_AsPrimal_Item != nullptr)
+		*K2Node_DynamicCast_AsPrimal_Item = Parms.K2Node_DynamicCast_AsPrimal_Item;
+
+	if (K2Node_DynamicCast_bSuccess != nullptr)
+		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
+
+	if (K2Node_MakeStruct_CustomItemData != nullptr)
+		*K2Node_MakeStruct_CustomItemData = std::move(Parms.K2Node_MakeStruct_CustomItemData);
+
+	if (K2Node_VariableSet_CustomFloats_Loc_ImplicitCast != nullptr)
+		*K2Node_VariableSet_CustomFloats_Loc_ImplicitCast = std::move(Parms.K2Node_VariableSet_CustomFloats_Loc_ImplicitCast);
+
+	if (K2Node_MakeStruct_CustomDataFloats_ImplicitCast != nullptr)
+		*K2Node_MakeStruct_CustomDataFloats_ImplicitCast = std::move(Parms.K2Node_MakeStruct_CustomDataFloats_ImplicitCast);
 
 	return Parms.ReturnValue;
 
@@ -109,10 +143,10 @@ TArray<float> UPrimalItemResource_Gasoline_C::RefillGasoline(class UPrimalItem* 
 // Function PrimalItemResource_Gasoline.PrimalItemResource_Gasoline_C.BPUsedOntoItem
 // (Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UPrimalItem*                 DestinationItem                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// int32                              AdditionalData                                                   (ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// class UPrimalItem*                 DestinationItem                                                  (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// int32                              AdditionalData                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
 
-void UPrimalItemResource_Gasoline_C::BPUsedOntoItem(class UPrimalItem* DestinationItem, int32* AdditionalData)
+int32 UPrimalItemResource_Gasoline_C::BPUsedOntoItem()
 {
 	static class UFunction* Func = nullptr;
 
@@ -121,12 +155,10 @@ void UPrimalItemResource_Gasoline_C::BPUsedOntoItem(class UPrimalItem* Destinati
 
 	Params::UPrimalItemResource_Gasoline_C_BPUsedOntoItem_Params Parms{};
 
-	Parms.DestinationItem = DestinationItem;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (AdditionalData != nullptr)
-		*AdditionalData = Parms.AdditionalData;
+	return Parms.ReturnValue;
 
 }
 
@@ -134,11 +166,11 @@ void UPrimalItemResource_Gasoline_C::BPUsedOntoItem(class UPrimalItem* Destinati
 // Function PrimalItemResource_Gasoline.PrimalItemResource_Gasoline_C.BPSupportUseOntoItem
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UPrimalItem*                 DestinationItem                                                  (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// bool                               CallFunc_CheckForGasolineData_SupportsDragOn                     (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// class UPrimalItem*                 DestinationItem                                                  (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               CallFunc_CheckForGasolineData_SupportsDragOn                     (Edit, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, Transient, SubobjectReference)
 
-bool UPrimalItemResource_Gasoline_C::BPSupportUseOntoItem(class UPrimalItem* DestinationItem, bool ReturnValue)
+bool UPrimalItemResource_Gasoline_C::BPSupportUseOntoItem(bool CallFunc_CheckForGasolineData_SupportsDragOn)
 {
 	static class UFunction* Func = nullptr;
 
@@ -147,8 +179,7 @@ bool UPrimalItemResource_Gasoline_C::BPSupportUseOntoItem(class UPrimalItem* Des
 
 	Params::UPrimalItemResource_Gasoline_C_BPSupportUseOntoItem_Params Parms{};
 
-	Parms.DestinationItem = DestinationItem;
-	Parms.ReturnValue = ReturnValue;
+	Parms.CallFunc_CheckForGasolineData_SupportsDragOn = CallFunc_CheckForGasolineData_SupportsDragOn;
 
 	UObject::ProcessEvent(Func, &Parms);
 

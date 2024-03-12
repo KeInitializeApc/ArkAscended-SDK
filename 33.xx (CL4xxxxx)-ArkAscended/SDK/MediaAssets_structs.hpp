@@ -102,8 +102,8 @@ enum class EMediaWebcamCaptureDeviceFilter : uint8
 struct FMediaSoundComponentSpectralData
 {
 public:
-	float                                        FrequencyHz;                                       // 0x0(0x4)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        Magnitude;                                         // 0x4(0x4)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
+	float                                        FrequencyHz;                                       // 0x0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+	float                                        Magnitude;                                         // 0x4(0x4)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -111,9 +111,9 @@ public:
 struct FMediaSourceCacheSettings
 {
 public:
-	bool                                         bOverride;                                         // 0x0(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_17DF[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        TimeToLookAhead;                                   // 0x4(0x4)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bOverride;                                         // 0x0(0x1)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1C26[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        TimeToLookAhead;                                   // 0x4(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
 };
 
 // 0x28 (0x28 - 0x0)
@@ -121,8 +121,8 @@ public:
 struct FMediaCaptureDevice
 {
 public:
-	class FText                                  DisplayName;                                       // 0x0(0x18)(Edit, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Transient)
-	class FString                                URL;                                               // 0x18(0x10)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, EditConst)
+	class FText                                  DisplayName;                                       // 0x0(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient)
+	class FString                                URL;                                               // 0x18(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, EditConst)
 };
 
 }

@@ -71,10 +71,10 @@ class UFoliageType* UFoliageType::GetDefaultObj()
 // Function Foliage.FoliageType.GetResponseToChannel
 // (Final, RequiredAPI, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// enum class ECollisionChannel       Channel                                                          (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst)
-// enum class ECollisionResponse      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class ECollisionChannel       Channel                                                          (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnInstance, EditConst)
+// enum class ECollisionResponse      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-enum class ECollisionChannel UFoliageType::GetResponseToChannel(enum class ECollisionResponse ReturnValue)
+enum class ECollisionResponse UFoliageType::GetResponseToChannel()
 {
 	static class UFunction* Func = nullptr;
 
@@ -83,7 +83,6 @@ enum class ECollisionChannel UFoliageType::GetResponseToChannel(enum class EColl
 
 	Params::UFoliageType_GetResponseToChannel_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -185,10 +184,10 @@ class AInstancedFoliageActor* AInstancedFoliageActor::GetDefaultObj()
 // Function Foliage.InstancedFoliageActor.BPGetInstancedFoliageActorForCurrentLevel
 // (Final, RequiredAPI, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UWorld*                      World                                                            (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Transient, DisableEditOnInstance)
-// class AInstancedFoliageActor*      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UWorld*                      World                                                            (ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance)
+// class AInstancedFoliageActor*      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void AInstancedFoliageActor::BPGetInstancedFoliageActorForCurrentLevel(class UWorld* World, class AInstancedFoliageActor* ReturnValue)
+class AInstancedFoliageActor* AInstancedFoliageActor::BPGetInstancedFoliageActorForCurrentLevel()
 {
 	static class UFunction* Func = nullptr;
 
@@ -197,8 +196,6 @@ void AInstancedFoliageActor::BPGetInstancedFoliageActorForCurrentLevel(class UWo
 
 	Params::AInstancedFoliageActor_BPGetInstancedFoliageActorForCurrentLevel_Params Parms{};
 
-	Parms.World = World;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -208,16 +205,18 @@ void AInstancedFoliageActor::BPGetInstancedFoliageActorForCurrentLevel(class UWo
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function Foliage.InstancedFoliageActor.BPConvertStaticMeshActorsToFoliage
 // (Final, RequiredAPI, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<class AStaticMeshActor*>    Actors                                                           (ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// TArray<class AStaticMeshActor*>    ConvertedActors                                                  (BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// TArray<class AStaticMeshActor*>    Actors                                                           (Edit, ConstParm, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// TArray<class AStaticMeshActor*>    ConvertedActors                                                  (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 
-TArray<class AStaticMeshActor*> AInstancedFoliageActor::BPConvertStaticMeshActorsToFoliage()
+TArray<class AStaticMeshActor*> AInstancedFoliageActor::BPConvertStaticMeshActorsToFoliage(const TArray<class AStaticMeshActor*>& ConvertedActors)
 {
 	static class UFunction* Func = nullptr;
 
@@ -226,6 +225,7 @@ TArray<class AStaticMeshActor*> AInstancedFoliageActor::BPConvertStaticMeshActor
 
 	Params::AInstancedFoliageActor_BPConvertStaticMeshActorsToFoliage_Params Parms{};
 
+	Parms.ConvertedActors = ConvertedActors;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -299,13 +299,13 @@ class UFoliageStatistics* UFoliageStatistics::GetDefaultObj()
 // Function Foliage.FoliageStatistics.FoliageOverlappingSphereCount
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class UStaticMesh*                 StaticMesh                                                       (Edit, ConstParm, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, InstancedReference)
-// struct FVector                     CenterPosition                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// float                              Radius                                                           (ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UStaticMesh*                 StaticMesh                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, EditConst, GlobalConfig)
+// struct FVector                     CenterPosition                                                   (Edit, BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+// float                              Radius                                                           (Edit, BlueprintVisible, BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FVector UFoliageStatistics::FoliageOverlappingSphereCount(float* Radius, int32 ReturnValue)
+int32 UFoliageStatistics::FoliageOverlappingSphereCount(class UObject** WorldContextObject, class UStaticMesh** StaticMesh, const struct FVector& CenterPosition, float Radius)
 {
 	static class UFunction* Func = nullptr;
 
@@ -314,7 +314,8 @@ struct FVector UFoliageStatistics::FoliageOverlappingSphereCount(float* Radius, 
 
 	Params::UFoliageStatistics_FoliageOverlappingSphereCount_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.CenterPosition = CenterPosition;
+	Parms.Radius = Radius;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -324,8 +325,11 @@ struct FVector UFoliageStatistics::FoliageOverlappingSphereCount(float* Radius, 
 
 	Func->FunctionFlags = Flgs;
 
-	if (Radius != nullptr)
-		*Radius = Parms.Radius;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
+	if (StaticMesh != nullptr)
+		*StaticMesh = Parms.StaticMesh;
 
 	return Parms.ReturnValue;
 
@@ -335,12 +339,12 @@ struct FVector UFoliageStatistics::FoliageOverlappingSphereCount(float* Radius, 
 // Function Foliage.FoliageStatistics.FoliageOverlappingBoxTransforms
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class UStaticMesh*                 StaticMesh                                                       (Edit, ConstParm, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, InstancedReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UStaticMesh*                 StaticMesh                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, EditConst, GlobalConfig)
 // struct FBox                        Box                                                              (Edit, ConstParm, ExportObject, OutParm)
-// TArray<struct FTransform>          OutTransforms                                                    (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// TArray<struct FTransform>          OutTransforms                                                    (Edit, BlueprintVisible, ExportObject, Parm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 
-TArray<struct FTransform> UFoliageStatistics::FoliageOverlappingBoxTransforms(struct FBox* Box)
+void UFoliageStatistics::FoliageOverlappingBoxTransforms(class UObject** WorldContextObject, class UStaticMesh** StaticMesh, struct FBox* Box, const TArray<struct FTransform>& OutTransforms)
 {
 	static class UFunction* Func = nullptr;
 
@@ -349,6 +353,7 @@ TArray<struct FTransform> UFoliageStatistics::FoliageOverlappingBoxTransforms(st
 
 	Params::UFoliageStatistics_FoliageOverlappingBoxTransforms_Params Parms{};
 
+	Parms.OutTransforms = OutTransforms;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -358,10 +363,14 @@ TArray<struct FTransform> UFoliageStatistics::FoliageOverlappingBoxTransforms(st
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
+	if (StaticMesh != nullptr)
+		*StaticMesh = Parms.StaticMesh;
+
 	if (Box != nullptr)
 		*Box = std::move(Parms.Box);
-
-	return Parms.ReturnValue;
 
 }
 
@@ -369,12 +378,12 @@ TArray<struct FTransform> UFoliageStatistics::FoliageOverlappingBoxTransforms(st
 // Function Foliage.FoliageStatistics.FoliageOverlappingBoxCount
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class UStaticMesh*                 StaticMesh                                                       (Edit, ConstParm, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, InstancedReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UStaticMesh*                 StaticMesh                                                       (ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, EditConst, GlobalConfig)
 // struct FBox                        Box                                                              (Edit, ConstParm, ExportObject, OutParm)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UStaticMesh* UFoliageStatistics::FoliageOverlappingBoxCount(struct FBox* Box, int32 ReturnValue)
+int32 UFoliageStatistics::FoliageOverlappingBoxCount(class UObject** WorldContextObject, class UStaticMesh** StaticMesh, struct FBox* Box)
 {
 	static class UFunction* Func = nullptr;
 
@@ -383,7 +392,6 @@ class UStaticMesh* UFoliageStatistics::FoliageOverlappingBoxCount(struct FBox* B
 
 	Params::UFoliageStatistics_FoliageOverlappingBoxCount_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -392,6 +400,12 @@ class UStaticMesh* UFoliageStatistics::FoliageOverlappingBoxCount(struct FBox* B
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
+	if (StaticMesh != nullptr)
+		*StaticMesh = Parms.StaticMesh;
 
 	if (Box != nullptr)
 		*Box = std::move(Parms.Box);
@@ -460,14 +474,14 @@ class AInteractiveFoliageActor* AInteractiveFoliageActor::GetDefaultObj()
 // Function Foliage.InteractiveFoliageActor.CapsuleTouched
 // (Final, Native, Protected, HasOutParams)
 // Parameters:
-// class UPrimitiveComponent*         OverlappedComp                                                   (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// class AActor*                      Other                                                            (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// class UPrimitiveComponent*         OtherComp                                                        (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// int32                              OtherBodyIndex                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// bool                               bFromSweep                                                       (Edit, ExportObject, Net, EditFixedSize, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// struct FHitResult                  OverlapInfo                                                      (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UPrimitiveComponent*         OverlappedComp                                                   (ZeroConstructor, Transient, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      Other                                                            (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnInstance, EditConst)
+// class UPrimitiveComponent*         OtherComp                                                        (ConstParm, BlueprintVisible, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// int32                              OtherBodyIndex                                                   (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// bool                               bFromSweep                                                       (ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FHitResult                  OverlapInfo                                                      (Edit, ConstParm, EditFixedSize, Parm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FHitResult AInteractiveFoliageActor::CapsuleTouched(class UPrimitiveComponent* OverlappedComp)
+bool AInteractiveFoliageActor::CapsuleTouched(class UPrimitiveComponent* OverlappedComp, class AActor* Other, const struct FHitResult& OverlapInfo)
 {
 	static class UFunction* Func = nullptr;
 
@@ -477,6 +491,8 @@ struct FHitResult AInteractiveFoliageActor::CapsuleTouched(class UPrimitiveCompo
 	Params::AInteractiveFoliageActor_CapsuleTouched_Params Parms{};
 
 	Parms.OverlappedComp = OverlappedComp;
+	Parms.Other = Other;
+	Parms.OverlapInfo = OverlapInfo;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -578,9 +594,9 @@ class UProceduralFoliageSpawner* UProceduralFoliageSpawner::GetDefaultObj()
 // Function Foliage.ProceduralFoliageSpawner.Simulate
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              NumSteps                                                         (BlueprintVisible, ExportObject, ReturnParm, Config, InstancedReference, SubobjectReference)
+// int32                              NumSteps                                                         (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 
-int32 UProceduralFoliageSpawner::Simulate()
+void UProceduralFoliageSpawner::Simulate(int32 NumSteps)
 {
 	static class UFunction* Func = nullptr;
 
@@ -589,6 +605,7 @@ int32 UProceduralFoliageSpawner::Simulate()
 
 	Params::UProceduralFoliageSpawner_Simulate_Params Parms{};
 
+	Parms.NumSteps = NumSteps;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -597,8 +614,6 @@ int32 UProceduralFoliageSpawner::Simulate()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 

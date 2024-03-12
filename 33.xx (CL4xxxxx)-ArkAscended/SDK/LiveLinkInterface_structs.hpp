@@ -42,8 +42,8 @@ public:
 struct FLiveLinkSubjectKey
 {
 public:
-	struct FGuid                                 Source;                                            // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config)
-	struct FLiveLinkSubjectName                  SubjectName;                                       // 0x10(0x8)(Edit, Net, ReturnParm, DisableEditOnInstance, EditConst)
+	struct FGuid                                 Source;                                            // 0x0(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config)
+	struct FLiveLinkSubjectName                  SubjectName;                                       // 0x10(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
 };
 
 // 0x38 (0x38 - 0x0)
@@ -51,12 +51,12 @@ public:
 struct FLiveLinkSubjectPreset
 {
 public:
-	struct FLiveLinkSubjectKey                   Key;                                               // 0x0(0x18)(BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+	struct FLiveLinkSubjectKey                   Key;                                               // 0x0(0x18)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance)
 	class UClass*                                Role;                                              // 0x18(0x8)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor)
-	class ULiveLinkSubjectSettings*              Settings;                                          // 0x20(0x8)(Edit, Net, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
-	class ULiveLinkVirtualSubject*               VirtualSubject;                                    // 0x28(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bEnabled;                                          // 0x30(0x1)(Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-	uint8                                        Pad_D4E[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	class ULiveLinkSubjectSettings*              Settings;                                          // 0x20(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+	class ULiveLinkVirtualSubject*               VirtualSubject;                                    // 0x28(0x8)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bEnabled;                                          // 0x30(0x1)(Edit, ConstParm, Parm, ZeroConstructor, Transient, EditConst, GlobalConfig)
+	uint8                                        Pad_1051[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -64,7 +64,7 @@ public:
 struct FLiveLinkSourceHandle
 {
 public:
-	uint8                                        Pad_D4F[0x18];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1052[0x18];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -72,7 +72,7 @@ public:
 struct FLiveLinkBaseStaticData
 {
 public:
-	TArray<class FName>                          PropertyNames;                                     // 0x0(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<class FName>                          PropertyNames;                                     // 0x0(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x20 (0x30 - 0x10)
@@ -80,8 +80,8 @@ public:
 struct FLiveLinkSkeletonStaticData : public FLiveLinkBaseStaticData
 {
 public:
-	TArray<class FName>                          BoneNames;                                         // 0x10(0x10)(Edit, ConstParm, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	TArray<int32>                                BoneParents;                                       // 0x20(0x10)(ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	TArray<class FName>                          BoneNames;                                         // 0x10(0x10)(BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<int32>                                BoneParents;                                       // 0x20(0x10)(Edit, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -89,8 +89,8 @@ public:
 struct FLiveLinkWorldTime
 {
 public:
-	double                                       Time;                                              // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-	double                                       Offset;                                            // 0x8(0x8)(Edit, ExportObject, Parm, Transient, Config, DisableEditOnInstance, EditConst)
+	double                                       Time;                                              // 0x0(0x8)(Edit, ConstParm, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+	double                                       Offset;                                            // 0x8(0x8)(Edit, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst)
 };
 
 // 0x60 (0x60 - 0x0)
@@ -98,8 +98,8 @@ public:
 struct FLiveLinkMetaData
 {
 public:
-	TMap<class FName, class FString>             StringMetaData;                                    // 0x0(0x50)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	struct FQualifiedFrameTime                   SceneTime;                                         // 0x50(0x10)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	TMap<class FName, class FString>             StringMetaData;                                    // 0x0(0x50)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	struct FQualifiedFrameTime                   SceneTime;                                         // 0x50(0x10)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, InstancedReference, SubobjectReference)
 };
 
 // 0xA0 (0xA0 - 0x0)
@@ -107,10 +107,10 @@ public:
 struct FLiveLinkBaseFrameData
 {
 public:
-	struct FLiveLinkWorldTime                    WorldTime;                                         // 0x0(0x10)(Edit, ExportObject, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	struct FLiveLinkMetaData                     MetaData;                                          // 0x10(0x60)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	TArray<float>                                PropertyValues;                                    // 0x70(0x10)(Edit, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_D56[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	struct FLiveLinkWorldTime                    WorldTime;                                         // 0x0(0x10)(BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	struct FLiveLinkMetaData                     MetaData;                                          // 0x10(0x60)(ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnInstance, GlobalConfig)
+	TArray<float>                                PropertyValues;                                    // 0x70(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_105F[0x20];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0xB0 - 0xA0)
@@ -118,7 +118,7 @@ public:
 struct FLiveLinkAnimationFrameData : public FLiveLinkBaseFrameData
 {
 public:
-	TArray<struct FTransform>                    Transforms;                                        // 0xA0(0x10)(Edit, Net, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FTransform>                    Transforms;                                        // 0xA0(0x10)(ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -126,7 +126,7 @@ public:
 struct FLiveLinkBaseBlueprintData
 {
 public:
-	uint8                                        Pad_D57[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1062[0x8];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xB0 (0xB8 - 0x8)
@@ -134,8 +134,8 @@ public:
 struct FLiveLinkBasicBlueprintData : public FLiveLinkBaseBlueprintData
 {
 public:
-	struct FLiveLinkBaseStaticData               StaticData;                                        // 0x8(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	struct FLiveLinkBaseFrameData                FrameData;                                         // 0x18(0xA0)(Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	struct FLiveLinkBaseStaticData               StaticData;                                        // 0x8(0x10)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	struct FLiveLinkBaseFrameData                FrameData;                                         // 0x18(0xA0)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x18 - 0x10)
@@ -143,10 +143,10 @@ public:
 struct FLiveLinkTransformStaticData : public FLiveLinkBaseStaticData
 {
 public:
-	bool                                         bIsLocationSupported;                              // 0x10(0x1)(BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	bool                                         bIsRotationSupported;                              // 0x11(0x1)(Edit, BlueprintVisible, Net, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	bool                                         bIsScaleSupported;                                 // 0x12(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	uint8                                        Pad_D5C[0x5];                                      // Fixing Size Of Struct > TateDumper <
+	bool                                         bIsLocationSupported;                              // 0x10(0x1)(Edit, ConstParm, BlueprintReadOnly, Parm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	bool                                         bIsRotationSupported;                              // 0x11(0x1)(ExportObject, Parm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	bool                                         bIsScaleSupported;                                 // 0x12(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1068[0x5];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x28 - 0x18)
@@ -154,16 +154,16 @@ public:
 struct FLiveLinkCameraStaticData : public FLiveLinkTransformStaticData
 {
 public:
-	bool                                         bIsFieldOfViewSupported;                           // 0x18(0x1)(Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	bool                                         bIsAspectRatioSupported;                           // 0x19(0x1)(BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	bool                                         bIsFocalLengthSupported;                           // 0x1A(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	bool                                         bIsProjectionModeSupported;                        // 0x1B(0x1)(Edit, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	float                                        FilmBackWidth;                                     // 0x1C(0x4)(Edit, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	float                                        FilmBackHeight;                                    // 0x20(0x4)(Edit, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	bool                                         bIsApertureSupported;                              // 0x24(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	bool                                         bIsFocusDistanceSupported;                         // 0x25(0x1)(ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	bool                                         bIsDepthOfFieldSupported;                          // 0x26(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	uint8                                        Pad_D75[0x1];                                      // Fixing Size Of Struct > TateDumper <
+	bool                                         bIsFieldOfViewSupported;                           // 0x18(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	bool                                         bIsAspectRatioSupported;                           // 0x19(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	bool                                         bIsFocalLengthSupported;                           // 0x1A(0x1)(ConstParm, Net, EditFixedSize, Parm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	bool                                         bIsProjectionModeSupported;                        // 0x1B(0x1)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	float                                        FilmBackWidth;                                     // 0x1C(0x4)(BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	float                                        FilmBackHeight;                                    // 0x20(0x4)(BlueprintVisible, EditFixedSize, Parm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	bool                                         bIsApertureSupported;                              // 0x24(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	bool                                         bIsFocusDistanceSupported;                         // 0x25(0x1)(Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	bool                                         bIsDepthOfFieldSupported;                          // 0x26(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	uint8                                        Pad_106E[0x1];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x60 (0x100 - 0xA0)
@@ -179,13 +179,13 @@ public:
 struct FLiveLinkCameraFrameData : public FLiveLinkTransformFrameData
 {
 public:
-	float                                        FieldOfView;                                       // 0x100(0x4)(ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	float                                        AspectRatio;                                       // 0x104(0x4)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        FocalLength;                                       // 0x108(0x4)(Net, EditFixedSize, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        Aperture;                                          // 0x10C(0x4)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	float                                        FocusDistance;                                     // 0x110(0x4)(ExportObject, BlueprintReadOnly, EditFixedSize, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ELiveLinkCameraProjectionMode     ProjectionMode;                                    // 0x114(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_D79[0xB];                                      // Fixing Size Of Struct > TateDumper <
+	float                                        FieldOfView;                                       // 0x100(0x4)(Edit, ExportObject, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	float                                        AspectRatio;                                       // 0x104(0x4)(ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        FocalLength;                                       // 0x108(0x4)(ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        Aperture;                                          // 0x10C(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        FocusDistance;                                     // 0x110(0x4)(Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ELiveLinkCameraProjectionMode     ProjectionMode;                                    // 0x114(0x1)(Edit, ExportObject, Net, ZeroConstructor, Transient, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1076[0xB];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x148 (0x150 - 0x8)
@@ -193,8 +193,8 @@ public:
 struct FLiveLinkCameraBlueprintData : public FLiveLinkBaseBlueprintData
 {
 public:
-	struct FLiveLinkCameraStaticData             StaticData;                                        // 0x8(0x28)(Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	struct FLiveLinkCameraFrameData              FrameData;                                         // 0x30(0x120)(Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	struct FLiveLinkCameraStaticData             StaticData;                                        // 0x8(0x28)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	struct FLiveLinkCameraFrameData              FrameData;                                         // 0x30(0x120)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x28 - 0x18)
@@ -202,16 +202,16 @@ public:
 struct FLiveLinkLightStaticData : public FLiveLinkTransformStaticData
 {
 public:
-	bool                                         bIsTemperatureSupported;                           // 0x18(0x1)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	bool                                         bIsIntensitySupported;                             // 0x19(0x1)(ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	bool                                         bIsLightColorSupported;                            // 0x1A(0x1)(ConstParm, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	bool                                         bIsInnerConeAngleSupported;                        // 0x1B(0x1)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	bool                                         bIsOuterConeAngleSupported;                        // 0x1C(0x1)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	bool                                         bIsAttenuationRadiusSupported;                     // 0x1D(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	bool                                         bIsSourceLenghtSupported;                          // 0x1E(0x1)(Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	bool                                         bIsSourceRadiusSupported;                          // 0x1F(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	bool                                         bIsSoftSourceRadiusSupported;                      // 0x20(0x1)(Edit, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	uint8                                        Pad_D7D[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	bool                                         bIsTemperatureSupported;                           // 0x18(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	bool                                         bIsIntensitySupported;                             // 0x19(0x1)(Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	bool                                         bIsLightColorSupported;                            // 0x1A(0x1)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	bool                                         bIsInnerConeAngleSupported;                        // 0x1B(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	bool                                         bIsOuterConeAngleSupported;                        // 0x1C(0x1)(Edit, ExportObject, EditFixedSize, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	bool                                         bIsAttenuationRadiusSupported;                     // 0x1D(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	bool                                         bIsSourceLenghtSupported;                          // 0x1E(0x1)(BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	bool                                         bIsSourceRadiusSupported;                          // 0x1F(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	bool                                         bIsSoftSourceRadiusSupported;                      // 0x20(0x1)(BlueprintReadOnly, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	uint8                                        Pad_107F[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x30 (0x130 - 0x100)
@@ -219,16 +219,16 @@ public:
 struct FLiveLinkLightFrameData : public FLiveLinkTransformFrameData
 {
 public:
-	float                                        Temperature;                                       // 0x100(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Config)
-	float                                        Intensity;                                         // 0x104(0x4)(Edit, BlueprintVisible, Parm, ZeroConstructor, Config)
-	struct FColor                                LightColor;                                        // 0x108(0x4)(Edit, ConstParm, ExportObject, Parm, ZeroConstructor, Config)
-	float                                        InnerConeAngle;                                    // 0x10C(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Config)
-	float                                        OuterConeAngle;                                    // 0x110(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, Config)
-	float                                        AttenuationRadius;                                 // 0x114(0x4)(ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-	float                                        SourceRadius;                                      // 0x118(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, Config)
-	float                                        SoftSourceRadius;                                  // 0x11C(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	float                                        SourceLength;                                      // 0x120(0x4)(Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	uint8                                        Pad_D81[0xC];                                      // Fixing Size Of Struct > TateDumper <
+	float                                        Temperature;                                       // 0x100(0x4)(BlueprintReadOnly, OutParm, ZeroConstructor, Config)
+	float                                        Intensity;                                         // 0x104(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Config)
+	struct FColor                                LightColor;                                        // 0x108(0x4)(Edit, OutParm, ZeroConstructor, Config)
+	float                                        InnerConeAngle;                                    // 0x10C(0x4)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Config)
+	float                                        OuterConeAngle;                                    // 0x110(0x4)(BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Config)
+	float                                        AttenuationRadius;                                 // 0x114(0x4)(Edit, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+	float                                        SourceRadius;                                      // 0x118(0x4)(Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, Config)
+	float                                        SoftSourceRadius;                                  // 0x11C(0x4)(Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	float                                        SourceLength;                                      // 0x120(0x4)(ConstParm, ExportObject, Parm, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1080[0xC];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x158 (0x160 - 0x8)
@@ -236,8 +236,8 @@ public:
 struct FLiveLinkLightBlueprintData : public FLiveLinkBaseBlueprintData
 {
 public:
-	struct FLiveLinkLightStaticData              StaticData;                                        // 0x8(0x28)(Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	struct FLiveLinkLightFrameData               FrameData;                                         // 0x30(0x130)(Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	struct FLiveLinkLightStaticData              StaticData;                                        // 0x8(0x28)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	struct FLiveLinkLightFrameData               FrameData;                                         // 0x30(0x130)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, InstancedReference, SubobjectReference)
 };
 
 // 0x30 (0x30 - 0x0)
@@ -245,9 +245,9 @@ public:
 struct FLiveLinkSourcePreset
 {
 public:
-	struct FGuid                                 Guid;                                              // 0x0(0x10)(Edit, BlueprintVisible, ExportObject, Parm, Transient, DisableEditOnInstance)
-	class ULiveLinkSourceSettings*               Settings;                                          // 0x10(0x8)(Edit, Net, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
-	class FText                                  SourceType;                                        // 0x18(0x18)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FGuid                                 Guid;                                              // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance)
+	class ULiveLinkSourceSettings*               Settings;                                          // 0x10(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+	class FText                                  SourceType;                                        // 0x18(0x18)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -255,8 +255,8 @@ public:
 struct FLiveLinkRefSkeleton
 {
 public:
-	TArray<class FName>                          BoneNames;                                         // 0x0(0x10)(Edit, ConstParm, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	TArray<int32>                                BoneParents;                                       // 0x10(0x10)(ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	TArray<class FName>                          BoneNames;                                         // 0x0(0x10)(BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<int32>                                BoneParents;                                       // 0x10(0x10)(Edit, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -264,7 +264,7 @@ public:
 struct FLiveLinkSubjectRepresentation
 {
 public:
-	struct FLiveLinkSubjectName                  Subject;                                           // 0x0(0x8)(ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	struct FLiveLinkSubjectName                  Subject;                                           // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 	class UClass*                                Role;                                              // 0x8(0x8)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor)
 };
 
@@ -273,8 +273,8 @@ public:
 struct FLiveLinkTransformBlueprintData : public FLiveLinkBaseBlueprintData
 {
 public:
-	struct FLiveLinkTransformStaticData          StaticData;                                        // 0x8(0x18)(Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	struct FLiveLinkTransformFrameData           FrameData;                                         // 0x20(0x100)(Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	struct FLiveLinkTransformStaticData          StaticData;                                        // 0x8(0x18)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	struct FLiveLinkTransformFrameData           FrameData;                                         // 0x20(0x100)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, InstancedReference, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -282,7 +282,7 @@ public:
 struct FLiveLinkCurveConversionSettings
 {
 public:
-	TMap<class FString, struct FSoftObjectPath>  CurveConversionAssetMap;                           // 0x0(0x50)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	TMap<class FString, struct FSoftObjectPath>  CurveConversionAssetMap;                           // 0x0(0x50)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
 };
 
 // 0x60 (0x60 - 0x0)
@@ -290,29 +290,29 @@ public:
 struct FLiveLinkSourceBufferManagementSettings
 {
 public:
-	bool                                         bValidEngineTimeEnabled;                           // 0x0(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	uint8                                        Pad_D9C[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        ValidEngineTime;                                   // 0x4(0x4)(BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	float                                        EngineTimeOffset;                                  // 0x8(0x4)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	uint8                                        Pad_D9E[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	double                                       EngineTimeClockOffset;                             // 0x10(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	double                                       SmoothEngineTimeOffset;                            // 0x18(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	bool                                         bGenerateSubFrame;                                 // 0x20(0x1)(Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	uint8                                        Pad_DA2[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FFrameRate                            DetectedFrameRate;                                 // 0x24(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	bool                                         bUseTimecodeSmoothLatest;                          // 0x2C(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	uint8                                        Pad_DA3[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FFrameRate                            SourceTimecodeFrameRate;                           // 0x30(0x8)(Edit, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	bool                                         bValidTimecodeFrameEnabled;                        // 0x38(0x1)(Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	uint8                                        Pad_DA5[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	int32                                        ValidTimecodeFrame;                                // 0x3C(0x4)(Edit, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	float                                        TimecodeFrameOffset;                               // 0x40(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	uint8                                        Pad_DA7[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	double                                       TimecodeClockOffset;                               // 0x48(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	int32                                        LatestOffset;                                      // 0x50(0x4)(BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	int32                                        MaxNumberOfFrameToBuffered;                        // 0x54(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	bool                                         bKeepAtLeastOneFrame;                              // 0x58(0x1)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	uint8                                        Pad_DA9[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	bool                                         bValidEngineTimeEnabled;                           // 0x0(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	uint8                                        Pad_108C[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        ValidEngineTime;                                   // 0x4(0x4)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	float                                        EngineTimeOffset;                                  // 0x8(0x4)(ConstParm, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	uint8                                        Pad_108E[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	double                                       EngineTimeClockOffset;                             // 0x10(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	double                                       SmoothEngineTimeOffset;                            // 0x18(0x8)(ConstParm, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	bool                                         bGenerateSubFrame;                                 // 0x20(0x1)(ExportObject, Net, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1092[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FFrameRate                            DetectedFrameRate;                                 // 0x24(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	bool                                         bUseTimecodeSmoothLatest;                          // 0x2C(0x1)(Edit, BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1097[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FFrameRate                            SourceTimecodeFrameRate;                           // 0x30(0x8)(BlueprintVisible, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	bool                                         bValidTimecodeFrameEnabled;                        // 0x38(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	uint8                                        Pad_109A[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	int32                                        ValidTimecodeFrame;                                // 0x3C(0x4)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	float                                        TimecodeFrameOffset;                               // 0x40(0x4)(Edit, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	uint8                                        Pad_109C[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	double                                       TimecodeClockOffset;                               // 0x48(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	int32                                        LatestOffset;                                      // 0x50(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	int32                                        MaxNumberOfFrameToBuffered;                        // 0x54(0x4)(Edit, EditFixedSize, Parm, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	bool                                         bKeepAtLeastOneFrame;                              // 0x58(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	uint8                                        Pad_109F[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -320,9 +320,9 @@ public:
 struct FLiveLinkSourceDebugInfo
 {
 public:
-	struct FLiveLinkSubjectName                  SubjectName;                                       // 0x0(0x8)(Edit, Net, ReturnParm, DisableEditOnInstance, EditConst)
-	int32                                        SnapshotIndex;                                     // 0x8(0x4)(Edit, ConstParm, BlueprintReadOnly, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-	int32                                        NumberOfBufferAtSnapshot;                          // 0xC(0x4)(ConstParm, BlueprintVisible, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+	struct FLiveLinkSubjectName                  SubjectName;                                       // 0x0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
+	int32                                        SnapshotIndex;                                     // 0x8(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	int32                                        NumberOfBufferAtSnapshot;                          // 0xC(0x4)(Edit, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -331,7 +331,7 @@ struct FLiveLinkTimeSynchronizationSettings
 {
 public:
 	struct FFrameRate                            FrameRate;                                         // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm)
-	struct FFrameNumber                          FrameOffset;                                       // 0x8(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+	struct FFrameNumber                          FrameOffset;                                       // 0x8(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -339,9 +339,9 @@ public:
 struct FLiveLinkInterpolationSettings
 {
 public:
-	bool                                         bUseInterpolation;                                 // 0x0(0x1)(Edit, BlueprintVisible, ExportObject, Net, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-	uint8                                        Pad_DB6[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        InterpolationOffset;                               // 0x4(0x4)(ConstParm, Net, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+	bool                                         bUseInterpolation;                                 // 0x0(0x1)(BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	uint8                                        Pad_10A8[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        InterpolationOffset;                               // 0x4(0x4)(Edit, BlueprintVisible, Parm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -349,8 +349,8 @@ public:
 struct FLiveLinkTime
 {
 public:
-	double                                       WorldTime;                                         // 0x0(0x8)(Edit, ExportObject, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	struct FQualifiedFrameTime                   SceneTime;                                         // 0x8(0x10)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	double                                       WorldTime;                                         // 0x0(0x8)(BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	struct FQualifiedFrameTime                   SceneTime;                                         // 0x8(0x10)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, InstancedReference, SubobjectReference)
 };
 
 // 0x0 (0x8 - 0x8)
@@ -365,8 +365,8 @@ public:
 struct FLiveLinkTimeCode_Base_DEPRECATED
 {
 public:
-	int32                                        Seconds;                                           // 0x0(0x4)(ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-	int32                                        Frames;                                            // 0x4(0x4)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
+	int32                                        Seconds;                                           // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, SubobjectReference)
+	int32                                        Frames;                                            // 0x4(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, SubobjectReference)
 	struct FLiveLinkFrameRate                    FrameRate;                                         // 0x8(0x8)(ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm)
 };
 
@@ -382,8 +382,8 @@ public:
 struct FLiveLinkCurveElement
 {
 public:
-	class FName                                  CurveName;                                         // 0x0(0x8)(BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-	float                                        CurveValue;                                        // 0x8(0x4)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	class FName                                  CurveName;                                         // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+	float                                        CurveValue;                                        // 0x8(0x4)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x90 (0x90 - 0x0)
@@ -391,10 +391,10 @@ public:
 struct FLiveLinkFrameData
 {
 public:
-	TArray<struct FTransform>                    Transforms;                                        // 0x0(0x10)(Edit, Net, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
-	TArray<struct FLiveLinkCurveElement>         CurveElements;                                     // 0x10(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-	struct FLiveLinkWorldTime                    WorldTime;                                         // 0x20(0x10)(Edit, ExportObject, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	struct FLiveLinkMetaData                     MetaData;                                          // 0x30(0x60)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+	TArray<struct FTransform>                    Transforms;                                        // 0x0(0x10)(ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FLiveLinkCurveElement>         CurveElements;                                     // 0x10(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	struct FLiveLinkWorldTime                    WorldTime;                                         // 0x20(0x10)(BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	struct FLiveLinkMetaData                     MetaData;                                          // 0x30(0x60)(ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnInstance, GlobalConfig)
 };
 
 // 0x70 (0x70 - 0x0)
@@ -402,10 +402,10 @@ public:
 struct FSubjectMetadata
 {
 public:
-	TMap<class FName, class FString>             StringMetaData;                                    // 0x0(0x50)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	struct FTimecode                             SceneTimecode;                                     // 0x50(0x14)(Edit, ConstParm, BlueprintVisible, EditFixedSize, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-	struct FFrameRate                            SceneFramerate;                                    // 0x64(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-	uint8                                        Pad_DC7[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	TMap<class FName, class FString>             StringMetaData;                                    // 0x0(0x50)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	struct FTimecode                             SceneTimecode;                                     // 0x50(0x14)(ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	struct FFrameRate                            SceneFramerate;                                    // 0x64(0x8)(ConstParm, Net, Parm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	uint8                                        Pad_10BB[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x160 (0x160 - 0x0)
@@ -413,7 +413,7 @@ public:
 struct FCachedSubjectFrame
 {
 public:
-	uint8                                        Pad_DC8[0x160];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_10BD[0x160];                                   // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x20 (0x20 - 0x0)
@@ -421,7 +421,7 @@ public:
 struct FLiveLinkTransform
 {
 public:
-	uint8                                        Pad_DC9[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_10BE[0x20];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x18 - 0x8)
@@ -429,7 +429,7 @@ public:
 struct FSubjectFrameHandle : public FLiveLinkBaseBlueprintData
 {
 public:
-	uint8                                        Pad_DCB[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_10C0[0x10];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 }

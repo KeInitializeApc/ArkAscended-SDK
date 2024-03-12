@@ -163,9 +163,9 @@ enum class EFastArraySerializerDeltaFlags : uint8
 struct FNetAnalyticsDataConfig
 {
 public:
-	class FName                                  DataName;                                          // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	bool                                         bEnabled;                                          // 0x8(0x1)(Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
-	uint8                                        Pad_1DCB[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	class FName                                  DataName;                                          // 0x0(0x8)(Edit, ConstParm, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         bEnabled;                                          // 0x8(0x1)(Edit, ConstParm, Parm, ZeroConstructor, Transient, EditConst, GlobalConfig)
+	uint8                                        Pad_23F1[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -173,8 +173,8 @@ public:
 struct FStateStruct
 {
 public:
-	uint8                                        Pad_1DCF[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	class FString                                StateName;                                         // 0x8(0x10)(Edit, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_23F2[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	class FString                                StateName;                                         // 0x8(0x10)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x30 - 0x18)
@@ -182,13 +182,13 @@ public:
 struct FEscalationState : public FStateStruct
 {
 public:
-	bool                                         bLogEscalate;                                      // 0x18(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
-	bool                                         bDormant;                                          // 0x19(0x1)(Edit, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int16                                        CooloffTime;                                       // 0x1A(0x2)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
-	int16                                        AutoEscalateTime;                                  // 0x1C(0x2)(ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
-	int8                                         HighestTimePeriod;                                 // 0x1E(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1DD5[0x1];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<int8>                                 AllTimePeriods;                                    // 0x20(0x10)(Edit, ConstParm, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bLogEscalate;                                      // 0x18(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Config, EditConst, GlobalConfig)
+	bool                                         bDormant;                                          // 0x19(0x1)(BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int16                                        CooloffTime;                                       // 0x1A(0x2)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, EditConst, GlobalConfig)
+	int16                                        AutoEscalateTime;                                  // 0x1C(0x2)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Config, EditConst, GlobalConfig)
+	int8                                         HighestTimePeriod;                                 // 0x1E(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_23F6[0x1];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<int8>                                 AllTimePeriods;                                    // 0x20(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x40 - 0x30)
@@ -196,15 +196,15 @@ public:
 struct FNetFaultState : public FEscalationState
 {
 public:
-	bool                                         bCloseConnection;                                  // 0x30(0x1)(ConstParm, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1DD8[0x1];                                     // Fixing Size After Last Property  > TateDumper <
-	int16                                        EscalateQuotaFaultsPerPeriod;                      // 0x32(0x2)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int8                                         EscalateQuotaFaultPercentPerPeriod;                // 0x34(0x1)(Edit, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1DDB[0x1];                                     // Fixing Size After Last Property  > TateDumper <
-	int16                                        DescalateQuotaFaultsPerPeriod;                     // 0x36(0x2)(Edit, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int8                                         DescalateQuotaFaultPercentPerPeriod;               // 0x38(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int8                                         EscalateQuotaTimePeriod;                           // 0x39(0x1)(Edit, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
-	uint8                                        Pad_1DE0[0x6];                                     // Fixing Size Of Struct > TateDumper <
+	bool                                         bCloseConnection;                                  // 0x30(0x1)(Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_23F9[0x1];                                     // Fixing Size After Last Property  > TateDumper <
+	int16                                        EscalateQuotaFaultsPerPeriod;                      // 0x32(0x2)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int8                                         EscalateQuotaFaultPercentPerPeriod;                // 0x34(0x1)(BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_23FB[0x1];                                     // Fixing Size After Last Property  > TateDumper <
+	int16                                        DescalateQuotaFaultsPerPeriod;                     // 0x36(0x2)(BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int8                                         DescalateQuotaFaultPercentPerPeriod;               // 0x38(0x1)(Edit, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int8                                         EscalateQuotaTimePeriod;                           // 0x39(0x1)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, Config, EditConst, GlobalConfig)
+	uint8                                        Pad_23FE[0x6];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xC (0xC - 0x0)
@@ -212,9 +212,9 @@ public:
 struct FFastArraySerializerItem
 {
 public:
-	int32                                        ReplicationID;                                     // 0x0(0x4)(Edit, ConstParm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        ReplicationKey;                                    // 0x4(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        MostRecentArrayReplicationKey;                     // 0x8(0x4)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        ReplicationID;                                     // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        ReplicationKey;                                    // 0x4(0x4)(ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        MostRecentArrayReplicationKey;                     // 0x8(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x108 (0x108 - 0x0)
@@ -222,11 +222,11 @@ public:
 struct FFastArraySerializer
 {
 public:
-	uint8                                        Pad_1DE5[0x54];                                    // Fixing Size After Last Property  > TateDumper <
-	int32                                        ArrayReplicationKey;                               // 0x54(0x4)(Edit, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1DE7[0xA8];                                    // Fixing Size After Last Property  > TateDumper <
-	enum class EFastArraySerializerDeltaFlags    DeltaFlags;                                        // 0x100(0x1)(Edit, ConstParm, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1DE8[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_2401[0x54];                                    // Fixing Size After Last Property  > TateDumper <
+	int32                                        ArrayReplicationKey;                               // 0x54(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_2403[0xA8];                                    // Fixing Size After Last Property  > TateDumper <
+	enum class EFastArraySerializerDeltaFlags    DeltaFlags;                                        // 0x100(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_2404[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 }

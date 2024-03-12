@@ -19,7 +19,7 @@ namespace SDK
 struct FImgMediaSourceCustomizationSequenceProxy
 {
 public:
-	uint8                                        Pad_168D[0x1];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1A72[0x1];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 }

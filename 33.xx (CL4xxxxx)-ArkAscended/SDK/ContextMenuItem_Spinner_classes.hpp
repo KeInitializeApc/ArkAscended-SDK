@@ -14,11 +14,11 @@ namespace SDK
 class UContextMenuItem_Spinner_C : public UContextMenuItem_Spinner
 {
 public:
-	class UCustomButtonWidget*                   ButtonDecrease;                                    // 0x460(0x8)(BlueprintReadOnly, Net, ZeroConstructor, Config, SubobjectReference)
-	class UCustomButtonWidget*                   ButtonIncrease;                                    // 0x468(0x8)(ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Config, SubobjectReference)
-	class UImage*                                Image_0;                                           // 0x470(0x8)(Edit, ConstParm, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, RepNotify)
-	class UImage*                                Image_1;                                           // 0x478(0x8)(Edit, ConstParm, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, Interp)
-	class UEditableText*                         TextInput;                                         // 0x480(0x8)(EditFixedSize, ZeroConstructor, Config, SubobjectReference)
+	class UCustomButtonWidget*                   ButtonDecrease;                                    // 0x460(0x8)(Edit, Parm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+	class UCustomButtonWidget*                   ButtonIncrease;                                    // 0x468(0x8)(Edit, ExportObject, Parm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+	class UImage*                                Image_0;                                           // 0x470(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, RepNotify)
+	class UImage*                                Image_1;                                           // 0x478(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, Interp)
+	class UEditableText*                         TextInput;                                         // 0x480(0x8)(Edit, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UContextMenuItem_Spinner_C* GetDefaultObj();

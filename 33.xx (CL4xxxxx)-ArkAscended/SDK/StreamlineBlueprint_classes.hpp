@@ -18,10 +18,10 @@ public:
 	static class UClass* StaticClass();
 	static class UStreamlineLibrary* GetDefaultObj();
 
-	enum class EUStreamlineFeature QueryStreamlineFeatureSupport(enum class EUStreamlineFeatureSupport ReturnValue);
-	enum class EUStreamlineFeature IsStreamlineFeatureSupported(bool ReturnValue);
-	enum class EUStreamlineFeature GetStreamlineFeatureInformation(const struct FStreamlineFeatureRequirements& ReturnValue);
-	bool BreakStreamlineFeatureRequirements(enum class EUStreamlineFeatureRequirementsFlags* Requirements);
+	enum class EUStreamlineFeatureSupport QueryStreamlineFeatureSupport();
+	bool IsStreamlineFeatureSupported();
+	struct FStreamlineFeatureRequirements GetStreamlineFeatureInformation();
+	bool BreakStreamlineFeatureRequirements();
 };
 
 // 0x0 (0x28 - 0x28)
@@ -34,13 +34,13 @@ public:
 	static class UStreamlineLibraryDLSSG* GetDefaultObj();
 
 	enum class EUStreamlineDLSSGMode SetDLSSGMode();
-	void QueryDLSSGSupport(enum class EUStreamlineFeatureSupport ReturnValue);
-	void IsDLSSGSupported(bool ReturnValue);
-	enum class EUStreamlineDLSSGMode IsDLSSGModeSupported(bool ReturnValue);
-	void GetSupportedDLSSGModes(const TArray<enum class EUStreamlineDLSSGMode>& ReturnValue);
-	void GetDLSSGMode(enum class EUStreamlineDLSSGMode ReturnValue);
+	enum class EUStreamlineFeatureSupport QueryDLSSGSupport();
+	bool IsDLSSGSupported();
+	bool IsDLSSGModeSupported();
+	TArray<enum class EUStreamlineDLSSGMode> GetSupportedDLSSGModes();
+	enum class EUStreamlineDLSSGMode GetDLSSGMode();
 	int32 GetDLSSGFrameTiming();
-	void GetDefaultDLSSGMode(enum class EUStreamlineDLSSGMode ReturnValue);
+	enum class EUStreamlineDLSSGMode GetDefaultDLSSGMode();
 };
 
 // 0x0 (0x28 - 0x28)
@@ -52,14 +52,14 @@ public:
 	static class UClass* StaticClass();
 	static class UStreamlineLibraryReflex* GetDefaultObj();
 
-	void SetReflexMode(enum class EUStreamlineReflexMode Mode);
-	void QueryReflexSupport(enum class EUStreamlineFeatureSupport ReturnValue);
-	void IsReflexSupported(bool ReturnValue);
-	void GetRenderLatencyInMs(float ReturnValue);
-	void GetReflexMode(enum class EUStreamlineReflexMode ReturnValue);
-	void GetGameToRenderLatencyInMs(float ReturnValue);
-	void GetGameLatencyInMs(float ReturnValue);
-	void GetDefaultReflexMode(enum class EUStreamlineReflexMode ReturnValue);
+	void SetReflexMode(enum class EUStreamlineReflexMode* Mode);
+	enum class EUStreamlineFeatureSupport QueryReflexSupport();
+	bool IsReflexSupported();
+	float GetRenderLatencyInMs();
+	enum class EUStreamlineReflexMode GetReflexMode();
+	float GetGameToRenderLatencyInMs();
+	float GetGameLatencyInMs();
+	enum class EUStreamlineReflexMode GetDefaultReflexMode();
 };
 
 }

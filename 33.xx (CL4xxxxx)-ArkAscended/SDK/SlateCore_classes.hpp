@@ -14,7 +14,7 @@ namespace SDK
 class USlateWidgetStyleAsset : public UObject
 {
 public:
-	class USlateWidgetStyleContainerBase*        CustomStyle;                                       // 0x28(0x8)(BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	class USlateWidgetStyleContainerBase*        CustomStyle;                                       // 0x28(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class USlateWidgetStyleAsset* GetDefaultObj();
@@ -26,7 +26,7 @@ public:
 class UFontBulkData : public UObject
 {
 public:
-	uint8                                        Pad_1AB1[0x50];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_20AC[0x50];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UFontBulkData* GetDefaultObj();
@@ -71,7 +71,7 @@ public:
 class USlateWidgetStyleContainerBase : public UObject
 {
 public:
-	uint8                                        Pad_1AB9[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_20DE[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class USlateWidgetStyleContainerBase* GetDefaultObj();
@@ -94,8 +94,8 @@ public:
 class USlateThemeManager : public UObject
 {
 public:
-	struct FGuid                                 CurrentThemeId;                                    // 0x28(0x10)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	struct FStyleColorList                       ActiveColors;                                      // 0x38(0x988)(Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	struct FGuid                                 CurrentThemeId;                                    // 0x28(0x10)(Edit, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FStyleColorList                       ActiveColors;                                      // 0x38(0x988)(ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class USlateThemeManager* GetDefaultObj();

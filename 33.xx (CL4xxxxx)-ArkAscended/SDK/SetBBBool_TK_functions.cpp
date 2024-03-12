@@ -43,9 +43,9 @@ class USetBBBool_TK_C* USetBBBool_TK_C::GetDefaultObj()
 // Function SetBBBool_TK.SetBBBool_TK_C.ReceiveExecute
 // (Event, Protected, BlueprintEvent)
 // Parameters:
-// class AActor*                      OwnerActor                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class AActor*                      OwnerActor                                                       (ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void USetBBBool_TK_C::ReceiveExecute(class AActor** OwnerActor)
+class AActor* USetBBBool_TK_C::ReceiveExecute()
 {
 	static class UFunction* Func = nullptr;
 
@@ -57,8 +57,7 @@ void USetBBBool_TK_C::ReceiveExecute(class AActor** OwnerActor)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (OwnerActor != nullptr)
-		*OwnerActor = Parms.OwnerActor;
+	return Parms.ReturnValue;
 
 }
 
@@ -66,10 +65,10 @@ void USetBBBool_TK_C::ReceiveExecute(class AActor** OwnerActor)
 // Function SetBBBool_TK.SetBBBool_TK_C.ExecuteUbergraph_SetBBBool_TK
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-// class AActor*                      K2Node_Event_OwnerActor                                          (Edit, ConstParm, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
+// class AActor*                      K2Node_Event_OwnerActor                                          (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, SubobjectReference)
 
-int32 USetBBBool_TK_C::ExecuteUbergraph_SetBBBool_TK(class AActor** K2Node_Event_OwnerActor)
+void USetBBBool_TK_C::ExecuteUbergraph_SetBBBool_TK(int32* EntryPoint, class AActor** K2Node_Event_OwnerActor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -81,10 +80,11 @@ int32 USetBBBool_TK_C::ExecuteUbergraph_SetBBBool_TK(class AActor** K2Node_Event
 
 	UObject::ProcessEvent(Func, &Parms);
 
+	if (EntryPoint != nullptr)
+		*EntryPoint = Parms.EntryPoint;
+
 	if (K2Node_Event_OwnerActor != nullptr)
 		*K2Node_Event_OwnerActor = Parms.K2Node_Event_OwnerActor;
-
-	return Parms.ReturnValue;
 
 }
 

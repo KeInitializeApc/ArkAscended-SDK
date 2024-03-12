@@ -147,13 +147,13 @@ void UFieldSystemComponent::RemovePersistentFields()
 // Function FieldSystemEngine.FieldSystemComponent.ApplyUniformVectorFalloffForce
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// bool                               Enabled                                                          (Edit, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// struct FVector                     Position                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config)
-// struct FVector                     Direction                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// float                              Radius                                                           (ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// float                              Magnitude                                                        (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
+// bool                               Enabled                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst)
+// struct FVector                     Position                                                         (Edit, ConstParm, ExportObject, ReturnParm, Transient, Config)
+// struct FVector                     Direction                                                        (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// float                              Radius                                                           (Edit, BlueprintVisible, BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// float                              Magnitude                                                        (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
 
-float UFieldSystemComponent::ApplyUniformVectorFalloffForce(struct FVector* Position, float* Radius)
+float UFieldSystemComponent::ApplyUniformVectorFalloffForce(bool* Enabled, float Radius)
 {
 	static class UFunction* Func = nullptr;
 
@@ -162,6 +162,7 @@ float UFieldSystemComponent::ApplyUniformVectorFalloffForce(struct FVector* Posi
 
 	Params::UFieldSystemComponent_ApplyUniformVectorFalloffForce_Params Parms{};
 
+	Parms.Radius = Radius;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -171,11 +172,8 @@ float UFieldSystemComponent::ApplyUniformVectorFalloffForce(struct FVector* Posi
 
 	Func->FunctionFlags = Flgs;
 
-	if (Position != nullptr)
-		*Position = std::move(Parms.Position);
-
-	if (Radius != nullptr)
-		*Radius = Parms.Radius;
+	if (Enabled != nullptr)
+		*Enabled = Parms.Enabled;
 
 	return Parms.ReturnValue;
 
@@ -185,13 +183,13 @@ float UFieldSystemComponent::ApplyUniformVectorFalloffForce(struct FVector* Posi
 // Function FieldSystemEngine.FieldSystemComponent.ApplyStrainField
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// bool                               Enabled                                                          (Edit, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// struct FVector                     Position                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config)
-// float                              Radius                                                           (ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// float                              Magnitude                                                        (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
-// int32                              Iterations                                                       (Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+// bool                               Enabled                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst)
+// struct FVector                     Position                                                         (Edit, ConstParm, ExportObject, ReturnParm, Transient, Config)
+// float                              Radius                                                           (Edit, BlueprintVisible, BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// float                              Magnitude                                                        (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// int32                              Iterations                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-int32 UFieldSystemComponent::ApplyStrainField(struct FVector* Position, float* Radius)
+int32 UFieldSystemComponent::ApplyStrainField(bool* Enabled, float Radius)
 {
 	static class UFunction* Func = nullptr;
 
@@ -200,6 +198,7 @@ int32 UFieldSystemComponent::ApplyStrainField(struct FVector* Position, float* R
 
 	Params::UFieldSystemComponent_ApplyStrainField_Params Parms{};
 
+	Parms.Radius = Radius;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -209,11 +208,8 @@ int32 UFieldSystemComponent::ApplyStrainField(struct FVector* Position, float* R
 
 	Func->FunctionFlags = Flgs;
 
-	if (Position != nullptr)
-		*Position = std::move(Parms.Position);
-
-	if (Radius != nullptr)
-		*Radius = Parms.Radius;
+	if (Enabled != nullptr)
+		*Enabled = Parms.Enabled;
 
 	return Parms.ReturnValue;
 
@@ -223,11 +219,11 @@ int32 UFieldSystemComponent::ApplyStrainField(struct FVector* Position, float* R
 // Function FieldSystemEngine.FieldSystemComponent.ApplyStayDynamicField
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// bool                               Enabled                                                          (Edit, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// struct FVector                     Position                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config)
-// float                              Radius                                                           (ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               Enabled                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst)
+// struct FVector                     Position                                                         (Edit, ConstParm, ExportObject, ReturnParm, Transient, Config)
+// float                              Radius                                                           (Edit, BlueprintVisible, BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
 
-bool UFieldSystemComponent::ApplyStayDynamicField(struct FVector* Position, float* Radius)
+struct FVector UFieldSystemComponent::ApplyStayDynamicField(bool* Enabled, float Radius)
 {
 	static class UFunction* Func = nullptr;
 
@@ -236,6 +232,7 @@ bool UFieldSystemComponent::ApplyStayDynamicField(struct FVector* Position, floa
 
 	Params::UFieldSystemComponent_ApplyStayDynamicField_Params Parms{};
 
+	Parms.Radius = Radius;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -245,11 +242,8 @@ bool UFieldSystemComponent::ApplyStayDynamicField(struct FVector* Position, floa
 
 	Func->FunctionFlags = Flgs;
 
-	if (Position != nullptr)
-		*Position = std::move(Parms.Position);
-
-	if (Radius != nullptr)
-		*Radius = Parms.Radius;
+	if (Enabled != nullptr)
+		*Enabled = Parms.Enabled;
 
 	return Parms.ReturnValue;
 
@@ -259,12 +253,12 @@ bool UFieldSystemComponent::ApplyStayDynamicField(struct FVector* Position, floa
 // Function FieldSystemEngine.FieldSystemComponent.ApplyRadialVectorFalloffForce
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// bool                               Enabled                                                          (Edit, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// struct FVector                     Position                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config)
-// float                              Radius                                                           (ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// float                              Magnitude                                                        (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
+// bool                               Enabled                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst)
+// struct FVector                     Position                                                         (Edit, ConstParm, ExportObject, ReturnParm, Transient, Config)
+// float                              Radius                                                           (Edit, BlueprintVisible, BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// float                              Magnitude                                                        (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
 
-float UFieldSystemComponent::ApplyRadialVectorFalloffForce(struct FVector* Position, float* Radius)
+float UFieldSystemComponent::ApplyRadialVectorFalloffForce(bool* Enabled, float Radius)
 {
 	static class UFunction* Func = nullptr;
 
@@ -273,6 +267,7 @@ float UFieldSystemComponent::ApplyRadialVectorFalloffForce(struct FVector* Posit
 
 	Params::UFieldSystemComponent_ApplyRadialVectorFalloffForce_Params Parms{};
 
+	Parms.Radius = Radius;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -282,11 +277,8 @@ float UFieldSystemComponent::ApplyRadialVectorFalloffForce(struct FVector* Posit
 
 	Func->FunctionFlags = Flgs;
 
-	if (Position != nullptr)
-		*Position = std::move(Parms.Position);
-
-	if (Radius != nullptr)
-		*Radius = Parms.Radius;
+	if (Enabled != nullptr)
+		*Enabled = Parms.Enabled;
 
 	return Parms.ReturnValue;
 
@@ -296,11 +288,11 @@ float UFieldSystemComponent::ApplyRadialVectorFalloffForce(struct FVector* Posit
 // Function FieldSystemEngine.FieldSystemComponent.ApplyRadialForce
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// bool                               Enabled                                                          (Edit, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// struct FVector                     Position                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config)
-// float                              Magnitude                                                        (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
+// bool                               Enabled                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst)
+// struct FVector                     Position                                                         (Edit, ConstParm, ExportObject, ReturnParm, Transient, Config)
+// float                              Magnitude                                                        (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
 
-float UFieldSystemComponent::ApplyRadialForce(struct FVector* Position)
+float UFieldSystemComponent::ApplyRadialForce(bool* Enabled)
 {
 	static class UFunction* Func = nullptr;
 
@@ -318,8 +310,8 @@ float UFieldSystemComponent::ApplyRadialForce(struct FVector* Position)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Position != nullptr)
-		*Position = std::move(Parms.Position);
+	if (Enabled != nullptr)
+		*Enabled = Parms.Enabled;
 
 	return Parms.ReturnValue;
 
@@ -329,12 +321,12 @@ float UFieldSystemComponent::ApplyRadialForce(struct FVector* Position)
 // Function FieldSystemEngine.FieldSystemComponent.ApplyPhysicsField
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               Enabled                                                          (Edit, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// enum class EFieldPhysicsType       Target                                                           (Edit, ConstParm, ReturnParm, Transient, Config)
-// class UFieldSystemMetaData*        MetaData                                                         (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// class UFieldNodeBase*              Field                                                            (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
+// bool                               Enabled                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst)
+// enum class EFieldPhysicsType       Target                                                           (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config)
+// class UFieldSystemMetaData*        MetaData                                                         (ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnInstance, GlobalConfig)
+// class UFieldNodeBase*              Field                                                            (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
 
-class UFieldSystemMetaData* UFieldSystemComponent::ApplyPhysicsField(class UFieldNodeBase* Field)
+class UFieldNodeBase* UFieldSystemComponent::ApplyPhysicsField(bool* Enabled, class UFieldSystemMetaData* MetaData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -343,7 +335,7 @@ class UFieldSystemMetaData* UFieldSystemComponent::ApplyPhysicsField(class UFiel
 
 	Params::UFieldSystemComponent_ApplyPhysicsField_Params Parms{};
 
-	Parms.Field = Field;
+	Parms.MetaData = MetaData;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -353,6 +345,9 @@ class UFieldSystemMetaData* UFieldSystemComponent::ApplyPhysicsField(class UFiel
 
 	Func->FunctionFlags = Flgs;
 
+	if (Enabled != nullptr)
+		*Enabled = Parms.Enabled;
+
 	return Parms.ReturnValue;
 
 }
@@ -361,11 +356,11 @@ class UFieldSystemMetaData* UFieldSystemComponent::ApplyPhysicsField(class UFiel
 // Function FieldSystemEngine.FieldSystemComponent.ApplyLinearForce
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// bool                               Enabled                                                          (Edit, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// struct FVector                     Direction                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// float                              Magnitude                                                        (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
+// bool                               Enabled                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst)
+// struct FVector                     Direction                                                        (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// float                              Magnitude                                                        (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
 
-float UFieldSystemComponent::ApplyLinearForce()
+float UFieldSystemComponent::ApplyLinearForce(bool* Enabled)
 {
 	static class UFunction* Func = nullptr;
 
@@ -383,6 +378,9 @@ float UFieldSystemComponent::ApplyLinearForce()
 
 	Func->FunctionFlags = Flgs;
 
+	if (Enabled != nullptr)
+		*Enabled = Parms.Enabled;
+
 	return Parms.ReturnValue;
 
 }
@@ -391,12 +389,12 @@ float UFieldSystemComponent::ApplyLinearForce()
 // Function FieldSystemEngine.FieldSystemComponent.AddPersistentField
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               Enabled                                                          (Edit, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// enum class EFieldPhysicsType       Target                                                           (Edit, ConstParm, ReturnParm, Transient, Config)
-// class UFieldSystemMetaData*        MetaData                                                         (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// class UFieldNodeBase*              Field                                                            (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
+// bool                               Enabled                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst)
+// enum class EFieldPhysicsType       Target                                                           (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config)
+// class UFieldSystemMetaData*        MetaData                                                         (ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnInstance, GlobalConfig)
+// class UFieldNodeBase*              Field                                                            (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
 
-class UFieldSystemMetaData* UFieldSystemComponent::AddPersistentField(class UFieldNodeBase* Field)
+class UFieldNodeBase* UFieldSystemComponent::AddPersistentField(bool* Enabled, class UFieldSystemMetaData* MetaData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -405,7 +403,7 @@ class UFieldSystemMetaData* UFieldSystemComponent::AddPersistentField(class UFie
 
 	Params::UFieldSystemComponent_AddPersistentField_Params Parms{};
 
-	Parms.Field = Field;
+	Parms.MetaData = MetaData;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -414,6 +412,9 @@ class UFieldSystemMetaData* UFieldSystemComponent::AddPersistentField(class UFie
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Enabled != nullptr)
+		*Enabled = Parms.Enabled;
 
 	return Parms.ReturnValue;
 
@@ -423,12 +424,12 @@ class UFieldSystemMetaData* UFieldSystemComponent::AddPersistentField(class UFie
 // Function FieldSystemEngine.FieldSystemComponent.AddFieldCommand
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               Enabled                                                          (Edit, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// enum class EFieldPhysicsType       Target                                                           (Edit, ConstParm, ReturnParm, Transient, Config)
-// class UFieldSystemMetaData*        MetaData                                                         (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// class UFieldNodeBase*              Field                                                            (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
+// bool                               Enabled                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst)
+// enum class EFieldPhysicsType       Target                                                           (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config)
+// class UFieldSystemMetaData*        MetaData                                                         (ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnInstance, GlobalConfig)
+// class UFieldNodeBase*              Field                                                            (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
 
-class UFieldSystemMetaData* UFieldSystemComponent::AddFieldCommand(class UFieldNodeBase* Field)
+class UFieldNodeBase* UFieldSystemComponent::AddFieldCommand(bool* Enabled, class UFieldSystemMetaData* MetaData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -437,7 +438,7 @@ class UFieldSystemMetaData* UFieldSystemComponent::AddFieldCommand(class UFieldN
 
 	Params::UFieldSystemComponent_AddFieldCommand_Params Parms{};
 
-	Parms.Field = Field;
+	Parms.MetaData = MetaData;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -446,6 +447,9 @@ class UFieldSystemMetaData* UFieldSystemComponent::AddFieldCommand(class UFieldN
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Enabled != nullptr)
+		*Enabled = Parms.Enabled;
 
 	return Parms.ReturnValue;
 
@@ -511,10 +515,10 @@ class UFieldSystemMetaDataIteration* UFieldSystemMetaDataIteration::GetDefaultOb
 // Function FieldSystemEngine.FieldSystemMetaDataIteration.SetMetaDataIteration
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int32                              Iterations                                                       (Edit, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-// class UFieldSystemMetaDataIteration*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              Iterations                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UFieldSystemMetaDataIteration*ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UFieldSystemMetaDataIteration::SetMetaDataIteration(class UFieldSystemMetaDataIteration* ReturnValue)
+class UFieldSystemMetaDataIteration* UFieldSystemMetaDataIteration::SetMetaDataIteration()
 {
 	static class UFunction* Func = nullptr;
 
@@ -523,7 +527,6 @@ int32 UFieldSystemMetaDataIteration::SetMetaDataIteration(class UFieldSystemMeta
 
 	Params::UFieldSystemMetaDataIteration_SetMetaDataIteration_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -569,10 +572,10 @@ class UFieldSystemMetaDataProcessingResolution* UFieldSystemMetaDataProcessingRe
 // Function FieldSystemEngine.FieldSystemMetaDataProcessingResolution.SetMetaDataaProcessingResolutionType
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EFieldResolutionType    ResolutionType                                                   (ConstParm, BlueprintVisible, ReturnParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class UFieldSystemMetaDataProcessingResolution*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class EFieldResolutionType    ResolutionType                                                   (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
+// class UFieldSystemMetaDataProcessingResolution*ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-enum class EFieldResolutionType UFieldSystemMetaDataProcessingResolution::SetMetaDataaProcessingResolutionType(class UFieldSystemMetaDataProcessingResolution* ReturnValue)
+class UFieldSystemMetaDataProcessingResolution* UFieldSystemMetaDataProcessingResolution::SetMetaDataaProcessingResolutionType()
 {
 	static class UFunction* Func = nullptr;
 
@@ -581,7 +584,6 @@ enum class EFieldResolutionType UFieldSystemMetaDataProcessingResolution::SetMet
 
 	Params::UFieldSystemMetaDataProcessingResolution_SetMetaDataaProcessingResolutionType_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -627,12 +629,12 @@ class UFieldSystemMetaDataFilter* UFieldSystemMetaDataFilter::GetDefaultObj()
 // Function FieldSystemEngine.FieldSystemMetaDataFilter.SetMetaDataFilterType
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// enum class EFieldFilterType        FilterType                                                       (Edit, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// enum class EFieldObjectType        ObjectType                                                       (BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// enum class EFieldPositionType      PositionType                                                     (Edit, ExportObject, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UFieldSystemMetaDataFilter*  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class EFieldFilterType        FilterType                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// enum class EFieldObjectType        ObjectType                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// enum class EFieldPositionType      PositionType                                                     (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UFieldSystemMetaDataFilter*  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-enum class EFieldPositionType UFieldSystemMetaDataFilter::SetMetaDataFilterType(enum class EFieldFilterType FilterType, class UFieldSystemMetaDataFilter* ReturnValue)
+class UFieldSystemMetaDataFilter* UFieldSystemMetaDataFilter::SetMetaDataFilterType(enum class EFieldPositionType* PositionType)
 {
 	static class UFunction* Func = nullptr;
 
@@ -641,8 +643,6 @@ enum class EFieldPositionType UFieldSystemMetaDataFilter::SetMetaDataFilterType(
 
 	Params::UFieldSystemMetaDataFilter_SetMetaDataFilterType_Params Parms{};
 
-	Parms.FilterType = FilterType;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -651,6 +651,9 @@ enum class EFieldPositionType UFieldSystemMetaDataFilter::SetMetaDataFilterType(
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (PositionType != nullptr)
+		*PositionType = Parms.PositionType;
 
 	return Parms.ReturnValue;
 
@@ -800,10 +803,10 @@ class UUniformInteger* UUniformInteger::GetDefaultObj()
 // Function FieldSystemEngine.UniformInteger.SetUniformInteger
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int32                              Magnitude                                                        (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
-// class UUniformInteger*             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              Magnitude                                                        (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// class UUniformInteger*             ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UUniformInteger::SetUniformInteger(class UUniformInteger* ReturnValue)
+class UUniformInteger* UUniformInteger::SetUniformInteger()
 {
 	static class UFunction* Func = nullptr;
 
@@ -812,7 +815,6 @@ int32 UUniformInteger::SetUniformInteger(class UUniformInteger* ReturnValue)
 
 	Params::UUniformInteger_SetUniformInteger_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -858,14 +860,14 @@ class URadialIntMask* URadialIntMask::GetDefaultObj()
 // Function FieldSystemEngine.RadialIntMask.SetRadialIntMask
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              Radius                                                           (ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// struct FVector                     Position                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config)
-// int32                              InteriorValue                                                    (Edit, BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// int32                              ExteriorValue                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// enum class ESetMaskConditionType   SetMaskConditionIn                                               (ConstParm, BlueprintVisible, ExportObject, ReturnParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class URadialIntMask*              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              Radius                                                           (Edit, BlueprintVisible, BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// struct FVector                     Position                                                         (Edit, ConstParm, ExportObject, ReturnParm, Transient, Config)
+// int32                              InteriorValue                                                    (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              ExteriorValue                                                    (ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// enum class ESetMaskConditionType   SetMaskConditionIn                                               (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
+// class URadialIntMask*              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-enum class ESetMaskConditionType URadialIntMask::SetRadialIntMask(float* Radius, struct FVector* Position, int32 InteriorValue, int32 ExteriorValue, class URadialIntMask* ReturnValue)
+class URadialIntMask* URadialIntMask::SetRadialIntMask(float Radius)
 {
 	static class UFunction* Func = nullptr;
 
@@ -874,9 +876,7 @@ enum class ESetMaskConditionType URadialIntMask::SetRadialIntMask(float* Radius,
 
 	Params::URadialIntMask_SetRadialIntMask_Params Parms{};
 
-	Parms.InteriorValue = InteriorValue;
-	Parms.ExteriorValue = ExteriorValue;
-	Parms.ReturnValue = ReturnValue;
+	Parms.Radius = Radius;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -885,12 +885,6 @@ enum class ESetMaskConditionType URadialIntMask::SetRadialIntMask(float* Radius,
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (Radius != nullptr)
-		*Radius = Parms.Radius;
-
-	if (Position != nullptr)
-		*Position = std::move(Parms.Position);
 
 	return Parms.ReturnValue;
 
@@ -928,10 +922,10 @@ class UUniformScalar* UUniformScalar::GetDefaultObj()
 // Function FieldSystemEngine.UniformScalar.SetUniformScalar
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              Magnitude                                                        (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
-// class UUniformScalar*              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              Magnitude                                                        (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// class UUniformScalar*              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float UUniformScalar::SetUniformScalar(class UUniformScalar* ReturnValue)
+class UUniformScalar* UUniformScalar::SetUniformScalar()
 {
 	static class UFunction* Func = nullptr;
 
@@ -940,7 +934,6 @@ float UUniformScalar::SetUniformScalar(class UUniformScalar* ReturnValue)
 
 	Params::UUniformScalar_SetUniformScalar_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -986,16 +979,16 @@ class UWaveScalar* UWaveScalar::GetDefaultObj()
 // Function FieldSystemEngine.WaveScalar.SetWaveScalar
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              Magnitude                                                        (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
-// struct FVector                     Position                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config)
-// float                              Wavelength                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// float                              Period                                                           (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance)
-// float                              Time                                                             (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// float                              Magnitude                                                        (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// struct FVector                     Position                                                         (Edit, ConstParm, ExportObject, ReturnParm, Transient, Config)
+// float                              Wavelength                                                       (Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              Period                                                           (ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance)
+// float                              Time                                                             (Edit, ConstParm, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
 // enum class EWaveFunctionType       Function                                                         (Edit, ExportObject, BlueprintReadOnly, ZeroConstructor)
-// enum class EFieldFalloffType       Falloff                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, DuplicateTransient)
-// class UWaveScalar*                 ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class EFieldFalloffType       Falloff                                                          (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, DuplicateTransient)
+// class UWaveScalar*                 ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-enum class EFieldFalloffType UWaveScalar::SetWaveScalar(struct FVector* Position, float Wavelength, enum class EWaveFunctionType Function, class UWaveScalar* ReturnValue)
+class UWaveScalar* UWaveScalar::SetWaveScalar(enum class EWaveFunctionType Function, enum class EFieldFalloffType* Falloff)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1004,9 +997,7 @@ enum class EFieldFalloffType UWaveScalar::SetWaveScalar(struct FVector* Position
 
 	Params::UWaveScalar_SetWaveScalar_Params Parms{};
 
-	Parms.Wavelength = Wavelength;
 	Parms.Function = Function;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1016,8 +1007,8 @@ enum class EFieldFalloffType UWaveScalar::SetWaveScalar(struct FVector* Position
 
 	Func->FunctionFlags = Flgs;
 
-	if (Position != nullptr)
-		*Position = std::move(Parms.Position);
+	if (Falloff != nullptr)
+		*Falloff = Parms.Falloff;
 
 	return Parms.ReturnValue;
 
@@ -1055,16 +1046,16 @@ class URadialFalloff* URadialFalloff::GetDefaultObj()
 // Function FieldSystemEngine.RadialFalloff.SetRadialFalloff
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              Magnitude                                                        (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
-// float                              MinRange                                                         (BlueprintVisible, BlueprintReadOnly, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// float                              MaxRange                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              Magnitude                                                        (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// float                              MinRange                                                         (Edit, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              MaxRange                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // float                              Default                                                          (Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor)
-// float                              Radius                                                           (ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// struct FVector                     Position                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config)
-// enum class EFieldFalloffType       Falloff                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, DuplicateTransient)
-// class URadialFalloff*              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              Radius                                                           (Edit, BlueprintVisible, BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// struct FVector                     Position                                                         (Edit, ConstParm, ExportObject, ReturnParm, Transient, Config)
+// enum class EFieldFalloffType       Falloff                                                          (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, DuplicateTransient)
+// class URadialFalloff*              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-enum class EFieldFalloffType URadialFalloff::SetRadialFalloff(float MinRange, float MaxRange, float Default, float* Radius, struct FVector* Position, class URadialFalloff* ReturnValue)
+class URadialFalloff* URadialFalloff::SetRadialFalloff(float Default, float Radius, enum class EFieldFalloffType* Falloff)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1073,10 +1064,8 @@ enum class EFieldFalloffType URadialFalloff::SetRadialFalloff(float MinRange, fl
 
 	Params::URadialFalloff_SetRadialFalloff_Params Parms{};
 
-	Parms.MinRange = MinRange;
-	Parms.MaxRange = MaxRange;
 	Parms.Default = Default;
-	Parms.ReturnValue = ReturnValue;
+	Parms.Radius = Radius;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1086,11 +1075,8 @@ enum class EFieldFalloffType URadialFalloff::SetRadialFalloff(float MinRange, fl
 
 	Func->FunctionFlags = Flgs;
 
-	if (Radius != nullptr)
-		*Radius = Parms.Radius;
-
-	if (Position != nullptr)
-		*Position = std::move(Parms.Position);
+	if (Falloff != nullptr)
+		*Falloff = Parms.Falloff;
 
 	return Parms.ReturnValue;
 
@@ -1128,17 +1114,17 @@ class UPlaneFalloff* UPlaneFalloff::GetDefaultObj()
 // Function FieldSystemEngine.PlaneFalloff.SetPlaneFalloff
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              Magnitude                                                        (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
-// float                              MinRange                                                         (BlueprintVisible, BlueprintReadOnly, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// float                              MaxRange                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              Magnitude                                                        (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// float                              MinRange                                                         (Edit, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              MaxRange                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // float                              Default                                                          (Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor)
-// float                              Distance                                                         (ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-// struct FVector                     Position                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config)
-// struct FVector                     Normal                                                           (Edit, ConstParm, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// enum class EFieldFalloffType       Falloff                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, DuplicateTransient)
-// class UPlaneFalloff*               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              Distance                                                         (Edit, BlueprintVisible, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FVector                     Position                                                         (Edit, ConstParm, ExportObject, ReturnParm, Transient, Config)
+// struct FVector                     Normal                                                           (ConstParm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
+// enum class EFieldFalloffType       Falloff                                                          (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, DuplicateTransient)
+// class UPlaneFalloff*               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-enum class EFieldFalloffType UPlaneFalloff::SetPlaneFalloff(float MinRange, float MaxRange, float Default, struct FVector* Position, struct FVector* Normal, class UPlaneFalloff* ReturnValue)
+class UPlaneFalloff* UPlaneFalloff::SetPlaneFalloff(float Default, enum class EFieldFalloffType* Falloff)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1147,10 +1133,7 @@ enum class EFieldFalloffType UPlaneFalloff::SetPlaneFalloff(float MinRange, floa
 
 	Params::UPlaneFalloff_SetPlaneFalloff_Params Parms{};
 
-	Parms.MinRange = MinRange;
-	Parms.MaxRange = MaxRange;
 	Parms.Default = Default;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1160,11 +1143,8 @@ enum class EFieldFalloffType UPlaneFalloff::SetPlaneFalloff(float MinRange, floa
 
 	Func->FunctionFlags = Flgs;
 
-	if (Position != nullptr)
-		*Position = std::move(Parms.Position);
-
-	if (Normal != nullptr)
-		*Normal = std::move(Parms.Normal);
+	if (Falloff != nullptr)
+		*Falloff = Parms.Falloff;
 
 	return Parms.ReturnValue;
 
@@ -1202,15 +1182,15 @@ class UBoxFalloff* UBoxFalloff::GetDefaultObj()
 // Function FieldSystemEngine.BoxFalloff.SetBoxFalloff
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              Magnitude                                                        (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
-// float                              MinRange                                                         (BlueprintVisible, BlueprintReadOnly, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// float                              MaxRange                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              Magnitude                                                        (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// float                              MinRange                                                         (Edit, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              MaxRange                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // float                              Default                                                          (Edit, ExportObject, EditFixedSize, Parm, ZeroConstructor)
 // struct FTransform                  Transform                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm)
-// enum class EFieldFalloffType       Falloff                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, DuplicateTransient)
-// class UBoxFalloff*                 ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// enum class EFieldFalloffType       Falloff                                                          (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, DuplicateTransient)
+// class UBoxFalloff*                 ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-enum class EFieldFalloffType UBoxFalloff::SetBoxFalloff(float MinRange, float MaxRange, float Default, struct FTransform* Transform, class UBoxFalloff* ReturnValue)
+class UBoxFalloff* UBoxFalloff::SetBoxFalloff(float Default, struct FTransform* Transform, enum class EFieldFalloffType* Falloff)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1219,10 +1199,7 @@ enum class EFieldFalloffType UBoxFalloff::SetBoxFalloff(float MinRange, float Ma
 
 	Params::UBoxFalloff_SetBoxFalloff_Params Parms{};
 
-	Parms.MinRange = MinRange;
-	Parms.MaxRange = MaxRange;
 	Parms.Default = Default;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1234,6 +1211,9 @@ enum class EFieldFalloffType UBoxFalloff::SetBoxFalloff(float MinRange, float Ma
 
 	if (Transform != nullptr)
 		*Transform = std::move(Parms.Transform);
+
+	if (Falloff != nullptr)
+		*Falloff = Parms.Falloff;
 
 	return Parms.ReturnValue;
 
@@ -1271,12 +1251,12 @@ class UNoiseField* UNoiseField::GetDefaultObj()
 // Function FieldSystemEngine.NoiseField.SetNoiseField
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              MinRange                                                         (BlueprintVisible, BlueprintReadOnly, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// float                              MaxRange                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              MinRange                                                         (Edit, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              MaxRange                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 // struct FTransform                  Transform                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm)
-// class UNoiseField*                 ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UNoiseField*                 ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UNoiseField::SetNoiseField(float MinRange, float MaxRange, struct FTransform* Transform, class UNoiseField* ReturnValue)
+class UNoiseField* UNoiseField::SetNoiseField(struct FTransform* Transform)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1285,9 +1265,6 @@ void UNoiseField::SetNoiseField(float MinRange, float MaxRange, struct FTransfor
 
 	Params::UNoiseField_SetNoiseField_Params Parms{};
 
-	Parms.MinRange = MinRange;
-	Parms.MaxRange = MaxRange;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1299,6 +1276,8 @@ void UNoiseField::SetNoiseField(float MinRange, float MaxRange, struct FTransfor
 
 	if (Transform != nullptr)
 		*Transform = std::move(Parms.Transform);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -1334,11 +1313,11 @@ class UUniformVector* UUniformVector::GetDefaultObj()
 // Function FieldSystemEngine.UniformVector.SetUniformVector
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              Magnitude                                                        (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
-// struct FVector                     Direction                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// class UUniformVector*              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              Magnitude                                                        (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// struct FVector                     Direction                                                        (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// class UUniformVector*              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FVector UUniformVector::SetUniformVector(class UUniformVector* ReturnValue)
+class UUniformVector* UUniformVector::SetUniformVector()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1347,7 +1326,6 @@ struct FVector UUniformVector::SetUniformVector(class UUniformVector* ReturnValu
 
 	Params::UUniformVector_SetUniformVector_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1393,11 +1371,11 @@ class URadialVector* URadialVector::GetDefaultObj()
 // Function FieldSystemEngine.RadialVector.SetRadialVector
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              Magnitude                                                        (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
-// struct FVector                     Position                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config)
-// class URadialVector*               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              Magnitude                                                        (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// struct FVector                     Position                                                         (Edit, ConstParm, ExportObject, ReturnParm, Transient, Config)
+// class URadialVector*               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float URadialVector::SetRadialVector(struct FVector* Position, class URadialVector* ReturnValue)
+class URadialVector* URadialVector::SetRadialVector()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1406,7 +1384,6 @@ float URadialVector::SetRadialVector(struct FVector* Position, class URadialVect
 
 	Params::URadialVector_SetRadialVector_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1415,9 +1392,6 @@ float URadialVector::SetRadialVector(struct FVector* Position, class URadialVect
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (Position != nullptr)
-		*Position = std::move(Parms.Position);
 
 	return Parms.ReturnValue;
 
@@ -1455,10 +1429,10 @@ class URandomVector* URandomVector::GetDefaultObj()
 // Function FieldSystemEngine.RandomVector.SetRandomVector
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              Magnitude                                                        (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
-// class URandomVector*               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              Magnitude                                                        (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// class URandomVector*               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float URandomVector::SetRandomVector(class URandomVector* ReturnValue)
+class URandomVector* URandomVector::SetRandomVector()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1467,7 +1441,6 @@ float URandomVector::SetRandomVector(class URandomVector* ReturnValue)
 
 	Params::URandomVector_SetRandomVector_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1513,13 +1486,13 @@ class UOperatorField* UOperatorField::GetDefaultObj()
 // Function FieldSystemEngine.OperatorField.SetOperatorField
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// float                              Magnitude                                                        (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, SubobjectReference)
-// class UFieldNodeBase*              LeftField                                                        (Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class UFieldNodeBase*              RightField                                                       (Edit, Net, ReturnParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// enum class EFieldOperationType     Operation                                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, GlobalConfig, SubobjectReference)
-// class UOperatorField*              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              Magnitude                                                        (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, SubobjectReference)
+// class UFieldNodeBase*              LeftField                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
+// class UFieldNodeBase*              RightField                                                       (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EFieldOperationType     Operation                                                        (ConstParm, BlueprintVisible, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// class UOperatorField*              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UFieldNodeBase* UOperatorField::SetOperatorField(enum class EFieldOperationType Operation, class UOperatorField* ReturnValue)
+class UOperatorField* UOperatorField::SetOperatorField()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1528,8 +1501,6 @@ class UFieldNodeBase* UOperatorField::SetOperatorField(enum class EFieldOperatio
 
 	Params::UOperatorField_SetOperatorField_Params Parms{};
 
-	Parms.Operation = Operation;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1575,10 +1546,10 @@ class UToIntegerField* UToIntegerField::GetDefaultObj()
 // Function FieldSystemEngine.ToIntegerField.SetToIntegerField
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UFieldNodeFloat*             FloatField                                                       (Edit, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class UToIntegerField*             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UFieldNodeFloat*             FloatField                                                       (Edit, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
+// class UToIntegerField*             ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UFieldNodeFloat* UToIntegerField::SetToIntegerField(class UToIntegerField* ReturnValue)
+class UToIntegerField* UToIntegerField::SetToIntegerField()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1587,7 +1558,6 @@ class UFieldNodeFloat* UToIntegerField::SetToIntegerField(class UToIntegerField*
 
 	Params::UToIntegerField_SetToIntegerField_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1633,10 +1603,10 @@ class UToFloatField* UToFloatField::GetDefaultObj()
 // Function FieldSystemEngine.ToFloatField.SetToFloatField
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UFieldNodeInt*               IntegerField                                                     (Edit, ConstParm, BlueprintReadOnly, Net, ReturnParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class UToFloatField*               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UFieldNodeInt*               IntegerField                                                     (Edit, ConstParm, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
+// class UToFloatField*               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UFieldNodeInt* UToFloatField::SetToFloatField(class UToFloatField* ReturnValue)
+class UToFloatField* UToFloatField::SetToFloatField()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1645,7 +1615,6 @@ class UFieldNodeInt* UToFloatField::SetToFloatField(class UToFloatField* ReturnV
 
 	Params::UToFloatField_SetToFloatField_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1691,12 +1660,12 @@ class UCullingField* UCullingField::GetDefaultObj()
 // Function FieldSystemEngine.CullingField.SetCullingField
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UFieldNodeBase*              Culling                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class UFieldNodeBase*              Field                                                            (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
-// enum class EFieldCullingOperationTypeOperation                                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, GlobalConfig, SubobjectReference)
-// class UCullingField*               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UFieldNodeBase*              Culling                                                          (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
+// class UFieldNodeBase*              Field                                                            (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
+// enum class EFieldCullingOperationTypeOperation                                                        (ConstParm, BlueprintVisible, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// class UCullingField*               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UFieldNodeBase* UCullingField::SetCullingField(class UFieldNodeBase* Field, enum class EFieldCullingOperationType Operation, class UCullingField* ReturnValue)
+class UCullingField* UCullingField::SetCullingField()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1705,9 +1674,6 @@ class UFieldNodeBase* UCullingField::SetCullingField(class UFieldNodeBase* Field
 
 	Params::UCullingField_SetCullingField_Params Parms{};
 
-	Parms.Field = Field;
-	Parms.Operation = Operation;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1753,9 +1719,9 @@ class UReturnResultsTerminal* UReturnResultsTerminal::GetDefaultObj()
 // Function FieldSystemEngine.ReturnResultsTerminal.SetReturnResultsTerminal
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UReturnResultsTerminal*      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UReturnResultsTerminal*      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UReturnResultsTerminal::SetReturnResultsTerminal(class UReturnResultsTerminal* ReturnValue)
+class UReturnResultsTerminal* UReturnResultsTerminal::SetReturnResultsTerminal()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1764,7 +1730,6 @@ void UReturnResultsTerminal::SetReturnResultsTerminal(class UReturnResultsTermin
 
 	Params::UReturnResultsTerminal_SetReturnResultsTerminal_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1773,6 +1738,8 @@ void UReturnResultsTerminal::SetReturnResultsTerminal(class UReturnResultsTermin
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 

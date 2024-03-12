@@ -9,21 +9,24 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x10 (0xEE8 - 0xED8)
+// 0x18 (0xF00 - 0xEE8)
 // BlueprintGeneratedClass PrimalItemArmor_SaddleGeneric.PrimalItemArmor_SaddleGeneric_C
 class UPrimalItemArmor_SaddleGeneric_C : public UPrimalItemArmorGeneric_C
 {
 public:
-	double                                       LastTorchDurabilityLossTime;                       // 0xED8(0x8)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance)
-	double                                       SavedSaddleDurability;                             // 0xEE0(0x8)(Net, OutParm, ReturnParm, Config, SubobjectReference)
+	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0xEE8(0x8)(Edit, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, SubobjectReference)
+	double                                       LastTorchDurabilityLossTime;                       // 0xEF0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance)
+	double                                       SavedSaddleDurability;                             // 0xEF8(0x8)(ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UPrimalItemArmor_SaddleGeneric_C* GetDefaultObj();
 
-	double BPOverrideEquippedDurabilityPercentage(float OutDurabilityPercentageValue, float CallFunc_GetItemStatModifier_ReturnValue);
+	double BPOverrideEquippedDurabilityPercentage();
 	float ResetSaddleDurabilityToSavedValue();
 	double SaveSaddleDurability();
-	double BlueprintEquipped(bool bIsFromSaveGame, bool* CallFunc_IsValid_ReturnValue);
+	double BlueprintEquipped();
+	class UActorComponent* BPPostConstructAttachment();
+	bool ExecuteUbergraph_PrimalItemArmor_SaddleGeneric(int32* EntryPoint, bool* K2Node_DynamicCast_bSuccess, class AActor* CallFunc_GetOwner_ReturnValue, class APrimalDinoCharacter** K2Node_DynamicCast_AsPrimal_Dino_Character, bool* K2Node_DynamicCast_bSuccess_1);
 };
 
 }

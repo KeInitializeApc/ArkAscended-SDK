@@ -14,8 +14,8 @@ namespace SDK
 class UCarousel_NewsList_entry_C : public UPrimalUserWidget
 {
 public:
-	class UPrimalRichTextBlock*                  BodyText;                                          // 0x330(0x8)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	class UPrimalRichTextBlock*                  TitleText;                                         // 0x338(0x8)(Edit, Net, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	class UPrimalRichTextBlock*                  BodyText;                                          // 0x330(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UPrimalRichTextBlock*                  TitleText;                                         // 0x338(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UCarousel_NewsList_entry_C* GetDefaultObj();

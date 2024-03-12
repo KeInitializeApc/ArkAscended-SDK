@@ -43,10 +43,10 @@ class ULevelVariantSets* ULevelVariantSets::GetDefaultObj()
 // Function VariantManagerContent.LevelVariantSets.GetVariantSetByName
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class FString                      VariantSetName                                                   (Edit, ExportObject, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-// class UVariantSet*                 ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      VariantSetName                                                   (Edit, ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UVariantSet*                 ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FString ULevelVariantSets::GetVariantSetByName(class UVariantSet* ReturnValue)
+class UVariantSet* ULevelVariantSets::GetVariantSetByName()
 {
 	static class UFunction* Func = nullptr;
 
@@ -55,7 +55,6 @@ class FString ULevelVariantSets::GetVariantSetByName(class UVariantSet* ReturnVa
 
 	Params::ULevelVariantSets_GetVariantSetByName_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -73,10 +72,10 @@ class FString ULevelVariantSets::GetVariantSetByName(class UVariantSet* ReturnVa
 // Function VariantManagerContent.LevelVariantSets.GetVariantSet
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int32                              VariantSetIndex                                                  (ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-// class UVariantSet*                 ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              VariantSetIndex                                                  (ConstParm, Net, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UVariantSet*                 ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 ULevelVariantSets::GetVariantSet(class UVariantSet* ReturnValue)
+class UVariantSet* ULevelVariantSets::GetVariantSet()
 {
 	static class UFunction* Func = nullptr;
 
@@ -85,7 +84,6 @@ int32 ULevelVariantSets::GetVariantSet(class UVariantSet* ReturnValue)
 
 	Params::ULevelVariantSets_GetVariantSet_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -103,9 +101,9 @@ int32 ULevelVariantSets::GetVariantSet(class UVariantSet* ReturnValue)
 // Function VariantManagerContent.LevelVariantSets.GetNumVariantSets
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void ULevelVariantSets::GetNumVariantSets(int32 ReturnValue)
+int32 ULevelVariantSets::GetNumVariantSets()
 {
 	static class UFunction* Func = nullptr;
 
@@ -114,7 +112,6 @@ void ULevelVariantSets::GetNumVariantSets(int32 ReturnValue)
 
 	Params::ULevelVariantSets_GetNumVariantSets_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -123,6 +120,8 @@ void ULevelVariantSets::GetNumVariantSets(int32 ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -158,11 +157,11 @@ class ALevelVariantSetsActor* ALevelVariantSetsActor::GetDefaultObj()
 // Function VariantManagerContent.LevelVariantSetsActor.SwitchOnVariantByName
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      VariantSetName                                                   (Edit, ExportObject, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-// class FString                      VariantName                                                      (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      VariantSetName                                                   (Edit, ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FString                      VariantName                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FString ALevelVariantSetsActor::SwitchOnVariantByName(const class FString& VariantName, bool ReturnValue)
+bool ALevelVariantSetsActor::SwitchOnVariantByName(const class FString& VariantName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -172,7 +171,6 @@ class FString ALevelVariantSetsActor::SwitchOnVariantByName(const class FString&
 	Params::ALevelVariantSetsActor_SwitchOnVariantByName_Params Parms{};
 
 	Parms.VariantName = VariantName;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -190,11 +188,11 @@ class FString ALevelVariantSetsActor::SwitchOnVariantByName(const class FString&
 // Function VariantManagerContent.LevelVariantSetsActor.SwitchOnVariantByIndex
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              VariantSetIndex                                                  (ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-// int32                              VariantIndex                                                     (BlueprintVisible, Net, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              VariantSetIndex                                                  (ConstParm, Net, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              VariantIndex                                                     (ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 ALevelVariantSetsActor::SwitchOnVariantByIndex(bool ReturnValue)
+bool ALevelVariantSetsActor::SwitchOnVariantByIndex()
 {
 	static class UFunction* Func = nullptr;
 
@@ -203,7 +201,6 @@ int32 ALevelVariantSetsActor::SwitchOnVariantByIndex(bool ReturnValue)
 
 	Params::ALevelVariantSetsActor_SwitchOnVariantByIndex_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -221,7 +218,7 @@ int32 ALevelVariantSetsActor::SwitchOnVariantByIndex(bool ReturnValue)
 // Function VariantManagerContent.LevelVariantSetsActor.SetLevelVariantSets
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class ULevelVariantSets*           InVariantSets                                                    (BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class ULevelVariantSets*           InVariantSets                                                    (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 class ULevelVariantSets* ALevelVariantSetsActor::SetLevelVariantSets()
 {
@@ -249,10 +246,10 @@ class ULevelVariantSets* ALevelVariantSetsActor::SetLevelVariantSets()
 // Function VariantManagerContent.LevelVariantSetsActor.GetLevelVariantSets
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bLoad                                                            (ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-// class ULevelVariantSets*           ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               bLoad                                                            (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class ULevelVariantSets*           ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool ALevelVariantSetsActor::GetLevelVariantSets(class ULevelVariantSets* ReturnValue)
+class ULevelVariantSets* ALevelVariantSetsActor::GetLevelVariantSets()
 {
 	static class UFunction* Func = nullptr;
 
@@ -261,7 +258,6 @@ bool ALevelVariantSetsActor::GetLevelVariantSets(class ULevelVariantSets* Return
 
 	Params::ALevelVariantSetsActor_GetLevelVariantSets_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -335,9 +331,9 @@ class UPropertyValue* UPropertyValue::GetDefaultObj()
 // Function VariantManagerContent.PropertyValue.HasRecordedData
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UPropertyValue::HasRecordedData(bool ReturnValue)
+bool UPropertyValue::HasRecordedData()
 {
 	static class UFunction* Func = nullptr;
 
@@ -346,7 +342,6 @@ void UPropertyValue::HasRecordedData(bool ReturnValue)
 
 	Params::UPropertyValue_HasRecordedData_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -356,15 +351,17 @@ void UPropertyValue::HasRecordedData(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function VariantManagerContent.PropertyValue.GetPropertyTooltip
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UPropertyValue::GetPropertyTooltip(class FText ReturnValue)
+class FText UPropertyValue::GetPropertyTooltip()
 {
 	static class UFunction* Func = nullptr;
 
@@ -373,7 +370,6 @@ void UPropertyValue::GetPropertyTooltip(class FText ReturnValue)
 
 	Params::UPropertyValue_GetPropertyTooltip_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -383,15 +379,17 @@ void UPropertyValue::GetPropertyTooltip(class FText ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function VariantManagerContent.PropertyValue.GetFullDisplayString
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UPropertyValue::GetFullDisplayString(const class FString& ReturnValue)
+class FString UPropertyValue::GetFullDisplayString()
 {
 	static class UFunction* Func = nullptr;
 
@@ -400,7 +398,6 @@ void UPropertyValue::GetFullDisplayString(const class FString& ReturnValue)
 
 	Params::UPropertyValue_GetFullDisplayString_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -409,6 +406,8 @@ void UPropertyValue::GetFullDisplayString(const class FString& ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -612,9 +611,9 @@ class ASwitchActor* ASwitchActor::GetDefaultObj()
 // Function VariantManagerContent.SwitchActor.SelectOption
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              OptionIndex                                                      (ConstParm, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// int32                              OptionIndex                                                      (Edit, BlueprintVisible, ExportObject, Net, Parm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
 
-void ASwitchActor::SelectOption(int32* OptionIndex)
+void ASwitchActor::SelectOption(int32 OptionIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -623,6 +622,7 @@ void ASwitchActor::SelectOption(int32* OptionIndex)
 
 	Params::ASwitchActor_SelectOption_Params Parms{};
 
+	Parms.OptionIndex = OptionIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -632,18 +632,15 @@ void ASwitchActor::SelectOption(int32* OptionIndex)
 
 	Func->FunctionFlags = Flgs;
 
-	if (OptionIndex != nullptr)
-		*OptionIndex = Parms.OptionIndex;
-
 }
 
 
 // Function VariantManagerContent.SwitchActor.GetSelectedOption
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void ASwitchActor::GetSelectedOption(int32 ReturnValue)
+int32 ASwitchActor::GetSelectedOption()
 {
 	static class UFunction* Func = nullptr;
 
@@ -652,7 +649,6 @@ void ASwitchActor::GetSelectedOption(int32 ReturnValue)
 
 	Params::ASwitchActor_GetSelectedOption_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -662,15 +658,17 @@ void ASwitchActor::GetSelectedOption(int32 ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function VariantManagerContent.SwitchActor.GetOptions
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<class AActor*>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class AActor*>              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void ASwitchActor::GetOptions(const TArray<class AActor*>& ReturnValue)
+TArray<class AActor*> ASwitchActor::GetOptions()
 {
 	static class UFunction* Func = nullptr;
 
@@ -679,7 +677,6 @@ void ASwitchActor::GetOptions(const TArray<class AActor*>& ReturnValue)
 
 	Params::ASwitchActor_GetOptions_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -688,6 +685,8 @@ void ASwitchActor::GetOptions(const TArray<class AActor*>& ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -747,7 +746,7 @@ void UVariant::SwitchOn()
 // Function VariantManagerContent.Variant.SetThumbnailFromTexture
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UTexture2D*                  NewThumbnail                                                     (Edit, ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class UTexture2D*                  NewThumbnail                                                     (Edit, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 class UTexture2D* UVariant::SetThumbnailFromTexture()
 {
@@ -775,7 +774,7 @@ class UTexture2D* UVariant::SetThumbnailFromTexture()
 // Function VariantManagerContent.Variant.SetThumbnailFromFile
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      FilePath                                                         (Edit, ConstParm, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// class FString                      FilePath                                                         (Edit, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, EditConst, SubobjectReference)
 
 class FString UVariant::SetThumbnailFromFile()
 {
@@ -827,13 +826,13 @@ void UVariant::SetThumbnailFromEditorViewport()
 // Function VariantManagerContent.Variant.SetThumbnailFromCamera
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FTransform                  CameraTransform                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-// float                              FOVDegrees                                                       (ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-// float                              MinZ                                                             (Edit, ConstParm, BlueprintVisible, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// float                              Gamma                                                            (ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FTransform                  CameraTransform                                                  (EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              FOVDegrees                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              MinZ                                                             (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              Gamma                                                            (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-float UVariant::SetThumbnailFromCamera()
+float UVariant::SetThumbnailFromCamera(class UObject** WorldContextObject, float MinZ)
 {
 	static class UFunction* Func = nullptr;
 
@@ -842,6 +841,7 @@ float UVariant::SetThumbnailFromCamera()
 
 	Params::UVariant_SetThumbnailFromCamera_Params Parms{};
 
+	Parms.MinZ = MinZ;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -851,6 +851,9 @@ float UVariant::SetThumbnailFromCamera()
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
 	return Parms.ReturnValue;
 
 }
@@ -859,7 +862,7 @@ float UVariant::SetThumbnailFromCamera()
 // Function VariantManagerContent.Variant.SetDisplayText
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FText                        NewDisplayText                                                   (BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class FText                        NewDisplayText                                                   (ConstParm, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 class FText UVariant::SetDisplayText()
 {
@@ -887,10 +890,10 @@ class FText UVariant::SetDisplayText()
 // Function VariantManagerContent.Variant.SetDependency
 // (Final, Native, Public, HasOutParams)
 // Parameters:
-// int32                              Index                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
-// struct FVariantDependency          Dependency                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// int32                              Index                                                            (EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+// struct FVariantDependency          Dependency                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FVariantDependency UVariant::SetDependency(int32* Index)
+struct FVariantDependency UVariant::SetDependency()
 {
 	static class UFunction* Func = nullptr;
 
@@ -908,9 +911,6 @@ struct FVariantDependency UVariant::SetDependency(int32* Index)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Index != nullptr)
-		*Index = Parms.Index;
-
 	return Parms.ReturnValue;
 
 }
@@ -919,9 +919,9 @@ struct FVariantDependency UVariant::SetDependency(int32* Index)
 // Function VariantManagerContent.Variant.IsActive
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UVariant::IsActive(bool ReturnValue)
+bool UVariant::IsActive()
 {
 	static class UFunction* Func = nullptr;
 
@@ -930,7 +930,6 @@ void UVariant::IsActive(bool ReturnValue)
 
 	Params::UVariant_IsActive_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -940,15 +939,17 @@ void UVariant::IsActive(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function VariantManagerContent.Variant.GetThumbnail
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UTexture2D*                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UTexture2D*                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UVariant::GetThumbnail(class UTexture2D* ReturnValue)
+class UTexture2D* UVariant::GetThumbnail()
 {
 	static class UFunction* Func = nullptr;
 
@@ -957,7 +958,6 @@ void UVariant::GetThumbnail(class UTexture2D* ReturnValue)
 
 	Params::UVariant_GetThumbnail_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -967,15 +967,17 @@ void UVariant::GetThumbnail(class UTexture2D* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function VariantManagerContent.Variant.GetParent
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UVariantSet*                 ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UVariantSet*                 ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UVariant::GetParent(class UVariantSet* ReturnValue)
+class UVariantSet* UVariant::GetParent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -984,7 +986,6 @@ void UVariant::GetParent(class UVariantSet* ReturnValue)
 
 	Params::UVariant_GetParent_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -994,15 +995,17 @@ void UVariant::GetParent(class UVariantSet* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function VariantManagerContent.Variant.GetNumDependencies
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UVariant::GetNumDependencies(int32 ReturnValue)
+int32 UVariant::GetNumDependencies()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1011,7 +1014,6 @@ void UVariant::GetNumDependencies(int32 ReturnValue)
 
 	Params::UVariant_GetNumDependencies_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1021,15 +1023,17 @@ void UVariant::GetNumDependencies(int32 ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function VariantManagerContent.Variant.GetNumActors
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UVariant::GetNumActors(int32 ReturnValue)
+int32 UVariant::GetNumActors()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1038,7 +1042,6 @@ void UVariant::GetNumActors(int32 ReturnValue)
 
 	Params::UVariant_GetNumActors_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1048,15 +1051,17 @@ void UVariant::GetNumActors(int32 ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function VariantManagerContent.Variant.GetDisplayText
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UVariant::GetDisplayText(class FText ReturnValue)
+class FText UVariant::GetDisplayText()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1065,7 +1070,6 @@ void UVariant::GetDisplayText(class FText ReturnValue)
 
 	Params::UVariant_GetDisplayText_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1075,17 +1079,19 @@ void UVariant::GetDisplayText(class FText ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function VariantManagerContent.Variant.GetDependents
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class ULevelVariantSets*           LevelVariantSets                                                 (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// bool                               bOnlyEnabledDependencies                                         (Edit, ConstParm, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-// TArray<class UVariant*>            ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class ULevelVariantSets*           LevelVariantSets                                                 (BlueprintReadOnly, Net, OutParm, ReturnParm, GlobalConfig)
+// bool                               bOnlyEnabledDependencies                                         (Edit, BlueprintVisible, Net, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TArray<class UVariant*>            ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool UVariant::GetDependents(class ULevelVariantSets** LevelVariantSets, const TArray<class UVariant*>& ReturnValue)
+TArray<class UVariant*> UVariant::GetDependents()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1094,7 +1100,6 @@ bool UVariant::GetDependents(class ULevelVariantSets** LevelVariantSets, const T
 
 	Params::UVariant_GetDependents_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1103,9 +1108,6 @@ bool UVariant::GetDependents(class ULevelVariantSets** LevelVariantSets, const T
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (LevelVariantSets != nullptr)
-		*LevelVariantSets = Parms.LevelVariantSets;
 
 	return Parms.ReturnValue;
 
@@ -1115,10 +1117,10 @@ bool UVariant::GetDependents(class ULevelVariantSets** LevelVariantSets, const T
 // Function VariantManagerContent.Variant.GetDependency
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int32                              Index                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
-// struct FVariantDependency          ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              Index                                                            (EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+// struct FVariantDependency          ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UVariant::GetDependency(int32* Index, const struct FVariantDependency& ReturnValue)
+struct FVariantDependency UVariant::GetDependency()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1127,7 +1129,6 @@ void UVariant::GetDependency(int32* Index, const struct FVariantDependency& Retu
 
 	Params::UVariant_GetDependency_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1137,8 +1138,7 @@ void UVariant::GetDependency(int32* Index, const struct FVariantDependency& Retu
 
 	Func->FunctionFlags = Flgs;
 
-	if (Index != nullptr)
-		*Index = Parms.Index;
+	return Parms.ReturnValue;
 
 }
 
@@ -1146,10 +1146,10 @@ void UVariant::GetDependency(int32* Index, const struct FVariantDependency& Retu
 // Function VariantManagerContent.Variant.GetActor
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int32                              ActorIndex                                                       (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class AActor*                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              ActorIndex                                                       (ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+// class AActor*                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UVariant::GetActor(class AActor* ReturnValue)
+class AActor* UVariant::GetActor()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1158,7 +1158,6 @@ int32 UVariant::GetActor(class AActor* ReturnValue)
 
 	Params::UVariant_GetActor_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1176,9 +1175,9 @@ int32 UVariant::GetActor(class AActor* ReturnValue)
 // Function VariantManagerContent.Variant.DeleteDependency
 // (Final, Native, Public)
 // Parameters:
-// int32                              Index                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+// int32                              Index                                                            (EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
 
-void UVariant::DeleteDependency(int32* Index)
+int32 UVariant::DeleteDependency()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1196,8 +1195,7 @@ void UVariant::DeleteDependency(int32* Index)
 
 	Func->FunctionFlags = Flgs;
 
-	if (Index != nullptr)
-		*Index = Parms.Index;
+	return Parms.ReturnValue;
 
 }
 
@@ -1205,10 +1203,10 @@ void UVariant::DeleteDependency(int32* Index)
 // Function VariantManagerContent.Variant.AddDependency
 // (Final, Native, Public, HasOutParams)
 // Parameters:
-// struct FVariantDependency          Dependency                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FVariantDependency          Dependency                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FVariantDependency UVariant::AddDependency(int32 ReturnValue)
+int32 UVariant::AddDependency()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1217,7 +1215,6 @@ struct FVariantDependency UVariant::AddDependency(int32 ReturnValue)
 
 	Params::UVariant_AddDependency_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1291,7 +1288,7 @@ class UVariantSet* UVariantSet::GetDefaultObj()
 // Function VariantManagerContent.VariantSet.SetThumbnailFromTexture
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UTexture2D*                  NewThumbnail                                                     (Edit, ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class UTexture2D*                  NewThumbnail                                                     (Edit, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 class UTexture2D* UVariantSet::SetThumbnailFromTexture()
 {
@@ -1319,7 +1316,7 @@ class UTexture2D* UVariantSet::SetThumbnailFromTexture()
 // Function VariantManagerContent.VariantSet.SetThumbnailFromFile
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      FilePath                                                         (Edit, ConstParm, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// class FString                      FilePath                                                         (Edit, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, EditConst, SubobjectReference)
 
 class FString UVariantSet::SetThumbnailFromFile()
 {
@@ -1371,13 +1368,13 @@ void UVariantSet::SetThumbnailFromEditorViewport()
 // Function VariantManagerContent.VariantSet.SetThumbnailFromCamera
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FTransform                  CameraTransform                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-// float                              FOVDegrees                                                       (ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-// float                              MinZ                                                             (Edit, ConstParm, BlueprintVisible, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// float                              Gamma                                                            (ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FTransform                  CameraTransform                                                  (EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              FOVDegrees                                                       (ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// float                              MinZ                                                             (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              Gamma                                                            (BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, InstancedReference, SubobjectReference)
 
-float UVariantSet::SetThumbnailFromCamera()
+float UVariantSet::SetThumbnailFromCamera(class UObject** WorldContextObject, float MinZ)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1386,6 +1383,7 @@ float UVariantSet::SetThumbnailFromCamera()
 
 	Params::UVariantSet_SetThumbnailFromCamera_Params Parms{};
 
+	Parms.MinZ = MinZ;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1395,6 +1393,9 @@ float UVariantSet::SetThumbnailFromCamera()
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
 	return Parms.ReturnValue;
 
 }
@@ -1403,7 +1404,7 @@ float UVariantSet::SetThumbnailFromCamera()
 // Function VariantManagerContent.VariantSet.SetDisplayText
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class FText                        NewDisplayText                                                   (BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class FText                        NewDisplayText                                                   (ConstParm, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 class FText UVariantSet::SetDisplayText()
 {
@@ -1431,10 +1432,10 @@ class FText UVariantSet::SetDisplayText()
 // Function VariantManagerContent.VariantSet.GetVariantByName
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class FString                      VariantName                                                      (BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class UVariant*                    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      VariantName                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UVariant*                    ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UVariantSet::GetVariantByName(const class FString& VariantName, class UVariant* ReturnValue)
+class UVariant* UVariantSet::GetVariantByName(const class FString& VariantName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1444,7 +1445,6 @@ void UVariantSet::GetVariantByName(const class FString& VariantName, class UVari
 	Params::UVariantSet_GetVariantByName_Params Parms{};
 
 	Parms.VariantName = VariantName;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1454,16 +1454,18 @@ void UVariantSet::GetVariantByName(const class FString& VariantName, class UVari
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function VariantManagerContent.VariantSet.GetVariant
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// int32                              VariantIndex                                                     (BlueprintVisible, Net, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-// class UVariant*                    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              VariantIndex                                                     (ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class UVariant*                    ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-int32 UVariantSet::GetVariant(class UVariant* ReturnValue)
+class UVariant* UVariantSet::GetVariant()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1472,7 +1474,6 @@ int32 UVariantSet::GetVariant(class UVariant* ReturnValue)
 
 	Params::UVariantSet_GetVariant_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1490,9 +1491,9 @@ int32 UVariantSet::GetVariant(class UVariant* ReturnValue)
 // Function VariantManagerContent.VariantSet.GetThumbnail
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UTexture2D*                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UTexture2D*                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UVariantSet::GetThumbnail(class UTexture2D* ReturnValue)
+class UTexture2D* UVariantSet::GetThumbnail()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1501,7 +1502,6 @@ void UVariantSet::GetThumbnail(class UTexture2D* ReturnValue)
 
 	Params::UVariantSet_GetThumbnail_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1511,15 +1511,17 @@ void UVariantSet::GetThumbnail(class UTexture2D* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function VariantManagerContent.VariantSet.GetParent
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class ULevelVariantSets*           ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class ULevelVariantSets*           ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UVariantSet::GetParent(class ULevelVariantSets* ReturnValue)
+class ULevelVariantSets* UVariantSet::GetParent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1528,7 +1530,6 @@ void UVariantSet::GetParent(class ULevelVariantSets* ReturnValue)
 
 	Params::UVariantSet_GetParent_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1538,15 +1539,17 @@ void UVariantSet::GetParent(class ULevelVariantSets* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function VariantManagerContent.VariantSet.GetNumVariants
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UVariantSet::GetNumVariants(int32 ReturnValue)
+int32 UVariantSet::GetNumVariants()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1555,7 +1558,6 @@ void UVariantSet::GetNumVariants(int32 ReturnValue)
 
 	Params::UVariantSet_GetNumVariants_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1565,15 +1567,17 @@ void UVariantSet::GetNumVariants(int32 ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function VariantManagerContent.VariantSet.GetDisplayText
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FText                        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FText                        ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UVariantSet::GetDisplayText(class FText ReturnValue)
+class FText UVariantSet::GetDisplayText()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1582,7 +1586,6 @@ void UVariantSet::GetDisplayText(class FText ReturnValue)
 
 	Params::UVariantSet_GetDisplayText_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1591,6 +1594,8 @@ void UVariantSet::GetDisplayText(class FText ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 

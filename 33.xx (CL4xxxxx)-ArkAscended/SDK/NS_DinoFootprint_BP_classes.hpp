@@ -9,12 +9,11 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x8 (0x940 - 0x938)
+// 0x0 (0x930 - 0x930)
 // BlueprintGeneratedClass NS_DinoFootprint_BP.NS_DinoFootprint_BP_C
 class UNS_DinoFootprint_BP_C : public UNiagaraComponent
 {
 public:
-	uint8                                        Pad_3040[0x8];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UNS_DinoFootprint_BP_C* GetDefaultObj();

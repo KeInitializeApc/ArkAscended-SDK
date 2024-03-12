@@ -14,7 +14,7 @@ namespace SDK
 class UMovieSceneGeometryCollectionSection : public UMovieSceneSection
 {
 public:
-	struct FMovieSceneGeometryCollectionParams   Params;                                            // 0xF0(0x38)(Edit, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+	struct FMovieSceneGeometryCollectionParams   Params;                                            // 0xF0(0x38)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UMovieSceneGeometryCollectionSection* GetDefaultObj();
@@ -26,8 +26,8 @@ public:
 class UMovieSceneGeometryCollectionTrack : public UMovieSceneNameableTrack
 {
 public:
-	uint8                                        Pad_1544[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<class UMovieSceneSection*>            AnimationSections;                                 // 0xA0(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, InstancedReference, SubobjectReference)
+	uint8                                        Pad_19A9[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<class UMovieSceneSection*>            AnimationSections;                                 // 0xA0(0x10)(Edit, ConstParm, Net, OutParm, ZeroConstructor, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UMovieSceneGeometryCollectionTrack* GetDefaultObj();

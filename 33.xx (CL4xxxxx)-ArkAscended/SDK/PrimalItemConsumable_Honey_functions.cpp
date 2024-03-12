@@ -43,12 +43,12 @@ class UPrimalItemConsumable_Honey_C* UPrimalItemConsumable_Honey_C::GetDefaultOb
 // Function PrimalItemConsumable_Honey.PrimalItemConsumable_Honey_C.BPNotifyDropped
 // (Event, Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class APrimalCharacter*            FromCharacter                                                    (ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               bWasThrown                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// class APrimalBuff*                 CallFunc_StaticAddBuff_ReturnValue                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, SubobjectReference)
-// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintVisible, Net, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// class APrimalCharacter*            FromCharacter                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Config, EditConst, InstancedReference, SubobjectReference)
+// bool                               bWasThrown                                                       (Edit, BlueprintVisible, ExportObject, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// class APrimalBuff*                 CallFunc_StaticAddBuff_ReturnValue                               (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsValid_ReturnValue                                     (BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
 
-void UPrimalItemConsumable_Honey_C::BPNotifyDropped(class APrimalCharacter* FromCharacter, bool bWasThrown, class APrimalBuff* CallFunc_StaticAddBuff_ReturnValue, bool* CallFunc_IsValid_ReturnValue)
+bool UPrimalItemConsumable_Honey_C::BPNotifyDropped(class APrimalCharacter* FromCharacter)
 {
 	static class UFunction* Func = nullptr;
 
@@ -58,13 +58,10 @@ void UPrimalItemConsumable_Honey_C::BPNotifyDropped(class APrimalCharacter* From
 	Params::UPrimalItemConsumable_Honey_C_BPNotifyDropped_Params Parms{};
 
 	Parms.FromCharacter = FromCharacter;
-	Parms.bWasThrown = bWasThrown;
-	Parms.CallFunc_StaticAddBuff_ReturnValue = CallFunc_StaticAddBuff_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (CallFunc_IsValid_ReturnValue != nullptr)
-		*CallFunc_IsValid_ReturnValue = Parms.CallFunc_IsValid_ReturnValue;
+	return Parms.ReturnValue;
 
 }
 

@@ -18,7 +18,7 @@ namespace Params
 struct UPrimalItemSkin_PlayerCostume_Custom_C_BPOverrideEquippedDurabilityPercentage_Params
 {
 public:
-	float                                        OutDurabilityPercentageValue;                      // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+	float                                        OutDurabilityPercentageValue;                      // 0x0(0x4)(ConstParm, BlueprintVisible, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
 };
 
 }

@@ -14,7 +14,7 @@ namespace SDK
 class UEOSControlChannel : public UControlChannel
 {
 public:
-	uint8                                        Pad_95E[0x220];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_8F4[0x220];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UEOSControlChannel* GetDefaultObj();
@@ -37,7 +37,7 @@ public:
 class UEOSNetConnection : public UNetConnection
 {
 public:
-	uint8                                        Pad_961[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_8FF[0x10];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UEOSNetConnection* GetDefaultObj();
@@ -49,8 +49,8 @@ public:
 class UEOSNetDriver : public UIpNetDriver
 {
 public:
-	uint8                                        Pad_962[0x78];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<class UEOSNetConnection*>             PendingConnectionClose;                            // 0x8B8(0x10)(Edit, ExportObject, Net, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_903[0x78];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<class UEOSNetConnection*>             PendingConnectionClose;                            // 0x8B8(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UEOSNetDriver* GetDefaultObj();
@@ -62,9 +62,9 @@ public:
 class UEOSSubsystem : public UGameInstanceSubsystem
 {
 public:
-	FMulticastInlineDelegateProperty_            OnAddWidgetToViewport;                             // 0x30(0x10)(Edit, ConstParm, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	FMulticastInlineDelegateProperty_            OnRemoveWidgetFromViewport;                        // 0x40(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_965[0x18];                                     // Fixing Size Of Struct > TateDumper <
+	FMulticastInlineDelegateProperty_            OnAddWidgetToViewport;                             // 0x30(0x10)(BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	FMulticastInlineDelegateProperty_            OnRemoveWidgetFromViewport;                        // 0x40(0x10)(ConstParm, BlueprintVisible, Net, Parm, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_909[0x18];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UEOSSubsystem* GetDefaultObj();
@@ -76,7 +76,7 @@ public:
 class UEOSUserInterface_EnterDevicePinCode_Context : public UObject
 {
 public:
-	uint8                                        Pad_968[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_90D[0x10];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UEOSUserInterface_EnterDevicePinCode_Context* GetDefaultObj();
@@ -101,12 +101,12 @@ public:
 class UEOSUserInterface_LinkEOSAccountsAgainstCrossPlatform_Context : public UObject
 {
 public:
-	uint8                                        Pad_97A[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_924[0x10];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UEOSUserInterface_LinkEOSAccountsAgainstCrossPlatform_Context* GetDefaultObj();
 
-	void SelectedCandidates(const TArray<struct FEOSUserInterface_CandidateEOSAccount>& SelectedCandidates);
+	TArray<struct FEOSUserInterface_CandidateEOSAccount> SelectedCandidates();
 };
 
 // 0x0 (0x28 - 0x28)
@@ -126,7 +126,7 @@ public:
 class UEOSUserInterface_SelectEOSAccount_Context : public UObject
 {
 public:
-	uint8                                        Pad_98C[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_935[0x10];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UEOSUserInterface_SelectEOSAccount_Context* GetDefaultObj();
@@ -151,7 +151,7 @@ public:
 class UEOSUserInterface_SignInOrCreateAccount_Context : public UObject
 {
 public:
-	uint8                                        Pad_994[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_94B[0x10];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UEOSUserInterface_SignInOrCreateAccount_Context* GetDefaultObj();
@@ -176,7 +176,7 @@ public:
 class UEOSUserInterface_SwitchToCrossPlatformAccount_Context : public UObject
 {
 public:
-	uint8                                        Pad_9A8[0x10];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_957[0x10];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UEOSUserInterface_SwitchToCrossPlatformAccount_Context* GetDefaultObj();
@@ -201,7 +201,7 @@ public:
 class URecentPlayersWorldSubsystem : public URecentPlayersWorldSubsystemBase
 {
 public:
-	uint8                                        Pad_9B6[0x60];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_96C[0x60];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class URecentPlayersWorldSubsystem* GetDefaultObj();

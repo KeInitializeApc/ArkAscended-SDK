@@ -19,8 +19,8 @@ namespace SDK
 struct FMapSpecificTekArmorBuffs
 {
 public:
-	TSoftClassPtr<class APrimalBuff>             TekArmorBuff_6_F5E423204C994EC6354175AE7BC652F7;   // 0x0(0x30)(Net, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-	class FString                                ForMap_5_BDE018E042331E4B7EC006837145188A;         // 0x30(0x10)(ConstParm, BlueprintVisible, Net, Parm, Transient, DisableEditOnInstance, SubobjectReference)
+	TSoftClassPtr<class APrimalBuff>             TekArmorBuff_6_F5E423204C994EC6354175AE7BC652F7;   // 0x0(0x30)(Edit, ConstParm, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+	class FString                                ForMap_5_BDE018E042331E4B7EC006837145188A;         // 0x30(0x10)(Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
 };
 
 }

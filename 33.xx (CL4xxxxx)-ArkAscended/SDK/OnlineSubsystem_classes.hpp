@@ -14,9 +14,9 @@ namespace SDK
 class UNamedInterfaces : public UObject
 {
 public:
-	TArray<struct FNamedInterface>               NamedInterfaces;                                   // 0x28(0x10)(BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	TArray<struct FNamedInterfaceDef>            NamedInterfaceDefs;                                // 0x38(0x10)(BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-	uint8                                        Pad_A[0x18];                                       // Fixing Size Of Struct > TateDumper <
+	TArray<struct FNamedInterface>               NamedInterfaces;                                   // 0x28(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	TArray<struct FNamedInterfaceDef>            NamedInterfaceDefs;                                // 0x38(0x10)(Edit, ConstParm, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+	uint8                                        Pad_0[0x18];                                       // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UNamedInterfaces* GetDefaultObj();

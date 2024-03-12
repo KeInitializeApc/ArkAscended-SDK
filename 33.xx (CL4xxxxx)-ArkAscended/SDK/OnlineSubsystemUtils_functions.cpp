@@ -43,13 +43,13 @@ class UAchievementBlueprintLibrary* UAchievementBlueprintLibrary::GetDefaultObj(
 // Function OnlineSubsystemUtils.AchievementBlueprintLibrary.GetCachedAchievementProgress
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// class FName                        AchievementID                                                    (BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bFoundID                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// float                              Progress                                                         (Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, Config, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// class FName                        AchievementID                                                    (Edit, ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bFoundID                                                         (ConstParm, ExportObject, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// float                              Progress                                                         (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-class UObject* UAchievementBlueprintLibrary::GetCachedAchievementProgress(class APlayerController** PlayerController, class FName AchievementID, bool bFoundID, float* Progress)
+float UAchievementBlueprintLibrary::GetCachedAchievementProgress(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -58,8 +58,6 @@ class UObject* UAchievementBlueprintLibrary::GetCachedAchievementProgress(class 
 
 	Params::UAchievementBlueprintLibrary_GetCachedAchievementProgress_Params Parms{};
 
-	Parms.AchievementID = AchievementID;
-	Parms.bFoundID = bFoundID;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -69,11 +67,8 @@ class UObject* UAchievementBlueprintLibrary::GetCachedAchievementProgress(class 
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
-
-	if (Progress != nullptr)
-		*Progress = Parms.Progress;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -83,16 +78,16 @@ class UObject* UAchievementBlueprintLibrary::GetCachedAchievementProgress(class 
 // Function OnlineSubsystemUtils.AchievementBlueprintLibrary.GetCachedAchievementDescription
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// class FName                        AchievementID                                                    (BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bFoundID                                                         (BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class FText                        Title                                                            (ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-// class FText                        LockedDescription                                                (ConstParm, BlueprintReadOnly, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class FText                        UnlockedDescription                                              (Edit, ConstParm, BlueprintVisible, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// bool                               bHidden                                                          (BlueprintVisible, EditFixedSize, ZeroConstructor, Config)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// class FName                        AchievementID                                                    (Edit, ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bFoundID                                                         (ConstParm, ExportObject, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class FText                        Title                                                            (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Config, EditConst, SubobjectReference)
+// class FText                        LockedDescription                                                (Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class FText                        UnlockedDescription                                              (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// bool                               bHidden                                                          (ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Config)
 
-class UObject* UAchievementBlueprintLibrary::GetCachedAchievementDescription(class APlayerController** PlayerController, class FName AchievementID, bool bFoundID, class FText Title, class FText LockedDescription, class FText UnlockedDescription, bool bHidden)
+class FText UAchievementBlueprintLibrary::GetCachedAchievementDescription(class UObject** WorldContextObject, class FText Title, bool bHidden)
 {
 	static class UFunction* Func = nullptr;
 
@@ -101,11 +96,7 @@ class UObject* UAchievementBlueprintLibrary::GetCachedAchievementDescription(cla
 
 	Params::UAchievementBlueprintLibrary_GetCachedAchievementDescription_Params Parms{};
 
-	Parms.AchievementID = AchievementID;
-	Parms.bFoundID = bFoundID;
 	Parms.Title = Title;
-	Parms.LockedDescription = LockedDescription;
-	Parms.UnlockedDescription = UnlockedDescription;
 	Parms.bHidden = bHidden;
 
 	auto Flgs = Func->FunctionFlags;
@@ -116,8 +107,8 @@ class UObject* UAchievementBlueprintLibrary::GetCachedAchievementDescription(cla
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -155,11 +146,11 @@ class UAchievementQueryCallbackProxy* UAchievementQueryCallbackProxy::GetDefault
 // Function OnlineSubsystemUtils.AchievementQueryCallbackProxy.CacheAchievements
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// class UAchievementQueryCallbackProxy*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// class UAchievementQueryCallbackProxy*ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UAchievementQueryCallbackProxy::CacheAchievements(class APlayerController** PlayerController, class UAchievementQueryCallbackProxy* ReturnValue)
+class UAchievementQueryCallbackProxy* UAchievementQueryCallbackProxy::CacheAchievements(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -168,7 +159,6 @@ class UObject* UAchievementQueryCallbackProxy::CacheAchievements(class APlayerCo
 
 	Params::UAchievementQueryCallbackProxy_CacheAchievements_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -178,8 +168,8 @@ class UObject* UAchievementQueryCallbackProxy::CacheAchievements(class APlayerCo
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -189,11 +179,11 @@ class UObject* UAchievementQueryCallbackProxy::CacheAchievements(class APlayerCo
 // Function OnlineSubsystemUtils.AchievementQueryCallbackProxy.CacheAchievementDescriptions
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// class UAchievementQueryCallbackProxy*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// class UAchievementQueryCallbackProxy*ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UAchievementQueryCallbackProxy::CacheAchievementDescriptions(class APlayerController** PlayerController, class UAchievementQueryCallbackProxy* ReturnValue)
+class UAchievementQueryCallbackProxy* UAchievementQueryCallbackProxy::CacheAchievementDescriptions(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -202,7 +192,6 @@ class UObject* UAchievementQueryCallbackProxy::CacheAchievementDescriptions(clas
 
 	Params::UAchievementQueryCallbackProxy_CacheAchievementDescriptions_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -212,8 +201,8 @@ class UObject* UAchievementQueryCallbackProxy::CacheAchievementDescriptions(clas
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -251,14 +240,14 @@ class UAchievementWriteCallbackProxy* UAchievementWriteCallbackProxy::GetDefault
 // Function OnlineSubsystemUtils.AchievementWriteCallbackProxy.WriteAchievementProgress
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// class FName                        AchievementName                                                  (ConstParm, BlueprintVisible, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// float                              Progress                                                         (Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, Config, EditConst, SubobjectReference)
-// int32                              UserTag                                                          (Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-// class UAchievementWriteCallbackProxy*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// class FName                        AchievementName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              Progress                                                         (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              UserTag                                                          (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+// class UAchievementWriteCallbackProxy*ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UAchievementWriteCallbackProxy::WriteAchievementProgress(class APlayerController** PlayerController, class FName AchievementName, float* Progress, int32* UserTag, class UAchievementWriteCallbackProxy* ReturnValue)
+class UAchievementWriteCallbackProxy* UAchievementWriteCallbackProxy::WriteAchievementProgress(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -267,8 +256,6 @@ class UObject* UAchievementWriteCallbackProxy::WriteAchievementProgress(class AP
 
 	Params::UAchievementWriteCallbackProxy_WriteAchievementProgress_Params Parms{};
 
-	Parms.AchievementName = AchievementName;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -278,14 +265,8 @@ class UObject* UAchievementWriteCallbackProxy::WriteAchievementProgress(class AP
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
-
-	if (Progress != nullptr)
-		*Progress = Parms.Progress;
-
-	if (UserTag != nullptr)
-		*UserTag = Parms.UserTag;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -323,11 +304,11 @@ class UConnectionCallbackProxy* UConnectionCallbackProxy::GetDefaultObj()
 // Function OnlineSubsystemUtils.ConnectionCallbackProxy.ConnectToService
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// class UConnectionCallbackProxy*    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// class UConnectionCallbackProxy*    ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UConnectionCallbackProxy::ConnectToService(class APlayerController** PlayerController, class UConnectionCallbackProxy* ReturnValue)
+class UConnectionCallbackProxy* UConnectionCallbackProxy::ConnectToService(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -336,7 +317,6 @@ class UObject* UConnectionCallbackProxy::ConnectToService(class APlayerControlle
 
 	Params::UConnectionCallbackProxy_ConnectToService_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -346,8 +326,8 @@ class UObject* UConnectionCallbackProxy::ConnectToService(class APlayerControlle
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -385,13 +365,13 @@ class UCreateSessionCallbackProxy* UCreateSessionCallbackProxy::GetDefaultObj()
 // Function OnlineSubsystemUtils.CreateSessionCallbackProxy.CreateSession
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// int32                              PublicConnections                                                (BlueprintVisible, ExportObject, Net, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// bool                               bUseLAN                                                          (Edit, ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class UCreateSessionCallbackProxy* ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// int32                              PublicConnections                                                (ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// bool                               bUseLAN                                                          (Edit, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class UCreateSessionCallbackProxy* ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UCreateSessionCallbackProxy::CreateSession(class APlayerController** PlayerController, int32 PublicConnections, bool bUseLAN, class UCreateSessionCallbackProxy* ReturnValue)
+class UCreateSessionCallbackProxy* UCreateSessionCallbackProxy::CreateSession(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -400,9 +380,6 @@ class UObject* UCreateSessionCallbackProxy::CreateSession(class APlayerControlle
 
 	Params::UCreateSessionCallbackProxy_CreateSession_Params Parms{};
 
-	Parms.PublicConnections = PublicConnections;
-	Parms.bUseLAN = bUseLAN;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -412,8 +389,8 @@ class UObject* UCreateSessionCallbackProxy::CreateSession(class APlayerControlle
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -451,11 +428,11 @@ class UDestroySessionCallbackProxy* UDestroySessionCallbackProxy::GetDefaultObj(
 // Function OnlineSubsystemUtils.DestroySessionCallbackProxy.DestroySession
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// class UDestroySessionCallbackProxy*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// class UDestroySessionCallbackProxy*ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UDestroySessionCallbackProxy::DestroySession(class APlayerController** PlayerController, class UDestroySessionCallbackProxy* ReturnValue)
+class UDestroySessionCallbackProxy* UDestroySessionCallbackProxy::DestroySession(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -464,7 +441,6 @@ class UObject* UDestroySessionCallbackProxy::DestroySession(class APlayerControl
 
 	Params::UDestroySessionCallbackProxy_DestroySession_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -474,8 +450,8 @@ class UObject* UDestroySessionCallbackProxy::DestroySession(class APlayerControl
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -513,15 +489,15 @@ class UEndMatchCallbackProxy* UEndMatchCallbackProxy::GetDefaultObj()
 // Function OnlineSubsystemUtils.EndMatchCallbackProxy.EndMatch
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// TScriptInterface<class ITurnBasedMatchInterface>MatchActor                                                       (Edit, ConstParm, ExportObject, EditFixedSize, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class FString                      MatchID                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, Config, EditConst, SubobjectReference)
-// enum class EMPMatchOutcome         LocalPlayerOutcome                                               (Edit, EditFixedSize, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// enum class EMPMatchOutcome         OtherPlayersOutcome                                              (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class UEndMatchCallbackProxy*      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// TScriptInterface<class ITurnBasedMatchInterface>MatchActor                                                       (Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class FString                      MatchID                                                          (Edit, BlueprintVisible, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EMPMatchOutcome         LocalPlayerOutcome                                               (Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// enum class EMPMatchOutcome         OtherPlayersOutcome                                              (BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class UEndMatchCallbackProxy*      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UEndMatchCallbackProxy::EndMatch(class APlayerController** PlayerController, TScriptInterface<class ITurnBasedMatchInterface> MatchActor, const class FString& MatchID, enum class EMPMatchOutcome LocalPlayerOutcome, enum class EMPMatchOutcome OtherPlayersOutcome, class UEndMatchCallbackProxy* ReturnValue)
+class UEndMatchCallbackProxy* UEndMatchCallbackProxy::EndMatch(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -530,11 +506,6 @@ class UObject* UEndMatchCallbackProxy::EndMatch(class APlayerController** Player
 
 	Params::UEndMatchCallbackProxy_EndMatch_Params Parms{};
 
-	Parms.MatchActor = MatchActor;
-	Parms.MatchID = MatchID;
-	Parms.LocalPlayerOutcome = LocalPlayerOutcome;
-	Parms.OtherPlayersOutcome = OtherPlayersOutcome;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -544,8 +515,8 @@ class UObject* UEndMatchCallbackProxy::EndMatch(class APlayerController** Player
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -583,13 +554,13 @@ class UEndTurnCallbackProxy* UEndTurnCallbackProxy::GetDefaultObj()
 // Function OnlineSubsystemUtils.EndTurnCallbackProxy.EndTurn
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// class FString                      MatchID                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, Config, EditConst, SubobjectReference)
-// TScriptInterface<class ITurnBasedMatchInterface>TurnBasedMatchInterface                                          (Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-// class UEndTurnCallbackProxy*       ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// class FString                      MatchID                                                          (Edit, BlueprintVisible, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// TScriptInterface<class ITurnBasedMatchInterface>TurnBasedMatchInterface                                          (ConstParm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+// class UEndTurnCallbackProxy*       ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-TScriptInterface<class ITurnBasedMatchInterface> UEndTurnCallbackProxy::EndTurn(class APlayerController** PlayerController, const class FString& MatchID, class UEndTurnCallbackProxy* ReturnValue)
+class UEndTurnCallbackProxy* UEndTurnCallbackProxy::EndTurn(class UObject** WorldContextObject, TScriptInterface<class ITurnBasedMatchInterface>* TurnBasedMatchInterface)
 {
 	static class UFunction* Func = nullptr;
 
@@ -598,8 +569,6 @@ TScriptInterface<class ITurnBasedMatchInterface> UEndTurnCallbackProxy::EndTurn(
 
 	Params::UEndTurnCallbackProxy_EndTurn_Params Parms{};
 
-	Parms.MatchID = MatchID;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -609,8 +578,11 @@ TScriptInterface<class ITurnBasedMatchInterface> UEndTurnCallbackProxy::EndTurn(
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
+	if (TurnBasedMatchInterface != nullptr)
+		*TurnBasedMatchInterface = Parms.TurnBasedMatchInterface;
 
 	return Parms.ReturnValue;
 
@@ -648,10 +620,10 @@ class UFindSessionsCallbackProxy* UFindSessionsCallbackProxy::GetDefaultObj()
 // Function OnlineSubsystemUtils.FindSessionsCallbackProxy.GetServerName
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FBlueprintSessionResult     Result                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FBlueprintSessionResult     Result                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnInstance, EditConst)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FBlueprintSessionResult UFindSessionsCallbackProxy::GetServerName(const class FString& ReturnValue)
+class FString UFindSessionsCallbackProxy::GetServerName(const struct FBlueprintSessionResult& Result)
 {
 	static class UFunction* Func = nullptr;
 
@@ -660,7 +632,7 @@ struct FBlueprintSessionResult UFindSessionsCallbackProxy::GetServerName(const c
 
 	Params::UFindSessionsCallbackProxy_GetServerName_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.Result = Result;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -678,10 +650,10 @@ struct FBlueprintSessionResult UFindSessionsCallbackProxy::GetServerName(const c
 // Function OnlineSubsystemUtils.FindSessionsCallbackProxy.GetPingInMs
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FBlueprintSessionResult     Result                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FBlueprintSessionResult     Result                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnInstance, EditConst)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FBlueprintSessionResult UFindSessionsCallbackProxy::GetPingInMs(int32 ReturnValue)
+int32 UFindSessionsCallbackProxy::GetPingInMs(const struct FBlueprintSessionResult& Result)
 {
 	static class UFunction* Func = nullptr;
 
@@ -690,7 +662,7 @@ struct FBlueprintSessionResult UFindSessionsCallbackProxy::GetPingInMs(int32 Ret
 
 	Params::UFindSessionsCallbackProxy_GetPingInMs_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.Result = Result;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -708,10 +680,10 @@ struct FBlueprintSessionResult UFindSessionsCallbackProxy::GetPingInMs(int32 Ret
 // Function OnlineSubsystemUtils.FindSessionsCallbackProxy.GetMaxPlayers
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FBlueprintSessionResult     Result                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FBlueprintSessionResult     Result                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnInstance, EditConst)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FBlueprintSessionResult UFindSessionsCallbackProxy::GetMaxPlayers(int32 ReturnValue)
+int32 UFindSessionsCallbackProxy::GetMaxPlayers(const struct FBlueprintSessionResult& Result)
 {
 	static class UFunction* Func = nullptr;
 
@@ -720,7 +692,7 @@ struct FBlueprintSessionResult UFindSessionsCallbackProxy::GetMaxPlayers(int32 R
 
 	Params::UFindSessionsCallbackProxy_GetMaxPlayers_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.Result = Result;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -738,10 +710,10 @@ struct FBlueprintSessionResult UFindSessionsCallbackProxy::GetMaxPlayers(int32 R
 // Function OnlineSubsystemUtils.FindSessionsCallbackProxy.GetCurrentPlayers
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FBlueprintSessionResult     Result                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FBlueprintSessionResult     Result                                                           (Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnInstance, EditConst)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FBlueprintSessionResult UFindSessionsCallbackProxy::GetCurrentPlayers(int32 ReturnValue)
+int32 UFindSessionsCallbackProxy::GetCurrentPlayers(const struct FBlueprintSessionResult& Result)
 {
 	static class UFunction* Func = nullptr;
 
@@ -750,7 +722,7 @@ struct FBlueprintSessionResult UFindSessionsCallbackProxy::GetCurrentPlayers(int
 
 	Params::UFindSessionsCallbackProxy_GetCurrentPlayers_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.Result = Result;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -768,13 +740,13 @@ struct FBlueprintSessionResult UFindSessionsCallbackProxy::GetCurrentPlayers(int
 // Function OnlineSubsystemUtils.FindSessionsCallbackProxy.FindSessions
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// int32                              MaxResults                                                       (Edit, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// bool                               bUseLAN                                                          (Edit, ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class UFindSessionsCallbackProxy*  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// int32                              MaxResults                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// bool                               bUseLAN                                                          (Edit, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class UFindSessionsCallbackProxy*  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UFindSessionsCallbackProxy::FindSessions(class APlayerController** PlayerController, int32 MaxResults, bool bUseLAN, class UFindSessionsCallbackProxy* ReturnValue)
+class UFindSessionsCallbackProxy* UFindSessionsCallbackProxy::FindSessions(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -783,9 +755,6 @@ class UObject* UFindSessionsCallbackProxy::FindSessions(class APlayerController*
 
 	Params::UFindSessionsCallbackProxy_FindSessions_Params Parms{};
 
-	Parms.MaxResults = MaxResults;
-	Parms.bUseLAN = bUseLAN;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -795,8 +764,8 @@ class UObject* UFindSessionsCallbackProxy::FindSessions(class APlayerController*
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -834,16 +803,16 @@ class UFindTurnBasedMatchCallbackProxy* UFindTurnBasedMatchCallbackProxy::GetDef
 // Function OnlineSubsystemUtils.FindTurnBasedMatchCallbackProxy.FindTurnBasedMatch
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// TScriptInterface<class ITurnBasedMatchInterface>MatchActor                                                       (Edit, ConstParm, ExportObject, EditFixedSize, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// int32                              MinPlayers                                                       (Edit, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// int32                              MaxPlayers                                                       (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnInstance, SubobjectReference)
-// int32                              PlayerGroup                                                      (ConstParm, Net, EditFixedSize, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// bool                               ShowExistingMatches                                              (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class UFindTurnBasedMatchCallbackProxy*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// TScriptInterface<class ITurnBasedMatchInterface>MatchActor                                                       (Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// int32                              MinPlayers                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// int32                              MaxPlayers                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig)
+// int32                              PlayerGroup                                                      (BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// bool                               ShowExistingMatches                                              (Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class UFindTurnBasedMatchCallbackProxy*ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UFindTurnBasedMatchCallbackProxy::FindTurnBasedMatch(class APlayerController** PlayerController, TScriptInterface<class ITurnBasedMatchInterface> MatchActor, int32 MinPlayers, int32* MaxPlayers, int32 PlayerGroup, bool ShowExistingMatches, class UFindTurnBasedMatchCallbackProxy* ReturnValue)
+class UFindTurnBasedMatchCallbackProxy* UFindTurnBasedMatchCallbackProxy::FindTurnBasedMatch(class UObject** WorldContextObject, int32* MaxPlayers)
 {
 	static class UFunction* Func = nullptr;
 
@@ -852,11 +821,6 @@ class UObject* UFindTurnBasedMatchCallbackProxy::FindTurnBasedMatch(class APlaye
 
 	Params::UFindTurnBasedMatchCallbackProxy_FindTurnBasedMatch_Params Parms{};
 
-	Parms.MatchActor = MatchActor;
-	Parms.MinPlayers = MinPlayers;
-	Parms.PlayerGroup = PlayerGroup;
-	Parms.ShowExistingMatches = ShowExistingMatches;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -866,8 +830,8 @@ class UObject* UFindTurnBasedMatchCallbackProxy::FindTurnBasedMatch(class APlaye
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	if (MaxPlayers != nullptr)
 		*MaxPlayers = Parms.MaxPlayers;
@@ -908,10 +872,10 @@ class UInAppPurchaseCallbackProxy2* UInAppPurchaseCallbackProxy2::GetDefaultObj(
 // Function OnlineSubsystemUtils.InAppPurchaseCallbackProxy2.CreateProxyObjectForInAppPurchaseUnprocessedPurchases
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// class UInAppPurchaseCallbackProxy2*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// class UInAppPurchaseCallbackProxy2*ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UInAppPurchaseCallbackProxy2::CreateProxyObjectForInAppPurchaseUnprocessedPurchases(class APlayerController** PlayerController, class UInAppPurchaseCallbackProxy2* ReturnValue)
+class UInAppPurchaseCallbackProxy2* UInAppPurchaseCallbackProxy2::CreateProxyObjectForInAppPurchaseUnprocessedPurchases()
 {
 	static class UFunction* Func = nullptr;
 
@@ -920,7 +884,6 @@ void UInAppPurchaseCallbackProxy2::CreateProxyObjectForInAppPurchaseUnprocessedP
 
 	Params::UInAppPurchaseCallbackProxy2_CreateProxyObjectForInAppPurchaseUnprocessedPurchases_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -930,8 +893,7 @@ void UInAppPurchaseCallbackProxy2::CreateProxyObjectForInAppPurchaseUnprocessedP
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
+	return Parms.ReturnValue;
 
 }
 
@@ -939,10 +901,10 @@ void UInAppPurchaseCallbackProxy2::CreateProxyObjectForInAppPurchaseUnprocessedP
 // Function OnlineSubsystemUtils.InAppPurchaseCallbackProxy2.CreateProxyObjectForInAppPurchaseQueryOwned
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// class UInAppPurchaseCallbackProxy2*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// class UInAppPurchaseCallbackProxy2*ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UInAppPurchaseCallbackProxy2::CreateProxyObjectForInAppPurchaseQueryOwned(class APlayerController** PlayerController, class UInAppPurchaseCallbackProxy2* ReturnValue)
+class UInAppPurchaseCallbackProxy2* UInAppPurchaseCallbackProxy2::CreateProxyObjectForInAppPurchaseQueryOwned()
 {
 	static class UFunction* Func = nullptr;
 
@@ -951,7 +913,6 @@ void UInAppPurchaseCallbackProxy2::CreateProxyObjectForInAppPurchaseQueryOwned(c
 
 	Params::UInAppPurchaseCallbackProxy2_CreateProxyObjectForInAppPurchaseQueryOwned_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -961,8 +922,7 @@ void UInAppPurchaseCallbackProxy2::CreateProxyObjectForInAppPurchaseQueryOwned(c
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
+	return Parms.ReturnValue;
 
 }
 
@@ -970,11 +930,11 @@ void UInAppPurchaseCallbackProxy2::CreateProxyObjectForInAppPurchaseQueryOwned(c
 // Function OnlineSubsystemUtils.InAppPurchaseCallbackProxy2.CreateProxyObjectForInAppPurchase
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// struct FInAppPurchaseProductRequest2ProductRequest                                                   (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class UInAppPurchaseCallbackProxy2*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// struct FInAppPurchaseProductRequest2ProductRequest                                                   (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class UInAppPurchaseCallbackProxy2*ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UInAppPurchaseCallbackProxy2::CreateProxyObjectForInAppPurchase(class APlayerController** PlayerController, const struct FInAppPurchaseProductRequest2& ProductRequest, class UInAppPurchaseCallbackProxy2* ReturnValue)
+class UInAppPurchaseCallbackProxy2* UInAppPurchaseCallbackProxy2::CreateProxyObjectForInAppPurchase()
 {
 	static class UFunction* Func = nullptr;
 
@@ -983,8 +943,6 @@ void UInAppPurchaseCallbackProxy2::CreateProxyObjectForInAppPurchase(class APlay
 
 	Params::UInAppPurchaseCallbackProxy2_CreateProxyObjectForInAppPurchase_Params Parms{};
 
-	Parms.ProductRequest = ProductRequest;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -994,8 +952,7 @@ void UInAppPurchaseCallbackProxy2::CreateProxyObjectForInAppPurchase(class APlay
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
+	return Parms.ReturnValue;
 
 }
 
@@ -1031,11 +988,11 @@ class UInAppPurchaseQueryCallbackProxy2* UInAppPurchaseQueryCallbackProxy2::GetD
 // Function OnlineSubsystemUtils.InAppPurchaseQueryCallbackProxy2.CreateProxyObjectForInAppPurchaseQuery
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// TArray<class FString>              ProductIdentifiers                                               (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class UInAppPurchaseQueryCallbackProxy2*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// TArray<class FString>              ProductIdentifiers                                               (Edit, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class UInAppPurchaseQueryCallbackProxy2*ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UInAppPurchaseQueryCallbackProxy2::CreateProxyObjectForInAppPurchaseQuery(class APlayerController** PlayerController, const TArray<class FString>& ProductIdentifiers, class UInAppPurchaseQueryCallbackProxy2* ReturnValue)
+class UInAppPurchaseQueryCallbackProxy2* UInAppPurchaseQueryCallbackProxy2::CreateProxyObjectForInAppPurchaseQuery()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1044,8 +1001,6 @@ void UInAppPurchaseQueryCallbackProxy2::CreateProxyObjectForInAppPurchaseQuery(c
 
 	Params::UInAppPurchaseQueryCallbackProxy2_CreateProxyObjectForInAppPurchaseQuery_Params Parms{};
 
-	Parms.ProductIdentifiers = ProductIdentifiers;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1055,8 +1010,7 @@ void UInAppPurchaseQueryCallbackProxy2::CreateProxyObjectForInAppPurchaseQuery(c
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
+	return Parms.ReturnValue;
 
 }
 
@@ -1092,11 +1046,11 @@ class UInAppPurchaseRestoreCallbackProxy2* UInAppPurchaseRestoreCallbackProxy2::
 // Function OnlineSubsystemUtils.InAppPurchaseRestoreCallbackProxy2.CreateProxyObjectForInAppPurchaseRestore
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<struct FInAppPurchaseProductRequest2>ConsumableProductFlags                                           (Edit, Parm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// class UInAppPurchaseRestoreCallbackProxy2*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<struct FInAppPurchaseProductRequest2>ConsumableProductFlags                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// class UInAppPurchaseRestoreCallbackProxy2*ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UInAppPurchaseRestoreCallbackProxy2::CreateProxyObjectForInAppPurchaseRestore(const TArray<struct FInAppPurchaseProductRequest2>& ConsumableProductFlags, class APlayerController** PlayerController, class UInAppPurchaseRestoreCallbackProxy2* ReturnValue)
+class UInAppPurchaseRestoreCallbackProxy2* UInAppPurchaseRestoreCallbackProxy2::CreateProxyObjectForInAppPurchaseRestore()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1105,8 +1059,6 @@ void UInAppPurchaseRestoreCallbackProxy2::CreateProxyObjectForInAppPurchaseResto
 
 	Params::UInAppPurchaseRestoreCallbackProxy2_CreateProxyObjectForInAppPurchaseRestore_Params Parms{};
 
-	Parms.ConsumableProductFlags = ConsumableProductFlags;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1116,8 +1068,7 @@ void UInAppPurchaseRestoreCallbackProxy2::CreateProxyObjectForInAppPurchaseResto
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
+	return Parms.ReturnValue;
 
 }
 
@@ -1209,12 +1160,12 @@ class UJoinSessionCallbackProxy* UJoinSessionCallbackProxy::GetDefaultObj()
 // Function OnlineSubsystemUtils.JoinSessionCallbackProxy.JoinSession
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// struct FBlueprintSessionResult     SearchResult                                                     (Edit, Net, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class UJoinSessionCallbackProxy*   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// struct FBlueprintSessionResult     SearchResult                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class UJoinSessionCallbackProxy*   ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UJoinSessionCallbackProxy::JoinSession(class APlayerController** PlayerController, const struct FBlueprintSessionResult& SearchResult, class UJoinSessionCallbackProxy* ReturnValue)
+class UJoinSessionCallbackProxy* UJoinSessionCallbackProxy::JoinSession(class UObject** WorldContextObject, const struct FBlueprintSessionResult& SearchResult)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1224,7 +1175,6 @@ class UObject* UJoinSessionCallbackProxy::JoinSession(class APlayerController** 
 	Params::UJoinSessionCallbackProxy_JoinSession_Params Parms{};
 
 	Parms.SearchResult = SearchResult;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1234,8 +1184,8 @@ class UObject* UJoinSessionCallbackProxy::JoinSession(class APlayerController** 
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -1273,12 +1223,12 @@ class ULeaderboardBlueprintLibrary* ULeaderboardBlueprintLibrary::GetDefaultObj(
 // Function OnlineSubsystemUtils.LeaderboardBlueprintLibrary.WriteLeaderboardInteger
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// class FName                        StatName                                                         (Edit, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              StatValue                                                        (ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// class FName                        StatName                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+// int32                              StatValue                                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName ULeaderboardBlueprintLibrary::WriteLeaderboardInteger(class APlayerController** PlayerController, int32 StatValue, bool ReturnValue)
+bool ULeaderboardBlueprintLibrary::WriteLeaderboardInteger(int32 StatValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1288,7 +1238,6 @@ class FName ULeaderboardBlueprintLibrary::WriteLeaderboardInteger(class APlayerC
 	Params::ULeaderboardBlueprintLibrary_WriteLeaderboardInteger_Params Parms{};
 
 	Parms.StatValue = StatValue;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1297,9 +1246,6 @@ class FName ULeaderboardBlueprintLibrary::WriteLeaderboardInteger(class APlayerC
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
 
 	return Parms.ReturnValue;
 
@@ -1337,11 +1283,11 @@ class ULeaderboardFlushCallbackProxy* ULeaderboardFlushCallbackProxy::GetDefault
 // Function OnlineSubsystemUtils.LeaderboardFlushCallbackProxy.CreateProxyObjectForFlush
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// class FName                        SessionName                                                      (BlueprintVisible, BlueprintReadOnly, Net, Config, EditConst, SubobjectReference)
-// class ULeaderboardFlushCallbackProxy*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// class FName                        SessionName                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// class ULeaderboardFlushCallbackProxy*ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void ULeaderboardFlushCallbackProxy::CreateProxyObjectForFlush(class APlayerController** PlayerController, class FName SessionName, class ULeaderboardFlushCallbackProxy* ReturnValue)
+class ULeaderboardFlushCallbackProxy* ULeaderboardFlushCallbackProxy::CreateProxyObjectForFlush()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1350,8 +1296,6 @@ void ULeaderboardFlushCallbackProxy::CreateProxyObjectForFlush(class APlayerCont
 
 	Params::ULeaderboardFlushCallbackProxy_CreateProxyObjectForFlush_Params Parms{};
 
-	Parms.SessionName = SessionName;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1361,8 +1305,7 @@ void ULeaderboardFlushCallbackProxy::CreateProxyObjectForFlush(class APlayerCont
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
+	return Parms.ReturnValue;
 
 }
 
@@ -1398,11 +1341,11 @@ class ULeaderboardQueryCallbackProxy* ULeaderboardQueryCallbackProxy::GetDefault
 // Function OnlineSubsystemUtils.LeaderboardQueryCallbackProxy.CreateProxyObjectForIntQuery
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// class FName                        StatName                                                         (Edit, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// class ULeaderboardQueryCallbackProxy*ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// class FName                        StatName                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, InstancedReference, SubobjectReference)
+// class ULeaderboardQueryCallbackProxy*ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName ULeaderboardQueryCallbackProxy::CreateProxyObjectForIntQuery(class APlayerController** PlayerController, class ULeaderboardQueryCallbackProxy* ReturnValue)
+class ULeaderboardQueryCallbackProxy* ULeaderboardQueryCallbackProxy::CreateProxyObjectForIntQuery()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1411,7 +1354,6 @@ class FName ULeaderboardQueryCallbackProxy::CreateProxyObjectForIntQuery(class A
 
 	Params::ULeaderboardQueryCallbackProxy_CreateProxyObjectForIntQuery_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1420,9 +1362,6 @@ class FName ULeaderboardQueryCallbackProxy::CreateProxyObjectForIntQuery(class A
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
 
 	return Parms.ReturnValue;
 
@@ -1460,11 +1399,11 @@ class ULogoutCallbackProxy* ULogoutCallbackProxy::GetDefaultObj()
 // Function OnlineSubsystemUtils.LogoutCallbackProxy.Logout
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// class ULogoutCallbackProxy*        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// class ULogoutCallbackProxy*        ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* ULogoutCallbackProxy::Logout(class APlayerController** PlayerController, class ULogoutCallbackProxy* ReturnValue)
+class ULogoutCallbackProxy* ULogoutCallbackProxy::Logout(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1473,7 +1412,6 @@ class UObject* ULogoutCallbackProxy::Logout(class APlayerController** PlayerCont
 
 	Params::ULogoutCallbackProxy_Logout_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1483,8 +1421,8 @@ class UObject* ULogoutCallbackProxy::Logout(class APlayerController** PlayerCont
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -1770,10 +1708,10 @@ class APartyBeaconClient* APartyBeaconClient::GetDefaultObj()
 // Function OnlineSubsystemUtils.PartyBeaconClient.ServerUpdateReservationRequest
 // (Net, NetReliable, Native, Event, Protected, NetServer, NetValidate)
 // Parameters:
-// class FString                      SessionId                                                        (ConstParm, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// struct FPartyReservation           ReservationUpdate                                                (Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class FString                      SessionId                                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FPartyReservation           ReservationUpdate                                                (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-class FString APartyBeaconClient::ServerUpdateReservationRequest(const struct FPartyReservation& ReservationUpdate)
+void APartyBeaconClient::ServerUpdateReservationRequest(class FString* SessionId, struct FPartyReservation* ReservationUpdate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1782,7 +1720,6 @@ class FString APartyBeaconClient::ServerUpdateReservationRequest(const struct FP
 
 	Params::APartyBeaconClient_ServerUpdateReservationRequest_Params Parms{};
 
-	Parms.ReservationUpdate = ReservationUpdate;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1792,7 +1729,11 @@ class FString APartyBeaconClient::ServerUpdateReservationRequest(const struct FP
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (SessionId != nullptr)
+		*SessionId = std::move(Parms.SessionId);
+
+	if (ReservationUpdate != nullptr)
+		*ReservationUpdate = std::move(Parms.ReservationUpdate);
 
 }
 
@@ -1800,10 +1741,10 @@ class FString APartyBeaconClient::ServerUpdateReservationRequest(const struct FP
 // Function OnlineSubsystemUtils.PartyBeaconClient.ServerReservationRequest
 // (Net, NetReliable, Native, Event, Protected, NetServer, NetValidate)
 // Parameters:
-// class FString                      SessionId                                                        (ConstParm, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// struct FPartyReservation           Reservation                                                      (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class FString                      SessionId                                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FPartyReservation           Reservation                                                      (Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-class FString APartyBeaconClient::ServerReservationRequest(const struct FPartyReservation& Reservation)
+void APartyBeaconClient::ServerReservationRequest(class FString* SessionId, struct FPartyReservation* Reservation)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1812,7 +1753,6 @@ class FString APartyBeaconClient::ServerReservationRequest(const struct FPartyRe
 
 	Params::APartyBeaconClient_ServerReservationRequest_Params Parms{};
 
-	Parms.Reservation = Reservation;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1822,7 +1762,11 @@ class FString APartyBeaconClient::ServerReservationRequest(const struct FPartyRe
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (SessionId != nullptr)
+		*SessionId = std::move(Parms.SessionId);
+
+	if (Reservation != nullptr)
+		*Reservation = std::move(Parms.Reservation);
 
 }
 
@@ -1830,10 +1774,10 @@ class FString APartyBeaconClient::ServerReservationRequest(const struct FPartyRe
 // Function OnlineSubsystemUtils.PartyBeaconClient.ServerRemoveMemberFromReservationRequest
 // (Net, NetReliable, Native, Event, Protected, NetServer, NetValidate)
 // Parameters:
-// class FString                      SessionId                                                        (ConstParm, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// struct FPartyReservation           ReservationUpdate                                                (Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class FString                      SessionId                                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FPartyReservation           ReservationUpdate                                                (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-class FString APartyBeaconClient::ServerRemoveMemberFromReservationRequest(const struct FPartyReservation& ReservationUpdate)
+void APartyBeaconClient::ServerRemoveMemberFromReservationRequest(class FString* SessionId, struct FPartyReservation* ReservationUpdate)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1842,7 +1786,6 @@ class FString APartyBeaconClient::ServerRemoveMemberFromReservationRequest(const
 
 	Params::APartyBeaconClient_ServerRemoveMemberFromReservationRequest_Params Parms{};
 
-	Parms.ReservationUpdate = ReservationUpdate;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1852,7 +1795,11 @@ class FString APartyBeaconClient::ServerRemoveMemberFromReservationRequest(const
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (SessionId != nullptr)
+		*SessionId = std::move(Parms.SessionId);
+
+	if (ReservationUpdate != nullptr)
+		*ReservationUpdate = std::move(Parms.ReservationUpdate);
 
 }
 
@@ -1860,7 +1807,7 @@ class FString APartyBeaconClient::ServerRemoveMemberFromReservationRequest(const
 // Function OnlineSubsystemUtils.PartyBeaconClient.ServerCancelReservationRequest
 // (Net, NetReliable, Native, Event, Protected, NetServer, NetValidate)
 // Parameters:
-// struct FUniqueNetIdRepl            PartyLeader                                                      (ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FUniqueNetIdRepl            PartyLeader                                                      (Edit, ConstParm, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
 struct FUniqueNetIdRepl APartyBeaconClient::ServerCancelReservationRequest()
 {
@@ -1888,10 +1835,10 @@ struct FUniqueNetIdRepl APartyBeaconClient::ServerCancelReservationRequest()
 // Function OnlineSubsystemUtils.PartyBeaconClient.ServerAddOrUpdateReservationRequest
 // (Net, NetReliable, Native, Event, Protected, NetServer, NetValidate)
 // Parameters:
-// class FString                      SessionId                                                        (ConstParm, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// struct FPartyReservation           Reservation                                                      (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class FString                      SessionId                                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FPartyReservation           Reservation                                                      (Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-class FString APartyBeaconClient::ServerAddOrUpdateReservationRequest(const struct FPartyReservation& Reservation)
+void APartyBeaconClient::ServerAddOrUpdateReservationRequest(class FString* SessionId, struct FPartyReservation* Reservation)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1900,7 +1847,6 @@ class FString APartyBeaconClient::ServerAddOrUpdateReservationRequest(const stru
 
 	Params::APartyBeaconClient_ServerAddOrUpdateReservationRequest_Params Parms{};
 
-	Parms.Reservation = Reservation;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1910,7 +1856,11 @@ class FString APartyBeaconClient::ServerAddOrUpdateReservationRequest(const stru
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (SessionId != nullptr)
+		*SessionId = std::move(Parms.SessionId);
+
+	if (Reservation != nullptr)
+		*Reservation = std::move(Parms.Reservation);
 
 }
 
@@ -1918,9 +1868,9 @@ class FString APartyBeaconClient::ServerAddOrUpdateReservationRequest(const stru
 // Function OnlineSubsystemUtils.PartyBeaconClient.ClientSendReservationUpdates
 // (Net, NetReliable, Native, Event, Public, NetClient)
 // Parameters:
-// int32                              NumRemainingReservations                                         (BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// int32                              NumRemainingReservations                                         (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-void APartyBeaconClient::ClientSendReservationUpdates(int32 NumRemainingReservations)
+void APartyBeaconClient::ClientSendReservationUpdates(int32* NumRemainingReservations)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1929,7 +1879,6 @@ void APartyBeaconClient::ClientSendReservationUpdates(int32 NumRemainingReservat
 
 	Params::APartyBeaconClient_ClientSendReservationUpdates_Params Parms{};
 
-	Parms.NumRemainingReservations = NumRemainingReservations;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1938,6 +1887,9 @@ void APartyBeaconClient::ClientSendReservationUpdates(int32 NumRemainingReservat
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (NumRemainingReservations != nullptr)
+		*NumRemainingReservations = Parms.NumRemainingReservations;
 
 }
 
@@ -1969,9 +1921,9 @@ void APartyBeaconClient::ClientSendReservationFull()
 // Function OnlineSubsystemUtils.PartyBeaconClient.ClientReservationResponse
 // (Net, NetReliable, Native, Event, Public, NetClient)
 // Parameters:
-// enum class EPartyReservationResult ReservationResponse                                              (Edit, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// enum class EPartyReservationResult ReservationResponse                                              (Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-void APartyBeaconClient::ClientReservationResponse(enum class EPartyReservationResult ReservationResponse)
+void APartyBeaconClient::ClientReservationResponse(enum class EPartyReservationResult* ReservationResponse)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1980,7 +1932,6 @@ void APartyBeaconClient::ClientReservationResponse(enum class EPartyReservationR
 
 	Params::APartyBeaconClient_ClientReservationResponse_Params Parms{};
 
-	Parms.ReservationResponse = ReservationResponse;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1990,15 +1941,18 @@ void APartyBeaconClient::ClientReservationResponse(enum class EPartyReservationR
 
 	Func->FunctionFlags = Flgs;
 
+	if (ReservationResponse != nullptr)
+		*ReservationResponse = Parms.ReservationResponse;
+
 }
 
 
 // Function OnlineSubsystemUtils.PartyBeaconClient.ClientCancelReservationResponse
 // (Net, NetReliable, Native, Event, Public, NetClient)
 // Parameters:
-// enum class EPartyReservationResult ReservationResponse                                              (Edit, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// enum class EPartyReservationResult ReservationResponse                                              (Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-void APartyBeaconClient::ClientCancelReservationResponse(enum class EPartyReservationResult ReservationResponse)
+void APartyBeaconClient::ClientCancelReservationResponse(enum class EPartyReservationResult* ReservationResponse)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2007,7 +1961,6 @@ void APartyBeaconClient::ClientCancelReservationResponse(enum class EPartyReserv
 
 	Params::APartyBeaconClient_ClientCancelReservationResponse_Params Parms{};
 
-	Parms.ReservationResponse = ReservationResponse;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2016,6 +1969,9 @@ void APartyBeaconClient::ClientCancelReservationResponse(enum class EPartyReserv
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (ReservationResponse != nullptr)
+		*ReservationResponse = Parms.ReservationResponse;
 
 }
 
@@ -2107,14 +2063,14 @@ class UQuitMatchCallbackProxy* UQuitMatchCallbackProxy::GetDefaultObj()
 // Function OnlineSubsystemUtils.QuitMatchCallbackProxy.QuitMatch
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// class FString                      MatchID                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, Config, EditConst, SubobjectReference)
-// enum class EMPMatchOutcome         Outcome                                                          (Edit, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// int32                              TurnTimeoutInSeconds                                             (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class UQuitMatchCallbackProxy*     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// class FString                      MatchID                                                          (Edit, BlueprintVisible, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// enum class EMPMatchOutcome         Outcome                                                          (Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// int32                              TurnTimeoutInSeconds                                             (BlueprintVisible, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class UQuitMatchCallbackProxy*     ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UQuitMatchCallbackProxy::QuitMatch(class APlayerController** PlayerController, const class FString& MatchID, enum class EMPMatchOutcome* Outcome, int32* TurnTimeoutInSeconds, class UQuitMatchCallbackProxy* ReturnValue)
+class UQuitMatchCallbackProxy* UQuitMatchCallbackProxy::QuitMatch(class UObject** WorldContextObject, enum class EMPMatchOutcome Outcome, int32 TurnTimeoutInSeconds)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2123,8 +2079,8 @@ class UObject* UQuitMatchCallbackProxy::QuitMatch(class APlayerController** Play
 
 	Params::UQuitMatchCallbackProxy_QuitMatch_Params Parms{};
 
-	Parms.MatchID = MatchID;
-	Parms.ReturnValue = ReturnValue;
+	Parms.Outcome = Outcome;
+	Parms.TurnTimeoutInSeconds = TurnTimeoutInSeconds;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2134,14 +2090,8 @@ class UObject* UQuitMatchCallbackProxy::QuitMatch(class APlayerController** Play
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
-
-	if (Outcome != nullptr)
-		*Outcome = Parms.Outcome;
-
-	if (TurnTimeoutInSeconds != nullptr)
-		*TurnTimeoutInSeconds = Parms.TurnTimeoutInSeconds;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2179,11 +2129,11 @@ class UShowLoginUICallbackProxy* UShowLoginUICallbackProxy::GetDefaultObj()
 // Function OnlineSubsystemUtils.ShowLoginUICallbackProxy.ShowExternalLoginUI
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class APlayerController*           InPlayerController                                               (ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class UShowLoginUICallbackProxy*   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class APlayerController*           InPlayerController                                               (BlueprintVisible, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class UShowLoginUICallbackProxy*   ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UShowLoginUICallbackProxy::ShowExternalLoginUI(class APlayerController** InPlayerController, class UShowLoginUICallbackProxy* ReturnValue)
+class UShowLoginUICallbackProxy* UShowLoginUICallbackProxy::ShowExternalLoginUI(class UObject** WorldContextObject, class APlayerController* InPlayerController)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2192,7 +2142,7 @@ class UObject* UShowLoginUICallbackProxy::ShowExternalLoginUI(class APlayerContr
 
 	Params::UShowLoginUICallbackProxy_ShowExternalLoginUI_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.InPlayerController = InPlayerController;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2202,8 +2152,8 @@ class UObject* UShowLoginUICallbackProxy::ShowExternalLoginUI(class APlayerContr
 
 	Func->FunctionFlags = Flgs;
 
-	if (InPlayerController != nullptr)
-		*InPlayerController = Parms.InPlayerController;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2241,10 +2191,10 @@ class ASpectatorBeaconClient* ASpectatorBeaconClient::GetDefaultObj()
 // Function OnlineSubsystemUtils.SpectatorBeaconClient.ServerReservationRequest
 // (Net, NetReliable, Native, Event, Protected, NetServer, NetValidate)
 // Parameters:
-// class FString                      SessionId                                                        (ConstParm, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// struct FSpectatorReservation       Reservation                                                      (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class FString                      SessionId                                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FSpectatorReservation       Reservation                                                      (Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-class FString ASpectatorBeaconClient::ServerReservationRequest(const struct FSpectatorReservation& Reservation)
+void ASpectatorBeaconClient::ServerReservationRequest(class FString* SessionId, struct FSpectatorReservation* Reservation)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2253,7 +2203,6 @@ class FString ASpectatorBeaconClient::ServerReservationRequest(const struct FSpe
 
 	Params::ASpectatorBeaconClient_ServerReservationRequest_Params Parms{};
 
-	Parms.Reservation = Reservation;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2263,7 +2212,11 @@ class FString ASpectatorBeaconClient::ServerReservationRequest(const struct FSpe
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (SessionId != nullptr)
+		*SessionId = std::move(Parms.SessionId);
+
+	if (Reservation != nullptr)
+		*Reservation = std::move(Parms.Reservation);
 
 }
 
@@ -2271,7 +2224,7 @@ class FString ASpectatorBeaconClient::ServerReservationRequest(const struct FSpe
 // Function OnlineSubsystemUtils.SpectatorBeaconClient.ServerCancelReservationRequest
 // (Net, NetReliable, Native, Event, Protected, NetServer, NetValidate)
 // Parameters:
-// struct FUniqueNetIdRepl            Spectator                                                        (Edit, ConstParm, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FUniqueNetIdRepl            Spectator                                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
 struct FUniqueNetIdRepl ASpectatorBeaconClient::ServerCancelReservationRequest()
 {
@@ -2299,9 +2252,9 @@ struct FUniqueNetIdRepl ASpectatorBeaconClient::ServerCancelReservationRequest()
 // Function OnlineSubsystemUtils.SpectatorBeaconClient.ClientSendReservationUpdates
 // (Net, NetReliable, Native, Event, Public, NetClient)
 // Parameters:
-// int32                              NumRemainingReservations                                         (BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// int32                              NumRemainingReservations                                         (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-void ASpectatorBeaconClient::ClientSendReservationUpdates(int32 NumRemainingReservations)
+void ASpectatorBeaconClient::ClientSendReservationUpdates(int32* NumRemainingReservations)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2310,7 +2263,6 @@ void ASpectatorBeaconClient::ClientSendReservationUpdates(int32 NumRemainingRese
 
 	Params::ASpectatorBeaconClient_ClientSendReservationUpdates_Params Parms{};
 
-	Parms.NumRemainingReservations = NumRemainingReservations;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2319,6 +2271,9 @@ void ASpectatorBeaconClient::ClientSendReservationUpdates(int32 NumRemainingRese
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (NumRemainingReservations != nullptr)
+		*NumRemainingReservations = Parms.NumRemainingReservations;
 
 }
 
@@ -2350,9 +2305,9 @@ void ASpectatorBeaconClient::ClientSendReservationFull()
 // Function OnlineSubsystemUtils.SpectatorBeaconClient.ClientReservationResponse
 // (Net, NetReliable, Native, Event, Public, NetClient)
 // Parameters:
-// enum class ESpectatorReservationResultReservationResponse                                              (Edit, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// enum class ESpectatorReservationResultReservationResponse                                              (Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-void ASpectatorBeaconClient::ClientReservationResponse(enum class ESpectatorReservationResult ReservationResponse)
+void ASpectatorBeaconClient::ClientReservationResponse(enum class ESpectatorReservationResult* ReservationResponse)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2361,7 +2316,6 @@ void ASpectatorBeaconClient::ClientReservationResponse(enum class ESpectatorRese
 
 	Params::ASpectatorBeaconClient_ClientReservationResponse_Params Parms{};
 
-	Parms.ReservationResponse = ReservationResponse;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2371,15 +2325,18 @@ void ASpectatorBeaconClient::ClientReservationResponse(enum class ESpectatorRese
 
 	Func->FunctionFlags = Flgs;
 
+	if (ReservationResponse != nullptr)
+		*ReservationResponse = Parms.ReservationResponse;
+
 }
 
 
 // Function OnlineSubsystemUtils.SpectatorBeaconClient.ClientCancelReservationResponse
 // (Net, NetReliable, Native, Event, Public, NetClient)
 // Parameters:
-// enum class ESpectatorReservationResultReservationResponse                                              (Edit, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// enum class ESpectatorReservationResultReservationResponse                                              (Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-void ASpectatorBeaconClient::ClientCancelReservationResponse(enum class ESpectatorReservationResult ReservationResponse)
+void ASpectatorBeaconClient::ClientCancelReservationResponse(enum class ESpectatorReservationResult* ReservationResponse)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2388,7 +2345,6 @@ void ASpectatorBeaconClient::ClientCancelReservationResponse(enum class ESpectat
 
 	Params::ASpectatorBeaconClient_ClientCancelReservationResponse_Params Parms{};
 
-	Parms.ReservationResponse = ReservationResponse;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2397,6 +2353,9 @@ void ASpectatorBeaconClient::ClientCancelReservationResponse(enum class ESpectat
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (ReservationResponse != nullptr)
+		*ReservationResponse = Parms.ReservationResponse;
 
 }
 
@@ -2592,11 +2551,11 @@ class UTurnBasedBlueprintLibrary* UTurnBasedBlueprintLibrary::GetDefaultObj()
 // Function OnlineSubsystemUtils.TurnBasedBlueprintLibrary.RegisterTurnBasedMatchInterfaceObject
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
 // class UObject*                     Object                                                           (BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
 
-class UObject* UTurnBasedBlueprintLibrary::RegisterTurnBasedMatchInterfaceObject(class APlayerController** PlayerController, class UObject** Object)
+class APlayerController* UTurnBasedBlueprintLibrary::RegisterTurnBasedMatchInterfaceObject(class UObject** WorldContextObject, class UObject** Object)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2614,8 +2573,8 @@ class UObject* UTurnBasedBlueprintLibrary::RegisterTurnBasedMatchInterfaceObject
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	if (Object != nullptr)
 		*Object = Parms.Object;
@@ -2628,13 +2587,13 @@ class UObject* UTurnBasedBlueprintLibrary::RegisterTurnBasedMatchInterfaceObject
 // Function OnlineSubsystemUtils.TurnBasedBlueprintLibrary.GetPlayerDisplayName
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// class FString                      MatchID                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, Config, EditConst, SubobjectReference)
-// int32                              PlayerIndex                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class FString                      PlayerDisplayName                                                (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// class FString                      MatchID                                                          (Edit, BlueprintVisible, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              PlayerIndex                                                      (BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class FString                      PlayerDisplayName                                                (Edit, ConstParm, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-class UObject* UTurnBasedBlueprintLibrary::GetPlayerDisplayName(class APlayerController** PlayerController, const class FString& MatchID, int32* PlayerIndex, class FString* PlayerDisplayName)
+class FString UTurnBasedBlueprintLibrary::GetPlayerDisplayName(class UObject** WorldContextObject, int32 PlayerIndex, const class FString& PlayerDisplayName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2643,7 +2602,8 @@ class UObject* UTurnBasedBlueprintLibrary::GetPlayerDisplayName(class APlayerCon
 
 	Params::UTurnBasedBlueprintLibrary_GetPlayerDisplayName_Params Parms{};
 
-	Parms.MatchID = MatchID;
+	Parms.PlayerIndex = PlayerIndex;
+	Parms.PlayerDisplayName = PlayerDisplayName;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2653,14 +2613,8 @@ class UObject* UTurnBasedBlueprintLibrary::GetPlayerDisplayName(class APlayerCon
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
-
-	if (PlayerIndex != nullptr)
-		*PlayerIndex = Parms.PlayerIndex;
-
-	if (PlayerDisplayName != nullptr)
-		*PlayerDisplayName = std::move(Parms.PlayerDisplayName);
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2670,12 +2624,12 @@ class UObject* UTurnBasedBlueprintLibrary::GetPlayerDisplayName(class APlayerCon
 // Function OnlineSubsystemUtils.TurnBasedBlueprintLibrary.GetMyPlayerIndex
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// class FString                      MatchID                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, Config, EditConst, SubobjectReference)
-// int32                              PlayerIndex                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// class FString                      MatchID                                                          (Edit, BlueprintVisible, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// int32                              PlayerIndex                                                      (BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-class UObject* UTurnBasedBlueprintLibrary::GetMyPlayerIndex(class APlayerController** PlayerController, const class FString& MatchID, int32* PlayerIndex)
+class FString UTurnBasedBlueprintLibrary::GetMyPlayerIndex(class UObject** WorldContextObject, int32 PlayerIndex)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2684,7 +2638,7 @@ class UObject* UTurnBasedBlueprintLibrary::GetMyPlayerIndex(class APlayerControl
 
 	Params::UTurnBasedBlueprintLibrary_GetMyPlayerIndex_Params Parms{};
 
-	Parms.MatchID = MatchID;
+	Parms.PlayerIndex = PlayerIndex;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2694,11 +2648,8 @@ class UObject* UTurnBasedBlueprintLibrary::GetMyPlayerIndex(class APlayerControl
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
-
-	if (PlayerIndex != nullptr)
-		*PlayerIndex = Parms.PlayerIndex;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2708,12 +2659,12 @@ class UObject* UTurnBasedBlueprintLibrary::GetMyPlayerIndex(class APlayerControl
 // Function OnlineSubsystemUtils.TurnBasedBlueprintLibrary.GetIsMyTurn
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class APlayerController*           PlayerController                                                 (Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-// class FString                      MatchID                                                          (Edit, ConstParm, BlueprintReadOnly, Parm, Config, EditConst, SubobjectReference)
-// bool                               bIsMyTurn                                                        (BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class APlayerController*           PlayerController                                                 (BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+// class FString                      MatchID                                                          (Edit, BlueprintVisible, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// bool                               bIsMyTurn                                                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 
-class UObject* UTurnBasedBlueprintLibrary::GetIsMyTurn(class APlayerController** PlayerController, const class FString& MatchID, bool* bIsMyTurn)
+class FString UTurnBasedBlueprintLibrary::GetIsMyTurn(class UObject** WorldContextObject, bool bIsMyTurn)
 {
 	static class UFunction* Func = nullptr;
 
@@ -2722,7 +2673,7 @@ class UObject* UTurnBasedBlueprintLibrary::GetIsMyTurn(class APlayerController**
 
 	Params::UTurnBasedBlueprintLibrary_GetIsMyTurn_Params Parms{};
 
-	Parms.MatchID = MatchID;
+	Parms.bIsMyTurn = bIsMyTurn;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2732,11 +2683,8 @@ class UObject* UTurnBasedBlueprintLibrary::GetIsMyTurn(class APlayerController**
 
 	Func->FunctionFlags = Flgs;
 
-	if (PlayerController != nullptr)
-		*PlayerController = Parms.PlayerController;
-
-	if (bIsMyTurn != nullptr)
-		*bIsMyTurn = Parms.bIsMyTurn;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -2774,9 +2722,9 @@ class UVoipListenerSynthComponent* UVoipListenerSynthComponent::GetDefaultObj()
 // Function OnlineSubsystemUtils.VoipListenerSynthComponent.IsIdling
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UVoipListenerSynthComponent::IsIdling(bool ReturnValue)
+bool UVoipListenerSynthComponent::IsIdling()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2785,7 +2733,6 @@ void UVoipListenerSynthComponent::IsIdling(bool ReturnValue)
 
 	Params::UVoipListenerSynthComponent_IsIdling_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2794,6 +2741,8 @@ void UVoipListenerSynthComponent::IsIdling(bool ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 

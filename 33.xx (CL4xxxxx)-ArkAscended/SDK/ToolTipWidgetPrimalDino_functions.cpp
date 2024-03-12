@@ -43,9 +43,9 @@ class UToolTipWidgetPrimalDino_C* UToolTipWidgetPrimalDino_C::GetDefaultObj()
 // Function ToolTipWidgetPrimalDino.ToolTipWidgetPrimalDino_C.ExecuteUbergraph_ToolTipWidgetPrimalDino
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
 
-int32 UToolTipWidgetPrimalDino_C::ExecuteUbergraph_ToolTipWidgetPrimalDino()
+void UToolTipWidgetPrimalDino_C::ExecuteUbergraph_ToolTipWidgetPrimalDino(int32* EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
@@ -57,7 +57,8 @@ int32 UToolTipWidgetPrimalDino_C::ExecuteUbergraph_ToolTipWidgetPrimalDino()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (EntryPoint != nullptr)
+		*EntryPoint = Parms.EntryPoint;
 
 }
 

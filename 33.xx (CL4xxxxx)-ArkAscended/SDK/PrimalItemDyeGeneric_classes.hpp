@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0xEF0 - 0xEF0)
+// 0x0 (0xF00 - 0xF00)
 // BlueprintGeneratedClass PrimalItemDyeGeneric.PrimalItemDyeGeneric_C
 class UPrimalItemDyeGeneric_C : public UPrimalItem_Dye
 {

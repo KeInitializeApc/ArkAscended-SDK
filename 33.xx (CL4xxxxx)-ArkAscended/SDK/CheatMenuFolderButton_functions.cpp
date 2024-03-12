@@ -43,12 +43,12 @@ class UCheatMenuFolderButton_C* UCheatMenuFolderButton_C::GetDefaultObj()
 // Function CheatMenuFolderButton.CheatMenuFolderButton_C.SetFolder
 // (Public, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class FText                        FolderName                                                       (EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// int32                              ScreenNumber                                                     (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, SubobjectReference)
-// class UTexture2D*                  Image                                                            (Edit, ConstParm, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
-// class FString                      CallFunc_Conv_TextToString_ReturnValue                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class FText                        FolderName                                                       (ExportObject, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              ScreenNumber                                                     (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+// class UTexture2D*                  Image                                                            (Edit, BlueprintVisible, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+// class FString                      CallFunc_Conv_TextToString_ReturnValue                           (Edit, ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
 
-class UTexture2D* UCheatMenuFolderButton_C::SetFolder(class FText FolderName, int32* ScreenNumber, class FString* CallFunc_Conv_TextToString_ReturnValue)
+class FString UCheatMenuFolderButton_C::SetFolder(class FText FolderName, int32 ScreenNumber)
 {
 	static class UFunction* Func = nullptr;
 
@@ -58,14 +58,9 @@ class UTexture2D* UCheatMenuFolderButton_C::SetFolder(class FText FolderName, in
 	Params::UCheatMenuFolderButton_C_SetFolder_Params Parms{};
 
 	Parms.FolderName = FolderName;
+	Parms.ScreenNumber = ScreenNumber;
 
 	UObject::ProcessEvent(Func, &Parms);
-
-	if (ScreenNumber != nullptr)
-		*ScreenNumber = Parms.ScreenNumber;
-
-	if (CallFunc_Conv_TextToString_ReturnValue != nullptr)
-		*CallFunc_Conv_TextToString_ReturnValue = std::move(Parms.CallFunc_Conv_TextToString_ReturnValue);
 
 	return Parms.ReturnValue;
 
@@ -93,9 +88,9 @@ void UCheatMenuFolderButton_C::BndEvt__SpawnButton_K2Node_ComponentBoundEvent_16
 // Function CheatMenuFolderButton.CheatMenuFolderButton_C.ExecuteUbergraph_CheatMenuFolderButton
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
 
-int32 UCheatMenuFolderButton_C::ExecuteUbergraph_CheatMenuFolderButton()
+void UCheatMenuFolderButton_C::ExecuteUbergraph_CheatMenuFolderButton(int32* EntryPoint)
 {
 	static class UFunction* Func = nullptr;
 
@@ -107,7 +102,8 @@ int32 UCheatMenuFolderButton_C::ExecuteUbergraph_CheatMenuFolderButton()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (EntryPoint != nullptr)
+		*EntryPoint = Parms.EntryPoint;
 
 }
 

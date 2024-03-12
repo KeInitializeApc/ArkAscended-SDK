@@ -14,7 +14,7 @@ namespace SDK
 // STRUCTS
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0x3C8 - 0x3C8)
+// 0x0 (0x3D8 - 0x3D8)
 // ScriptStruct GPSHumanAnimBP.GPSHumanAnimBP_C.AnimBlueprintGeneratedConstantData
 struct FAnimBlueprintGeneratedConstantData : public FAnimBlueprintGeneratedConstantData
 {

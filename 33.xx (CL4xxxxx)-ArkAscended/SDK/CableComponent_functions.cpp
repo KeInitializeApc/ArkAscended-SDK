@@ -71,10 +71,10 @@ class UCableComponent* UCableComponent::GetDefaultObj()
 // Function CableComponent.CableComponent.SetAttachEndToComponent
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class USceneComponent*             Component                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, EditConst, SubobjectReference)
-// class FName                        SocketName                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+// class USceneComponent*             Component                                                        (ConstParm, ExportObject, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        SocketName                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UCableComponent::SetAttachEndToComponent(class USceneComponent* Component, class FName* SocketName)
+class USceneComponent* UCableComponent::SetAttachEndToComponent(class FName* SocketName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -83,7 +83,6 @@ void UCableComponent::SetAttachEndToComponent(class USceneComponent* Component, 
 
 	Params::UCableComponent_SetAttachEndToComponent_Params Parms{};
 
-	Parms.Component = Component;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -96,6 +95,8 @@ void UCableComponent::SetAttachEndToComponent(class USceneComponent* Component, 
 	if (SocketName != nullptr)
 		*SocketName = Parms.SocketName;
 
+	return Parms.ReturnValue;
+
 }
 
 
@@ -103,10 +104,10 @@ void UCableComponent::SetAttachEndToComponent(class USceneComponent* Component, 
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // class AActor*                      Actor                                                            (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-// class FName                        ComponentProperty                                                (ConstParm, BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, SubobjectReference)
-// class FName                        SocketName                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+// class FName                        ComponentProperty                                                (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// class FName                        SocketName                                                       (ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-void UCableComponent::SetAttachEndTo(class AActor** Actor, class FName ComponentProperty, class FName* SocketName)
+class FName UCableComponent::SetAttachEndTo(class AActor** Actor, class FName* SocketName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -115,7 +116,6 @@ void UCableComponent::SetAttachEndTo(class AActor** Actor, class FName Component
 
 	Params::UCableComponent_SetAttachEndTo_Params Parms{};
 
-	Parms.ComponentProperty = ComponentProperty;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -131,15 +131,17 @@ void UCableComponent::SetAttachEndTo(class AActor** Actor, class FName Component
 	if (SocketName != nullptr)
 		*SocketName = Parms.SocketName;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function CableComponent.CableComponent.GetCableParticleLocations
 // (Final, Native, Public, HasOutParams, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// TArray<struct FVector>             Locations                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FVector>             Locations                                                        (BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-void UCableComponent::GetCableParticleLocations(const TArray<struct FVector>& Locations)
+TArray<struct FVector> UCableComponent::GetCableParticleLocations()
 {
 	static class UFunction* Func = nullptr;
 
@@ -148,7 +150,6 @@ void UCableComponent::GetCableParticleLocations(const TArray<struct FVector>& Lo
 
 	Params::UCableComponent_GetCableParticleLocations_Params Parms{};
 
-	Parms.Locations = Locations;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -158,15 +159,17 @@ void UCableComponent::GetCableParticleLocations(const TArray<struct FVector>& Lo
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function CableComponent.CableComponent.GetAttachedComponent
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class USceneComponent*             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class USceneComponent*             ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UCableComponent::GetAttachedComponent(class USceneComponent* ReturnValue)
+class USceneComponent* UCableComponent::GetAttachedComponent()
 {
 	static class UFunction* Func = nullptr;
 
@@ -175,7 +178,6 @@ void UCableComponent::GetAttachedComponent(class USceneComponent* ReturnValue)
 
 	Params::UCableComponent_GetAttachedComponent_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -185,15 +187,17 @@ void UCableComponent::GetAttachedComponent(class USceneComponent* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function CableComponent.CableComponent.GetAttachedActor
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class AActor*                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class AActor*                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UCableComponent::GetAttachedActor(class AActor* ReturnValue)
+class AActor* UCableComponent::GetAttachedActor()
 {
 	static class UFunction* Func = nullptr;
 
@@ -202,7 +206,6 @@ void UCableComponent::GetAttachedActor(class AActor* ReturnValue)
 
 	Params::UCableComponent_GetAttachedActor_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -211,6 +214,8 @@ void UCableComponent::GetAttachedActor(class AActor* ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 

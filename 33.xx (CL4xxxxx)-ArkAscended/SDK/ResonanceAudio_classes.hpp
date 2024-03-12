@@ -14,8 +14,8 @@ namespace SDK
 class UResonanceAudioSoundfieldSettings : public USoundfieldEncodingSettingsBase
 {
 public:
-	enum class EResonanceRenderMode              RenderMode;                                        // 0x28(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1827[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	enum class EResonanceRenderMode              RenderMode;                                        // 0x28(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1CD5[0x7];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UResonanceAudioSoundfieldSettings* GetDefaultObj();
@@ -32,17 +32,17 @@ public:
 	static class UResonanceAudioBlueprintFunctionLibrary* GetDefaultObj();
 
 	void SetGlobalReverbPreset(class UResonanceAudioReverbPluginPreset** InPreset);
-	void GetGlobalReverbPreset(class UResonanceAudioReverbPluginPreset* ReturnValue);
+	class UResonanceAudioReverbPluginPreset* GetGlobalReverbPreset();
 };
 
-// 0x80 (0x548 - 0x4C8)
+// 0x80 (0x540 - 0x4C0)
 // Class ResonanceAudio.ResonanceAudioDirectivityVisualizer
 class AResonanceAudioDirectivityVisualizer : public AActor
 {
 public:
-	uint8                                        Pad_182B[0x70];                                    // Fixing Size After Last Property  > TateDumper <
-	class UMaterial*                             Material;                                          // 0x538(0x8)(Edit, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance)
-	class UResonanceAudioSpatializationSourceSettings* Settings;                                          // 0x540(0x8)(Edit, Net, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+	uint8                                        Pad_1CEC[0x70];                                    // Fixing Size After Last Property  > TateDumper <
+	class UMaterial*                             Material;                                          // 0x530(0x8)(Edit, ConstParm, Net, EditFixedSize, Transient, Config, DisableEditOnInstance)
+	class UResonanceAudioSpatializationSourceSettings* Settings;                                          // 0x538(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class AResonanceAudioDirectivityVisualizer* GetDefaultObj();
@@ -54,18 +54,18 @@ public:
 class UResonanceAudioReverbPluginPreset : public USoundEffectSubmixPreset
 {
 public:
-	uint8                                        Pad_1842[0x98];                                    // Fixing Size After Last Property  > TateDumper <
-	struct FResonanceAudioReverbPluginSettings   Settings;                                          // 0x100(0x70)(Edit, Net, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+	uint8                                        Pad_1D0F[0x98];                                    // Fixing Size After Last Property  > TateDumper <
+	struct FResonanceAudioReverbPluginSettings   Settings;                                          // 0x100(0x70)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UResonanceAudioReverbPluginPreset* GetDefaultObj();
 
-	struct FQuat SetRoomRotation();
+	void SetRoomRotation(struct FQuat* InRotation);
 	void SetRoomPosition(struct FVector* InPosition);
-	void SetRoomMaterials(TArray<enum class ERaMaterialName>* InMaterials);
-	void SetRoomDimensions(struct FVector* InDimensions);
-	void SetReverbTimeModifier(float* InReverbTimeModifier);
-	void SetReverbGain(float* InReverbGain);
+	void SetRoomMaterials(const TArray<enum class ERaMaterialName>& InMaterials);
+	void SetRoomDimensions(const struct FVector& InDimensions);
+	void SetReverbTimeModifier(float InReverbTimeModifier);
+	void SetReverbGain(float InReverbGain);
 	void SetReverbBrightness(float InReverbBrightness);
 	void SetReflectionScalar(float InReflectionScalar);
 	void SetEnableRoomEffects(bool bInEnableRoomEffects);
@@ -76,11 +76,11 @@ public:
 class UResonanceAudioSettings : public UObject
 {
 public:
-	struct FSoftObjectPath                       OutputSubmix;                                      // 0x28(0x20)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	enum class ERaQualityMode                    QualityMode;                                       // 0x48(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1845[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FSoftObjectPath                       GlobalReverbPreset;                                // 0x50(0x20)(Edit, ConstParm, ExportObject, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	struct FSoftObjectPath                       GlobalSourcePreset;                                // 0x70(0x20)(Edit, Net, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	struct FSoftObjectPath                       OutputSubmix;                                      // 0x28(0x20)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class ERaQualityMode                    QualityMode;                                       // 0x48(0x1)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1D18[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FSoftObjectPath                       GlobalReverbPreset;                                // 0x50(0x20)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FSoftObjectPath                       GlobalSourcePreset;                                // 0x70(0x20)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UResonanceAudioSettings* GetDefaultObj();
@@ -92,25 +92,25 @@ public:
 class UResonanceAudioSpatializationSourceSettings : public USpatializationPluginSourceSettingsBase
 {
 public:
-	enum class ERaSpatializationMethod           SpatializationMethod;                              // 0x28(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_184A[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        Pattern;                                           // 0x2C(0x4)(ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
-	float                                        Sharpness;                                         // 0x30(0x4)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-	bool                                         bToggleVisualization;                              // 0x34(0x1)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_184B[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        Scale;                                             // 0x38(0x4)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config)
-	float                                        Spread;                                            // 0x3C(0x4)(ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	enum class ERaDistanceRolloffModel           Rolloff;                                           // 0x40(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_184C[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        MinDistance;                                       // 0x44(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, Config, InstancedReference, SubobjectReference)
-	float                                        MaxDistance;                                       // 0x48(0x4)(BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnTemplate, Config, DisableEditOnInstance)
-	uint8                                        Pad_184D[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	enum class ERaSpatializationMethod           SpatializationMethod;                              // 0x28(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1D29[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        Pattern;                                           // 0x2C(0x4)(Edit, BlueprintVisible, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        Sharpness;                                         // 0x30(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bToggleVisualization;                              // 0x34(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1D2B[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        Scale;                                             // 0x38(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, Config)
+	float                                        Spread;                                            // 0x3C(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class ERaDistanceRolloffModel           Rolloff;                                           // 0x40(0x1)(ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1D2D[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        MinDistance;                                       // 0x44(0x4)(Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	float                                        MaxDistance;                                       // 0x48(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	uint8                                        Pad_1D2E[0x4];                                     // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UResonanceAudioSpatializationSourceSettings* GetDefaultObj();
 
-	void SetSoundSourceSpread(float* InSpread);
-	void SetSoundSourceDirectivity(float InPattern, float* InSharpness);
+	void SetSoundSourceSpread(float InSpread);
+	void SetSoundSourceDirectivity(float InPattern, float InSharpness);
 };
 
 }

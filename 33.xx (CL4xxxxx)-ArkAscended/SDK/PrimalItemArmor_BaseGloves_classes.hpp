@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0xED8 - 0xED8)
+// 0x0 (0xEE8 - 0xEE8)
 // BlueprintGeneratedClass PrimalItemArmor_BaseGloves.PrimalItemArmor_BaseGloves_C
 class UPrimalItemArmor_BaseGloves_C : public UPrimalItemArmorGeneric_C
 {

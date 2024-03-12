@@ -71,7 +71,7 @@ class UNavigationSystemV1* UNavigationSystemV1::GetDefaultObj()
 // Function NavigationSystem.NavigationSystemV1.UnregisterNavigationInvoker
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class AActor*                      Invoker                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      Invoker                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
 void UNavigationSystemV1::UnregisterNavigationInvoker(class AActor* Invoker)
 {
@@ -98,7 +98,7 @@ void UNavigationSystemV1::UnregisterNavigationInvoker(class AActor* Invoker)
 // Function NavigationSystem.NavigationSystemV1.SetMaxSimultaneousTileGenerationJobsCount
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              MaxNumberOfJobs                                                  (Net, EditFixedSize, EditConst, InstancedReference, SubobjectReference)
+// int32                              MaxNumberOfJobs                                                  (Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
 void UNavigationSystemV1::SetMaxSimultaneousTileGenerationJobsCount(int32 MaxNumberOfJobs)
 {
@@ -125,9 +125,9 @@ void UNavigationSystemV1::SetMaxSimultaneousTileGenerationJobsCount(int32 MaxNum
 // Function NavigationSystem.NavigationSystemV1.SetGeometryGatheringMode
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ENavDataGatheringModeConfigNewMode                                                          (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, Transient, Config, InstancedReference, SubobjectReference)
+// enum class ENavDataGatheringModeConfigNewMode                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
 
-void UNavigationSystemV1::SetGeometryGatheringMode(enum class ENavDataGatheringModeConfig NewMode)
+enum class ENavDataGatheringModeConfig UNavigationSystemV1::SetGeometryGatheringMode()
 {
 	static class UFunction* Func = nullptr;
 
@@ -136,7 +136,6 @@ void UNavigationSystemV1::SetGeometryGatheringMode(enum class ENavDataGatheringM
 
 	Params::UNavigationSystemV1_SetGeometryGatheringMode_Params Parms{};
 
-	Parms.NewMode = NewMode;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -145,6 +144,8 @@ void UNavigationSystemV1::SetGeometryGatheringMode(enum class ENavDataGatheringM
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -176,11 +177,11 @@ void UNavigationSystemV1::ResetMaxSimultaneousTileGenerationJobsCount()
 // Function NavigationSystem.NavigationSystemV1.RegisterNavigationInvoker
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class AActor*                      Invoker                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, EditConst, InstancedReference, SubobjectReference)
-// float                              TileGenerationRadius                                             (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// float                              TileRemovalRadius                                                (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      Invoker                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// float                              TileGenerationRadius                                             (Edit, ConstParm, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// float                              TileRemovalRadius                                                (Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
-float UNavigationSystemV1::RegisterNavigationInvoker(class AActor* Invoker)
+void UNavigationSystemV1::RegisterNavigationInvoker(class AActor* Invoker, float* TileGenerationRadius, float* TileRemovalRadius)
 {
 	static class UFunction* Func = nullptr;
 
@@ -199,7 +200,11 @@ float UNavigationSystemV1::RegisterNavigationInvoker(class AActor* Invoker)
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (TileGenerationRadius != nullptr)
+		*TileGenerationRadius = Parms.TileGenerationRadius;
+
+	if (TileRemovalRadius != nullptr)
+		*TileRemovalRadius = Parms.TileRemovalRadius;
 
 }
 
@@ -207,14 +212,14 @@ float UNavigationSystemV1::RegisterNavigationInvoker(class AActor* Invoker)
 // Function NavigationSystem.NavigationSystemV1.ProjectPointToNavigationEx
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UObject*                     WorldContext                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, EditConst)
+// class UObject*                     WorldContext                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst)
 // struct FVector                     Point                                                            (ConstParm, Parm, ReturnParm)
-// struct FVector                     Extent                                                           (Edit, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class ANavigationData*             NavData                                                          (BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// class UClass*                      FilterClass                                                      (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FVector                     Extent                                                           (Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class ANavigationData*             NavData                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UClass*                      FilterClass                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UClass* UNavigationSystemV1::ProjectPointToNavigationEx(const struct FVector& ReturnValue)
+struct FVector UNavigationSystemV1::ProjectPointToNavigationEx(class UObject** WorldContext, struct FVector* Extent, class ANavigationData** NavData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -223,7 +228,6 @@ class UClass* UNavigationSystemV1::ProjectPointToNavigationEx(const struct FVect
 
 	Params::UNavigationSystemV1_ProjectPointToNavigationEx_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -233,6 +237,15 @@ class UClass* UNavigationSystemV1::ProjectPointToNavigationEx(const struct FVect
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContext != nullptr)
+		*WorldContext = Parms.WorldContext;
+
+	if (Extent != nullptr)
+		*Extent = std::move(Parms.Extent);
+
+	if (NavData != nullptr)
+		*NavData = Parms.NavData;
+
 	return Parms.ReturnValue;
 
 }
@@ -241,7 +254,7 @@ class UClass* UNavigationSystemV1::ProjectPointToNavigationEx(const struct FVect
 // Function NavigationSystem.NavigationSystemV1.OnNavigationBoundsUpdated
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class ANavMeshBoundsVolume*        NavVolume                                                        (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, EditConst, InstancedReference, SubobjectReference)
+// class ANavMeshBoundsVolume*        NavVolume                                                        (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
 void UNavigationSystemV1::OnNavigationBoundsUpdated(class ANavMeshBoundsVolume* NavVolume)
 {
@@ -268,15 +281,15 @@ void UNavigationSystemV1::OnNavigationBoundsUpdated(class ANavMeshBoundsVolume* 
 // Function NavigationSystem.NavigationSystemV1.NavigationRaycast
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FVector                     RayStart                                                         (BlueprintReadOnly, EditFixedSize, EditConst, InstancedReference, SubobjectReference)
-// struct FVector                     RayEnd                                                           (BlueprintVisible, ExportObject, EditFixedSize, EditConst, InstancedReference, SubobjectReference)
-// struct FVector                     HitLocation                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-// class UClass*                      FilterClass                                                      (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class AController*                 Querier                                                          (Edit, ConstParm, BlueprintVisible, EditFixedSize, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FVector                     RayStart                                                         (BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     RayEnd                                                           (BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     HitLocation                                                      (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UClass*                      FilterClass                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// class AController*                 Querier                                                          (Edit, ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UClass* UNavigationSystemV1::NavigationRaycast(const struct FVector& RayStart, const struct FVector& RayEnd, class AController* Querier, bool ReturnValue)
+bool UNavigationSystemV1::NavigationRaycast(class UObject** WorldContextObject, const struct FVector& RayStart, const struct FVector& RayEnd, class AController* Querier)
 {
 	static class UFunction* Func = nullptr;
 
@@ -288,7 +301,6 @@ class UClass* UNavigationSystemV1::NavigationRaycast(const struct FVector& RaySt
 	Parms.RayStart = RayStart;
 	Parms.RayEnd = RayEnd;
 	Parms.Querier = Querier;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -297,6 +309,9 @@ class UClass* UNavigationSystemV1::NavigationRaycast(const struct FVector& RaySt
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -307,11 +322,11 @@ class UClass* UNavigationSystemV1::NavigationRaycast(const struct FVector& RaySt
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
 // class UObject*                     Object                                                           (BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-// class UClass*                      OldArea                                                          (ConstParm, EditFixedSize, EditConst, InstancedReference, SubobjectReference)
-// class UClass*                      NewArea                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UClass*                      OldArea                                                          (ConstParm, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UClass*                      NewArea                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UNavigationSystemV1::K2_ReplaceAreaInOctreeData(class UObject** Object, class UClass* OldArea, class UClass* NewArea, bool ReturnValue)
+bool UNavigationSystemV1::K2_ReplaceAreaInOctreeData(class UObject** Object, class UClass* OldArea, class UClass* NewArea)
 {
 	static class UFunction* Func = nullptr;
 
@@ -322,7 +337,6 @@ void UNavigationSystemV1::K2_ReplaceAreaInOctreeData(class UObject** Object, cla
 
 	Parms.OldArea = OldArea;
 	Parms.NewArea = NewArea;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -335,21 +349,23 @@ void UNavigationSystemV1::K2_ReplaceAreaInOctreeData(class UObject** Object, cla
 	if (Object != nullptr)
 		*Object = Parms.Object;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function NavigationSystem.NavigationSystemV1.K2_ProjectPointToNavigation
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 // struct FVector                     Point                                                            (ConstParm, Parm, ReturnParm)
-// struct FVector                     ProjectedLocation                                                (Edit, ConstParm, BlueprintReadOnly, Net, EditConst, InstancedReference, SubobjectReference)
-// class ANavigationData*             NavData                                                          (BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// class UClass*                      FilterClass                                                      (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector                     QueryExtent                                                      (BlueprintVisible, ExportObject, Net, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FVector                     ProjectedLocation                                                (Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class ANavigationData*             NavData                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UClass*                      FilterClass                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     QueryExtent                                                      (BlueprintVisible, ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UClass* UNavigationSystemV1::K2_ProjectPointToNavigation(const struct FVector& ProjectedLocation, const struct FVector& QueryExtent, bool ReturnValue)
+bool UNavigationSystemV1::K2_ProjectPointToNavigation(class UObject** WorldContextObject, const struct FVector& ProjectedLocation, class ANavigationData** NavData, const struct FVector& QueryExtent)
 {
 	static class UFunction* Func = nullptr;
 
@@ -360,7 +376,6 @@ class UClass* UNavigationSystemV1::K2_ProjectPointToNavigation(const struct FVec
 
 	Parms.ProjectedLocation = ProjectedLocation;
 	Parms.QueryExtent = QueryExtent;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -369,6 +384,12 @@ class UClass* UNavigationSystemV1::K2_ProjectPointToNavigation(const struct FVec
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
+	if (NavData != nullptr)
+		*NavData = Parms.NavData;
 
 	return Parms.ReturnValue;
 
@@ -378,15 +399,15 @@ class UClass* UNavigationSystemV1::K2_ProjectPointToNavigation(const struct FVec
 // Function NavigationSystem.NavigationSystemV1.K2_GetRandomReachablePointInRadius
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FVector                     Origin                                                           (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
-// struct FVector                     RandomLocation                                                   (BlueprintVisible, Net, EditConst, InstancedReference, SubobjectReference)
-// float                              Radius                                                           (ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class ANavigationData*             NavData                                                          (BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// class UClass*                      FilterClass                                                      (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FVector                     Origin                                                           (ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+// struct FVector                     RandomLocation                                                   (BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// float                              Radius                                                           (Edit, BlueprintVisible, BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// class ANavigationData*             NavData                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UClass*                      FilterClass                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UClass* UNavigationSystemV1::K2_GetRandomReachablePointInRadius(const struct FVector& RandomLocation, float* Radius, bool ReturnValue)
+bool UNavigationSystemV1::K2_GetRandomReachablePointInRadius(class UObject** WorldContextObject, struct FVector* Origin, const struct FVector& RandomLocation, float Radius, class ANavigationData** NavData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -396,7 +417,7 @@ class UClass* UNavigationSystemV1::K2_GetRandomReachablePointInRadius(const stru
 	Params::UNavigationSystemV1_K2_GetRandomReachablePointInRadius_Params Parms{};
 
 	Parms.RandomLocation = RandomLocation;
-	Parms.ReturnValue = ReturnValue;
+	Parms.Radius = Radius;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -406,8 +427,14 @@ class UClass* UNavigationSystemV1::K2_GetRandomReachablePointInRadius(const stru
 
 	Func->FunctionFlags = Flgs;
 
-	if (Radius != nullptr)
-		*Radius = Parms.Radius;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
+	if (Origin != nullptr)
+		*Origin = std::move(Parms.Origin);
+
+	if (NavData != nullptr)
+		*NavData = Parms.NavData;
 
 	return Parms.ReturnValue;
 
@@ -417,15 +444,15 @@ class UClass* UNavigationSystemV1::K2_GetRandomReachablePointInRadius(const stru
 // Function NavigationSystem.NavigationSystemV1.K2_GetRandomPointInNavigableRadius
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FVector                     Origin                                                           (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
-// struct FVector                     RandomLocation                                                   (BlueprintVisible, Net, EditConst, InstancedReference, SubobjectReference)
-// float                              Radius                                                           (ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class ANavigationData*             NavData                                                          (BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// class UClass*                      FilterClass                                                      (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FVector                     Origin                                                           (ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+// struct FVector                     RandomLocation                                                   (BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// float                              Radius                                                           (Edit, BlueprintVisible, BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// class ANavigationData*             NavData                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UClass*                      FilterClass                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UClass* UNavigationSystemV1::K2_GetRandomPointInNavigableRadius(const struct FVector& RandomLocation, float* Radius, bool ReturnValue)
+bool UNavigationSystemV1::K2_GetRandomPointInNavigableRadius(class UObject** WorldContextObject, struct FVector* Origin, const struct FVector& RandomLocation, float Radius, class ANavigationData** NavData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -435,7 +462,7 @@ class UClass* UNavigationSystemV1::K2_GetRandomPointInNavigableRadius(const stru
 	Params::UNavigationSystemV1_K2_GetRandomPointInNavigableRadius_Params Parms{};
 
 	Parms.RandomLocation = RandomLocation;
-	Parms.ReturnValue = ReturnValue;
+	Parms.Radius = Radius;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -445,8 +472,14 @@ class UClass* UNavigationSystemV1::K2_GetRandomPointInNavigableRadius(const stru
 
 	Func->FunctionFlags = Flgs;
 
-	if (Radius != nullptr)
-		*Radius = Parms.Radius;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
+	if (Origin != nullptr)
+		*Origin = std::move(Parms.Origin);
+
+	if (NavData != nullptr)
+		*NavData = Parms.NavData;
 
 	return Parms.ReturnValue;
 
@@ -456,15 +489,15 @@ class UClass* UNavigationSystemV1::K2_GetRandomPointInNavigableRadius(const stru
 // Function NavigationSystem.NavigationSystemV1.K2_GetRandomLocationInNavigableRadius
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FVector                     Origin                                                           (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
-// struct FVector                     RandomLocation                                                   (BlueprintVisible, Net, EditConst, InstancedReference, SubobjectReference)
-// float                              Radius                                                           (ConstParm, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, SubobjectReference)
-// class ANavigationData*             NavData                                                          (BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// class UClass*                      FilterClass                                                      (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FVector                     Origin                                                           (ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+// struct FVector                     RandomLocation                                                   (BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// float                              Radius                                                           (Edit, BlueprintVisible, BlueprintReadOnly, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+// class ANavigationData*             NavData                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UClass*                      FilterClass                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UClass* UNavigationSystemV1::K2_GetRandomLocationInNavigableRadius(const struct FVector& RandomLocation, float* Radius, bool ReturnValue)
+bool UNavigationSystemV1::K2_GetRandomLocationInNavigableRadius(class UObject** WorldContextObject, struct FVector* Origin, const struct FVector& RandomLocation, float Radius, class ANavigationData** NavData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -474,7 +507,7 @@ class UClass* UNavigationSystemV1::K2_GetRandomLocationInNavigableRadius(const s
 	Params::UNavigationSystemV1_K2_GetRandomLocationInNavigableRadius_Params Parms{};
 
 	Parms.RandomLocation = RandomLocation;
-	Parms.ReturnValue = ReturnValue;
+	Parms.Radius = Radius;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -484,8 +517,14 @@ class UClass* UNavigationSystemV1::K2_GetRandomLocationInNavigableRadius(const s
 
 	Func->FunctionFlags = Flgs;
 
-	if (Radius != nullptr)
-		*Radius = Parms.Radius;
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
+	if (Origin != nullptr)
+		*Origin = std::move(Parms.Origin);
+
+	if (NavData != nullptr)
+		*NavData = Parms.NavData;
 
 	return Parms.ReturnValue;
 
@@ -495,10 +534,10 @@ class UClass* UNavigationSystemV1::K2_GetRandomLocationInNavigableRadius(const s
 // Function NavigationSystem.NavigationSystemV1.IsNavigationBeingBuiltOrLocked
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UNavigationSystemV1::IsNavigationBeingBuiltOrLocked(bool ReturnValue)
+bool UNavigationSystemV1::IsNavigationBeingBuiltOrLocked(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -507,7 +546,6 @@ class UObject* UNavigationSystemV1::IsNavigationBeingBuiltOrLocked(bool ReturnVa
 
 	Params::UNavigationSystemV1_IsNavigationBeingBuiltOrLocked_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -516,6 +554,9 @@ class UObject* UNavigationSystemV1::IsNavigationBeingBuiltOrLocked(bool ReturnVa
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -525,10 +566,10 @@ class UObject* UNavigationSystemV1::IsNavigationBeingBuiltOrLocked(bool ReturnVa
 // Function NavigationSystem.NavigationSystemV1.IsNavigationBeingBuilt
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UNavigationSystemV1::IsNavigationBeingBuilt(bool ReturnValue)
+bool UNavigationSystemV1::IsNavigationBeingBuilt(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -537,7 +578,6 @@ class UObject* UNavigationSystemV1::IsNavigationBeingBuilt(bool ReturnValue)
 
 	Params::UNavigationSystemV1_IsNavigationBeingBuilt_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -547,6 +587,9 @@ class UObject* UNavigationSystemV1::IsNavigationBeingBuilt(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
 	return Parms.ReturnValue;
 
 }
@@ -555,18 +598,18 @@ class UObject* UNavigationSystemV1::IsNavigationBeingBuilt(bool ReturnValue)
 // Function NavigationSystem.NavigationSystemV1.GetRandomReachablePointInMinMaxRadius
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UObject*                     WorldContext                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, EditConst)
-// struct FVector                     Origin                                                           (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
-// float                              MinRadius                                                        (BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// float                              MaxRadius                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig, SubobjectReference)
-// struct FRandomStream               RandStream                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditConst, InstancedReference, SubobjectReference)
-// struct FVector                     PathDirection                                                    (ConstParm, BlueprintVisible, BlueprintReadOnly, EditConst, InstancedReference, SubobjectReference)
-// float                              DotLimit                                                         (Edit, BlueprintReadOnly, EditConst, InstancedReference, SubobjectReference)
-// class ANavigationData*             NavData                                                          (BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// class UClass*                      FilterClass                                                      (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContext                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst)
+// struct FVector                     Origin                                                           (ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+// float                              MinRadius                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              MaxRadius                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// struct FRandomStream               RandStream                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     PathDirection                                                    (ConstParm, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// float                              DotLimit                                                         (Edit, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class ANavigationData*             NavData                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UClass*                      FilterClass                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UClass* UNavigationSystemV1::GetRandomReachablePointInMinMaxRadius(float* MaxRadius, const struct FRandomStream& RandStream, const struct FVector& PathDirection, float DotLimit, const struct FVector& ReturnValue)
+struct FVector UNavigationSystemV1::GetRandomReachablePointInMinMaxRadius(class UObject** WorldContext, struct FVector* Origin, float* MinRadius, const struct FRandomStream& RandStream, const struct FVector& PathDirection, float DotLimit, class ANavigationData** NavData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -578,7 +621,6 @@ class UClass* UNavigationSystemV1::GetRandomReachablePointInMinMaxRadius(float* 
 	Parms.RandStream = RandStream;
 	Parms.PathDirection = PathDirection;
 	Parms.DotLimit = DotLimit;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -588,8 +630,17 @@ class UClass* UNavigationSystemV1::GetRandomReachablePointInMinMaxRadius(float* 
 
 	Func->FunctionFlags = Flgs;
 
-	if (MaxRadius != nullptr)
-		*MaxRadius = Parms.MaxRadius;
+	if (WorldContext != nullptr)
+		*WorldContext = Parms.WorldContext;
+
+	if (Origin != nullptr)
+		*Origin = std::move(Parms.Origin);
+
+	if (MinRadius != nullptr)
+		*MinRadius = Parms.MinRadius;
+
+	if (NavData != nullptr)
+		*NavData = Parms.NavData;
 
 	return Parms.ReturnValue;
 
@@ -599,15 +650,15 @@ class UClass* UNavigationSystemV1::GetRandomReachablePointInMinMaxRadius(float* 
 // Function NavigationSystem.NavigationSystemV1.GetPathLength
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FVector                     PathStart                                                        (ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector                     PathEnd                                                          (Edit, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// double                             PathLength                                                       (Edit, ConstParm, ExportObject, EditConst, InstancedReference, SubobjectReference)
-// class ANavigationData*             NavData                                                          (BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// class UClass*                      FilterClass                                                      (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// enum class ENavigationQueryResult  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FVector                     PathStart                                                        (Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     PathEnd                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// double                             PathLength                                                       (Edit, ConstParm, ExportObject, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class ANavigationData*             NavData                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UClass*                      FilterClass                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// enum class ENavigationQueryResult  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UClass* UNavigationSystemV1::GetPathLength(double PathLength, enum class ENavigationQueryResult ReturnValue)
+enum class ENavigationQueryResult UNavigationSystemV1::GetPathLength(class UObject** WorldContextObject, double PathLength, class ANavigationData** NavData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -617,7 +668,6 @@ class UClass* UNavigationSystemV1::GetPathLength(double PathLength, enum class E
 	Params::UNavigationSystemV1_GetPathLength_Params Parms{};
 
 	Parms.PathLength = PathLength;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -626,6 +676,12 @@ class UClass* UNavigationSystemV1::GetPathLength(double PathLength, enum class E
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
+	if (NavData != nullptr)
+		*NavData = Parms.NavData;
 
 	return Parms.ReturnValue;
 
@@ -635,15 +691,15 @@ class UClass* UNavigationSystemV1::GetPathLength(double PathLength, enum class E
 // Function NavigationSystem.NavigationSystemV1.GetPathCost
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FVector                     PathStart                                                        (ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector                     PathEnd                                                          (Edit, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// double                             PathCost                                                         (ConstParm, BlueprintVisible, EditConst, InstancedReference, SubobjectReference)
-// class ANavigationData*             NavData                                                          (BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// class UClass*                      FilterClass                                                      (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// enum class ENavigationQueryResult  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FVector                     PathStart                                                        (Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     PathEnd                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// double                             PathCost                                                         (ConstParm, BlueprintVisible, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class ANavigationData*             NavData                                                          (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UClass*                      FilterClass                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// enum class ENavigationQueryResult  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UClass* UNavigationSystemV1::GetPathCost(double PathCost, enum class ENavigationQueryResult ReturnValue)
+enum class ENavigationQueryResult UNavigationSystemV1::GetPathCost(class UObject** WorldContextObject, double PathCost, class ANavigationData** NavData)
 {
 	static class UFunction* Func = nullptr;
 
@@ -653,7 +709,6 @@ class UClass* UNavigationSystemV1::GetPathCost(double PathCost, enum class ENavi
 	Params::UNavigationSystemV1_GetPathCost_Params Parms{};
 
 	Parms.PathCost = PathCost;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -662,6 +717,12 @@ class UClass* UNavigationSystemV1::GetPathCost(double PathCost, enum class ENavi
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
+	if (NavData != nullptr)
+		*NavData = Parms.NavData;
 
 	return Parms.ReturnValue;
 
@@ -671,10 +732,10 @@ class UClass* UNavigationSystemV1::GetPathCost(double PathCost, enum class ENavi
 // Function NavigationSystem.NavigationSystemV1.GetNavigationSystem
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class UNavigationSystemV1*         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class UNavigationSystemV1*         ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UNavigationSystemV1::GetNavigationSystem(class UNavigationSystemV1* ReturnValue)
+class UNavigationSystemV1* UNavigationSystemV1::GetNavigationSystem(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -683,7 +744,6 @@ class UObject* UNavigationSystemV1::GetNavigationSystem(class UNavigationSystemV
 
 	Params::UNavigationSystemV1_GetNavigationSystem_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -692,6 +752,9 @@ class UObject* UNavigationSystemV1::GetNavigationSystem(class UNavigationSystemV
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -701,14 +764,14 @@ class UObject* UNavigationSystemV1::GetNavigationSystem(class UNavigationSystemV
 // Function NavigationSystem.NavigationSystemV1.FindPathToLocationSynchronously
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FVector                     PathStart                                                        (ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// struct FVector                     PathEnd                                                          (Edit, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class AActor*                      PathfindingContext                                               (Edit, ConstParm, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UClass*                      FilterClass                                                      (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UNavigationPath*             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FVector                     PathStart                                                        (Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// struct FVector                     PathEnd                                                          (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      PathfindingContext                                               (BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// class UClass*                      FilterClass                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// class UNavigationPath*             ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UClass* UNavigationSystemV1::FindPathToLocationSynchronously(class UNavigationPath* ReturnValue)
+class UNavigationPath* UNavigationSystemV1::FindPathToLocationSynchronously(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -717,7 +780,6 @@ class UClass* UNavigationSystemV1::FindPathToLocationSynchronously(class UNaviga
 
 	Params::UNavigationSystemV1_FindPathToLocationSynchronously_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -726,6 +788,9 @@ class UClass* UNavigationSystemV1::FindPathToLocationSynchronously(class UNaviga
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -735,15 +800,15 @@ class UClass* UNavigationSystemV1::FindPathToLocationSynchronously(class UNaviga
 // Function NavigationSystem.NavigationSystemV1.FindPathToActorSynchronously
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FVector                     PathStart                                                        (ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class AActor*                      GoalActor                                                        (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-// float                              TetherDistance                                                   (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
-// class AActor*                      PathfindingContext                                               (Edit, ConstParm, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UClass*                      FilterClass                                                      (BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// class UNavigationPath*             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// struct FVector                     PathStart                                                        (Edit, ConstParm, Net, EditFixedSize, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      GoalActor                                                        (ConstParm, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// float                              TetherDistance                                                   (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class AActor*                      PathfindingContext                                               (BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// class UClass*                      FilterClass                                                      (Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, EditConst, InstancedReference, SubobjectReference)
+// class UNavigationPath*             ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UClass* UNavigationSystemV1::FindPathToActorSynchronously(class AActor* GoalActor, class UNavigationPath* ReturnValue)
+class UNavigationPath* UNavigationSystemV1::FindPathToActorSynchronously(class UObject** WorldContextObject, class AActor* GoalActor, float* TetherDistance)
 {
 	static class UFunction* Func = nullptr;
 
@@ -753,7 +818,6 @@ class UClass* UNavigationSystemV1::FindPathToActorSynchronously(class AActor* Go
 	Params::UNavigationSystemV1_FindPathToActorSynchronously_Params Parms{};
 
 	Parms.GoalActor = GoalActor;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -762,6 +826,12 @@ class UClass* UNavigationSystemV1::FindPathToActorSynchronously(class AActor* Go
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
+
+	if (TetherDistance != nullptr)
+		*TetherDistance = Parms.TetherDistance;
 
 	return Parms.ReturnValue;
 
@@ -827,7 +897,7 @@ class UNavRelevantComponent* UNavRelevantComponent::GetDefaultObj()
 // Function NavigationSystem.NavRelevantComponent.SetNavigationRelevancy
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bRelevant                                                        (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, EditConst, InstancedReference, SubobjectReference)
+// bool                               bRelevant                                                        (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
 void UNavRelevantComponent::SetNavigationRelevancy(bool* bRelevant)
 {
@@ -884,7 +954,7 @@ class UNavModifierComponent* UNavModifierComponent::GetDefaultObj()
 // Function NavigationSystem.NavModifierComponent.SetAreaClass
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      NewAreaClass                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, EditConst, InstancedReference, SubobjectReference)
+// class UClass*                      NewAreaClass                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
 void UNavModifierComponent::SetAreaClass(class UClass** NewAreaClass)
 {
@@ -969,13 +1039,13 @@ class ARecastNavMesh* ARecastNavMesh::GetDefaultObj()
 // Function NavigationSystem.RecastNavMesh.K2_ReplaceAreaInTileBounds
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FBox                        Bounds                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// class UClass*                      OldArea                                                          (ConstParm, EditFixedSize, EditConst, InstancedReference, SubobjectReference)
-// class UClass*                      NewArea                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReplaceLinks                                                     (ConstParm, BlueprintVisible, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FBox                        Bounds                                                           (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UClass*                      OldArea                                                          (ConstParm, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class UClass*                      NewArea                                                          (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReplaceLinks                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FBox ARecastNavMesh::K2_ReplaceAreaInTileBounds(class UClass* OldArea, class UClass* NewArea, bool ReplaceLinks, bool ReturnValue)
+bool ARecastNavMesh::K2_ReplaceAreaInTileBounds(struct FBox* Bounds, class UClass* OldArea, class UClass* NewArea, bool* ReplaceLinks)
 {
 	static class UFunction* Func = nullptr;
 
@@ -986,8 +1056,6 @@ struct FBox ARecastNavMesh::K2_ReplaceAreaInTileBounds(class UClass* OldArea, cl
 
 	Parms.OldArea = OldArea;
 	Parms.NewArea = NewArea;
-	Parms.ReplaceLinks = ReplaceLinks;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -996,6 +1064,12 @@ struct FBox ARecastNavMesh::K2_ReplaceAreaInTileBounds(class UClass* OldArea, cl
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Bounds != nullptr)
+		*Bounds = std::move(Parms.Bounds);
+
+	if (ReplaceLinks != nullptr)
+		*ReplaceLinks = Parms.ReplaceLinks;
 
 	return Parms.ReturnValue;
 
@@ -1593,9 +1667,9 @@ class UNavigationPath* UNavigationPath::GetDefaultObj()
 // Function NavigationSystem.NavigationPath.IsValid
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UNavigationPath::IsValid(bool ReturnValue)
+bool UNavigationPath::IsValid()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1604,7 +1678,6 @@ void UNavigationPath::IsValid(bool ReturnValue)
 
 	Params::UNavigationPath_IsValid_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1614,15 +1687,17 @@ void UNavigationPath::IsValid(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function NavigationSystem.NavigationPath.IsStringPulled
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UNavigationPath::IsStringPulled(bool ReturnValue)
+bool UNavigationPath::IsStringPulled()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1631,7 +1706,6 @@ void UNavigationPath::IsStringPulled(bool ReturnValue)
 
 	Params::UNavigationPath_IsStringPulled_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1641,15 +1715,17 @@ void UNavigationPath::IsStringPulled(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function NavigationSystem.NavigationPath.IsPartial
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UNavigationPath::IsPartial(bool ReturnValue)
+bool UNavigationPath::IsPartial()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1658,7 +1734,6 @@ void UNavigationPath::IsPartial(bool ReturnValue)
 
 	Params::UNavigationPath_IsPartial_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1668,15 +1743,17 @@ void UNavigationPath::IsPartial(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function NavigationSystem.NavigationPath.GetPathLength
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// double                             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// double                             ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UNavigationPath::GetPathLength(double ReturnValue)
+double UNavigationPath::GetPathLength()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1685,7 +1762,6 @@ void UNavigationPath::GetPathLength(double ReturnValue)
 
 	Params::UNavigationPath_GetPathLength_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1695,15 +1771,17 @@ void UNavigationPath::GetPathLength(double ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function NavigationSystem.NavigationPath.GetPathCost
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// double                             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// double                             ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UNavigationPath::GetPathCost(double ReturnValue)
+double UNavigationPath::GetPathCost()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1712,7 +1790,6 @@ void UNavigationPath::GetPathCost(double ReturnValue)
 
 	Params::UNavigationPath_GetPathCost_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1722,15 +1799,17 @@ void UNavigationPath::GetPathCost(double ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function NavigationSystem.NavigationPath.GetDebugString
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UNavigationPath::GetDebugString(const class FString& ReturnValue)
+class FString UNavigationPath::GetDebugString()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1739,7 +1818,6 @@ void UNavigationPath::GetDebugString(const class FString& ReturnValue)
 
 	Params::UNavigationPath_GetDebugString_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1749,15 +1827,17 @@ void UNavigationPath::GetDebugString(const class FString& ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function NavigationSystem.NavigationPath.EnableRecalculationOnInvalidation
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// enum class ENavigationOptionFlag   DoRecalculation                                                  (ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class ENavigationOptionFlag   DoRecalculation                                                  (BlueprintVisible, Net, EditFixedSize, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-enum class ENavigationOptionFlag UNavigationPath::EnableRecalculationOnInvalidation()
+void UNavigationPath::EnableRecalculationOnInvalidation(enum class ENavigationOptionFlag DoRecalculation)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1766,6 +1846,7 @@ enum class ENavigationOptionFlag UNavigationPath::EnableRecalculationOnInvalidat
 
 	Params::UNavigationPath_EnableRecalculationOnInvalidation_Params Parms{};
 
+	Parms.DoRecalculation = DoRecalculation;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1775,18 +1856,16 @@ enum class ENavigationOptionFlag UNavigationPath::EnableRecalculationOnInvalidat
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
-
 }
 
 
 // Function NavigationSystem.NavigationPath.EnableDebugDrawing
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// bool                               bShouldDrawDebugData                                             (Edit, ConstParm, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
-// struct FLinearColor                PathColor                                                        (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bShouldDrawDebugData                                             (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FLinearColor                PathColor                                                        (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-struct FLinearColor UNavigationPath::EnableDebugDrawing()
+void UNavigationPath::EnableDebugDrawing(bool bShouldDrawDebugData, const struct FLinearColor& PathColor)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1795,6 +1874,8 @@ struct FLinearColor UNavigationPath::EnableDebugDrawing()
 
 	Params::UNavigationPath_EnableDebugDrawing_Params Parms{};
 
+	Parms.bShouldDrawDebugData = bShouldDrawDebugData;
+	Parms.PathColor = PathColor;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1803,8 +1884,6 @@ struct FLinearColor UNavigationPath::EnableDebugDrawing()
 
 
 	Func->FunctionFlags = Flgs;
-
-	return Parms.ReturnValue;
 
 }
 
@@ -2064,7 +2143,7 @@ class ANavModifierVolume* ANavModifierVolume::GetDefaultObj()
 // Function NavigationSystem.NavModifierVolume.SetAreaClass
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UClass*                      NewAreaClass                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, EditConst, InstancedReference, SubobjectReference)
+// class UClass*                      NewAreaClass                                                     (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 
 void ANavModifierVolume::SetAreaClass(class UClass** NewAreaClass)
 {

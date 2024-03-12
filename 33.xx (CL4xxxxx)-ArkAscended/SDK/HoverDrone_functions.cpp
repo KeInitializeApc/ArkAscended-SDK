@@ -67,7 +67,7 @@ void UHoverDroneMovementComponent::StopForceFacing()
 // Function HoverDrone.HoverDroneMovementComponent.SetCurrentFOV
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              NewFOV                                                           (BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// float                              NewFOV                                                           (ConstParm, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 void UHoverDroneMovementComponent::SetCurrentFOV(float* NewFOV)
 {
@@ -125,9 +125,9 @@ void UHoverDroneMovementComponent::ForceFacing(struct FVector* Location)
 // Function HoverDrone.HoverDroneMovementComponent.AddVelocity
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector                     VelocityImpulse                                                  (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// struct FVector                     VelocityImpulse                                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UHoverDroneMovementComponent::AddVelocity(struct FVector* VelocityImpulse)
+void UHoverDroneMovementComponent::AddVelocity(const struct FVector& VelocityImpulse)
 {
 	static class UFunction* Func = nullptr;
 
@@ -136,6 +136,7 @@ void UHoverDroneMovementComponent::AddVelocity(struct FVector* VelocityImpulse)
 
 	Params::UHoverDroneMovementComponent_AddVelocity_Params Parms{};
 
+	Parms.VelocityImpulse = VelocityImpulse;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -145,18 +146,15 @@ void UHoverDroneMovementComponent::AddVelocity(struct FVector* VelocityImpulse)
 
 	Func->FunctionFlags = Flgs;
 
-	if (VelocityImpulse != nullptr)
-		*VelocityImpulse = std::move(Parms.VelocityImpulse);
-
 }
 
 
 // Function HoverDrone.HoverDroneMovementComponent.AddRotationalVelocity
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FRotator                    RotationalVel                                                    (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// struct FRotator                    RotationalVel                                                    (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-void UHoverDroneMovementComponent::AddRotationalVelocity(struct FRotator* RotationalVel)
+void UHoverDroneMovementComponent::AddRotationalVelocity(const struct FRotator& RotationalVel)
 {
 	static class UFunction* Func = nullptr;
 
@@ -165,6 +163,7 @@ void UHoverDroneMovementComponent::AddRotationalVelocity(struct FRotator* Rotati
 
 	Params::UHoverDroneMovementComponent_AddRotationalVelocity_Params Parms{};
 
+	Parms.RotationalVel = RotationalVel;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -173,9 +172,6 @@ void UHoverDroneMovementComponent::AddRotationalVelocity(struct FRotator* Rotati
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (RotationalVel != nullptr)
-		*RotationalVel = std::move(Parms.RotationalVel);
 
 }
 
@@ -239,7 +235,7 @@ class AHoverDronePawn* AHoverDronePawn::GetDefaultObj()
 // Function HoverDrone.HoverDronePawn.TurnAccel
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Val                                                              (BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// float                              Val                                                              (ConstParm, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float AHoverDronePawn::TurnAccel()
 {
@@ -291,7 +287,7 @@ void AHoverDronePawn::SetToDefaultDroneSpeedIndex()
 // Function HoverDrone.HoverDronePawn.SetDroneSpeedIndex
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              SpeedIndex                                                       (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// int32                              SpeedIndex                                                       (Edit, ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 int32 AHoverDronePawn::SetDroneSpeedIndex()
 {
@@ -319,7 +315,7 @@ int32 AHoverDronePawn::SetDroneSpeedIndex()
 // Function HoverDrone.HoverDronePawn.SetAllowSpeedChange
 // (Final, Native, Protected, BlueprintCallable)
 // Parameters:
-// bool                               bOnOff                                                           (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// bool                               bOnOff                                                           (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 bool AHoverDronePawn::SetAllowSpeedChange()
 {
@@ -347,7 +343,7 @@ bool AHoverDronePawn::SetAllowSpeedChange()
 // Function HoverDrone.HoverDronePawn.MoveUp
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Val                                                              (BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// float                              Val                                                              (ConstParm, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float AHoverDronePawn::MoveUp()
 {
@@ -375,7 +371,7 @@ float AHoverDronePawn::MoveUp()
 // Function HoverDrone.HoverDronePawn.LookUpAccel
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              Val                                                              (BlueprintVisible, ExportObject, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// float                              Val                                                              (ConstParm, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 float AHoverDronePawn::LookUpAccel()
 {
@@ -403,9 +399,9 @@ float AHoverDronePawn::LookUpAccel()
 // Function HoverDrone.HoverDronePawn.IsMaintainingConstantAltitude
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void AHoverDronePawn::IsMaintainingConstantAltitude(bool ReturnValue)
+bool AHoverDronePawn::IsMaintainingConstantAltitude()
 {
 	static class UFunction* Func = nullptr;
 
@@ -414,7 +410,6 @@ void AHoverDronePawn::IsMaintainingConstantAltitude(bool ReturnValue)
 
 	Params::AHoverDronePawn_IsMaintainingConstantAltitude_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -424,16 +419,18 @@ void AHoverDronePawn::IsMaintainingConstantAltitude(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function HoverDrone.HoverDronePawn.GetTiltedDroneRotation
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// float                              DeltaTime                                                        (BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// struct FRotator                    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              DeltaTime                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRotator                    ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-float AHoverDronePawn::GetTiltedDroneRotation(const struct FRotator& ReturnValue)
+struct FRotator AHoverDronePawn::GetTiltedDroneRotation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -442,7 +439,6 @@ float AHoverDronePawn::GetTiltedDroneRotation(const struct FRotator& ReturnValue
 
 	Params::AHoverDronePawn_GetTiltedDroneRotation_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -460,9 +456,9 @@ float AHoverDronePawn::GetTiltedDroneRotation(const struct FRotator& ReturnValue
 // Function HoverDrone.HoverDronePawn.GetDroneSpeedIndex
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void AHoverDronePawn::GetDroneSpeedIndex(int32 ReturnValue)
+int32 AHoverDronePawn::GetDroneSpeedIndex()
 {
 	static class UFunction* Func = nullptr;
 
@@ -471,7 +467,6 @@ void AHoverDronePawn::GetDroneSpeedIndex(int32 ReturnValue)
 
 	Params::AHoverDronePawn_GetDroneSpeedIndex_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -481,15 +476,17 @@ void AHoverDronePawn::GetDroneSpeedIndex(int32 ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function HoverDrone.HoverDronePawn.GetAltitude
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void AHoverDronePawn::GetAltitude(float ReturnValue)
+float AHoverDronePawn::GetAltitude()
 {
 	static class UFunction* Func = nullptr;
 
@@ -498,7 +495,6 @@ void AHoverDronePawn::GetAltitude(float ReturnValue)
 
 	Params::AHoverDronePawn_GetAltitude_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -507,6 +503,8 @@ void AHoverDronePawn::GetAltitude(float ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 

@@ -43,9 +43,9 @@ class UHostSession_Switch_C* UHostSession_Switch_C::GetDefaultObj()
 // Function HostSession_Switch.HostSession_Switch_C.BPPopulateMods
 // (Event, Protected, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// TArray<struct FInstalledMod>       ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<struct FInstalledMod>       ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UHostSession_Switch_C::BPPopulateMods(const TArray<struct FInstalledMod>& ReturnValue)
+TArray<struct FInstalledMod> UHostSession_Switch_C::BPPopulateMods()
 {
 	static class UFunction* Func = nullptr;
 
@@ -54,9 +54,10 @@ void UHostSession_Switch_C::BPPopulateMods(const TArray<struct FInstalledMod>& R
 
 	Params::UHostSession_Switch_C_BPPopulateMods_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -64,12 +65,12 @@ void UHostSession_Switch_C::BPPopulateMods(const TArray<struct FInstalledMod>& R
 // Function HostSession_Switch.HostSession_Switch_C.DoSettingsMatchAnyDefaults
 // (Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               Matches                                                          (Edit, ExportObject, Net, Parm, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue          (Edit, BlueprintVisible, BlueprintReadOnly, Config, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue_1        (Edit, BlueprintVisible, BlueprintReadOnly, Config, EditConst, GlobalConfig, SubobjectReference, Interp)
-// bool                               CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue_2        (Edit, BlueprintVisible, BlueprintReadOnly, Config, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
+// bool                               Matches                                                          (ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue          (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue_1        (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// bool                               CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue_2        (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
 
-bool UHostSession_Switch_C::DoSettingsMatchAnyDefaults(bool CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue, bool CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue_1, bool CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue_2)
+bool UHostSession_Switch_C::DoSettingsMatchAnyDefaults(bool* Matches)
 {
 	static class UFunction* Func = nullptr;
 
@@ -78,11 +79,11 @@ bool UHostSession_Switch_C::DoSettingsMatchAnyDefaults(bool CallFunc_DoesSetting
 
 	Params::UHostSession_Switch_C_DoSettingsMatchAnyDefaults_Params Parms{};
 
-	Parms.CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue = CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue;
-	Parms.CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue_1 = CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue_1;
-	Parms.CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue_2 = CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue_2;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (Matches != nullptr)
+		*Matches = Parms.Matches;
 
 	return Parms.ReturnValue;
 
@@ -92,10 +93,10 @@ bool UHostSession_Switch_C::DoSettingsMatchAnyDefaults(bool CallFunc_DoesSetting
 // Function HostSession_Switch.HostSession_Switch_C.GetSelectedMapIndex
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// int32                              CallFunc_GetSelectedMapIndex_index                               (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+// int32                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              CallFunc_GetSelectedMapIndex_index                               (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-int32 UHostSession_Switch_C::GetSelectedMapIndex(int32 ReturnValue)
+int32 UHostSession_Switch_C::GetSelectedMapIndex(int32* CallFunc_GetSelectedMapIndex_index)
 {
 	static class UFunction* Func = nullptr;
 
@@ -104,9 +105,11 @@ int32 UHostSession_Switch_C::GetSelectedMapIndex(int32 ReturnValue)
 
 	Params::UHostSession_Switch_C_GetSelectedMapIndex_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (CallFunc_GetSelectedMapIndex_index != nullptr)
+		*CallFunc_GetSelectedMapIndex_index = Parms.CallFunc_GetSelectedMapIndex_index;
 
 	return Parms.ReturnValue;
 
@@ -116,10 +119,10 @@ int32 UHostSession_Switch_C::GetSelectedMapIndex(int32 ReturnValue)
 // Function HostSession_Switch.HostSession_Switch_C.IsInMapSelectView
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-// bool                               CallFunc_IsVisible_ReturnValue                                   (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               CallFunc_IsVisible_ReturnValue                                   (DisableEditOnInstance, SubobjectReference)
 
-bool UHostSession_Switch_C::IsInMapSelectView(bool ReturnValue)
+bool UHostSession_Switch_C::IsInMapSelectView(bool CallFunc_IsVisible_ReturnValue)
 {
 	static class UFunction* Func = nullptr;
 
@@ -128,7 +131,7 @@ bool UHostSession_Switch_C::IsInMapSelectView(bool ReturnValue)
 
 	Params::UHostSession_Switch_C_IsInMapSelectView_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.CallFunc_IsVisible_ReturnValue = CallFunc_IsVisible_ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
 
@@ -140,9 +143,9 @@ bool UHostSession_Switch_C::IsInMapSelectView(bool ReturnValue)
 // Function HostSession_Switch.HostSession_Switch_C.GetMapSelectScrollBox
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// class UScrollBox*                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UScrollBox*                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UHostSession_Switch_C::GetMapSelectScrollBox(class UScrollBox* ReturnValue)
+class UScrollBox* UHostSession_Switch_C::GetMapSelectScrollBox()
 {
 	static class UFunction* Func = nullptr;
 
@@ -151,9 +154,10 @@ void UHostSession_Switch_C::GetMapSelectScrollBox(class UScrollBox* ReturnValue)
 
 	Params::UHostSession_Switch_C_GetMapSelectScrollBox_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 
@@ -179,23 +183,23 @@ void UHostSession_Switch_C::MoveToMainScreen()
 // Function HostSession_Switch.HostSession_Switch_C.SetMainMapSelectEntry
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                              MapIndex                                                         (ConstParm, ExportObject, BlueprintReadOnly, Parm, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// int32                              SelectedIndex                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_HasDLCforMapIndex_ReturnValue                           (ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_Not_PreBool_ReturnValue                                 (Edit, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              CallFunc_Add_IntInt_ReturnValue                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<class UMapSelect_Entry_C*>  CallFunc_GetMapSelectEntries_MapSelectEntries                    (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// class UMapSelect_Entry_C*          CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_Less_IntInt_ReturnValue                                 (ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_EqualEqual_IntInt_ReturnValue                           (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, SubobjectReference)
-// class FText                        CallFunc_GetMapInfo_OutMapName                                   (Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FMapDescription             CallFunc_GetMapInfo_OutDescription                               (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, EditConst, GlobalConfig, SubobjectReference)
-// class FString                      CallFunc_Conv_TextToString_ReturnValue                           (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// int32                              MapIndex                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// int32                              SelectedIndex                                                    (ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, SubobjectReference)
+// bool                               CallFunc_HasDLCforMapIndex_ReturnValue                           (Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_Not_PreBool_ReturnValue                                 (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ConstParm, EditFixedSize, DisableEditOnTemplate, Config, SubobjectReference)
+// int32                              CallFunc_Add_IntInt_ReturnValue                                  (ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// TArray<class UMapSelect_Entry_C*>  CallFunc_GetMapSelectEntries_MapSelectEntries                    (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UMapSelect_Entry_C*          CallFunc_Array_Get_Item                                          (EditFixedSize, ZeroConstructor, Transient, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// bool                               CallFunc_Less_IntInt_ReturnValue                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// bool                               CallFunc_EqualEqual_IntInt_ReturnValue                           (BlueprintVisible, Net, OutParm, ZeroConstructor, Transient, Config, SubobjectReference)
+// class FText                        CallFunc_GetMapInfo_OutMapName                                   (Edit, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FMapDescription             CallFunc_GetMapInfo_OutDescription                               (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FString                      CallFunc_Conv_TextToString_ReturnValue                           (Edit, ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
 
-bool UHostSession_Switch_C::SetMainMapSelectEntry(int32 MapIndex, int32 SelectedIndex, bool CallFunc_HasDLCforMapIndex_ReturnValue, bool* CallFunc_EqualEqual_IntInt_ReturnValue, class FText* CallFunc_GetMapInfo_OutMapName, struct FMapDescription* CallFunc_GetMapInfo_OutDescription, class FString* CallFunc_Conv_TextToString_ReturnValue)
+class FString UHostSession_Switch_C::SetMainMapSelectEntry(int32 Temp_int_Array_Index_Variable, int32 Temp_int_Loop_Counter_Variable, TArray<class UMapSelect_Entry_C*>* CallFunc_GetMapSelectEntries_MapSelectEntries, class UMapSelect_Entry_C* CallFunc_Array_Get_Item, bool* CallFunc_EqualEqual_IntInt_ReturnValue, class FText* CallFunc_GetMapInfo_OutMapName, struct FMapDescription* CallFunc_GetMapInfo_OutDescription)
 {
 	static class UFunction* Func = nullptr;
 
@@ -204,11 +208,14 @@ bool UHostSession_Switch_C::SetMainMapSelectEntry(int32 MapIndex, int32 Selected
 
 	Params::UHostSession_Switch_C_SetMainMapSelectEntry_Params Parms{};
 
-	Parms.MapIndex = MapIndex;
-	Parms.SelectedIndex = SelectedIndex;
-	Parms.CallFunc_HasDLCforMapIndex_ReturnValue = CallFunc_HasDLCforMapIndex_ReturnValue;
+	Parms.Temp_int_Array_Index_Variable = Temp_int_Array_Index_Variable;
+	Parms.Temp_int_Loop_Counter_Variable = Temp_int_Loop_Counter_Variable;
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (CallFunc_GetMapSelectEntries_MapSelectEntries != nullptr)
+		*CallFunc_GetMapSelectEntries_MapSelectEntries = std::move(Parms.CallFunc_GetMapSelectEntries_MapSelectEntries);
 
 	if (CallFunc_EqualEqual_IntInt_ReturnValue != nullptr)
 		*CallFunc_EqualEqual_IntInt_ReturnValue = Parms.CallFunc_EqualEqual_IntInt_ReturnValue;
@@ -219,9 +226,6 @@ bool UHostSession_Switch_C::SetMainMapSelectEntry(int32 MapIndex, int32 Selected
 	if (CallFunc_GetMapInfo_OutDescription != nullptr)
 		*CallFunc_GetMapInfo_OutDescription = std::move(Parms.CallFunc_GetMapInfo_OutDescription);
 
-	if (CallFunc_Conv_TextToString_ReturnValue != nullptr)
-		*CallFunc_Conv_TextToString_ReturnValue = std::move(Parms.CallFunc_Conv_TextToString_ReturnValue);
-
 	return Parms.ReturnValue;
 
 }
@@ -230,16 +234,16 @@ bool UHostSession_Switch_C::SetMainMapSelectEntry(int32 MapIndex, int32 Selected
 // Function HostSession_Switch.HostSession_Switch_C.SetupMapSelectEntries
 // (Public, HasDefaults, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_EqualEqual_IntInt_ReturnValue                           (Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, SubobjectReference)
-// int32                              CallFunc_Add_IntInt_ReturnValue                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<class UMapSelect_Entry_C*>  CallFunc_GetMapSelectEntries_MapSelectEntries                    (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// class UMapSelect_Entry_C*          CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_Less_IntInt_ReturnValue                                 (ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, SubobjectReference)
+// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ConstParm, EditFixedSize, DisableEditOnTemplate, Config, SubobjectReference)
+// bool                               CallFunc_EqualEqual_IntInt_ReturnValue                           (BlueprintVisible, Net, OutParm, ZeroConstructor, Transient, Config, SubobjectReference)
+// int32                              CallFunc_Add_IntInt_ReturnValue                                  (ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// TArray<class UMapSelect_Entry_C*>  CallFunc_GetMapSelectEntries_MapSelectEntries                    (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UMapSelect_Entry_C*          CallFunc_Array_Get_Item                                          (EditFixedSize, ZeroConstructor, Transient, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// bool                               CallFunc_Less_IntInt_ReturnValue                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
 
-bool UHostSession_Switch_C::SetupMapSelectEntries(bool* CallFunc_EqualEqual_IntInt_ReturnValue)
+bool UHostSession_Switch_C::SetupMapSelectEntries(int32 Temp_int_Array_Index_Variable, int32 Temp_int_Loop_Counter_Variable, bool* CallFunc_EqualEqual_IntInt_ReturnValue, TArray<class UMapSelect_Entry_C*>* CallFunc_GetMapSelectEntries_MapSelectEntries, class UMapSelect_Entry_C* CallFunc_Array_Get_Item)
 {
 	static class UFunction* Func = nullptr;
 
@@ -248,11 +252,17 @@ bool UHostSession_Switch_C::SetupMapSelectEntries(bool* CallFunc_EqualEqual_IntI
 
 	Params::UHostSession_Switch_C_SetupMapSelectEntries_Params Parms{};
 
+	Parms.Temp_int_Array_Index_Variable = Temp_int_Array_Index_Variable;
+	Parms.Temp_int_Loop_Counter_Variable = Temp_int_Loop_Counter_Variable;
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
 
 	UObject::ProcessEvent(Func, &Parms);
 
 	if (CallFunc_EqualEqual_IntInt_ReturnValue != nullptr)
 		*CallFunc_EqualEqual_IntInt_ReturnValue = Parms.CallFunc_EqualEqual_IntInt_ReturnValue;
+
+	if (CallFunc_GetMapSelectEntries_MapSelectEntries != nullptr)
+		*CallFunc_GetMapSelectEntries_MapSelectEntries = std::move(Parms.CallFunc_GetMapSelectEntries_MapSelectEntries);
 
 	return Parms.ReturnValue;
 
@@ -262,10 +272,10 @@ bool UHostSession_Switch_C::SetupMapSelectEntries(bool* CallFunc_EqualEqual_IntI
 // Function HostSession_Switch.HostSession_Switch_C.Tick
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// struct FGeometry                   MyGeometry                                                       (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-// float                              InDeltaTime                                                      (ConstParm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+// struct FGeometry                   MyGeometry                                                       (BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+// float                              InDeltaTime                                                      (ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-float UHostSession_Switch_C::Tick()
+float UHostSession_Switch_C::Tick(struct FGeometry* MyGeometry)
 {
 	static class UFunction* Func = nullptr;
 
@@ -276,6 +286,9 @@ float UHostSession_Switch_C::Tick()
 
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (MyGeometry != nullptr)
+		*MyGeometry = std::move(Parms.MyGeometry);
 
 	return Parms.ReturnValue;
 
@@ -303,9 +316,9 @@ void UHostSession_Switch_C::Construct()
 // Function HostSession_Switch.HostSession_Switch_C.PreConstruct
 // (BlueprintCosmetic, Event, Public, BlueprintEvent)
 // Parameters:
-// bool                               IsDesignTime                                                     (Edit, ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+// bool                               IsDesignTime                                                     (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 
-void UHostSession_Switch_C::PreConstruct(bool* IsDesignTime)
+bool UHostSession_Switch_C::PreConstruct()
 {
 	static class UFunction* Func = nullptr;
 
@@ -317,8 +330,7 @@ void UHostSession_Switch_C::PreConstruct(bool* IsDesignTime)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (IsDesignTime != nullptr)
-		*IsDesignTime = Parms.IsDesignTime;
+	return Parms.ReturnValue;
 
 }
 
@@ -362,9 +374,9 @@ void UHostSession_Switch_C::BPOnUpdateSavedDataButtons()
 // Function HostSession_Switch.HostSession_Switch_C.SetSelectedMapIndex
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// int32                              Index                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+// int32                              Index                                                            (EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
 
-void UHostSession_Switch_C::SetSelectedMapIndex(int32* Index)
+int32 UHostSession_Switch_C::SetSelectedMapIndex()
 {
 	static class UFunction* Func = nullptr;
 
@@ -376,8 +388,7 @@ void UHostSession_Switch_C::SetSelectedMapIndex(int32* Index)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Index != nullptr)
-		*Index = Parms.Index;
+	return Parms.ReturnValue;
 
 }
 
@@ -529,9 +540,9 @@ void UHostSession_Switch_C::MoveToMapScreen()
 // Function HostSession_Switch.HostSession_Switch_C.OnGetInstalledMods
 // (HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// TArray<struct FInstalledMod>       Installed_mods                                                   (ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Config, EditConst, SubobjectReference)
+// TArray<struct FInstalledMod>       Installed_mods                                                   (ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHostSession_Switch_C::OnGetInstalledMods(TArray<struct FInstalledMod>* Installed_mods)
+TArray<struct FInstalledMod> UHostSession_Switch_C::OnGetInstalledMods()
 {
 	static class UFunction* Func = nullptr;
 
@@ -543,8 +554,7 @@ void UHostSession_Switch_C::OnGetInstalledMods(TArray<struct FInstalledMod>* Ins
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Installed_mods != nullptr)
-		*Installed_mods = std::move(Parms.Installed_mods);
+	return Parms.ReturnValue;
 
 }
 
@@ -552,9 +562,9 @@ void UHostSession_Switch_C::OnGetInstalledMods(TArray<struct FInstalledMod>* Ins
 // Function HostSession_Switch.HostSession_Switch_C.OnIsAuthenticated
 // (BlueprintCallable, BlueprintEvent)
 // Parameters:
-// bool                               Is_authenticated                                                 (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, EditConst, SubobjectReference)
+// bool                               Is_authenticated                                                 (Edit, ExportObject, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
-void UHostSession_Switch_C::OnIsAuthenticated(bool* Is_authenticated)
+bool UHostSession_Switch_C::OnIsAuthenticated()
 {
 	static class UFunction* Func = nullptr;
 
@@ -566,8 +576,7 @@ void UHostSession_Switch_C::OnIsAuthenticated(bool* Is_authenticated)
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (Is_authenticated != nullptr)
-		*Is_authenticated = Parms.Is_authenticated;
+	return Parms.ReturnValue;
 
 }
 
@@ -575,37 +584,37 @@ void UHostSession_Switch_C::OnIsAuthenticated(bool* Is_authenticated)
 // Function HostSession_Switch.HostSession_Switch_C.ExecuteUbergraph_HostSession_Switch
 // (Final, UbergraphFunction, HasDefaults)
 // Parameters:
-// int32                              EntryPoint                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (BlueprintVisible, ExportObject, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_1                           (BlueprintVisible, ExportObject, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference, Interp)
-// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// FDelegateProperty_                 Temp_delegate_Variable                                           (BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-// class AGameModeBase*               CallFunc_GetGameMode_ReturnValue                                 (BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, SubobjectReference)
-// struct FGeometry                   K2Node_Event_MyGeometry                                          (BlueprintVisible, ZeroConstructor, Config, SubobjectReference)
-// float                              K2Node_Event_InDeltaTime                                         (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Config, SubobjectReference)
-// class AShooterGame_Menu*           K2Node_DynamicCast_AsShooter_Game_Menu                           (BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               K2Node_Event_IsDesignTime                                        (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Config, GlobalConfig, SubobjectReference)
-// TArray<class UMapSelect_Entry_C*>  CallFunc_GetMapSelectEntries_MapSelectEntries                    (ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// class UMapSelect_Entry_C*          CallFunc_Array_Get_Item                                          (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_HasDLCforMapIndex_ReturnValue                           (ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-// int32                              K2Node_Event_index                                               (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_Not_PreBool_ReturnValue                                 (Edit, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_DoSettingsMatchAnyDefaults_Matches                      (ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_DoSettingsMatchAnyDefaults_Matches_1                    (ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference, Interp)
-// bool                               CallFunc_DoSettingsMatchAnyDefaults_Matches_2                    (ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
-// bool                               CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue          (Edit, BlueprintVisible, BlueprintReadOnly, Config, EditConst, GlobalConfig, SubobjectReference)
-// bool                               CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue_1        (Edit, BlueprintVisible, BlueprintReadOnly, Config, EditConst, GlobalConfig, SubobjectReference, Interp)
-// bool                               CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue_2        (Edit, BlueprintVisible, BlueprintReadOnly, Config, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
-// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_Less_IntInt_ReturnValue                                 (ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// int32                              CallFunc_Add_IntInt_ReturnValue                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// class UCFCoreSubsystem*            CallFunc_GetEngineSubsystem_ReturnValue                          (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-// TArray<struct FInstalledMod>       K2Node_CustomEvent_installed_mods                                (Edit, ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-// bool                               K2Node_CustomEvent_is_authenticated                              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate                             (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
+// FDelegateProperty_                 K2Node_CreateDelegate_OutputDelegate_1                           (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference, Interp)
+// int32                              Temp_int_Array_Index_Variable                                    (Edit, ConstParm, BlueprintReadOnly, Net, DisableEditOnTemplate, Config, SubobjectReference)
+// FDelegateProperty_                 Temp_delegate_Variable                                           (Edit, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class AGameModeBase*               CallFunc_GetGameMode_ReturnValue                                 (ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+// struct FGeometry                   K2Node_Event_MyGeometry                                          (Edit, ConstParm, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// float                              K2Node_Event_InDeltaTime                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, Config, SubobjectReference)
+// class AShooterGame_Menu*           K2Node_DynamicCast_AsShooter_Game_Menu                           (BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, SubobjectReference)
+// bool                               K2Node_Event_IsDesignTime                                        (BlueprintVisible, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// TArray<class UMapSelect_Entry_C*>  CallFunc_GetMapSelectEntries_MapSelectEntries                    (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class UMapSelect_Entry_C*          CallFunc_Array_Get_Item                                          (EditFixedSize, ZeroConstructor, Transient, SubobjectReference)
+// int32                              CallFunc_Array_Length_ReturnValue                                (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// bool                               CallFunc_HasDLCforMapIndex_ReturnValue                           (Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// int32                              K2Node_Event_index                                               (Edit, ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_Not_PreBool_ReturnValue                                 (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// bool                               CallFunc_DoSettingsMatchAnyDefaults_Matches                      (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_DoSettingsMatchAnyDefaults_Matches_1                    (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// bool                               CallFunc_DoSettingsMatchAnyDefaults_Matches_2                    (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
+// bool                               CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue          (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue_1        (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, Interp)
+// bool                               CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue_2        (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference, RepNotify, Interp)
+// int32                              Temp_int_Loop_Counter_Variable                                   (Edit, ConstParm, EditFixedSize, DisableEditOnTemplate, Config, SubobjectReference)
+// bool                               CallFunc_Less_IntInt_ReturnValue                                 (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// int32                              CallFunc_Add_IntInt_ReturnValue                                  (ConstParm, ExportObject, Net, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// class UCFCoreSubsystem*            CallFunc_GetEngineSubsystem_ReturnValue                          (Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+// TArray<struct FInstalledMod>       K2Node_CustomEvent_installed_mods                                (ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               K2Node_CustomEvent_is_authenticated                              (Edit, BlueprintVisible, ExportObject, Net, Parm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-bool UHostSession_Switch_C::ExecuteUbergraph_HostSession_Switch(FDelegateProperty_ Temp_delegate_Variable, class AGameModeBase* CallFunc_GetGameMode_ReturnValue, const struct FGeometry& K2Node_Event_MyGeometry, float* K2Node_Event_InDeltaTime, bool CallFunc_HasDLCforMapIndex_ReturnValue, int32* K2Node_Event_index, bool CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue, bool CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue_1, bool CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue_2, class UCFCoreSubsystem* CallFunc_GetEngineSubsystem_ReturnValue)
+class UCFCoreSubsystem* UHostSession_Switch_C::ExecuteUbergraph_HostSession_Switch(int32* EntryPoint, int32 Temp_int_Array_Index_Variable, FDelegateProperty_ Temp_delegate_Variable, const struct FGeometry& K2Node_Event_MyGeometry, float K2Node_Event_InDeltaTime, bool* K2Node_DynamicCast_bSuccess, TArray<class UMapSelect_Entry_C*>* CallFunc_GetMapSelectEntries_MapSelectEntries, class UMapSelect_Entry_C* CallFunc_Array_Get_Item, bool* CallFunc_DoSettingsMatchAnyDefaults_Matches, bool* CallFunc_DoSettingsMatchAnyDefaults_Matches_1, bool* CallFunc_DoSettingsMatchAnyDefaults_Matches_2, int32 Temp_int_Loop_Counter_Variable, TArray<struct FInstalledMod>* K2Node_CustomEvent_installed_mods, bool K2Node_CustomEvent_is_authenticated)
 {
 	static class UFunction* Func = nullptr;
 
@@ -614,22 +623,36 @@ bool UHostSession_Switch_C::ExecuteUbergraph_HostSession_Switch(FDelegatePropert
 
 	Params::UHostSession_Switch_C_ExecuteUbergraph_HostSession_Switch_Params Parms{};
 
+	Parms.Temp_int_Array_Index_Variable = Temp_int_Array_Index_Variable;
 	Parms.Temp_delegate_Variable = Temp_delegate_Variable;
-	Parms.CallFunc_GetGameMode_ReturnValue = CallFunc_GetGameMode_ReturnValue;
 	Parms.K2Node_Event_MyGeometry = K2Node_Event_MyGeometry;
-	Parms.CallFunc_HasDLCforMapIndex_ReturnValue = CallFunc_HasDLCforMapIndex_ReturnValue;
-	Parms.CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue = CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue;
-	Parms.CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue_1 = CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue_1;
-	Parms.CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue_2 = CallFunc_DoesSettingsMatchSettingsDataAsset_ReturnValue_2;
-	Parms.CallFunc_GetEngineSubsystem_ReturnValue = CallFunc_GetEngineSubsystem_ReturnValue;
+	Parms.K2Node_Event_InDeltaTime = K2Node_Event_InDeltaTime;
+	Parms.CallFunc_Array_Get_Item = CallFunc_Array_Get_Item;
+	Parms.Temp_int_Loop_Counter_Variable = Temp_int_Loop_Counter_Variable;
+	Parms.K2Node_CustomEvent_is_authenticated = K2Node_CustomEvent_is_authenticated;
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	if (K2Node_Event_InDeltaTime != nullptr)
-		*K2Node_Event_InDeltaTime = Parms.K2Node_Event_InDeltaTime;
+	if (EntryPoint != nullptr)
+		*EntryPoint = Parms.EntryPoint;
 
-	if (K2Node_Event_index != nullptr)
-		*K2Node_Event_index = Parms.K2Node_Event_index;
+	if (K2Node_DynamicCast_bSuccess != nullptr)
+		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
+
+	if (CallFunc_GetMapSelectEntries_MapSelectEntries != nullptr)
+		*CallFunc_GetMapSelectEntries_MapSelectEntries = std::move(Parms.CallFunc_GetMapSelectEntries_MapSelectEntries);
+
+	if (CallFunc_DoSettingsMatchAnyDefaults_Matches != nullptr)
+		*CallFunc_DoSettingsMatchAnyDefaults_Matches = Parms.CallFunc_DoSettingsMatchAnyDefaults_Matches;
+
+	if (CallFunc_DoSettingsMatchAnyDefaults_Matches_1 != nullptr)
+		*CallFunc_DoSettingsMatchAnyDefaults_Matches_1 = Parms.CallFunc_DoSettingsMatchAnyDefaults_Matches_1;
+
+	if (CallFunc_DoSettingsMatchAnyDefaults_Matches_2 != nullptr)
+		*CallFunc_DoSettingsMatchAnyDefaults_Matches_2 = Parms.CallFunc_DoSettingsMatchAnyDefaults_Matches_2;
+
+	if (K2Node_CustomEvent_installed_mods != nullptr)
+		*K2Node_CustomEvent_installed_mods = std::move(Parms.K2Node_CustomEvent_installed_mods);
 
 	return Parms.ReturnValue;
 

@@ -18,7 +18,7 @@ namespace Params
 struct UGameMapsSettings_SetSkipAssigningGamepadToPlayer1_Params
 {
 public:
-	bool                                         bSkipFirstPlayer;                                  // 0x0(0x1)(Edit, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bSkipFirstPlayer;                                  // 0x0(0x1)(BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -26,7 +26,7 @@ public:
 struct UGameMapsSettings_GetSkipAssigningGamepadToPlayer1_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -34,7 +34,7 @@ public:
 struct UGameMapsSettings_GetGameMapsSettings_Params
 {
 public:
-	class UGameMapsSettings*                     ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UGameMapsSettings*                     ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 }

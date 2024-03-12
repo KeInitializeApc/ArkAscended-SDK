@@ -18,7 +18,7 @@ namespace Params
 struct UWidget_SetVisibility_Params
 {
 public:
-	enum class ESlateVisibility                  InVisibility;                                      // 0x0(0x1)(Parm, GlobalConfig, SubobjectReference)
+	enum class ESlateVisibility                  InVisibility;                                      // 0x0(0x1)(BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -26,7 +26,7 @@ public:
 struct UWidget_SetUserFocus_Params
 {
 public:
-	class APlayerController*                     PlayerController;                                  // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+	class APlayerController*                     PlayerController;                                  // 0x0(0x8)(BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -34,7 +34,7 @@ public:
 struct UWidget_SetToolTipText_Params
 {
 public:
-	class FText                                  InToolTipText;                                     // 0x0(0x18)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, GlobalConfig, SubobjectReference)
+	class FText                                  InToolTipText;                                     // 0x0(0x18)(ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -42,7 +42,7 @@ public:
 struct UWidget_SetToolTip_Params
 {
 public:
-	class UWidget*                               Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
+	class UWidget*                               Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -50,7 +50,7 @@ public:
 struct UWidget_SetRenderTranslation_Params
 {
 public:
-	struct FVector2D                             Translation;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config)
+	struct FVector2D                             Translation;                                       // 0x0(0x10)(ConstParm, BlueprintReadOnly, Net, ReturnParm, Transient, Config)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -58,7 +58,7 @@ public:
 struct UWidget_SetRenderTransformPivot_Params
 {
 public:
-	struct FVector2D                             Pivot;                                             // 0x0(0x10)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, GlobalConfig, SubobjectReference)
+	struct FVector2D                             Pivot;                                             // 0x0(0x10)(BlueprintVisible, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -66,7 +66,7 @@ public:
 struct UWidget_SetRenderTransformAngle_Params
 {
 public:
-	float                                        Angle;                                             // 0x0(0x4)(Edit, ExportObject, Net, EditFixedSize, GlobalConfig, SubobjectReference)
+	float                                        Angle;                                             // 0x0(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x38 (0x38 - 0x0)
@@ -74,7 +74,7 @@ public:
 struct UWidget_SetRenderTransform_Params
 {
 public:
-	struct FWidgetTransform                      InTransform;                                       // 0x0(0x38)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, GlobalConfig, SubobjectReference)
+	struct FWidgetTransform                      InTransform;                                       // 0x0(0x38)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -82,7 +82,7 @@ public:
 struct UWidget_SetRenderShear_Params
 {
 public:
-	struct FVector2D                             Shear;                                             // 0x0(0x10)(Edit, BlueprintVisible, Net, EditFixedSize, GlobalConfig, SubobjectReference)
+	struct FVector2D                             Shear;                                             // 0x0(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -90,7 +90,7 @@ public:
 struct UWidget_SetRenderScale_Params
 {
 public:
-	struct FVector2D                             Scale;                                             // 0x0(0x10)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config)
+	struct FVector2D                             Scale;                                             // 0x0(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, Config)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -98,7 +98,7 @@ public:
 struct UWidget_SetRenderOpacity_Params
 {
 public:
-	float                                        InOpacity;                                         // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, GlobalConfig, SubobjectReference)
+	float                                        InOpacity;                                         // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -106,9 +106,9 @@ public:
 struct UWidget_SetNavigationRuleExplicit_Params
 {
 public:
-	enum class EUINavigation                     Direction;                                         // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-	uint8                                        Pad_D3A[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	class UWidget*                               InWidget;                                          // 0x8(0x8)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, GlobalConfig, SubobjectReference)
+	enum class EUINavigation                     Direction;                                         // 0x0(0x1)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+	uint8                                        Pad_1042[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	class UWidget*                               InWidget;                                          // 0x8(0x8)(ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x14 (0x14 - 0x0)
@@ -116,9 +116,9 @@ public:
 struct UWidget_SetNavigationRuleCustomBoundary_Params
 {
 public:
-	enum class EUINavigation                     Direction;                                         // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-	uint8                                        Pad_D3E[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	FDelegateProperty_                           InCustomDelegate;                                  // 0x4(0x10)(Edit, BlueprintReadOnly, Net, GlobalConfig, SubobjectReference)
+	enum class EUINavigation                     Direction;                                         // 0x0(0x1)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+	uint8                                        Pad_1049[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	FDelegateProperty_                           InCustomDelegate;                                  // 0x4(0x10)(Edit, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x14 (0x14 - 0x0)
@@ -126,9 +126,9 @@ public:
 struct UWidget_SetNavigationRuleCustom_Params
 {
 public:
-	enum class EUINavigation                     Direction;                                         // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-	uint8                                        Pad_D47[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	FDelegateProperty_                           InCustomDelegate;                                  // 0x4(0x10)(Edit, BlueprintReadOnly, Net, GlobalConfig, SubobjectReference)
+	enum class EUINavigation                     Direction;                                         // 0x0(0x1)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+	uint8                                        Pad_104E[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	FDelegateProperty_                           InCustomDelegate;                                  // 0x4(0x10)(Edit, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x2 (0x2 - 0x0)
@@ -136,8 +136,8 @@ public:
 struct UWidget_SetNavigationRuleBase_Params
 {
 public:
-	enum class EUINavigation                     Direction;                                         // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-	enum class EUINavigationRule                 Rule;                                              // 0x1(0x1)(Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	enum class EUINavigation                     Direction;                                         // 0x0(0x1)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+	enum class EUINavigationRule                 Rule;                                              // 0x1(0x1)(Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -145,10 +145,10 @@ public:
 struct UWidget_SetNavigationRule_Params
 {
 public:
-	enum class EUINavigation                     Direction;                                         // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-	enum class EUINavigationRule                 Rule;                                              // 0x1(0x1)(Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_D54[0x2];                                      // Fixing Size After Last Property  > TateDumper <
-	class FName                                  WidgetToFocus;                                     // 0x4(0x8)(Edit, BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	enum class EUINavigation                     Direction;                                         // 0x0(0x1)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+	enum class EUINavigationRule                 Rule;                                              // 0x1(0x1)(Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1061[0x2];                                     // Fixing Size After Last Property  > TateDumper <
+	class FName                                  WidgetToFocus;                                     // 0x4(0x8)(ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -156,7 +156,7 @@ public:
 struct UWidget_SetIsEnabled_Params
 {
 public:
-	bool                                         bInIsEnabled;                                      // 0x0(0x1)(Edit, ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bInIsEnabled;                                      // 0x0(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -164,7 +164,7 @@ public:
 struct UWidget_SetCursor_Params
 {
 public:
-	enum class EMouseCursor                      InCursor;                                          // 0x0(0x1)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	enum class EMouseCursor                      InCursor;                                          // 0x0(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -172,7 +172,7 @@ public:
 struct UWidget_SetClipping_Params
 {
 public:
-	enum class EWidgetClipping                   InClipping;                                        // 0x0(0x1)(Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	enum class EWidgetClipping                   InClipping;                                        // 0x0(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -180,9 +180,9 @@ public:
 struct UWidget_SetAllNavigationRules_Params
 {
 public:
-	enum class EUINavigationRule                 Rule;                                              // 0x0(0x1)(Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_D69[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	class FName                                  WidgetToFocus;                                     // 0x4(0x8)(Edit, BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	enum class EUINavigationRule                 Rule;                                              // 0x0(0x1)(Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1075[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	class FName                                  WidgetToFocus;                                     // 0x4(0x8)(ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0xB8 (0xB8 - 0x0)
@@ -190,7 +190,7 @@ public:
 struct UWidget_OnReply__DelegateSignature_Params
 {
 public:
-	struct FEventReply                           ReturnValue;                                       // 0x0(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0x0(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x168 (0x168 - 0x0)
@@ -198,9 +198,9 @@ public:
 struct UWidget_OnPointerEvent__DelegateSignature_Params
 {
 public:
-	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FPointerEvent                         MouseEvent;                                        // 0x38(0x78)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0xB0(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FPointerEvent                         MouseEvent;                                        // 0x38(0x78)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0xB0(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -208,8 +208,8 @@ public:
 struct UWidget_K2_RemoveFieldValueChangedDelegate_Params
 {
 public:
-	struct FFieldNotificationId                  FieldId;                                           // 0x0(0x8)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	FDelegateProperty_                           Delegate;                                          // 0x8(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	struct FFieldNotificationId                  FieldId;                                           // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	FDelegateProperty_                           Delegate;                                          // 0x8(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -217,7 +217,7 @@ public:
 struct UWidget_K2_BroadcastFieldValueChanged_Params
 {
 public:
-	struct FFieldNotificationId                  FieldId;                                           // 0x0(0x8)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FFieldNotificationId                  FieldId;                                           // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -225,8 +225,8 @@ public:
 struct UWidget_K2_AddFieldValueChangedDelegate_Params
 {
 public:
-	struct FFieldNotificationId                  FieldId;                                           // 0x0(0x8)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	FDelegateProperty_                           Delegate;                                          // 0x8(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	struct FFieldNotificationId                  FieldId;                                           // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	FDelegateProperty_                           Delegate;                                          // 0x8(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -234,7 +234,7 @@ public:
 struct UWidget_IsVisible_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -242,7 +242,7 @@ public:
 struct UWidget_IsRendered_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -250,7 +250,7 @@ public:
 struct UWidget_IsInViewport_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -258,7 +258,7 @@ public:
 struct UWidget_IsHovered_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -266,9 +266,9 @@ public:
 struct UWidget_HasUserFocusedDescendants_Params
 {
 public:
-	class APlayerController*                     PlayerController;                                  // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	bool                                         ReturnValue;                                       // 0x8(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_D94[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	class APlayerController*                     PlayerController;                                  // 0x0(0x8)(BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+	bool                                         ReturnValue;                                       // 0x8(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_111A[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -276,9 +276,9 @@ public:
 struct UWidget_HasUserFocus_Params
 {
 public:
-	class APlayerController*                     PlayerController;                                  // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	bool                                         ReturnValue;                                       // 0x8(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_D9A[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	class APlayerController*                     PlayerController;                                  // 0x0(0x8)(BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+	bool                                         ReturnValue;                                       // 0x8(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1121[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xC (0xC - 0x0)
@@ -286,10 +286,10 @@ public:
 struct UWidget_HasMouseCaptureByUser_Params
 {
 public:
-	int32                                        UserIndex;                                         // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	int32                                        PointerIndex;                                      // 0x4(0x4)(ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x8(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_DA4[0x3];                                      // Fixing Size Of Struct > TateDumper <
+	int32                                        UserIndex;                                         // 0x0(0x4)(OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	int32                                        PointerIndex;                                      // 0x4(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x8(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_112D[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1 (0x1 - 0x0)
@@ -297,7 +297,7 @@ public:
 struct UWidget_HasMouseCapture_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -305,7 +305,7 @@ public:
 struct UWidget_HasKeyboardFocus_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -313,7 +313,7 @@ public:
 struct UWidget_HasFocusedDescendants_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -321,7 +321,7 @@ public:
 struct UWidget_HasAnyUserFocus_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -329,7 +329,7 @@ public:
 struct UWidget_GetWidget__DelegateSignature_Params
 {
 public:
-	class UWidget*                               ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -337,7 +337,7 @@ public:
 struct UWidget_GetVisibility_Params
 {
 public:
-	enum class ESlateVisibility                  ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	enum class ESlateVisibility                  ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x38 (0x38 - 0x0)
@@ -345,7 +345,7 @@ public:
 struct UWidget_GetTickSpaceGeometry_Params
 {
 public:
-	struct FGeometry                             ReturnValue;                                       // 0x0(0x38)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             ReturnValue;                                       // 0x0(0x38)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -353,7 +353,7 @@ public:
 struct UWidget_GetText__DelegateSignature_Params
 {
 public:
-	class FText                                  ReturnValue;                                       // 0x0(0x18)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FText                                  ReturnValue;                                       // 0x0(0x18)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -361,7 +361,7 @@ public:
 struct UWidget_GetSlateVisibility__DelegateSignature_Params
 {
 public:
-	enum class ESlateVisibility                  ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	enum class ESlateVisibility                  ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x14 (0x14 - 0x0)
@@ -369,7 +369,7 @@ public:
 struct UWidget_GetSlateColor__DelegateSignature_Params
 {
 public:
-	struct FSlateColor                           ReturnValue;                                       // 0x0(0x14)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FSlateColor                           ReturnValue;                                       // 0x0(0x14)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0xD0 (0xD0 - 0x0)
@@ -377,7 +377,7 @@ public:
 struct UWidget_GetSlateBrush__DelegateSignature_Params
 {
 public:
-	struct FSlateBrush                           ReturnValue;                                       // 0x0(0xD0)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FSlateBrush                           ReturnValue;                                       // 0x0(0xD0)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -385,7 +385,7 @@ public:
 struct UWidget_GetRenderTransformAngle_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -393,7 +393,7 @@ public:
 struct UWidget_GetRenderOpacity_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -401,7 +401,7 @@ public:
 struct UWidget_GetParent_Params
 {
 public:
-	class UPanelWidget*                          ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UPanelWidget*                          ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x38 (0x38 - 0x0)
@@ -409,7 +409,7 @@ public:
 struct UWidget_GetPaintSpaceGeometry_Params
 {
 public:
-	struct FGeometry                             ReturnValue;                                       // 0x0(0x38)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             ReturnValue;                                       // 0x0(0x38)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -417,7 +417,7 @@ public:
 struct UWidget_GetOwningPlayer_Params
 {
 public:
-	class APlayerController*                     ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class APlayerController*                     ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -425,7 +425,7 @@ public:
 struct UWidget_GetOwningLocalPlayer_Params
 {
 public:
-	class ULocalPlayer*                          ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class ULocalPlayer*                          ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -433,7 +433,7 @@ public:
 struct UWidget_GetMouseCursor__DelegateSignature_Params
 {
 public:
-	enum class EMouseCursor                      ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	enum class EMouseCursor                      ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -441,7 +441,7 @@ public:
 struct UWidget_GetLinearColor__DelegateSignature_Params
 {
 public:
-	struct FLinearColor                          ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FLinearColor                          ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -449,7 +449,7 @@ public:
 struct UWidget_GetIsThisAndParentsEnabled_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -457,7 +457,7 @@ public:
 struct UWidget_GetIsEnabled_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -465,7 +465,7 @@ public:
 struct UWidget_GetInt32__DelegateSignature_Params
 {
 public:
-	int32                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -473,7 +473,7 @@ public:
 struct UWidget_GetGameInstance_Params
 {
 public:
-	class UGameInstance*                         ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UGameInstance*                         ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -481,7 +481,7 @@ public:
 struct UWidget_GetFloat__DelegateSignature_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -489,7 +489,7 @@ public:
 struct UWidget_GetDesiredSize_Params
 {
 public:
-	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -497,7 +497,7 @@ public:
 struct UWidget_GetClipping_Params
 {
 public:
-	enum class EWidgetClipping                   ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	enum class EWidgetClipping                   ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -505,7 +505,7 @@ public:
 struct UWidget_GetCheckBoxState__DelegateSignature_Params
 {
 public:
-	enum class ECheckBoxState                    ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	enum class ECheckBoxState                    ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x38 (0x38 - 0x0)
@@ -513,7 +513,7 @@ public:
 struct UWidget_GetCachedGeometry_Params
 {
 public:
-	struct FGeometry                             ReturnValue;                                       // 0x0(0x38)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             ReturnValue;                                       // 0x0(0x38)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -521,7 +521,7 @@ public:
 struct UWidget_GetBool__DelegateSignature_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -529,7 +529,7 @@ public:
 struct UWidget_GetAccessibleText_Params
 {
 public:
-	class FText                                  ReturnValue;                                       // 0x0(0x18)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FText                                  ReturnValue;                                       // 0x0(0x18)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -537,7 +537,7 @@ public:
 struct UWidget_GetAccessibleSummaryText_Params
 {
 public:
-	class FText                                  ReturnValue;                                       // 0x0(0x18)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FText                                  ReturnValue;                                       // 0x0(0x18)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -545,8 +545,8 @@ public:
 struct UWidget_GenerateWidgetForString__DelegateSignature_Params
 {
 public:
-	class FString                                Item;                                              // 0x0(0x10)(Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config)
-	class UWidget*                               ReturnValue;                                       // 0x10(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FString                                Item;                                              // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Config)
+	class UWidget*                               ReturnValue;                                       // 0x10(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -554,8 +554,8 @@ public:
 struct UWidget_GenerateWidgetForObject__DelegateSignature_Params
 {
 public:
-	class UObject*                               Item;                                              // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config)
-	class UWidget*                               ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UObject*                               Item;                                              // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Config)
+	class UWidget*                               ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -563,7 +563,7 @@ public:
 struct UWidget_ForceVolatile_Params
 {
 public:
-	bool                                         bForce;                                            // 0x0(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         bForce;                                            // 0x0(0x1)(Edit, EditFixedSize, Parm, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -571,8 +571,8 @@ public:
 struct UUserWidget_UnbindFromAnimationStarted_Params
 {
 public:
-	class UWidgetAnimation*                      Animation;                                         // 0x0(0x8)(ConstParm, ExportObject, ReturnParm, Config, EditConst)
-	FDelegateProperty_                           Delegate;                                          // 0x8(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	class UWidgetAnimation*                      Animation;                                         // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Config, EditConst)
+	FDelegateProperty_                           Delegate;                                          // 0x8(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -580,8 +580,8 @@ public:
 struct UUserWidget_UnbindFromAnimationFinished_Params
 {
 public:
-	class UWidgetAnimation*                      Animation;                                         // 0x0(0x8)(ConstParm, ExportObject, ReturnParm, Config, EditConst)
-	FDelegateProperty_                           Delegate;                                          // 0x8(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	class UWidgetAnimation*                      Animation;                                         // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Config, EditConst)
+	FDelegateProperty_                           Delegate;                                          // 0x8(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -589,7 +589,7 @@ public:
 struct UUserWidget_UnbindAllFromAnimationStarted_Params
 {
 public:
-	class UWidgetAnimation*                      Animation;                                         // 0x0(0x8)(ConstParm, ExportObject, ReturnParm, Config, EditConst)
+	class UWidgetAnimation*                      Animation;                                         // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Config, EditConst)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -597,7 +597,7 @@ public:
 struct UUserWidget_UnbindAllFromAnimationFinished_Params
 {
 public:
-	class UWidgetAnimation*                      Animation;                                         // 0x0(0x8)(ConstParm, ExportObject, ReturnParm, Config, EditConst)
+	class UWidgetAnimation*                      Animation;                                         // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Config, EditConst)
 };
 
 // 0x3C (0x3C - 0x0)
@@ -605,8 +605,8 @@ public:
 struct UUserWidget_Tick_Params
 {
 public:
-	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	float                                        InDeltaTime;                                       // 0x38(0x4)(ConstParm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	float                                        InDeltaTime;                                       // 0x38(0x4)(ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -614,9 +614,9 @@ public:
 struct UUserWidget_StopListeningForInputAction_Params
 {
 public:
-	class FName                                  ActionName;                                        // 0x0(0x8)(EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-	enum class EInputEvent                       EventType;                                         // 0x8(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Config, EditConst, SubobjectReference)
-	uint8                                        Pad_E74[0x3];                                      // Fixing Size Of Struct > TateDumper <
+	class FName                                  ActionName;                                        // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Config, EditConst, SubobjectReference)
+	enum class EInputEvent                       EventType;                                         // 0x8(0x1)(BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_126D[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)
@@ -624,7 +624,7 @@ public:
 struct UUserWidget_StopAnimation_Params
 {
 public:
-	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -632,9 +632,9 @@ public:
 struct UUserWidget_SetPositionInViewport_Params
 {
 public:
-	struct FVector2D                             Position;                                          // 0x0(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config)
-	bool                                         bRemoveDPIScale;                                   // 0x10(0x1)(Edit, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_E95[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	struct FVector2D                             Position;                                          // 0x0(0x10)(Edit, ConstParm, ExportObject, ReturnParm, Transient, Config)
+	bool                                         bRemoveDPIScale;                                   // 0x10(0x1)(Edit, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1274[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -642,9 +642,9 @@ public:
 struct UUserWidget_SetPlaybackSpeed_Params
 {
 public:
-	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	float                                        PlaybackSpeed;                                     // 0x8(0x4)(Edit, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_E9B[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	float                                        PlaybackSpeed;                                     // 0x8(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1278[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -652,7 +652,7 @@ public:
 struct UUserWidget_SetPadding_Params
 {
 public:
-	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -660,7 +660,7 @@ public:
 struct UUserWidget_SetOwningPlayer_Params
 {
 public:
-	class APlayerController*                     LocalPlayerController;                             // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	class APlayerController*                     LocalPlayerController;                             // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -668,9 +668,9 @@ public:
 struct UUserWidget_SetNumLoopsToPlay_Params
 {
 public:
-	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	int32                                        NumLoopsToPlay;                                    // 0x8(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_E9F[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	int32                                        NumLoopsToPlay;                                    // 0x8(0x4)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1282[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x4 (0x4 - 0x0)
@@ -678,7 +678,7 @@ public:
 struct UUserWidget_SetInputActionPriority_Params
 {
 public:
-	int32                                        NewPriority;                                       // 0x0(0x4)(ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	int32                                        NewPriority;                                       // 0x0(0x4)(ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -686,7 +686,7 @@ public:
 struct UUserWidget_SetInputActionBlocking_Params
 {
 public:
-	bool                                         bShouldBlock;                                      // 0x0(0x1)(Edit, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	bool                                         bShouldBlock;                                      // 0x0(0x1)(Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x14 (0x14 - 0x0)
@@ -694,7 +694,7 @@ public:
 struct UUserWidget_SetForegroundColor_Params
 {
 public:
-	struct FSlateColor                           InForegroundColor;                                 // 0x0(0x14)(Edit, BlueprintVisible, Parm, ReturnParm, GlobalConfig, SubobjectReference)
+	struct FSlateColor                           InForegroundColor;                                 // 0x0(0x14)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Transient, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -702,7 +702,7 @@ public:
 struct UUserWidget_SetDesiredSizeInViewport_Params
 {
 public:
-	struct FVector2D                             Size;                                              // 0x0(0x10)(Edit, ConstParm, Parm, OutParm, ReturnParm, Transient, Config)
+	struct FVector2D                             Size;                                              // 0x0(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -710,7 +710,7 @@ public:
 struct UUserWidget_SetColorAndOpacity_Params
 {
 public:
-	struct FLinearColor                          InColorAndOpacity;                                 // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          InColorAndOpacity;                                 // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -718,9 +718,9 @@ public:
 struct UUserWidget_SetAnimationCurrentTime_Params
 {
 public:
-	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	float                                        InTime;                                            // 0x8(0x4)(BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
-	uint8                                        Pad_EBC[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	float                                        InTime;                                            // 0x8(0x4)(BlueprintReadOnly, Net, DisableEditOnTemplate, EditConst, SubobjectReference)
+	uint8                                        Pad_12A5[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x20 (0x20 - 0x0)
@@ -728,7 +728,7 @@ public:
 struct UUserWidget_SetAnchorsInViewport_Params
 {
 public:
-	struct FAnchors                              Anchors;                                           // 0x0(0x20)(Net, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance)
+	struct FAnchors                              Anchors;                                           // 0x0(0x20)(ConstParm, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -736,7 +736,7 @@ public:
 struct UUserWidget_SetAlignmentInViewport_Params
 {
 public:
-	struct FVector2D                             Alignment;                                         // 0x0(0x10)(Edit, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FVector2D                             Alignment;                                         // 0x0(0x10)(Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -744,7 +744,7 @@ public:
 struct UUserWidget_ReverseAnimation_Params
 {
 public:
-	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -752,7 +752,7 @@ public:
 struct UUserWidget_RemoveExtensions_Params
 {
 public:
-	class UClass*                                InExtensionType;                                   // 0x0(0x8)(ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	class UClass*                                InExtensionType;                                   // 0x0(0x8)(ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -760,7 +760,7 @@ public:
 struct UUserWidget_RemoveExtension_Params
 {
 public:
-	class UUserWidgetExtension*                  InExtension;                                       // 0x0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	class UUserWidgetExtension*                  InExtension;                                       // 0x0(0x8)(ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -768,7 +768,7 @@ public:
 struct UUserWidget_PreConstruct_Params
 {
 public:
-	bool                                         IsDesignTime;                                      // 0x0(0x1)(Edit, ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	bool                                         IsDesignTime;                                      // 0x0(0x1)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -776,7 +776,7 @@ public:
 struct UUserWidget_PlaySound_Params
 {
 public:
-	class USoundBase*                            SoundToPlay;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	class USoundBase*                            SoundToPlay;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x28 (0x28 - 0x0)
@@ -784,16 +784,16 @@ public:
 struct UUserWidget_PlayAnimationTimeRange_Params
 {
 public:
-	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	float                                        StartAtTime;                                       // 0x8(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	float                                        EndAtTime;                                         // 0xC(0x4)(ConstParm, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	int32                                        NumLoopsToPlay;                                    // 0x10(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	enum class EUMGSequencePlayMode              PlayMode;                                          // 0x14(0x1)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_EDE[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        PlaybackSpeed;                                     // 0x18(0x4)(Edit, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	bool                                         bRestoreState;                                     // 0x1C(0x1)(Edit, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_EE1[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	class UUMGSequencePlayer*                    ReturnValue;                                       // 0x20(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	float                                        StartAtTime;                                       // 0x8(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	float                                        EndAtTime;                                         // 0xC(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	int32                                        NumLoopsToPlay;                                    // 0x10(0x4)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	enum class EUMGSequencePlayMode              PlayMode;                                          // 0x14(0x1)(Edit, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_12CA[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        PlaybackSpeed;                                     // 0x18(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	bool                                         bRestoreState;                                     // 0x1C(0x1)(Edit, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_12CB[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	class UUMGSequencePlayer*                    ReturnValue;                                       // 0x20(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -801,11 +801,11 @@ public:
 struct UUserWidget_PlayAnimationReverse_Params
 {
 public:
-	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	float                                        PlaybackSpeed;                                     // 0x8(0x4)(Edit, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	bool                                         bRestoreState;                                     // 0xC(0x1)(Edit, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_EEC[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	class UUMGSequencePlayer*                    ReturnValue;                                       // 0x10(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	float                                        PlaybackSpeed;                                     // 0x8(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	bool                                         bRestoreState;                                     // 0xC(0x1)(Edit, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_12D4[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	class UUMGSequencePlayer*                    ReturnValue;                                       // 0x10(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -813,11 +813,11 @@ public:
 struct UUserWidget_PlayAnimationForward_Params
 {
 public:
-	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	float                                        PlaybackSpeed;                                     // 0x8(0x4)(Edit, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	bool                                         bRestoreState;                                     // 0xC(0x1)(Edit, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_EF6[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	class UUMGSequencePlayer*                    ReturnValue;                                       // 0x10(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	float                                        PlaybackSpeed;                                     // 0x8(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	bool                                         bRestoreState;                                     // 0xC(0x1)(Edit, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_12DC[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	class UUMGSequencePlayer*                    ReturnValue;                                       // 0x10(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x28 (0x28 - 0x0)
@@ -825,15 +825,15 @@ public:
 struct UUserWidget_PlayAnimation_Params
 {
 public:
-	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	float                                        StartAtTime;                                       // 0x8(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	int32                                        NumLoopsToPlay;                                    // 0xC(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	enum class EUMGSequencePlayMode              PlayMode;                                          // 0x10(0x1)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_F0E[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        PlaybackSpeed;                                     // 0x14(0x4)(Edit, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	bool                                         bRestoreState;                                     // 0x18(0x1)(Edit, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_F11[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	class UUMGSequencePlayer*                    ReturnValue;                                       // 0x20(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	float                                        StartAtTime;                                       // 0x8(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	int32                                        NumLoopsToPlay;                                    // 0xC(0x4)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	enum class EUMGSequencePlayMode              PlayMode;                                          // 0x10(0x1)(Edit, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_12E7[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        PlaybackSpeed;                                     // 0x14(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	bool                                         bRestoreState;                                     // 0x18(0x1)(Edit, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_12E9[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	class UUMGSequencePlayer*                    ReturnValue;                                       // 0x20(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -841,9 +841,9 @@ public:
 struct UUserWidget_PauseAnimation_Params
 {
 public:
-	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	float                                        ReturnValue;                                       // 0x8(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_F18[0x4];                                      // Fixing Size Of Struct > TateDumper <
+	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x8(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_12ED[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x168 (0x168 - 0x0)
@@ -851,9 +851,9 @@ public:
 struct UUserWidget_OnTouchStarted_Params
 {
 public:
-	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FPointerEvent                         InTouchEvent;                                      // 0x38(0x78)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0xB0(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FPointerEvent                         InTouchEvent;                                      // 0x38(0x78)(Edit, ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0xB0(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x168 (0x168 - 0x0)
@@ -861,9 +861,9 @@ public:
 struct UUserWidget_OnTouchMoved_Params
 {
 public:
-	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FPointerEvent                         InTouchEvent;                                      // 0x38(0x78)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0xB0(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FPointerEvent                         InTouchEvent;                                      // 0x38(0x78)(Edit, ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0xB0(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x168 (0x168 - 0x0)
@@ -871,9 +871,9 @@ public:
 struct UUserWidget_OnTouchGesture_Params
 {
 public:
-	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FPointerEvent                         GestureEvent;                                      // 0x38(0x78)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0xB0(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FPointerEvent                         GestureEvent;                                      // 0x38(0x78)(ConstParm, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0xB0(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x168 (0x168 - 0x0)
@@ -881,9 +881,9 @@ public:
 struct UUserWidget_OnTouchForceChanged_Params
 {
 public:
-	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FPointerEvent                         InTouchEvent;                                      // 0x38(0x78)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0xB0(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FPointerEvent                         InTouchEvent;                                      // 0x38(0x78)(Edit, ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0xB0(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x168 (0x168 - 0x0)
@@ -891,9 +891,9 @@ public:
 struct UUserWidget_OnTouchEnded_Params
 {
 public:
-	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FPointerEvent                         InTouchEvent;                                      // 0x38(0x78)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0xB0(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FPointerEvent                         InTouchEvent;                                      // 0x38(0x78)(Edit, ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0xB0(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -901,7 +901,7 @@ public:
 struct UUserWidget_OnRemovedFromFocusPath_Params
 {
 public:
-	struct FFocusEvent                           InFocusEvent;                                      // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+	struct FFocusEvent                           InFocusEvent;                                      // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, Config, DisableEditOnInstance, SubobjectReference)
 };
 
 // 0x168 (0x168 - 0x0)
@@ -909,9 +909,9 @@ public:
 struct UUserWidget_OnPreviewMouseButtonDown_Params
 {
 public:
-	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FPointerEvent                         MouseEvent;                                        // 0x38(0x78)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0xB0(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FPointerEvent                         MouseEvent;                                        // 0x38(0x78)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0xB0(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x130 (0x130 - 0x0)
@@ -919,9 +919,9 @@ public:
 struct UUserWidget_OnPreviewKeyDown_Params
 {
 public:
-	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FKeyEvent                             InKeyEvent;                                        // 0x38(0x40)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0x78(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FKeyEvent                             InKeyEvent;                                        // 0x38(0x40)(Edit, OutParm, Config, DisableEditOnInstance, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0x78(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x30 (0x30 - 0x0)
@@ -929,7 +929,7 @@ public:
 struct UUserWidget_OnPaint_Params
 {
 public:
-	struct FPaintContext                         Context;                                           // 0x0(0x30)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
+	struct FPaintContext                         Context;                                           // 0x0(0x30)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
 };
 
 // 0x168 (0x168 - 0x0)
@@ -937,9 +937,9 @@ public:
 struct UUserWidget_OnMouseWheel_Params
 {
 public:
-	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FPointerEvent                         MouseEvent;                                        // 0x38(0x78)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0xB0(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FPointerEvent                         MouseEvent;                                        // 0x38(0x78)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0xB0(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x168 (0x168 - 0x0)
@@ -947,9 +947,9 @@ public:
 struct UUserWidget_OnMouseMove_Params
 {
 public:
-	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FPointerEvent                         MouseEvent;                                        // 0x38(0x78)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0xB0(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FPointerEvent                         MouseEvent;                                        // 0x38(0x78)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0xB0(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x78 (0x78 - 0x0)
@@ -957,7 +957,7 @@ public:
 struct UUserWidget_OnMouseLeave_Params
 {
 public:
-	struct FPointerEvent                         MouseEvent;                                        // 0x0(0x78)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FPointerEvent                         MouseEvent;                                        // 0x0(0x78)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0xB0 (0xB0 - 0x0)
@@ -965,8 +965,8 @@ public:
 struct UUserWidget_OnMouseEnter_Params
 {
 public:
-	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FPointerEvent                         MouseEvent;                                        // 0x38(0x78)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FPointerEvent                         MouseEvent;                                        // 0x38(0x78)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x168 (0x168 - 0x0)
@@ -974,9 +974,9 @@ public:
 struct UUserWidget_OnMouseButtonUp_Params
 {
 public:
-	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FPointerEvent                         MouseEvent;                                        // 0x38(0x78)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0xB0(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FPointerEvent                         MouseEvent;                                        // 0x38(0x78)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0xB0(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x168 (0x168 - 0x0)
@@ -984,9 +984,9 @@ public:
 struct UUserWidget_OnMouseButtonDown_Params
 {
 public:
-	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FPointerEvent                         MouseEvent;                                        // 0x38(0x78)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0xB0(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FPointerEvent                         MouseEvent;                                        // 0x38(0x78)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0xB0(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x168 (0x168 - 0x0)
@@ -994,9 +994,9 @@ public:
 struct UUserWidget_OnMouseButtonDoubleClick_Params
 {
 public:
-	struct FGeometry                             InMyGeometry;                                      // 0x0(0x38)(BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	struct FPointerEvent                         InMouseEvent;                                      // 0x38(0x78)(Edit, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0xB0(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             InMyGeometry;                                      // 0x0(0x38)(BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	struct FPointerEvent                         InMouseEvent;                                      // 0x38(0x78)(Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0xB0(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x170 (0x170 - 0x0)
@@ -1004,9 +1004,9 @@ public:
 struct UUserWidget_OnMotionDetected_Params
 {
 public:
-	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FMotionEvent                          InMotionEvent;                                     // 0x38(0x80)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0xB8(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FMotionEvent                          InMotionEvent;                                     // 0x38(0x80)(Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0xB8(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x130 (0x130 - 0x0)
@@ -1014,9 +1014,9 @@ public:
 struct UUserWidget_OnKeyUp_Params
 {
 public:
-	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FKeyEvent                             InKeyEvent;                                        // 0x38(0x40)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0x78(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FKeyEvent                             InKeyEvent;                                        // 0x38(0x40)(Edit, OutParm, Config, DisableEditOnInstance, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0x78(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x130 (0x130 - 0x0)
@@ -1024,9 +1024,9 @@ public:
 struct UUserWidget_OnKeyDown_Params
 {
 public:
-	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FKeyEvent                             InKeyEvent;                                        // 0x38(0x40)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0x78(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FKeyEvent                             InKeyEvent;                                        // 0x38(0x40)(Edit, OutParm, Config, DisableEditOnInstance, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0x78(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x118 (0x118 - 0x0)
@@ -1034,9 +1034,9 @@ public:
 struct UUserWidget_OnKeyChar_Params
 {
 public:
-	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FCharacterEvent                       InCharacterEvent;                                  // 0x38(0x28)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0x60(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FCharacterEvent                       InCharacterEvent;                                  // 0x38(0x28)(BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0x60(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0xF8 (0xF8 - 0x0)
@@ -1044,9 +1044,9 @@ public:
 struct UUserWidget_OnFocusReceived_Params
 {
 public:
-	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FFocusEvent                           InFocusEvent;                                      // 0x38(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0x40(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FFocusEvent                           InFocusEvent;                                      // 0x38(0x8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, Config, DisableEditOnInstance, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0x40(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1054,7 +1054,7 @@ public:
 struct UUserWidget_OnFocusLost_Params
 {
 public:
-	struct FFocusEvent                           InFocusEvent;                                      // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+	struct FFocusEvent                           InFocusEvent;                                      // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, Config, DisableEditOnInstance, SubobjectReference)
 };
 
 // 0xC0 (0xC0 - 0x0)
@@ -1062,11 +1062,11 @@ public:
 struct UUserWidget_OnDrop_Params
 {
 public:
-	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FPointerEvent                         PointerEvent;                                      // 0x38(0x78)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, Config, DisableEditOnInstance)
-	class UDragDropOperation*                    Operation;                                         // 0xB0(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, GlobalConfig, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0xB8(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_FBE[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FPointerEvent                         PointerEvent;                                      // 0x38(0x78)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	class UDragDropOperation*                    Operation;                                         // 0xB0(0x8)(ConstParm, BlueprintVisible, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0xB8(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_132F[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xC0 (0xC0 - 0x0)
@@ -1074,11 +1074,11 @@ public:
 struct UUserWidget_OnDragOver_Params
 {
 public:
-	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FPointerEvent                         PointerEvent;                                      // 0x38(0x78)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, Config, DisableEditOnInstance)
-	class UDragDropOperation*                    Operation;                                         // 0xB0(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, GlobalConfig, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0xB8(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_FC4[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FPointerEvent                         PointerEvent;                                      // 0x38(0x78)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	class UDragDropOperation*                    Operation;                                         // 0xB0(0x8)(ConstParm, BlueprintVisible, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0xB8(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1337[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x80 (0x80 - 0x0)
@@ -1086,8 +1086,8 @@ public:
 struct UUserWidget_OnDragLeave_Params
 {
 public:
-	struct FPointerEvent                         PointerEvent;                                      // 0x0(0x78)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, Config, DisableEditOnInstance)
-	class UDragDropOperation*                    Operation;                                         // 0x78(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, GlobalConfig, SubobjectReference)
+	struct FPointerEvent                         PointerEvent;                                      // 0x0(0x78)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	class UDragDropOperation*                    Operation;                                         // 0x78(0x8)(ConstParm, BlueprintVisible, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0xB8 (0xB8 - 0x0)
@@ -1095,9 +1095,9 @@ public:
 struct UUserWidget_OnDragEnter_Params
 {
 public:
-	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FPointerEvent                         PointerEvent;                                      // 0x38(0x78)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, Config, DisableEditOnInstance)
-	class UDragDropOperation*                    Operation;                                         // 0xB0(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, GlobalConfig, SubobjectReference)
+	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FPointerEvent                         PointerEvent;                                      // 0x38(0x78)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	class UDragDropOperation*                    Operation;                                         // 0xB0(0x8)(ConstParm, BlueprintVisible, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0xB8 (0xB8 - 0x0)
@@ -1105,9 +1105,9 @@ public:
 struct UUserWidget_OnDragDetected_Params
 {
 public:
-	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FPointerEvent                         PointerEvent;                                      // 0x38(0x78)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, Config, DisableEditOnInstance)
-	class UDragDropOperation*                    Operation;                                         // 0xB0(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, GlobalConfig, SubobjectReference)
+	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FPointerEvent                         PointerEvent;                                      // 0x38(0x78)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	class UDragDropOperation*                    Operation;                                         // 0xB0(0x8)(ConstParm, BlueprintVisible, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x80 (0x80 - 0x0)
@@ -1115,8 +1115,8 @@ public:
 struct UUserWidget_OnDragCancelled_Params
 {
 public:
-	struct FPointerEvent                         PointerEvent;                                      // 0x0(0x78)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, Config, DisableEditOnInstance)
-	class UDragDropOperation*                    Operation;                                         // 0x78(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, GlobalConfig, SubobjectReference)
+	struct FPointerEvent                         PointerEvent;                                      // 0x0(0x78)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	class UDragDropOperation*                    Operation;                                         // 0x78(0x8)(ConstParm, BlueprintVisible, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1124,7 +1124,7 @@ public:
 struct UUserWidget_OnAnimationStarted_Params
 {
 public:
-	class UWidgetAnimation*                      Animation;                                         // 0x0(0x8)(ConstParm, ExportObject, ReturnParm, Config, EditConst)
+	class UWidgetAnimation*                      Animation;                                         // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Config, EditConst)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1132,7 +1132,7 @@ public:
 struct UUserWidget_OnAnimationFinished_Params
 {
 public:
-	class UWidgetAnimation*                      Animation;                                         // 0x0(0x8)(ConstParm, ExportObject, ReturnParm, Config, EditConst)
+	class UWidgetAnimation*                      Animation;                                         // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Config, EditConst)
 };
 
 // 0x138 (0x138 - 0x0)
@@ -1140,9 +1140,9 @@ public:
 struct UUserWidget_OnAnalogValueChanged_Params
 {
 public:
-	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
-	struct FAnalogInputEvent                     InAnalogInputEvent;                                // 0x38(0x48)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0x80(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             MyGeometry;                                        // 0x0(0x38)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FAnalogInputEvent                     InAnalogInputEvent;                                // 0x38(0x48)(BlueprintVisible, Net, EditFixedSize, Parm, Config, DisableEditOnInstance, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0x80(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1150,7 +1150,7 @@ public:
 struct UUserWidget_OnAddedToFocusPath_Params
 {
 public:
-	struct FFocusEvent                           InFocusEvent;                                      // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+	struct FFocusEvent                           InFocusEvent;                                      // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, Config, DisableEditOnInstance, SubobjectReference)
 };
 
 // 0x1C (0x1C - 0x0)
@@ -1158,11 +1158,11 @@ public:
 struct UUserWidget_ListenForInputAction_Params
 {
 public:
-	class FName                                  ActionName;                                        // 0x0(0x8)(EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-	enum class EInputEvent                       EventType;                                         // 0x8(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Config, EditConst, SubobjectReference)
-	bool                                         bConsume;                                          // 0x9(0x1)(BlueprintVisible, Net, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_100D[0x2];                                     // Fixing Size After Last Property  > TateDumper <
-	FDelegateProperty_                           Callback;                                          // 0xC(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	class FName                                  ActionName;                                        // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Config, EditConst, SubobjectReference)
+	enum class EInputEvent                       EventType;                                         // 0x8(0x1)(BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, EditConst, SubobjectReference)
+	bool                                         bConsume;                                          // 0x9(0x1)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_134F[0x2];                                     // Fixing Size After Last Property  > TateDumper <
+	FDelegateProperty_                           Callback;                                          // 0xC(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1170,7 +1170,7 @@ public:
 struct UUserWidget_IsPlayingAnimation_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -1178,9 +1178,9 @@ public:
 struct UUserWidget_IsListeningForInputAction_Params
 {
 public:
-	class FName                                  ActionName;                                        // 0x0(0x8)(EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x8(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_101A[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	class FName                                  ActionName;                                        // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Config, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x8(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1352[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1188,7 +1188,7 @@ public:
 struct UUserWidget_IsInteractable_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1196,7 +1196,7 @@ public:
 struct UUserWidget_IsAnyAnimationPlaying_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1204,9 +1204,9 @@ public:
 struct UUserWidget_IsAnimationPlayingForward_Params
 {
 public:
-	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x8(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_102F[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x8(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1357[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1214,9 +1214,9 @@ public:
 struct UUserWidget_IsAnimationPlaying_Params
 {
 public:
-	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x8(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_103A[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x8(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_135B[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1224,7 +1224,7 @@ public:
 struct UUserWidget_GetOwningPlayerPawn_Params
 {
 public:
-	class APawn*                                 ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class APawn*                                 ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1232,7 +1232,7 @@ public:
 struct UUserWidget_GetOwningPlayerCameraManager_Params
 {
 public:
-	class APlayerCameraManager*                  ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class APlayerCameraManager*                  ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1240,7 +1240,7 @@ public:
 struct UUserWidget_GetIsVisible_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1248,8 +1248,8 @@ public:
 struct UUserWidget_GetExtensions_Params
 {
 public:
-	class UClass*                                ExtensionType;                                     // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	TArray<class UUserWidgetExtension*>          ReturnValue;                                       // 0x8(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UClass*                                ExtensionType;                                     // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	TArray<class UUserWidgetExtension*>          ReturnValue;                                       // 0x8(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1257,8 +1257,8 @@ public:
 struct UUserWidget_GetExtension_Params
 {
 public:
-	class UClass*                                ExtensionType;                                     // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	class UUserWidgetExtension*                  ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UClass*                                ExtensionType;                                     // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	class UUserWidgetExtension*                  ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1266,9 +1266,9 @@ public:
 struct UUserWidget_GetAnimationCurrentTime_Params
 {
 public:
-	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	float                                        ReturnValue;                                       // 0x8(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1058[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	class UWidgetAnimation*                      InAnimation;                                       // 0x0(0x8)(EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x8(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_136D[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x20 (0x20 - 0x0)
@@ -1276,7 +1276,7 @@ public:
 struct UUserWidget_GetAnchorsInViewport_Params
 {
 public:
-	struct FAnchors                              ReturnValue;                                       // 0x0(0x20)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FAnchors                              ReturnValue;                                       // 0x0(0x20)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1284,7 +1284,7 @@ public:
 struct UUserWidget_GetAlignmentInViewport_Params
 {
 public:
-	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1292,8 +1292,8 @@ public:
 struct UUserWidget_BindToAnimationStarted_Params
 {
 public:
-	class UWidgetAnimation*                      Animation;                                         // 0x0(0x8)(ConstParm, ExportObject, ReturnParm, Config, EditConst)
-	FDelegateProperty_                           Delegate;                                          // 0x8(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	class UWidgetAnimation*                      Animation;                                         // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Config, EditConst)
+	FDelegateProperty_                           Delegate;                                          // 0x8(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1301,8 +1301,8 @@ public:
 struct UUserWidget_BindToAnimationFinished_Params
 {
 public:
-	class UWidgetAnimation*                      Animation;                                         // 0x0(0x8)(ConstParm, ExportObject, ReturnParm, Config, EditConst)
-	FDelegateProperty_                           Delegate;                                          // 0x8(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	class UWidgetAnimation*                      Animation;                                         // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Config, EditConst)
+	FDelegateProperty_                           Delegate;                                          // 0x8(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, EditConst, SubobjectReference)
 };
 
 // 0x28 (0x28 - 0x0)
@@ -1310,12 +1310,12 @@ public:
 struct UUserWidget_BindToAnimationEvent_Params
 {
 public:
-	class UWidgetAnimation*                      Animation;                                         // 0x0(0x8)(ConstParm, ExportObject, ReturnParm, Config, EditConst)
-	FDelegateProperty_                           Delegate;                                          // 0x8(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-	enum class EWidgetAnimationEvent             AnimationEvent;                                    // 0x18(0x1)(ConstParm, ExportObject, Net, Parm, OutParm, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_106F[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	class FName                                  UserTag;                                           // 0x1C(0x8)(Edit, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1070[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	class UWidgetAnimation*                      Animation;                                         // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Config, EditConst)
+	FDelegateProperty_                           Delegate;                                          // 0x8(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, EditConst, SubobjectReference)
+	enum class EWidgetAnimationEvent             AnimationEvent;                                    // 0x18(0x1)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1378[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	class FName                                  UserTag;                                           // 0x1C(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1379[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1323,7 +1323,7 @@ public:
 struct UUserWidget_AddToViewport_Params
 {
 public:
-	int32                                        ZOrder;                                            // 0x0(0x4)(Edit, Net, Parm, OutParm, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	int32                                        ZOrder;                                            // 0x0(0x4)(Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1331,9 +1331,9 @@ public:
 struct UUserWidget_AddToPlayerScreen_Params
 {
 public:
-	int32                                        ZOrder;                                            // 0x0(0x4)(Edit, Net, Parm, OutParm, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x4(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_107B[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	int32                                        ZOrder;                                            // 0x0(0x4)(Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x4(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1380[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1341,8 +1341,8 @@ public:
 struct UUserWidget_AddExtension_Params
 {
 public:
-	class UClass*                                InExtensionType;                                   // 0x0(0x8)(ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	class UUserWidgetExtension*                  ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UClass*                                InExtensionType;                                   // 0x0(0x8)(ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	class UUserWidgetExtension*                  ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1350,7 +1350,7 @@ public:
 struct UImage_SetOpacity_Params
 {
 public:
-	float                                        InOpacity;                                         // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, GlobalConfig, SubobjectReference)
+	float                                        InOpacity;                                         // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1358,7 +1358,7 @@ public:
 struct UImage_SetDesiredSizeOverride_Params
 {
 public:
-	struct FVector2D                             DesiredSize;                                       // 0x0(0x10)(ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+	struct FVector2D                             DesiredSize;                                       // 0x0(0x10)(BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1366,7 +1366,7 @@ public:
 struct UImage_SetColorAndOpacity_Params
 {
 public:
-	struct FLinearColor                          InColorAndOpacity;                                 // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          InColorAndOpacity;                                 // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x14 (0x14 - 0x0)
@@ -1374,7 +1374,7 @@ public:
 struct UImage_SetBrushTintColor_Params
 {
 public:
-	struct FSlateColor                           TintColor;                                         // 0x0(0x14)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FSlateColor                           TintColor;                                         // 0x0(0x14)(Edit, ExportObject, EditFixedSize, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1382,7 +1382,7 @@ public:
 struct UImage_SetBrushResourceObject_Params
 {
 public:
-	class UObject*                               ResourceObject;                                    // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
+	class UObject*                               ResourceObject;                                    // 0x0(0x8)(ExportObject, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1390,9 +1390,9 @@ public:
 struct UImage_SetBrushFromTextureDynamic_Params
 {
 public:
-	class UTexture2DDynamic*                     Texture;                                           // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst)
-	bool                                         bMatchSize;                                        // 0x8(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-	uint8                                        Pad_10B5[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class UTexture2DDynamic*                     Texture;                                           // 0x0(0x8)(ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
+	bool                                         bMatchSize;                                        // 0x8(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_13CB[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1400,9 +1400,9 @@ public:
 struct UImage_SetBrushFromTexture_Params
 {
 public:
-	class UTexture2D*                            Texture;                                           // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst)
-	bool                                         bMatchSize;                                        // 0x8(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-	uint8                                        Pad_10B9[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class UTexture2D*                            Texture;                                           // 0x0(0x8)(ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
+	bool                                         bMatchSize;                                        // 0x8(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_13D0[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x38 (0x38 - 0x0)
@@ -1410,9 +1410,9 @@ public:
 struct UImage_SetBrushFromSoftTexture_Params
 {
 public:
-	TSoftObjectPtr<class UTexture2D>             SoftTexture;                                       // 0x0(0x30)(Edit, ConstParm, BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-	bool                                         bMatchSize;                                        // 0x30(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-	uint8                                        Pad_10BC[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	TSoftObjectPtr<class UTexture2D>             SoftTexture;                                       // 0x0(0x30)(Edit, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bMatchSize;                                        // 0x30(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_13D2[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x30 (0x30 - 0x0)
@@ -1420,7 +1420,7 @@ public:
 struct UImage_SetBrushFromSoftMaterial_Params
 {
 public:
-	TSoftObjectPtr<class UMaterialInterface>     SoftMaterial;                                      // 0x0(0x30)(OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+	TSoftObjectPtr<class UMaterialInterface>     SoftMaterial;                                      // 0x0(0x30)(ConstParm, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1428,7 +1428,7 @@ public:
 struct UImage_SetBrushFromMaterial_Params
 {
 public:
-	class UMaterialInterface*                    Material;                                          // 0x0(0x8)(Edit, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	class UMaterialInterface*                    Material;                                          // 0x0(0x8)(Edit, ConstParm, Net, EditFixedSize, Transient, Config, DisableEditOnInstance)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1436,9 +1436,9 @@ public:
 struct UImage_SetBrushFromAtlasInterface_Params
 {
 public:
-	TScriptInterface<class ISlateTextureAtlasInterface> AtlasRegion;                                       // 0x0(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-	bool                                         bMatchSize;                                        // 0x10(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-	uint8                                        Pad_10C6[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	TScriptInterface<class ISlateTextureAtlasInterface> AtlasRegion;                                       // 0x0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bMatchSize;                                        // 0x10(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_13D9[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1446,7 +1446,7 @@ public:
 struct UImage_SetBrushFromAsset_Params
 {
 public:
-	class USlateBrushAsset*                      Asset;                                             // 0x0(0x8)(BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	class USlateBrushAsset*                      Asset;                                             // 0x0(0x8)(Edit, ConstParm, Net, EditFixedSize, Parm, Config, EditConst, SubobjectReference)
 };
 
 // 0xD0 (0xD0 - 0x0)
@@ -1454,7 +1454,7 @@ public:
 struct UImage_SetBrush_Params
 {
 public:
-	struct FSlateBrush                           InBrush;                                           // 0x0(0xD0)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+	struct FSlateBrush                           InBrush;                                           // 0x0(0xD0)(BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1462,7 +1462,7 @@ public:
 struct UImage_GetDynamicMaterial_Params
 {
 public:
-	class UMaterialInstanceDynamic*              ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UMaterialInstanceDynamic*              ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1470,7 +1470,7 @@ public:
 struct UTextLayoutWidget_SetJustification_Params
 {
 public:
-	enum class ETextJustify                      InJustification;                                   // 0x0(0x1)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	enum class ETextJustify                      InJustification;                                   // 0x0(0x1)(Net, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1478,7 +1478,7 @@ public:
 struct URichTextBlock_SetTextTransformPolicy_Params
 {
 public:
-	enum class ETextTransformPolicy              InTransformPolicy;                                 // 0x0(0x1)(ConstParm, EditFixedSize, Config, InstancedReference, SubobjectReference)
+	enum class ETextTransformPolicy              InTransformPolicy;                                 // 0x0(0x1)(BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1486,7 +1486,7 @@ public:
 struct URichTextBlock_SetTextStyleSet_Params
 {
 public:
-	class UDataTable*                            NewTextStyleSet;                                   // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Net, Config, InstancedReference, SubobjectReference)
+	class UDataTable*                            NewTextStyleSet;                                   // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1494,7 +1494,7 @@ public:
 struct URichTextBlock_SetTextOverflowPolicy_Params
 {
 public:
-	enum class ETextOverflowPolicy               InOverflowPolicy;                                  // 0x0(0x1)(Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	enum class ETextOverflowPolicy               InOverflowPolicy;                                  // 0x0(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1502,7 +1502,7 @@ public:
 struct URichTextBlock_SetText_Params
 {
 public:
-	class FText                                  InText;                                            // 0x0(0x18)(ConstParm, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	class FText                                  InText;                                            // 0x0(0x18)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1510,7 +1510,7 @@ public:
 struct URichTextBlock_SetMinDesiredWidth_Params
 {
 public:
-	float                                        InMinDesiredWidth;                                 // 0x0(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	float                                        InMinDesiredWidth;                                 // 0x0(0x4)(Edit, ExportObject, Net, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x340 (0x340 - 0x0)
@@ -1518,7 +1518,7 @@ public:
 struct URichTextBlock_SetDefaultTextStyle_Params
 {
 public:
-	struct FTextBlockStyle                       InDefaultTextStyle;                                // 0x0(0x340)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Config, InstancedReference, SubobjectReference)
+	struct FTextBlockStyle                       InDefaultTextStyle;                                // 0x0(0x340)(Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0xD0 (0xD0 - 0x0)
@@ -1526,7 +1526,7 @@ public:
 struct URichTextBlock_SetDefaultStrikeBrush_Params
 {
 public:
-	struct FSlateBrush                           InStrikeBrush;                                     // 0x0(0xD0)(Edit, ConstParm, BlueprintVisible, Net, Config, InstancedReference, SubobjectReference)
+	struct FSlateBrush                           InStrikeBrush;                                     // 0x0(0xD0)(Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1534,7 +1534,7 @@ public:
 struct URichTextBlock_SetDefaultShadowOffset_Params
 {
 public:
-	struct FVector2D                             InShadowOffset;                                    // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, InstancedReference, SubobjectReference)
+	struct FVector2D                             InShadowOffset;                                    // 0x0(0x10)(Edit, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1542,7 +1542,7 @@ public:
 struct URichTextBlock_SetDefaultShadowColorAndOpacity_Params
 {
 public:
-	struct FLinearColor                          InShadowColorAndOpacity;                           // 0x0(0x10)(ConstParm, BlueprintReadOnly, Config, InstancedReference, SubobjectReference)
+	struct FLinearColor                          InShadowColorAndOpacity;                           // 0x0(0x10)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1550,7 +1550,7 @@ public:
 struct URichTextBlock_SetDefaultMaterial_Params
 {
 public:
-	class UMaterialInterface*                    InMaterial;                                        // 0x0(0x8)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	class UMaterialInterface*                    InMaterial;                                        // 0x0(0x8)(BlueprintVisible, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x58 (0x58 - 0x0)
@@ -1558,7 +1558,7 @@ public:
 struct URichTextBlock_SetDefaultFont_Params
 {
 public:
-	struct FSlateFontInfo                        InFontInfo;                                        // 0x0(0x58)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	struct FSlateFontInfo                        InFontInfo;                                        // 0x0(0x58)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
 };
 
 // 0x14 (0x14 - 0x0)
@@ -1566,7 +1566,7 @@ public:
 struct URichTextBlock_SetDefaultColorAndOpacity_Params
 {
 public:
-	struct FSlateColor                           InColorAndOpacity;                                 // 0x0(0x14)(Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FSlateColor                           InColorAndOpacity;                                 // 0x0(0x14)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1574,7 +1574,7 @@ public:
 struct URichTextBlock_SetDecorators_Params
 {
 public:
-	TArray<class UClass*>                        InDecoratorClasses;                                // 0x0(0x10)(ExportObject, Config, InstancedReference, SubobjectReference)
+	TArray<class UClass*>                        InDecoratorClasses;                                // 0x0(0x10)(ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1582,7 +1582,7 @@ public:
 struct URichTextBlock_SetAutoWrapText_Params
 {
 public:
-	bool                                         InAutoTextWrap;                                    // 0x0(0x1)(Config, InstancedReference, SubobjectReference)
+	bool                                         InAutoTextWrap;                                    // 0x0(0x1)(ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1590,7 +1590,7 @@ public:
 struct URichTextBlock_GetTextStyleSet_Params
 {
 public:
-	class UDataTable*                            ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UDataTable*                            ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1598,7 +1598,7 @@ public:
 struct URichTextBlock_GetText_Params
 {
 public:
-	class FText                                  ReturnValue;                                       // 0x0(0x18)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FText                                  ReturnValue;                                       // 0x0(0x18)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1606,7 +1606,7 @@ public:
 struct URichTextBlock_GetDefaultDynamicMaterial_Params
 {
 public:
-	class UMaterialInstanceDynamic*              ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UMaterialInstanceDynamic*              ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1614,8 +1614,8 @@ public:
 struct URichTextBlock_GetDecoratorByClass_Params
 {
 public:
-	class UClass*                                DecoratorClass;                                    // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-	class URichTextBlockDecorator*               ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UClass*                                DecoratorClass;                                    // 0x0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class URichTextBlockDecorator*               ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1623,9 +1623,9 @@ public:
 struct UPanelWidget_RemoveChildAt_Params
 {
 public:
-	int32                                        Index;                                             // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
-	bool                                         ReturnValue;                                       // 0x4(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_114B[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	int32                                        Index;                                             // 0x0(0x4)(EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	bool                                         ReturnValue;                                       // 0x4(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_144B[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1633,9 +1633,9 @@ public:
 struct UPanelWidget_RemoveChild_Params
 {
 public:
-	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Config, EditConst, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x8(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_114E[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x8(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1452[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1643,9 +1643,9 @@ public:
 struct UPanelWidget_HasChild_Params
 {
 public:
-	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Config, EditConst, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x8(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1153[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x8(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1456[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1653,7 +1653,7 @@ public:
 struct UPanelWidget_HasAnyChildren_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1661,7 +1661,7 @@ public:
 struct UPanelWidget_GetChildrenCount_Params
 {
 public:
-	int32                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1669,9 +1669,9 @@ public:
 struct UPanelWidget_GetChildIndex_Params
 {
 public:
-	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Config, EditConst, SubobjectReference)
-	int32                                        ReturnValue;                                       // 0x8(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1161[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	int32                                        ReturnValue;                                       // 0x8(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_145F[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1679,9 +1679,9 @@ public:
 struct UPanelWidget_GetChildAt_Params
 {
 public:
-	int32                                        Index;                                             // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
-	uint8                                        Pad_1164[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	class UWidget*                               ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        Index;                                             // 0x0(0x4)(EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	uint8                                        Pad_1464[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	class UWidget*                               ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1689,7 +1689,7 @@ public:
 struct UPanelWidget_GetAllChildren_Params
 {
 public:
-	TArray<class UWidget*>                       ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	TArray<class UWidget*>                       ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1697,8 +1697,8 @@ public:
 struct UPanelWidget_AddChild_Params
 {
 public:
-	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Config, EditConst, SubobjectReference)
-	class UPanelSlot*                            ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	class UPanelSlot*                            ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1706,8 +1706,8 @@ public:
 struct UContentWidget_SetContent_Params
 {
 public:
-	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Config, EditConst, SubobjectReference)
-	class UPanelSlot*                            ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	class UPanelSlot*                            ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1715,7 +1715,7 @@ public:
 struct UContentWidget_GetContentSlot_Params
 {
 public:
-	class UPanelSlot*                            ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UPanelSlot*                            ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1723,7 +1723,7 @@ public:
 struct UContentWidget_GetContent_Params
 {
 public:
-	class UWidget*                               ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1731,7 +1731,7 @@ public:
 struct UButton_SetTouchMethod_Params
 {
 public:
-	enum class EButtonTouchMethod                InTouchMethod;                                     // 0x0(0x1)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	enum class EButtonTouchMethod                InTouchMethod;                                     // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x3F0 (0x3F0 - 0x0)
@@ -1739,7 +1739,7 @@ public:
 struct UButton_SetStyle_Params
 {
 public:
-	struct FButtonStyle                          InStyle;                                           // 0x0(0x3F0)(Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FButtonStyle                          InStyle;                                           // 0x0(0x3F0)(BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1747,7 +1747,7 @@ public:
 struct UButton_SetPressMethod_Params
 {
 public:
-	enum class EButtonPressMethod                InPressMethod;                                     // 0x0(0x1)(Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	enum class EButtonPressMethod                InPressMethod;                                     // 0x0(0x1)(ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1755,7 +1755,7 @@ public:
 struct UButton_SetColorAndOpacity_Params
 {
 public:
-	struct FLinearColor                          InColorAndOpacity;                                 // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          InColorAndOpacity;                                 // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1763,7 +1763,7 @@ public:
 struct UButton_SetClickMethod_Params
 {
 public:
-	enum class EButtonClickMethod                InClickMethod;                                     // 0x0(0x1)(Edit, BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	enum class EButtonClickMethod                InClickMethod;                                     // 0x0(0x1)(Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1771,7 +1771,7 @@ public:
 struct UButton_SetBackgroundColor_Params
 {
 public:
-	struct FLinearColor                          InBackgroundColor;                                 // 0x0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FLinearColor                          InBackgroundColor;                                 // 0x0(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1779,7 +1779,7 @@ public:
 struct UButton_MimickClicked_Params
 {
 public:
-	bool                                         bFromGamepad;                                      // 0x0(0x1)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bFromGamepad;                                      // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1787,7 +1787,7 @@ public:
 struct UButton_IsPressed_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1795,7 +1795,7 @@ public:
 struct UScrollBox_SetWheelScrollMultiplier_Params
 {
 public:
-	float                                        NewWheelScrollMultiplier;                          // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        NewWheelScrollMultiplier;                          // 0x0(0x4)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1803,7 +1803,7 @@ public:
 struct UScrollBox_SetScrollWhenFocusChanges_Params
 {
 public:
-	enum class EScrollWhenFocusChanges           NewScrollWhenFocusChanges;                         // 0x0(0x1)(OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EScrollWhenFocusChanges           NewScrollWhenFocusChanges;                         // 0x0(0x1)(BlueprintVisible, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1811,7 +1811,7 @@ public:
 struct UScrollBox_SetScrollOffset_Params
 {
 public:
-	float                                        NewScrollOffset;                                   // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        NewScrollOffset;                                   // 0x0(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1819,7 +1819,7 @@ public:
 struct UScrollBox_SetScrollBarVisibility_Params
 {
 public:
-	enum class ESlateVisibility                  NewScrollBarVisibility;                            // 0x0(0x1)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class ESlateVisibility                  NewScrollBarVisibility;                            // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1827,7 +1827,7 @@ public:
 struct UScrollBox_SetScrollbarThickness_Params
 {
 public:
-	struct FVector2D                             NewScrollbarThickness;                             // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FVector2D                             NewScrollbarThickness;                             // 0x0(0x10)(Edit, ConstParm, Net, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1835,7 +1835,7 @@ public:
 struct UScrollBox_SetScrollbarPadding_Params
 {
 public:
-	struct FMargin                               NewScrollbarPadding;                               // 0x0(0x10)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FMargin                               NewScrollbarPadding;                               // 0x0(0x10)(ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1843,7 +1843,7 @@ public:
 struct UScrollBox_SetOrientation_Params
 {
 public:
-	enum class EOrientation                      NewOrientation;                                    // 0x0(0x1)(BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EOrientation                      NewOrientation;                                    // 0x0(0x1)(BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1851,7 +1851,7 @@ public:
 struct UScrollBox_SetNavigationDestination_Params
 {
 public:
-	enum class EDescendantScrollDestination      NewNavigationDestination;                          // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EDescendantScrollDestination      NewNavigationDestination;                          // 0x0(0x1)(Edit, ConstParm, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1859,7 +1859,7 @@ public:
 struct UScrollBox_SetConsumeMouseWheel_Params
 {
 public:
-	enum class EConsumeMouseWheel                NewConsumeMouseWheel;                              // 0x0(0x1)(BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EConsumeMouseWheel                NewConsumeMouseWheel;                              // 0x0(0x1)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1867,7 +1867,7 @@ public:
 struct UScrollBox_SetAnimateWheelScrolling_Params
 {
 public:
-	bool                                         bShouldAnimateWheelScrolling;                      // 0x0(0x1)(Edit, BlueprintVisible, Net, Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bShouldAnimateWheelScrolling;                      // 0x0(0x1)(Edit, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1875,7 +1875,7 @@ public:
 struct UScrollBox_SetAlwaysShowScrollbar_Params
 {
 public:
-	bool                                         NewAlwaysShowScrollbar;                            // 0x0(0x1)(Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         NewAlwaysShowScrollbar;                            // 0x0(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1883,7 +1883,7 @@ public:
 struct UScrollBox_SetAllowOverscroll_Params
 {
 public:
-	bool                                         NewAllowOverscroll;                                // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         NewAllowOverscroll;                                // 0x0(0x1)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1891,11 +1891,11 @@ public:
 struct UScrollBox_ScrollWidgetIntoView_Params
 {
 public:
-	class UWidget*                               WidgetToFind;                                      // 0x0(0x8)(ExportObject, Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	bool                                         AnimateScroll;                                     // 0x8(0x1)(Parm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	enum class EDescendantScrollDestination      ScrollDestination;                                 // 0x9(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
-	uint8                                        Pad_11B6[0x2];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        Padding;                                           // 0xC(0x4)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	class UWidget*                               WidgetToFind;                                      // 0x0(0x8)(BlueprintVisible, ExportObject, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         AnimateScroll;                                     // 0x8(0x1)(BlueprintVisible, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EDescendantScrollDestination      ScrollDestination;                                 // 0x9(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_14C7[0x2];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        Padding;                                           // 0xC(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1903,7 +1903,7 @@ public:
 struct UScrollBox_GetViewOffsetFraction_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1911,7 +1911,7 @@ public:
 struct UScrollBox_GetViewFraction_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1919,7 +1919,7 @@ public:
 struct UScrollBox_GetScrollOffsetOfEnd_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1927,7 +1927,7 @@ public:
 struct UScrollBox_GetScrollOffset_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1935,7 +1935,7 @@ public:
 struct UScrollBox_GetScrollMax_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1943,7 +1943,7 @@ public:
 struct UScrollBox_GetScrollContentSize_Params
 {
 public:
-	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1951,7 +1951,7 @@ public:
 struct UScrollBox_GetPhysicalScrollOffset_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1959,7 +1959,7 @@ public:
 struct UBorder_SetVerticalAlignment_Params
 {
 public:
-	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1967,7 +1967,7 @@ public:
 struct UBorder_SetShowEffectWhenDisabled_Params
 {
 public:
-	bool                                         bInShowEffectWhenDisabled;                         // 0x0(0x1)(ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bInShowEffectWhenDisabled;                         // 0x0(0x1)(Edit, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1975,7 +1975,7 @@ public:
 struct UBorder_SetPadding_Params
 {
 public:
-	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1983,7 +1983,7 @@ public:
 struct UBorder_SetHorizontalAlignment_Params
 {
 public:
-	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1991,7 +1991,7 @@ public:
 struct UBorder_SetDesiredSizeScale_Params
 {
 public:
-	struct FVector2D                             InScale;                                           // 0x0(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FVector2D                             InScale;                                           // 0x0(0x10)(ConstParm, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1999,7 +1999,7 @@ public:
 struct UBorder_SetContentColorAndOpacity_Params
 {
 public:
-	struct FLinearColor                          InContentColorAndOpacity;                          // 0x0(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FLinearColor                          InContentColorAndOpacity;                          // 0x0(0x10)(ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -2007,7 +2007,7 @@ public:
 struct UBorder_SetBrushFromTexture_Params
 {
 public:
-	class UTexture2D*                            Texture;                                           // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst)
+	class UTexture2D*                            Texture;                                           // 0x0(0x8)(ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -2015,7 +2015,7 @@ public:
 struct UBorder_SetBrushFromMaterial_Params
 {
 public:
-	class UMaterialInterface*                    Material;                                          // 0x0(0x8)(Edit, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	class UMaterialInterface*                    Material;                                          // 0x0(0x8)(Edit, ConstParm, Net, EditFixedSize, Transient, Config, DisableEditOnInstance)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -2023,7 +2023,7 @@ public:
 struct UBorder_SetBrushFromAsset_Params
 {
 public:
-	class USlateBrushAsset*                      Asset;                                             // 0x0(0x8)(BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	class USlateBrushAsset*                      Asset;                                             // 0x0(0x8)(Edit, ConstParm, Net, EditFixedSize, Parm, Config, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2031,7 +2031,7 @@ public:
 struct UBorder_SetBrushColor_Params
 {
 public:
-	struct FLinearColor                          InBrushColor;                                      // 0x0(0x10)(ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FLinearColor                          InBrushColor;                                      // 0x0(0x10)(Edit, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0xD0 (0xD0 - 0x0)
@@ -2039,7 +2039,7 @@ public:
 struct UBorder_SetBrush_Params
 {
 public:
-	struct FSlateBrush                           InBrush;                                           // 0x0(0xD0)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+	struct FSlateBrush                           InBrush;                                           // 0x0(0xD0)(BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -2047,7 +2047,7 @@ public:
 struct UBorder_GetDynamicMaterial_Params
 {
 public:
-	class UMaterialInstanceDynamic*              ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UMaterialInstanceDynamic*              ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2055,7 +2055,7 @@ public:
 struct UEditableText_SetTextOverflowPolicy_Params
 {
 public:
-	enum class ETextOverflowPolicy               InOverflowPolicy;                                  // 0x0(0x1)(Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	enum class ETextOverflowPolicy               InOverflowPolicy;                                  // 0x0(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -2063,7 +2063,7 @@ public:
 struct UEditableText_SetText_Params
 {
 public:
-	class FText                                  InText;                                            // 0x0(0x18)(ConstParm, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	class FText                                  InText;                                            // 0x0(0x18)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -2071,7 +2071,7 @@ public:
 struct UEditableText_SetMinimumDesiredWidth_Params
 {
 public:
-	float                                        InMinDesiredWidth;                                 // 0x0(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	float                                        InMinDesiredWidth;                                 // 0x0(0x4)(Edit, ExportObject, Net, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2079,7 +2079,7 @@ public:
 struct UEditableText_SetJustification_Params
 {
 public:
-	enum class ETextJustify                      InJustification;                                   // 0x0(0x1)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	enum class ETextJustify                      InJustification;                                   // 0x0(0x1)(Net, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2087,7 +2087,7 @@ public:
 struct UEditableText_SetIsReadOnly_Params
 {
 public:
-	bool                                         InbIsReadyOnly;                                    // 0x0(0x1)(ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	bool                                         InbIsReadyOnly;                                    // 0x0(0x1)(ExportObject, BlueprintReadOnly, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2095,7 +2095,7 @@ public:
 struct UEditableText_SetIsPassword_Params
 {
 public:
-	bool                                         InbIsPassword;                                     // 0x0(0x1)(EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	bool                                         InbIsPassword;                                     // 0x0(0x1)(BlueprintReadOnly, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -2103,7 +2103,7 @@ public:
 struct UEditableText_SetHintText_Params
 {
 public:
-	class FText                                  InHintText;                                        // 0x0(0x18)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	class FText                                  InHintText;                                        // 0x0(0x18)(ConstParm, ExportObject, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -2111,7 +2111,7 @@ public:
 struct UEditableText_SetFontOutlineMaterial_Params
 {
 public:
-	class UMaterialInterface*                    InMaterial;                                        // 0x0(0x8)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	class UMaterialInterface*                    InMaterial;                                        // 0x0(0x8)(BlueprintVisible, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -2119,7 +2119,7 @@ public:
 struct UEditableText_SetFontMaterial_Params
 {
 public:
-	class UMaterialInterface*                    InMaterial;                                        // 0x0(0x8)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	class UMaterialInterface*                    InMaterial;                                        // 0x0(0x8)(BlueprintVisible, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x58 (0x58 - 0x0)
@@ -2127,7 +2127,7 @@ public:
 struct UEditableText_SetFont_Params
 {
 public:
-	struct FSlateFontInfo                        InFontInfo;                                        // 0x0(0x58)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	struct FSlateFontInfo                        InFontInfo;                                        // 0x0(0x58)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -2135,9 +2135,9 @@ public:
 struct UEditableText_OnEditableTextCommittedEvent__DelegateSignature_Params
 {
 public:
-	class FText                                  Text;                                              // 0x0(0x18)(Edit, Net, OutParm, DisableEditOnTemplate, EditConst)
-	enum class ETextCommit                       CommitMethod;                                      // 0x18(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_123D[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class FText                                  Text;                                              // 0x0(0x18)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
+	enum class ETextCommit                       CommitMethod;                                      // 0x18(0x1)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1522[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -2145,7 +2145,7 @@ public:
 struct UEditableText_OnEditableTextChangedEvent__DelegateSignature_Params
 {
 public:
-	class FText                                  Text;                                              // 0x0(0x18)(Edit, Net, OutParm, DisableEditOnTemplate, EditConst)
+	class FText                                  Text;                                              // 0x0(0x18)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -2153,7 +2153,7 @@ public:
 struct UEditableText_GetText_Params
 {
 public:
-	class FText                                  ReturnValue;                                       // 0x0(0x18)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FText                                  ReturnValue;                                       // 0x0(0x18)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2161,7 +2161,7 @@ public:
 struct UEditableText_GetJustification_Params
 {
 public:
-	enum class ETextJustify                      ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	enum class ETextJustify                      ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -2169,7 +2169,7 @@ public:
 struct UEditableText_GetHintText_Params
 {
 public:
-	class FText                                  ReturnValue;                                       // 0x0(0x18)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FText                                  ReturnValue;                                       // 0x0(0x18)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x58 (0x58 - 0x0)
@@ -2177,7 +2177,7 @@ public:
 struct UEditableText_GetFont_Params
 {
 public:
-	struct FSlateFontInfo                        ReturnValue;                                       // 0x0(0x58)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FSlateFontInfo                        ReturnValue;                                       // 0x0(0x58)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -2185,7 +2185,7 @@ public:
 struct UListViewBase_SetWheelScrollMultiplier_Params
 {
 public:
-	float                                        NewWheelScrollMultiplier;                          // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        NewWheelScrollMultiplier;                          // 0x0(0x4)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -2193,7 +2193,7 @@ public:
 struct UListViewBase_SetScrollOffset_Params
 {
 public:
-	float                                        InScrollOffset;                                    // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        InScrollOffset;                                    // 0x0(0x4)(Edit, BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2201,7 +2201,7 @@ public:
 struct UListViewBase_SetScrollBarVisibility_Params
 {
 public:
-	enum class ESlateVisibility                  InVisibility;                                      // 0x0(0x1)(Parm, GlobalConfig, SubobjectReference)
+	enum class ESlateVisibility                  InVisibility;                                      // 0x0(0x1)(BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -2209,7 +2209,7 @@ public:
 struct UListViewBase_GetScrollOffset_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2217,7 +2217,7 @@ public:
 struct UListViewBase_GetDisplayedEntryWidgets_Params
 {
 public:
-	TArray<class UUserWidget*>                   ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	TArray<class UUserWidget*>                   ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2225,7 +2225,7 @@ public:
 struct UListView_SetSelectionMode_Params
 {
 public:
-	enum class ESelectionMode                    SelectionMode;                                     // 0x0(0x1)(ConstParm, BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	enum class ESelectionMode                    SelectionMode;                                     // 0x0(0x1)(BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -2233,7 +2233,7 @@ public:
 struct UListView_SetSelectedIndex_Params
 {
 public:
-	int32                                        Index;                                             // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	int32                                        Index;                                             // 0x0(0x4)(EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -2241,7 +2241,7 @@ public:
 struct UListView_ScrollIndexIntoView_Params
 {
 public:
-	int32                                        Index;                                             // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	int32                                        Index;                                             // 0x0(0x4)(EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -2249,7 +2249,7 @@ public:
 struct UListView_RemoveItem_Params
 {
 public:
-	class UObject*                               Item;                                              // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config)
+	class UObject*                               Item;                                              // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Config)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2257,9 +2257,9 @@ public:
 struct UListView_OnListItemOuterEndPlayed_Params
 {
 public:
-	class AActor*                                ItemOuter;                                         // 0x0(0x8)(Edit, EditFixedSize, Parm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	enum class EEndPlayReason                    EndPlayReason;                                     // 0x8(0x1)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	uint8                                        Pad_1275[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class AActor*                                ItemOuter;                                         // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	enum class EEndPlayReason                    EndPlayReason;                                     // 0x8(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_157B[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2267,9 +2267,9 @@ public:
 struct UListView_OnListItemEndPlayed_Params
 {
 public:
-	class AActor*                                Item;                                              // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config)
-	enum class EEndPlayReason                    EndPlayReason;                                     // 0x8(0x1)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	uint8                                        Pad_127A[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class AActor*                                Item;                                              // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Config)
+	enum class EEndPlayReason                    EndPlayReason;                                     // 0x8(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_158A[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x4 (0x4 - 0x0)
@@ -2277,7 +2277,7 @@ public:
 struct UListView_NavigateToIndex_Params
 {
 public:
-	int32                                        Index;                                             // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	int32                                        Index;                                             // 0x0(0x4)(EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2285,7 +2285,7 @@ public:
 struct UListView_IsRefreshPending_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -2293,7 +2293,7 @@ public:
 struct UListView_GetNumItems_Params
 {
 public:
-	int32                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2301,7 +2301,7 @@ public:
 struct UListView_GetListItems_Params
 {
 public:
-	TArray<class UObject*>                       ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	TArray<class UObject*>                       ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2309,9 +2309,9 @@ public:
 struct UListView_GetItemAt_Params
 {
 public:
-	int32                                        Index;                                             // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
-	uint8                                        Pad_1285[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	class UObject*                               ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        Index;                                             // 0x0(0x4)(EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	uint8                                        Pad_159D[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	class UObject*                               ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2319,9 +2319,9 @@ public:
 struct UListView_GetIndexForItem_Params
 {
 public:
-	class UObject*                               Item;                                              // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config)
-	int32                                        ReturnValue;                                       // 0x8(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1288[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	class UObject*                               Item;                                              // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Config)
+	int32                                        ReturnValue;                                       // 0x8(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_15A0[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)
@@ -2329,7 +2329,7 @@ public:
 struct UListView_BP_SetSelectedItem_Params
 {
 public:
-	class UObject*                               Item;                                              // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config)
+	class UObject*                               Item;                                              // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Config)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2337,7 +2337,7 @@ public:
 struct UListView_BP_SetListItems_Params
 {
 public:
-	TArray<class UObject*>                       InListItems;                                       // 0x0(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	TArray<class UObject*>                       InListItems;                                       // 0x0(0x10)(ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2345,9 +2345,9 @@ public:
 struct UListView_BP_SetItemSelection_Params
 {
 public:
-	class UObject*                               Item;                                              // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config)
-	bool                                         bSelected;                                         // 0x8(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	uint8                                        Pad_1292[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class UObject*                               Item;                                              // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Config)
+	bool                                         bSelected;                                         // 0x8(0x1)(BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	uint8                                        Pad_15B0[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)
@@ -2355,7 +2355,7 @@ public:
 struct UListView_BP_ScrollItemIntoView_Params
 {
 public:
-	class UObject*                               Item;                                              // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config)
+	class UObject*                               Item;                                              // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Config)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -2363,7 +2363,7 @@ public:
 struct UListView_BP_NavigateToItem_Params
 {
 public:
-	class UObject*                               Item;                                              // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config)
+	class UObject*                               Item;                                              // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Config)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2371,9 +2371,9 @@ public:
 struct UListView_BP_IsItemVisible_Params
 {
 public:
-	class UObject*                               Item;                                              // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config)
-	bool                                         ReturnValue;                                       // 0x8(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_129A[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class UObject*                               Item;                                              // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Config)
+	bool                                         ReturnValue;                                       // 0x8(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_15BA[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -2381,9 +2381,9 @@ public:
 struct UListView_BP_GetSelectedItems_Params
 {
 public:
-	TArray<class UObject*>                       Items;                                             // 0x0(0x10)(ExportObject, BlueprintReadOnly, Net, OutParm, Config, GlobalConfig, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x10(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_12A0[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	TArray<class UObject*>                       Items;                                             // 0x0(0x10)(ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x10(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_15BD[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)
@@ -2391,7 +2391,7 @@ public:
 struct UListView_BP_GetSelectedItem_Params
 {
 public:
-	class UObject*                               ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UObject*                               ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -2399,7 +2399,7 @@ public:
 struct UListView_BP_GetNumItemsSelected_Params
 {
 public:
-	int32                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -2407,7 +2407,7 @@ public:
 struct UListView_AddItem_Params
 {
 public:
-	class UObject*                               Item;                                              // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config)
+	class UObject*                               Item;                                              // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Config)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -2415,7 +2415,7 @@ public:
 struct UUMGSequencePlayer_SetUserTag_Params
 {
 public:
-	class FName                                  InUserTag;                                         // 0x0(0x8)(Edit, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	class FName                                  InUserTag;                                         // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -2423,7 +2423,7 @@ public:
 struct UUMGSequencePlayer_GetUserTag_Params
 {
 public:
-	class FName                                  ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FName                                  ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -2431,8 +2431,8 @@ public:
 struct UWidgetAnimation_UnbindFromAnimationStarted_Params
 {
 public:
-	class UUserWidget*                           Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	FDelegateProperty_                           Delegate;                                          // 0x8(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	class UUserWidget*                           Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	FDelegateProperty_                           Delegate;                                          // 0x8(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -2440,8 +2440,8 @@ public:
 struct UWidgetAnimation_UnbindFromAnimationFinished_Params
 {
 public:
-	class UUserWidget*                           Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	FDelegateProperty_                           Delegate;                                          // 0x8(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	class UUserWidget*                           Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	FDelegateProperty_                           Delegate;                                          // 0x8(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -2449,7 +2449,7 @@ public:
 struct UWidgetAnimation_UnbindAllFromAnimationStarted_Params
 {
 public:
-	class UUserWidget*                           Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
+	class UUserWidget*                           Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -2457,7 +2457,7 @@ public:
 struct UWidgetAnimation_UnbindAllFromAnimationFinished_Params
 {
 public:
-	class UUserWidget*                           Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
+	class UUserWidget*                           Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -2465,7 +2465,7 @@ public:
 struct UWidgetAnimation_GetStartTime_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -2473,7 +2473,7 @@ public:
 struct UWidgetAnimation_GetEndTime_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -2481,8 +2481,8 @@ public:
 struct UWidgetAnimation_BindToAnimationStarted_Params
 {
 public:
-	class UUserWidget*                           Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	FDelegateProperty_                           Delegate;                                          // 0x8(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	class UUserWidget*                           Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	FDelegateProperty_                           Delegate;                                          // 0x8(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -2490,8 +2490,8 @@ public:
 struct UWidgetAnimation_BindToAnimationFinished_Params
 {
 public:
-	class UUserWidget*                           Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	FDelegateProperty_                           Delegate;                                          // 0x8(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	class UUserWidget*                           Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	FDelegateProperty_                           Delegate;                                          // 0x8(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, EditConst, SubobjectReference)
 };
 
 // 0x38 (0x38 - 0x0)
@@ -2499,17 +2499,17 @@ public:
 struct UWidgetAnimationPlayCallbackProxy_CreatePlayAnimationTimeRangeProxyObject_Params
 {
 public:
-	class UUMGSequencePlayer*                    Result;                                            // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-	class UUserWidget*                           Widget;                                            // 0x8(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	class UWidgetAnimation*                      InAnimation;                                       // 0x10(0x8)(BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	float                                        StartAtTime;                                       // 0x18(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	float                                        EndAtTime;                                         // 0x1C(0x4)(ConstParm, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	int32                                        NumLoopsToPlay;                                    // 0x20(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	enum class EUMGSequencePlayMode              PlayMode;                                          // 0x24(0x1)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1334[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        PlaybackSpeed;                                     // 0x28(0x4)(Edit, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1336[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	class UWidgetAnimationPlayCallbackProxy*     ReturnValue;                                       // 0x30(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UUMGSequencePlayer*                    Result;                                            // 0x0(0x8)(Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnInstance, EditConst)
+	class UUserWidget*                           Widget;                                            // 0x8(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	class UWidgetAnimation*                      InAnimation;                                       // 0x10(0x8)(EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	float                                        StartAtTime;                                       // 0x18(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	float                                        EndAtTime;                                         // 0x1C(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	int32                                        NumLoopsToPlay;                                    // 0x20(0x4)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	enum class EUMGSequencePlayMode              PlayMode;                                          // 0x24(0x1)(Edit, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1680[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        PlaybackSpeed;                                     // 0x28(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1681[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	class UWidgetAnimationPlayCallbackProxy*     ReturnValue;                                       // 0x30(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x30 (0x30 - 0x0)
@@ -2517,15 +2517,15 @@ public:
 struct UWidgetAnimationPlayCallbackProxy_CreatePlayAnimationProxyObject_Params
 {
 public:
-	class UUMGSequencePlayer*                    Result;                                            // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst)
-	class UUserWidget*                           Widget;                                            // 0x8(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	class UWidgetAnimation*                      InAnimation;                                       // 0x10(0x8)(BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	float                                        StartAtTime;                                       // 0x18(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	int32                                        NumLoopsToPlay;                                    // 0x1C(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	enum class EUMGSequencePlayMode              PlayMode;                                          // 0x20(0x1)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1342[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        PlaybackSpeed;                                     // 0x24(0x4)(Edit, ExportObject, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	class UWidgetAnimationPlayCallbackProxy*     ReturnValue;                                       // 0x28(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UUMGSequencePlayer*                    Result;                                            // 0x0(0x8)(Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnInstance, EditConst)
+	class UUserWidget*                           Widget;                                            // 0x8(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	class UWidgetAnimation*                      InAnimation;                                       // 0x10(0x8)(EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	float                                        StartAtTime;                                       // 0x18(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	int32                                        NumLoopsToPlay;                                    // 0x1C(0x4)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	enum class EUMGSequencePlayMode              PlayMode;                                          // 0x20(0x1)(Edit, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1696[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        PlaybackSpeed;                                     // 0x24(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
+	class UWidgetAnimationPlayCallbackProxy*     ReturnValue;                                       // 0x28(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2533,7 +2533,7 @@ public:
 struct UBoolBinding_GetValue_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0xD0 (0xD0 - 0x0)
@@ -2541,7 +2541,7 @@ public:
 struct UBrushBinding_GetValue_Params
 {
 public:
-	struct FSlateBrush                           ReturnValue;                                       // 0x0(0xD0)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FSlateBrush                           ReturnValue;                                       // 0x0(0xD0)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2549,7 +2549,7 @@ public:
 struct UCheckedStateBinding_GetValue_Params
 {
 public:
-	enum class ECheckBoxState                    ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	enum class ECheckBoxState                    ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x14 (0x14 - 0x0)
@@ -2557,7 +2557,7 @@ public:
 struct UColorBinding_GetSlateValue_Params
 {
 public:
-	struct FSlateColor                           ReturnValue;                                       // 0x0(0x14)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FSlateColor                           ReturnValue;                                       // 0x0(0x14)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2565,7 +2565,7 @@ public:
 struct UColorBinding_GetLinearValue_Params
 {
 public:
-	struct FLinearColor                          ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FLinearColor                          ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -2573,7 +2573,7 @@ public:
 struct UFloatBinding_GetValue_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -2581,7 +2581,7 @@ public:
 struct UInt32Binding_GetValue_Params
 {
 public:
-	int32                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2589,7 +2589,7 @@ public:
 struct UMouseCursorBinding_GetValue_Params
 {
 public:
-	enum class EMouseCursor                      ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	enum class EMouseCursor                      ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -2597,7 +2597,7 @@ public:
 struct UTextBinding_GetTextValue_Params
 {
 public:
-	class FText                                  ReturnValue;                                       // 0x0(0x18)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FText                                  ReturnValue;                                       // 0x0(0x18)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2605,7 +2605,7 @@ public:
 struct UTextBinding_GetStringValue_Params
 {
 public:
-	class FString                                ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FString                                ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2613,7 +2613,7 @@ public:
 struct UVisibilityBinding_GetValue_Params
 {
 public:
-	enum class ESlateVisibility                  ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	enum class ESlateVisibility                  ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -2621,7 +2621,7 @@ public:
 struct UWidgetBinding_GetValue_Params
 {
 public:
-	class UWidget*                               ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -2629,8 +2629,8 @@ public:
 struct UAsyncTaskDownloadImage_DownloadImage_Params
 {
 public:
-	class FString                                URL;                                               // 0x0(0x10)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, EditConst)
-	class UAsyncTaskDownloadImage*               ReturnValue;                                       // 0x10(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FString                                URL;                                               // 0x0(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, EditConst)
+	class UAsyncTaskDownloadImage*               ReturnValue;                                       // 0x10(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0xB0 (0xB0 - 0x0)
@@ -2638,12 +2638,12 @@ public:
 struct UGameViewportSubsystem_SetWidgetSlotPosition_Params
 {
 public:
-	struct FGameViewportWidgetSlot               Slot;                                              // 0x0(0x48)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
-	class UWidget*                               Widget;                                            // 0x48(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	struct FVector2D                             Position;                                          // 0x50(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config)
-	bool                                         bRemoveDPIScale;                                   // 0x60(0x1)(Edit, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_142A[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FGameViewportWidgetSlot               ReturnValue;                                       // 0x68(0x48)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGameViewportWidgetSlot               Slot;                                              // 0x0(0x48)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	class UWidget*                               Widget;                                            // 0x48(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	struct FVector2D                             Position;                                          // 0x50(0x10)(Edit, ConstParm, ExportObject, ReturnParm, Transient, Config)
+	bool                                         bRemoveDPIScale;                                   // 0x60(0x1)(Edit, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_16FB[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FGameViewportWidgetSlot               ReturnValue;                                       // 0x68(0x48)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0xA0 (0xA0 - 0x0)
@@ -2651,9 +2651,9 @@ public:
 struct UGameViewportSubsystem_SetWidgetSlotDesiredSize_Params
 {
 public:
-	struct FGameViewportWidgetSlot               Slot;                                              // 0x0(0x48)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
-	struct FVector2D                             Size;                                              // 0x48(0x10)(Edit, ConstParm, Parm, OutParm, ReturnParm, Transient, Config)
-	struct FGameViewportWidgetSlot               ReturnValue;                                       // 0x58(0x48)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGameViewportWidgetSlot               Slot;                                              // 0x0(0x48)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FVector2D                             Size;                                              // 0x48(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config)
+	struct FGameViewportWidgetSlot               ReturnValue;                                       // 0x58(0x48)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -2661,8 +2661,8 @@ public:
 struct UGameViewportSubsystem_SetWidgetSlot_Params
 {
 public:
-	class UWidget*                               Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	struct FGameViewportWidgetSlot               Slot;                                              // 0x8(0x48)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
+	class UWidget*                               Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	struct FGameViewportWidgetSlot               Slot;                                              // 0x8(0x48)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -2670,7 +2670,7 @@ public:
 struct UGameViewportSubsystem_RemoveWidget_Params
 {
 public:
-	class UWidget*                               Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
+	class UWidget*                               Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2678,9 +2678,9 @@ public:
 struct UGameViewportSubsystem_IsWidgetAdded_Params
 {
 public:
-	class UWidget*                               Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	bool                                         ReturnValue;                                       // 0x8(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1438[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class UWidget*                               Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	bool                                         ReturnValue;                                       // 0x8(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_171A[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x50 (0x50 - 0x0)
@@ -2688,8 +2688,8 @@ public:
 struct UGameViewportSubsystem_GetWidgetSlot_Params
 {
 public:
-	class UWidget*                               Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	struct FGameViewportWidgetSlot               ReturnValue;                                       // 0x8(0x48)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	struct FGameViewportWidgetSlot               ReturnValue;                                       // 0x8(0x48)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x58 (0x58 - 0x0)
@@ -2697,9 +2697,9 @@ public:
 struct UGameViewportSubsystem_AddWidgetForPlayer_Params
 {
 public:
-	class UWidget*                               Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	class ULocalPlayer*                          Player;                                            // 0x8(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst)
-	struct FGameViewportWidgetSlot               Slot;                                              // 0x10(0x48)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
+	class UWidget*                               Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	class ULocalPlayer*                          Player;                                            // 0x8(0x8)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Config, DisableEditOnInstance, EditConst)
+	struct FGameViewportWidgetSlot               Slot;                                              // 0x10(0x48)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -2707,8 +2707,8 @@ public:
 struct UGameViewportSubsystem_AddWidget_Params
 {
 public:
-	class UWidget*                               Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	struct FGameViewportWidgetSlot               Slot;                                              // 0x8(0x48)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
+	class UWidget*                               Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	struct FGameViewportWidgetSlot               Slot;                                              // 0x8(0x48)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2716,7 +2716,7 @@ public:
 struct IUserListEntry_BP_OnItemSelectionChanged_Params
 {
 public:
-	bool                                         bIsSelected;                                       // 0x0(0x1)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, GlobalConfig, SubobjectReference)
+	bool                                         bIsSelected;                                       // 0x0(0x1)(Edit, ConstParm, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2724,7 +2724,7 @@ public:
 struct IUserListEntry_BP_OnItemExpansionChanged_Params
 {
 public:
-	bool                                         bIsExpanded;                                       // 0x0(0x1)(BlueprintVisible, Net, OutParm, DisableEditOnTemplate, EditConst)
+	bool                                         bIsExpanded;                                       // 0x0(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -2732,9 +2732,9 @@ public:
 struct UUserListEntryLibrary_IsListItemSelected_Params
 {
 public:
-	TScriptInterface<class IUserListEntry>       UserListEntry;                                     // 0x0(0x10)(BlueprintVisible, Net, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	bool                                         ReturnValue;                                       // 0x10(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1451[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	TScriptInterface<class IUserListEntry>       UserListEntry;                                     // 0x0(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig)
+	bool                                         ReturnValue;                                       // 0x10(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1734[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -2742,9 +2742,9 @@ public:
 struct UUserListEntryLibrary_IsListItemExpanded_Params
 {
 public:
-	TScriptInterface<class IUserListEntry>       UserListEntry;                                     // 0x0(0x10)(BlueprintVisible, Net, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	bool                                         ReturnValue;                                       // 0x10(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1459[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	TScriptInterface<class IUserListEntry>       UserListEntry;                                     // 0x0(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig)
+	bool                                         ReturnValue;                                       // 0x10(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1738[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -2752,8 +2752,8 @@ public:
 struct UUserListEntryLibrary_GetOwningListView_Params
 {
 public:
-	TScriptInterface<class IUserListEntry>       UserListEntry;                                     // 0x0(0x10)(BlueprintVisible, Net, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	class UListViewBase*                         ReturnValue;                                       // 0x10(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	TScriptInterface<class IUserListEntry>       UserListEntry;                                     // 0x0(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig)
+	class UListViewBase*                         ReturnValue;                                       // 0x10(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -2761,7 +2761,7 @@ public:
 struct IUserObjectListEntry_OnListItemObjectSet_Params
 {
 public:
-	class UObject*                               ListItemObject;                                    // 0x0(0x8)(Edit, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	class UObject*                               ListItemObject;                                    // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -2769,8 +2769,8 @@ public:
 struct UUserObjectListEntryLibrary_GetListItemObject_Params
 {
 public:
-	TScriptInterface<class IUserObjectListEntry> UserObjectListEntry;                               // 0x0(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	class UObject*                               ReturnValue;                                       // 0x10(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	TScriptInterface<class IUserObjectListEntry> UserObjectListEntry;                               // 0x0(0x10)(Edit, BlueprintVisible, ExportObject, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig)
+	class UObject*                               ReturnValue;                                       // 0x10(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2778,7 +2778,7 @@ public:
 struct UBackgroundBlur_SetVerticalAlignment_Params
 {
 public:
-	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2786,7 +2786,7 @@ public:
 struct UBackgroundBlur_SetPadding_Params
 {
 public:
-	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0xD0 (0xD0 - 0x0)
@@ -2794,7 +2794,7 @@ public:
 struct UBackgroundBlur_SetLowQualityFallbackBrush_Params
 {
 public:
-	struct FSlateBrush                           InBrush;                                           // 0x0(0xD0)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+	struct FSlateBrush                           InBrush;                                           // 0x0(0xD0)(BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2802,7 +2802,7 @@ public:
 struct UBackgroundBlur_SetHorizontalAlignment_Params
 {
 public:
-	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -2810,7 +2810,7 @@ public:
 struct UBackgroundBlur_SetCornerRadius_Params
 {
 public:
-	struct FVector4                              InCornerRadius;                                    // 0x0(0x20)(Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	struct FVector4                              InCornerRadius;                                    // 0x0(0x20)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -2818,7 +2818,7 @@ public:
 struct UBackgroundBlur_SetBlurStrength_Params
 {
 public:
-	float                                        InStrength;                                        // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        InStrength;                                        // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -2826,7 +2826,7 @@ public:
 struct UBackgroundBlur_SetBlurRadius_Params
 {
 public:
-	int32                                        InBlurRadius;                                      // 0x0(0x4)(ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	int32                                        InBlurRadius;                                      // 0x0(0x4)(BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2834,7 +2834,7 @@ public:
 struct UBackgroundBlur_SetApplyAlphaToBlur_Params
 {
 public:
-	bool                                         bInApplyAlphaToBlur;                               // 0x0(0x1)(Edit, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bInApplyAlphaToBlur;                               // 0x0(0x1)(Edit, BlueprintVisible, Parm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2842,7 +2842,7 @@ public:
 struct UBackgroundBlurSlot_SetVerticalAlignment_Params
 {
 public:
-	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2850,7 +2850,7 @@ public:
 struct UBackgroundBlurSlot_SetPadding_Params
 {
 public:
-	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2858,7 +2858,7 @@ public:
 struct UBackgroundBlurSlot_SetHorizontalAlignment_Params
 {
 public:
-	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2866,7 +2866,7 @@ public:
 struct UBorderSlot_SetVerticalAlignment_Params
 {
 public:
-	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2874,7 +2874,7 @@ public:
 struct UBorderSlot_SetPadding_Params
 {
 public:
-	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2882,7 +2882,7 @@ public:
 struct UBorderSlot_SetHorizontalAlignment_Params
 {
 public:
-	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2890,7 +2890,7 @@ public:
 struct UButtonSlot_SetVerticalAlignment_Params
 {
 public:
-	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2898,7 +2898,7 @@ public:
 struct UButtonSlot_SetPadding_Params
 {
 public:
-	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2906,7 +2906,7 @@ public:
 struct UButtonSlot_SetHorizontalAlignment_Params
 {
 public:
-	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2914,7 +2914,7 @@ public:
 struct UCanvasPanel_SetColorAndOpacity_Params
 {
 public:
-	struct FLinearColor                          InColorAndOpacity;                                 // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          InColorAndOpacity;                                 // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2922,8 +2922,8 @@ public:
 struct UCanvasPanel_AddChildToCanvas_Params
 {
 public:
-	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Config, EditConst, SubobjectReference)
-	class UCanvasPanelSlot*                      ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	class UCanvasPanelSlot*                      ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -2931,7 +2931,7 @@ public:
 struct UCanvasPanelSlot_SetZOrder_Params
 {
 public:
-	int32                                        InZOrder;                                          // 0x0(0x4)(ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	int32                                        InZOrder;                                          // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2939,7 +2939,7 @@ public:
 struct UCanvasPanelSlot_SetSize_Params
 {
 public:
-	struct FVector2D                             InSize;                                            // 0x0(0x10)(Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+	struct FVector2D                             InSize;                                            // 0x0(0x10)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2947,7 +2947,7 @@ public:
 struct UCanvasPanelSlot_SetPosition_Params
 {
 public:
-	struct FVector2D                             InPosition;                                        // 0x0(0x10)(Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	struct FVector2D                             InPosition;                                        // 0x0(0x10)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2955,7 +2955,7 @@ public:
 struct UCanvasPanelSlot_SetOffsets_Params
 {
 public:
-	struct FMargin                               InOffset;                                          // 0x0(0x10)(Edit, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	struct FMargin                               InOffset;                                          // 0x0(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2963,7 +2963,7 @@ public:
 struct UCanvasPanelSlot_SetMinimum_Params
 {
 public:
-	struct FVector2D                             InMinimumAnchors;                                  // 0x0(0x10)(ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	struct FVector2D                             InMinimumAnchors;                                  // 0x0(0x10)(BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -2971,7 +2971,7 @@ public:
 struct UCanvasPanelSlot_SetMaximum_Params
 {
 public:
-	struct FVector2D                             InMaximumAnchors;                                  // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	struct FVector2D                             InMaximumAnchors;                                  // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x40 (0x40 - 0x0)
@@ -2979,7 +2979,7 @@ public:
 struct UCanvasPanelSlot_SetLayout_Params
 {
 public:
-	struct FAnchorData                           InLayoutData;                                      // 0x0(0x40)(ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	struct FAnchorData                           InLayoutData;                                      // 0x0(0x40)(Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -2987,7 +2987,7 @@ public:
 struct UCanvasPanelSlot_SetAutoSize_Params
 {
 public:
-	bool                                         InbAutoSize;                                       // 0x0(0x1)(Edit, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         InbAutoSize;                                       // 0x0(0x1)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -2995,7 +2995,7 @@ public:
 struct UCanvasPanelSlot_SetAnchors_Params
 {
 public:
-	struct FAnchors                              InAnchors;                                         // 0x0(0x20)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	struct FAnchors                              InAnchors;                                         // 0x0(0x20)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -3003,7 +3003,7 @@ public:
 struct UCanvasPanelSlot_SetAlignment_Params
 {
 public:
-	struct FVector2D                             InAlignment;                                       // 0x0(0x10)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	struct FVector2D                             InAlignment;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -3011,7 +3011,7 @@ public:
 struct UCanvasPanelSlot_GetZOrder_Params
 {
 public:
-	int32                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -3019,7 +3019,7 @@ public:
 struct UCanvasPanelSlot_GetSize_Params
 {
 public:
-	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -3027,7 +3027,7 @@ public:
 struct UCanvasPanelSlot_GetPosition_Params
 {
 public:
-	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -3035,7 +3035,7 @@ public:
 struct UCanvasPanelSlot_GetOffsets_Params
 {
 public:
-	struct FMargin                               ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FMargin                               ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x40 (0x40 - 0x0)
@@ -3043,7 +3043,7 @@ public:
 struct UCanvasPanelSlot_GetLayout_Params
 {
 public:
-	struct FAnchorData                           ReturnValue;                                       // 0x0(0x40)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FAnchorData                           ReturnValue;                                       // 0x0(0x40)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3051,7 +3051,7 @@ public:
 struct UCanvasPanelSlot_GetAutoSize_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -3059,7 +3059,7 @@ public:
 struct UCanvasPanelSlot_GetAnchors_Params
 {
 public:
-	struct FAnchors                              ReturnValue;                                       // 0x0(0x20)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FAnchors                              ReturnValue;                                       // 0x0(0x20)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -3067,7 +3067,7 @@ public:
 struct UCanvasPanelSlot_GetAlignment_Params
 {
 public:
-	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3075,7 +3075,7 @@ public:
 struct UCheckBox_SetTouchMethod_Params
 {
 public:
-	enum class EButtonTouchMethod                InTouchMethod;                                     // 0x0(0x1)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	enum class EButtonTouchMethod                InTouchMethod;                                     // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3083,7 +3083,7 @@ public:
 struct UCheckBox_SetPressMethod_Params
 {
 public:
-	enum class EButtonPressMethod                InPressMethod;                                     // 0x0(0x1)(Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	enum class EButtonPressMethod                InPressMethod;                                     // 0x0(0x1)(ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3091,7 +3091,7 @@ public:
 struct UCheckBox_SetIsChecked_Params
 {
 public:
-	bool                                         InIsChecked;                                       // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         InIsChecked;                                       // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3099,7 +3099,7 @@ public:
 struct UCheckBox_SetClickMethod_Params
 {
 public:
-	enum class EButtonClickMethod                InClickMethod;                                     // 0x0(0x1)(Edit, BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	enum class EButtonClickMethod                InClickMethod;                                     // 0x0(0x1)(Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3107,7 +3107,7 @@ public:
 struct UCheckBox_SetCheckedState_Params
 {
 public:
-	enum class ECheckBoxState                    InCheckedState;                                    // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	enum class ECheckBoxState                    InCheckedState;                                    // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3115,7 +3115,7 @@ public:
 struct UCheckBox_IsPressed_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3123,7 +3123,7 @@ public:
 struct UCheckBox_IsChecked_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3131,7 +3131,7 @@ public:
 struct UCheckBox_GetCheckedState_Params
 {
 public:
-	enum class ECheckBoxState                    ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	enum class ECheckBoxState                    ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -3139,7 +3139,7 @@ public:
 struct UCircularThrobber_SetRadius_Params
 {
 public:
-	float                                        InRadius;                                          // 0x0(0x4)(ConstParm, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        InRadius;                                          // 0x0(0x4)(ConstParm, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -3147,7 +3147,7 @@ public:
 struct UCircularThrobber_SetPeriod_Params
 {
 public:
-	float                                        InPeriod;                                          // 0x0(0x4)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        InPeriod;                                          // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -3155,7 +3155,7 @@ public:
 struct UCircularThrobber_SetNumberOfPieces_Params
 {
 public:
-	int32                                        InNumberOfPieces;                                  // 0x0(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	int32                                        InNumberOfPieces;                                  // 0x0(0x4)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -3163,7 +3163,7 @@ public:
 struct UComboBoxKey_SetSelectedOption_Params
 {
 public:
-	class FName                                  Option;                                            // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
+	class FName                                  Option;                                            // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -3171,9 +3171,9 @@ public:
 struct UComboBoxKey_RemoveOption_Params
 {
 public:
-	class FName                                  Option;                                            // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x8(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_15F7[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	class FName                                  Option;                                            // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x8(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_17F6[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xC (0xC - 0x0)
@@ -3181,9 +3181,9 @@ public:
 struct UComboBoxKey_OnSelectionChangedEvent__DelegateSignature_Params
 {
 public:
-	class FName                                  SelectedItem;                                      // 0x0(0x8)(ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
-	enum class ESelectInfo                       SelectionType;                                     // 0x8(0x1)(Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1606[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	class FName                                  SelectedItem;                                      // 0x0(0x8)(ConstParm, BlueprintReadOnly, Net, GlobalConfig, SubobjectReference)
+	enum class ESelectInfo                       SelectionType;                                     // 0x8(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_17FD[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3191,7 +3191,7 @@ public:
 struct UComboBoxKey_IsOpen_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -3199,7 +3199,7 @@ public:
 struct UComboBoxKey_GetSelectedOption_Params
 {
 public:
-	class FName                                  ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FName                                  ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -3207,8 +3207,8 @@ public:
 struct UComboBoxKey_GenerateWidgetEvent__DelegateSignature_Params
 {
 public:
-	class FName                                  Item;                                              // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config)
-	class UWidget*                               ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FName                                  Item;                                              // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Config)
+	class UWidget*                               ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -3216,7 +3216,7 @@ public:
 struct UComboBoxKey_AddOption_Params
 {
 public:
-	class FName                                  Option;                                            // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
+	class FName                                  Option;                                            // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -3224,7 +3224,7 @@ public:
 struct UComboBoxString_SetSelectedOption_Params
 {
 public:
-	class FString                                Option;                                            // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
+	class FString                                Option;                                            // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -3232,9 +3232,9 @@ public:
 struct UComboBoxString_SetSelectedIndex_Params
 {
 public:
-	int32                                        Index;                                             // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
-	enum class ESelectInfo                       SelectInfo;                                        // 0x4(0x1)(BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1668[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	int32                                        Index;                                             // 0x0(0x4)(EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	enum class ESelectInfo                       SelectInfo;                                        // 0x4(0x1)(Net, Parm, ZeroConstructor, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1822[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -3242,9 +3242,9 @@ public:
 struct UComboBoxString_RemoveOption_Params
 {
 public:
-	class FString                                Option;                                            // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x10(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_166C[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class FString                                Option;                                            // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x10(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1826[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -3252,9 +3252,9 @@ public:
 struct UComboBoxString_OnSelectionChangedEvent__DelegateSignature_Params
 {
 public:
-	class FString                                SelectedItem;                                      // 0x0(0x10)(ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
-	enum class ESelectInfo                       SelectionType;                                     // 0x10(0x1)(Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1671[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class FString                                SelectedItem;                                      // 0x0(0x10)(ConstParm, BlueprintReadOnly, Net, GlobalConfig, SubobjectReference)
+	enum class ESelectInfo                       SelectionType;                                     // 0x10(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_182A[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3262,7 +3262,7 @@ public:
 struct UComboBoxString_IsOpen_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -3270,7 +3270,7 @@ public:
 struct UComboBoxString_GetSelectedOption_Params
 {
 public:
-	class FString                                ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FString                                ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -3278,7 +3278,7 @@ public:
 struct UComboBoxString_GetSelectedIndex_Params
 {
 public:
-	int32                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -3286,7 +3286,7 @@ public:
 struct UComboBoxString_GetOptionCount_Params
 {
 public:
-	int32                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -3294,9 +3294,9 @@ public:
 struct UComboBoxString_GetOptionAtIndex_Params
 {
 public:
-	int32                                        Index;                                             // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
-	uint8                                        Pad_168E[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	class FString                                ReturnValue;                                       // 0x8(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        Index;                                             // 0x0(0x4)(EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	uint8                                        Pad_1842[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	class FString                                ReturnValue;                                       // 0x8(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -3304,9 +3304,9 @@ public:
 struct UComboBoxString_FindOptionIndex_Params
 {
 public:
-	class FString                                Option;                                            // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
-	int32                                        ReturnValue;                                       // 0x10(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1693[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	class FString                                Option;                                            // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	int32                                        ReturnValue;                                       // 0x10(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_184B[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -3314,7 +3314,7 @@ public:
 struct UComboBoxString_AddOption_Params
 {
 public:
-	class FString                                Option;                                            // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
+	class FString                                Option;                                            // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -3322,7 +3322,7 @@ public:
 struct UDynamicEntryBoxBase_SetRadialSettings_Params
 {
 public:
-	struct FRadialBoxSettings                    InSettings;                                        // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FRadialBoxSettings                    InSettings;                                        // 0x0(0x10)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -3330,7 +3330,7 @@ public:
 struct UDynamicEntryBoxBase_SetEntrySpacing_Params
 {
 public:
-	struct FVector2D                             InEntrySpacing;                                    // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	struct FVector2D                             InEntrySpacing;                                    // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -3338,7 +3338,7 @@ public:
 struct UDynamicEntryBoxBase_GetNumEntries_Params
 {
 public:
-	int32                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -3346,7 +3346,7 @@ public:
 struct UDynamicEntryBoxBase_GetAllEntries_Params
 {
 public:
-	TArray<class UUserWidget*>                   ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	TArray<class UUserWidget*>                   ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3354,7 +3354,7 @@ public:
 struct UDynamicEntryBox_Reset_Params
 {
 public:
-	bool                                         bDeleteWidgets;                                    // 0x0(0x1)(BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bDeleteWidgets;                                    // 0x0(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -3362,7 +3362,7 @@ public:
 struct UDynamicEntryBox_RemoveEntry_Params
 {
 public:
-	class UUserWidget*                           EntryWidget;                                       // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	class UUserWidget*                           EntryWidget;                                       // 0x0(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -3370,8 +3370,8 @@ public:
 struct UDynamicEntryBox_BP_CreateEntryOfClass_Params
 {
 public:
-	class UClass*                                EntryClass;                                        // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	class UUserWidget*                           ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UClass*                                EntryClass;                                        // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	class UUserWidget*                           ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -3379,7 +3379,7 @@ public:
 struct UDynamicEntryBox_BP_CreateEntry_Params
 {
 public:
-	class UUserWidget*                           ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UUserWidget*                           ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3387,7 +3387,7 @@ public:
 struct UEditableTextBox_SetTextOverflowPolicy_Params
 {
 public:
-	enum class ETextOverflowPolicy               InOverflowPolicy;                                  // 0x0(0x1)(Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	enum class ETextOverflowPolicy               InOverflowPolicy;                                  // 0x0(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -3395,7 +3395,7 @@ public:
 struct UEditableTextBox_SetText_Params
 {
 public:
-	class FText                                  InText;                                            // 0x0(0x18)(ConstParm, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	class FText                                  InText;                                            // 0x0(0x18)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3403,7 +3403,7 @@ public:
 struct UEditableTextBox_SetJustification_Params
 {
 public:
-	enum class ETextJustify                      InJustification;                                   // 0x0(0x1)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	enum class ETextJustify                      InJustification;                                   // 0x0(0x1)(Net, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3411,7 +3411,7 @@ public:
 struct UEditableTextBox_SetIsReadOnly_Params
 {
 public:
-	bool                                         bReadOnly;                                         // 0x0(0x1)(ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	bool                                         bReadOnly;                                         // 0x0(0x1)(ExportObject, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3419,7 +3419,7 @@ public:
 struct UEditableTextBox_SetIsPassword_Params
 {
 public:
-	bool                                         bIsPassword;                                       // 0x0(0x1)(Edit, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	bool                                         bIsPassword;                                       // 0x0(0x1)(Edit, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -3427,7 +3427,7 @@ public:
 struct UEditableTextBox_SetHintText_Params
 {
 public:
-	class FText                                  InText;                                            // 0x0(0x18)(ConstParm, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	class FText                                  InText;                                            // 0x0(0x18)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -3443,7 +3443,7 @@ public:
 struct UEditableTextBox_SetError_Params
 {
 public:
-	class FText                                  InError;                                           // 0x0(0x18)(BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	class FText                                  InError;                                           // 0x0(0x18)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -3451,9 +3451,9 @@ public:
 struct UEditableTextBox_OnEditableTextBoxCommittedEvent__DelegateSignature_Params
 {
 public:
-	class FText                                  Text;                                              // 0x0(0x18)(Edit, Net, OutParm, DisableEditOnTemplate, EditConst)
-	enum class ETextCommit                       CommitMethod;                                      // 0x18(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_16F7[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class FText                                  Text;                                              // 0x0(0x18)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
+	enum class ETextCommit                       CommitMethod;                                      // 0x18(0x1)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_188A[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -3461,7 +3461,7 @@ public:
 struct UEditableTextBox_OnEditableTextBoxChangedEvent__DelegateSignature_Params
 {
 public:
-	class FText                                  Text;                                              // 0x0(0x18)(Edit, Net, OutParm, DisableEditOnTemplate, EditConst)
+	class FText                                  Text;                                              // 0x0(0x18)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3469,7 +3469,7 @@ public:
 struct UEditableTextBox_HasError_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -3477,7 +3477,7 @@ public:
 struct UEditableTextBox_GetText_Params
 {
 public:
-	class FText                                  ReturnValue;                                       // 0x0(0x18)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FText                                  ReturnValue;                                       // 0x0(0x18)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3485,7 +3485,7 @@ public:
 struct UExpandableArea_SetIsExpanded_Animated_Params
 {
 public:
-	bool                                         IsExpanded;                                        // 0x0(0x1)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate)
+	bool                                         IsExpanded;                                        // 0x0(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3493,7 +3493,7 @@ public:
 struct UExpandableArea_SetIsExpanded_Params
 {
 public:
-	bool                                         IsExpanded;                                        // 0x0(0x1)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate)
+	bool                                         IsExpanded;                                        // 0x0(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3501,7 +3501,7 @@ public:
 struct UExpandableArea_GetIsExpanded_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -3509,8 +3509,8 @@ public:
 struct UGridPanel_SetRowFill_Params
 {
 public:
-	int32                                        RowIndex;                                          // 0x0(0x4)(ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, InstancedReference, SubobjectReference)
-	float                                        Coefficient;                                       // 0x4(0x4)(ConstParm, EditFixedSize, OutParm, ZeroConstructor, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        RowIndex;                                          // 0x0(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, Config, InstancedReference, SubobjectReference)
+	float                                        Coefficient;                                       // 0x4(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -3518,8 +3518,8 @@ public:
 struct UGridPanel_SetColumnFill_Params
 {
 public:
-	int32                                        ColumnIndex;                                       // 0x0(0x4)(ConstParm, BlueprintVisible, Net, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	float                                        Coefficient;                                       // 0x4(0x4)(ConstParm, EditFixedSize, OutParm, ZeroConstructor, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        ColumnIndex;                                       // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        Coefficient;                                       // 0x4(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -3527,10 +3527,10 @@ public:
 struct UGridPanel_AddChildToGrid_Params
 {
 public:
-	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Config, EditConst, SubobjectReference)
-	int32                                        InRow;                                             // 0x8(0x4)(ConstParm, Net, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	int32                                        InColumn;                                          // 0xC(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	class UGridSlot*                             ReturnValue;                                       // 0x10(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	int32                                        InRow;                                             // 0x8(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	int32                                        InColumn;                                          // 0xC(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	class UGridSlot*                             ReturnValue;                                       // 0x10(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3538,7 +3538,7 @@ public:
 struct UGridSlot_SetVerticalAlignment_Params
 {
 public:
-	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -3546,7 +3546,7 @@ public:
 struct UGridSlot_SetRowSpan_Params
 {
 public:
-	int32                                        InRowSpan;                                         // 0x0(0x4)(Edit, ExportObject, EditFixedSize, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	int32                                        InRowSpan;                                         // 0x0(0x4)(Edit, Net, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -3554,7 +3554,7 @@ public:
 struct UGridSlot_SetRow_Params
 {
 public:
-	int32                                        InRow;                                             // 0x0(0x4)(ConstParm, Net, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	int32                                        InRow;                                             // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -3562,7 +3562,7 @@ public:
 struct UGridSlot_SetPadding_Params
 {
 public:
-	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -3570,7 +3570,7 @@ public:
 struct UGridSlot_SetNudge_Params
 {
 public:
-	struct FVector2D                             InNudge;                                           // 0x0(0x10)(BlueprintVisible, EditFixedSize, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	struct FVector2D                             InNudge;                                           // 0x0(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -3578,7 +3578,7 @@ public:
 struct UGridSlot_SetLayer_Params
 {
 public:
-	int32                                        InLayer;                                           // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	int32                                        InLayer;                                           // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3586,7 +3586,7 @@ public:
 struct UGridSlot_SetHorizontalAlignment_Params
 {
 public:
-	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -3594,7 +3594,7 @@ public:
 struct UGridSlot_SetColumnSpan_Params
 {
 public:
-	int32                                        InColumnSpan;                                      // 0x0(0x4)(ExportObject, BlueprintReadOnly, Net, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	int32                                        InColumnSpan;                                      // 0x0(0x4)(BlueprintReadOnly, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -3602,7 +3602,7 @@ public:
 struct UGridSlot_SetColumn_Params
 {
 public:
-	int32                                        InColumn;                                          // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	int32                                        InColumn;                                          // 0x0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -3610,8 +3610,8 @@ public:
 struct UHorizontalBox_AddChildToHorizontalBox_Params
 {
 public:
-	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Config, EditConst, SubobjectReference)
-	class UHorizontalBoxSlot*                    ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	class UHorizontalBoxSlot*                    ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3619,7 +3619,7 @@ public:
 struct UHorizontalBoxSlot_SetVerticalAlignment_Params
 {
 public:
-	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -3627,7 +3627,7 @@ public:
 struct UHorizontalBoxSlot_SetSize_Params
 {
 public:
-	struct FSlateChildSize                       InSize;                                            // 0x0(0x8)(Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+	struct FSlateChildSize                       InSize;                                            // 0x0(0x8)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -3635,7 +3635,7 @@ public:
 struct UHorizontalBoxSlot_SetPadding_Params
 {
 public:
-	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3643,7 +3643,7 @@ public:
 struct UHorizontalBoxSlot_SetHorizontalAlignment_Params
 {
 public:
-	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3651,7 +3651,7 @@ public:
 struct UInputKeySelector_SetTextBlockVisibility_Params
 {
 public:
-	enum class ESlateVisibility                  InVisibility;                                      // 0x0(0x1)(Parm, GlobalConfig, SubobjectReference)
+	enum class ESlateVisibility                  InVisibility;                                      // 0x0(0x1)(BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -3659,7 +3659,7 @@ public:
 struct UInputKeySelector_SetSelectedKey_Params
 {
 public:
-	struct FInputChord                           InSelectedKey;                                     // 0x0(0x20)(Edit, ConstParm, BlueprintVisible, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	struct FInputChord                           InSelectedKey;                                     // 0x0(0x20)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -3667,7 +3667,7 @@ public:
 struct UInputKeySelector_SetNoKeySpecifiedText_Params
 {
 public:
-	class FText                                  InNoKeySpecifiedText;                              // 0x0(0x18)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	class FText                                  InNoKeySpecifiedText;                              // 0x0(0x18)(BlueprintVisible, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -3675,7 +3675,7 @@ public:
 struct UInputKeySelector_SetKeySelectionText_Params
 {
 public:
-	class FText                                  InKeySelectionText;                                // 0x0(0x18)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	class FText                                  InKeySelectionText;                                // 0x0(0x18)(ConstParm, EditFixedSize, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -3683,7 +3683,7 @@ public:
 struct UInputKeySelector_SetEscapeKeys_Params
 {
 public:
-	TArray<struct FKey>                          InKeys;                                            // 0x0(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	TArray<struct FKey>                          InKeys;                                            // 0x0(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3691,7 +3691,7 @@ public:
 struct UInputKeySelector_SetAllowModifierKeys_Params
 {
 public:
-	bool                                         bInAllowModifierKeys;                              // 0x0(0x1)(Edit, ConstParm, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	bool                                         bInAllowModifierKeys;                              // 0x0(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3699,7 +3699,7 @@ public:
 struct UInputKeySelector_SetAllowGamepadKeys_Params
 {
 public:
-	bool                                         bInAllowGamepadKeys;                               // 0x0(0x1)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	bool                                         bInAllowGamepadKeys;                               // 0x0(0x1)(ExportObject, Net, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -3707,7 +3707,7 @@ public:
 struct UInputKeySelector_OnKeySelected__DelegateSignature_Params
 {
 public:
-	struct FInputChord                           SelectedKey;                                       // 0x0(0x20)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, EditConst)
+	struct FInputChord                           SelectedKey;                                       // 0x0(0x20)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3715,7 +3715,7 @@ public:
 struct UInputKeySelector_GetIsSelectingKey_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3723,7 +3723,7 @@ public:
 struct UInvalidationBox_SetCanCache_Params
 {
 public:
-	bool                                         CanCache;                                          // 0x0(0x1)(ConstParm, Net, EditFixedSize, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         CanCache;                                          // 0x0(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3731,7 +3731,7 @@ public:
 struct UInvalidationBox_GetCanCache_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3739,7 +3739,7 @@ public:
 struct UMenuAnchor_ToggleOpen_Params
 {
 public:
-	bool                                         bFocusOnOpen;                                      // 0x0(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	bool                                         bFocusOnOpen;                                      // 0x0(0x1)(BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3747,7 +3747,7 @@ public:
 struct UMenuAnchor_ShouldOpenDueToClick_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3755,7 +3755,7 @@ public:
 struct UMenuAnchor_SetPlacement_Params
 {
 public:
-	enum class EMenuPlacement                    InPlacement;                                       // 0x0(0x1)(BlueprintVisible, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	enum class EMenuPlacement                    InPlacement;                                       // 0x0(0x1)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3763,7 +3763,7 @@ public:
 struct UMenuAnchor_SetIgnoreClicksOutside_Params
 {
 public:
-	bool                                         Ignore;                                            // 0x0(0x1)(Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	bool                                         Ignore;                                            // 0x0(0x1)(BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3771,7 +3771,7 @@ public:
 struct UMenuAnchor_Open_Params
 {
 public:
-	bool                                         bFocusMenu;                                        // 0x0(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	bool                                         bFocusMenu;                                        // 0x0(0x1)(ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3779,7 +3779,7 @@ public:
 struct UMenuAnchor_IsOpen_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3787,7 +3787,7 @@ public:
 struct UMenuAnchor_HasOpenSubMenus_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -3795,7 +3795,7 @@ public:
 struct UMenuAnchor_GetUserWidget__DelegateSignature_Params
 {
 public:
-	class UUserWidget*                           ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UUserWidget*                           ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -3803,7 +3803,7 @@ public:
 struct UMenuAnchor_GetMenuPosition_Params
 {
 public:
-	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3811,7 +3811,7 @@ public:
 struct UMenuAnchor_GetIsMenuAnchorOpen_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3819,7 +3819,7 @@ public:
 struct UMenuAnchor_GetIgnoreClicksOutside_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3827,7 +3827,7 @@ public:
 struct UMenuAnchor_FitInWindow_Params
 {
 public:
-	bool                                         bFit;                                              // 0x0(0x1)(ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	bool                                         bFit;                                              // 0x0(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x340 (0x340 - 0x0)
@@ -3835,7 +3835,7 @@ public:
 struct UMultiLineEditableText_SetWidgetStyle_Params
 {
 public:
-	struct FTextBlockStyle                       InWidgetStyle;                                     // 0x0(0x340)(BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, GlobalConfig, SubobjectReference)
+	struct FTextBlockStyle                       InWidgetStyle;                                     // 0x0(0x340)(EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -3843,7 +3843,7 @@ public:
 struct UMultiLineEditableText_SetText_Params
 {
 public:
-	class FText                                  InText;                                            // 0x0(0x18)(ConstParm, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	class FText                                  InText;                                            // 0x0(0x18)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3851,7 +3851,7 @@ public:
 struct UMultiLineEditableText_SetIsReadOnly_Params
 {
 public:
-	bool                                         bReadOnly;                                         // 0x0(0x1)(ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	bool                                         bReadOnly;                                         // 0x0(0x1)(ExportObject, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -3859,7 +3859,7 @@ public:
 struct UMultiLineEditableText_SetHintText_Params
 {
 public:
-	class FText                                  InHintText;                                        // 0x0(0x18)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	class FText                                  InHintText;                                        // 0x0(0x18)(ConstParm, ExportObject, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -3867,7 +3867,7 @@ public:
 struct UMultiLineEditableText_SetFontOutlineMaterial_Params
 {
 public:
-	class UMaterialInterface*                    InMaterial;                                        // 0x0(0x8)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	class UMaterialInterface*                    InMaterial;                                        // 0x0(0x8)(BlueprintVisible, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -3875,7 +3875,7 @@ public:
 struct UMultiLineEditableText_SetFontMaterial_Params
 {
 public:
-	class UMaterialInterface*                    InMaterial;                                        // 0x0(0x8)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	class UMaterialInterface*                    InMaterial;                                        // 0x0(0x8)(BlueprintVisible, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x58 (0x58 - 0x0)
@@ -3883,7 +3883,7 @@ public:
 struct UMultiLineEditableText_SetFont_Params
 {
 public:
-	struct FSlateFontInfo                        InFontInfo;                                        // 0x0(0x58)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	struct FSlateFontInfo                        InFontInfo;                                        // 0x0(0x58)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -3891,9 +3891,9 @@ public:
 struct UMultiLineEditableText_OnMultiLineEditableTextCommittedEvent__DelegateSignature_Params
 {
 public:
-	class FText                                  Text;                                              // 0x0(0x18)(Edit, Net, OutParm, DisableEditOnTemplate, EditConst)
-	enum class ETextCommit                       CommitMethod;                                      // 0x18(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_17C5[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class FText                                  Text;                                              // 0x0(0x18)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
+	enum class ETextCommit                       CommitMethod;                                      // 0x18(0x1)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_19AE[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -3901,7 +3901,7 @@ public:
 struct UMultiLineEditableText_OnMultiLineEditableTextChangedEvent__DelegateSignature_Params
 {
 public:
-	class FText                                  Text;                                              // 0x0(0x18)(Edit, Net, OutParm, DisableEditOnTemplate, EditConst)
+	class FText                                  Text;                                              // 0x0(0x18)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -3909,7 +3909,7 @@ public:
 struct UMultiLineEditableText_GetText_Params
 {
 public:
-	class FText                                  ReturnValue;                                       // 0x0(0x18)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FText                                  ReturnValue;                                       // 0x0(0x18)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -3917,7 +3917,7 @@ public:
 struct UMultiLineEditableText_GetHintText_Params
 {
 public:
-	class FText                                  ReturnValue;                                       // 0x0(0x18)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FText                                  ReturnValue;                                       // 0x0(0x18)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x58 (0x58 - 0x0)
@@ -3925,7 +3925,7 @@ public:
 struct UMultiLineEditableText_GetFont_Params
 {
 public:
-	struct FSlateFontInfo                        ReturnValue;                                       // 0x0(0x58)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FSlateFontInfo                        ReturnValue;                                       // 0x0(0x58)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x340 (0x340 - 0x0)
@@ -3933,7 +3933,7 @@ public:
 struct UMultiLineEditableTextBox_SetTextStyle_Params
 {
 public:
-	struct FTextBlockStyle                       InTextStyle;                                       // 0x0(0x340)(BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
+	struct FTextBlockStyle                       InTextStyle;                                       // 0x0(0x340)(BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -3941,7 +3941,7 @@ public:
 struct UMultiLineEditableTextBox_SetText_Params
 {
 public:
-	class FText                                  InText;                                            // 0x0(0x18)(ConstParm, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	class FText                                  InText;                                            // 0x0(0x18)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -3949,7 +3949,7 @@ public:
 struct UMultiLineEditableTextBox_SetIsReadOnly_Params
 {
 public:
-	bool                                         bReadOnly;                                         // 0x0(0x1)(ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	bool                                         bReadOnly;                                         // 0x0(0x1)(ExportObject, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -3957,7 +3957,7 @@ public:
 struct UMultiLineEditableTextBox_SetHintText_Params
 {
 public:
-	class FText                                  InHintText;                                        // 0x0(0x18)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	class FText                                  InHintText;                                        // 0x0(0x18)(ConstParm, ExportObject, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -3973,7 +3973,7 @@ public:
 struct UMultiLineEditableTextBox_SetError_Params
 {
 public:
-	class FText                                  InError;                                           // 0x0(0x18)(BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
+	class FText                                  InError;                                           // 0x0(0x18)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -3981,9 +3981,9 @@ public:
 struct UMultiLineEditableTextBox_OnMultiLineEditableTextBoxCommittedEvent__DelegateSignature_Params
 {
 public:
-	class FText                                  Text;                                              // 0x0(0x18)(Edit, Net, OutParm, DisableEditOnTemplate, EditConst)
-	enum class ETextCommit                       CommitMethod;                                      // 0x18(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_17D8[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class FText                                  Text;                                              // 0x0(0x18)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
+	enum class ETextCommit                       CommitMethod;                                      // 0x18(0x1)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_19C0[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -3991,7 +3991,7 @@ public:
 struct UMultiLineEditableTextBox_OnMultiLineEditableTextBoxChangedEvent__DelegateSignature_Params
 {
 public:
-	class FText                                  Text;                                              // 0x0(0x18)(Edit, Net, OutParm, DisableEditOnTemplate, EditConst)
+	class FText                                  Text;                                              // 0x0(0x18)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -3999,7 +3999,7 @@ public:
 struct UMultiLineEditableTextBox_GetText_Params
 {
 public:
-	class FText                                  ReturnValue;                                       // 0x0(0x18)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FText                                  ReturnValue;                                       // 0x0(0x18)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -4007,7 +4007,7 @@ public:
 struct UMultiLineEditableTextBox_GetHintText_Params
 {
 public:
-	class FText                                  ReturnValue;                                       // 0x0(0x18)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FText                                  ReturnValue;                                       // 0x0(0x18)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -4015,11 +4015,11 @@ public:
 struct UOverlay_ReplaceOverlayChildAt_Params
 {
 public:
-	int32                                        Index;                                             // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
-	uint8                                        Pad_17E5[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	class UWidget*                               Content;                                           // 0x8(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Config, EditConst, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x10(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_17E6[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	int32                                        Index;                                             // 0x0(0x4)(EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	uint8                                        Pad_19CE[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	class UWidget*                               Content;                                           // 0x8(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x10(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_19CF[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -4027,8 +4027,8 @@ public:
 struct UOverlay_AddChildToOverlay_Params
 {
 public:
-	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Config, EditConst, SubobjectReference)
-	class UOverlaySlot*                          ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	class UOverlaySlot*                          ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4036,7 +4036,7 @@ public:
 struct UOverlaySlot_SetVerticalAlignment_Params
 {
 public:
-	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -4044,7 +4044,7 @@ public:
 struct UOverlaySlot_SetPadding_Params
 {
 public:
-	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4052,7 +4052,7 @@ public:
 struct UOverlaySlot_SetHorizontalAlignment_Params
 {
 public:
-	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4060,7 +4060,7 @@ public:
 struct UProgressBar_SetPercentInterpolationKey_Params
 {
 public:
-	int32                                        InterpKey;                                         // 0x0(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	int32                                        InterpKey;                                         // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -4068,8 +4068,8 @@ public:
 struct UProgressBar_SetPercent_Params
 {
 public:
-	float                                        InPercent;                                         // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	int32                                        InterpKey;                                         // 0x4(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        InPercent;                                         // 0x0(0x4)(ConstParm, BlueprintVisible, Net, EditFixedSize, GlobalConfig, InstancedReference, SubobjectReference)
+	int32                                        InterpKey;                                         // 0x4(0x4)(ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4077,7 +4077,7 @@ public:
 struct UProgressBar_SetIsMarquee_Params
 {
 public:
-	bool                                         InbIsMarquee;                                      // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         InbIsMarquee;                                      // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -4085,7 +4085,7 @@ public:
 struct UProgressBar_SetFillColorAndOpacity_Params
 {
 public:
-	struct FLinearColor                          InColor;                                           // 0x0(0x10)(ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	struct FLinearColor                          InColor;                                           // 0x0(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4093,7 +4093,7 @@ public:
 struct UProgressBar_SetEnginePercent_Params
 {
 public:
-	float                                        InPercent;                                         // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        InPercent;                                         // 0x0(0x4)(ConstParm, BlueprintVisible, Net, EditFixedSize, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -4101,7 +4101,7 @@ public:
 struct URetainerBox_SetTextureParameter_Params
 {
 public:
-	class FName                                  TextureParameter;                                  // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	class FName                                  TextureParameter;                                  // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4109,7 +4109,7 @@ public:
 struct URetainerBox_SetRetainRendering_Params
 {
 public:
-	bool                                         bInRetainRendering;                                // 0x0(0x1)(Edit, BlueprintVisible, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bInRetainRendering;                                // 0x0(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -4117,8 +4117,8 @@ public:
 struct URetainerBox_SetRenderingPhase_Params
 {
 public:
-	int32                                        RenderPhase;                                       // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	int32                                        TotalPhases;                                       // 0x4(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	int32                                        RenderPhase;                                       // 0x0(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	int32                                        TotalPhases;                                       // 0x4(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -4126,7 +4126,7 @@ public:
 struct URetainerBox_SetEffectMaterial_Params
 {
 public:
-	class UMaterialInterface*                    EffectMaterial;                                    // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	class UMaterialInterface*                    EffectMaterial;                                    // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -4134,7 +4134,7 @@ public:
 struct URetainerBox_GetEffectMaterial_Params
 {
 public:
-	class UMaterialInstanceDynamic*              ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UMaterialInstanceDynamic*              ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4142,10 +4142,10 @@ public:
 struct USafeZone_SetSidesToPad_Params
 {
 public:
-	bool                                         InPadLeft;                                         // 0x0(0x1)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	bool                                         InPadRight;                                        // 0x1(0x1)(Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	bool                                         InPadTop;                                          // 0x2(0x1)(EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	bool                                         InPadBottom;                                       // 0x3(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         InPadLeft;                                         // 0x0(0x1)(Edit, ConstParm, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         InPadRight;                                        // 0x1(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         InPadTop;                                          // 0x2(0x1)(ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         InPadBottom;                                       // 0x3(0x1)(Edit, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4153,7 +4153,7 @@ public:
 struct UScaleBox_SetUserSpecifiedScale_Params
 {
 public:
-	float                                        InUserSpecifiedScale;                              // 0x0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        InUserSpecifiedScale;                              // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4161,7 +4161,7 @@ public:
 struct UScaleBox_SetStretchDirection_Params
 {
 public:
-	enum class EStretchDirection                 InStretchDirection;                                // 0x0(0x1)(Edit, ConstParm, ExportObject, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	enum class EStretchDirection                 InStretchDirection;                                // 0x0(0x1)(Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4169,7 +4169,7 @@ public:
 struct UScaleBox_SetStretch_Params
 {
 public:
-	enum class EStretch                          InStretch;                                         // 0x0(0x1)(Edit, BlueprintVisible, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	enum class EStretch                          InStretch;                                         // 0x0(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4177,7 +4177,7 @@ public:
 struct UScaleBox_SetIgnoreInheritedScale_Params
 {
 public:
-	bool                                         bInIgnoreInheritedScale;                           // 0x0(0x1)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bInIgnoreInheritedScale;                           // 0x0(0x1)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4185,7 +4185,7 @@ public:
 struct UScaleBoxSlot_SetVerticalAlignment_Params
 {
 public:
-	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -4193,7 +4193,7 @@ public:
 struct UScaleBoxSlot_SetPadding_Params
 {
 public:
-	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4201,7 +4201,7 @@ public:
 struct UScaleBoxSlot_SetHorizontalAlignment_Params
 {
 public:
-	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -4209,8 +4209,8 @@ public:
 struct UScrollBar_SetState_Params
 {
 public:
-	float                                        InOffsetFraction;                                  // 0x0(0x4)(Edit, ConstParm, ExportObject, Net, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	float                                        InThumbSizeFraction;                               // 0x4(0x4)(Net, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        InOffsetFraction;                                  // 0x0(0x4)(Edit, ConstParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        InThumbSizeFraction;                               // 0x4(0x4)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4218,7 +4218,7 @@ public:
 struct UScrollBoxSlot_SetVerticalAlignment_Params
 {
 public:
-	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -4226,7 +4226,7 @@ public:
 struct UScrollBoxSlot_SetPadding_Params
 {
 public:
-	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4234,7 +4234,7 @@ public:
 struct UScrollBoxSlot_SetHorizontalAlignment_Params
 {
 public:
-	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4242,7 +4242,7 @@ public:
 struct USizeBox_SetWidthOverride_Params
 {
 public:
-	float                                        InWidthOverride;                                   // 0x0(0x4)(ConstParm, BlueprintVisible, Parm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        InWidthOverride;                                   // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4250,7 +4250,7 @@ public:
 struct USizeBox_SetMinDesiredWidth_Params
 {
 public:
-	float                                        InMinDesiredWidth;                                 // 0x0(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	float                                        InMinDesiredWidth;                                 // 0x0(0x4)(Edit, ExportObject, Net, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4258,7 +4258,7 @@ public:
 struct USizeBox_SetMinDesiredHeight_Params
 {
 public:
-	float                                        InMinDesiredHeight;                                // 0x0(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        InMinDesiredHeight;                                // 0x0(0x4)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4266,7 +4266,7 @@ public:
 struct USizeBox_SetMinAspectRatio_Params
 {
 public:
-	float                                        InMinAspectRatio;                                  // 0x0(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        InMinAspectRatio;                                  // 0x0(0x4)(Edit, ConstParm, ExportObject, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4274,7 +4274,7 @@ public:
 struct USizeBox_SetMaxDesiredWidth_Params
 {
 public:
-	float                                        InMaxDesiredWidth;                                 // 0x0(0x4)(Edit, ExportObject, Net, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        InMaxDesiredWidth;                                 // 0x0(0x4)(Edit, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4282,7 +4282,7 @@ public:
 struct USizeBox_SetMaxDesiredHeight_Params
 {
 public:
-	float                                        InMaxDesiredHeight;                                // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        InMaxDesiredHeight;                                // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4290,7 +4290,7 @@ public:
 struct USizeBox_SetMaxAspectRatio_Params
 {
 public:
-	float                                        InMaxAspectRatio;                                  // 0x0(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        InMaxAspectRatio;                                  // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4298,7 +4298,7 @@ public:
 struct USizeBox_SetHeightOverride_Params
 {
 public:
-	float                                        InHeightOverride;                                  // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        InHeightOverride;                                  // 0x0(0x4)(Edit, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4306,7 +4306,7 @@ public:
 struct USizeBoxSlot_SetVerticalAlignment_Params
 {
 public:
-	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -4314,7 +4314,7 @@ public:
 struct USizeBoxSlot_SetPadding_Params
 {
 public:
-	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4322,7 +4322,7 @@ public:
 struct USizeBoxSlot_SetHorizontalAlignment_Params
 {
 public:
-	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4330,7 +4330,7 @@ public:
 struct USlider_SetValue_Params
 {
 public:
-	float                                        InValue;                                           // 0x0(0x4)(Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        InValue;                                           // 0x0(0x4)(Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4338,7 +4338,7 @@ public:
 struct USlider_SetStepSize_Params
 {
 public:
-	float                                        InValue;                                           // 0x0(0x4)(Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        InValue;                                           // 0x0(0x4)(Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -4346,7 +4346,7 @@ public:
 struct USlider_SetSliderHandleColor_Params
 {
 public:
-	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -4354,7 +4354,7 @@ public:
 struct USlider_SetSliderBarColor_Params
 {
 public:
-	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4362,7 +4362,7 @@ public:
 struct USlider_SetMinValue_Params
 {
 public:
-	float                                        InValue;                                           // 0x0(0x4)(Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        InValue;                                           // 0x0(0x4)(Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4370,7 +4370,7 @@ public:
 struct USlider_SetMaxValue_Params
 {
 public:
-	float                                        InValue;                                           // 0x0(0x4)(Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        InValue;                                           // 0x0(0x4)(Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4378,7 +4378,7 @@ public:
 struct USlider_SetLocked_Params
 {
 public:
-	bool                                         InValue;                                           // 0x0(0x1)(Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         InValue;                                           // 0x0(0x1)(Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4386,7 +4386,7 @@ public:
 struct USlider_SetIndentHandle_Params
 {
 public:
-	bool                                         InValue;                                           // 0x0(0x1)(Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         InValue;                                           // 0x0(0x1)(Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4394,7 +4394,7 @@ public:
 struct USlider_GetValue_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4402,7 +4402,7 @@ public:
 struct USlider_GetNormalizedValue_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -4410,7 +4410,7 @@ public:
 struct USpacer_SetSize_Params
 {
 public:
-	struct FVector2D                             InSize;                                            // 0x0(0x10)(Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+	struct FVector2D                             InSize;                                            // 0x0(0x10)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4418,7 +4418,7 @@ public:
 struct USpinBox_SetValue_Params
 {
 public:
-	float                                        NewValue;                                          // 0x0(0x4)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+	float                                        NewValue;                                          // 0x0(0x4)(ConstParm, Net, EditFixedSize, ZeroConstructor, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4426,7 +4426,7 @@ public:
 struct USpinBox_SetMinValue_Params
 {
 public:
-	float                                        NewValue;                                          // 0x0(0x4)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+	float                                        NewValue;                                          // 0x0(0x4)(ConstParm, Net, EditFixedSize, ZeroConstructor, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4434,7 +4434,7 @@ public:
 struct USpinBox_SetMinSliderValue_Params
 {
 public:
-	float                                        NewValue;                                          // 0x0(0x4)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+	float                                        NewValue;                                          // 0x0(0x4)(ConstParm, Net, EditFixedSize, ZeroConstructor, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4442,7 +4442,7 @@ public:
 struct USpinBox_SetMinFractionalDigits_Params
 {
 public:
-	int32                                        NewValue;                                          // 0x0(0x4)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+	int32                                        NewValue;                                          // 0x0(0x4)(ConstParm, Net, EditFixedSize, ZeroConstructor, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4450,7 +4450,7 @@ public:
 struct USpinBox_SetMaxValue_Params
 {
 public:
-	float                                        NewValue;                                          // 0x0(0x4)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+	float                                        NewValue;                                          // 0x0(0x4)(ConstParm, Net, EditFixedSize, ZeroConstructor, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4458,7 +4458,7 @@ public:
 struct USpinBox_SetMaxSliderValue_Params
 {
 public:
-	float                                        NewValue;                                          // 0x0(0x4)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+	float                                        NewValue;                                          // 0x0(0x4)(ConstParm, Net, EditFixedSize, ZeroConstructor, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4466,7 +4466,7 @@ public:
 struct USpinBox_SetMaxFractionalDigits_Params
 {
 public:
-	int32                                        NewValue;                                          // 0x0(0x4)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+	int32                                        NewValue;                                          // 0x0(0x4)(ConstParm, Net, EditFixedSize, ZeroConstructor, EditConst, SubobjectReference)
 };
 
 // 0x14 (0x14 - 0x0)
@@ -4474,7 +4474,7 @@ public:
 struct USpinBox_SetForegroundColor_Params
 {
 public:
-	struct FSlateColor                           InForegroundColor;                                 // 0x0(0x14)(Edit, BlueprintVisible, Parm, ReturnParm, GlobalConfig, SubobjectReference)
+	struct FSlateColor                           InForegroundColor;                                 // 0x0(0x14)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Transient, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4482,7 +4482,7 @@ public:
 struct USpinBox_SetDelta_Params
 {
 public:
-	float                                        NewValue;                                          // 0x0(0x4)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+	float                                        NewValue;                                          // 0x0(0x4)(ConstParm, Net, EditFixedSize, ZeroConstructor, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4490,7 +4490,7 @@ public:
 struct USpinBox_SetAlwaysUsesDeltaSnap_Params
 {
 public:
-	bool                                         bNewValue;                                         // 0x0(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+	bool                                         bNewValue;                                         // 0x0(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -4498,9 +4498,9 @@ public:
 struct USpinBox_OnSpinBoxValueCommittedEvent__DelegateSignature_Params
 {
 public:
-	float                                        InValue;                                           // 0x0(0x4)(Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
-	enum class ETextCommit                       CommitMethod;                                      // 0x4(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1849[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	float                                        InValue;                                           // 0x0(0x4)(Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	enum class ETextCommit                       CommitMethod;                                      // 0x4(0x1)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1B0F[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4508,7 +4508,7 @@ public:
 struct USpinBox_OnSpinBoxValueChangedEvent__DelegateSignature_Params
 {
 public:
-	float                                        InValue;                                           // 0x0(0x4)(Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        InValue;                                           // 0x0(0x4)(Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4516,7 +4516,7 @@ public:
 struct USpinBox_GetValue_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4524,7 +4524,7 @@ public:
 struct USpinBox_GetMinValue_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4532,7 +4532,7 @@ public:
 struct USpinBox_GetMinSliderValue_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4540,7 +4540,7 @@ public:
 struct USpinBox_GetMinFractionalDigits_Params
 {
 public:
-	int32                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4548,7 +4548,7 @@ public:
 struct USpinBox_GetMaxValue_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4556,7 +4556,7 @@ public:
 struct USpinBox_GetMaxSliderValue_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4564,7 +4564,7 @@ public:
 struct USpinBox_GetMaxFractionalDigits_Params
 {
 public:
-	int32                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4572,7 +4572,7 @@ public:
 struct USpinBox_GetDelta_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4580,7 +4580,7 @@ public:
 struct USpinBox_GetAlwaysUsesDeltaSnap_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -4588,11 +4588,11 @@ public:
 struct UStackBox_ReplaceStackBoxChildAt_Params
 {
 public:
-	int32                                        Index;                                             // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
-	uint8                                        Pad_187C[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	class UWidget*                               Content;                                           // 0x8(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Config, EditConst, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x10(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_187D[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	int32                                        Index;                                             // 0x0(0x4)(EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	uint8                                        Pad_1B27[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	class UWidget*                               Content;                                           // 0x8(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x10(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1B29[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -4600,8 +4600,8 @@ public:
 struct UStackBox_AddChildToStackBox_Params
 {
 public:
-	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Config, EditConst, SubobjectReference)
-	class UStackBoxSlot*                         ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	class UStackBoxSlot*                         ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4609,7 +4609,7 @@ public:
 struct UTextBlock_SetTextTransformPolicy_Params
 {
 public:
-	enum class ETextTransformPolicy              InTransformPolicy;                                 // 0x0(0x1)(ConstParm, EditFixedSize, Config, InstancedReference, SubobjectReference)
+	enum class ETextTransformPolicy              InTransformPolicy;                                 // 0x0(0x1)(BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4617,7 +4617,7 @@ public:
 struct UTextBlock_SetTextOverflowPolicy_Params
 {
 public:
-	enum class ETextOverflowPolicy               InOverflowPolicy;                                  // 0x0(0x1)(Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	enum class ETextOverflowPolicy               InOverflowPolicy;                                  // 0x0(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -4625,7 +4625,7 @@ public:
 struct UTextBlock_SetText_Params
 {
 public:
-	class FText                                  InText;                                            // 0x0(0x18)(ConstParm, ExportObject, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	class FText                                  InText;                                            // 0x0(0x18)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Config, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -4633,7 +4633,7 @@ public:
 struct UTextBlock_SetString_Params
 {
 public:
-	class FString                                InString;                                          // 0x0(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	class FString                                InString;                                          // 0x0(0x10)(ExportObject, OutParm, Config, EditConst, SubobjectReference)
 };
 
 // 0xD0 (0xD0 - 0x0)
@@ -4641,7 +4641,7 @@ public:
 struct UTextBlock_SetStrikeBrush_Params
 {
 public:
-	struct FSlateBrush                           InStrikeBrush;                                     // 0x0(0xD0)(Edit, ConstParm, BlueprintVisible, Net, Config, InstancedReference, SubobjectReference)
+	struct FSlateBrush                           InStrikeBrush;                                     // 0x0(0xD0)(Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -4649,7 +4649,7 @@ public:
 struct UTextBlock_SetShadowOffset_Params
 {
 public:
-	struct FVector2D                             InShadowOffset;                                    // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Config, InstancedReference, SubobjectReference)
+	struct FVector2D                             InShadowOffset;                                    // 0x0(0x10)(Edit, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -4657,7 +4657,7 @@ public:
 struct UTextBlock_SetShadowColorAndOpacity_Params
 {
 public:
-	struct FLinearColor                          InShadowColorAndOpacity;                           // 0x0(0x10)(ConstParm, BlueprintReadOnly, Config, InstancedReference, SubobjectReference)
+	struct FLinearColor                          InShadowColorAndOpacity;                           // 0x0(0x10)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4665,7 +4665,7 @@ public:
 struct UTextBlock_SetOpacity_Params
 {
 public:
-	float                                        InOpacity;                                         // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, GlobalConfig, SubobjectReference)
+	float                                        InOpacity;                                         // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4673,7 +4673,7 @@ public:
 struct UTextBlock_SetMinDesiredWidth_Params
 {
 public:
-	float                                        InMinDesiredWidth;                                 // 0x0(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	float                                        InMinDesiredWidth;                                 // 0x0(0x4)(Edit, ExportObject, Net, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -4681,7 +4681,7 @@ public:
 struct UTextBlock_SetFontOutlineMaterial_Params
 {
 public:
-	class UMaterialInterface*                    InMaterial;                                        // 0x0(0x8)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	class UMaterialInterface*                    InMaterial;                                        // 0x0(0x8)(BlueprintVisible, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -4689,7 +4689,7 @@ public:
 struct UTextBlock_SetFontMaterial_Params
 {
 public:
-	class UMaterialInterface*                    InMaterial;                                        // 0x0(0x8)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	class UMaterialInterface*                    InMaterial;                                        // 0x0(0x8)(BlueprintVisible, ReturnParm, GlobalConfig, SubobjectReference)
 };
 
 // 0x58 (0x58 - 0x0)
@@ -4697,7 +4697,7 @@ public:
 struct UTextBlock_SetFont_Params
 {
 public:
-	struct FSlateFontInfo                        InFontInfo;                                        // 0x0(0x58)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	struct FSlateFontInfo                        InFontInfo;                                        // 0x0(0x58)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
 };
 
 // 0x14 (0x14 - 0x0)
@@ -4705,7 +4705,7 @@ public:
 struct UTextBlock_SetColorAndOpacity_Params
 {
 public:
-	struct FSlateColor                           InColorAndOpacity;                                 // 0x0(0x14)(Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FSlateColor                           InColorAndOpacity;                                 // 0x0(0x14)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4713,7 +4713,7 @@ public:
 struct UTextBlock_SetAutoWrapText_Params
 {
 public:
-	bool                                         InAutoTextWrap;                                    // 0x0(0x1)(Config, InstancedReference, SubobjectReference)
+	bool                                         InAutoTextWrap;                                    // 0x0(0x1)(ConstParm, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -4721,7 +4721,7 @@ public:
 struct UTextBlock_GetText_Params
 {
 public:
-	class FText                                  ReturnValue;                                       // 0x0(0x18)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FText                                  ReturnValue;                                       // 0x0(0x18)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -4729,7 +4729,7 @@ public:
 struct UTextBlock_GetDynamicOutlineMaterial_Params
 {
 public:
-	class UMaterialInstanceDynamic*              ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UMaterialInstanceDynamic*              ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -4737,7 +4737,7 @@ public:
 struct UTextBlock_GetDynamicFontMaterial_Params
 {
 public:
-	class UMaterialInstanceDynamic*              ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UMaterialInstanceDynamic*              ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4745,7 +4745,7 @@ public:
 struct UThrobber_SetNumberOfPieces_Params
 {
 public:
-	int32                                        InNumberOfPieces;                                  // 0x0(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	int32                                        InNumberOfPieces;                                  // 0x0(0x4)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4753,7 +4753,7 @@ public:
 struct UThrobber_SetAnimateVertically_Params
 {
 public:
-	bool                                         bInAnimateVertically;                              // 0x0(0x1)(ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bInAnimateVertically;                              // 0x0(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4761,7 +4761,7 @@ public:
 struct UThrobber_SetAnimateOpacity_Params
 {
 public:
-	bool                                         bInAnimateOpacity;                                 // 0x0(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bInAnimateOpacity;                                 // 0x0(0x1)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4769,7 +4769,7 @@ public:
 struct UThrobber_SetAnimateHorizontally_Params
 {
 public:
-	bool                                         bInAnimateHorizontally;                            // 0x0(0x1)(BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bInAnimateHorizontally;                            // 0x0(0x1)(ExportObject, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4777,7 +4777,7 @@ public:
 struct UTileView_SetEntryWidth_Params
 {
 public:
-	float                                        NewWidth;                                          // 0x0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        NewWidth;                                          // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4785,7 +4785,7 @@ public:
 struct UTileView_SetEntryHeight_Params
 {
 public:
-	float                                        NewHeight;                                         // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        NewHeight;                                         // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4793,7 +4793,7 @@ public:
 struct UTileView_GetEntryWidth_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4801,7 +4801,7 @@ public:
 struct UTileView_GetEntryHeight_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -4809,9 +4809,9 @@ public:
 struct UTreeView_SetItemExpansion_Params
 {
 public:
-	class UObject*                               Item;                                              // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config)
-	bool                                         bExpandItem;                                       // 0x8(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_18B8[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class UObject*                               Item;                                              // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, Config)
+	bool                                         bExpandItem;                                       // 0x8(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1B6E[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -4819,7 +4819,7 @@ public:
 struct UUniformGridPanel_SetSlotPadding_Params
 {
 public:
-	struct FMargin                               InSlotPadding;                                     // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	struct FMargin                               InSlotPadding;                                     // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4827,7 +4827,7 @@ public:
 struct UUniformGridPanel_SetMinDesiredSlotWidth_Params
 {
 public:
-	float                                        InMinDesiredSlotWidth;                             // 0x0(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        InMinDesiredSlotWidth;                             // 0x0(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4835,7 +4835,7 @@ public:
 struct UUniformGridPanel_SetMinDesiredSlotHeight_Params
 {
 public:
-	float                                        InMinDesiredSlotHeight;                            // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        InMinDesiredSlotHeight;                            // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -4843,10 +4843,10 @@ public:
 struct UUniformGridPanel_AddChildToUniformGrid_Params
 {
 public:
-	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Config, EditConst, SubobjectReference)
-	int32                                        InRow;                                             // 0x8(0x4)(ConstParm, Net, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	int32                                        InColumn;                                          // 0xC(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	class UUniformGridSlot*                      ReturnValue;                                       // 0x10(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	int32                                        InRow;                                             // 0x8(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	int32                                        InColumn;                                          // 0xC(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	class UUniformGridSlot*                      ReturnValue;                                       // 0x10(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4854,7 +4854,7 @@ public:
 struct UUniformGridSlot_SetVerticalAlignment_Params
 {
 public:
-	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4862,7 +4862,7 @@ public:
 struct UUniformGridSlot_SetRow_Params
 {
 public:
-	int32                                        InRow;                                             // 0x0(0x4)(ConstParm, Net, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	int32                                        InRow;                                             // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4870,7 +4870,7 @@ public:
 struct UUniformGridSlot_SetHorizontalAlignment_Params
 {
 public:
-	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -4878,7 +4878,7 @@ public:
 struct UUniformGridSlot_SetColumn_Params
 {
 public:
-	int32                                        InColumn;                                          // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	int32                                        InColumn;                                          // 0x0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -4886,8 +4886,8 @@ public:
 struct UVerticalBox_AddChildToVerticalBox_Params
 {
 public:
-	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Config, EditConst, SubobjectReference)
-	class UVerticalBoxSlot*                      ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	class UVerticalBoxSlot*                      ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4895,7 +4895,7 @@ public:
 struct UVerticalBoxSlot_SetVerticalAlignment_Params
 {
 public:
-	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -4903,7 +4903,7 @@ public:
 struct UVerticalBoxSlot_SetSize_Params
 {
 public:
-	struct FSlateChildSize                       InSize;                                            // 0x0(0x8)(Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+	struct FSlateChildSize                       InSize;                                            // 0x0(0x8)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -4911,7 +4911,7 @@ public:
 struct UVerticalBoxSlot_SetPadding_Params
 {
 public:
-	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4919,7 +4919,7 @@ public:
 struct UVerticalBoxSlot_SetHorizontalAlignment_Params
 {
 public:
-	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -4927,8 +4927,8 @@ public:
 struct UViewport_Spawn_Params
 {
 public:
-	class UClass*                                ActorClass;                                        // 0x0(0x8)(ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	class AActor*                                ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UClass*                                ActorClass;                                        // 0x0(0x8)(ConstParm, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+	class AActor*                                ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -4952,7 +4952,7 @@ public:
 struct UViewport_GetViewRotation_Params
 {
 public:
-	struct FRotator                              ReturnValue;                                       // 0x0(0x18)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FRotator                              ReturnValue;                                       // 0x0(0x18)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -4960,7 +4960,7 @@ public:
 struct UViewport_GetViewportWorld_Params
 {
 public:
-	class UWorld*                                ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWorld*                                ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -4968,7 +4968,7 @@ public:
 struct UViewport_GetViewLocation_Params
 {
 public:
-	struct FVector                               ReturnValue;                                       // 0x0(0x18)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FVector                               ReturnValue;                                       // 0x0(0x18)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4976,7 +4976,7 @@ public:
 struct UWidgetComponent_SetWindowVisibility_Params
 {
 public:
-	enum class EWindowVisibility                 InVisibility;                                      // 0x0(0x1)(Parm, GlobalConfig, SubobjectReference)
+	enum class EWindowVisibility                 InVisibility;                                      // 0x0(0x1)(BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4984,7 +4984,7 @@ public:
 struct UWidgetComponent_SetWindowFocusable_Params
 {
 public:
-	bool                                         bInWindowFocusable;                                // 0x0(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bInWindowFocusable;                                // 0x0(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -4992,7 +4992,7 @@ public:
 struct UWidgetComponent_SetWidgetSpace_Params
 {
 public:
-	enum class EWidgetSpace                      NewSpace;                                          // 0x0(0x1)(Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	enum class EWidgetSpace                      NewSpace;                                          // 0x0(0x1)(Edit, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -5000,7 +5000,7 @@ public:
 struct UWidgetComponent_SetWidget_Params
 {
 public:
-	class UUserWidget*                           Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
+	class UUserWidget*                           Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5008,7 +5008,7 @@ public:
 struct UWidgetComponent_SetTwoSided_Params
 {
 public:
-	bool                                         bWantTwoSided;                                     // 0x0(0x1)(Edit, ExportObject, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bWantTwoSided;                                     // 0x0(0x1)(Edit, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -5016,7 +5016,7 @@ public:
 struct UWidgetComponent_SetTintColorAndOpacity_Params
 {
 public:
-	struct FLinearColor                          NewTintColorAndOpacity;                            // 0x0(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	struct FLinearColor                          NewTintColorAndOpacity;                            // 0x0(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5024,7 +5024,7 @@ public:
 struct UWidgetComponent_SetTickWhenOffscreen_Params
 {
 public:
-	bool                                         bWantTickWhenOffscreen;                            // 0x0(0x1)(Edit, BlueprintReadOnly, Net, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bWantTickWhenOffscreen;                            // 0x0(0x1)(Edit, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5032,7 +5032,7 @@ public:
 struct UWidgetComponent_SetTickMode_Params
 {
 public:
-	enum class ETickMode                         InTickMode;                                        // 0x0(0x1)(Edit, ConstParm, ExportObject, Net, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	enum class ETickMode                         InTickMode;                                        // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -5040,7 +5040,7 @@ public:
 struct UWidgetComponent_SetRedrawTime_Params
 {
 public:
-	float                                        InRedrawTime;                                      // 0x0(0x4)(BlueprintVisible, Net, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        InRedrawTime;                                      // 0x0(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -5048,7 +5048,7 @@ public:
 struct UWidgetComponent_SetPivot_Params
 {
 public:
-	struct FVector2D                             InPivot;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	struct FVector2D                             InPivot;                                           // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -5056,7 +5056,7 @@ public:
 struct UWidgetComponent_SetOwnerPlayer_Params
 {
 public:
-	class ULocalPlayer*                          LocalPlayer;                                       // 0x0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, GlobalConfig, DuplicateTransient)
+	class ULocalPlayer*                          LocalPlayer;                                       // 0x0(0x8)(Edit, ConstParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5064,7 +5064,7 @@ public:
 struct UWidgetComponent_SetManuallyRedraw_Params
 {
 public:
-	bool                                         bUseManualRedraw;                                  // 0x0(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bUseManualRedraw;                                  // 0x0(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5072,7 +5072,7 @@ public:
 struct UWidgetComponent_SetGeometryMode_Params
 {
 public:
-	enum class EWidgetGeometryMode               InGeometryMode;                                    // 0x0(0x1)(ConstParm, BlueprintVisible, ExportObject, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	enum class EWidgetGeometryMode               InGeometryMode;                                    // 0x0(0x1)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -5080,7 +5080,7 @@ public:
 struct UWidgetComponent_SetDrawSize_Params
 {
 public:
-	struct FVector2D                             Size;                                              // 0x0(0x10)(Edit, ConstParm, Parm, OutParm, ReturnParm, Transient, Config)
+	struct FVector2D                             Size;                                              // 0x0(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5088,7 +5088,7 @@ public:
 struct UWidgetComponent_SetDrawAtDesiredSize_Params
 {
 public:
-	bool                                         bInDrawAtDesiredSize;                              // 0x0(0x1)(Edit, ConstParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         bInDrawAtDesiredSize;                              // 0x0(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -5096,7 +5096,7 @@ public:
 struct UWidgetComponent_SetCylinderArcAngle_Params
 {
 public:
-	float                                        InCylinderArcAngle;                                // 0x0(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        InCylinderArcAngle;                                // 0x0(0x4)(Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -5104,7 +5104,7 @@ public:
 struct UWidgetComponent_SetBackgroundColor_Params
 {
 public:
-	struct FLinearColor                          NewBackgroundColor;                                // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	struct FLinearColor                          NewBackgroundColor;                                // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5112,7 +5112,7 @@ public:
 struct UWidgetComponent_IsWidgetVisible_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5120,7 +5120,7 @@ public:
 struct UWidgetComponent_GetWindowVisiblility_Params
 {
 public:
-	enum class EWindowVisibility                 ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	enum class EWindowVisibility                 ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5128,7 +5128,7 @@ public:
 struct UWidgetComponent_GetWindowFocusable_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5136,7 +5136,7 @@ public:
 struct UWidgetComponent_GetWidgetSpace_Params
 {
 public:
-	enum class EWidgetSpace                      ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	enum class EWidgetSpace                      ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -5144,7 +5144,7 @@ public:
 struct UWidgetComponent_GetWidget_Params
 {
 public:
-	class UUserWidget*                           ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UUserWidget*                           ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -5152,7 +5152,7 @@ public:
 struct UWidgetComponent_GetUserWidgetObject_Params
 {
 public:
-	class UUserWidget*                           ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UUserWidget*                           ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5160,7 +5160,7 @@ public:
 struct UWidgetComponent_GetTwoSided_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5168,7 +5168,7 @@ public:
 struct UWidgetComponent_GetTickWhenOffscreen_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -5176,7 +5176,7 @@ public:
 struct UWidgetComponent_GetRenderTarget_Params
 {
 public:
-	class UTextureRenderTarget2D*                ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UTextureRenderTarget2D*                ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -5184,7 +5184,7 @@ public:
 struct UWidgetComponent_GetRedrawTime_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -5192,7 +5192,7 @@ public:
 struct UWidgetComponent_GetPivot_Params
 {
 public:
-	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -5200,7 +5200,7 @@ public:
 struct UWidgetComponent_GetOwnerPlayer_Params
 {
 public:
-	class ULocalPlayer*                          ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class ULocalPlayer*                          ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -5208,7 +5208,7 @@ public:
 struct UWidgetComponent_GetMaterialInstance_Params
 {
 public:
-	class UMaterialInstanceDynamic*              ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UMaterialInstanceDynamic*              ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5216,7 +5216,7 @@ public:
 struct UWidgetComponent_GetManuallyRedraw_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5224,7 +5224,7 @@ public:
 struct UWidgetComponent_GetGeometryMode_Params
 {
 public:
-	enum class EWidgetGeometryMode               ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	enum class EWidgetGeometryMode               ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -5232,7 +5232,7 @@ public:
 struct UWidgetComponent_GetDrawSize_Params
 {
 public:
-	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5240,7 +5240,7 @@ public:
 struct UWidgetComponent_GetDrawAtDesiredSize_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -5248,7 +5248,7 @@ public:
 struct UWidgetComponent_GetCylinderArcAngle_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -5256,7 +5256,7 @@ public:
 struct UWidgetComponent_GetCurrentDrawSize_Params
 {
 public:
-	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -5264,7 +5264,7 @@ public:
 struct UWidgetInteractionComponent_SetFocus_Params
 {
 public:
-	class UWidget*                               FocusWidget;                                       // 0x0(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	class UWidget*                               FocusWidget;                                       // 0x0(0x8)(Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
 };
 
 // 0xF0 (0xF0 - 0x0)
@@ -5272,7 +5272,7 @@ public:
 struct UWidgetInteractionComponent_SetCustomHitResult_Params
 {
 public:
-	struct FHitResult                            HitResult;                                         // 0x0(0xF0)(Edit, BlueprintVisible, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
+	struct FHitResult                            HitResult;                                         // 0x0(0xF0)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, Config, EditConst)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -5280,10 +5280,10 @@ public:
 struct UWidgetInteractionComponent_SendKeyChar_Params
 {
 public:
-	class FString                                Characters;                                        // 0x0(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, DuplicateTransient)
-	bool                                         bRepeat;                                           // 0x10(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x11(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1920[0x6];                                     // Fixing Size Of Struct > TateDumper <
+	class FString                                Characters;                                        // 0x0(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, DuplicateTransient)
+	bool                                         bRepeat;                                           // 0x10(0x1)(Edit, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x11(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1C61[0x6];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x4 (0x4 - 0x0)
@@ -5291,7 +5291,7 @@ public:
 struct UWidgetInteractionComponent_ScrollWheel_Params
 {
 public:
-	float                                        ScrollDelta;                                       // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        ScrollDelta;                                       // 0x0(0x4)(ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -5299,7 +5299,7 @@ public:
 struct UWidgetInteractionComponent_ReleasePointerKey_Params
 {
 public:
-	struct FKey                                  Key;                                               // 0x0(0x18)(BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+	struct FKey                                  Key;                                               // 0x0(0x18)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -5307,9 +5307,9 @@ public:
 struct UWidgetInteractionComponent_ReleaseKey_Params
 {
 public:
-	struct FKey                                  Key;                                               // 0x0(0x18)(BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
-	bool                                         ReturnValue;                                       // 0x18(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1924[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	struct FKey                                  Key;                                               // 0x0(0x18)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance)
+	bool                                         ReturnValue;                                       // 0x18(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1C6B[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -5317,7 +5317,7 @@ public:
 struct UWidgetInteractionComponent_PressPointerKey_Params
 {
 public:
-	struct FKey                                  Key;                                               // 0x0(0x18)(BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+	struct FKey                                  Key;                                               // 0x0(0x18)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -5325,10 +5325,10 @@ public:
 struct UWidgetInteractionComponent_PressKey_Params
 {
 public:
-	struct FKey                                  Key;                                               // 0x0(0x18)(BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
-	bool                                         bRepeat;                                           // 0x18(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x19(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_192A[0x6];                                     // Fixing Size Of Struct > TateDumper <
+	struct FKey                                  Key;                                               // 0x0(0x18)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance)
+	bool                                         bRepeat;                                           // 0x18(0x1)(Edit, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x19(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1C70[0x6];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x20 (0x20 - 0x0)
@@ -5336,9 +5336,9 @@ public:
 struct UWidgetInteractionComponent_PressAndReleaseKey_Params
 {
 public:
-	struct FKey                                  Key;                                               // 0x0(0x18)(BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
-	bool                                         ReturnValue;                                       // 0x18(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_192D[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	struct FKey                                  Key;                                               // 0x0(0x18)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance)
+	bool                                         ReturnValue;                                       // 0x18(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1C74[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5346,7 +5346,7 @@ public:
 struct UWidgetInteractionComponent_IsOverInteractableWidget_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5354,7 +5354,7 @@ public:
 struct UWidgetInteractionComponent_IsOverHitTestVisibleWidget_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5362,7 +5362,7 @@ public:
 struct UWidgetInteractionComponent_IsOverFocusableWidget_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0xF0 (0xF0 - 0x0)
@@ -5370,7 +5370,7 @@ public:
 struct UWidgetInteractionComponent_GetLastHitResult_Params
 {
 public:
-	struct FHitResult                            ReturnValue;                                       // 0x0(0xF0)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FHitResult                            ReturnValue;                                       // 0x0(0xF0)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -5378,7 +5378,7 @@ public:
 struct UWidgetInteractionComponent_GetHoveredWidgetComponent_Params
 {
 public:
-	class UWidgetComponent*                      ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidgetComponent*                      ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -5386,7 +5386,7 @@ public:
 struct UWidgetInteractionComponent_Get2DHitLocation_Params
 {
 public:
-	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -5394,7 +5394,7 @@ public:
 struct UWidgetSwitcher_SetActiveWidgetIndex_Params
 {
 public:
-	int32                                        Index;                                             // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	int32                                        Index;                                             // 0x0(0x4)(EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -5402,7 +5402,7 @@ public:
 struct UWidgetSwitcher_SetActiveWidget_Params
 {
 public:
-	class UWidget*                               Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
+	class UWidget*                               Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -5410,9 +5410,9 @@ public:
 struct UWidgetSwitcher_GetWidgetAtIndex_Params
 {
 public:
-	int32                                        Index;                                             // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
-	uint8                                        Pad_194A[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	class UWidget*                               ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        Index;                                             // 0x0(0x4)(EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	uint8                                        Pad_1C8D[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	class UWidget*                               ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -5420,7 +5420,7 @@ public:
 struct UWidgetSwitcher_GetNumWidgets_Params
 {
 public:
-	int32                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -5428,7 +5428,7 @@ public:
 struct UWidgetSwitcher_GetActiveWidgetIndex_Params
 {
 public:
-	int32                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -5436,7 +5436,7 @@ public:
 struct UWidgetSwitcher_GetActiveWidget_Params
 {
 public:
-	class UWidget*                               ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5444,7 +5444,7 @@ public:
 struct UWidgetSwitcherSlot_SetVerticalAlignment_Params
 {
 public:
-	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -5452,7 +5452,7 @@ public:
 struct UWidgetSwitcherSlot_SetPadding_Params
 {
 public:
-	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5460,7 +5460,7 @@ public:
 struct UWidgetSwitcherSlot_SetHorizontalAlignment_Params
 {
 public:
-	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5468,7 +5468,7 @@ public:
 struct UWindowTitleBarArea_SetVerticalAlignment_Params
 {
 public:
-	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -5476,7 +5476,7 @@ public:
 struct UWindowTitleBarArea_SetPadding_Params
 {
 public:
-	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5484,7 +5484,7 @@ public:
 struct UWindowTitleBarArea_SetHorizontalAlignment_Params
 {
 public:
-	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5492,7 +5492,7 @@ public:
 struct UWindowTitleBarAreaSlot_SetVerticalAlignment_Params
 {
 public:
-	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -5500,7 +5500,7 @@ public:
 struct UWindowTitleBarAreaSlot_SetPadding_Params
 {
 public:
-	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5508,7 +5508,7 @@ public:
 struct UWindowTitleBarAreaSlot_SetHorizontalAlignment_Params
 {
 public:
-	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -5516,7 +5516,7 @@ public:
 struct UWrapBox_SetInnerSlotPadding_Params
 {
 public:
-	struct FVector2D                             InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FVector2D                             InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5524,7 +5524,7 @@ public:
 struct UWrapBox_SetHorizontalAlignment_Params
 {
 public:
-	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -5532,8 +5532,8 @@ public:
 struct UWrapBox_AddChildToWrapBox_Params
 {
 public:
-	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, Config, EditConst, SubobjectReference)
-	class UWrapBoxSlot*                          ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               Content;                                           // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	class UWrapBoxSlot*                          ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5541,7 +5541,7 @@ public:
 struct UWrapBoxSlot_SetVerticalAlignment_Params
 {
 public:
-	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EVerticalAlignment                InVerticalAlignment;                               // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -5549,7 +5549,7 @@ public:
 struct UWrapBoxSlot_SetPadding_Params
 {
 public:
-	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, SubobjectReference)
+	struct FMargin                               InPadding;                                         // 0x0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5557,7 +5557,7 @@ public:
 struct UWrapBoxSlot_SetNewLine_Params
 {
 public:
-	bool                                         InForceNewLine;                                    // 0x0(0x1)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         InForceNewLine;                                    // 0x0(0x1)(BlueprintVisible, ExportObject, Net, Config, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5565,7 +5565,7 @@ public:
 struct UWrapBoxSlot_SetHorizontalAlignment_Params
 {
 public:
-	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EHorizontalAlignment              InHorizontalAlignment;                             // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -5573,7 +5573,7 @@ public:
 struct UWrapBoxSlot_SetFillSpanWhenLessThan_Params
 {
 public:
-	float                                        InFillSpanWhenLessThan;                            // 0x0(0x4)(ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        InFillSpanWhenLessThan;                            // 0x0(0x4)(Net, Config, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5581,7 +5581,7 @@ public:
 struct UWrapBoxSlot_SetFillEmptySpace_Params
 {
 public:
-	bool                                         InbFillEmptySpace;                                 // 0x0(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	bool                                         InbFillEmptySpace;                                 // 0x0(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Config, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 // 0x78 (0x78 - 0x0)
@@ -5589,7 +5589,7 @@ public:
 struct UDragDropOperation_Drop_Params
 {
 public:
-	struct FPointerEvent                         PointerEvent;                                      // 0x0(0x78)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, Config, DisableEditOnInstance)
+	struct FPointerEvent                         PointerEvent;                                      // 0x0(0x78)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
 };
 
 // 0x78 (0x78 - 0x0)
@@ -5597,7 +5597,7 @@ public:
 struct UDragDropOperation_Dragged_Params
 {
 public:
-	struct FPointerEvent                         PointerEvent;                                      // 0x0(0x78)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, Config, DisableEditOnInstance)
+	struct FPointerEvent                         PointerEvent;                                      // 0x0(0x78)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
 };
 
 // 0x78 (0x78 - 0x0)
@@ -5605,7 +5605,7 @@ public:
 struct UDragDropOperation_DragCancelled_Params
 {
 public:
-	struct FPointerEvent                         PointerEvent;                                      // 0x0(0x78)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, Config, DisableEditOnInstance)
+	struct FPointerEvent                         PointerEvent;                                      // 0x0(0x78)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
 };
 
 // 0x58 (0x58 - 0x0)
@@ -5613,9 +5613,9 @@ public:
 struct USlateBlueprintLibrary_TransformVectorLocalToAbsolute_Params
 {
 public:
-	struct FGeometry                             Geometry;                                          // 0x0(0x38)(ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Config, DisableEditOnInstance)
-	struct FVector2D                             LocalVector;                                       // 0x38(0x10)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	struct FVector2D                             ReturnValue;                                       // 0x48(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             Geometry;                                          // 0x0(0x38)(BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	struct FVector2D                             LocalVector;                                       // 0x38(0x10)(BlueprintVisible, ExportObject, Net, Parm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector2D                             ReturnValue;                                       // 0x48(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x58 (0x58 - 0x0)
@@ -5623,9 +5623,9 @@ public:
 struct USlateBlueprintLibrary_TransformVectorAbsoluteToLocal_Params
 {
 public:
-	struct FGeometry                             Geometry;                                          // 0x0(0x38)(ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Config, DisableEditOnInstance)
-	struct FVector2D                             AbsoluteVector;                                    // 0x38(0x10)(BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	struct FVector2D                             ReturnValue;                                       // 0x48(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             Geometry;                                          // 0x0(0x38)(BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	struct FVector2D                             AbsoluteVector;                                    // 0x38(0x10)(BlueprintVisible, Net, Parm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector2D                             ReturnValue;                                       // 0x48(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x40 (0x40 - 0x0)
@@ -5633,9 +5633,9 @@ public:
 struct USlateBlueprintLibrary_TransformScalarLocalToAbsolute_Params
 {
 public:
-	struct FGeometry                             Geometry;                                          // 0x0(0x38)(ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Config, DisableEditOnInstance)
-	float                                        LocalScalar;                                       // 0x38(0x4)(Edit, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	float                                        ReturnValue;                                       // 0x3C(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             Geometry;                                          // 0x0(0x38)(BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	float                                        LocalScalar;                                       // 0x38(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x3C(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x40 (0x40 - 0x0)
@@ -5643,9 +5643,9 @@ public:
 struct USlateBlueprintLibrary_TransformScalarAbsoluteToLocal_Params
 {
 public:
-	struct FGeometry                             Geometry;                                          // 0x0(0x38)(ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Config, DisableEditOnInstance)
-	float                                        AbsoluteScalar;                                    // 0x38(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	float                                        ReturnValue;                                       // 0x3C(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             Geometry;                                          // 0x0(0x38)(BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	float                                        AbsoluteScalar;                                    // 0x38(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x3C(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x68 (0x68 - 0x0)
@@ -5653,12 +5653,12 @@ public:
 struct USlateBlueprintLibrary_ScreenToWidgetLocal_Params
 {
 public:
-	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	struct FGeometry                             Geometry;                                          // 0x8(0x38)(ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Config, DisableEditOnInstance)
-	struct FVector2D                             ScreenPosition;                                    // 0x40(0x10)(ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FVector2D                             LocalCoordinate;                                   // 0x50(0x10)(ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bIncludeWindowPosition;                            // 0x60(0x1)(Edit, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_199D[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	struct FGeometry                             Geometry;                                          // 0x8(0x38)(BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	struct FVector2D                             ScreenPosition;                                    // 0x40(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FVector2D                             LocalCoordinate;                                   // 0x50(0x10)(Parm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bIncludeWindowPosition;                            // 0x60(0x1)(Edit, ExportObject, Parm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1D00[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x30 (0x30 - 0x0)
@@ -5666,11 +5666,11 @@ public:
 struct USlateBlueprintLibrary_ScreenToWidgetAbsolute_Params
 {
 public:
-	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	struct FVector2D                             ScreenPosition;                                    // 0x8(0x10)(ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FVector2D                             AbsoluteCoordinate;                                // 0x18(0x10)(ExportObject, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	bool                                         bIncludeWindowPosition;                            // 0x28(0x1)(Edit, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	uint8                                        Pad_19A2[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	struct FVector2D                             ScreenPosition;                                    // 0x8(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FVector2D                             AbsoluteCoordinate;                                // 0x18(0x10)(Net, EditFixedSize, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         bIncludeWindowPosition;                            // 0x28(0x1)(Edit, ExportObject, Parm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1D07[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x28 (0x28 - 0x0)
@@ -5678,9 +5678,9 @@ public:
 struct USlateBlueprintLibrary_ScreenToViewport_Params
 {
 public:
-	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	struct FVector2D                             ScreenPosition;                                    // 0x8(0x10)(ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FVector2D                             ViewportPosition;                                  // 0x18(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	struct FVector2D                             ScreenPosition;                                    // 0x8(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FVector2D                             ViewportPosition;                                  // 0x18(0x10)(BlueprintVisible, Net, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x70 (0x70 - 0x0)
@@ -5688,11 +5688,11 @@ public:
 struct USlateBlueprintLibrary_LocalToViewport_Params
 {
 public:
-	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	struct FGeometry                             Geometry;                                          // 0x8(0x38)(ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Config, DisableEditOnInstance)
-	struct FVector2D                             LocalCoordinate;                                   // 0x40(0x10)(ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	struct FVector2D                             PixelPosition;                                     // 0x50(0x10)(ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	struct FVector2D                             ViewportPosition;                                  // 0x60(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	struct FGeometry                             Geometry;                                          // 0x8(0x38)(BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	struct FVector2D                             LocalCoordinate;                                   // 0x40(0x10)(Parm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector2D                             PixelPosition;                                     // 0x50(0x10)(ConstParm, ExportObject, Net, EditFixedSize, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector2D                             ViewportPosition;                                  // 0x60(0x10)(BlueprintVisible, Net, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x58 (0x58 - 0x0)
@@ -5700,9 +5700,9 @@ public:
 struct USlateBlueprintLibrary_LocalToAbsolute_Params
 {
 public:
-	struct FGeometry                             Geometry;                                          // 0x0(0x38)(ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Config, DisableEditOnInstance)
-	struct FVector2D                             LocalCoordinate;                                   // 0x38(0x10)(ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	struct FVector2D                             ReturnValue;                                       // 0x48(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             Geometry;                                          // 0x0(0x38)(BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	struct FVector2D                             LocalCoordinate;                                   // 0x38(0x10)(Parm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector2D                             ReturnValue;                                       // 0x48(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -5710,10 +5710,10 @@ public:
 struct USlateBlueprintLibrary_IsUnderLocation_Params
 {
 public:
-	struct FGeometry                             Geometry;                                          // 0x0(0x38)(ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Config, DisableEditOnInstance)
-	struct FVector2D                             AbsoluteCoordinate;                                // 0x38(0x10)(ExportObject, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x48(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_19B4[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	struct FGeometry                             Geometry;                                          // 0x0(0x38)(BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	struct FVector2D                             AbsoluteCoordinate;                                // 0x38(0x10)(Net, EditFixedSize, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x48(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1D1A[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x48 (0x48 - 0x0)
@@ -5721,8 +5721,8 @@ public:
 struct USlateBlueprintLibrary_GetLocalTopLeft_Params
 {
 public:
-	struct FGeometry                             Geometry;                                          // 0x0(0x38)(ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Config, DisableEditOnInstance)
-	struct FVector2D                             ReturnValue;                                       // 0x38(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             Geometry;                                          // 0x0(0x38)(BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	struct FVector2D                             ReturnValue;                                       // 0x38(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x48 (0x48 - 0x0)
@@ -5730,8 +5730,8 @@ public:
 struct USlateBlueprintLibrary_GetLocalSize_Params
 {
 public:
-	struct FGeometry                             Geometry;                                          // 0x0(0x38)(ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Config, DisableEditOnInstance)
-	struct FVector2D                             ReturnValue;                                       // 0x38(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             Geometry;                                          // 0x0(0x38)(BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	struct FVector2D                             ReturnValue;                                       // 0x38(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x48 (0x48 - 0x0)
@@ -5739,8 +5739,8 @@ public:
 struct USlateBlueprintLibrary_GetAbsoluteSize_Params
 {
 public:
-	struct FGeometry                             Geometry;                                          // 0x0(0x38)(ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Config, DisableEditOnInstance)
-	struct FVector2D                             ReturnValue;                                       // 0x38(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             Geometry;                                          // 0x0(0x38)(BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	struct FVector2D                             ReturnValue;                                       // 0x38(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1B0 (0x1B0 - 0x0)
@@ -5748,10 +5748,10 @@ public:
 struct USlateBlueprintLibrary_EqualEqual_SlateBrush_Params
 {
 public:
-	struct FSlateBrush                           A;                                                 // 0x0(0xD0)(Edit, Parm, OutParm, ReturnParm, Transient, Config)
-	struct FSlateBrush                           B;                                                 // 0xD0(0xD0)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config)
-	bool                                         ReturnValue;                                       // 0x1A0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_19BF[0xF];                                     // Fixing Size Of Struct > TateDumper <
+	struct FSlateBrush                           A;                                                 // 0x0(0xD0)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config)
+	struct FSlateBrush                           B;                                                 // 0xD0(0xD0)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config)
+	bool                                         ReturnValue;                                       // 0x1A0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1D32[0xF];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x38 (0x38 - 0x0)
@@ -5759,10 +5759,10 @@ public:
 struct USlateBlueprintLibrary_AbsoluteToViewport_Params
 {
 public:
-	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	struct FVector2D                             AbsoluteDesktopCoordinate;                         // 0x8(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	struct FVector2D                             PixelPosition;                                     // 0x18(0x10)(ConstParm, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	struct FVector2D                             ViewportPosition;                                  // 0x28(0x10)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	struct FVector2D                             AbsoluteDesktopCoordinate;                         // 0x8(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector2D                             PixelPosition;                                     // 0x18(0x10)(ConstParm, ExportObject, Net, EditFixedSize, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector2D                             ViewportPosition;                                  // 0x28(0x10)(BlueprintVisible, Net, OutParm, ReturnParm, Config, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
 };
 
 // 0x58 (0x58 - 0x0)
@@ -5770,9 +5770,9 @@ public:
 struct USlateBlueprintLibrary_AbsoluteToLocal_Params
 {
 public:
-	struct FGeometry                             Geometry;                                          // 0x0(0x38)(ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Config, DisableEditOnInstance)
-	struct FVector2D                             AbsoluteCoordinate;                                // 0x38(0x10)(ExportObject, Parm, ZeroConstructor, ReturnParm, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	struct FVector2D                             ReturnValue;                                       // 0x48(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FGeometry                             Geometry;                                          // 0x0(0x38)(BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	struct FVector2D                             AbsoluteCoordinate;                                // 0x38(0x10)(Net, EditFixedSize, Config, GlobalConfig, InstancedReference, SubobjectReference)
+	struct FVector2D                             ReturnValue;                                       // 0x48(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x170 (0x170 - 0x0)
@@ -5780,8 +5780,8 @@ public:
 struct UWidgetBlueprintLibrary_UnlockMouse_Params
 {
 public:
-	struct FEventReply                           Reply;                                             // 0x0(0xB8)(ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0xB8(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FEventReply                           Reply;                                             // 0x0(0xB8)(ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0xB8(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0xB8 (0xB8 - 0x0)
@@ -5789,7 +5789,7 @@ public:
 struct UWidgetBlueprintLibrary_Unhandled_Params
 {
 public:
-	struct FEventReply                           ReturnValue;                                       // 0x0(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0x0(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -5797,12 +5797,12 @@ public:
 struct UWidgetBlueprintLibrary_SetWindowTitleBarState_Params
 {
 public:
-	class UWidget*                               TitleBarContent;                                   // 0x0(0x8)(BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	enum class EWindowTitleBarMode               Mode;                                              // 0x8(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnInstance, SubobjectReference)
-	bool                                         bTitleBarDragEnabled;                              // 0x9(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	bool                                         bWindowButtonsVisible;                             // 0xA(0x1)(ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	bool                                         bTitleBarVisible;                                  // 0xB(0x1)(Edit, Parm, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_19CC[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	class UWidget*                               TitleBarContent;                                   // 0x0(0x8)(EditFixedSize, ReturnParm, Transient, GlobalConfig, SubobjectReference)
+	enum class EWindowTitleBarMode               Mode;                                              // 0x8(0x1)(ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+	bool                                         bTitleBarDragEnabled;                              // 0x9(0x1)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	bool                                         bWindowButtonsVisible;                             // 0xA(0x1)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	bool                                         bTitleBarVisible;                                  // 0xB(0x1)(Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1D52[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -5810,7 +5810,7 @@ public:
 struct UWidgetBlueprintLibrary_SetWindowTitleBarOnCloseClickedDelegate_Params
 {
 public:
-	FDelegateProperty_                           Delegate;                                          // 0x0(0x10)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	FDelegateProperty_                           Delegate;                                          // 0x0(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Config, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -5818,7 +5818,7 @@ public:
 struct UWidgetBlueprintLibrary_SetWindowTitleBarCloseButtonActive_Params
 {
 public:
-	bool                                         bActive;                                           // 0x0(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	bool                                         bActive;                                           // 0x0(0x1)(BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
 };
 
 // 0x180 (0x180 - 0x0)
@@ -5826,11 +5826,11 @@ public:
 struct UWidgetBlueprintLibrary_SetUserFocus_Params
 {
 public:
-	struct FEventReply                           Reply;                                             // 0x0(0xB8)(ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	class UWidget*                               FocusWidget;                                       // 0xB8(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	bool                                         bInAllUsers;                                       // 0xC0(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_19CF[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FEventReply                           ReturnValue;                                       // 0xC8(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FEventReply                           Reply;                                             // 0x0(0xB8)(ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+	class UWidget*                               FocusWidget;                                       // 0xB8(0x8)(Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	bool                                         bInAllUsers;                                       // 0xC0(0x1)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1D5A[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FEventReply                           ReturnValue;                                       // 0xC8(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x180 (0x180 - 0x0)
@@ -5838,9 +5838,9 @@ public:
 struct UWidgetBlueprintLibrary_SetMousePosition_Params
 {
 public:
-	struct FEventReply                           Reply;                                             // 0x0(0xB8)(ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	struct FVector2D                             NewMousePosition;                                  // 0xB8(0x10)(BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0xC8(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FEventReply                           Reply;                                             // 0x0(0xB8)(ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+	struct FVector2D                             NewMousePosition;                                  // 0xB8(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0xC8(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -5848,11 +5848,11 @@ public:
 struct UWidgetBlueprintLibrary_SetInputMode_UIOnlyEx_Params
 {
 public:
-	class APlayerController*                     PlayerController;                                  // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	class UWidget*                               InWidgetToFocus;                                   // 0x8(0x8)(Edit, ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	enum class EMouseLockMode                    InMouseLockMode;                                   // 0x10(0x1)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	bool                                         bFlushInput;                                       // 0x11(0x1)(BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_19D5[0x6];                                     // Fixing Size Of Struct > TateDumper <
+	class APlayerController*                     PlayerController;                                  // 0x0(0x8)(BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+	class UWidget*                               InWidgetToFocus;                                   // 0x8(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	enum class EMouseLockMode                    InMouseLockMode;                                   // 0x10(0x1)(ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	bool                                         bFlushInput;                                       // 0x11(0x1)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1D64[0x6];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -5860,9 +5860,9 @@ public:
 struct UWidgetBlueprintLibrary_SetInputMode_GameOnly_Params
 {
 public:
-	class APlayerController*                     PlayerController;                                  // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	bool                                         bFlushInput;                                       // 0x8(0x1)(BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_19D9[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class APlayerController*                     PlayerController;                                  // 0x0(0x8)(BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+	bool                                         bFlushInput;                                       // 0x8(0x1)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1D67[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -5870,12 +5870,12 @@ public:
 struct UWidgetBlueprintLibrary_SetInputMode_GameAndUIEx_Params
 {
 public:
-	class APlayerController*                     PlayerController;                                  // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	class UWidget*                               InWidgetToFocus;                                   // 0x8(0x8)(Edit, ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	enum class EMouseLockMode                    InMouseLockMode;                                   // 0x10(0x1)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	bool                                         bHideCursorDuringCapture;                          // 0x11(0x1)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	bool                                         bFlushInput;                                       // 0x12(0x1)(BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_19DF[0x5];                                     // Fixing Size Of Struct > TateDumper <
+	class APlayerController*                     PlayerController;                                  // 0x0(0x8)(BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+	class UWidget*                               InWidgetToFocus;                                   // 0x8(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	enum class EMouseLockMode                    InMouseLockMode;                                   // 0x10(0x1)(ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	bool                                         bHideCursorDuringCapture;                          // 0x11(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	bool                                         bFlushInput;                                       // 0x12(0x1)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1D6D[0x5];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x30 (0x30 - 0x0)
@@ -5883,14 +5883,14 @@ public:
 struct UWidgetBlueprintLibrary_SetHardwareCursor_Params
 {
 public:
-	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	enum class EMouseCursor                      CursorShape;                                       // 0x8(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_19E6[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	class FName                                  CursorName;                                        // 0xC(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_19E7[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FVector2D                             HotSpot;                                           // 0x18(0x10)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x28(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_19E8[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	enum class EMouseCursor                      CursorShape;                                       // 0x8(0x1)(Edit, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1D75[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	class FName                                  CursorName;                                        // 0xC(0x8)(Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1D76[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FVector2D                             HotSpot;                                           // 0x18(0x10)(ConstParm, Net, OutParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x28(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1D79[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xC (0xC - 0x0)
@@ -5898,12 +5898,12 @@ public:
 struct UWidgetBlueprintLibrary_SetColorVisionDeficiencyType_Params
 {
 public:
-	enum class EColorVisionDeficiency            Type;                                              // 0x0(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Transient, Config)
-	uint8                                        Pad_19ED[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        Severity;                                          // 0x4(0x4)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, Config, EditConst, SubobjectReference)
-	bool                                         CorrectDeficiency;                                 // 0x8(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	bool                                         ShowCorrectionWithDeficiency;                      // 0x9(0x1)(ConstParm, BlueprintVisible, EditFixedSize, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_19EE[0x2];                                     // Fixing Size Of Struct > TateDumper <
+	enum class EColorVisionDeficiency            Type;                                              // 0x0(0x1)(Edit, BlueprintReadOnly, Net, Parm, Transient, Config)
+	uint8                                        Pad_1D80[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        Severity;                                          // 0x4(0x4)(Edit, Net, OutParm, ReturnParm, Config, EditConst, SubobjectReference)
+	bool                                         CorrectDeficiency;                                 // 0x8(0x1)(Edit, BlueprintVisible, Net, Parm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	bool                                         ShowCorrectionWithDeficiency;                      // 0x9(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1D83[0x2];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xE0 (0xE0 - 0x0)
@@ -5911,9 +5911,9 @@ public:
 struct UWidgetBlueprintLibrary_SetBrushResourceToTexture_Params
 {
 public:
-	struct FSlateBrush                           Brush;                                             // 0x0(0xD0)(ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, EditConst)
-	class UTexture2D*                            Texture;                                           // 0xD0(0x8)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst)
-	uint8                                        Pad_19F3[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	struct FSlateBrush                           Brush;                                             // 0x0(0xD0)(Edit, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
+	class UTexture2D*                            Texture;                                           // 0xD0(0x8)(ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
+	uint8                                        Pad_1D86[0x8];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xE0 (0xE0 - 0x0)
@@ -5921,9 +5921,9 @@ public:
 struct UWidgetBlueprintLibrary_SetBrushResourceToMaterial_Params
 {
 public:
-	struct FSlateBrush                           Brush;                                             // 0x0(0xD0)(ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, EditConst)
-	class UMaterialInterface*                    Material;                                          // 0xD0(0x8)(Edit, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance)
-	uint8                                        Pad_19F8[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	struct FSlateBrush                           Brush;                                             // 0x0(0xD0)(Edit, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
+	class UMaterialInterface*                    Material;                                          // 0xD0(0x8)(Edit, ConstParm, Net, EditFixedSize, Transient, Config, DisableEditOnInstance)
+	uint8                                        Pad_1D8B[0x8];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x170 (0x170 - 0x0)
@@ -5931,8 +5931,8 @@ public:
 struct UWidgetBlueprintLibrary_ReleaseMouseCapture_Params
 {
 public:
-	struct FEventReply                           Reply;                                             // 0x0(0xB8)(ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0xB8(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FEventReply                           Reply;                                             // 0x0(0xB8)(ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0xB8(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x178 (0x178 - 0x0)
@@ -5940,10 +5940,10 @@ public:
 struct UWidgetBlueprintLibrary_ReleaseJoystickCapture_Params
 {
 public:
-	struct FEventReply                           Reply;                                             // 0x0(0xB8)(ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	bool                                         bInAllJoysticks;                                   // 0xB8(0x1)(Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_19FE[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FEventReply                           ReturnValue;                                       // 0xC0(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FEventReply                           Reply;                                             // 0x0(0xB8)(ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+	bool                                         bInAllJoysticks;                                   // 0xB8(0x1)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1D95[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FEventReply                           ReturnValue;                                       // 0xC0(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0xD0 (0xD0 - 0x0)
@@ -5951,7 +5951,7 @@ public:
 struct UWidgetBlueprintLibrary_NoResourceBrush_Params
 {
 public:
-	struct FSlateBrush                           ReturnValue;                                       // 0x0(0xD0)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FSlateBrush                           ReturnValue;                                       // 0x0(0xD0)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0xE0 (0xE0 - 0x0)
@@ -5959,10 +5959,10 @@ public:
 struct UWidgetBlueprintLibrary_MakeBrushFromTexture_Params
 {
 public:
-	class UTexture2D*                            Texture;                                           // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst)
-	int32                                        Width;                                             // 0x8(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	int32                                        Height;                                            // 0xC(0x4)(ConstParm, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	struct FSlateBrush                           ReturnValue;                                       // 0x10(0xD0)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UTexture2D*                            Texture;                                           // 0x0(0x8)(ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
+	int32                                        Width;                                             // 0x8(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, EditConst)
+	int32                                        Height;                                            // 0xC(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, EditConst)
+	struct FSlateBrush                           ReturnValue;                                       // 0x10(0xD0)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0xE0 (0xE0 - 0x0)
@@ -5970,10 +5970,10 @@ public:
 struct UWidgetBlueprintLibrary_MakeBrushFromMaterial_Params
 {
 public:
-	class UMaterialInterface*                    Material;                                          // 0x0(0x8)(Edit, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance)
-	int32                                        Width;                                             // 0x8(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	int32                                        Height;                                            // 0xC(0x4)(ConstParm, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst)
-	struct FSlateBrush                           ReturnValue;                                       // 0x10(0xD0)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UMaterialInterface*                    Material;                                          // 0x0(0x8)(Edit, ConstParm, Net, EditFixedSize, Transient, Config, DisableEditOnInstance)
+	int32                                        Width;                                             // 0x8(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, EditConst)
+	int32                                        Height;                                            // 0xC(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, EditConst)
+	struct FSlateBrush                           ReturnValue;                                       // 0x10(0xD0)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0xE0 (0xE0 - 0x0)
@@ -5981,9 +5981,9 @@ public:
 struct UWidgetBlueprintLibrary_MakeBrushFromAsset_Params
 {
 public:
-	class USlateBrushAsset*                      BrushAsset;                                        // 0x0(0x8)(ConstParm, Net, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1A08[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FSlateBrush                           ReturnValue;                                       // 0x10(0xD0)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class USlateBrushAsset*                      BrushAsset;                                        // 0x0(0x8)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1DA4[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FSlateBrush                           ReturnValue;                                       // 0x10(0xD0)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x178 (0x178 - 0x0)
@@ -5991,9 +5991,9 @@ public:
 struct UWidgetBlueprintLibrary_LockMouse_Params
 {
 public:
-	struct FEventReply                           Reply;                                             // 0x0(0xB8)(ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	class UWidget*                               CapturingWidget;                                   // 0xB8(0x8)(Edit, ExportObject, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0xC0(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FEventReply                           Reply;                                             // 0x0(0xB8)(ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+	class UWidget*                               CapturingWidget;                                   // 0xB8(0x8)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0xC0(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -6001,7 +6001,7 @@ public:
 struct UWidgetBlueprintLibrary_IsDragDropping_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0xB8 (0xB8 - 0x0)
@@ -6009,7 +6009,7 @@ public:
 struct UWidgetBlueprintLibrary_Handled_Params
 {
 public:
-	struct FEventReply                           ReturnValue;                                       // 0x0(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0x0(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x60 (0x60 - 0x0)
@@ -6017,11 +6017,11 @@ public:
 struct UWidgetBlueprintLibrary_GetSafeZonePadding_Params
 {
 public:
-	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	uint8                                        Pad_1A11[0x8];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FVector4                              SafePadding;                                       // 0x10(0x20)(Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	struct FVector2D                             SafePaddingScale;                                  // 0x30(0x10)(ConstParm, BlueprintReadOnly, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	struct FVector4                              SpillOverPadding;                                  // 0x40(0x20)(Edit, ExportObject, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
+	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	uint8                                        Pad_1DB2[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FVector4                              SafePadding;                                       // 0x10(0x20)(Edit, ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	struct FVector2D                             SafePaddingScale;                                  // 0x30(0x10)(ConstParm, Net, EditFixedSize, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	struct FVector4                              SpillOverPadding;                                  // 0x40(0x20)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
 };
 
 // 0x88 (0x88 - 0x0)
@@ -6029,8 +6029,8 @@ public:
 struct UWidgetBlueprintLibrary_GetKeyEventFromAnalogInputEvent_Params
 {
 public:
-	struct FAnalogInputEvent                     Event;                                             // 0x0(0x48)(ExportObject, EditFixedSize, ZeroConstructor, Transient, EditConst, SubobjectReference)
-	struct FKeyEvent                             ReturnValue;                                       // 0x48(0x40)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FAnalogInputEvent                     Event;                                             // 0x0(0x48)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+	struct FKeyEvent                             ReturnValue;                                       // 0x48(0x40)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x98 (0x98 - 0x0)
@@ -6038,8 +6038,8 @@ public:
 struct UWidgetBlueprintLibrary_GetInputEventFromPointerEvent_Params
 {
 public:
-	struct FPointerEvent                         Event;                                             // 0x0(0x78)(ExportObject, EditFixedSize, ZeroConstructor, Transient, EditConst, SubobjectReference)
-	struct FInputEvent                           ReturnValue;                                       // 0x78(0x20)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FPointerEvent                         Event;                                             // 0x0(0x78)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+	struct FInputEvent                           ReturnValue;                                       // 0x78(0x20)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x48 (0x48 - 0x0)
@@ -6047,8 +6047,8 @@ public:
 struct UWidgetBlueprintLibrary_GetInputEventFromNavigationEvent_Params
 {
 public:
-	struct FNavigationEvent                      Event;                                             // 0x0(0x28)(ExportObject, EditFixedSize, ZeroConstructor, Transient, EditConst, SubobjectReference)
-	struct FInputEvent                           ReturnValue;                                       // 0x28(0x20)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FNavigationEvent                      Event;                                             // 0x0(0x28)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+	struct FInputEvent                           ReturnValue;                                       // 0x28(0x20)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x60 (0x60 - 0x0)
@@ -6056,8 +6056,8 @@ public:
 struct UWidgetBlueprintLibrary_GetInputEventFromKeyEvent_Params
 {
 public:
-	struct FKeyEvent                             Event;                                             // 0x0(0x40)(ExportObject, EditFixedSize, ZeroConstructor, Transient, EditConst, SubobjectReference)
-	struct FInputEvent                           ReturnValue;                                       // 0x40(0x20)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FKeyEvent                             Event;                                             // 0x0(0x40)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+	struct FInputEvent                           ReturnValue;                                       // 0x40(0x20)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x48 (0x48 - 0x0)
@@ -6065,8 +6065,8 @@ public:
 struct UWidgetBlueprintLibrary_GetInputEventFromCharacterEvent_Params
 {
 public:
-	struct FCharacterEvent                       Event;                                             // 0x0(0x28)(ExportObject, EditFixedSize, ZeroConstructor, Transient, EditConst, SubobjectReference)
-	struct FInputEvent                           ReturnValue;                                       // 0x28(0x20)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FCharacterEvent                       Event;                                             // 0x0(0x28)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+	struct FInputEvent                           ReturnValue;                                       // 0x28(0x20)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0xE0 (0xE0 - 0x0)
@@ -6074,9 +6074,9 @@ public:
 struct UWidgetBlueprintLibrary_GetDynamicMaterial_Params
 {
 public:
-	struct FSlateBrush                           Brush;                                             // 0x0(0xD0)(ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, EditConst)
-	class UMaterialInstanceDynamic*              ReturnValue;                                       // 0xD0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1A2D[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	struct FSlateBrush                           Brush;                                             // 0x0(0xD0)(Edit, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
+	class UMaterialInstanceDynamic*              ReturnValue;                                       // 0xD0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1DCA[0x8];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)
@@ -6084,7 +6084,7 @@ public:
 struct UWidgetBlueprintLibrary_GetDragDroppingContent_Params
 {
 public:
-	class UDragDropOperation*                    ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UDragDropOperation*                    ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0xE0 (0xE0 - 0x0)
@@ -6092,9 +6092,9 @@ public:
 struct UWidgetBlueprintLibrary_GetBrushResourceAsTexture2D_Params
 {
 public:
-	struct FSlateBrush                           Brush;                                             // 0x0(0xD0)(ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, EditConst)
-	class UTexture2D*                            ReturnValue;                                       // 0xD0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1A32[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	struct FSlateBrush                           Brush;                                             // 0x0(0xD0)(Edit, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
+	class UTexture2D*                            ReturnValue;                                       // 0xD0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1DCF[0x8];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xE0 (0xE0 - 0x0)
@@ -6102,9 +6102,9 @@ public:
 struct UWidgetBlueprintLibrary_GetBrushResourceAsMaterial_Params
 {
 public:
-	struct FSlateBrush                           Brush;                                             // 0x0(0xD0)(ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, EditConst)
-	class UMaterialInterface*                    ReturnValue;                                       // 0xD0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1A36[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	struct FSlateBrush                           Brush;                                             // 0x0(0xD0)(Edit, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
+	class UMaterialInterface*                    ReturnValue;                                       // 0xD0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1DD3[0x8];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xE0 (0xE0 - 0x0)
@@ -6112,9 +6112,9 @@ public:
 struct UWidgetBlueprintLibrary_GetBrushResource_Params
 {
 public:
-	struct FSlateBrush                           Brush;                                             // 0x0(0xD0)(ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, EditConst)
-	class UObject*                               ReturnValue;                                       // 0xD0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1A3B[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	struct FSlateBrush                           Brush;                                             // 0x0(0xD0)(Edit, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
+	class UObject*                               ReturnValue;                                       // 0xD0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1DD5[0x8];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x30 (0x30 - 0x0)
@@ -6122,12 +6122,12 @@ public:
 struct UWidgetBlueprintLibrary_GetAllWidgetsWithInterface_Params
 {
 public:
-	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	TArray<class UUserWidget*>                   FoundWidgets;                                      // 0x8(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
+	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	TArray<class UUserWidget*>                   FoundWidgets;                                      // 0x8(0x10)(ConstParm, ExportObject, EditFixedSize, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
 	class UClass*                                Interface;                                         // 0x18(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor)
-	class UClass*                                OutWidgetClass;                                    // 0x20(0x8)(Edit, ZeroConstructor, ReturnParm, GlobalConfig, SubobjectReference)
-	bool                                         TopLevelOnly;                                      // 0x28(0x1)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1A3D[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class UClass*                                OutWidgetClass;                                    // 0x20(0x8)(Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	bool                                         TopLevelOnly;                                      // 0x28(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1DDE[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x28 (0x28 - 0x0)
@@ -6135,11 +6135,11 @@ public:
 struct UWidgetBlueprintLibrary_GetAllWidgetsOfClass_Params
 {
 public:
-	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	TArray<class UUserWidget*>                   FoundWidgets;                                      // 0x8(0x10)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	class UClass*                                WidgetClass;                                       // 0x18(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	bool                                         TopLevelOnly;                                      // 0x20(0x1)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1A42[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	TArray<class UUserWidget*>                   FoundWidgets;                                      // 0x8(0x10)(ConstParm, ExportObject, EditFixedSize, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	class UClass*                                WidgetClass;                                       // 0x18(0x8)(Edit, ConstParm, EditFixedSize, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	bool                                         TopLevelOnly;                                      // 0x20(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1DE6[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x170 (0x170 - 0x0)
@@ -6147,8 +6147,8 @@ public:
 struct UWidgetBlueprintLibrary_EndDragDrop_Params
 {
 public:
-	struct FEventReply                           Reply;                                             // 0x0(0xB8)(ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0xB8(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FEventReply                           Reply;                                             // 0x0(0xB8)(ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0xB8(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x80 (0x80 - 0x0)
@@ -6156,14 +6156,14 @@ public:
 struct UWidgetBlueprintLibrary_DrawTextFormatted_Params
 {
 public:
-	struct FPaintContext                         Context;                                           // 0x0(0x30)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
-	class FText                                  Text;                                              // 0x30(0x18)(Edit, Net, OutParm, DisableEditOnTemplate, EditConst)
-	struct FVector2D                             Position;                                          // 0x48(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config)
-	class UFont*                                 Font;                                              // 0x58(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
-	int32                                        FontSize;                                          // 0x60(0x4)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	class FName                                  FontTypeFace;                                      // 0x64(0x8)(Net, EditFixedSize, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	struct FLinearColor                          Tint;                                              // 0x6C(0x10)(ConstParm, EditFixedSize, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1A4A[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	struct FPaintContext                         Context;                                           // 0x0(0x30)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+	class FText                                  Text;                                              // 0x30(0x18)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
+	struct FVector2D                             Position;                                          // 0x48(0x10)(Edit, ConstParm, ExportObject, ReturnParm, Transient, Config)
+	class UFont*                                 Font;                                              // 0x58(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	int32                                        FontSize;                                          // 0x60(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	class FName                                  FontTypeFace;                                      // 0x64(0x8)(BlueprintReadOnly, Net, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          Tint;                                              // 0x6C(0x10)(ConstParm, BlueprintReadOnly, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1DF1[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x60 (0x60 - 0x0)
@@ -6171,10 +6171,10 @@ public:
 struct UWidgetBlueprintLibrary_DrawText_Params
 {
 public:
-	struct FPaintContext                         Context;                                           // 0x0(0x30)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
-	class FString                                InString;                                          // 0x30(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
-	struct FVector2D                             Position;                                          // 0x40(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config)
-	struct FLinearColor                          Tint;                                              // 0x50(0x10)(ConstParm, EditFixedSize, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
+	struct FPaintContext                         Context;                                           // 0x0(0x30)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+	class FString                                InString;                                          // 0x30(0x10)(ExportObject, OutParm, Config, EditConst, SubobjectReference)
+	struct FVector2D                             Position;                                          // 0x40(0x10)(Edit, ConstParm, ExportObject, ReturnParm, Transient, Config)
+	struct FLinearColor                          Tint;                                              // 0x50(0x10)(ConstParm, BlueprintReadOnly, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
 };
 
 // 0x88 (0x88 - 0x0)
@@ -6182,14 +6182,14 @@ public:
 struct UWidgetBlueprintLibrary_DrawSpline_Params
 {
 public:
-	struct FPaintContext                         Context;                                           // 0x0(0x30)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
-	struct FVector2D                             Start;                                             // 0x30(0x10)(Edit, BlueprintVisible, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst)
-	struct FVector2D                             StartDir;                                          // 0x40(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	struct FVector2D                             End;                                               // 0x50(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance)
-	struct FVector2D                             EndDir;                                            // 0x60(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	struct FLinearColor                          Tint;                                              // 0x70(0x10)(ConstParm, EditFixedSize, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	float                                        Thickness;                                         // 0x80(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-	uint8                                        Pad_1A58[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	struct FPaintContext                         Context;                                           // 0x0(0x30)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+	struct FVector2D                             Start;                                             // 0x30(0x10)(Edit, BlueprintVisible, Parm, OutParm, ZeroConstructor, Config, DisableEditOnInstance, EditConst)
+	struct FVector2D                             StartDir;                                          // 0x40(0x10)(Edit, ConstParm, ExportObject, Net, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	struct FVector2D                             End;                                               // 0x50(0x10)(Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance)
+	struct FVector2D                             EndDir;                                            // 0x60(0x10)(Edit, ConstParm, BlueprintVisible, Net, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          Tint;                                              // 0x70(0x10)(ConstParm, BlueprintReadOnly, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	float                                        Thickness;                                         // 0x80(0x4)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	uint8                                        Pad_1DF9[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x58 (0x58 - 0x0)
@@ -6197,12 +6197,12 @@ public:
 struct UWidgetBlueprintLibrary_DrawLines_Params
 {
 public:
-	struct FPaintContext                         Context;                                           // 0x0(0x30)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
-	TArray<struct FVector2D>                     Points;                                            // 0x30(0x10)(Edit, Parm, OutParm, ZeroConstructor, Transient, EditConst, SubobjectReference)
-	struct FLinearColor                          Tint;                                              // 0x40(0x10)(ConstParm, EditFixedSize, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	bool                                         bAntiAlias;                                        // 0x50(0x1)(Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1A5C[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        Thickness;                                         // 0x54(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+	struct FPaintContext                         Context;                                           // 0x0(0x30)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+	TArray<struct FVector2D>                     Points;                                            // 0x30(0x10)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
+	struct FLinearColor                          Tint;                                              // 0x40(0x10)(ConstParm, BlueprintReadOnly, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	bool                                         bAntiAlias;                                        // 0x50(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1DFE[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        Thickness;                                         // 0x54(0x4)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 };
 
 // 0x68 (0x68 - 0x0)
@@ -6210,13 +6210,13 @@ public:
 struct UWidgetBlueprintLibrary_DrawLine_Params
 {
 public:
-	struct FPaintContext                         Context;                                           // 0x0(0x30)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
-	struct FVector2D                             PositionA;                                         // 0x30(0x10)(Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	struct FVector2D                             PositionB;                                         // 0x40(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	struct FLinearColor                          Tint;                                              // 0x50(0x10)(ConstParm, EditFixedSize, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	bool                                         bAntiAlias;                                        // 0x60(0x1)(Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1A62[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        Thickness;                                         // 0x64(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+	struct FPaintContext                         Context;                                           // 0x0(0x30)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+	struct FVector2D                             PositionA;                                         // 0x30(0x10)(Edit, Net, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	struct FVector2D                             PositionB;                                         // 0x40(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	struct FLinearColor                          Tint;                                              // 0x50(0x10)(ConstParm, BlueprintReadOnly, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	bool                                         bAntiAlias;                                        // 0x60(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1E03[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	float                                        Thickness;                                         // 0x64(0x4)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 };
 
 // 0x68 (0x68 - 0x0)
@@ -6224,11 +6224,11 @@ public:
 struct UWidgetBlueprintLibrary_DrawBox_Params
 {
 public:
-	struct FPaintContext                         Context;                                           // 0x0(0x30)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
-	struct FVector2D                             Position;                                          // 0x30(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config)
-	struct FVector2D                             Size;                                              // 0x40(0x10)(Edit, ConstParm, Parm, OutParm, ReturnParm, Transient, Config)
-	class USlateBrushAsset*                      Brush;                                             // 0x50(0x8)(ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, EditConst)
-	struct FLinearColor                          Tint;                                              // 0x58(0x10)(ConstParm, EditFixedSize, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
+	struct FPaintContext                         Context;                                           // 0x0(0x30)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+	struct FVector2D                             Position;                                          // 0x30(0x10)(Edit, ConstParm, ExportObject, ReturnParm, Transient, Config)
+	struct FVector2D                             Size;                                              // 0x40(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config)
+	class USlateBrushAsset*                      Brush;                                             // 0x50(0x8)(Edit, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
+	struct FLinearColor                          Tint;                                              // 0x58(0x10)(ConstParm, BlueprintReadOnly, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
 };
 
 // 0x150 (0x150 - 0x0)
@@ -6236,10 +6236,10 @@ public:
 struct UWidgetBlueprintLibrary_DetectDragIfPressed_Params
 {
 public:
-	struct FPointerEvent                         PointerEvent;                                      // 0x0(0x78)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, Config, DisableEditOnInstance)
-	class UWidget*                               WidgetDetectingDrag;                               // 0x78(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	struct FKey                                  DragKey;                                           // 0x80(0x18)(ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0x98(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FPointerEvent                         PointerEvent;                                      // 0x0(0x78)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	class UWidget*                               WidgetDetectingDrag;                               // 0x78(0x8)(Edit, ConstParm, BlueprintVisible, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	struct FKey                                  DragKey;                                           // 0x80(0x18)(ConstParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0x98(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x190 (0x190 - 0x0)
@@ -6247,10 +6247,10 @@ public:
 struct UWidgetBlueprintLibrary_DetectDrag_Params
 {
 public:
-	struct FEventReply                           Reply;                                             // 0x0(0xB8)(ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	class UWidget*                               WidgetDetectingDrag;                               // 0xB8(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	struct FKey                                  DragKey;                                           // 0xC0(0x18)(ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0xD8(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FEventReply                           Reply;                                             // 0x0(0xB8)(ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+	class UWidget*                               WidgetDetectingDrag;                               // 0xB8(0x8)(Edit, ConstParm, BlueprintVisible, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	struct FKey                                  DragKey;                                           // 0xC0(0x18)(ConstParm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0xD8(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -6258,8 +6258,8 @@ public:
 struct UWidgetBlueprintLibrary_CreateDragDropOperation_Params
 {
 public:
-	class UClass*                                OperationClass;                                    // 0x0(0x8)(ConstParm, ExportObject, Net, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	class UDragDropOperation*                    ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UClass*                                OperationClass;                                    // 0x0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+	class UDragDropOperation*                    ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -6267,10 +6267,10 @@ public:
 struct UWidgetBlueprintLibrary_Create_Params
 {
 public:
-	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	class UClass*                                WidgetType;                                        // 0x8(0x8)(BlueprintVisible, Net, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	class APlayerController*                     OwningPlayer;                                      // 0x10(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	class UUserWidget*                           ReturnValue;                                       // 0x18(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	class UClass*                                WidgetType;                                        // 0x8(0x8)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+	class APlayerController*                     OwningPlayer;                                      // 0x10(0x8)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+	class UUserWidget*                           ReturnValue;                                       // 0x18(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x178 (0x178 - 0x0)
@@ -6278,10 +6278,10 @@ public:
 struct UWidgetBlueprintLibrary_ClearUserFocus_Params
 {
 public:
-	struct FEventReply                           Reply;                                             // 0x0(0xB8)(ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	bool                                         bInAllUsers;                                       // 0xB8(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1A8F[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FEventReply                           ReturnValue;                                       // 0xC0(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FEventReply                           Reply;                                             // 0x0(0xB8)(ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+	bool                                         bInAllUsers;                                       // 0xB8(0x1)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1E1A[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FEventReply                           ReturnValue;                                       // 0xC0(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x178 (0x178 - 0x0)
@@ -6289,9 +6289,9 @@ public:
 struct UWidgetBlueprintLibrary_CaptureMouse_Params
 {
 public:
-	struct FEventReply                           Reply;                                             // 0x0(0xB8)(ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	class UWidget*                               CapturingWidget;                                   // 0xB8(0x8)(Edit, ExportObject, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	struct FEventReply                           ReturnValue;                                       // 0xC0(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FEventReply                           Reply;                                             // 0x0(0xB8)(ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+	class UWidget*                               CapturingWidget;                                   // 0xB8(0x8)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+	struct FEventReply                           ReturnValue;                                       // 0xC0(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x180 (0x180 - 0x0)
@@ -6299,11 +6299,11 @@ public:
 struct UWidgetBlueprintLibrary_CaptureJoystick_Params
 {
 public:
-	struct FEventReply                           Reply;                                             // 0x0(0xB8)(ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	class UWidget*                               CapturingWidget;                                   // 0xB8(0x8)(Edit, ExportObject, Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	bool                                         bInAllJoysticks;                                   // 0xC0(0x1)(Parm, OutParm, ReturnParm, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1AA2[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FEventReply                           ReturnValue;                                       // 0xC8(0xB8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FEventReply                           Reply;                                             // 0x0(0xB8)(ConstParm, Net, EditFixedSize, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+	class UWidget*                               CapturingWidget;                                   // 0xB8(0x8)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+	bool                                         bInAllJoysticks;                                   // 0xC0(0x1)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1E26[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FEventReply                           ReturnValue;                                       // 0xC8(0xB8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -6311,8 +6311,8 @@ public:
 struct UWidgetLayoutLibrary_SlotAsWrapBoxSlot_Params
 {
 public:
-	class UWidget*                               Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	class UWrapBoxSlot*                          ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	class UWrapBoxSlot*                          ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -6320,8 +6320,8 @@ public:
 struct UWidgetLayoutLibrary_SlotAsWidgetSwitcherSlot_Params
 {
 public:
-	class UWidget*                               Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	class UWidgetSwitcherSlot*                   ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	class UWidgetSwitcherSlot*                   ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -6329,8 +6329,8 @@ public:
 struct UWidgetLayoutLibrary_SlotAsVerticalBoxSlot_Params
 {
 public:
-	class UWidget*                               Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	class UVerticalBoxSlot*                      ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	class UVerticalBoxSlot*                      ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -6338,8 +6338,8 @@ public:
 struct UWidgetLayoutLibrary_SlotAsUniformGridSlot_Params
 {
 public:
-	class UWidget*                               Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	class UUniformGridSlot*                      ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	class UUniformGridSlot*                      ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -6347,8 +6347,8 @@ public:
 struct UWidgetLayoutLibrary_SlotAsSizeBoxSlot_Params
 {
 public:
-	class UWidget*                               Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	class USizeBoxSlot*                          ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	class USizeBoxSlot*                          ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -6356,8 +6356,8 @@ public:
 struct UWidgetLayoutLibrary_SlotAsScrollBoxSlot_Params
 {
 public:
-	class UWidget*                               Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	class UScrollBoxSlot*                        ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	class UScrollBoxSlot*                        ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -6365,8 +6365,8 @@ public:
 struct UWidgetLayoutLibrary_SlotAsScaleBoxSlot_Params
 {
 public:
-	class UWidget*                               Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	class UScaleBoxSlot*                         ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	class UScaleBoxSlot*                         ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -6374,8 +6374,8 @@ public:
 struct UWidgetLayoutLibrary_SlotAsSafeBoxSlot_Params
 {
 public:
-	class UWidget*                               Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	class USafeZoneSlot*                         ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	class USafeZoneSlot*                         ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -6383,8 +6383,8 @@ public:
 struct UWidgetLayoutLibrary_SlotAsOverlaySlot_Params
 {
 public:
-	class UWidget*                               Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	class UOverlaySlot*                          ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	class UOverlaySlot*                          ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -6392,8 +6392,8 @@ public:
 struct UWidgetLayoutLibrary_SlotAsHorizontalBoxSlot_Params
 {
 public:
-	class UWidget*                               Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	class UHorizontalBoxSlot*                    ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	class UHorizontalBoxSlot*                    ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -6401,8 +6401,8 @@ public:
 struct UWidgetLayoutLibrary_SlotAsGridSlot_Params
 {
 public:
-	class UWidget*                               Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	class UGridSlot*                             ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	class UGridSlot*                             ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -6410,8 +6410,8 @@ public:
 struct UWidgetLayoutLibrary_SlotAsCanvasSlot_Params
 {
 public:
-	class UWidget*                               Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	class UCanvasPanelSlot*                      ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	class UCanvasPanelSlot*                      ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -6419,8 +6419,8 @@ public:
 struct UWidgetLayoutLibrary_SlotAsBorderSlot_Params
 {
 public:
-	class UWidget*                               Widget;                                            // 0x0(0x8)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, DisableEditOnInstance, EditConst)
-	class UBorderSlot*                           ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UWidget*                               Widget;                                            // 0x0(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	class UBorderSlot*                           ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -6428,7 +6428,7 @@ public:
 struct UWidgetLayoutLibrary_RemoveAllWidgets_Params
 {
 public:
-	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
 };
 
 // 0x38 (0x38 - 0x0)
@@ -6436,12 +6436,12 @@ public:
 struct UWidgetLayoutLibrary_ProjectWorldLocationToWidgetPosition_Params
 {
 public:
-	class APlayerController*                     PlayerController;                                  // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	struct FVector                               WorldLocation;                                     // 0x8(0x18)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-	struct FVector2D                             ScreenPosition;                                    // 0x20(0x10)(ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bPlayerViewportRelative;                           // 0x30(0x1)(Edit, ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x31(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1B0A[0x6];                                     // Fixing Size Of Struct > TateDumper <
+	class APlayerController*                     PlayerController;                                  // 0x0(0x8)(BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+	struct FVector                               WorldLocation;                                     // 0x8(0x18)(ExportObject, Net, EditFixedSize, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+	struct FVector2D                             ScreenPosition;                                    // 0x20(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bPlayerViewportRelative;                           // 0x30(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x31(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1E5B[0x6];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x40 (0x40 - 0x0)
@@ -6449,8 +6449,8 @@ public:
 struct UWidgetLayoutLibrary_GetViewportWidgetGeometry_Params
 {
 public:
-	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	struct FGeometry                             ReturnValue;                                       // 0x8(0x38)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	struct FGeometry                             ReturnValue;                                       // 0x8(0x38)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -6458,8 +6458,8 @@ public:
 struct UWidgetLayoutLibrary_GetViewportSize_Params
 {
 public:
-	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	struct FVector2D                             ReturnValue;                                       // 0x8(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	struct FVector2D                             ReturnValue;                                       // 0x8(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -6467,9 +6467,9 @@ public:
 struct UWidgetLayoutLibrary_GetViewportScale_Params
 {
 public:
-	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	float                                        ReturnValue;                                       // 0x8(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1B1B[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x8(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1E67[0x4];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x40 (0x40 - 0x0)
@@ -6477,8 +6477,8 @@ public:
 struct UWidgetLayoutLibrary_GetPlayerScreenWidgetGeometry_Params
 {
 public:
-	class APlayerController*                     PlayerController;                                  // 0x0(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, OutParm, Config, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	struct FGeometry                             ReturnValue;                                       // 0x8(0x38)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class APlayerController*                     PlayerController;                                  // 0x0(0x8)(BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, GlobalConfig)
+	struct FGeometry                             ReturnValue;                                       // 0x8(0x38)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -6486,11 +6486,11 @@ public:
 struct UWidgetLayoutLibrary_GetMousePositionScaledByDPI_Params
 {
 public:
-	class APlayerController*                     Player;                                            // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst)
-	float                                        LocationX;                                         // 0x8(0x4)(ConstParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	float                                        LocationY;                                         // 0xC(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Config, InstancedReference, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x10(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1B2F[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class APlayerController*                     Player;                                            // 0x0(0x8)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Config, DisableEditOnInstance, EditConst)
+	float                                        LocationX;                                         // 0x8(0x4)(BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        LocationY;                                         // 0xC(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x10(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1E6C[0x7];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x18 (0x18 - 0x0)
@@ -6498,8 +6498,8 @@ public:
 struct UWidgetLayoutLibrary_GetMousePositionOnViewport_Params
 {
 public:
-	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-	struct FVector2D                             ReturnValue;                                       // 0x8(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UObject*                               WorldContextObject;                                // 0x0(0x8)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	struct FVector2D                             ReturnValue;                                       // 0x8(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -6507,7 +6507,7 @@ public:
 struct UWidgetLayoutLibrary_GetMousePositionOnPlatform_Params
 {
 public:
-	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 }

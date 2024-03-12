@@ -229,8 +229,8 @@ enum class ESceneSnapQueryTargetType : uint8
 struct FGizmoVec2ParameterChange
 {
 public:
-	struct FVector2D                             InitialValue;                                      // 0x0(0x10)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
-	struct FVector2D                             CurrentValue;                                      // 0x10(0x10)(ConstParm, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FVector2D                             InitialValue;                                      // 0x0(0x10)(Edit, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FVector2D                             CurrentValue;                                      // 0x10(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x14 (0x14 - 0x0)
@@ -238,10 +238,10 @@ public:
 struct FGizmoElementColorAttribute
 {
 public:
-	struct FLinearColor                          Value;                                             // 0x0(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
-	bool                                         bHasValue;                                         // 0x10(0x1)(BlueprintVisible, Net, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bOverridesChildState;                              // 0x11(0x1)(Edit, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_947[0x2];                                      // Fixing Size Of Struct > TateDumper <
+	struct FLinearColor                          Value;                                             // 0x0(0x10)(ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
+	bool                                         bHasValue;                                         // 0x10(0x1)(ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bOverridesChildState;                              // 0x11(0x1)(Edit, ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_BD6[0x2];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xC (0xC - 0x0)
@@ -249,9 +249,9 @@ public:
 struct FGizmoElementMaterialAttribute
 {
 public:
-	TWeakObjectPtr<class UMaterialInterface>     Value;                                             // 0x0(0x8)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Config)
-	bool                                         bOverridesChildState;                              // 0x8(0x1)(Edit, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_949[0x3];                                      // Fixing Size Of Struct > TateDumper <
+	TWeakObjectPtr<class UMaterialInterface>     Value;                                             // 0x0(0x8)(ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config)
+	bool                                         bOverridesChildState;                              // 0x8(0x1)(Edit, ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_BDB[0x3];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x60 (0x60 - 0x0)
@@ -259,12 +259,12 @@ public:
 struct FGizmoElementMeshRenderStateAttributes
 {
 public:
-	struct FGizmoElementMaterialAttribute        Material;                                          // 0x0(0xC)(Edit, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance)
-	struct FGizmoElementMaterialAttribute        HoverMaterial;                                     // 0xC(0xC)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FGizmoElementMaterialAttribute        InteractMaterial;                                  // 0x18(0xC)(Edit, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FGizmoElementColorAttribute           VertexColor;                                       // 0x24(0x14)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FGizmoElementColorAttribute           HoverVertexColor;                                  // 0x38(0x14)(Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FGizmoElementColorAttribute           InteractVertexColor;                               // 0x4C(0x14)(ConstParm, ExportObject, Net, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FGizmoElementMaterialAttribute        Material;                                          // 0x0(0xC)(Edit, ConstParm, Net, EditFixedSize, Transient, Config, DisableEditOnInstance)
+	struct FGizmoElementMaterialAttribute        HoverMaterial;                                     // 0xC(0xC)(ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FGizmoElementMaterialAttribute        InteractMaterial;                                  // 0x18(0xC)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FGizmoElementColorAttribute           VertexColor;                                       // 0x24(0x14)(ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FGizmoElementColorAttribute           HoverVertexColor;                                  // 0x38(0x14)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FGizmoElementColorAttribute           InteractVertexColor;                               // 0x4C(0x14)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x3C (0x3C - 0x0)
@@ -272,9 +272,9 @@ public:
 struct FGizmoElementLineRenderStateAttributes
 {
 public:
-	struct FGizmoElementColorAttribute           LineColor;                                         // 0x0(0x14)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, SubobjectReference)
-	struct FGizmoElementColorAttribute           HoverLineColor;                                    // 0x14(0x14)(Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FGizmoElementColorAttribute           InteractLineColor;                                 // 0x28(0x14)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FGizmoElementColorAttribute           LineColor;                                         // 0x0(0x14)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+	struct FGizmoElementColorAttribute           HoverLineColor;                                    // 0x14(0x14)(ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FGizmoElementColorAttribute           InteractLineColor;                                 // 0x28(0x14)(EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -282,8 +282,8 @@ public:
 struct FGizmoFloatParameterChange
 {
 public:
-	float                                        InitialValue;                                      // 0x0(0x4)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
-	float                                        CurrentValue;                                      // 0x4(0x4)(ConstParm, BlueprintReadOnly, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        InitialValue;                                      // 0x0(0x4)(Edit, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        CurrentValue;                                      // 0x4(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x130 (0x130 - 0x0)
@@ -291,7 +291,7 @@ public:
 struct FBrushStampData
 {
 public:
-	uint8                                        Pad_950[0x130];                                    // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_BED[0x130];                                    // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x20 (0x20 - 0x0)
@@ -299,8 +299,8 @@ public:
 struct FBehaviorInfo
 {
 public:
-	class UInputBehavior*                        Behavior;                                          // 0x0(0x8)(ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_952[0x18];                                     // Fixing Size Of Struct > TateDumper <
+	class UInputBehavior*                        Behavior;                                          // 0x0(0x8)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_BEE[0x18];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x40 (0x40 - 0x0)
@@ -308,15 +308,15 @@ public:
 struct FInputRayHit
 {
 public:
-	bool                                         bHit;                                              // 0x0(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_954[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	double                                       HitDepth;                                          // 0x8(0x8)(Edit, ConstParm, Parm, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	struct FVector                               HitNormal;                                         // 0x10(0x18)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, GlobalConfig, SubobjectReference)
-	bool                                         bHasHitNormal;                                     // 0x28(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_956[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	int32                                        HitIdentifier;                                     // 0x2C(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_957[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	TWeakObjectPtr<class UObject>                HitObject;                                         // 0x38(0x8)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bHit;                                              // 0x0(0x1)(ConstParm, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_BF2[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	double                                       HitDepth;                                          // 0x8(0x8)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FVector                               HitNormal;                                         // 0x10(0x18)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	bool                                         bHasHitNormal;                                     // 0x28(0x1)(Edit, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_BF7[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	int32                                        HitIdentifier;                                     // 0x2C(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_BF8[0x8];                                      // Fixing Size After Last Property  > TateDumper <
+	TWeakObjectPtr<class UObject>                HitObject;                                         // 0x38(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x48 (0x48 - 0x0)
@@ -324,10 +324,10 @@ public:
 struct FInputDeviceRay
 {
 public:
-	struct FRay                                  WorldRay;                                          // 0x0(0x30)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bHas2D;                                            // 0x30(0x1)(BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_959[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FVector2D                             ScreenPosition;                                    // 0x38(0x10)(ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FRay                                  WorldRay;                                          // 0x0(0x30)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bHas2D;                                            // 0x30(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	uint8                                        Pad_BFE[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FVector2D                             ScreenPosition;                                    // 0x38(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x30 (0x30 - 0x0)
@@ -335,8 +335,8 @@ public:
 struct FActiveGizmo
 {
 public:
-	class UInteractiveGizmo*                     Gizmo;                                             // 0x0(0x8)(BlueprintVisible, BlueprintReadOnly, Parm, ReturnParm, Config, DisableEditOnInstance, SubobjectReference)
-	uint8                                        Pad_95A[0x28];                                     // Fixing Size Of Struct > TateDumper <
+	class UInteractiveGizmo*                     Gizmo;                                             // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+	uint8                                        Pad_BFF[0x28];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 }

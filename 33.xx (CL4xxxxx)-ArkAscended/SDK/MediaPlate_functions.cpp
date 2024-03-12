@@ -99,9 +99,9 @@ class UMediaPlateComponent* UMediaPlateComponent::GetDefaultObj()
 // Function MediaPlate.MediaPlateComponent.SetPlayOnlyWhenVisible
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInPlayOnlyWhenVisible                                           (BlueprintVisible, ExportObject, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// bool                               bInPlayOnlyWhenVisible                                           (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UMediaPlateComponent::SetPlayOnlyWhenVisible()
+void UMediaPlateComponent::SetPlayOnlyWhenVisible(bool* bInPlayOnlyWhenVisible)
 {
 	static class UFunction* Func = nullptr;
 
@@ -119,7 +119,8 @@ bool UMediaPlateComponent::SetPlayOnlyWhenVisible()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bInPlayOnlyWhenVisible != nullptr)
+		*bInPlayOnlyWhenVisible = Parms.bInPlayOnlyWhenVisible;
 
 }
 
@@ -127,9 +128,9 @@ bool UMediaPlateComponent::SetPlayOnlyWhenVisible()
 // Function MediaPlate.MediaPlateComponent.SetMeshRange
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FVector2D                   InMeshRange                                                      (Edit, BlueprintVisible, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// struct FVector2D                   InMeshRange                                                      (Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FVector2D UMediaPlateComponent::SetMeshRange()
+void UMediaPlateComponent::SetMeshRange(struct FVector2D* InMeshRange)
 {
 	static class UFunction* Func = nullptr;
 
@@ -147,7 +148,8 @@ struct FVector2D UMediaPlateComponent::SetMeshRange()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (InMeshRange != nullptr)
+		*InMeshRange = std::move(Parms.InMeshRange);
 
 }
 
@@ -155,9 +157,9 @@ struct FVector2D UMediaPlateComponent::SetMeshRange()
 // Function MediaPlate.MediaPlateComponent.SetLoop
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInLoop                                                          (ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// bool                               bInLoop                                                          (ConstParm, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-bool UMediaPlateComponent::SetLoop()
+void UMediaPlateComponent::SetLoop(bool* bInLoop)
 {
 	static class UFunction* Func = nullptr;
 
@@ -175,7 +177,8 @@ bool UMediaPlateComponent::SetLoop()
 
 	Func->FunctionFlags = Flgs;
 
-	return Parms.ReturnValue;
+	if (bInLoop != nullptr)
+		*bInLoop = Parms.bInLoop;
 
 }
 
@@ -183,9 +186,9 @@ bool UMediaPlateComponent::SetLoop()
 // Function MediaPlate.MediaPlateComponent.SetLetterboxAspectRatio
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              AspectRatio                                                      (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              AspectRatio                                                      (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
-void UMediaPlateComponent::SetLetterboxAspectRatio(float* AspectRatio)
+float UMediaPlateComponent::SetLetterboxAspectRatio()
 {
 	static class UFunction* Func = nullptr;
 
@@ -203,8 +206,7 @@ void UMediaPlateComponent::SetLetterboxAspectRatio(float* AspectRatio)
 
 	Func->FunctionFlags = Flgs;
 
-	if (AspectRatio != nullptr)
-		*AspectRatio = Parms.AspectRatio;
+	return Parms.ReturnValue;
 
 }
 
@@ -212,7 +214,7 @@ void UMediaPlateComponent::SetLetterboxAspectRatio(float* AspectRatio)
 // Function MediaPlate.MediaPlateComponent.SetIsAspectRatioAuto
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bInIsAspectRatioAuto                                             (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// bool                               bInIsAspectRatioAuto                                             (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 void UMediaPlateComponent::SetIsAspectRatioAuto(bool* bInIsAspectRatioAuto)
 {
@@ -241,10 +243,10 @@ void UMediaPlateComponent::SetIsAspectRatioAuto(bool* bInIsAspectRatioAuto)
 // Function MediaPlate.MediaPlateComponent.Seek
 // (Final, Native, Public, HasOutParams, HasDefaults, BlueprintCallable)
 // Parameters:
-// struct FTimespan                   Time                                                             (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FTimespan                   Time                                                             (Edit, ConstParm, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FTimespan UMediaPlateComponent::Seek(bool ReturnValue)
+bool UMediaPlateComponent::Seek()
 {
 	static class UFunction* Func = nullptr;
 
@@ -253,7 +255,6 @@ struct FTimespan UMediaPlateComponent::Seek(bool ReturnValue)
 
 	Params::UMediaPlateComponent_Seek_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -271,9 +272,9 @@ struct FTimespan UMediaPlateComponent::Seek(bool ReturnValue)
 // Function MediaPlate.MediaPlateComponent.Rewind
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlateComponent::Rewind(bool ReturnValue)
+bool UMediaPlateComponent::Rewind()
 {
 	static class UFunction* Func = nullptr;
 
@@ -282,7 +283,6 @@ void UMediaPlateComponent::Rewind(bool ReturnValue)
 
 	Params::UMediaPlateComponent_Rewind_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -291,6 +291,8 @@ void UMediaPlateComponent::Rewind(bool ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -370,7 +372,7 @@ void UMediaPlateComponent::Open()
 // Function MediaPlate.MediaPlateComponent.OnMediaOpened
 // (Final, Native, Private)
 // Parameters:
-// class FString                      DeviceUrl                                                        (Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class FString                      DeviceUrl                                                        (Edit, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 void UMediaPlateComponent::OnMediaOpened(class FString* DeviceUrl)
 {
@@ -423,9 +425,9 @@ void UMediaPlateComponent::OnMediaEnd()
 // Function MediaPlate.MediaPlateComponent.IsMediaPlatePlaying
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlateComponent::IsMediaPlatePlaying(bool ReturnValue)
+bool UMediaPlateComponent::IsMediaPlatePlaying()
 {
 	static class UFunction* Func = nullptr;
 
@@ -434,7 +436,6 @@ void UMediaPlateComponent::IsMediaPlatePlaying(bool ReturnValue)
 
 	Params::UMediaPlateComponent_IsMediaPlatePlaying_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -444,15 +445,17 @@ void UMediaPlateComponent::IsMediaPlatePlaying(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaPlate.MediaPlateComponent.GetMeshRange
 // (Final, Native, Public, HasDefaults, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FVector2D                   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FVector2D                   ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlateComponent::GetMeshRange(const struct FVector2D& ReturnValue)
+struct FVector2D UMediaPlateComponent::GetMeshRange()
 {
 	static class UFunction* Func = nullptr;
 
@@ -461,7 +464,6 @@ void UMediaPlateComponent::GetMeshRange(const struct FVector2D& ReturnValue)
 
 	Params::UMediaPlateComponent_GetMeshRange_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -471,16 +473,18 @@ void UMediaPlateComponent::GetMeshRange(const struct FVector2D& ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaPlate.MediaPlateComponent.GetMediaTexture
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              Index                                                            (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
-// class UMediaTexture*               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// int32                              Index                                                            (EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+// class UMediaTexture*               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlateComponent::GetMediaTexture(int32* Index, class UMediaTexture* ReturnValue)
+class UMediaTexture* UMediaPlateComponent::GetMediaTexture()
 {
 	static class UFunction* Func = nullptr;
 
@@ -489,7 +493,6 @@ void UMediaPlateComponent::GetMediaTexture(int32* Index, class UMediaTexture* Re
 
 	Params::UMediaPlateComponent_GetMediaTexture_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -499,8 +502,7 @@ void UMediaPlateComponent::GetMediaTexture(int32* Index, class UMediaTexture* Re
 
 	Func->FunctionFlags = Flgs;
 
-	if (Index != nullptr)
-		*Index = Parms.Index;
+	return Parms.ReturnValue;
 
 }
 
@@ -508,9 +510,9 @@ void UMediaPlateComponent::GetMediaTexture(int32* Index, class UMediaTexture* Re
 // Function MediaPlate.MediaPlateComponent.GetMediaPlayer
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// class UMediaPlayer*                ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UMediaPlayer*                ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlateComponent::GetMediaPlayer(class UMediaPlayer* ReturnValue)
+class UMediaPlayer* UMediaPlateComponent::GetMediaPlayer()
 {
 	static class UFunction* Func = nullptr;
 
@@ -519,7 +521,6 @@ void UMediaPlateComponent::GetMediaPlayer(class UMediaPlayer* ReturnValue)
 
 	Params::UMediaPlateComponent_GetMediaPlayer_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -529,15 +530,17 @@ void UMediaPlateComponent::GetMediaPlayer(class UMediaPlayer* ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaPlate.MediaPlateComponent.GetLoop
 // (Final, Native, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlateComponent::GetLoop(bool ReturnValue)
+bool UMediaPlateComponent::GetLoop()
 {
 	static class UFunction* Func = nullptr;
 
@@ -546,7 +549,6 @@ void UMediaPlateComponent::GetLoop(bool ReturnValue)
 
 	Params::UMediaPlateComponent_GetLoop_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -556,15 +558,17 @@ void UMediaPlateComponent::GetLoop(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaPlate.MediaPlateComponent.GetLetterboxAspectRatio
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// float                              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// float                              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlateComponent::GetLetterboxAspectRatio(float ReturnValue)
+float UMediaPlateComponent::GetLetterboxAspectRatio()
 {
 	static class UFunction* Func = nullptr;
 
@@ -573,7 +577,6 @@ void UMediaPlateComponent::GetLetterboxAspectRatio(float ReturnValue)
 
 	Params::UMediaPlateComponent_GetLetterboxAspectRatio_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -583,15 +586,17 @@ void UMediaPlateComponent::GetLetterboxAspectRatio(float ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function MediaPlate.MediaPlateComponent.GetIsAspectRatioAuto
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMediaPlateComponent::GetIsAspectRatioAuto(bool ReturnValue)
+bool UMediaPlateComponent::GetIsAspectRatioAuto()
 {
 	static class UFunction* Func = nullptr;
 
@@ -600,7 +605,6 @@ void UMediaPlateComponent::GetIsAspectRatioAuto(bool ReturnValue)
 
 	Params::UMediaPlateComponent_GetIsAspectRatioAuto_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -609,6 +613,8 @@ void UMediaPlateComponent::GetIsAspectRatioAuto(bool ReturnValue)
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 

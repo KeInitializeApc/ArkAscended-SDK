@@ -2943,9 +2943,9 @@ class UExistingMeshMaterialProperties* UExistingMeshMaterialProperties::GetDefau
 // Function MeshModelingTools.ExistingMeshMaterialProperties.GetUVChannelNamesFunc
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UExistingMeshMaterialProperties::GetUVChannelNamesFunc(const TArray<class FString>& ReturnValue)
+TArray<class FString> UExistingMeshMaterialProperties::GetUVChannelNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -2954,7 +2954,6 @@ void UExistingMeshMaterialProperties::GetUVChannelNamesFunc(const TArray<class F
 
 	Params::UExistingMeshMaterialProperties_GetUVChannelNamesFunc_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -2963,6 +2962,8 @@ void UExistingMeshMaterialProperties::GetUVChannelNamesFunc(const TArray<class F
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 
@@ -3026,9 +3027,9 @@ class UMeshUVChannelProperties* UMeshUVChannelProperties::GetDefaultObj()
 // Function MeshModelingTools.MeshUVChannelProperties.GetUVChannelNamesFunc
 // (Final, Native, Public, Const)
 // Parameters:
-// TArray<class FString>              ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FString>              ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UMeshUVChannelProperties::GetUVChannelNamesFunc(const TArray<class FString>& ReturnValue)
+TArray<class FString> UMeshUVChannelProperties::GetUVChannelNamesFunc()
 {
 	static class UFunction* Func = nullptr;
 
@@ -3037,7 +3038,6 @@ void UMeshUVChannelProperties::GetUVChannelNamesFunc(const TArray<class FString>
 
 	Params::UMeshUVChannelProperties_GetUVChannelNamesFunc_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -3046,6 +3046,8 @@ void UMeshUVChannelProperties::GetUVChannelNamesFunc(const TArray<class FString>
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 

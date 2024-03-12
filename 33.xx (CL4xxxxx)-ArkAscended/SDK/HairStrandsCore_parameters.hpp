@@ -18,15 +18,15 @@ namespace Params
 struct UGroomBlueprintLibrary_CreateNewGroomBindingAssetWithPath_Params
 {
 public:
-	class FString                                InDesiredPackagePath;                              // 0x0(0x10)(Edit, BlueprintReadOnly, EditFixedSize, Parm, InstancedReference, SubobjectReference)
-	class UGroomAsset*                           InGroomAsset;                                      // 0x10(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	class USkeletalMesh*                         InSkeletalMesh;                                    // 0x18(0x8)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        InNumInterpolationPoints;                          // 0x20(0x4)(ConstParm, BlueprintVisible, ExportObject, Parm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	uint8                                        Pad_EAB[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	class USkeletalMesh*                         InSourceSkeletalMeshForTransfer;                   // 0x28(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	int32                                        InMatchingSection;                                 // 0x30(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	uint8                                        Pad_EAC[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	class UGroomBindingAsset*                    ReturnValue;                                       // 0x38(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FString                                InDesiredPackagePath;                              // 0x0(0x10)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class UGroomAsset*                           InGroomAsset;                                      // 0x10(0x8)(Edit, BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class USkeletalMesh*                         InSkeletalMesh;                                    // 0x18(0x8)(Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	int32                                        InNumInterpolationPoints;                          // 0x20(0x4)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_D7[0x4];                                       // Fixing Size After Last Property  > TateDumper <
+	class USkeletalMesh*                         InSourceSkeletalMeshForTransfer;                   // 0x28(0x8)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	int32                                        InMatchingSection;                                 // 0x30(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_D8[0x4];                                       // Fixing Size After Last Property  > TateDumper <
+	class UGroomBindingAsset*                    ReturnValue;                                       // 0x38(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x30 (0x30 - 0x0)
@@ -34,14 +34,14 @@ public:
 struct UGroomBlueprintLibrary_CreateNewGroomBindingAsset_Params
 {
 public:
-	class UGroomAsset*                           InGroomAsset;                                      // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	class USkeletalMesh*                         InSkeletalMesh;                                    // 0x8(0x8)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-	int32                                        InNumInterpolationPoints;                          // 0x10(0x4)(ConstParm, BlueprintVisible, ExportObject, Parm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	uint8                                        Pad_EBE[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	class USkeletalMesh*                         InSourceSkeletalMeshForTransfer;                   // 0x18(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	int32                                        InMatchingSection;                                 // 0x20(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	uint8                                        Pad_EC0[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	class UGroomBindingAsset*                    ReturnValue;                                       // 0x28(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UGroomAsset*                           InGroomAsset;                                      // 0x0(0x8)(Edit, BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class USkeletalMesh*                         InSkeletalMesh;                                    // 0x8(0x8)(Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	int32                                        InNumInterpolationPoints;                          // 0x10(0x4)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_DF[0x4];                                       // Fixing Size After Last Property  > TateDumper <
+	class USkeletalMesh*                         InSourceSkeletalMeshForTransfer;                   // 0x18(0x8)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	int32                                        InMatchingSection;                                 // 0x20(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_E0[0x4];                                       // Fixing Size After Last Property  > TateDumper <
+	class UGroomBindingAsset*                    ReturnValue;                                       // 0x28(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x40 (0x40 - 0x0)
@@ -49,15 +49,15 @@ public:
 struct UGroomBlueprintLibrary_CreateNewGeometryCacheGroomBindingAssetWithPath_Params
 {
 public:
-	class FString                                DesiredPackagePath;                                // 0x0(0x10)(Edit, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	class UGroomAsset*                           GroomAsset;                                        // 0x10(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-	class UGeometryCache*                        GeometryCache;                                     // 0x18(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
-	int32                                        NumInterpolationPoints;                            // 0x20(0x4)(ConstParm, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	uint8                                        Pad_EEB[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	class UGeometryCache*                        SourceGeometryCacheForTransfer;                    // 0x28(0x8)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	int32                                        MatchingSection;                                   // 0x30(0x4)(Edit, BlueprintReadOnly, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	uint8                                        Pad_EEE[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	class UGroomBindingAsset*                    ReturnValue;                                       // 0x38(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FString                                DesiredPackagePath;                                // 0x0(0x10)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class UGroomAsset*                           GroomAsset;                                        // 0x10(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	class UGeometryCache*                        GeometryCache;                                     // 0x18(0x8)(BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnInstance, EditConst)
+	int32                                        NumInterpolationPoints;                            // 0x20(0x4)(BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_EA[0x4];                                       // Fixing Size After Last Property  > TateDumper <
+	class UGeometryCache*                        SourceGeometryCacheForTransfer;                    // 0x28(0x8)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	int32                                        MatchingSection;                                   // 0x30(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_EC[0x4];                                       // Fixing Size After Last Property  > TateDumper <
+	class UGroomBindingAsset*                    ReturnValue;                                       // 0x38(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x30 (0x30 - 0x0)
@@ -65,14 +65,14 @@ public:
 struct UGroomBlueprintLibrary_CreateNewGeometryCacheGroomBindingAsset_Params
 {
 public:
-	class UGroomAsset*                           GroomAsset;                                        // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-	class UGeometryCache*                        GeometryCache;                                     // 0x8(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
-	int32                                        NumInterpolationPoints;                            // 0x10(0x4)(ConstParm, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	uint8                                        Pad_EFE[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	class UGeometryCache*                        SourceGeometryCacheForTransfer;                    // 0x18(0x8)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	int32                                        MatchingSection;                                   // 0x20(0x4)(Edit, BlueprintReadOnly, DisableEditOnTemplate, InstancedReference, SubobjectReference)
-	uint8                                        Pad_F01[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	class UGroomBindingAsset*                    ReturnValue;                                       // 0x28(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UGroomAsset*                           GroomAsset;                                        // 0x0(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	class UGeometryCache*                        GeometryCache;                                     // 0x8(0x8)(BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnInstance, EditConst)
+	int32                                        NumInterpolationPoints;                            // 0x10(0x4)(BlueprintVisible, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_F3[0x4];                                       // Fixing Size After Last Property  > TateDumper <
+	class UGeometryCache*                        SourceGeometryCacheForTransfer;                    // 0x18(0x8)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	int32                                        MatchingSection;                                   // 0x20(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_F5[0x4];                                       // Fixing Size After Last Property  > TateDumper <
+	class UGroomBindingAsset*                    ReturnValue;                                       // 0x28(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -80,7 +80,7 @@ public:
 struct UGroomComponent_SetPhysicsAsset_Params
 {
 public:
-	class UPhysicsAsset*                         InPhysicsAsset;                                    // 0x0(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+	class UPhysicsAsset*                         InPhysicsAsset;                                    // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -88,7 +88,7 @@ public:
 struct UGroomComponent_SetMeshDeformer_Params
 {
 public:
-	class UMeshDeformer*                         InMeshDeformer;                                    // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, Net, Parm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+	class UMeshDeformer*                         InMeshDeformer;                                    // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -96,7 +96,7 @@ public:
 struct UGroomComponent_SetHairLengthScaleEnable_Params
 {
 public:
-	bool                                         bEnable;                                           // 0x0(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bEnable;                                           // 0x0(0x1)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -104,7 +104,7 @@ public:
 struct UGroomComponent_SetHairLengthScale_Params
 {
 public:
-	float                                        Scale;                                             // 0x0(0x4)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config)
+	float                                        Scale;                                             // 0x0(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, Config)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -112,7 +112,7 @@ public:
 struct UGroomComponent_SetGroomAsset_Params
 {
 public:
-	class UGroomAsset*                           Asset;                                             // 0x0(0x8)(BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, Config, EditConst, SubobjectReference)
+	class UGroomAsset*                           Asset;                                             // 0x0(0x8)(Edit, ConstParm, Net, EditFixedSize, Parm, Config, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -120,7 +120,7 @@ public:
 struct UGroomComponent_SetEnableSimulation_Params
 {
 public:
-	bool                                         bInEnableSimulation;                               // 0x0(0x1)(ConstParm, Net, Parm, DisableEditOnTemplate, InstancedReference, SubobjectReference)
+	bool                                         bInEnableSimulation;                               // 0x0(0x1)(BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -128,7 +128,7 @@ public:
 struct UGroomComponent_SetBindingAsset_Params
 {
 public:
-	class UGroomBindingAsset*                    InBinding;                                         // 0x0(0x8)(EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	class UGroomBindingAsset*                    InBinding;                                         // 0x0(0x8)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -136,9 +136,9 @@ public:
 struct UGroomComponent_GetNiagaraComponent_Params
 {
 public:
-	int32                                        GroupIndex;                                        // 0x0(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_F36[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	class UNiagaraComponent*                     ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        GroupIndex;                                        // 0x0(0x4)(Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_117[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	class UNiagaraComponent*                     ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -146,7 +146,7 @@ public:
 struct UGroomComponent_GetIsHairLengthScaleEnabled_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -154,7 +154,7 @@ public:
 struct UGroomComponent_AddCollisionComponent_Params
 {
 public:
-	class USkeletalMeshComponent*                SkeletalMeshComponent;                             // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst)
+	class USkeletalMeshComponent*                SkeletalMeshComponent;                             // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst)
 };
 
 }

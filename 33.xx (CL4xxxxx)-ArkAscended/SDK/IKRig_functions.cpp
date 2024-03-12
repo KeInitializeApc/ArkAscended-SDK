@@ -43,7 +43,7 @@ class IIKGoalCreatorInterface* IIKGoalCreatorInterface::GetDefaultObj()
 // Function IKRig.IKGoalCreatorInterface.AddIKGoals
 // (Native, Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// TMap<class FName, struct FIKRigGoal>OutGoals                                                         (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// TMap<class FName, struct FIKRigGoal>OutGoals                                                         (Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 TMap<class FName, struct FIKRigGoal> IIKGoalCreatorInterface::AddIKGoals()
 {
@@ -99,12 +99,12 @@ class UIKRigComponent* UIKRigComponent::GetDefaultObj()
 // Function IKRig.IKRigComponent.SetIKRigGoalTransform
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        GoalName                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class FName                        GoalName                                                         (OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 // struct FTransform                  Transform                                                        (BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm)
-// float                              PositionAlpha                                                    (BlueprintVisible, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// float                              RotationAlpha                                                    (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              PositionAlpha                                                    (Edit, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              RotationAlpha                                                    (Edit, ConstParm, ExportObject, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-class FName UIKRigComponent::SetIKRigGoalTransform(struct FTransform* Transform, float* PositionAlpha, float RotationAlpha)
+float UIKRigComponent::SetIKRigGoalTransform(struct FTransform* Transform)
 {
 	static class UFunction* Func = nullptr;
 
@@ -113,7 +113,6 @@ class FName UIKRigComponent::SetIKRigGoalTransform(struct FTransform* Transform,
 
 	Params::UIKRigComponent_SetIKRigGoalTransform_Params Parms{};
 
-	Parms.RotationAlpha = RotationAlpha;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -126,9 +125,6 @@ class FName UIKRigComponent::SetIKRigGoalTransform(struct FTransform* Transform,
 	if (Transform != nullptr)
 		*Transform = std::move(Parms.Transform);
 
-	if (PositionAlpha != nullptr)
-		*PositionAlpha = Parms.PositionAlpha;
-
 	return Parms.ReturnValue;
 
 }
@@ -137,13 +133,13 @@ class FName UIKRigComponent::SetIKRigGoalTransform(struct FTransform* Transform,
 // Function IKRig.IKRigComponent.SetIKRigGoalPositionAndRotation
 // (Final, Native, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// class FName                        GoalName                                                         (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// struct FVector                     Position                                                         (Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config)
+// class FName                        GoalName                                                         (OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FVector                     Position                                                         (Edit, ConstParm, ExportObject, ReturnParm, Transient, Config)
 // struct FQuat                       Rotation                                                         (BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor)
-// float                              PositionAlpha                                                    (BlueprintVisible, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// float                              RotationAlpha                                                    (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              PositionAlpha                                                    (Edit, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// float                              RotationAlpha                                                    (Edit, ConstParm, ExportObject, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-class FName UIKRigComponent::SetIKRigGoalPositionAndRotation(struct FVector* Position, struct FQuat* Rotation, float* PositionAlpha, float RotationAlpha)
+float UIKRigComponent::SetIKRigGoalPositionAndRotation(struct FQuat* Rotation)
 {
 	static class UFunction* Func = nullptr;
 
@@ -152,7 +148,6 @@ class FName UIKRigComponent::SetIKRigGoalPositionAndRotation(struct FVector* Pos
 
 	Params::UIKRigComponent_SetIKRigGoalPositionAndRotation_Params Parms{};
 
-	Parms.RotationAlpha = RotationAlpha;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -162,14 +157,8 @@ class FName UIKRigComponent::SetIKRigGoalPositionAndRotation(struct FVector* Pos
 
 	Func->FunctionFlags = Flgs;
 
-	if (Position != nullptr)
-		*Position = std::move(Parms.Position);
-
 	if (Rotation != nullptr)
 		*Rotation = std::move(Parms.Rotation);
-
-	if (PositionAlpha != nullptr)
-		*PositionAlpha = Parms.PositionAlpha;
 
 	return Parms.ReturnValue;
 
@@ -179,7 +168,7 @@ class FName UIKRigComponent::SetIKRigGoalPositionAndRotation(struct FVector* Pos
 // Function IKRig.IKRigComponent.SetIKRigGoal
 // (Final, Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FIKRigGoal                  Goal                                                             (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// struct FIKRigGoal                  Goal                                                             (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 struct FIKRigGoal UIKRigComponent::SetIKRigGoal()
 {
@@ -455,10 +444,10 @@ class UIKRetargeter* UIKRetargeter::GetDefaultObj()
 // Function IKRig.IKRetargeter.SetRootSettingsInRetargetProfile
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FRetargetProfile            RetargetProfile                                                  (Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config)
-// struct FTargetRootSettings         RootSettings                                                     (ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FRetargetProfile            RetargetProfile                                                  (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
+// struct FTargetRootSettings         RootSettings                                                     (Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
-struct FRetargetProfile UIKRetargeter::SetRootSettingsInRetargetProfile(const struct FTargetRootSettings& RootSettings)
+struct FTargetRootSettings UIKRetargeter::SetRootSettingsInRetargetProfile()
 {
 	static class UFunction* Func = nullptr;
 
@@ -467,7 +456,6 @@ struct FRetargetProfile UIKRetargeter::SetRootSettingsInRetargetProfile(const st
 
 	Params::UIKRetargeter_SetRootSettingsInRetargetProfile_Params Parms{};
 
-	Parms.RootSettings = RootSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -485,8 +473,8 @@ struct FRetargetProfile UIKRetargeter::SetRootSettingsInRetargetProfile(const st
 // Function IKRig.IKRetargeter.SetGlobalSettingsInRetargetProfile
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FRetargetProfile            RetargetProfile                                                  (Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config)
-// struct FRetargetGlobalSettings     GlobalSettings                                                   (Edit, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FRetargetProfile            RetargetProfile                                                  (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
+// struct FRetargetGlobalSettings     GlobalSettings                                                   (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 
 struct FRetargetGlobalSettings UIKRetargeter::SetGlobalSettingsInRetargetProfile()
 {
@@ -514,9 +502,9 @@ struct FRetargetGlobalSettings UIKRetargeter::SetGlobalSettingsInRetargetProfile
 // Function IKRig.IKRetargeter.SetChainSpeedPlantSettingsInRetargetProfile
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FRetargetProfile            RetargetProfile                                                  (Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config)
-// struct FTargetChainSpeedPlantSettingsSpeedPlantSettings                                               (Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class FName                        TargetChainName                                                  (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// struct FRetargetProfile            RetargetProfile                                                  (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
+// struct FTargetChainSpeedPlantSettingsSpeedPlantSettings                                               (Edit, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        TargetChainName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 class FName UIKRetargeter::SetChainSpeedPlantSettingsInRetargetProfile()
 {
@@ -544,11 +532,11 @@ class FName UIKRetargeter::SetChainSpeedPlantSettingsInRetargetProfile()
 // Function IKRig.IKRetargeter.SetChainSettingsInRetargetProfile
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FRetargetProfile            RetargetProfile                                                  (Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config)
-// struct FTargetChainSettings        ChainSettings                                                    (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// class FName                        TargetChainName                                                  (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// struct FRetargetProfile            RetargetProfile                                                  (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
+// struct FTargetChainSettings        ChainSettings                                                    (BlueprintVisible, Net, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// class FName                        TargetChainName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-class FName UIKRetargeter::SetChainSettingsInRetargetProfile(const struct FTargetChainSettings& ChainSettings)
+class FName UIKRetargeter::SetChainSettingsInRetargetProfile()
 {
 	static class UFunction* Func = nullptr;
 
@@ -557,7 +545,6 @@ class FName UIKRetargeter::SetChainSettingsInRetargetProfile(const struct FTarge
 
 	Params::UIKRetargeter_SetChainSettingsInRetargetProfile_Params Parms{};
 
-	Parms.ChainSettings = ChainSettings;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -575,9 +562,9 @@ class FName UIKRetargeter::SetChainSettingsInRetargetProfile(const struct FTarge
 // Function IKRig.IKRetargeter.SetChainIKSettingsInRetargetProfile
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FRetargetProfile            RetargetProfile                                                  (Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config)
-// struct FTargetChainIKSettings      IKSettings                                                       (Edit, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class FName                        TargetChainName                                                  (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// struct FRetargetProfile            RetargetProfile                                                  (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
+// struct FTargetChainIKSettings      IKSettings                                                       (Edit, ConstParm, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        TargetChainName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 class FName UIKRetargeter::SetChainIKSettingsInRetargetProfile()
 {
@@ -605,9 +592,9 @@ class FName UIKRetargeter::SetChainIKSettingsInRetargetProfile()
 // Function IKRig.IKRetargeter.SetChainFKSettingsInRetargetProfile
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// struct FRetargetProfile            RetargetProfile                                                  (Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config)
-// struct FTargetChainFKSettings      FKSettings                                                       (Edit, ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class FName                        TargetChainName                                                  (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// struct FRetargetProfile            RetargetProfile                                                  (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
+// struct FTargetChainFKSettings      FKSettings                                                       (Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        TargetChainName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 class FName UIKRetargeter::SetChainFKSettingsInRetargetProfile()
 {
@@ -635,10 +622,10 @@ class FName UIKRetargeter::SetChainFKSettingsInRetargetProfile()
 // Function IKRig.IKRetargeter.GetRootSettingsFromRetargetProfile
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FRetargetProfile            RetargetProfile                                                  (Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config)
-// struct FTargetRootSettings         ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRetargetProfile            RetargetProfile                                                  (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
+// struct FTargetRootSettings         ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FRetargetProfile UIKRetargeter::GetRootSettingsFromRetargetProfile(const struct FTargetRootSettings& ReturnValue)
+struct FTargetRootSettings UIKRetargeter::GetRootSettingsFromRetargetProfile()
 {
 	static class UFunction* Func = nullptr;
 
@@ -647,7 +634,6 @@ struct FRetargetProfile UIKRetargeter::GetRootSettingsFromRetargetProfile(const 
 
 	Params::UIKRetargeter_GetRootSettingsFromRetargetProfile_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -665,11 +651,11 @@ struct FRetargetProfile UIKRetargeter::GetRootSettingsFromRetargetProfile(const 
 // Function IKRig.IKRetargeter.GetRootSettingsFromRetargetAsset
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UIKRetargeter*               RetargetAsset                                                    (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-// class FName                        OptionalProfileName                                              (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// struct FTargetRootSettings         OutSettings                                                      (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class UIKRetargeter*               RetargetAsset                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+// class FName                        OptionalProfileName                                              (ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FTargetRootSettings         OutSettings                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FTargetRootSettings UIKRetargeter::GetRootSettingsFromRetargetAsset(class UIKRetargeter* RetargetAsset)
+struct FTargetRootSettings UIKRetargeter::GetRootSettingsFromRetargetAsset()
 {
 	static class UFunction* Func = nullptr;
 
@@ -678,7 +664,6 @@ struct FTargetRootSettings UIKRetargeter::GetRootSettingsFromRetargetAsset(class
 
 	Params::UIKRetargeter_GetRootSettingsFromRetargetAsset_Params Parms{};
 
-	Parms.RetargetAsset = RetargetAsset;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -696,10 +681,10 @@ struct FTargetRootSettings UIKRetargeter::GetRootSettingsFromRetargetAsset(class
 // Function IKRig.IKRetargeter.GetGlobalSettingsFromRetargetProfile
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FRetargetProfile            RetargetProfile                                                  (Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config)
-// struct FRetargetGlobalSettings     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRetargetProfile            RetargetProfile                                                  (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
+// struct FRetargetGlobalSettings     ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FRetargetProfile UIKRetargeter::GetGlobalSettingsFromRetargetProfile(const struct FRetargetGlobalSettings& ReturnValue)
+struct FRetargetGlobalSettings UIKRetargeter::GetGlobalSettingsFromRetargetProfile()
 {
 	static class UFunction* Func = nullptr;
 
@@ -708,7 +693,6 @@ struct FRetargetProfile UIKRetargeter::GetGlobalSettingsFromRetargetProfile(cons
 
 	Params::UIKRetargeter_GetGlobalSettingsFromRetargetProfile_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -726,11 +710,11 @@ struct FRetargetProfile UIKRetargeter::GetGlobalSettingsFromRetargetProfile(cons
 // Function IKRig.IKRetargeter.GetGlobalSettingsFromRetargetAsset
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UIKRetargeter*               RetargetAsset                                                    (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-// class FName                        OptionalProfileName                                              (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// struct FRetargetGlobalSettings     OutSettings                                                      (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+// class UIKRetargeter*               RetargetAsset                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+// class FName                        OptionalProfileName                                              (ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRetargetGlobalSettings     OutSettings                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-struct FRetargetGlobalSettings UIKRetargeter::GetGlobalSettingsFromRetargetAsset(class UIKRetargeter* RetargetAsset)
+struct FRetargetGlobalSettings UIKRetargeter::GetGlobalSettingsFromRetargetAsset()
 {
 	static class UFunction* Func = nullptr;
 
@@ -739,7 +723,6 @@ struct FRetargetGlobalSettings UIKRetargeter::GetGlobalSettingsFromRetargetAsset
 
 	Params::UIKRetargeter_GetGlobalSettingsFromRetargetAsset_Params Parms{};
 
-	Parms.RetargetAsset = RetargetAsset;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -757,11 +740,11 @@ struct FRetargetGlobalSettings UIKRetargeter::GetGlobalSettingsFromRetargetAsset
 // Function IKRig.IKRetargeter.GetChainUsingGoalFromRetargetAsset
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UIKRetargeter*               RetargetAsset                                                    (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-// class FName                        IKGoalName                                                       (ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-// struct FTargetChainSettings        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UIKRetargeter*               RetargetAsset                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+// class FName                        IKGoalName                                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// struct FTargetChainSettings        ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UIKRetargeter::GetChainUsingGoalFromRetargetAsset(class UIKRetargeter* RetargetAsset, class FName* IKGoalName, const struct FTargetChainSettings& ReturnValue)
+struct FTargetChainSettings UIKRetargeter::GetChainUsingGoalFromRetargetAsset()
 {
 	static class UFunction* Func = nullptr;
 
@@ -770,8 +753,6 @@ void UIKRetargeter::GetChainUsingGoalFromRetargetAsset(class UIKRetargeter* Reta
 
 	Params::UIKRetargeter_GetChainUsingGoalFromRetargetAsset_Params Parms{};
 
-	Parms.RetargetAsset = RetargetAsset;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -781,8 +762,7 @@ void UIKRetargeter::GetChainUsingGoalFromRetargetAsset(class UIKRetargeter* Reta
 
 	Func->FunctionFlags = Flgs;
 
-	if (IKGoalName != nullptr)
-		*IKGoalName = Parms.IKGoalName;
+	return Parms.ReturnValue;
 
 }
 
@@ -790,11 +770,11 @@ void UIKRetargeter::GetChainUsingGoalFromRetargetAsset(class UIKRetargeter* Reta
 // Function IKRig.IKRetargeter.GetChainSettingsFromRetargetProfile
 // (Final, Native, Static, Public, HasOutParams, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FRetargetProfile            RetargetProfile                                                  (Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config)
-// class FName                        TargetChainName                                                  (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// struct FTargetChainSettings        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FRetargetProfile            RetargetProfile                                                  (Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
+// class FName                        TargetChainName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FTargetChainSettings        ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UIKRetargeter::GetChainSettingsFromRetargetProfile(const struct FTargetChainSettings& ReturnValue)
+struct FTargetChainSettings UIKRetargeter::GetChainSettingsFromRetargetProfile()
 {
 	static class UFunction* Func = nullptr;
 
@@ -803,7 +783,6 @@ class FName UIKRetargeter::GetChainSettingsFromRetargetProfile(const struct FTar
 
 	Params::UIKRetargeter_GetChainSettingsFromRetargetProfile_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -821,12 +800,12 @@ class FName UIKRetargeter::GetChainSettingsFromRetargetProfile(const struct FTar
 // Function IKRig.IKRetargeter.GetChainSettingsFromRetargetAsset
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UIKRetargeter*               RetargetAsset                                                    (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-// class FName                        TargetChainName                                                  (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// class FName                        OptionalProfileName                                              (ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// struct FTargetChainSettings        ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UIKRetargeter*               RetargetAsset                                                    (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+// class FName                        TargetChainName                                                  (Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// class FName                        OptionalProfileName                                              (ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FTargetChainSettings        ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class FName UIKRetargeter::GetChainSettingsFromRetargetAsset(class UIKRetargeter* RetargetAsset, const struct FTargetChainSettings& ReturnValue)
+struct FTargetChainSettings UIKRetargeter::GetChainSettingsFromRetargetAsset()
 {
 	static class UFunction* Func = nullptr;
 
@@ -835,8 +814,6 @@ class FName UIKRetargeter::GetChainSettingsFromRetargetAsset(class UIKRetargeter
 
 	Params::UIKRetargeter_GetChainSettingsFromRetargetAsset_Params Parms{};
 
-	Parms.RetargetAsset = RetargetAsset;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;

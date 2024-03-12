@@ -18,7 +18,7 @@ namespace Params
 struct UMutex_TryLock_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -26,10 +26,10 @@ public:
 struct UThreadAsyncExecLoop_CreateThreadExecLoop_Params
 {
 public:
-	float                                        Interval;                                          // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-	bool                                         bLongTask;                                         // 0x4(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-	uint8                                        Pad_496[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	class UThreadAsyncExecLoop*                  ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        Interval;                                          // 0x0(0x4)(BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+	bool                                         bLongTask;                                         // 0x4(0x1)(Edit, ConstParm, BlueprintVisible, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1E3[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	class UThreadAsyncExecLoop*                  ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -37,7 +37,7 @@ public:
 struct USyncExecOnce_CreateSyncExecOnce_Params
 {
 public:
-	class USyncExecOnce*                         ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class USyncExecOnce*                         ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -45,7 +45,7 @@ public:
 struct UThreadAsyncExecLibrary_ThreadWait_Params
 {
 public:
-	float                                        Seconds;                                           // 0x0(0x4)(ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
+	float                                        Seconds;                                           // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -53,9 +53,9 @@ public:
 struct UThreadAsyncExecLibrary_SetTickableWhenPaused_Params
 {
 public:
-	class UThreadAsyncExecTick*                  TickHandle;                                        // 0x0(0x8)(Edit, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-	bool                                         NewValue;                                          // 0x8(0x1)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-	uint8                                        Pad_4A0[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	class UThreadAsyncExecTick*                  TickHandle;                                        // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         NewValue;                                          // 0x8(0x1)(ConstParm, Net, EditFixedSize, ZeroConstructor, EditConst, SubobjectReference)
+	uint8                                        Pad_1EA[0x7];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -63,9 +63,9 @@ public:
 struct UThreadAsyncExecLibrary_SetTickable_Params
 {
 public:
-	class UThreadAsyncExecTick*                  TickHandle;                                        // 0x0(0x8)(Edit, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-	bool                                         NewValue;                                          // 0x8(0x1)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-	uint8                                        Pad_4A3[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	class UThreadAsyncExecTick*                  TickHandle;                                        // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         NewValue;                                          // 0x8(0x1)(ConstParm, Net, EditFixedSize, ZeroConstructor, EditConst, SubobjectReference)
+	uint8                                        Pad_1EC[0x7];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -73,9 +73,9 @@ public:
 struct UThreadAsyncExecLibrary_IsTickableWhenPaused_Params
 {
 public:
-	class UThreadAsyncExecTick*                  TickHandle;                                        // 0x0(0x8)(Edit, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x8(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_4A6[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	class UThreadAsyncExecTick*                  TickHandle;                                        // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x8(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1F0[0x7];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -83,9 +83,9 @@ public:
 struct UThreadAsyncExecLibrary_IsTickable_Params
 {
 public:
-	class UThreadAsyncExecTick*                  TickHandle;                                        // 0x0(0x8)(Edit, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x8(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_4A9[0x7];                                      // Fixing Size Of Struct > TateDumper <
+	class UThreadAsyncExecTick*                  TickHandle;                                        // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x8(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1F2[0x7];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1 (0x1 - 0x0)
@@ -93,7 +93,7 @@ public:
 struct UThreadAsyncExecLibrary_IsGameThread_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -101,7 +101,7 @@ public:
 struct UThreadAsyncExecLibrary_GetCurrentThreadName_Params
 {
 public:
-	class FString                                ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FString                                ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -109,7 +109,7 @@ public:
 struct UThreadAsyncExecLibrary_GetCurrentThreadID_Params
 {
 public:
-	int32                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -117,7 +117,7 @@ public:
 struct UThreadAsyncExecLibrary_ExecIsGameThread_Params
 {
 public:
-	bool                                         bIsInGameThread;                                   // 0x0(0x1)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+	bool                                         bIsInGameThread;                                   // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -125,7 +125,7 @@ public:
 struct UThreadAsyncExecLibrary_BreakNextTick_Params
 {
 public:
-	class UThreadAsyncExecTick*                  TickHandle;                                        // 0x0(0x8)(Edit, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+	class UThreadAsyncExecTick*                  TickHandle;                                        // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -133,7 +133,7 @@ public:
 struct UThreadAsyncExecLibrary_BreakNextLoop_Params
 {
 public:
-	class UThreadAsyncExecLoop*                  LoopHandle;                                        // 0x0(0x8)(Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+	class UThreadAsyncExecLoop*                  LoopHandle;                                        // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -141,9 +141,9 @@ public:
 struct UThreadAsyncExecOnce_CreateThreadExecOnce_Params
 {
 public:
-	bool                                         bLongTask;                                         // 0x0(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-	uint8                                        Pad_4BE[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	class UThreadAsyncExecOnce*                  ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         bLongTask;                                         // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1FE[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	class UThreadAsyncExecOnce*                  ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -151,9 +151,9 @@ public:
 struct UThreadAsyncExecTick_OnTick__DelegateSignature_Params
 {
 public:
-	float                                        DeltaSeconds;                                      // 0x0(0x4)(ConstParm, Net, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_4C2[0x4];                                      // Fixing Size After Last Property  > TateDumper <
-	class UThreadAsyncExecTick*                  TickHandle;                                        // 0x8(0x8)(Edit, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+	float                                        DeltaSeconds;                                      // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_207[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	class UThreadAsyncExecTick*                  TickHandle;                                        // 0x8(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -161,9 +161,9 @@ public:
 struct UThreadAsyncExecTick_CreateThreadExecTick_Params
 {
 public:
-	bool                                         bLongTask;                                         // 0x0(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-	uint8                                        Pad_4C5[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	class UThreadAsyncExecTick*                  ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         bLongTask;                                         // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ReturnParm, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_20B[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	class UThreadAsyncExecTick*                  ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -171,7 +171,7 @@ public:
 struct UThreadExecDeveloperSettings_Get_Params
 {
 public:
-	class UThreadExecDeveloperSettings*          ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UThreadExecDeveloperSettings*          ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -179,7 +179,7 @@ public:
 struct UThreadNodeSubsystem_GetAllThreadExecTicks_Params
 {
 public:
-	TSet<class UThreadAsyncExecTick*>            ReturnValue;                                       // 0x0(0x50)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	TSet<class UThreadAsyncExecTick*>            ReturnValue;                                       // 0x0(0x50)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -187,7 +187,7 @@ public:
 struct UThreadNodeSubsystem_GetAllThreadExecOnces_Params
 {
 public:
-	TSet<class UThreadAsyncExecOnce*>            ReturnValue;                                       // 0x0(0x50)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	TSet<class UThreadAsyncExecOnce*>            ReturnValue;                                       // 0x0(0x50)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -195,7 +195,7 @@ public:
 struct UThreadNodeSubsystem_GetAllThreadExecNodes_Params
 {
 public:
-	TSet<class UThreadAsyncExecBase*>            ReturnValue;                                       // 0x0(0x50)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	TSet<class UThreadAsyncExecBase*>            ReturnValue;                                       // 0x0(0x50)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -203,7 +203,7 @@ public:
 struct UThreadNodeSubsystem_GetAllThreadExecLoops_Params
 {
 public:
-	TSet<class UThreadAsyncExecLoop*>            ReturnValue;                                       // 0x0(0x50)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	TSet<class UThreadAsyncExecLoop*>            ReturnValue;                                       // 0x0(0x50)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -211,7 +211,7 @@ public:
 struct UThreadNodeSubsystem_GetAllMutexes_Params
 {
 public:
-	TSet<class UMutex*>                          ReturnValue;                                       // 0x0(0x50)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	TSet<class UMutex*>                          ReturnValue;                                       // 0x0(0x50)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -219,7 +219,7 @@ public:
 struct UThreadNodeSubsystem_DestoryMutex_Params
 {
 public:
-	class UMutex*                                Mutex;                                             // 0x0(0x8)(ExportObject, BlueprintReadOnly, Parm, Config, DisableEditOnInstance, EditConst)
+	class UMutex*                                Mutex;                                             // 0x0(0x8)(ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, Config, DisableEditOnInstance, EditConst)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -227,7 +227,7 @@ public:
 struct UThreadNodeSubsystem_CreateNewMutex_Params
 {
 public:
-	class UMutex*                                ReturnValue;                                       // 0x0(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UMutex*                                ReturnValue;                                       // 0x0(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 }

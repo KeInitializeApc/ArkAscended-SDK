@@ -18,9 +18,9 @@ namespace Params
 struct IBPI_CustomComboBoxInterface_C_OnOptionSelectedInterface_Params
 {
 public:
-	class FString                                Option;                                            // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, GlobalConfig, SubobjectReference)
+	class FString                                Option;                                            // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, SubobjectReference)
 	int64                                        ID;                                                // 0x10(0x8)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor)
-	class UUI_CustomComboBoxOption_C*            OptionWidget;                                      // 0x18(0x8)(Net, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UUI_CustomComboBoxOption_C*            OptionWidget;                                      // 0x18(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 }

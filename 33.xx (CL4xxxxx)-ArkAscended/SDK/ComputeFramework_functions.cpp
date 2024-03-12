@@ -231,10 +231,10 @@ void UComputeGraphComponent::DestroyDataProviders()
 // Function ComputeFramework.ComputeGraphComponent.CreateDataProviders
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// int32                              InBindingIndex                                                   (ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
-// class UObject*                     InBindingObject                                                  (Edit, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+// int32                              InBindingIndex                                                   (Net, EditFixedSize, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+// class UObject*                     InBindingObject                                                  (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Config, InstancedReference, SubobjectReference)
 
-void UComputeGraphComponent::CreateDataProviders(int32* InBindingIndex, class UObject** InBindingObject)
+void UComputeGraphComponent::CreateDataProviders(int32 InBindingIndex, class UObject* InBindingObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -243,6 +243,8 @@ void UComputeGraphComponent::CreateDataProviders(int32* InBindingIndex, class UO
 
 	Params::UComputeGraphComponent_CreateDataProviders_Params Parms{};
 
+	Parms.InBindingIndex = InBindingIndex;
+	Parms.InBindingObject = InBindingObject;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -251,12 +253,6 @@ void UComputeGraphComponent::CreateDataProviders(int32* InBindingIndex, class UO
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (InBindingIndex != nullptr)
-		*InBindingIndex = Parms.InBindingIndex;
-
-	if (InBindingObject != nullptr)
-		*InBindingObject = Parms.InBindingObject;
 
 }
 

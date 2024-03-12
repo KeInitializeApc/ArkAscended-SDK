@@ -19,26 +19,26 @@ public:
 	static class UDLSSLibrary* GetDefaultObj();
 
 	float SetDLSSSharpness();
-	enum class EUDLSSMode SetDLSSMode();
-	void QueryDLSSSupport(enum class EUDLSSSupport ReturnValue);
-	void QueryDLSSRRSupport(enum class EUDLSSSupport ReturnValue);
-	void IsDLSSSupported(bool ReturnValue);
-	void IsDLSSRRSupported(bool ReturnValue);
-	void IsDLSSRREnabled(bool ReturnValue);
-	enum class EUDLSSMode IsDLSSModeSupported(bool ReturnValue);
-	void IsDLSSEnabled(bool ReturnValue);
-	void IsDLAAEnabled(bool ReturnValue);
-	void GetSupportedDLSSModes(const TArray<enum class EUDLSSMode>& ReturnValue);
-	void GetDLSSSharpness(float ReturnValue);
-	float GetDLSSScreenPercentageRange();
-	int32 GetDLSSRRMinimumDriverVersion();
-	float GetDLSSModeInformation();
-	void GetDLSSMode(enum class EUDLSSMode ReturnValue);
-	int32 GetDLSSMinimumDriverVersion();
-	void GetDefaultDLSSMode(enum class EUDLSSMode ReturnValue);
-	bool EnableDLSSRR();
-	bool EnableDLSS();
-	bool EnableDLAA();
+	enum class EUDLSSMode SetDLSSMode(class UObject** WorldContextObject);
+	enum class EUDLSSSupport QueryDLSSSupport();
+	enum class EUDLSSSupport QueryDLSSRRSupport();
+	bool IsDLSSSupported();
+	bool IsDLSSRRSupported();
+	bool IsDLSSRREnabled();
+	bool IsDLSSModeSupported();
+	bool IsDLSSEnabled();
+	bool IsDLAAEnabled();
+	TArray<enum class EUDLSSMode> GetSupportedDLSSModes();
+	float GetDLSSSharpness();
+	float GetDLSSScreenPercentageRange(float* MaxScreenPercentage);
+	void GetDLSSRRMinimumDriverVersion(int32* MinDriverVersionMajor, int32* MinDriverVersionMinor);
+	float GetDLSSModeInformation(const struct FVector2D& ScreenResolution, float* MaxScreenPercentage, float* OptimalSharpness);
+	enum class EUDLSSMode GetDLSSMode();
+	void GetDLSSMinimumDriverVersion(int32* MinDriverVersionMajor, int32* MinDriverVersionMinor);
+	enum class EUDLSSMode GetDefaultDLSSMode();
+	void EnableDLSSRR(bool bEnabled);
+	void EnableDLSS(bool bEnabled);
+	void EnableDLAA(bool bEnabled);
 };
 
 }

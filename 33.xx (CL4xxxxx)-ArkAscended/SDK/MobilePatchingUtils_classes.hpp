@@ -14,14 +14,14 @@ namespace SDK
 class UMobileInstalledContent : public UObject
 {
 public:
-	uint8                                        Pad_ED7[0x20];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1C99[0x20];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMobileInstalledContent* GetDefaultObj();
 
-	void Mount(int32 PakOrder, const class FString& MountPoint, bool ReturnValue);
-	void GetInstalledContentSize(float ReturnValue);
-	void GetDiskFreeSpace(float ReturnValue);
+	bool Mount(int32 PakOrder, const class FString& MountPoint);
+	float GetInstalledContentSize();
+	float GetDiskFreeSpace();
 };
 
 // 0x40 (0x88 - 0x48)
@@ -29,18 +29,18 @@ public:
 class UMobilePendingContent : public UMobileInstalledContent
 {
 public:
-	uint8                                        Pad_F84[0x40];                                     // Fixing Size Of Struct > TateDumper <
+	uint8                                        Pad_1CB4[0x40];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UMobilePendingContent* GetDefaultObj();
 
-	void StartInstall(FDelegateProperty_ OnSucceeded, FDelegateProperty_* OnFailed);
-	void GetTotalDownloadedSize(float ReturnValue);
-	void GetRequiredDiskSpace(float ReturnValue);
-	void GetInstallProgress(float ReturnValue);
-	void GetDownloadStatusText(class FText ReturnValue);
-	void GetDownloadSpeed(float ReturnValue);
-	void GetDownloadSize(float ReturnValue);
+	FDelegateProperty_ StartInstall(FDelegateProperty_ OnSucceeded);
+	float GetTotalDownloadedSize();
+	float GetRequiredDiskSpace();
+	float GetInstallProgress();
+	class FText GetDownloadStatusText();
+	float GetDownloadSpeed();
+	float GetDownloadSize();
 };
 
 // 0x0 (0x28 - 0x28)
@@ -52,11 +52,11 @@ public:
 	static class UClass* StaticClass();
 	static class UMobilePatchingLibrary* GetDefaultObj();
 
-	void RequestContent(const class FString& RemoteManifestURL, const class FString& CloudURL, const class FString& InstallDirectory, FDelegateProperty_ OnSucceeded, FDelegateProperty_* OnFailed);
-	void HasActiveWiFiConnection(bool ReturnValue);
-	void GetSupportedPlatformNames(const TArray<class FString>& ReturnValue);
-	void GetInstalledContent(const class FString& InstallDirectory, class UMobileInstalledContent* ReturnValue);
-	void GetActiveDeviceProfileName(const class FString& ReturnValue);
+	FDelegateProperty_ RequestContent(const class FString& RemoteManifestURL, const class FString& CloudURL, const class FString& InstallDirectory, FDelegateProperty_ OnSucceeded);
+	bool HasActiveWiFiConnection();
+	TArray<class FString> GetSupportedPlatformNames();
+	class UMobileInstalledContent* GetInstalledContent(const class FString& InstallDirectory);
+	class FString GetActiveDeviceProfileName();
 };
 
 }

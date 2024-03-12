@@ -43,9 +43,9 @@ class UPrimalItemSkin_PlayerCostume_Custom_C* UPrimalItemSkin_PlayerCostume_Cust
 // Function PrimalItemSkin_PlayerCostume_Custom.PrimalItemSkin_PlayerCostume_Custom_C.BPOverrideEquippedDurabilityPercentage
 // (Event, Public, HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// float                              OutDurabilityPercentageValue                                     (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, InstancedReference, SubobjectReference)
+// float                              OutDurabilityPercentageValue                                     (ConstParm, BlueprintVisible, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, InstancedReference, SubobjectReference)
 
-void UPrimalItemSkin_PlayerCostume_Custom_C::BPOverrideEquippedDurabilityPercentage(float OutDurabilityPercentageValue)
+float UPrimalItemSkin_PlayerCostume_Custom_C::BPOverrideEquippedDurabilityPercentage()
 {
 	static class UFunction* Func = nullptr;
 
@@ -54,9 +54,10 @@ void UPrimalItemSkin_PlayerCostume_Custom_C::BPOverrideEquippedDurabilityPercent
 
 	Params::UPrimalItemSkin_PlayerCostume_Custom_C_BPOverrideEquippedDurabilityPercentage_Params Parms{};
 
-	Parms.OutDurabilityPercentageValue = OutDurabilityPercentageValue;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	return Parms.ReturnValue;
 
 }
 

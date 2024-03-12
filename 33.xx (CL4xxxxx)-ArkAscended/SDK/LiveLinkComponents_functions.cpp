@@ -155,7 +155,7 @@ class ULiveLinkComponentController* ULiveLinkComponentController::GetDefaultObj(
 // Function LiveLinkComponents.LiveLinkComponentController.SetSubjectRepresentation
 // (Final, Native, Public, BlueprintCallable)
 // Parameters:
-// struct FLiveLinkSubjectRepresentationInSubjectRepresentation                                          (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
+// struct FLiveLinkSubjectRepresentationInSubjectRepresentation                                          (Edit, Parm, OutParm, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 struct FLiveLinkSubjectRepresentation ULiveLinkComponentController::SetSubjectRepresentation()
 {
@@ -183,9 +183,9 @@ struct FLiveLinkSubjectRepresentation ULiveLinkComponentController::SetSubjectRe
 // Function LiveLinkComponents.LiveLinkComponentController.GetSubjectRepresentation
 // (Final, Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// struct FLiveLinkSubjectRepresentationReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FLiveLinkSubjectRepresentationReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void ULiveLinkComponentController::GetSubjectRepresentation(const struct FLiveLinkSubjectRepresentation& ReturnValue)
+struct FLiveLinkSubjectRepresentation ULiveLinkComponentController::GetSubjectRepresentation()
 {
 	static class UFunction* Func = nullptr;
 
@@ -194,7 +194,6 @@ void ULiveLinkComponentController::GetSubjectRepresentation(const struct FLiveLi
 
 	Params::ULiveLinkComponentController_GetSubjectRepresentation_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -203,6 +202,8 @@ void ULiveLinkComponentController::GetSubjectRepresentation(const struct FLiveLi
 
 
 	Func->FunctionFlags = Flgs;
+
+	return Parms.ReturnValue;
 
 }
 

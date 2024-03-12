@@ -14,24 +14,24 @@ namespace SDK
 class UConsoleVariablesAsset : public UObject
 {
 public:
-	uint8                                        Pad_BC0[0x8];                                      // Fixing Size After Last Property  > TateDumper <
-	class FString                                VariableCollectionDescription;                     // 0x30(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
-	TArray<struct FConsoleVariablesEditorAssetSaveData> SavedCommands;                                     // 0x40(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, InstancedReference, SubobjectReference)
+	uint8                                        Pad_133E[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	class FString                                VariableCollectionDescription;                     // 0x30(0x10)(Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<struct FConsoleVariablesEditorAssetSaveData> SavedCommands;                                     // 0x40(0x10)(Edit, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UConsoleVariablesAsset* GetDefaultObj();
 
-	class FString SetVariableCollectionDescription();
+	void SetVariableCollectionDescription(class FString* InVariableCollectionDescription);
 	TArray<struct FConsoleVariablesEditorAssetSaveData> ReplaceSavedCommands();
-	class FString RemoveConsoleVariable(bool ReturnValue);
-	void GetVariableCollectionDescription(const class FString& ReturnValue);
-	void GetSavedCommandsCount(int32 ReturnValue);
-	void GetSavedCommandsAsStringArray(bool* bOnlyIncludeChecked, const TArray<class FString>& ReturnValue);
-	void GetSavedCommandsAsCommaSeparatedString(bool* bOnlyIncludeChecked, const class FString& ReturnValue);
-	void GetSavedCommands(const TArray<struct FConsoleVariablesEditorAssetSaveData>& ReturnValue);
-	enum class ESearchCase FindSavedDataByCommandString(struct FConsoleVariablesEditorAssetSaveData* OutValue, bool ReturnValue);
-	class UObject* ExecuteSavedCommands(bool* bOnlyIncludeChecked);
-	class UConsoleVariablesAsset* CopyFrom();
+	bool RemoveConsoleVariable(class FString* InCommandString);
+	class FString GetVariableCollectionDescription();
+	int32 GetSavedCommandsCount();
+	TArray<class FString> GetSavedCommandsAsStringArray();
+	class FString GetSavedCommandsAsCommaSeparatedString();
+	TArray<struct FConsoleVariablesEditorAssetSaveData> GetSavedCommands();
+	bool FindSavedDataByCommandString(class FString* InCommandString, struct FConsoleVariablesEditorAssetSaveData* OutValue, enum class ESearchCase* SearchCase);
+	bool ExecuteSavedCommands(class UObject** WorldContextObject);
+	void CopyFrom(class UConsoleVariablesAsset** InAssetToCopy);
 	struct FConsoleVariablesEditorAssetSaveData AddOrSetConsoleObjectSavedData();
 };
 

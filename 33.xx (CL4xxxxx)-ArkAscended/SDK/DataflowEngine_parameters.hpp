@@ -18,9 +18,9 @@ namespace Params
 struct UDataflowBlueprintLibrary_EvaluateTerminalNodeByName_Params
 {
 public:
-	class UDataflow*                             Dataflow;                                          // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	class FName                                  TerminalNodeName;                                  // 0x8(0x8)(Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-	class UObject*                               ResultAsset;                                       // 0x10(0x8)(BlueprintVisible, Net, Parm, ReturnParm, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	class UDataflow*                             Dataflow;                                          // 0x0(0x8)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig)
+	class FName                                  TerminalNodeName;                                  // 0x8(0x8)(Edit, ConstParm, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
+	class UObject*                               ResultAsset;                                       // 0x10(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 }

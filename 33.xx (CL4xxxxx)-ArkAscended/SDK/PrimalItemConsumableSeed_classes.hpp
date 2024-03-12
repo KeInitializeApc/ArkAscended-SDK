@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0xED0 - 0xED0)
+// 0x0 (0xEE0 - 0xEE0)
 // BlueprintGeneratedClass PrimalItemConsumableSeed.PrimalItemConsumableSeed_C
 class UPrimalItemConsumableSeed_C : public UPrimalItemConsumableEatable_C
 {

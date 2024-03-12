@@ -29,11 +29,11 @@ enum class ESentryLevel : uint8
 struct FAutomaticBreadcrumbs
 {
 public:
-	bool                                         bOnMapLoadingStarted;                              // 0x0(0x1)(ConstParm, ExportObject, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bOnMapLoaded;                                      // 0x1(0x1)(Edit, ConstParm, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bOnGameStateClassChanged;                          // 0x2(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bOnGameSessionIDChanged;                           // 0x3(0x1)(Edit, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bOnUserActivityStringChanged;                      // 0x4(0x1)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bOnMapLoadingStarted;                              // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bOnMapLoaded;                                      // 0x1(0x1)(BlueprintReadOnly, Net, EditFixedSize, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bOnGameStateClassChanged;                          // 0x2(0x1)(Edit, ConstParm, Net, EditFixedSize, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bOnGameSessionIDChanged;                           // 0x3(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bOnUserActivityStringChanged;                      // 0x4(0x1)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x6 (0x6 - 0x0)
@@ -41,12 +41,12 @@ public:
 struct FTagsPromotion
 {
 public:
-	bool                                         bPromoteBuildConfiguration;                        // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bPromoteTargetType;                                // 0x1(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bPromoteEngineMode;                                // 0x2(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bPromoteIsGame;                                    // 0x3(0x1)(Edit, ConstParm, ExportObject, Net, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bPromoteIsStandalone;                              // 0x4(0x1)(Net, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bPromoteIsUnattended;                              // 0x5(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bPromoteBuildConfiguration;                        // 0x0(0x1)(BlueprintVisible, BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bPromoteTargetType;                                // 0x1(0x1)(ConstParm, ExportObject, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bPromoteEngineMode;                                // 0x2(0x1)(Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bPromoteIsGame;                                    // 0x3(0x1)(ExportObject, BlueprintReadOnly, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bPromoteIsStandalone;                              // 0x4(0x1)(Edit, BlueprintVisible, ExportObject, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bPromoteIsUnattended;                              // 0x5(0x1)(ConstParm, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 }

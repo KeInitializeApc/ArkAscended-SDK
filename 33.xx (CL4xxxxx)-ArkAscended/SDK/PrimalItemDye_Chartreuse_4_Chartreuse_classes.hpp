@@ -1,0 +1,25 @@
+#pragma once
+
+// Dumped with TateDumper!
+
+
+namespace SDK
+{
+//---------------------------------------------------------------------------------------------------------------------
+// CLASSES
+//---------------------------------------------------------------------------------------------------------------------
+
+// 0x0 (0xF00 - 0xF00)
+// BlueprintGeneratedClass PrimalItemDye_Chartreuse_4_Chartreuse.PrimalItemDye_Chartreuse_4_Chartreuse_C
+class UPrimalItemDye_Chartreuse_4_Chartreuse_C : public UPrimalItemDyeGeneric_C
+{
+public:
+
+	static class UClass* StaticClass();
+	static class UPrimalItemDye_Chartreuse_4_Chartreuse_C* GetDefaultObj();
+
+};
+
+}
+
+

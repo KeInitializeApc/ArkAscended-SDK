@@ -14,8 +14,8 @@ namespace SDK
 class UNotificationUI_C : public UUI_Notification
 {
 public:
-	class UImage*                                Image_2;                                           // 0x7B8(0x8)(Edit, ConstParm, Net, Parm, ZeroConstructor, ReturnParm, Config, DisableEditOnInstance, RepNotify, Interp)
-	class UButton*                               OkButton;                                          // 0x7C0(0x8)(Edit, ExportObject, Net, Parm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UImage*                                Image_2;                                           // 0x7B8(0x8)(Edit, BlueprintVisible, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, RepNotify, Interp)
+	class UButton*                               OkButton;                                          // 0x7C0(0x8)(BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UNotificationUI_C* GetDefaultObj();

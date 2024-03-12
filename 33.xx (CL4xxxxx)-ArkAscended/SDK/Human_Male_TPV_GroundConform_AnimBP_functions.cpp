@@ -43,10 +43,10 @@ class UHuman_Male_TPV_GroundConform_AnimBP_C* UHuman_Male_TPV_GroundConform_Anim
 // Function Human_Male_TPV_GroundConform_AnimBP.Human_Male_TPV_GroundConform_AnimBP_C.AnimGraph
 // (HasOutParams, BlueprintCallable, BlueprintEvent)
 // Parameters:
-// struct FPoseLink                   InPose                                                           (ConstParm, BlueprintVisible, ReturnParm, DisableEditOnTemplate, Transient, EditConst)
-// struct FPoseLink                   AnimGraph                                                        (ConstParm, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst)
+// struct FPoseLink                   InPose                                                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst)
+// struct FPoseLink                   AnimGraph                                                        (Edit, Net, Transient, EditConst)
 
-struct FPoseLink UHuman_Male_TPV_GroundConform_AnimBP_C::AnimGraph(const struct FPoseLink& AnimGraph)
+void UHuman_Male_TPV_GroundConform_AnimBP_C::AnimGraph(struct FPoseLink* InPose, const struct FPoseLink& AnimGraph)
 {
 	static class UFunction* Func = nullptr;
 
@@ -59,7 +59,8 @@ struct FPoseLink UHuman_Male_TPV_GroundConform_AnimBP_C::AnimGraph(const struct 
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (InPose != nullptr)
+		*InPose = std::move(Parms.InPose);
 
 }
 
@@ -121,9 +122,9 @@ void UHuman_Male_TPV_GroundConform_AnimBP_C::EvaluateGraphExposedInputs_ExecuteU
 // Function Human_Male_TPV_GroundConform_AnimBP.Human_Male_TPV_GroundConform_AnimBP_C.BlueprintUpdateAnimation
 // (Event, Public, BlueprintEvent)
 // Parameters:
-// float                              DeltaTimeX                                                       (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+// float                              DeltaTimeX                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 
-float UHuman_Male_TPV_GroundConform_AnimBP_C::BlueprintUpdateAnimation()
+void UHuman_Male_TPV_GroundConform_AnimBP_C::BlueprintUpdateAnimation(float* DeltaTimeX)
 {
 	static class UFunction* Func = nullptr;
 
@@ -135,7 +136,8 @@ float UHuman_Male_TPV_GroundConform_AnimBP_C::BlueprintUpdateAnimation()
 
 	UObject::ProcessEvent(Func, &Parms);
 
-	return Parms.ReturnValue;
+	if (DeltaTimeX != nullptr)
+		*DeltaTimeX = Parms.DeltaTimeX;
 
 }
 
@@ -161,29 +163,29 @@ void UHuman_Male_TPV_GroundConform_AnimBP_C::BlueprintInitializeAnimation()
 // Function Human_Male_TPV_GroundConform_AnimBP.Human_Male_TPV_GroundConform_AnimBP_C.ExecuteUbergraph_Human_Male_TPV_GroundConform_AnimBP
 // (Final, UbergraphFunction)
 // Parameters:
-// int32                              EntryPoint                                                       (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, EditConst, SubobjectReference)
-// float                              CallFunc_GetCurveValue_ReturnValue                               (ConstParm, Parm, ZeroConstructor, ReturnParm, SubobjectReference)
-// class USkeletalMeshComponent*      CallFunc_GetOwningComponent_ReturnValue                          (BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, SubobjectReference)
-// struct FVector                     CallFunc_K2_GetComponentScale_ReturnValue                        (Edit, BlueprintReadOnly, Net, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// double                             CallFunc_Conv_BoolToDouble_ReturnValue                           (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, SubobjectReference)
-// float                              K2Node_Event_DeltaTimeX                                          (ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, SubobjectReference)
-// bool                               CallFunc_IsDedicatedServer_ReturnValue                           (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_Not_PreBool_ReturnValue                                 (Edit, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// class APawn*                       CallFunc_TryGetPawnOwner_ReturnValue                             (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, SubobjectReference)
-// class APrimalCharacter*            K2Node_DynamicCast_AsPrimal_Character                            (BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, SubobjectReference)
-// bool                               K2Node_DynamicCast_bSuccess                                      (Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// bool                               CallFunc_HasDynamicBase_ReturnValue                              (Edit, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, SubobjectReference)
-// bool                               CallFunc_UpdateGroundConformingVariables_IsBeingDragged          (ConstParm, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, SubobjectReference)
-// bool                               CallFunc_UpdateGroundConformingVariables_IsSwimming              (Edit, Net, OutParm, ZeroConstructor, ReturnParm, SubobjectReference)
-// bool                               CallFunc_UpdateGroundConformingVariables_IsFalling               (Edit, ConstParm, BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, SubobjectReference)
-// bool                               CallFunc_UpdateGroundConformingVariables_Should_Mark_Has_Hit_Ground_once(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, SubobjectReference)
-// bool                               CallFunc_UpdateGroundConformingVariables_Interpolate             (Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ZeroConstructor, ReturnParm, SubobjectReference)
-// float                              CallFunc_GetCurveValue_ReturnValue_1                             (ConstParm, Parm, ZeroConstructor, ReturnParm, SubobjectReference, Interp)
-// bool                               CallFunc_Greater_DoubleDouble_ReturnValue                        (ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-// float                              K2Node_StructMemberSet_Alpha_ImplicitCast                        (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, DisableEditOnTemplate, SubobjectReference)
-// double                             CallFunc_Greater_DoubleDouble_A_ImplicitCast                     (ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
+// int32                              EntryPoint                                                       (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, EditConst, SubobjectReference)
+// float                              CallFunc_GetCurveValue_ReturnValue                               (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// class USkeletalMeshComponent*      CallFunc_GetOwningComponent_ReturnValue                          (Edit, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// struct FVector                     CallFunc_K2_GetComponentScale_ReturnValue                        (Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
+// double                             CallFunc_Conv_BoolToDouble_ReturnValue                           (Edit, ConstParm, ExportObject, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// float                              K2Node_Event_DeltaTimeX                                          (Edit, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_IsDedicatedServer_ReturnValue                           (BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
+// bool                               CallFunc_Not_PreBool_ReturnValue                                 (BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// class APawn*                       CallFunc_TryGetPawnOwner_ReturnValue                             (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// class APrimalCharacter*            K2Node_DynamicCast_AsPrimal_Character                            (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               K2Node_DynamicCast_bSuccess                                      (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, SubobjectReference)
+// bool                               CallFunc_HasDynamicBase_ReturnValue                              (ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_UpdateGroundConformingVariables_IsBeingDragged          (Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_UpdateGroundConformingVariables_IsSwimming              (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_UpdateGroundConformingVariables_IsFalling               (BlueprintVisible, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_UpdateGroundConformingVariables_Should_Mark_Has_Hit_Ground_once(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// bool                               CallFunc_UpdateGroundConformingVariables_Interpolate             (BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// float                              CallFunc_GetCurveValue_ReturnValue_1                             (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference, Interp)
+// bool                               CallFunc_Greater_DoubleDouble_ReturnValue                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
+// float                              K2Node_StructMemberSet_Alpha_ImplicitCast                        (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
+// double                             CallFunc_Greater_DoubleDouble_A_ImplicitCast                     (BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, SubobjectReference)
 
-double UHuman_Male_TPV_GroundConform_AnimBP_C::ExecuteUbergraph_Human_Male_TPV_GroundConform_AnimBP(float K2Node_Event_DeltaTimeX, class APrimalCharacter* K2Node_DynamicCast_AsPrimal_Character, float K2Node_StructMemberSet_Alpha_ImplicitCast)
+double UHuman_Male_TPV_GroundConform_AnimBP_C::ExecuteUbergraph_Human_Male_TPV_GroundConform_AnimBP(int32* EntryPoint, float* CallFunc_GetCurveValue_ReturnValue, class USkeletalMeshComponent** CallFunc_GetOwningComponent_ReturnValue, double* CallFunc_Conv_BoolToDouble_ReturnValue, float* K2Node_Event_DeltaTimeX, class APawn** CallFunc_TryGetPawnOwner_ReturnValue, class APrimalCharacter** K2Node_DynamicCast_AsPrimal_Character, bool* K2Node_DynamicCast_bSuccess, bool* CallFunc_HasDynamicBase_ReturnValue, bool* CallFunc_UpdateGroundConformingVariables_IsBeingDragged, bool* CallFunc_UpdateGroundConformingVariables_IsSwimming, bool* CallFunc_UpdateGroundConformingVariables_IsFalling, bool* CallFunc_UpdateGroundConformingVariables_Should_Mark_Has_Hit_Ground_once, bool* CallFunc_UpdateGroundConformingVariables_Interpolate, float* CallFunc_GetCurveValue_ReturnValue_1, float* K2Node_StructMemberSet_Alpha_ImplicitCast)
 {
 	static class UFunction* Func = nullptr;
 
@@ -192,11 +194,56 @@ double UHuman_Male_TPV_GroundConform_AnimBP_C::ExecuteUbergraph_Human_Male_TPV_G
 
 	Params::UHuman_Male_TPV_GroundConform_AnimBP_C_ExecuteUbergraph_Human_Male_TPV_GroundConform_AnimBP_Params Parms{};
 
-	Parms.K2Node_Event_DeltaTimeX = K2Node_Event_DeltaTimeX;
-	Parms.K2Node_DynamicCast_AsPrimal_Character = K2Node_DynamicCast_AsPrimal_Character;
-	Parms.K2Node_StructMemberSet_Alpha_ImplicitCast = K2Node_StructMemberSet_Alpha_ImplicitCast;
 
 	UObject::ProcessEvent(Func, &Parms);
+
+	if (EntryPoint != nullptr)
+		*EntryPoint = Parms.EntryPoint;
+
+	if (CallFunc_GetCurveValue_ReturnValue != nullptr)
+		*CallFunc_GetCurveValue_ReturnValue = Parms.CallFunc_GetCurveValue_ReturnValue;
+
+	if (CallFunc_GetOwningComponent_ReturnValue != nullptr)
+		*CallFunc_GetOwningComponent_ReturnValue = Parms.CallFunc_GetOwningComponent_ReturnValue;
+
+	if (CallFunc_Conv_BoolToDouble_ReturnValue != nullptr)
+		*CallFunc_Conv_BoolToDouble_ReturnValue = Parms.CallFunc_Conv_BoolToDouble_ReturnValue;
+
+	if (K2Node_Event_DeltaTimeX != nullptr)
+		*K2Node_Event_DeltaTimeX = Parms.K2Node_Event_DeltaTimeX;
+
+	if (CallFunc_TryGetPawnOwner_ReturnValue != nullptr)
+		*CallFunc_TryGetPawnOwner_ReturnValue = Parms.CallFunc_TryGetPawnOwner_ReturnValue;
+
+	if (K2Node_DynamicCast_AsPrimal_Character != nullptr)
+		*K2Node_DynamicCast_AsPrimal_Character = Parms.K2Node_DynamicCast_AsPrimal_Character;
+
+	if (K2Node_DynamicCast_bSuccess != nullptr)
+		*K2Node_DynamicCast_bSuccess = Parms.K2Node_DynamicCast_bSuccess;
+
+	if (CallFunc_HasDynamicBase_ReturnValue != nullptr)
+		*CallFunc_HasDynamicBase_ReturnValue = Parms.CallFunc_HasDynamicBase_ReturnValue;
+
+	if (CallFunc_UpdateGroundConformingVariables_IsBeingDragged != nullptr)
+		*CallFunc_UpdateGroundConformingVariables_IsBeingDragged = Parms.CallFunc_UpdateGroundConformingVariables_IsBeingDragged;
+
+	if (CallFunc_UpdateGroundConformingVariables_IsSwimming != nullptr)
+		*CallFunc_UpdateGroundConformingVariables_IsSwimming = Parms.CallFunc_UpdateGroundConformingVariables_IsSwimming;
+
+	if (CallFunc_UpdateGroundConformingVariables_IsFalling != nullptr)
+		*CallFunc_UpdateGroundConformingVariables_IsFalling = Parms.CallFunc_UpdateGroundConformingVariables_IsFalling;
+
+	if (CallFunc_UpdateGroundConformingVariables_Should_Mark_Has_Hit_Ground_once != nullptr)
+		*CallFunc_UpdateGroundConformingVariables_Should_Mark_Has_Hit_Ground_once = Parms.CallFunc_UpdateGroundConformingVariables_Should_Mark_Has_Hit_Ground_once;
+
+	if (CallFunc_UpdateGroundConformingVariables_Interpolate != nullptr)
+		*CallFunc_UpdateGroundConformingVariables_Interpolate = Parms.CallFunc_UpdateGroundConformingVariables_Interpolate;
+
+	if (CallFunc_GetCurveValue_ReturnValue_1 != nullptr)
+		*CallFunc_GetCurveValue_ReturnValue_1 = Parms.CallFunc_GetCurveValue_ReturnValue_1;
+
+	if (K2Node_StructMemberSet_Alpha_ImplicitCast != nullptr)
+		*K2Node_StructMemberSet_Alpha_ImplicitCast = Parms.K2Node_StructMemberSet_Alpha_ImplicitCast;
 
 	return Parms.ReturnValue;
 

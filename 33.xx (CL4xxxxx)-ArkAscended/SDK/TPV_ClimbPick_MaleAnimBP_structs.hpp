@@ -14,7 +14,7 @@ namespace SDK
 // STRUCTS
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0x3C8 - 0x3C8)
+// 0x0 (0x3D8 - 0x3D8)
 // ScriptStruct TPV_ClimbPick_MaleAnimBP.TPV_ClimbPick_MaleAnimBP_C.AnimBlueprintGeneratedConstantData
 struct FAnimBlueprintGeneratedConstantData : public FAnimBlueprintGeneratedConstantData
 {

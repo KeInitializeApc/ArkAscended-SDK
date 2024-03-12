@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0xED0 - 0xED0)
+// 0x0 (0xEE0 - 0xEE0)
 // BlueprintGeneratedClass PrimalItemAmmo_ExplosiveArrow.PrimalItemAmmo_ExplosiveArrow_C
 class UPrimalItemAmmo_ExplosiveArrow_C : public UPrimalItemAmmo_ArrowBase_C
 {

@@ -230,7 +230,7 @@ struct FGroomConversionSettings
 {
 public:
 	struct FVector                               Rotation;                                          // 0x0(0x18)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor)
-	struct FVector                               Scale;                                             // 0x18(0x18)(Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config)
+	struct FVector                               Scale;                                             // 0x18(0x18)(Edit, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, Config)
 };
 
 // 0x68 (0x68 - 0x0)
@@ -238,18 +238,18 @@ public:
 struct FGroomCacheImportSettings
 {
 public:
-	bool                                         bImportGroomCache;                                 // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	enum class EGroomCacheImportType             ImportType;                                        // 0x1(0x1)(Edit, EditFixedSize, Parm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_FA4[0x2];                                      // Fixing Size After Last Property  > TateDumper <
-	int32                                        FrameStart;                                        // 0x4(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        FrameEnd;                                          // 0x8(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bSkipEmptyFrames;                                  // 0xC(0x1)(Edit, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bImportGroomAsset;                                 // 0xD(0x1)(Edit, ConstParm, Net, Parm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_FA7[0x2];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FSoftObjectPath                       GroomAsset;                                        // 0x10(0x20)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-	bool                                         bOverrideConversionSettings;                       // 0x30(0x1)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_FA8[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	struct FGroomConversionSettings              ConversionSettings;                                // 0x38(0x30)(ConstParm, ExportObject, Parm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bImportGroomCache;                                 // 0x0(0x1)(BlueprintVisible, BlueprintReadOnly, Net, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class EGroomCacheImportType             ImportType;                                        // 0x1(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_155[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	int32                                        FrameStart;                                        // 0x4(0x4)(ExportObject, Net, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        FrameEnd;                                          // 0x8(0x4)(Edit, ConstParm, Net, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bSkipEmptyFrames;                                  // 0xC(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bImportGroomAsset;                                 // 0xD(0x1)(BlueprintReadOnly, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_156[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FSoftObjectPath                       GroomAsset;                                        // 0x10(0x20)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	bool                                         bOverrideConversionSettings;                       // 0x30(0x1)(Edit, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_157[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FGroomConversionSettings              ConversionSettings;                                // 0x38(0x30)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x40 (0x40 - 0x0)
@@ -257,35 +257,35 @@ public:
 struct FHairGroupDesc
 {
 public:
-	float                                        HairLength;                                        // 0x0(0x4)(BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        HairWidth;                                         // 0x4(0x4)(ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         HairWidth_Override;                                // 0x8(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_FAB[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        HairRootScale;                                     // 0xC(0x4)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         HairRootScale_Override;                            // 0x10(0x1)(ExportObject, Net, Parm, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_FAD[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        HairTipScale;                                      // 0x14(0x4)(Edit, Net, Parm, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         HairTipScale_Override;                             // 0x18(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_FAE[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        HairShadowDensity;                                 // 0x1C(0x4)(Edit, ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         HairShadowDensity_Override;                        // 0x20(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_FB0[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        HairRaytracingRadiusScale;                         // 0x24(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         HairRaytracingRadiusScale_Override;                // 0x28(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bUseHairRaytracingGeometry;                        // 0x29(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bUseHairRaytracingGeometry_Override;               // 0x2A(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_FB7[0x1];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        LODBias;                                           // 0x2C(0x4)(Edit, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, InstancedReference)
-	bool                                         bUseStableRasterization;                           // 0x30(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bUseStableRasterization_Override;                  // 0x31(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bScatterSceneLighting;                             // 0x32(0x1)(ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bScatterSceneLighting_Override;                    // 0x33(0x1)(ConstParm, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bSupportVoxelization;                              // 0x34(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bSupportVoxelization_Override;                     // 0x35(0x1)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_FBA[0x2];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        HairLengthScale;                                   // 0x38(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         HairLengthScale_Override;                          // 0x3C(0x1)(Edit, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_FBB[0x3];                                      // Fixing Size Of Struct > TateDumper <
+	float                                        HairLength;                                        // 0x0(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        HairWidth;                                         // 0x4(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         HairWidth_Override;                                // 0x8(0x1)(Edit, ExportObject, Net, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_159[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        HairRootScale;                                     // 0xC(0x4)(Edit, Net, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         HairRootScale_Override;                            // 0x10(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_15A[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        HairTipScale;                                      // 0x14(0x4)(ConstParm, BlueprintVisible, ExportObject, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         HairTipScale_Override;                             // 0x18(0x1)(ConstParm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_15B[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        HairShadowDensity;                                 // 0x1C(0x4)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         HairShadowDensity_Override;                        // 0x20(0x1)(ConstParm, ExportObject, Net, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_15C[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        HairRaytracingRadiusScale;                         // 0x24(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         HairRaytracingRadiusScale_Override;                // 0x28(0x1)(ConstParm, ExportObject, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bUseHairRaytracingGeometry;                        // 0x29(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bUseHairRaytracingGeometry_Override;               // 0x2A(0x1)(Edit, ExportObject, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_15D[0x1];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        LODBias;                                           // 0x2C(0x4)(Edit, ExportObject, OutParm, ReturnParm, Transient, DisableEditOnInstance, DuplicateTransient)
+	bool                                         bUseStableRasterization;                           // 0x30(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bUseStableRasterization_Override;                  // 0x31(0x1)(Edit, ConstParm, ExportObject, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bScatterSceneLighting;                             // 0x32(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bScatterSceneLighting_Override;                    // 0x33(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bSupportVoxelization;                              // 0x34(0x1)(BlueprintVisible, Net, EditFixedSize, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bSupportVoxelization_Override;                     // 0x35(0x1)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_160[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        HairLengthScale;                                   // 0x38(0x4)(Edit, ConstParm, ExportObject, EditFixedSize, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         HairLengthScale_Override;                          // 0x3C(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_161[0x3];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x28 (0x28 - 0x0)
@@ -293,15 +293,15 @@ public:
 struct FHairGroupInfo
 {
 public:
-	int32                                        GroupID;                                           // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	class FName                                  GroupName;                                         // 0x4(0x8)(ExportObject, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        NumCurves;                                         // 0xC(0x4)(ConstParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        NumGuides;                                         // 0x10(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        NumCurveVertices;                                  // 0x14(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        NumGuideVertices;                                  // 0x18(0x4)(ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        MaxCurveLength;                                    // 0x1C(0x4)(ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        MaxImportedWidth;                                  // 0x20(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        GroupCardsID;                                      // 0x24(0x4)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        GroupID;                                           // 0x0(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  GroupName;                                         // 0x4(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        NumCurves;                                         // 0xC(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        NumGuides;                                         // 0x10(0x4)(Edit, ExportObject, Net, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        NumCurveVertices;                                  // 0x14(0x4)(Net, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        NumGuideVertices;                                  // 0x18(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        MaxCurveLength;                                    // 0x1C(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        MaxImportedWidth;                                  // 0x20(0x4)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        GroupCardsID;                                      // 0x24(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -309,8 +309,8 @@ public:
 struct FHairGroupsMaterial
 {
 public:
-	class UMaterialInterface*                    Material;                                          // 0x0(0x8)(Edit, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance)
-	class FName                                  SlotName;                                          // 0x8(0x8)(Edit, ConstParm, BlueprintReadOnly, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UMaterialInterface*                    Material;                                          // 0x0(0x8)(Edit, ConstParm, Net, EditFixedSize, Transient, Config, DisableEditOnInstance)
+	class FName                                  SlotName;                                          // 0x8(0x8)(Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x2C - 0x28)
@@ -318,8 +318,8 @@ public:
 struct FHairGroupInfoWithVisibility : public FHairGroupInfo
 {
 public:
-	bool                                         bIsVisible;                                        // 0x28(0x1)(ConstParm, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_FC2[0x3];                                      // Fixing Size Of Struct > TateDumper <
+	bool                                         bIsVisible;                                        // 0x28(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_166[0x3];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)
@@ -327,10 +327,10 @@ public:
 struct FHairCardsClusterSettings
 {
 public:
-	float                                        ClusterDecimation;                                 // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	enum class EHairCardsClusterType             Type;                                              // 0x4(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Transient, Config)
-	bool                                         bUseGuide;                                         // 0x5(0x1)(ExportObject, BlueprintReadOnly, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_FC6[0x2];                                      // Fixing Size Of Struct > TateDumper <
+	float                                        ClusterDecimation;                                 // 0x0(0x4)(Edit, ConstParm, ExportObject, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class EHairCardsClusterType             Type;                                              // 0x4(0x1)(Edit, BlueprintReadOnly, Net, Parm, Transient, Config)
+	bool                                         bUseGuide;                                         // 0x5(0x1)(Edit, BlueprintVisible, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_167[0x2];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1C (0x1C - 0x0)
@@ -338,15 +338,15 @@ public:
 struct FHairCardsGeometrySettings
 {
 public:
-	enum class EHairCardsGenerationType          GenerationType;                                    // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_FCB[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	int32                                        CardsCount;                                        // 0x4(0x4)(Edit, BlueprintReadOnly, EditFixedSize, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	enum class EHairCardsClusterType             ClusterType;                                       // 0x8(0x1)(ConstParm, ExportObject, EditFixedSize, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_FCF[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        MinSegmentLength;                                  // 0xC(0x4)(Edit, EditFixedSize, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        AngularThreshold;                                  // 0x10(0x4)(ExportObject, BlueprintReadOnly, Net, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        MinCardsLength;                                    // 0x14(0x4)(BlueprintReadOnly, Net, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        MaxCardsLength;                                    // 0x18(0x4)(ExportObject, Net, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	enum class EHairCardsGenerationType          GenerationType;                                    // 0x0(0x1)(BlueprintVisible, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_168[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	int32                                        CardsCount;                                        // 0x4(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class EHairCardsClusterType             ClusterType;                                       // 0x8(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_169[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        MinSegmentLength;                                  // 0xC(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        AngularThreshold;                                  // 0x10(0x4)(Edit, BlueprintVisible, Net, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        MinCardsLength;                                    // 0x14(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        MaxCardsLength;                                    // 0x18(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -354,10 +354,10 @@ public:
 struct FHairCardsTextureSettings
 {
 public:
-	int32                                        AtlasMaxResolution;                                // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        PixelPerCentimeters;                               // 0x4(0x4)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        LengthTextureCount;                                // 0x8(0x4)(ConstParm, ExportObject, Net, EditFixedSize, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        DensityTextureCount;                               // 0xC(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        AtlasMaxResolution;                                // 0x0(0x4)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        PixelPerCentimeters;                               // 0x4(0x4)(Edit, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        LengthTextureCount;                                // 0x8(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        DensityTextureCount;                               // 0xC(0x4)(BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x38 (0x38 - 0x0)
@@ -365,10 +365,10 @@ public:
 struct FHairGroupsProceduralCards
 {
 public:
-	struct FHairCardsClusterSettings             ClusterSettings;                                   // 0x0(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FHairCardsGeometrySettings            GeometrySettings;                                  // 0x8(0x1C)(ConstParm, BlueprintReadOnly, Parm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FHairCardsTextureSettings             TextureSettings;                                   // 0x24(0x10)(Edit, ExportObject, Parm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        Version;                                           // 0x34(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance)
+	struct FHairCardsClusterSettings             ClusterSettings;                                   // 0x0(0x8)(ExportObject, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FHairCardsGeometrySettings            GeometrySettings;                                  // 0x8(0x1C)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FHairCardsTextureSettings             TextureSettings;                                   // 0x24(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        Version;                                           // 0x34(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -376,8 +376,8 @@ public:
 struct FHairGroupCardsInfo
 {
 public:
-	int32                                        NumCards;                                          // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        NumCardVertices;                                   // 0x4(0x4)(BlueprintVisible, Net, Parm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        NumCards;                                          // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        NumCardVertices;                                   // 0x4(0x4)(Edit, BlueprintReadOnly, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x38 (0x38 - 0x0)
@@ -385,13 +385,13 @@ public:
 struct FHairGroupCardsTextures
 {
 public:
-	class UTexture2D*                            DepthTexture;                                      // 0x0(0x8)(Net, EditFixedSize, Parm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	class UTexture2D*                            CoverageTexture;                                   // 0x8(0x8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	class UTexture2D*                            TangentTexture;                                    // 0x10(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	class UTexture2D*                            AttributeTexture;                                  // 0x18(0x8)(ConstParm, BlueprintVisible, EditFixedSize, Parm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	class UTexture2D*                            AuxilaryDataTexture;                               // 0x20(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	class UTexture2D*                            MaterialTexture;                                   // 0x28(0x8)(ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_FDD[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	class UTexture2D*                            DepthTexture;                                      // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UTexture2D*                            CoverageTexture;                                   // 0x8(0x8)(BlueprintVisible, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UTexture2D*                            TangentTexture;                                    // 0x10(0x8)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UTexture2D*                            AttributeTexture;                                  // 0x18(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UTexture2D*                            AuxilaryDataTexture;                               // 0x20(0x8)(ExportObject, Net, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UTexture2D*                            MaterialTexture;                                   // 0x28(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_16D[0x8];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xC8 (0xC8 - 0x0)
@@ -399,19 +399,19 @@ public:
 struct FHairGroupsCardsSourceDescription
 {
 public:
-	class UMaterialInterface*                    Material;                                          // 0x0(0x8)(Edit, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance)
-	class FName                                  MaterialSlotName;                                  // 0x8(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, SubobjectReference)
-	enum class EHairCardsSourceType              SourceType;                                        // 0x10(0x1)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_FE1[0x7];                                      // Fixing Size After Last Property  > TateDumper <
-	class UStaticMesh*                           ProceduralMesh;                                    // 0x18(0x8)(ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	class FString                                ProceduralMeshKey;                                 // 0x20(0x10)(ExportObject, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	class UStaticMesh*                           ImportedMesh;                                      // 0x30(0x8)(Edit, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FHairGroupsProceduralCards            ProceduralSettings;                                // 0x38(0x38)(Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, EditConst, DuplicateTransient)
-	struct FHairGroupCardsTextures               Textures;                                          // 0x70(0x38)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        GroupIndex;                                        // 0xA8(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        LODIndex;                                          // 0xAC(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FHairGroupCardsInfo                   CardsInfo;                                         // 0xB0(0x8)(BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	class FString                                ImportedMeshKey;                                   // 0xB8(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UMaterialInterface*                    Material;                                          // 0x0(0x8)(Edit, ConstParm, Net, EditFixedSize, Transient, Config, DisableEditOnInstance)
+	class FName                                  MaterialSlotName;                                  // 0x8(0x8)(Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	enum class EHairCardsSourceType              SourceType;                                        // 0x10(0x1)(Edit, ConstParm, BlueprintVisible, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_16E[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	class UStaticMesh*                           ProceduralMesh;                                    // 0x18(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FString                                ProceduralMeshKey;                                 // 0x20(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class UStaticMesh*                           ImportedMesh;                                      // 0x30(0x8)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FHairGroupsProceduralCards            ProceduralSettings;                                // 0x38(0x38)(Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Config, DisableEditOnInstance, GlobalConfig, DuplicateTransient)
+	struct FHairGroupCardsTextures               Textures;                                          // 0x70(0x38)(Edit, ExportObject, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        GroupIndex;                                        // 0xA8(0x4)(Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        LODIndex;                                          // 0xAC(0x4)(BlueprintVisible, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FHairGroupCardsInfo                   CardsInfo;                                         // 0xB0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FString                                ImportedMeshKey;                                   // 0xB8(0x10)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x1C (0x1C - 0x0)
@@ -419,17 +419,17 @@ public:
 struct FHairLODSettings
 {
 public:
-	float                                        CurveDecimation;                                   // 0x0(0x4)(Edit, ConstParm, EditFixedSize, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        VertexDecimation;                                  // 0x4(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        AngularThreshold;                                  // 0x8(0x4)(ExportObject, BlueprintReadOnly, Net, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        ScreenSize;                                        // 0xC(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
-	float                                        ThicknessScale;                                    // 0x10(0x4)(ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bVisible;                                          // 0x14(0x1)(Edit, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
-	enum class EGroomGeometryType                GeometryType;                                      // 0x15(0x1)(Edit, ConstParm, ExportObject, Net, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	enum class EGroomBindingType                 BindingType;                                       // 0x16(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	enum class EGroomOverrideType                Simulation;                                        // 0x17(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst)
-	enum class EGroomOverrideType                GlobalInterpolation;                               // 0x18(0x1)(Net, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_FED[0x3];                                      // Fixing Size Of Struct > TateDumper <
+	float                                        CurveDecimation;                                   // 0x0(0x4)(BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        VertexDecimation;                                  // 0x4(0x4)(Edit, ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        AngularThreshold;                                  // 0x8(0x4)(Edit, BlueprintVisible, Net, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        ScreenSize;                                        // 0xC(0x4)(Edit, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+	float                                        ThicknessScale;                                    // 0x10(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bVisible;                                          // 0x14(0x1)(BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	enum class EGroomGeometryType                GeometryType;                                      // 0x15(0x1)(ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class EGroomBindingType                 BindingType;                                       // 0x16(0x1)(OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	enum class EGroomOverrideType                Simulation;                                        // 0x17(0x1)(BlueprintVisible, Net, Config, EditConst)
+	enum class EGroomOverrideType                GlobalInterpolation;                               // 0x18(0x1)(Edit, BlueprintVisible, ExportObject, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_16F[0x3];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)
@@ -437,8 +437,8 @@ public:
 struct FHairDecimationSettings
 {
 public:
-	float                                        CurveDecimation;                                   // 0x0(0x4)(Edit, ConstParm, EditFixedSize, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        VertexDecimation;                                  // 0x4(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        CurveDecimation;                                   // 0x0(0x4)(BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        VertexDecimation;                                  // 0x4(0x4)(Edit, ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -446,13 +446,13 @@ public:
 struct FHairInterpolationSettings
 {
 public:
-	bool                                         bOverrideGuides;                                   // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_FF3[0x3];                                      // Fixing Size After Last Property  > TateDumper <
-	float                                        HairToGuideDensity;                                // 0x4(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	enum class EHairInterpolationQuality         InterpolationQuality;                              // 0x8(0x1)(ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	enum class EHairInterpolationWeight          InterpolationDistance;                             // 0x9(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bRandomizeGuide;                                   // 0xA(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bUseUniqueGuide;                                   // 0xB(0x1)(BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bOverrideGuides;                                   // 0x0(0x1)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_170[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        HairToGuideDensity;                                // 0x4(0x4)(ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class EHairInterpolationQuality         InterpolationQuality;                              // 0x8(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class EHairInterpolationWeight          InterpolationDistance;                             // 0x9(0x1)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bRandomizeGuide;                                   // 0xA(0x1)(ConstParm, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bUseUniqueGuide;                                   // 0xB(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -460,11 +460,11 @@ public:
 struct FHairDeformationSettings
 {
 public:
-	bool                                         bCanEditRigging;                                   // 0x0(0x1)(ExportObject, Parm, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bEnableRigging;                                    // 0x1(0x1)(Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
-	uint8                                        Pad_FF4[0x2];                                      // Fixing Size After Last Property  > TateDumper <
-	int32                                        NumCurves;                                         // 0x4(0x4)(ConstParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        NumPoints;                                         // 0x8(0x4)(BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bCanEditRigging;                                   // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bEnableRigging;                                    // 0x1(0x1)(Edit, ConstParm, ExportObject, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
+	uint8                                        Pad_171[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	int32                                        NumCurves;                                         // 0x4(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        NumPoints;                                         // 0x8(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -472,9 +472,9 @@ public:
 struct FHairGroupsInterpolation
 {
 public:
-	struct FHairDecimationSettings               DecimationSettings;                                // 0x0(0x8)(Edit, BlueprintReadOnly, Parm, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FHairInterpolationSettings            InterpolationSettings;                             // 0x8(0xC)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FHairDeformationSettings              RiggingSettings;                                   // 0x14(0xC)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
+	struct FHairDecimationSettings               DecimationSettings;                                // 0x0(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FHairInterpolationSettings            InterpolationSettings;                             // 0x8(0xC)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FHairDeformationSettings              RiggingSettings;                                   // 0x14(0xC)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -482,9 +482,9 @@ public:
 struct FHairGroupsLOD
 {
 public:
-	TArray<struct FHairLODSettings>              LODs;                                              // 0x0(0x10)(ConstParm, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, DuplicateTransient)
-	float                                        ClusterWorldSize;                                  // 0x10(0x4)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        ClusterScreenSizeScale;                            // 0x14(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	TArray<struct FHairLODSettings>              LODs;                                              // 0x0(0x10)(Edit, EditFixedSize, EditConst, InstancedReference, DuplicateTransient)
+	float                                        ClusterWorldSize;                                  // 0x10(0x4)(BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        ClusterScreenSizeScale;                            // 0x14(0x4)(ExportObject, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x68 (0x68 - 0x0)
@@ -492,13 +492,13 @@ public:
 struct FHairGroupsMeshesSourceDescription
 {
 public:
-	class UMaterialInterface*                    Material;                                          // 0x0(0x8)(Edit, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance)
-	class FName                                  MaterialSlotName;                                  // 0x8(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, SubobjectReference)
-	class UStaticMesh*                           ImportedMesh;                                      // 0x10(0x8)(Edit, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FHairGroupCardsTextures               Textures;                                          // 0x18(0x38)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        GroupIndex;                                        // 0x50(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        LODIndex;                                          // 0x54(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	class FString                                ImportedMeshKey;                                   // 0x58(0x10)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UMaterialInterface*                    Material;                                          // 0x0(0x8)(Edit, ConstParm, Net, EditFixedSize, Transient, Config, DisableEditOnInstance)
+	class FName                                  MaterialSlotName;                                  // 0x8(0x8)(Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	class UStaticMesh*                           ImportedMesh;                                      // 0x10(0x8)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FHairGroupCardsTextures               Textures;                                          // 0x18(0x38)(Edit, ExportObject, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        GroupIndex;                                        // 0x50(0x4)(Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        LODIndex;                                          // 0x54(0x4)(BlueprintVisible, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	class FString                                ImportedMeshKey;                                   // 0x58(0x10)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x48 (0x48 - 0x0)
@@ -506,14 +506,14 @@ public:
 struct FHairSolverSettings
 {
 public:
-	bool                                         EnableSimulation;                                  // 0x0(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	enum class EGroomNiagaraSolvers              NiagaraSolver;                                     // 0x1(0x1)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1000[0x6];                                     // Fixing Size After Last Property  > TateDumper <
-	TSoftObjectPtr<class UNiagaraSystem>         CustomSystem;                                      // 0x8(0x30)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        GravityPreloading;                                 // 0x38(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        SubSteps;                                          // 0x3C(0x4)(ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        IterationCount;                                    // 0x40(0x4)(BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1002[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	bool                                         EnableSimulation;                                  // 0x0(0x1)(Edit, ConstParm, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class EGroomNiagaraSolvers              NiagaraSolver;                                     // 0x1(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_176[0x6];                                      // Fixing Size After Last Property  > TateDumper <
+	TSoftObjectPtr<class UNiagaraSystem>         CustomSystem;                                      // 0x8(0x30)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        GravityPreloading;                                 // 0x38(0x4)(ConstParm, ExportObject, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        SubSteps;                                          // 0x3C(0x4)(Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        IterationCount;                                    // 0x40(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_178[0x4];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x38 (0x38 - 0x0)
@@ -521,10 +521,10 @@ public:
 struct FHairExternalForces
 {
 public:
-	struct FVector                               GravityVector;                                     // 0x0(0x18)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        AirDrag;                                           // 0x18(0x4)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1008[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FVector                               AirVelocity;                                       // 0x20(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FVector                               GravityVector;                                     // 0x0(0x18)(ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        AirDrag;                                           // 0x18(0x4)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_17A[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               AirVelocity;                                       // 0x20(0x18)(BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x98 (0x98 - 0x0)
@@ -532,13 +532,13 @@ public:
 struct FHairBendConstraint
 {
 public:
-	bool                                         SolveBend;                                         // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         ProjectBend;                                       // 0x1(0x1)(ExportObject, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_100B[0x2];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        BendDamping;                                       // 0x4(0x4)(Edit, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        BendStiffness;                                     // 0x8(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_100F[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FRuntimeFloatCurve                    BendScale;                                         // 0x10(0x88)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         SolveBend;                                         // 0x0(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         ProjectBend;                                       // 0x1(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_17B[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        BendDamping;                                       // 0x4(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        BendStiffness;                                     // 0x8(0x4)(ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_17D[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FRuntimeFloatCurve                    BendScale;                                         // 0x10(0x88)(Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x98 (0x98 - 0x0)
@@ -546,13 +546,13 @@ public:
 struct FHairStretchConstraint
 {
 public:
-	bool                                         SolveStretch;                                      // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         ProjectStretch;                                    // 0x1(0x1)(Edit, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1011[0x2];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        StretchDamping;                                    // 0x4(0x4)(Edit, BlueprintVisible, Net, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        StretchStiffness;                                  // 0x8(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1014[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FRuntimeFloatCurve                    StretchScale;                                      // 0x10(0x88)(Edit, BlueprintVisible, BlueprintReadOnly, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         SolveStretch;                                      // 0x0(0x1)(ConstParm, Net, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         ProjectStretch;                                    // 0x1(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_17E[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        StretchDamping;                                    // 0x4(0x4)(ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        StretchStiffness;                                  // 0x8(0x4)(Edit, ExportObject, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_180[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FRuntimeFloatCurve                    StretchScale;                                      // 0x10(0x88)(ConstParm, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0xA8 (0xA8 - 0x0)
@@ -560,15 +560,15 @@ public:
 struct FHairCollisionConstraint
 {
 public:
-	bool                                         SolveCollision;                                    // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         ProjectCollision;                                  // 0x1(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1017[0x2];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        StaticFriction;                                    // 0x4(0x4)(ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        KineticFriction;                                   // 0x8(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        StrandsViscosity;                                  // 0xC(0x4)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FIntVector                            GridDimension;                                     // 0x10(0xC)(BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        CollisionRadius;                                   // 0x1C(0x4)(Edit, ConstParm, EditFixedSize, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FRuntimeFloatCurve                    RadiusScale;                                       // 0x20(0x88)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         SolveCollision;                                    // 0x0(0x1)(BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         ProjectCollision;                                  // 0x1(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_182[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        StaticFriction;                                    // 0x4(0x4)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        KineticFriction;                                   // 0x8(0x4)(ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        StrandsViscosity;                                  // 0xC(0x4)(Edit, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FIntVector                            GridDimension;                                     // 0x10(0xC)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        CollisionRadius;                                   // 0x1C(0x4)(BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FRuntimeFloatCurve                    RadiusScale;                                       // 0x20(0x88)(Edit, ExportObject, Net, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x1D8 (0x1D8 - 0x0)
@@ -576,9 +576,9 @@ public:
 struct FHairMaterialConstraints
 {
 public:
-	struct FHairBendConstraint                   BendConstraint;                                    // 0x0(0x98)(BlueprintVisible, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FHairStretchConstraint                StretchConstraint;                                 // 0x98(0x98)(ConstParm, ExportObject, Parm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FHairCollisionConstraint              CollisionConstraint;                               // 0x130(0xA8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FHairBendConstraint                   BendConstraint;                                    // 0x0(0x98)(Edit, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FHairStretchConstraint                StretchConstraint;                                 // 0x98(0x98)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FHairCollisionConstraint              CollisionConstraint;                               // 0x130(0xA8)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x98 (0x98 - 0x0)
@@ -586,12 +586,12 @@ public:
 struct FHairStrandsParameters
 {
 public:
-	enum class EGroomStrandsSize                 StrandsSize;                                       // 0x0(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_101C[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        StrandsDensity;                                    // 0x4(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        StrandsSmoothing;                                  // 0x8(0x4)(Edit, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        StrandsThickness;                                  // 0xC(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FRuntimeFloatCurve                    ThicknessScale;                                    // 0x10(0x88)(ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	enum class EGroomStrandsSize                 StrandsSize;                                       // 0x0(0x1)(Edit, ConstParm, Net, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_185[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        StrandsDensity;                                    // 0x4(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        StrandsSmoothing;                                  // 0x8(0x4)(ConstParm, BlueprintReadOnly, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        StrandsThickness;                                  // 0xC(0x4)(Edit, ExportObject, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FRuntimeFloatCurve                    ThicknessScale;                                    // 0x10(0x88)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x2F0 (0x2F0 - 0x0)
@@ -599,10 +599,10 @@ public:
 struct FHairGroupsPhysics
 {
 public:
-	struct FHairSolverSettings                   SolverSettings;                                    // 0x0(0x48)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FHairExternalForces                   ExternalForces;                                    // 0x48(0x38)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FHairMaterialConstraints              MaterialConstraints;                               // 0x80(0x1D8)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FHairStrandsParameters                StrandsParameters;                                 // 0x258(0x98)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FHairSolverSettings                   SolverSettings;                                    // 0x0(0x48)(Edit, ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FHairExternalForces                   ExternalForces;                                    // 0x48(0x38)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FHairMaterialConstraints              MaterialConstraints;                               // 0x80(0x1D8)(BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FHairStrandsParameters                StrandsParameters;                                 // 0x258(0x98)(ConstParm, ExportObject, Net, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -610,7 +610,7 @@ public:
 struct FHairSimulationSolver
 {
 public:
-	bool                                         bEnableSimulation;                                 // 0x0(0x1)(ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bEnableSimulation;                                 // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x38 (0x38 - 0x0)
@@ -618,10 +618,10 @@ public:
 struct FHairSimulationForces
 {
 public:
-	struct FVector                               GravityVector;                                     // 0x0(0x18)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        AirDrag;                                           // 0x18(0x4)(ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_102B[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FVector                               AirVelocity;                                       // 0x20(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FVector                               GravityVector;                                     // 0x0(0x18)(ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        AirDrag;                                           // 0x18(0x4)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_187[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FVector                               AirVelocity;                                       // 0x20(0x18)(BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -629,14 +629,14 @@ public:
 struct FHairSimulationConstraints
 {
 public:
-	float                                        BendDamping;                                       // 0x0(0x4)(Edit, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        BendStiffness;                                     // 0x4(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        StretchDamping;                                    // 0x8(0x4)(Edit, BlueprintVisible, Net, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        StretchStiffness;                                  // 0xC(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        StaticFriction;                                    // 0x10(0x4)(ConstParm, BlueprintVisible, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        KineticFriction;                                   // 0x14(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        StrandsViscosity;                                  // 0x18(0x4)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        CollisionRadius;                                   // 0x1C(0x4)(Edit, ConstParm, EditFixedSize, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        BendDamping;                                       // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        BendStiffness;                                     // 0x4(0x4)(ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        StretchDamping;                                    // 0x8(0x4)(ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        StretchStiffness;                                  // 0xC(0x4)(Edit, ExportObject, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        StaticFriction;                                    // 0x10(0x4)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        KineticFriction;                                   // 0x14(0x4)(ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        StrandsViscosity;                                  // 0x18(0x4)(Edit, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        CollisionRadius;                                   // 0x1C(0x4)(BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x28 (0x28 - 0x0)
@@ -644,16 +644,16 @@ public:
 struct FHairSimulationSetup
 {
 public:
-	bool                                         bResetSimulation;                                  // 0x0(0x1)(Edit, ConstParm, Net, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bDebugSimulation;                                  // 0x1(0x1)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bLocalSimulation;                                  // 0x2(0x1)(Edit, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1034[0x1];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        LinearVelocityScale;                               // 0x4(0x4)(ConstParm, BlueprintVisible, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        AngularVelocityScale;                              // 0x8(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1035[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	class FString                                LocalBone;                                         // 0x10(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        TeleportDistance;                                  // 0x20(0x4)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1036[0x4];                                     // Fixing Size Of Struct > TateDumper <
+	bool                                         bResetSimulation;                                  // 0x0(0x1)(BlueprintReadOnly, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bDebugSimulation;                                  // 0x1(0x1)(Edit, ConstParm, BlueprintVisible, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bLocalSimulation;                                  // 0x2(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_188[0x1];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        LinearVelocityScale;                               // 0x4(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        AngularVelocityScale;                              // 0x8(0x4)(ExportObject, Net, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_189[0x4];                                      // Fixing Size After Last Property  > TateDumper <
+	class FString                                LocalBone;                                         // 0x10(0x10)(ConstParm, Net, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        TeleportDistance;                                  // 0x20(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_18A[0x4];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x90 (0x90 - 0x0)
@@ -661,13 +661,13 @@ public:
 struct FHairSimulationSettings
 {
 public:
-	bool                                         bOverrideSettings;                                 // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1039[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FHairSimulationSetup                  SimulationSetup;                                   // 0x8(0x28)(BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FHairSimulationSolver                 SolverSettings;                                    // 0x30(0x1)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_103B[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FHairSimulationForces                 ExternalForces;                                    // 0x38(0x38)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FHairSimulationConstraints            MaterialConstraints;                               // 0x70(0x20)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bOverrideSettings;                                 // 0x0(0x1)(ConstParm, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_18B[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FHairSimulationSetup                  SimulationSetup;                                   // 0x8(0x28)(Edit, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FHairSimulationSolver                 SolverSettings;                                    // 0x30(0x1)(Edit, ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_18C[0x7];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FHairSimulationForces                 ExternalForces;                                    // 0x38(0x38)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FHairSimulationConstraints            MaterialConstraints;                               // 0x70(0x20)(BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -675,9 +675,9 @@ public:
 struct FHairGeometrySettings
 {
 public:
-	float                                        HairWidth;                                         // 0x0(0x4)(ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        HairRootScale;                                     // 0x4(0x4)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        HairTipScale;                                      // 0x8(0x4)(Edit, Net, Parm, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        HairWidth;                                         // 0x0(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        HairRootScale;                                     // 0x4(0x4)(Edit, Net, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        HairTipScale;                                      // 0x8(0x4)(ConstParm, BlueprintVisible, ExportObject, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -685,11 +685,11 @@ public:
 struct FHairShadowSettings
 {
 public:
-	float                                        HairShadowDensity;                                 // 0x0(0x4)(Edit, ConstParm, ExportObject, Parm, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        HairRaytracingRadiusScale;                         // 0x4(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bUseHairRaytracingGeometry;                        // 0x8(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bVoxelize;                                         // 0x9(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1041[0x2];                                     // Fixing Size Of Struct > TateDumper <
+	float                                        HairShadowDensity;                                 // 0x0(0x4)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        HairRaytracingRadiusScale;                         // 0x4(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bUseHairRaytracingGeometry;                        // 0x8(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bVoxelize;                                         // 0x9(0x1)(BlueprintVisible, ExportObject, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_18E[0x2];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x2 (0x2 - 0x0)
@@ -697,8 +697,8 @@ public:
 struct FHairAdvancedRenderingSettings
 {
 public:
-	bool                                         bUseStableRasterization;                           // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bScatterSceneLighting;                             // 0x1(0x1)(ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bUseStableRasterization;                           // 0x0(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bScatterSceneLighting;                             // 0x1(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x30 (0x30 - 0x0)
@@ -706,12 +706,12 @@ public:
 struct FHairGroupsRendering
 {
 public:
-	class FName                                  MaterialSlotName;                                  // 0x0(0x8)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, GlobalConfig, SubobjectReference)
-	class UMaterialInterface*                    Material;                                          // 0x8(0x8)(Edit, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance)
-	struct FHairGeometrySettings                 GeometrySettings;                                  // 0x10(0xC)(ConstParm, BlueprintReadOnly, Parm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FHairShadowSettings                   ShadowSettings;                                    // 0x1C(0xC)(Edit, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FHairAdvancedRenderingSettings        AdvancedSettings;                                  // 0x28(0x2)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1048[0x6];                                     // Fixing Size Of Struct > TateDumper <
+	class FName                                  MaterialSlotName;                                  // 0x0(0x8)(Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+	class UMaterialInterface*                    Material;                                          // 0x8(0x8)(Edit, ConstParm, Net, EditFixedSize, Transient, Config, DisableEditOnInstance)
+	struct FHairGeometrySettings                 GeometrySettings;                                  // 0x10(0xC)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FHairShadowSettings                   ShadowSettings;                                    // 0x1C(0xC)(ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FHairAdvancedRenderingSettings        AdvancedSettings;                                  // 0x28(0x2)(Edit, ConstParm, ExportObject, ZeroConstructor, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_18F[0x6];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x10 (0x10 - 0x0)
@@ -719,10 +719,10 @@ public:
 struct FGoomBindingGroupInfo
 {
 public:
-	int32                                        RenRootCount;                                      // 0x0(0x4)(ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        RenLODCount;                                       // 0x4(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        SimRootCount;                                      // 0x8(0x4)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        SimLODCount;                                       // 0xC(0x4)(Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        RenRootCount;                                      // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        RenLODCount;                                       // 0x4(0x4)(ExportObject, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        SimRootCount;                                      // 0x8(0x4)(Edit, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        SimLODCount;                                       // 0xC(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -730,15 +730,15 @@ public:
 struct FGroomAnimationInfo
 {
 public:
-	uint32                                       NumFrames;                                         // 0x0(0x4)(ConstParm, BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, GlobalConfig, InstancedReference, DuplicateTransient)
-	float                                        SecondsPerFrame;                                   // 0x4(0x4)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        Duration;                                          // 0x8(0x4)(Edit, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, DuplicateTransient)
-	float                                        StartTime;                                         // 0xC(0x4)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        EndTime;                                           // 0x10(0x4)(ExportObject, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        StartFrame;                                        // 0x14(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        EndFrame;                                          // 0x18(0x4)(Edit, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	enum class EGroomCacheAttributes             Attributes;                                        // 0x1C(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, ReturnParm, Transient, Config)
-	uint8                                        Pad_104F[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	uint32                                       NumFrames;                                         // 0x0(0x4)(ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DuplicateTransient)
+	float                                        SecondsPerFrame;                                   // 0x4(0x4)(Edit, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        Duration;                                          // 0x8(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, DuplicateTransient)
+	float                                        StartTime;                                         // 0xC(0x4)(ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        EndTime;                                           // 0x10(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        StartFrame;                                        // 0x14(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        EndFrame;                                          // 0x18(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class EGroomCacheAttributes             Attributes;                                        // 0x1C(0x1)(Edit, BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, Config)
+	uint8                                        Pad_194[0x3];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x28 (0x28 - 0x0)
@@ -746,10 +746,10 @@ public:
 struct FGroomCacheInfo
 {
 public:
-	int32                                        Version;                                           // 0x0(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance)
-	enum class EGroomCacheType                   Type;                                              // 0x4(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Transient, Config)
-	uint8                                        Pad_1052[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FGroomAnimationInfo                   AnimationInfo;                                     // 0x8(0x20)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        Version;                                           // 0x0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance)
+	enum class EGroomCacheType                   Type;                                              // 0x4(0x1)(Edit, BlueprintReadOnly, Net, Parm, Transient, Config)
+	uint8                                        Pad_195[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FGroomAnimationInfo                   AnimationInfo;                                     // 0x8(0x20)(ConstParm, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -757,9 +757,9 @@ public:
 struct FFollicleMaskOptions
 {
 public:
-	class UGroomAsset*                           Groom;                                             // 0x0(0x8)(Edit, BlueprintVisible, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	enum class EFollicleMaskChannel              Channel;                                           // 0x8(0x1)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst)
-	uint8                                        Pad_1054[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class UGroomAsset*                           Groom;                                             // 0x0(0x8)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class EFollicleMaskChannel              Channel;                                           // 0x8(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ReturnParm, DisableEditOnInstance, EditConst)
+	uint8                                        Pad_196[0x7];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x3C (0x3C - 0x0)
@@ -767,18 +767,18 @@ public:
 struct FGroomHairGroupPreview
 {
 public:
-	class FName                                  GroupName;                                         // 0x0(0x8)(ExportObject, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        GroupID;                                           // 0x8(0x4)(ConstParm, BlueprintVisible, ExportObject, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        CurveCount;                                        // 0xC(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	int32                                        GuideCount;                                        // 0x10(0x4)(BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bHasRootUV;                                        // 0x14(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bHasClumpID;                                       // 0x15(0x1)(Edit, ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bHasColor;                                         // 0x16(0x1)(Edit, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bHasRoughness;                                     // 0x17(0x1)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bHasAO;                                            // 0x18(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bHasPrecomputedWeights;                            // 0x19(0x1)(Edit, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1061[0x2];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FHairGroupsInterpolation              InterpolationSettings;                             // 0x1C(0x20)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Config, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  GroupName;                                         // 0x0(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        GroupID;                                           // 0x8(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        CurveCount;                                        // 0xC(0x4)(Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        GuideCount;                                        // 0x10(0x4)(Edit, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bHasRootUV;                                        // 0x14(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bHasClumpID;                                       // 0x15(0x1)(BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bHasColor;                                         // 0x16(0x1)(ConstParm, BlueprintVisible, ExportObject, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bHasRoughness;                                     // 0x17(0x1)(ConstParm, BlueprintVisible, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bHasAO;                                            // 0x18(0x1)(ConstParm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bHasPrecomputedWeights;                            // 0x19(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_19A[0x2];                                      // Fixing Size After Last Property  > TateDumper <
+	struct FHairGroupsInterpolation              InterpolationSettings;                             // 0x1C(0x20)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -786,13 +786,13 @@ public:
 struct FGroomBuildSettings
 {
 public:
-	bool                                         bOverrideGuides;                                   // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1062[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	float                                        HairToGuideDensity;                                // 0x4(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	enum class EGroomInterpolationQuality        InterpolationQuality;                              // 0x8(0x1)(ConstParm, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	enum class EGroomInterpolationWeight         InterpolationDistance;                             // 0x9(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bRandomizeGuide;                                   // 0xA(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bUseUniqueGuide;                                   // 0xB(0x1)(BlueprintVisible, ExportObject, EditFixedSize, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bOverrideGuides;                                   // 0x0(0x1)(BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_19C[0x3];                                      // Fixing Size After Last Property  > TateDumper <
+	float                                        HairToGuideDensity;                                // 0x4(0x4)(ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class EGroomInterpolationQuality        InterpolationQuality;                              // 0x8(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	enum class EGroomInterpolationWeight         InterpolationDistance;                             // 0x9(0x1)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bRandomizeGuide;                                   // 0xA(0x1)(ConstParm, EditFixedSize, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bUseUniqueGuide;                                   // 0xB(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -800,13 +800,13 @@ public:
 struct FMovieSceneGroomCacheParams
 {
 public:
-	class UGroomCache*                           GroomCache;                                        // 0x0(0x8)(ConstParm, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
-	struct FFrameNumber                          FirstLoopStartFrameOffset;                         // 0x8(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FFrameNumber                          StartFrameOffset;                                  // 0xC(0x4)(Edit, BlueprintVisible, Net, Parm, OutParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FFrameNumber                          EndFrameOffset;                                    // 0x10(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        PlayRate;                                          // 0x14(0x4)(Edit, ExportObject, Net, OutParm, DisableEditOnInstance, SubobjectReference)
-	uint8                                        bReverse : 1;                                      // Mask: 0x1, PropSize: 0x10x18(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1066[0x7];                                     // Fixing Size Of Struct > TateDumper <
+	class UGroomCache*                           GroomCache;                                        // 0x0(0x8)(BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst)
+	struct FFrameNumber                          FirstLoopStartFrameOffset;                         // 0x8(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FFrameNumber                          StartFrameOffset;                                  // 0xC(0x4)(ConstParm, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FFrameNumber                          EndFrameOffset;                                    // 0x10(0x4)(ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        PlayRate;                                          // 0x14(0x4)(Edit, BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+	uint8                                        bReverse : 1;                                      // Mask: 0x1, PropSize: 0x10x18(0x1)(ConstParm, BlueprintVisible, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_19F[0x7];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x28 - 0x20)
@@ -814,8 +814,8 @@ public:
 struct FMovieSceneGroomCacheSectionTemplateParameters : public FMovieSceneGroomCacheParams
 {
 public:
-	struct FFrameNumber                          SectionStartTime;                                  // 0x20(0x4)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FFrameNumber                          SectionEndTime;                                    // 0x24(0x4)(ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FFrameNumber                          SectionStartTime;                                  // 0x20(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FFrameNumber                          SectionEndTime;                                    // 0x24(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x28 (0x48 - 0x20)
@@ -823,7 +823,7 @@ public:
 struct FMovieSceneGroomCacheSectionTemplate : public FMovieSceneEvalTemplate
 {
 public:
-	struct FMovieSceneGroomCacheSectionTemplateParameters Params;                                            // 0x20(0x28)(Edit, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, SubobjectReference)
+	struct FMovieSceneGroomCacheSectionTemplateParameters Params;                                            // 0x20(0x28)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, SubobjectReference)
 };
 
 }

@@ -18,7 +18,7 @@ namespace Params
 struct ULiveLinkComponentController_SetSubjectRepresentation_Params
 {
 public:
-	struct FLiveLinkSubjectRepresentation        InSubjectRepresentation;                           // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, InstancedReference, SubobjectReference)
+	struct FLiveLinkSubjectRepresentation        InSubjectRepresentation;                           // 0x0(0x10)(Edit, Parm, OutParm, ReturnParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -26,7 +26,7 @@ public:
 struct ULiveLinkComponentController_GetSubjectRepresentation_Params
 {
 public:
-	struct FLiveLinkSubjectRepresentation        ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FLiveLinkSubjectRepresentation        ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 }

@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0xF00 - 0xF00)
+// 0x0 (0xF10 - 0xF10)
 // BlueprintGeneratedClass PrimalItemConsumable_Egg_Small.PrimalItemConsumable_Egg_Small_C
 class UPrimalItemConsumable_Egg_Small_C : public UPrimalItemConsumable_Egg_C
 {

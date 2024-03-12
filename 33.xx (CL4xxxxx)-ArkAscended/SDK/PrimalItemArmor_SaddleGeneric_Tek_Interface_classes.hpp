@@ -18,7 +18,7 @@ public:
 	static class UClass* StaticClass();
 	static class IPrimalItemArmor_SaddleGeneric_Tek_Interface_C* GetDefaultObj();
 
-	int32 IGet_Max_Ammo();
+	void IGet_Max_Ammo(int32* RetVal);
 	void ISetElementToMax();
 };
 

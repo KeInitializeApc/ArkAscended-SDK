@@ -18,7 +18,7 @@ namespace Params
 struct UClothingSimulationInteractorNv_SetAnimDriveDamperStiffness_Params
 {
 public:
-	float                                        InStiffness;                                       // 0x0(0x4)(Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+	float                                        InStiffness;                                       // 0x0(0x4)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, ZeroConstructor, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 };
 
 }

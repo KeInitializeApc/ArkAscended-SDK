@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0x4E8 - 0x4E8)
+// 0x0 (0x4E0 - 0x4E0)
 // BlueprintGeneratedClass DestroyedMeshBase.DestroyedMeshBase_C
 class ADestroyedMeshBase_C : public ADestroyedMeshActor
 {

@@ -18,7 +18,7 @@ namespace Params
 struct IIKGoalCreatorInterface_AddIKGoals_Params
 {
 public:
-	TMap<class FName, struct FIKRigGoal>         OutGoals;                                          // 0x0(0x50)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	TMap<class FName, struct FIKRigGoal>         OutGoals;                                          // 0x0(0x50)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x80 (0x80 - 0x0)
@@ -26,12 +26,12 @@ public:
 struct UIKRigComponent_SetIKRigGoalTransform_Params
 {
 public:
-	class FName                                  GoalName;                                          // 0x0(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_124D[0x8];                                     // Fixing Size After Last Property  > TateDumper <
+	class FName                                  GoalName;                                          // 0x0(0x8)(OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1839[0x8];                                     // Fixing Size After Last Property  > TateDumper <
 	struct FTransform                            Transform;                                         // 0x10(0x60)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm)
-	float                                        PositionAlpha;                                     // 0x70(0x4)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        RotationAlpha;                                     // 0x74(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_124E[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	float                                        PositionAlpha;                                     // 0x70(0x4)(Edit, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        RotationAlpha;                                     // 0x74(0x4)(Edit, ConstParm, ExportObject, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_183A[0x8];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x50 (0x50 - 0x0)
@@ -39,12 +39,12 @@ public:
 struct UIKRigComponent_SetIKRigGoalPositionAndRotation_Params
 {
 public:
-	class FName                                  GoalName;                                          // 0x0(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	struct FVector                               Position;                                          // 0x8(0x18)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config)
+	class FName                                  GoalName;                                          // 0x0(0x8)(OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FVector                               Position;                                          // 0x8(0x18)(Edit, ConstParm, ExportObject, ReturnParm, Transient, Config)
 	struct FQuat                                 Rotation;                                          // 0x20(0x20)(BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor)
-	float                                        PositionAlpha;                                     // 0x40(0x4)(BlueprintVisible, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	float                                        RotationAlpha;                                     // 0x44(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1253[0x8];                                     // Fixing Size Of Struct > TateDumper <
+	float                                        PositionAlpha;                                     // 0x40(0x4)(Edit, Net, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        RotationAlpha;                                     // 0x44(0x4)(Edit, ConstParm, ExportObject, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1844[0x8];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xA0 (0xA0 - 0x0)
@@ -52,7 +52,7 @@ public:
 struct UIKRigComponent_SetIKRigGoal_Params
 {
 public:
-	struct FIKRigGoal                            Goal;                                              // 0x0(0xA0)(Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	struct FIKRigGoal                            Goal;                                              // 0x0(0xA0)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x170 (0x170 - 0x0)
@@ -60,8 +60,8 @@ public:
 struct UIKRetargeter_SetRootSettingsInRetargetProfile_Params
 {
 public:
-	struct FRetargetProfile                      RetargetProfile;                                   // 0x0(0x108)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config)
-	struct FTargetRootSettings                   RootSettings;                                      // 0x108(0x68)(ConstParm, BlueprintVisible, Net, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FRetargetProfile                      RetargetProfile;                                   // 0x0(0x108)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
+	struct FTargetRootSettings                   RootSettings;                                      // 0x108(0x68)(Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x128 (0x128 - 0x0)
@@ -69,8 +69,8 @@ public:
 struct UIKRetargeter_SetGlobalSettingsInRetargetProfile_Params
 {
 public:
-	struct FRetargetProfile                      RetargetProfile;                                   // 0x0(0x108)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config)
-	struct FRetargetGlobalSettings               GlobalSettings;                                    // 0x108(0x20)(Edit, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FRetargetProfile                      RetargetProfile;                                   // 0x0(0x108)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
+	struct FRetargetGlobalSettings               GlobalSettings;                                    // 0x108(0x20)(ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x128 (0x128 - 0x0)
@@ -78,9 +78,9 @@ public:
 struct UIKRetargeter_SetChainSpeedPlantSettingsInRetargetProfile_Params
 {
 public:
-	struct FRetargetProfile                      RetargetProfile;                                   // 0x0(0x108)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config)
-	struct FTargetChainSpeedPlantSettings        SpeedPlantSettings;                                // 0x108(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	class FName                                  TargetChainName;                                   // 0x120(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	struct FRetargetProfile                      RetargetProfile;                                   // 0x0(0x108)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
+	struct FTargetChainSpeedPlantSettings        SpeedPlantSettings;                                // 0x108(0x18)(Edit, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class FName                                  TargetChainName;                                   // 0x120(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1B8 (0x1B8 - 0x0)
@@ -88,9 +88,9 @@ public:
 struct UIKRetargeter_SetChainSettingsInRetargetProfile_Params
 {
 public:
-	struct FRetargetProfile                      RetargetProfile;                                   // 0x0(0x108)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config)
-	struct FTargetChainSettings                  ChainSettings;                                     // 0x108(0xA8)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	class FName                                  TargetChainName;                                   // 0x1B0(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	struct FRetargetProfile                      RetargetProfile;                                   // 0x0(0x108)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
+	struct FTargetChainSettings                  ChainSettings;                                     // 0x108(0xA8)(BlueprintVisible, Net, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FName                                  TargetChainName;                                   // 0x1B0(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x188 (0x188 - 0x0)
@@ -98,9 +98,9 @@ public:
 struct UIKRetargeter_SetChainIKSettingsInRetargetProfile_Params
 {
 public:
-	struct FRetargetProfile                      RetargetProfile;                                   // 0x0(0x108)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config)
-	struct FTargetChainIKSettings                IKSettings;                                        // 0x108(0x78)(Edit, ExportObject, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	class FName                                  TargetChainName;                                   // 0x180(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	struct FRetargetProfile                      RetargetProfile;                                   // 0x0(0x108)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
+	struct FTargetChainIKSettings                IKSettings;                                        // 0x108(0x78)(Edit, ConstParm, ExportObject, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class FName                                  TargetChainName;                                   // 0x180(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x128 (0x128 - 0x0)
@@ -108,9 +108,9 @@ public:
 struct UIKRetargeter_SetChainFKSettingsInRetargetProfile_Params
 {
 public:
-	struct FRetargetProfile                      RetargetProfile;                                   // 0x0(0x108)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config)
-	struct FTargetChainFKSettings                FKSettings;                                        // 0x108(0x18)(Edit, ConstParm, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	class FName                                  TargetChainName;                                   // 0x120(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	struct FRetargetProfile                      RetargetProfile;                                   // 0x0(0x108)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
+	struct FTargetChainFKSettings                FKSettings;                                        // 0x108(0x18)(Edit, BlueprintVisible, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class FName                                  TargetChainName;                                   // 0x120(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x170 (0x170 - 0x0)
@@ -118,8 +118,8 @@ public:
 struct UIKRetargeter_GetRootSettingsFromRetargetProfile_Params
 {
 public:
-	struct FRetargetProfile                      RetargetProfile;                                   // 0x0(0x108)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config)
-	struct FTargetRootSettings                   ReturnValue;                                       // 0x108(0x68)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FRetargetProfile                      RetargetProfile;                                   // 0x0(0x108)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
+	struct FTargetRootSettings                   ReturnValue;                                       // 0x108(0x68)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x78 (0x78 - 0x0)
@@ -127,9 +127,9 @@ public:
 struct UIKRetargeter_GetRootSettingsFromRetargetAsset_Params
 {
 public:
-	class UIKRetargeter*                         RetargetAsset;                                     // 0x0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-	class FName                                  OptionalProfileName;                               // 0x8(0x8)(ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	struct FTargetRootSettings                   OutSettings;                                       // 0x10(0x68)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	class UIKRetargeter*                         RetargetAsset;                                     // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	class FName                                  OptionalProfileName;                               // 0x8(0x8)(ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FTargetRootSettings                   OutSettings;                                       // 0x10(0x68)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x128 (0x128 - 0x0)
@@ -137,8 +137,8 @@ public:
 struct UIKRetargeter_GetGlobalSettingsFromRetargetProfile_Params
 {
 public:
-	struct FRetargetProfile                      RetargetProfile;                                   // 0x0(0x108)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config)
-	struct FRetargetGlobalSettings               ReturnValue;                                       // 0x108(0x20)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FRetargetProfile                      RetargetProfile;                                   // 0x0(0x108)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
+	struct FRetargetGlobalSettings               ReturnValue;                                       // 0x108(0x20)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x30 (0x30 - 0x0)
@@ -146,9 +146,9 @@ public:
 struct UIKRetargeter_GetGlobalSettingsFromRetargetAsset_Params
 {
 public:
-	class UIKRetargeter*                         RetargetAsset;                                     // 0x0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-	class FName                                  OptionalProfileName;                               // 0x8(0x8)(ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	struct FRetargetGlobalSettings               OutSettings;                                       // 0x10(0x20)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	class UIKRetargeter*                         RetargetAsset;                                     // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	class FName                                  OptionalProfileName;                               // 0x8(0x8)(ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FRetargetGlobalSettings               OutSettings;                                       // 0x10(0x20)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0xB8 (0xB8 - 0x0)
@@ -156,9 +156,9 @@ public:
 struct UIKRetargeter_GetChainUsingGoalFromRetargetAsset_Params
 {
 public:
-	class UIKRetargeter*                         RetargetAsset;                                     // 0x0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-	class FName                                  IKGoalName;                                        // 0x8(0x8)(ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FTargetChainSettings                  ReturnValue;                                       // 0x10(0xA8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UIKRetargeter*                         RetargetAsset;                                     // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	class FName                                  IKGoalName;                                        // 0x8(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FTargetChainSettings                  ReturnValue;                                       // 0x10(0xA8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1B8 (0x1B8 - 0x0)
@@ -166,9 +166,9 @@ public:
 struct UIKRetargeter_GetChainSettingsFromRetargetProfile_Params
 {
 public:
-	struct FRetargetProfile                      RetargetProfile;                                   // 0x0(0x108)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config)
-	class FName                                  TargetChainName;                                   // 0x108(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	struct FTargetChainSettings                  ReturnValue;                                       // 0x110(0xA8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FRetargetProfile                      RetargetProfile;                                   // 0x0(0x108)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config)
+	class FName                                  TargetChainName;                                   // 0x108(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FTargetChainSettings                  ReturnValue;                                       // 0x110(0xA8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0xC0 (0xC0 - 0x0)
@@ -176,10 +176,10 @@ public:
 struct UIKRetargeter_GetChainSettingsFromRetargetAsset_Params
 {
 public:
-	class UIKRetargeter*                         RetargetAsset;                                     // 0x0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-	class FName                                  TargetChainName;                                   // 0x8(0x8)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	class FName                                  OptionalProfileName;                               // 0x10(0x8)(ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-	struct FTargetChainSettings                  ReturnValue;                                       // 0x18(0xA8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UIKRetargeter*                         RetargetAsset;                                     // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, Transient, InstancedReference, SubobjectReference)
+	class FName                                  TargetChainName;                                   // 0x8(0x8)(Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	class FName                                  OptionalProfileName;                               // 0x10(0x8)(ConstParm, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FTargetChainSettings                  ReturnValue;                                       // 0x18(0xA8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 }

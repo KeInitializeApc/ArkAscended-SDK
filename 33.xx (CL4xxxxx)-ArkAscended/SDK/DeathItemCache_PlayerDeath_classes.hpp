@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0x15F8 - 0x15F8)
+// 0x0 (0x1608 - 0x1608)
 // BlueprintGeneratedClass DeathItemCache_PlayerDeath.DeathItemCache_PlayerDeath_C
 class ADeathItemCache_PlayerDeath_C : public ADeathItemCache_C
 {

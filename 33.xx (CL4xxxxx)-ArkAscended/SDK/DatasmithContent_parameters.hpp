@@ -19,10 +19,10 @@ struct UDatasmithContentBlueprintLibrary_GetDatasmithUserDataValuesForKey_Params
 {
 public:
 	class UObject*                               Object;                                            // 0x0(0x8)(BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-	class FName                                  Key;                                               // 0x8(0x8)(BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
-	bool                                         bPartialMatchKey;                                  // 0x10(0x1)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1445[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<class FString>                        ReturnValue;                                       // 0x18(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FName                                  Key;                                               // 0x8(0x8)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance)
+	bool                                         bPartialMatchKey;                                  // 0x10(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_18FF[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<class FString>                        ReturnValue;                                       // 0x18(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x28 (0x28 - 0x0)
@@ -31,10 +31,10 @@ struct UDatasmithContentBlueprintLibrary_GetDatasmithUserDataValueForKey_Params
 {
 public:
 	class UObject*                               Object;                                            // 0x0(0x8)(BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-	class FName                                  Key;                                               // 0x8(0x8)(BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
-	bool                                         bPartialMatchKey;                                  // 0x10(0x1)(ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_144D[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	class FString                                ReturnValue;                                       // 0x18(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class FName                                  Key;                                               // 0x8(0x8)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance)
+	bool                                         bPartialMatchKey;                                  // 0x10(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1909[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	class FString                                ReturnValue;                                       // 0x18(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x38 (0x38 - 0x0)
@@ -43,9 +43,9 @@ struct UDatasmithContentBlueprintLibrary_GetDatasmithUserDataKeysAndValuesForVal
 {
 public:
 	class UObject*                               Object;                                            // 0x0(0x8)(BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-	class FString                                StringToMatch;                                     // 0x8(0x10)(BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, InstancedReference, SubobjectReference)
-	TArray<class FName>                          OutKeys;                                           // 0x18(0x10)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, ReturnParm, Config, InstancedReference, SubobjectReference)
-	TArray<class FString>                        OutValues;                                         // 0x28(0x10)(ConstParm, BlueprintReadOnly, Net, Config, InstancedReference, SubobjectReference)
+	class FString                                StringToMatch;                                     // 0x8(0x10)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<class FName>                          OutKeys;                                           // 0x18(0x10)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	TArray<class FString>                        OutValues;                                         // 0x28(0x10)(Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -54,7 +54,7 @@ struct UDatasmithContentBlueprintLibrary_GetDatasmithUserData_Params
 {
 public:
 	class UObject*                               Object;                                            // 0x0(0x8)(BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-	class UDatasmithAssetUserData*               ReturnValue;                                       // 0x8(0x8)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	class UDatasmithAssetUserData*               ReturnValue;                                       // 0x8(0x8)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -62,7 +62,7 @@ public:
 struct ADatasmithImportedSequencesActor_PlayLevelSequence_Params
 {
 public:
-	class ULevelSequence*                        SequenceToPlay;                                    // 0x0(0x8)(Edit, Net, EditFixedSize, Parm, ReturnParm, Config, InstancedReference, SubobjectReference)
+	class ULevelSequence*                        SequenceToPlay;                                    // 0x0(0x8)(Edit, ConstParm, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 }

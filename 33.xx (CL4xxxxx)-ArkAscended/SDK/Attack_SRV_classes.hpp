@@ -14,15 +14,15 @@ namespace SDK
 class UAttack_SRV_C : public UBTService_BlueprintBase
 {
 public:
-	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x98(0x8)(BlueprintReadOnly, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FBlackboardKeySelector                IsAttackingKey;                                    // 0xA0(0x28)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, EditConst, SubobjectReference)
+	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0x98(0x8)(Edit, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, SubobjectReference)
+	struct FBlackboardKeySelector                IsAttackingKey;                                    // 0xA0(0x28)(ConstParm, BlueprintReadOnly, Net, OutParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UAttack_SRV_C* GetDefaultObj();
 
-	void ReceiveActivation(class AActor** OwnerActor);
-	void ReceiveDeactivation(class AActor** OwnerActor);
-	int32 ExecuteUbergraph_Attack_SRV(class AActor** K2Node_Event_OwnerActor, class AActor** K2Node_Event_OwnerActor_1);
+	class AActor* ReceiveActivation();
+	class AActor* ReceiveDeactivation();
+	void ExecuteUbergraph_Attack_SRV(int32* EntryPoint, class AActor** K2Node_Event_OwnerActor, class AActor** K2Node_Event_OwnerActor_1);
 };
 
 }

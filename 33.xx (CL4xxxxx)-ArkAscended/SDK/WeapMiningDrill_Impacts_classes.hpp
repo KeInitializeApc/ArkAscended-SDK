@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0x868 - 0x868)
+// 0x0 (0x860 - 0x860)
 // BlueprintGeneratedClass WeapMiningDrill_Impacts.WeapMiningDrill_Impacts_C
 class AWeapMiningDrill_Impacts_C : public AMeleeFist_Impacts_C
 {

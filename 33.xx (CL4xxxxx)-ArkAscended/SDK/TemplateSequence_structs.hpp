@@ -27,10 +27,10 @@ enum class ETemplateSectionPropertyScaleType : int32
 struct FTemplateSectionPropertyScale
 {
 public:
-	struct FGuid                                 ObjectBinding;                                     // 0x0(0x10)(Edit, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FMovieScenePropertyBinding            PropertyBinding;                                   // 0x10(0x14)(ConstParm, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
-	enum class ETemplateSectionPropertyScaleType PropertyScaleType;                                 // 0x24(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FMovieSceneFloatChannel               FloatChannel;                                      // 0x28(0x110)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+	struct FGuid                                 ObjectBinding;                                     // 0x0(0x10)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FMovieScenePropertyBinding            PropertyBinding;                                   // 0x10(0x14)(ConstParm, ExportObject, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig)
+	enum class ETemplateSectionPropertyScaleType PropertyScaleType;                                 // 0x24(0x4)(ConstParm, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FMovieSceneFloatChannel               FloatChannel;                                      // 0x28(0x110)(ConstParm, BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -39,8 +39,8 @@ struct FTemplateSequenceBindingOverrideData
 {
 public:
 	TWeakObjectPtr<class UObject>                Object;                                            // 0x0(0x8)(BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm)
-	bool                                         bOverridesDefault;                                 // 0x8(0x1)(Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1402[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	bool                                         bOverridesDefault;                                 // 0x8(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_B1C[0x3];                                      // Fixing Size Of Struct > TateDumper <
 };
 
 }

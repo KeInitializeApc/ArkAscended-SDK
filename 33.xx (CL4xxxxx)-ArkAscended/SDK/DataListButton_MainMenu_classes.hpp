@@ -14,7 +14,7 @@ namespace SDK
 class UDataListButton_MainMenu_C : public UDataListEntryButton_MainMenu
 {
 public:
-	class UCustomButtonWidget*                   Button;                                            // 0x7C8(0x8)(Edit, ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+	class UCustomButtonWidget*                   Button;                                            // 0x7C8(0x8)(ConstParm, OutParm, ZeroConstructor, DisableEditOnTemplate, GlobalConfig)
 
 	static class UClass* StaticClass();
 	static class UDataListButton_MainMenu_C* GetDefaultObj();

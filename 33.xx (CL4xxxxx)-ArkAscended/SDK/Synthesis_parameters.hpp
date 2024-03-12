@@ -18,9 +18,9 @@ namespace Params
 struct UModularSynthLibrary_AddModularSynthPresetToBankAsset_Params
 {
 public:
-	class UModularSynthPresetBank*               InBank;                                            // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	struct FModularSynthPreset                   Preset;                                            // 0x8(0xE0)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	class FString                                PresetName;                                        // 0xE8(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	class UModularSynthPresetBank*               InBank;                                            // 0x0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	struct FModularSynthPreset                   Preset;                                            // 0x8(0xE0)(ExportObject, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class FString                                PresetName;                                        // 0xE8(0x10)(BlueprintVisible, ExportObject, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0xE0 (0xE0 - 0x0)
@@ -28,7 +28,7 @@ public:
 struct UModularSynthComponent_SetSynthPreset_Params
 {
 public:
-	struct FModularSynthPreset                   SynthPreset;                                       // 0x0(0xE0)(ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	struct FModularSynthPreset                   SynthPreset;                                       // 0x0(0xE0)(Edit, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -36,7 +36,7 @@ public:
 struct UModularSynthComponent_SetSustainGain_Params
 {
 public:
-	float                                        SustainGain;                                       // 0x0(0x4)(BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        SustainGain;                                       // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -44,7 +44,7 @@ public:
 struct UModularSynthComponent_SetStereoDelayWetlevel_Params
 {
 public:
-	float                                        DelayWetlevel;                                     // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        DelayWetlevel;                                     // 0x0(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -52,7 +52,7 @@ public:
 struct UModularSynthComponent_SetStereoDelayTime_Params
 {
 public:
-	float                                        DelayTimeMsec;                                     // 0x0(0x4)(BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        DelayTimeMsec;                                     // 0x0(0x4)(Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -60,7 +60,7 @@ public:
 struct UModularSynthComponent_SetStereoDelayRatio_Params
 {
 public:
-	float                                        DelayRatio;                                        // 0x0(0x4)(ConstParm, BlueprintVisible, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        DelayRatio;                                        // 0x0(0x4)(Edit, ConstParm, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -68,7 +68,7 @@ public:
 struct UModularSynthComponent_SetStereoDelayMode_Params
 {
 public:
-	enum class ESynthStereoDelayMode             StereoDelayMode;                                   // 0x0(0x1)(BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	enum class ESynthStereoDelayMode             StereoDelayMode;                                   // 0x0(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -76,7 +76,7 @@ public:
 struct UModularSynthComponent_SetStereoDelayIsEnabled_Params
 {
 public:
-	bool                                         StereoDelayEnabled;                                // 0x0(0x1)(BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         StereoDelayEnabled;                                // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -84,7 +84,7 @@ public:
 struct UModularSynthComponent_SetStereoDelayFeedback_Params
 {
 public:
-	float                                        DelayFeedback;                                     // 0x0(0x4)(BlueprintVisible, ExportObject, Net, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        DelayFeedback;                                     // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -92,7 +92,7 @@ public:
 struct UModularSynthComponent_SetSpread_Params
 {
 public:
-	float                                        Spread;                                            // 0x0(0x4)(ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        Spread;                                            // 0x0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -100,7 +100,7 @@ public:
 struct UModularSynthComponent_SetReleaseTime_Params
 {
 public:
-	float                                        ReleaseTimeMsec;                                   // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        ReleaseTimeMsec;                                   // 0x0(0x4)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -108,7 +108,7 @@ public:
 struct UModularSynthComponent_SetPortamento_Params
 {
 public:
-	float                                        Portamento;                                        // 0x0(0x4)(Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        Portamento;                                        // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -116,7 +116,7 @@ public:
 struct UModularSynthComponent_SetPitchBend_Params
 {
 public:
-	float                                        PitchBend;                                         // 0x0(0x4)(ConstParm, BlueprintVisible, Net, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        PitchBend;                                         // 0x0(0x4)(Edit, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -124,7 +124,7 @@ public:
 struct UModularSynthComponent_SetPan_Params
 {
 public:
-	float                                        Pan;                                               // 0x0(0x4)(Edit, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        Pan;                                               // 0x0(0x4)(ConstParm, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -132,9 +132,9 @@ public:
 struct UModularSynthComponent_SetOscType_Params
 {
 public:
-	int32                                        OscIndex;                                          // 0x0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	enum class ESynth1OscType                    OscType;                                           // 0x4(0x1)(Edit, Net, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_18DA[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	int32                                        OscIndex;                                          // 0x0(0x4)(BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class ESynth1OscType                    OscType;                                           // 0x4(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1D40[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1 (0x1 - 0x0)
@@ -142,7 +142,7 @@ public:
 struct UModularSynthComponent_SetOscSync_Params
 {
 public:
-	bool                                         bIsSynced;                                         // 0x0(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bIsSynced;                                         // 0x0(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -150,8 +150,8 @@ public:
 struct UModularSynthComponent_SetOscSemitones_Params
 {
 public:
-	int32                                        OscIndex;                                          // 0x0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        Semitones;                                         // 0x4(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        OscIndex;                                          // 0x0(0x4)(BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        Semitones;                                         // 0x4(0x4)(BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -159,8 +159,8 @@ public:
 struct UModularSynthComponent_SetOscPulsewidth_Params
 {
 public:
-	int32                                        OscIndex;                                          // 0x0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        Pulsewidth;                                        // 0x4(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        OscIndex;                                          // 0x0(0x4)(BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        Pulsewidth;                                        // 0x4(0x4)(ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -168,8 +168,8 @@ public:
 struct UModularSynthComponent_SetOscOctave_Params
 {
 public:
-	int32                                        OscIndex;                                          // 0x0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        Octave;                                            // 0x4(0x4)(Edit, ConstParm, ExportObject, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        OscIndex;                                          // 0x0(0x4)(BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        Octave;                                            // 0x4(0x4)(ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -177,8 +177,8 @@ public:
 struct UModularSynthComponent_SetOscGainMod_Params
 {
 public:
-	int32                                        OscIndex;                                          // 0x0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        OscGainMod;                                        // 0x4(0x4)(Edit, BlueprintVisible, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        OscIndex;                                          // 0x0(0x4)(BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        OscGainMod;                                        // 0x4(0x4)(Net, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -186,8 +186,8 @@ public:
 struct UModularSynthComponent_SetOscGain_Params
 {
 public:
-	int32                                        OscIndex;                                          // 0x0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        OscGain;                                           // 0x4(0x4)(ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        OscIndex;                                          // 0x0(0x4)(BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        OscGain;                                           // 0x4(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -195,8 +195,8 @@ public:
 struct UModularSynthComponent_SetOscFrequencyMod_Params
 {
 public:
-	int32                                        OscIndex;                                          // 0x0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        OscFreqMod;                                        // 0x4(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        OscIndex;                                          // 0x0(0x4)(BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        OscFreqMod;                                        // 0x4(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -204,8 +204,8 @@ public:
 struct UModularSynthComponent_SetOscCents_Params
 {
 public:
-	int32                                        OscIndex;                                          // 0x0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        Cents;                                             // 0x4(0x4)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        OscIndex;                                          // 0x0(0x4)(BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        Cents;                                             // 0x4(0x4)(BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -213,7 +213,7 @@ public:
 struct UModularSynthComponent_SetModEnvSustainGain_Params
 {
 public:
-	float                                        SustainGain;                                       // 0x0(0x4)(BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        SustainGain;                                       // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -221,7 +221,7 @@ public:
 struct UModularSynthComponent_SetModEnvReleaseTime_Params
 {
 public:
-	float                                        Release;                                           // 0x0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Transient, DisableEditOnInstance, EditConst)
+	float                                        Release;                                           // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, GlobalConfig)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -229,7 +229,7 @@ public:
 struct UModularSynthComponent_SetModEnvPatch_Params
 {
 public:
-	enum class ESynthModEnvPatch                 InPatchType;                                       // 0x0(0x1)(ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	enum class ESynthModEnvPatch                 InPatchType;                                       // 0x0(0x1)(Edit, BlueprintVisible, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -237,7 +237,7 @@ public:
 struct UModularSynthComponent_SetModEnvInvert_Params
 {
 public:
-	bool                                         bInvert;                                           // 0x0(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bInvert;                                           // 0x0(0x1)(ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -245,7 +245,7 @@ public:
 struct UModularSynthComponent_SetModEnvDepth_Params
 {
 public:
-	float                                        Depth;                                             // 0x0(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst)
+	float                                        Depth;                                             // 0x0(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, EditConst)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -253,7 +253,7 @@ public:
 struct UModularSynthComponent_SetModEnvDecayTime_Params
 {
 public:
-	float                                        DecayTimeMsec;                                     // 0x0(0x4)(ConstParm, Net, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        DecayTimeMsec;                                     // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -261,7 +261,7 @@ public:
 struct UModularSynthComponent_SetModEnvBiasPatch_Params
 {
 public:
-	enum class ESynthModEnvBiasPatch             InPatchType;                                       // 0x0(0x1)(ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	enum class ESynthModEnvBiasPatch             InPatchType;                                       // 0x0(0x1)(Edit, BlueprintVisible, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -269,7 +269,7 @@ public:
 struct UModularSynthComponent_SetModEnvBiasInvert_Params
 {
 public:
-	bool                                         bInvert;                                           // 0x0(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bInvert;                                           // 0x0(0x1)(ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -277,7 +277,7 @@ public:
 struct UModularSynthComponent_SetModEnvAttackTime_Params
 {
 public:
-	float                                        AttackTimeMsec;                                    // 0x0(0x4)(BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        AttackTimeMsec;                                    // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -285,9 +285,9 @@ public:
 struct UModularSynthComponent_SetLFOType_Params
 {
 public:
-	int32                                        LFOIndex;                                          // 0x0(0x4)(BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	enum class ESynthLFOType                     LFOType;                                           // 0x4(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_18EC[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	int32                                        LFOIndex;                                          // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class ESynthLFOType                     LFOType;                                           // 0x4(0x1)(Edit, ConstParm, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1D6A[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)
@@ -295,9 +295,9 @@ public:
 struct UModularSynthComponent_SetLFOPatch_Params
 {
 public:
-	int32                                        LFOIndex;                                          // 0x0(0x4)(BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	enum class ESynthLFOPatchType                LFOPatchType;                                      // 0x4(0x1)(Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_18EE[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	int32                                        LFOIndex;                                          // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class ESynthLFOPatchType                LFOPatchType;                                      // 0x4(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1D6E[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)
@@ -305,9 +305,9 @@ public:
 struct UModularSynthComponent_SetLFOMode_Params
 {
 public:
-	int32                                        LFOIndex;                                          // 0x0(0x4)(BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	enum class ESynthLFOMode                     LFOMode;                                           // 0x4(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_18F3[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	int32                                        LFOIndex;                                          // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class ESynthLFOMode                     LFOMode;                                           // 0x4(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1D73[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x8 (0x8 - 0x0)
@@ -315,8 +315,8 @@ public:
 struct UModularSynthComponent_SetLFOGainMod_Params
 {
 public:
-	int32                                        LFOIndex;                                          // 0x0(0x4)(BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        GainMod;                                           // 0x4(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        LFOIndex;                                          // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        GainMod;                                           // 0x4(0x4)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -324,8 +324,8 @@ public:
 struct UModularSynthComponent_SetLFOGain_Params
 {
 public:
-	int32                                        LFOIndex;                                          // 0x0(0x4)(BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        Gain;                                              // 0x4(0x4)(Edit, ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        LFOIndex;                                          // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        Gain;                                              // 0x4(0x4)(BlueprintReadOnly, Net, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -333,8 +333,8 @@ public:
 struct UModularSynthComponent_SetLFOFrequencyMod_Params
 {
 public:
-	int32                                        LFOIndex;                                          // 0x0(0x4)(BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        FrequencyModHz;                                    // 0x4(0x4)(Edit, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        LFOIndex;                                          // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        FrequencyModHz;                                    // 0x4(0x4)(BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -342,8 +342,8 @@ public:
 struct UModularSynthComponent_SetLFOFrequency_Params
 {
 public:
-	int32                                        LFOIndex;                                          // 0x0(0x4)(BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        FrequencyHz;                                       // 0x4(0x4)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        LFOIndex;                                          // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        FrequencyHz;                                       // 0x4(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -351,7 +351,7 @@ public:
 struct UModularSynthComponent_SetGainDb_Params
 {
 public:
-	float                                        GainDb;                                            // 0x0(0x4)(Edit, ConstParm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        GainDb;                                            // 0x0(0x4)(BlueprintReadOnly, Net, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -359,7 +359,7 @@ public:
 struct UModularSynthComponent_SetFilterType_Params
 {
 public:
-	enum class ESynthFilterType                  FilterType;                                        // 0x0(0x1)(Edit, BlueprintVisible, ExportObject, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	enum class ESynthFilterType                  FilterType;                                        // 0x0(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -367,7 +367,7 @@ public:
 struct UModularSynthComponent_SetFilterQMod_Params
 {
 public:
-	float                                        FilterQ;                                           // 0x0(0x4)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        FilterQ;                                           // 0x0(0x4)(EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -375,7 +375,7 @@ public:
 struct UModularSynthComponent_SetFilterQ_Params
 {
 public:
-	float                                        FilterQ;                                           // 0x0(0x4)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        FilterQ;                                           // 0x0(0x4)(EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -383,7 +383,7 @@ public:
 struct UModularSynthComponent_SetFilterFrequencyMod_Params
 {
 public:
-	float                                        FilterFrequencyHz;                                 // 0x0(0x4)(ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        FilterFrequencyHz;                                 // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -391,7 +391,7 @@ public:
 struct UModularSynthComponent_SetFilterFrequency_Params
 {
 public:
-	float                                        FilterFrequencyHz;                                 // 0x0(0x4)(ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        FilterFrequencyHz;                                 // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -399,7 +399,7 @@ public:
 struct UModularSynthComponent_SetFilterAlgorithm_Params
 {
 public:
-	enum class ESynthFilterAlgorithm             FilterAlgorithm;                                   // 0x0(0x1)(BlueprintVisible, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	enum class ESynthFilterAlgorithm             FilterAlgorithm;                                   // 0x0(0x1)(Edit, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -407,7 +407,7 @@ public:
 struct UModularSynthComponent_SetEnableUnison_Params
 {
 public:
-	bool                                         EnableUnison;                                      // 0x0(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         EnableUnison;                                      // 0x0(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -415,7 +415,7 @@ public:
 struct UModularSynthComponent_SetEnableRetrigger_Params
 {
 public:
-	bool                                         RetriggerEnabled;                                  // 0x0(0x1)(ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         RetriggerEnabled;                                  // 0x0(0x1)(Edit, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -423,7 +423,7 @@ public:
 struct UModularSynthComponent_SetEnablePolyphony_Params
 {
 public:
-	bool                                         bEnablePolyphony;                                  // 0x0(0x1)(ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bEnablePolyphony;                                  // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -431,10 +431,10 @@ public:
 struct UModularSynthComponent_SetEnablePatch_Params
 {
 public:
-	struct FPatchId                              PatchId;                                           // 0x0(0x4)(ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm)
-	bool                                         bIsEnabled;                                        // 0x4(0x1)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, DisableEditOnTemplate, EditConst)
-	bool                                         ReturnValue;                                       // 0x5(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1923[0x2];                                     // Fixing Size Of Struct > TateDumper <
+	struct FPatchId                              PatchId;                                           // 0x0(0x4)(ExportObject, BlueprintReadOnly, Parm, OutParm, DisableEditOnTemplate)
+	bool                                         bIsEnabled;                                        // 0x4(0x1)(BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, EditConst)
+	bool                                         ReturnValue;                                       // 0x5(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1DA2[0x2];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1 (0x1 - 0x0)
@@ -442,7 +442,7 @@ public:
 struct UModularSynthComponent_SetEnableLegato_Params
 {
 public:
-	bool                                         LegatoEnabled;                                     // 0x0(0x1)(ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         LegatoEnabled;                                     // 0x0(0x1)(Edit, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -450,7 +450,7 @@ public:
 struct UModularSynthComponent_SetDecayTime_Params
 {
 public:
-	float                                        DecayTimeMsec;                                     // 0x0(0x4)(ConstParm, Net, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        DecayTimeMsec;                                     // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -458,7 +458,7 @@ public:
 struct UModularSynthComponent_SetChorusFrequency_Params
 {
 public:
-	float                                        Frequency;                                         // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        Frequency;                                         // 0x0(0x4)(BlueprintVisible, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -466,7 +466,7 @@ public:
 struct UModularSynthComponent_SetChorusFeedback_Params
 {
 public:
-	float                                        Feedback;                                          // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        Feedback;                                          // 0x0(0x4)(BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -474,7 +474,7 @@ public:
 struct UModularSynthComponent_SetChorusEnabled_Params
 {
 public:
-	bool                                         EnableChorus;                                      // 0x0(0x1)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         EnableChorus;                                      // 0x0(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -482,7 +482,7 @@ public:
 struct UModularSynthComponent_SetChorusDepth_Params
 {
 public:
-	float                                        Depth;                                             // 0x0(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst)
+	float                                        Depth;                                             // 0x0(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, EditConst)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -490,7 +490,7 @@ public:
 struct UModularSynthComponent_SetAttackTime_Params
 {
 public:
-	float                                        AttackTimeMsec;                                    // 0x0(0x4)(BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        AttackTimeMsec;                                    // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -498,9 +498,9 @@ public:
 struct UModularSynthComponent_NoteOn_Params
 {
 public:
-	float                                        Note;                                              // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst)
-	int32                                        Velocity;                                          // 0x4(0x4)(Edit, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
-	float                                        Duration;                                          // 0x8(0x4)(Edit, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, DuplicateTransient)
+	float                                        Note;                                              // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig)
+	int32                                        Velocity;                                          // 0x4(0x4)(Config, EditConst, GlobalConfig)
+	float                                        Duration;                                          // 0x8(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, DuplicateTransient)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -508,10 +508,10 @@ public:
 struct UModularSynthComponent_NoteOff_Params
 {
 public:
-	float                                        Note;                                              // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst)
-	bool                                         bAllNotesOff;                                      // 0x4(0x1)(BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         bKillAllNotes;                                     // 0x5(0x1)(BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1931[0x2];                                     // Fixing Size Of Struct > TateDumper <
+	float                                        Note;                                              // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig)
+	bool                                         bAllNotesOff;                                      // 0x4(0x1)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bKillAllNotes;                                     // 0x5(0x1)(Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1DB7[0x2];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x20 (0x20 - 0x0)
@@ -519,12 +519,12 @@ public:
 struct UModularSynthComponent_CreatePatch_Params
 {
 public:
-	enum class ESynth1PatchSource                PatchSource;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1936[0x7];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<struct FSynth1PatchCable>             PatchCables;                                       // 0x8(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	bool                                         bEnableByDefault;                                  // 0x18(0x1)(Edit, ConstParm, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1938[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FPatchId                              ReturnValue;                                       // 0x1C(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	enum class ESynth1PatchSource                PatchSource;                                       // 0x0(0x1)(Edit, ExportObject, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1DBD[0x7];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<struct FSynth1PatchCable>             PatchCables;                                       // 0x8(0x10)(ConstParm, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	bool                                         bEnableByDefault;                                  // 0x18(0x1)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1DBE[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FPatchId                              ReturnValue;                                       // 0x1C(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -532,7 +532,7 @@ public:
 struct USourceEffectBitCrusherPreset_SetSettings_Params
 {
 public:
-	struct FSourceEffectBitCrusherBaseSettings   Settings;                                          // 0x0(0x8)(Edit, Net, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+	struct FSourceEffectBitCrusherBaseSettings   Settings;                                          // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -540,7 +540,7 @@ public:
 struct USourceEffectBitCrusherPreset_SetSampleRateModulators_Params
 {
 public:
-	TSet<class USoundModulatorBase*>             InModulators;                                      // 0x0(0x50)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	TSet<class USoundModulatorBase*>             InModulators;                                      // 0x0(0x50)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -548,7 +548,7 @@ public:
 struct USourceEffectBitCrusherPreset_SetSampleRateModulator_Params
 {
 public:
-	class USoundModulatorBase*                   Modulator;                                         // 0x0(0x8)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	class USoundModulatorBase*                   Modulator;                                         // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -556,7 +556,7 @@ public:
 struct USourceEffectBitCrusherPreset_SetSampleRate_Params
 {
 public:
-	float                                        SampleRate;                                        // 0x0(0x4)(ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, DuplicateTransient)
+	float                                        SampleRate;                                        // 0x0(0x4)(BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, DuplicateTransient)
 };
 
 // 0xD0 (0xD0 - 0x0)
@@ -564,7 +564,7 @@ public:
 struct USourceEffectBitCrusherPreset_SetModulationSettings_Params
 {
 public:
-	struct FSourceEffectBitCrusherSettings       ModulationSettings;                                // 0x0(0xD0)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FSourceEffectBitCrusherSettings       ModulationSettings;                                // 0x0(0xD0)(Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -572,7 +572,7 @@ public:
 struct USourceEffectBitCrusherPreset_SetBits_Params
 {
 public:
-	float                                        Bits;                                              // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        Bits;                                              // 0x0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -580,7 +580,7 @@ public:
 struct USourceEffectBitCrusherPreset_SetBitModulators_Params
 {
 public:
-	TSet<class USoundModulatorBase*>             InModulators;                                      // 0x0(0x50)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	TSet<class USoundModulatorBase*>             InModulators;                                      // 0x0(0x50)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -588,7 +588,7 @@ public:
 struct USourceEffectBitCrusherPreset_SetBitModulator_Params
 {
 public:
-	class USoundModulatorBase*                   Modulator;                                         // 0x0(0x8)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	class USoundModulatorBase*                   Modulator;                                         // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -596,7 +596,7 @@ public:
 struct USourceEffectChorusPreset_SetWetModulators_Params
 {
 public:
-	TSet<class USoundModulatorBase*>             Modulators;                                        // 0x0(0x50)(Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TSet<class USoundModulatorBase*>             Modulators;                                        // 0x0(0x50)(ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -604,7 +604,7 @@ public:
 struct USourceEffectChorusPreset_SetWetModulator_Params
 {
 public:
-	class USoundModulatorBase*                   Modulator;                                         // 0x0(0x8)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	class USoundModulatorBase*                   Modulator;                                         // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -612,7 +612,7 @@ public:
 struct USourceEffectChorusPreset_SetWet_Params
 {
 public:
-	float                                        WetAmount;                                         // 0x0(0x4)(BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        WetAmount;                                         // 0x0(0x4)(Edit, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -620,7 +620,7 @@ public:
 struct USourceEffectChorusPreset_SetSpreadModulators_Params
 {
 public:
-	TSet<class USoundModulatorBase*>             Modulators;                                        // 0x0(0x50)(Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TSet<class USoundModulatorBase*>             Modulators;                                        // 0x0(0x50)(ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -628,7 +628,7 @@ public:
 struct USourceEffectChorusPreset_SetSpreadModulator_Params
 {
 public:
-	class USoundModulatorBase*                   Modulator;                                         // 0x0(0x8)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	class USoundModulatorBase*                   Modulator;                                         // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -636,7 +636,7 @@ public:
 struct USourceEffectChorusPreset_SetSpread_Params
 {
 public:
-	float                                        Spread;                                            // 0x0(0x4)(ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        Spread;                                            // 0x0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -644,7 +644,7 @@ public:
 struct USourceEffectChorusPreset_SetSettings_Params
 {
 public:
-	struct FSourceEffectChorusBaseSettings       Settings;                                          // 0x0(0x18)(Edit, Net, EditFixedSize, Parm, DisableEditOnInstance, SubobjectReference)
+	struct FSourceEffectChorusBaseSettings       Settings;                                          // 0x0(0x18)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, EditConst, SubobjectReference)
 };
 
 // 0x258 (0x258 - 0x0)
@@ -652,7 +652,7 @@ public:
 struct USourceEffectChorusPreset_SetModulationSettings_Params
 {
 public:
-	struct FSourceEffectChorusSettings           ModulationSettings;                                // 0x0(0x258)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FSourceEffectChorusSettings           ModulationSettings;                                // 0x0(0x258)(Edit, ConstParm, Net, EditFixedSize, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -660,7 +660,7 @@ public:
 struct USourceEffectChorusPreset_SetFrequencyModulators_Params
 {
 public:
-	TSet<class USoundModulatorBase*>             Modulators;                                        // 0x0(0x50)(Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TSet<class USoundModulatorBase*>             Modulators;                                        // 0x0(0x50)(ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -668,7 +668,7 @@ public:
 struct USourceEffectChorusPreset_SetFrequencyModulator_Params
 {
 public:
-	class USoundModulatorBase*                   Modulator;                                         // 0x0(0x8)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	class USoundModulatorBase*                   Modulator;                                         // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -676,7 +676,7 @@ public:
 struct USourceEffectChorusPreset_SetFrequency_Params
 {
 public:
-	float                                        Frequency;                                         // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        Frequency;                                         // 0x0(0x4)(BlueprintVisible, EditFixedSize, Parm, OutParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -684,7 +684,7 @@ public:
 struct USourceEffectChorusPreset_SetFeedbackModulators_Params
 {
 public:
-	TSet<class USoundModulatorBase*>             Modulators;                                        // 0x0(0x50)(Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TSet<class USoundModulatorBase*>             Modulators;                                        // 0x0(0x50)(ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -692,7 +692,7 @@ public:
 struct USourceEffectChorusPreset_SetFeedbackModulator_Params
 {
 public:
-	class USoundModulatorBase*                   Modulator;                                         // 0x0(0x8)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	class USoundModulatorBase*                   Modulator;                                         // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -700,7 +700,7 @@ public:
 struct USourceEffectChorusPreset_SetFeedback_Params
 {
 public:
-	float                                        Feedback;                                          // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        Feedback;                                          // 0x0(0x4)(BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -708,7 +708,7 @@ public:
 struct USourceEffectChorusPreset_SetDryModulators_Params
 {
 public:
-	TSet<class USoundModulatorBase*>             Modulators;                                        // 0x0(0x50)(Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TSet<class USoundModulatorBase*>             Modulators;                                        // 0x0(0x50)(ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -716,7 +716,7 @@ public:
 struct USourceEffectChorusPreset_SetDryModulator_Params
 {
 public:
-	class USoundModulatorBase*                   Modulator;                                         // 0x0(0x8)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	class USoundModulatorBase*                   Modulator;                                         // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -724,7 +724,7 @@ public:
 struct USourceEffectChorusPreset_SetDry_Params
 {
 public:
-	float                                        DryAmount;                                         // 0x0(0x4)(ConstParm, ExportObject, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        DryAmount;                                         // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x50 (0x50 - 0x0)
@@ -732,7 +732,7 @@ public:
 struct USourceEffectChorusPreset_SetDepthModulators_Params
 {
 public:
-	TSet<class USoundModulatorBase*>             Modulators;                                        // 0x0(0x50)(Edit, BlueprintVisible, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	TSet<class USoundModulatorBase*>             Modulators;                                        // 0x0(0x50)(ConstParm, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -740,7 +740,7 @@ public:
 struct USourceEffectChorusPreset_SetDepthModulator_Params
 {
 public:
-	class USoundModulatorBase*                   Modulator;                                         // 0x0(0x8)(Edit, ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	class USoundModulatorBase*                   Modulator;                                         // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -748,7 +748,7 @@ public:
 struct USourceEffectChorusPreset_SetDepth_Params
 {
 public:
-	float                                        Depth;                                             // 0x0(0x4)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Config, EditConst)
+	float                                        Depth;                                             // 0x0(0x4)(Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, Transient, Config, EditConst)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -756,7 +756,7 @@ public:
 struct USourceEffectConvolutionReverbPreset_SetSettings_Params
 {
 public:
-	struct FSourceEffectConvolutionReverbSettings InSettings;                                        // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FSourceEffectConvolutionReverbSettings InSettings;                                        // 0x0(0x10)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -764,7 +764,7 @@ public:
 struct USourceEffectConvolutionReverbPreset_SetImpulseResponse_Params
 {
 public:
-	class UAudioImpulseResponse*                 InImpulseResponse;                                 // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	class UAudioImpulseResponse*                 InImpulseResponse;                                 // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x28 (0x28 - 0x0)
@@ -772,7 +772,7 @@ public:
 struct USourceEffectDynamicsProcessorPreset_SetSettings_Params
 {
 public:
-	struct FSourceEffectDynamicsProcessorSettings InSettings;                                        // 0x0(0x28)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FSourceEffectDynamicsProcessorSettings InSettings;                                        // 0x0(0x28)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -780,7 +780,7 @@ public:
 struct USourceEffectEnvelopeFollowerPreset_UnregisterEnvelopeFollowerListener_Params
 {
 public:
-	class UEnvelopeFollowerListener*             EnvelopeFollowerListener;                          // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+	class UEnvelopeFollowerListener*             EnvelopeFollowerListener;                          // 0x0(0x8)(Edit, BlueprintReadOnly, Net, OutParm, ReturnParm, GlobalConfig)
 };
 
 // 0xC (0xC - 0x0)
@@ -788,7 +788,7 @@ public:
 struct USourceEffectEnvelopeFollowerPreset_SetSettings_Params
 {
 public:
-	struct FSourceEffectEnvelopeFollowerSettings InSettings;                                        // 0x0(0xC)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FSourceEffectEnvelopeFollowerSettings InSettings;                                        // 0x0(0xC)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -796,7 +796,7 @@ public:
 struct USourceEffectEnvelopeFollowerPreset_RegisterEnvelopeFollowerListener_Params
 {
 public:
-	class UEnvelopeFollowerListener*             EnvelopeFollowerListener;                          // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, EditConst, GlobalConfig, InstancedReference, DuplicateTransient)
+	class UEnvelopeFollowerListener*             EnvelopeFollowerListener;                          // 0x0(0x8)(Edit, BlueprintReadOnly, Net, OutParm, ReturnParm, GlobalConfig)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -804,7 +804,7 @@ public:
 struct USourceEffectEQPreset_SetSettings_Params
 {
 public:
-	struct FSourceEffectEQSettings               InSettings;                                        // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FSourceEffectEQSettings               InSettings;                                        // 0x0(0x10)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -812,7 +812,7 @@ public:
 struct USourceEffectFilterPreset_SetSettings_Params
 {
 public:
-	struct FSourceEffectFilterSettings           InSettings;                                        // 0x0(0x20)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FSourceEffectFilterSettings           InSettings;                                        // 0x0(0x20)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -820,7 +820,7 @@ public:
 struct USourceEffectFoldbackDistortionPreset_SetSettings_Params
 {
 public:
-	struct FSourceEffectFoldbackDistortionSettings InSettings;                                        // 0x0(0xC)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FSourceEffectFoldbackDistortionSettings InSettings;                                        // 0x0(0xC)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -828,7 +828,7 @@ public:
 struct USourceEffectMidSideSpreaderPreset_SetSettings_Params
 {
 public:
-	struct FSourceEffectMidSideSpreaderSettings  InSettings;                                        // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FSourceEffectMidSideSpreaderSettings  InSettings;                                        // 0x0(0x8)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x78 (0x78 - 0x0)
@@ -836,7 +836,7 @@ public:
 struct USourceEffectMotionFilterPreset_SetSettings_Params
 {
 public:
-	struct FSourceEffectMotionFilterSettings     InSettings;                                        // 0x0(0x78)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FSourceEffectMotionFilterSettings     InSettings;                                        // 0x0(0x78)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -844,7 +844,7 @@ public:
 struct USourceEffectPannerPreset_SetSettings_Params
 {
 public:
-	struct FSourceEffectPannerSettings           InSettings;                                        // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FSourceEffectPannerSettings           InSettings;                                        // 0x0(0x8)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -852,7 +852,7 @@ public:
 struct USourceEffectPhaserPreset_SetSettings_Params
 {
 public:
-	struct FSourceEffectPhaserSettings           InSettings;                                        // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FSourceEffectPhaserSettings           InSettings;                                        // 0x0(0x10)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x20 (0x20 - 0x0)
@@ -860,7 +860,7 @@ public:
 struct USourceEffectRingModulationPreset_SetSettings_Params
 {
 public:
-	struct FSourceEffectRingModulationSettings   InSettings;                                        // 0x0(0x20)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FSourceEffectRingModulationSettings   InSettings;                                        // 0x0(0x20)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -868,7 +868,7 @@ public:
 struct USourceEffectSimpleDelayPreset_SetSettings_Params
 {
 public:
-	struct FSourceEffectSimpleDelaySettings      InSettings;                                        // 0x0(0x18)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FSourceEffectSimpleDelaySettings      InSettings;                                        // 0x0(0x18)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x24 (0x24 - 0x0)
@@ -876,7 +876,7 @@ public:
 struct USourceEffectStereoDelayPreset_SetSettings_Params
 {
 public:
-	struct FSourceEffectStereoDelaySettings      InSettings;                                        // 0x0(0x24)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FSourceEffectStereoDelaySettings      InSettings;                                        // 0x0(0x24)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -884,7 +884,7 @@ public:
 struct USourceEffectWaveShaperPreset_SetSettings_Params
 {
 public:
-	struct FSourceEffectWaveShaperSettings       InSettings;                                        // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FSourceEffectWaveShaperSettings       InSettings;                                        // 0x0(0x8)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x30 (0x30 - 0x0)
@@ -892,7 +892,7 @@ public:
 struct USubmixEffectConvolutionReverbPreset_SetSettings_Params
 {
 public:
-	struct FSubmixEffectConvolutionReverbSettings InSettings;                                        // 0x0(0x30)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FSubmixEffectConvolutionReverbSettings InSettings;                                        // 0x0(0x30)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -900,7 +900,7 @@ public:
 struct USubmixEffectConvolutionReverbPreset_SetImpulseResponse_Params
 {
 public:
-	class UAudioImpulseResponse*                 InImpulseResponse;                                 // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	class UAudioImpulseResponse*                 InImpulseResponse;                                 // 0x0(0x8)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1C (0x1C - 0x0)
@@ -908,9 +908,9 @@ public:
 struct USubmixEffectDelayStatics_SetMaximumDelayLength_Params
 {
 public:
-	struct FSubmixEffectDelaySettings            DelaySettings;                                     // 0x0(0xC)(Edit, ExportObject, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        MaximumDelayLength;                                // 0xC(0x4)(Edit, ConstParm, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FSubmixEffectDelaySettings            ReturnValue;                                       // 0x10(0xC)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FSubmixEffectDelaySettings            DelaySettings;                                     // 0x0(0xC)(BlueprintVisible, Net, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        MaximumDelayLength;                                // 0xC(0x4)(BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FSubmixEffectDelaySettings            ReturnValue;                                       // 0x10(0xC)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1C (0x1C - 0x0)
@@ -918,9 +918,9 @@ public:
 struct USubmixEffectDelayStatics_SetInterpolationTime_Params
 {
 public:
-	struct FSubmixEffectDelaySettings            DelaySettings;                                     // 0x0(0xC)(Edit, ExportObject, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        InterpolationTime;                                 // 0xC(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FSubmixEffectDelaySettings            ReturnValue;                                       // 0x10(0xC)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FSubmixEffectDelaySettings            DelaySettings;                                     // 0x0(0xC)(BlueprintVisible, Net, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        InterpolationTime;                                 // 0xC(0x4)(ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FSubmixEffectDelaySettings            ReturnValue;                                       // 0x10(0xC)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x1C (0x1C - 0x0)
@@ -928,9 +928,9 @@ public:
 struct USubmixEffectDelayStatics_SetDelayLength_Params
 {
 public:
-	struct FSubmixEffectDelaySettings            DelaySettings;                                     // 0x0(0xC)(Edit, ExportObject, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        DelayLength;                                       // 0xC(0x4)(ConstParm, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FSubmixEffectDelaySettings            ReturnValue;                                       // 0x10(0xC)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FSubmixEffectDelaySettings            DelaySettings;                                     // 0x0(0xC)(BlueprintVisible, Net, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        DelayLength;                                       // 0xC(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FSubmixEffectDelaySettings            ReturnValue;                                       // 0x10(0xC)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -938,7 +938,7 @@ public:
 struct USubmixEffectDelayPreset_SetSettings_Params
 {
 public:
-	struct FSubmixEffectDelaySettings            InSettings;                                        // 0x0(0xC)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FSubmixEffectDelaySettings            InSettings;                                        // 0x0(0xC)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -946,7 +946,7 @@ public:
 struct USubmixEffectDelayPreset_SetInterpolationTime_Params
 {
 public:
-	float                                        Time;                                              // 0x0(0x4)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+	float                                        Time;                                              // 0x0(0x4)(Edit, ConstParm, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -962,7 +962,7 @@ public:
 struct USubmixEffectDelayPreset_SetDefaultSettings_Params
 {
 public:
-	struct FSubmixEffectDelaySettings            InSettings;                                        // 0x0(0xC)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FSubmixEffectDelaySettings            InSettings;                                        // 0x0(0xC)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -970,7 +970,7 @@ public:
 struct USubmixEffectDelayPreset_GetMaxDelayInMilliseconds_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -978,7 +978,7 @@ public:
 struct USubmixEffectFilterPreset_SetSettings_Params
 {
 public:
-	struct FSubmixEffectFilterSettings           InSettings;                                        // 0x0(0xC)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FSubmixEffectFilterSettings           InSettings;                                        // 0x0(0xC)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -986,7 +986,7 @@ public:
 struct USubmixEffectFilterPreset_SetFilterType_Params
 {
 public:
-	enum class ESubmixFilterType                 InType;                                            // 0x0(0x1)(Edit, ConstParm, ExportObject, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	enum class ESubmixFilterType                 InType;                                            // 0x0(0x1)(ConstParm, BlueprintVisible, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -994,7 +994,7 @@ public:
 struct USubmixEffectFilterPreset_SetFilterQMod_Params
 {
 public:
-	float                                        InQ;                                               // 0x0(0x4)(ExportObject, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InQ;                                               // 0x0(0x4)(Edit, ConstParm, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1002,7 +1002,7 @@ public:
 struct USubmixEffectFilterPreset_SetFilterQ_Params
 {
 public:
-	float                                        InQ;                                               // 0x0(0x4)(ExportObject, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InQ;                                               // 0x0(0x4)(Edit, ConstParm, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1010,7 +1010,7 @@ public:
 struct USubmixEffectFilterPreset_SetFilterCutoffFrequencyMod_Params
 {
 public:
-	float                                        InFrequency;                                       // 0x0(0x4)(Edit, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InFrequency;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1018,7 +1018,7 @@ public:
 struct USubmixEffectFilterPreset_SetFilterCutoffFrequency_Params
 {
 public:
-	float                                        InFrequency;                                       // 0x0(0x4)(Edit, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InFrequency;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1026,7 +1026,7 @@ public:
 struct USubmixEffectFilterPreset_SetFilterAlgorithm_Params
 {
 public:
-	enum class ESubmixFilterAlgorithm            InAlgorithm;                                       // 0x0(0x1)(ConstParm, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	enum class ESubmixFilterAlgorithm            InAlgorithm;                                       // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1034,7 +1034,7 @@ public:
 struct USubmixEffectFlexiverbPreset_SetSettings_Params
 {
 public:
-	struct FSubmixEffectFlexiverbSettings        InSettings;                                        // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FSubmixEffectFlexiverbSettings        InSettings;                                        // 0x0(0x10)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x38 (0x38 - 0x0)
@@ -1042,7 +1042,7 @@ public:
 struct USubmixEffectMultibandCompressorPreset_SetSettings_Params
 {
 public:
-	struct FSubmixEffectMultibandCompressorSettings InSettings;                                        // 0x0(0x38)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FSubmixEffectMultibandCompressorSettings InSettings;                                        // 0x0(0x38)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1050,7 +1050,7 @@ public:
 struct USubmixEffectMultibandCompressorPreset_SetExternalSubmix_Params
 {
 public:
-	class USoundSubmix*                          Submix;                                            // 0x0(0x8)(ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	class USoundSubmix*                          Submix;                                            // 0x0(0x8)(BlueprintVisible, Net, Parm, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1058,7 +1058,7 @@ public:
 struct USubmixEffectMultibandCompressorPreset_SetAudioBus_Params
 {
 public:
-	class UAudioBus*                             AudioBus;                                          // 0x0(0x8)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, DisableEditOnTemplate, Transient, SubobjectReference)
+	class UAudioBus*                             AudioBus;                                          // 0x0(0x8)(BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, GlobalConfig)
 };
 
 // 0x24 (0x24 - 0x0)
@@ -1066,7 +1066,7 @@ public:
 struct USubmixEffectStereoDelayPreset_SetSettings_Params
 {
 public:
-	struct FSubmixEffectStereoDelaySettings      InSettings;                                        // 0x0(0x24)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FSubmixEffectStereoDelaySettings      InSettings;                                        // 0x0(0x24)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1074,7 +1074,7 @@ public:
 struct USubmixEffectStereoToQuadPreset_SetSettings_Params
 {
 public:
-	struct FSubmixEffectStereoToQuadSettings     InSettings;                                        // 0x0(0x8)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FSubmixEffectStereoToQuadSettings     InSettings;                                        // 0x0(0x8)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1C (0x1C - 0x0)
@@ -1082,8 +1082,8 @@ public:
 struct USubmixEffectTapDelayPreset_SetTap_Params
 {
 public:
-	int32                                        TapId;                                             // 0x0(0x4)(BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FTapDelayInfo                         TapInfo;                                           // 0x4(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        TapId;                                             // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FTapDelayInfo                         TapInfo;                                           // 0x4(0x18)(ConstParm, ExportObject, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1091,7 +1091,7 @@ public:
 struct USubmixEffectTapDelayPreset_SetSettings_Params
 {
 public:
-	struct FSubmixEffectTapDelaySettings         InSettings;                                        // 0x0(0x18)(Edit, ConstParm, BlueprintVisible, Net, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
+	struct FSubmixEffectTapDelaySettings         InSettings;                                        // 0x0(0x18)(Edit, BlueprintReadOnly, Parm, ZeroConstructor, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1099,7 +1099,7 @@ public:
 struct USubmixEffectTapDelayPreset_SetInterpolationTime_Params
 {
 public:
-	float                                        Time;                                              // 0x0(0x4)(ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
+	float                                        Time;                                              // 0x0(0x4)(Edit, ConstParm, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1107,7 +1107,7 @@ public:
 struct USubmixEffectTapDelayPreset_RemoveTap_Params
 {
 public:
-	int32                                        TapId;                                             // 0x0(0x4)(BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        TapId;                                             // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1115,7 +1115,7 @@ public:
 struct USubmixEffectTapDelayPreset_GetTapIds_Params
 {
 public:
-	TArray<int32>                                TapIds;                                            // 0x0(0x10)(BlueprintVisible, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	TArray<int32>                                TapIds;                                            // 0x0(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1C (0x1C - 0x0)
@@ -1123,8 +1123,8 @@ public:
 struct USubmixEffectTapDelayPreset_GetTap_Params
 {
 public:
-	int32                                        TapId;                                             // 0x0(0x4)(BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	struct FTapDelayInfo                         TapInfo;                                           // 0x4(0x18)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	int32                                        TapId;                                             // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	struct FTapDelayInfo                         TapInfo;                                           // 0x4(0x18)(ConstParm, ExportObject, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1132,7 +1132,7 @@ public:
 struct USubmixEffectTapDelayPreset_GetMaxDelayInMilliseconds_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1140,7 +1140,7 @@ public:
 struct USubmixEffectTapDelayPreset_AddTap_Params
 {
 public:
-	int32                                        TapId;                                             // 0x0(0x4)(BlueprintReadOnly, Net, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	int32                                        TapId;                                             // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1148,7 +1148,7 @@ public:
 struct UGranularSynth_SetSustainGain_Params
 {
 public:
-	float                                        SustainGain;                                       // 0x0(0x4)(BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        SustainGain;                                       // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1156,7 +1156,7 @@ public:
 struct UGranularSynth_SetSoundWave_Params
 {
 public:
-	class USoundWave*                            InSoundWave;                                       // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	class USoundWave*                            InSoundWave;                                       // 0x0(0x8)(ExportObject, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1164,7 +1164,7 @@ public:
 struct UGranularSynth_SetScrubMode_Params
 {
 public:
-	bool                                         bScrubMode;                                        // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bScrubMode;                                        // 0x0(0x1)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1172,7 +1172,7 @@ public:
 struct UGranularSynth_SetReleaseTimeMsec_Params
 {
 public:
-	float                                        ReleaseTimeMsec;                                   // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        ReleaseTimeMsec;                                   // 0x0(0x4)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -1180,10 +1180,10 @@ public:
 struct UGranularSynth_SetPlayheadTime_Params
 {
 public:
-	float                                        InPositionSec;                                     // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        LerpTimeSec;                                       // 0x4(0x4)(ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	enum class EGranularSynthSeekType            SeekType;                                          // 0x8(0x1)(Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1A02[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	float                                        InPositionSec;                                     // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        LerpTimeSec;                                       // 0x4(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	enum class EGranularSynthSeekType            SeekType;                                          // 0x8(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1F2D[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1191,7 +1191,7 @@ public:
 struct UGranularSynth_SetPlaybackSpeed_Params
 {
 public:
-	float                                        InPlayheadRate;                                    // 0x0(0x4)(Edit, ConstParm, ExportObject, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InPlayheadRate;                                    // 0x0(0x4)(ConstParm, BlueprintVisible, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1199,9 +1199,9 @@ public:
 struct UGranularSynth_SetGrainVolume_Params
 {
 public:
-	float                                        BaseVolume;                                        // 0x0(0x4)(Edit, BlueprintVisible, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1A04[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FVector2D                             VolumeRange;                                       // 0x8(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        BaseVolume;                                        // 0x0(0x4)(Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1F31[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FVector2D                             VolumeRange;                                       // 0x8(0x10)(Edit, ExportObject, BlueprintReadOnly, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1209,7 +1209,7 @@ public:
 struct UGranularSynth_SetGrainsPerSecond_Params
 {
 public:
-	float                                        InGrainsPerSecond;                                 // 0x0(0x4)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InGrainsPerSecond;                                 // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1217,7 +1217,7 @@ public:
 struct UGranularSynth_SetGrainProbability_Params
 {
 public:
-	float                                        InGrainProbability;                                // 0x0(0x4)(ConstParm, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InGrainProbability;                                // 0x0(0x4)(Edit, BlueprintVisible, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1225,9 +1225,9 @@ public:
 struct UGranularSynth_SetGrainPitch_Params
 {
 public:
-	float                                        BasePitch;                                         // 0x0(0x4)(BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1A07[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FVector2D                             PitchRange;                                        // 0x8(0x10)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        BasePitch;                                         // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1F33[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FVector2D                             PitchRange;                                        // 0x8(0x10)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1235,9 +1235,9 @@ public:
 struct UGranularSynth_SetGrainPan_Params
 {
 public:
-	float                                        BasePan;                                           // 0x0(0x4)(Edit, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1A09[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FVector2D                             PanRange;                                          // 0x8(0x10)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        BasePan;                                           // 0x0(0x4)(BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1F34[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FVector2D                             PanRange;                                          // 0x8(0x10)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1245,7 +1245,7 @@ public:
 struct UGranularSynth_SetGrainEnvelopeType_Params
 {
 public:
-	enum class EGranularSynthEnvelopeType        EnvelopeType;                                      // 0x0(0x1)(Edit, BlueprintVisible, ExportObject, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	enum class EGranularSynthEnvelopeType        EnvelopeType;                                      // 0x0(0x1)(ExportObject, Net, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1253,9 +1253,9 @@ public:
 struct UGranularSynth_SetGrainDuration_Params
 {
 public:
-	float                                        BaseDurationMsec;                                  // 0x0(0x4)(BlueprintVisible, EditFixedSize, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1A0B[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	struct FVector2D                             DurationRange;                                     // 0x8(0x10)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        BaseDurationMsec;                                  // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1F3B[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	struct FVector2D                             DurationRange;                                     // 0x8(0x10)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1263,7 +1263,7 @@ public:
 struct UGranularSynth_SetDecayTime_Params
 {
 public:
-	float                                        DecayTimeMsec;                                     // 0x0(0x4)(ConstParm, Net, Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        DecayTimeMsec;                                     // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1271,7 +1271,7 @@ public:
 struct UGranularSynth_SetAttackTime_Params
 {
 public:
-	float                                        AttackTimeMsec;                                    // 0x0(0x4)(BlueprintReadOnly, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
+	float                                        AttackTimeMsec;                                    // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
 };
 
 // 0xC (0xC - 0x0)
@@ -1279,9 +1279,9 @@ public:
 struct UGranularSynth_NoteOn_Params
 {
 public:
-	float                                        Note;                                              // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst)
-	int32                                        Velocity;                                          // 0x4(0x4)(Edit, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Config, SubobjectReference)
-	float                                        Duration;                                          // 0x8(0x4)(Edit, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, DuplicateTransient)
+	float                                        Note;                                              // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig)
+	int32                                        Velocity;                                          // 0x4(0x4)(Config, EditConst, GlobalConfig)
+	float                                        Duration;                                          // 0x8(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, GlobalConfig, DuplicateTransient)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1289,9 +1289,9 @@ public:
 struct UGranularSynth_NoteOff_Params
 {
 public:
-	float                                        Note;                                              // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst)
-	bool                                         bKill;                                             // 0x4(0x1)(ExportObject, BlueprintReadOnly, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	uint8                                        Pad_1A17[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	float                                        Note;                                              // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, GlobalConfig)
+	bool                                         bKill;                                             // 0x4(0x1)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_1F4E[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1299,7 +1299,7 @@ public:
 struct UGranularSynth_IsLoaded_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1307,7 +1307,7 @@ public:
 struct UGranularSynth_GetSampleDuration_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1315,7 +1315,7 @@ public:
 struct UGranularSynth_GetCurrentPlayheadTime_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1323,7 +1323,7 @@ public:
 struct USynthComponentMonoWaveTable_SetWaveTablePosition_Params
 {
 public:
-	float                                        InPosition;                                        // 0x0(0x4)(Parm, OutParm, ZeroConstructor, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InPosition;                                        // 0x0(0x4)(Edit, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1331,7 +1331,7 @@ public:
 struct USynthComponentMonoWaveTable_SetSustainPedalState_Params
 {
 public:
-	bool                                         InSustainPedalState;                               // 0x0(0x1)(ConstParm, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         InSustainPedalState;                               // 0x0(0x1)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1339,7 +1339,7 @@ public:
 struct USynthComponentMonoWaveTable_SetPosLfoType_Params
 {
 public:
-	enum class ESynthLFOType                     InLfoType;                                         // 0x0(0x1)(BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	enum class ESynthLFOType                     InLfoType;                                         // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1347,7 +1347,7 @@ public:
 struct USynthComponentMonoWaveTable_SetPosLfoFrequency_Params
 {
 public:
-	float                                        InLfoFrequency;                                    // 0x0(0x4)(BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InLfoFrequency;                                    // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1355,7 +1355,7 @@ public:
 struct USynthComponentMonoWaveTable_SetPosLfoDepth_Params
 {
 public:
-	float                                        InLfoDepth;                                        // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InLfoDepth;                                        // 0x0(0x4)(Edit, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1363,7 +1363,7 @@ public:
 struct USynthComponentMonoWaveTable_SetPositionEnvelopeSustainGain_Params
 {
 public:
-	float                                        InSustainGain;                                     // 0x0(0x4)(ExportObject, Net, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InSustainGain;                                     // 0x0(0x4)(Edit, ConstParm, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1371,7 +1371,7 @@ public:
 struct USynthComponentMonoWaveTable_SetPositionEnvelopeReleaseTime_Params
 {
 public:
-	float                                        InReleaseTimeMsec;                                 // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InReleaseTimeMsec;                                 // 0x0(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1379,7 +1379,7 @@ public:
 struct USynthComponentMonoWaveTable_SetPositionEnvelopeInvert_Params
 {
 public:
-	bool                                         bInInvert;                                         // 0x0(0x1)(ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bInInvert;                                         // 0x0(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1387,7 +1387,7 @@ public:
 struct USynthComponentMonoWaveTable_SetPositionEnvelopeDepth_Params
 {
 public:
-	float                                        InDepth;                                           // 0x0(0x4)(ConstParm, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InDepth;                                           // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1395,7 +1395,7 @@ public:
 struct USynthComponentMonoWaveTable_SetPositionEnvelopeDecayTime_Params
 {
 public:
-	float                                        InDecayTimeMsec;                                   // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InDecayTimeMsec;                                   // 0x0(0x4)(ConstParm, ExportObject, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1403,7 +1403,7 @@ public:
 struct USynthComponentMonoWaveTable_SetPositionEnvelopeBiasInvert_Params
 {
 public:
-	bool                                         bInBiasInvert;                                     // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bInBiasInvert;                                     // 0x0(0x1)(ConstParm, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1411,7 +1411,7 @@ public:
 struct USynthComponentMonoWaveTable_SetPositionEnvelopeBiasDepth_Params
 {
 public:
-	float                                        InDepth;                                           // 0x0(0x4)(ConstParm, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InDepth;                                           // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1419,7 +1419,7 @@ public:
 struct USynthComponentMonoWaveTable_SetPositionEnvelopeAttackTime_Params
 {
 public:
-	float                                        InAttackTimeMsec;                                  // 0x0(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InAttackTimeMsec;                                  // 0x0(0x4)(BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1427,7 +1427,7 @@ public:
 struct USynthComponentMonoWaveTable_SetLowPassFilterResonance_Params
 {
 public:
-	float                                        InNewQ;                                            // 0x0(0x4)(ConstParm, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InNewQ;                                            // 0x0(0x4)(Edit, BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1435,7 +1435,7 @@ public:
 struct USynthComponentMonoWaveTable_SetFrequencyWithMidiNote_Params
 {
 public:
-	float                                        InMidiNote;                                        // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InMidiNote;                                        // 0x0(0x4)(ExportObject, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1443,7 +1443,7 @@ public:
 struct USynthComponentMonoWaveTable_SetFrequencyPitchBend_Params
 {
 public:
-	float                                        FrequencyOffsetCents;                              // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        FrequencyOffsetCents;                              // 0x0(0x4)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1451,7 +1451,7 @@ public:
 struct USynthComponentMonoWaveTable_SetFrequency_Params
 {
 public:
-	float                                        FrequencyHz;                                       // 0x0(0x4)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        FrequencyHz;                                       // 0x0(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1459,7 +1459,7 @@ public:
 struct USynthComponentMonoWaveTable_SetFilterEnvelopeSustainGain_Params
 {
 public:
-	float                                        InSustainGain;                                     // 0x0(0x4)(ExportObject, Net, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InSustainGain;                                     // 0x0(0x4)(Edit, ConstParm, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1467,7 +1467,7 @@ public:
 struct USynthComponentMonoWaveTable_SetFilterEnvelopeReleaseTime_Params
 {
 public:
-	float                                        InReleaseTimeMsec;                                 // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InReleaseTimeMsec;                                 // 0x0(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1475,7 +1475,7 @@ public:
 struct USynthComponentMonoWaveTable_SetFilterEnvelopenDecayTime_Params
 {
 public:
-	float                                        InDecayTimeMsec;                                   // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InDecayTimeMsec;                                   // 0x0(0x4)(ConstParm, ExportObject, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1483,7 +1483,7 @@ public:
 struct USynthComponentMonoWaveTable_SetFilterEnvelopeInvert_Params
 {
 public:
-	bool                                         bInInvert;                                         // 0x0(0x1)(ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bInInvert;                                         // 0x0(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1491,7 +1491,7 @@ public:
 struct USynthComponentMonoWaveTable_SetFilterEnvelopeDepth_Params
 {
 public:
-	float                                        InDepth;                                           // 0x0(0x4)(ConstParm, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InDepth;                                           // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1499,7 +1499,7 @@ public:
 struct USynthComponentMonoWaveTable_SetFilterEnvelopeBiasInvert_Params
 {
 public:
-	bool                                         bInBiasInvert;                                     // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bInBiasInvert;                                     // 0x0(0x1)(ConstParm, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1507,7 +1507,7 @@ public:
 struct USynthComponentMonoWaveTable_SetFilterEnvelopeBiasDepth_Params
 {
 public:
-	float                                        InDepth;                                           // 0x0(0x4)(ConstParm, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InDepth;                                           // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1515,7 +1515,7 @@ public:
 struct USynthComponentMonoWaveTable_SetFilterEnvelopeAttackTime_Params
 {
 public:
-	float                                        InAttackTimeMsec;                                  // 0x0(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InAttackTimeMsec;                                  // 0x0(0x4)(BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1523,11 +1523,11 @@ public:
 struct USynthComponentMonoWaveTable_SetCurveValue_Params
 {
 public:
-	int32                                        TableIndex;                                        // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
-	int32                                        KeyframeIndex;                                     // 0x4(0x4)(Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        NewValue;                                          // 0x8(0x4)(ConstParm, BlueprintVisible, EditFixedSize, OutParm, DisableEditOnTemplate, DisableEditOnInstance, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0xC(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1A5E[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	int32                                        TableIndex;                                        // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+	int32                                        KeyframeIndex;                                     // 0x4(0x4)(ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        NewValue;                                          // 0x8(0x4)(ConstParm, Net, EditFixedSize, ZeroConstructor, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0xC(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1FCB[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xC (0xC - 0x0)
@@ -1535,10 +1535,10 @@ public:
 struct USynthComponentMonoWaveTable_SetCurveTangent_Params
 {
 public:
-	int32                                        TableIndex;                                        // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
-	float                                        InNewTangent;                                      // 0x4(0x4)(BlueprintReadOnly, Net, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x8(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1A61[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	int32                                        TableIndex;                                        // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+	float                                        InNewTangent;                                      // 0x4(0x4)(Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x8(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1FCE[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0xC (0xC - 0x0)
@@ -1546,11 +1546,11 @@ public:
 struct USynthComponentMonoWaveTable_SetCurveInterpolationType_Params
 {
 public:
-	enum class ECurveInterpolationType           InterpolationType;                                 // 0x0(0x1)(ExportObject, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1A67[0x3];                                     // Fixing Size After Last Property  > TateDumper <
-	int32                                        TableIndex;                                        // 0x4(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
-	bool                                         ReturnValue;                                       // 0x8(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
-	uint8                                        Pad_1A68[0x3];                                     // Fixing Size Of Struct > TateDumper <
+	enum class ECurveInterpolationType           InterpolationType;                                 // 0x0(0x1)(Edit, BlueprintVisible, BlueprintReadOnly, DisableEditOnTemplate, Config, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1FD7[0x3];                                     // Fixing Size After Last Property  > TateDumper <
+	int32                                        TableIndex;                                        // 0x4(0x4)(Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x8(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	uint8                                        Pad_1FD8[0x3];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1558,7 +1558,7 @@ public:
 struct USynthComponentMonoWaveTable_SetAmpEnvelopeSustainGain_Params
 {
 public:
-	float                                        InSustainGain;                                     // 0x0(0x4)(ExportObject, Net, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InSustainGain;                                     // 0x0(0x4)(Edit, ConstParm, EditFixedSize, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1566,7 +1566,7 @@ public:
 struct USynthComponentMonoWaveTable_SetAmpEnvelopeReleaseTime_Params
 {
 public:
-	float                                        InReleaseTimeMsec;                                 // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InReleaseTimeMsec;                                 // 0x0(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1574,7 +1574,7 @@ public:
 struct USynthComponentMonoWaveTable_SetAmpEnvelopeInvert_Params
 {
 public:
-	bool                                         bInInvert;                                         // 0x0(0x1)(ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bInInvert;                                         // 0x0(0x1)(Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1582,7 +1582,7 @@ public:
 struct USynthComponentMonoWaveTable_SetAmpEnvelopeDepth_Params
 {
 public:
-	float                                        InDepth;                                           // 0x0(0x4)(ConstParm, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InDepth;                                           // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1590,7 +1590,7 @@ public:
 struct USynthComponentMonoWaveTable_SetAmpEnvelopeDecayTime_Params
 {
 public:
-	float                                        InDecayTimeMsec;                                   // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InDecayTimeMsec;                                   // 0x0(0x4)(ConstParm, ExportObject, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1598,7 +1598,7 @@ public:
 struct USynthComponentMonoWaveTable_SetAmpEnvelopeBiasInvert_Params
 {
 public:
-	bool                                         bInBiasInvert;                                     // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bInBiasInvert;                                     // 0x0(0x1)(ConstParm, Net, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1606,7 +1606,7 @@ public:
 struct USynthComponentMonoWaveTable_SetAmpEnvelopeBiasDepth_Params
 {
 public:
-	float                                        InDepth;                                           // 0x0(0x4)(ConstParm, Parm, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InDepth;                                           // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1614,7 +1614,7 @@ public:
 struct USynthComponentMonoWaveTable_SetAmpEnvelopeAttackTime_Params
 {
 public:
-	float                                        InAttackTimeMsec;                                  // 0x0(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InAttackTimeMsec;                                  // 0x0(0x4)(BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1622,7 +1622,7 @@ public:
 struct USynthComponentMonoWaveTable_RefreshWaveTable_Params
 {
 public:
-	int32                                        Index;                                             // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
+	int32                                        Index;                                             // 0x0(0x4)(EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1630,8 +1630,8 @@ public:
 struct USynthComponentMonoWaveTable_NoteOn_Params
 {
 public:
-	float                                        InMidiNote;                                        // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        InVelocity;                                        // 0x4(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InMidiNote;                                        // 0x0(0x4)(ExportObject, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        InVelocity;                                        // 0x4(0x4)(ConstParm, BlueprintVisible, ExportObject, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1639,7 +1639,7 @@ public:
 struct USynthComponentMonoWaveTable_NoteOff_Params
 {
 public:
-	float                                        InMidiNote;                                        // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InMidiNote;                                        // 0x0(0x4)(ExportObject, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1647,7 +1647,7 @@ public:
 struct USynthComponentMonoWaveTable_GetNumTableEntries_Params
 {
 public:
-	int32                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1655,7 +1655,7 @@ public:
 struct USynthComponentMonoWaveTable_GetMaxTableIndex_Params
 {
 public:
-	int32                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1663,9 +1663,9 @@ public:
 struct USynthComponentMonoWaveTable_GetKeyFrameValuesForTable_Params
 {
 public:
-	float                                        TableIndex;                                        // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1A93[0x4];                                     // Fixing Size After Last Property  > TateDumper <
-	TArray<float>                                ReturnValue;                                       // 0x8(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        TableIndex;                                        // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_1FFC[0x4];                                     // Fixing Size After Last Property  > TateDumper <
+	TArray<float>                                ReturnValue;                                       // 0x8(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1673,8 +1673,8 @@ public:
 struct USynthComponentMonoWaveTable_GetCurveTangent_Params
 {
 public:
-	int32                                        TableIndex;                                        // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, Transient, GlobalConfig, SubobjectReference)
-	float                                        ReturnValue;                                       // 0x4(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	int32                                        TableIndex;                                        // 0x0(0x4)(Edit, BlueprintVisible, ExportObject, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, GlobalConfig, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x4(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1682,7 +1682,7 @@ public:
 struct USynthComponentToneGenerator_SetVolume_Params
 {
 public:
-	float                                        InVolume;                                          // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InVolume;                                          // 0x0(0x4)(ConstParm, Net, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1690,7 +1690,7 @@ public:
 struct USynthComponentToneGenerator_SetFrequency_Params
 {
 public:
-	float                                        InFrequency;                                       // 0x0(0x4)(Edit, Net, Parm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InFrequency;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1698,7 +1698,7 @@ public:
 struct USynthSamplePlayer_SetSoundWave_Params
 {
 public:
-	class USoundWave*                            InSoundWave;                                       // 0x0(0x8)(Edit, BlueprintVisible, ExportObject, Net, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	class USoundWave*                            InSoundWave;                                       // 0x0(0x8)(ExportObject, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1706,7 +1706,7 @@ public:
 struct USynthSamplePlayer_SetScrubTimeWidth_Params
 {
 public:
-	float                                        InScrubTimeWidthSec;                               // 0x0(0x4)(Edit, ConstParm, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	float                                        InScrubTimeWidthSec;                               // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1714,7 +1714,7 @@ public:
 struct USynthSamplePlayer_SetScrubMode_Params
 {
 public:
-	bool                                         bScrubMode;                                        // 0x0(0x1)(Edit, ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
+	bool                                         bScrubMode;                                        // 0x0(0x1)(ConstParm, EditFixedSize, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1722,8 +1722,8 @@ public:
 struct USynthSamplePlayer_SetPitch_Params
 {
 public:
-	float                                        InPitch;                                           // 0x0(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        TimeSec;                                           // 0x4(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	float                                        InPitch;                                           // 0x0(0x4)(Edit, ExportObject, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        TimeSec;                                           // 0x4(0x4)(Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
 };
 
 // 0x8 (0x8 - 0x0)
@@ -1731,10 +1731,10 @@ public:
 struct USynthSamplePlayer_SeekToTime_Params
 {
 public:
-	float                                        TimeSec;                                           // 0x0(0x4)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-	enum class ESamplePlayerSeekType             SeekType;                                          // 0x4(0x1)(Edit, ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	bool                                         bWrap;                                             // 0x5(0x1)(Edit, ExportObject, EditFixedSize, OutParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
-	uint8                                        Pad_1ABE[0x2];                                     // Fixing Size Of Struct > TateDumper <
+	float                                        TimeSec;                                           // 0x0(0x4)(Edit, ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
+	enum class ESamplePlayerSeekType             SeekType;                                          // 0x4(0x1)(ConstParm, BlueprintVisible, ExportObject, Net, Parm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	bool                                         bWrap;                                             // 0x5(0x1)(ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+	uint8                                        Pad_2023[0x2];                                     // Fixing Size Of Struct > TateDumper <
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1742,7 +1742,7 @@ public:
 struct USynthSamplePlayer_IsLoaded_Params
 {
 public:
-	bool                                         ReturnValue;                                       // 0x0(0x1)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	bool                                         ReturnValue;                                       // 0x0(0x1)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1750,7 +1750,7 @@ public:
 struct USynthSamplePlayer_GetSampleDuration_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1758,7 +1758,7 @@ public:
 struct USynthSamplePlayer_GetCurrentPlaybackProgressTime_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1766,7 +1766,7 @@ public:
 struct USynthSamplePlayer_GetCurrentPlaybackProgressPercent_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1774,12 +1774,12 @@ public:
 struct USynthesisUtilitiesBlueprintFunctionLibrary_GetLogFrequency_Params
 {
 public:
-	float                                        InLinearValue;                                     // 0x0(0x4)(BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        InDomainMin;                                       // 0x4(0x4)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        InDomainMax;                                       // 0x8(0x4)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        InRangeMin;                                        // 0xC(0x4)(Edit, ConstParm, ExportObject, Net, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	float                                        InRangeMax;                                        // 0x10(0x4)(Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	float                                        ReturnValue;                                       // 0x14(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        InLinearValue;                                     // 0x0(0x4)(Edit, ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        InDomainMin;                                       // 0x4(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        InDomainMax;                                       // 0x8(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        InRangeMin;                                        // 0xC(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        InRangeMax;                                        // 0x10(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x14(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x18 (0x18 - 0x0)
@@ -1787,12 +1787,12 @@ public:
 struct USynthesisUtilitiesBlueprintFunctionLibrary_GetLinearFrequency_Params
 {
 public:
-	float                                        InLogFrequencyValue;                               // 0x0(0x4)(Edit, Net, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        InDomainMin;                                       // 0x4(0x4)(ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        InDomainMax;                                       // 0x8(0x4)(Edit, ConstParm, BlueprintReadOnly, EditFixedSize, ZeroConstructor, ReturnParm, Transient, Config, InstancedReference, SubobjectReference)
-	float                                        InRangeMin;                                        // 0xC(0x4)(Edit, ConstParm, ExportObject, Net, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	float                                        InRangeMax;                                        // 0x10(0x4)(Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
-	float                                        ReturnValue;                                       // 0x14(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        InLogFrequencyValue;                               // 0x0(0x4)(BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        InDomainMin;                                       // 0x4(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        InDomainMax;                                       // 0x8(0x4)(ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, Parm, OutParm, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        InRangeMin;                                        // 0xC(0x4)(Edit, BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        InRangeMax;                                        // 0x10(0x4)(Edit, ConstParm, BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x14(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1800,7 +1800,7 @@ public:
 struct USynth2DSlider_SetValue_Params
 {
 public:
-	struct FVector2D                             InValue;                                           // 0x0(0x10)(Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FVector2D                             InValue;                                           // 0x0(0x10)(Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1808,7 +1808,7 @@ public:
 struct USynth2DSlider_SetStepSize_Params
 {
 public:
-	float                                        InValue;                                           // 0x0(0x4)(Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        InValue;                                           // 0x0(0x4)(Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1816,7 +1816,7 @@ public:
 struct USynth2DSlider_SetSliderHandleColor_Params
 {
 public:
-	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	struct FLinearColor                          InValue;                                           // 0x0(0x10)(Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1824,7 +1824,7 @@ public:
 struct USynth2DSlider_SetLocked_Params
 {
 public:
-	bool                                         InValue;                                           // 0x0(0x1)(Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         InValue;                                           // 0x0(0x1)(Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1832,7 +1832,7 @@ public:
 struct USynth2DSlider_SetIndentHandle_Params
 {
 public:
-	bool                                         InValue;                                           // 0x0(0x1)(Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         InValue;                                           // 0x0(0x1)(Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x10 (0x10 - 0x0)
@@ -1840,7 +1840,7 @@ public:
 struct USynth2DSlider_GetValue_Params
 {
 public:
-	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	struct FVector2D                             ReturnValue;                                       // 0x0(0x10)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1848,7 +1848,7 @@ public:
 struct USynthKnob_SetValue_Params
 {
 public:
-	float                                        InValue;                                           // 0x0(0x4)(Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        InValue;                                           // 0x0(0x4)(Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1856,7 +1856,7 @@ public:
 struct USynthKnob_SetStepSize_Params
 {
 public:
-	float                                        InValue;                                           // 0x0(0x4)(Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	float                                        InValue;                                           // 0x0(0x4)(Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x1 (0x1 - 0x0)
@@ -1864,7 +1864,7 @@ public:
 struct USynthKnob_SetLocked_Params
 {
 public:
-	bool                                         InValue;                                           // 0x0(0x1)(Edit, BlueprintVisible, Net, OutParm, ReturnParm, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
+	bool                                         InValue;                                           // 0x0(0x1)(Edit, ConstParm, ExportObject, Net, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, SubobjectReference)
 };
 
 // 0x4 (0x4 - 0x0)
@@ -1872,7 +1872,7 @@ public:
 struct USynthKnob_GetValue_Params
 {
 public:
-	float                                        ReturnValue;                                       // 0x0(0x4)(BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+	float                                        ReturnValue;                                       // 0x0(0x4)(Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 };
 
 }

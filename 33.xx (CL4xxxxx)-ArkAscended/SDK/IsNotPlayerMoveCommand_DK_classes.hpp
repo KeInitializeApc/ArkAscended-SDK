@@ -14,14 +14,14 @@ namespace SDK
 class UIsNotPlayerMoveCommand_DK_C : public UBTDecorator_BlueprintBase
 {
 public:
-	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0xA0(0x8)(BlueprintReadOnly, Parm, OutParm, Transient, DisableEditOnInstance, EditConst, GlobalConfig, InstancedReference, SubobjectReference)
-	struct FBlackboardKeySelector                NavigationTargetObjectKey;                         // 0xA8(0x28)(ConstParm, BlueprintVisible, ReturnParm, GlobalConfig, SubobjectReference)
+	struct FPointerToUberGraphFrame              UberGraphFrame;                                    // 0xA0(0x8)(Edit, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, SubobjectReference)
+	struct FBlackboardKeySelector                NavigationTargetObjectKey;                         // 0xA8(0x28)(Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UIsNotPlayerMoveCommand_DK_C* GetDefaultObj();
 
-	void ReceiveConditionCheck(class AActor** OwnerActor);
-	bool ExecuteUbergraph_IsNotPlayerMoveCommand_DK(class AActor** K2Node_Event_OwnerActor, class APrimalDinoAIController** K2Node_DynamicCast_AsPrimal_Dino_AIController);
+	class AActor* ReceiveConditionCheck();
+	bool ExecuteUbergraph_IsNotPlayerMoveCommand_DK(int32* EntryPoint, class AActor** K2Node_Event_OwnerActor, class APrimalDinoAIController** K2Node_DynamicCast_AsPrimal_Dino_AIController, bool* K2Node_DynamicCast_bSuccess);
 };
 
 }

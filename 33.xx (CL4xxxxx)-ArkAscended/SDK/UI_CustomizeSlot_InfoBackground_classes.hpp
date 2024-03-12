@@ -18,8 +18,8 @@ public:
 	static class UClass* StaticClass();
 	static class UUI_CustomizeSlot_InfoBackground_C* GetDefaultObj();
 
-	void SetColor(struct FLinearColor* Color, bool* CallFunc_IsValid_ReturnValue);
-	void GetColor(struct FLinearColor* Color, struct FCFCoreThemeRowData* CallFunc_GetCurrentTheme_CurrentTheme);
+	bool SetColor(struct FLinearColor* Color);
+	struct FCFCoreThemeRowData GetColor(struct FLinearColor* Color);
 };
 
 }

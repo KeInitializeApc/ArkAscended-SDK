@@ -14,7 +14,7 @@ namespace SDK
 class UDataListEntryWidgetPrimalItem_QuickItemDyeUI_C : public UDataListEntryWidget
 {
 public:
-	class UDataListEntryButton_PrimalItem*       TheDataListButton;                                 // 0x3F8(0x8)(EditFixedSize, OutParm, DisableEditOnTemplate, SubobjectReference)
+	class UDataListEntryButton_PrimalItem*       TheDataListButton;                                 // 0x3F8(0x8)(ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
 
 	static class UClass* StaticClass();
 	static class UDataListEntryWidgetPrimalItem_QuickItemDyeUI_C* GetDefaultObj();

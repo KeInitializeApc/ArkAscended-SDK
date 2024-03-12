@@ -193,7 +193,7 @@ class UGameplayTasksComponent* UGameplayTasksComponent::GetDefaultObj()
 // Function GameplayTasks.GameplayTasksComponent.OnRep_SimulatedTasks
 // (Final, Native, Public, HasOutParams)
 // Parameters:
-// TArray<class UGameplayTask*>       PreviousSimulatedTasks                                           (ExportObject, BlueprintReadOnly, Net, Parm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<class UGameplayTask*>       PreviousSimulatedTasks                                           (ConstParm, BlueprintVisible, ExportObject, Net, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
 void UGameplayTasksComponent::OnRep_SimulatedTasks(const TArray<class UGameplayTask*>& PreviousSimulatedTasks)
 {
@@ -220,14 +220,14 @@ void UGameplayTasksComponent::OnRep_SimulatedTasks(const TArray<class UGameplayT
 // Function GameplayTasks.GameplayTasksComponent.K2_RunGameplayTask
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// TScriptInterface<class IGameplayTaskOwnerInterface>TaskOwner                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// class UGameplayTask*               Task                                                             (BlueprintReadOnly, DisableEditOnTemplate, Config, InstancedReference, SubobjectReference)
-// uint8                              Priority                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// TArray<class UClass*>              AdditionalRequiredResources                                      (Edit, ExportObject, Net, Parm, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<class UClass*>              AdditionalClaimedResources                                       (Edit, ConstParm, ExportObject, BlueprintReadOnly, Parm, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// enum class EGameplayTaskRunResult  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TScriptInterface<class IGameplayTaskOwnerInterface>TaskOwner                                                        (ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+// class UGameplayTask*               Task                                                             (ConstParm, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// uint8                              Priority                                                         (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
+// TArray<class UClass*>              AdditionalRequiredResources                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<class UClass*>              AdditionalClaimedResources                                       (Edit, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// enum class EGameplayTaskRunResult  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-uint8 UGameplayTasksComponent::K2_RunGameplayTask(class UGameplayTask* Task, const TArray<class UClass*>& AdditionalRequiredResources, const TArray<class UClass*>& AdditionalClaimedResources, enum class EGameplayTaskRunResult ReturnValue)
+enum class EGameplayTaskRunResult UGameplayTasksComponent::K2_RunGameplayTask(uint8* Priority, const TArray<class UClass*>& AdditionalRequiredResources, const TArray<class UClass*>& AdditionalClaimedResources)
 {
 	static class UFunction* Func = nullptr;
 
@@ -236,10 +236,8 @@ uint8 UGameplayTasksComponent::K2_RunGameplayTask(class UGameplayTask* Task, con
 
 	Params::UGameplayTasksComponent_K2_RunGameplayTask_Params Parms{};
 
-	Parms.Task = Task;
 	Parms.AdditionalRequiredResources = AdditionalRequiredResources;
 	Parms.AdditionalClaimedResources = AdditionalClaimedResources;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -248,6 +246,9 @@ uint8 UGameplayTasksComponent::K2_RunGameplayTask(class UGameplayTask* Task, con
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Priority != nullptr)
+		*Priority = Parms.Priority;
 
 	return Parms.ReturnValue;
 
@@ -285,13 +286,13 @@ class UGameplayTask_ClaimResource* UGameplayTask_ClaimResource::GetDefaultObj()
 // Function GameplayTasks.GameplayTask_ClaimResource.ClaimResources
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// TScriptInterface<class IGameplayTaskOwnerInterface>InTaskOwner                                                      (OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// TArray<class UClass*>              ResourceClasses                                                  (Edit, ConstParm, BlueprintVisible, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// uint8                              Priority                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// class FName                        TaskInstanceName                                                 (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// class UGameplayTask_ClaimResource* ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TScriptInterface<class IGameplayTaskOwnerInterface>InTaskOwner                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<class UClass*>              ResourceClasses                                                  (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// uint8                              Priority                                                         (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
+// class FName                        TaskInstanceName                                                 (Edit, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UGameplayTask_ClaimResource* ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-uint8 UGameplayTask_ClaimResource::ClaimResources(TScriptInterface<class IGameplayTaskOwnerInterface>* InTaskOwner, TArray<class UClass*>* ResourceClasses, class FName TaskInstanceName, class UGameplayTask_ClaimResource* ReturnValue)
+class UGameplayTask_ClaimResource* UGameplayTask_ClaimResource::ClaimResources(TScriptInterface<class IGameplayTaskOwnerInterface> InTaskOwner, const TArray<class UClass*>& ResourceClasses, uint8* Priority, class FName TaskInstanceName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -300,8 +301,9 @@ uint8 UGameplayTask_ClaimResource::ClaimResources(TScriptInterface<class IGamepl
 
 	Params::UGameplayTask_ClaimResource_ClaimResources_Params Parms{};
 
+	Parms.InTaskOwner = InTaskOwner;
+	Parms.ResourceClasses = ResourceClasses;
 	Parms.TaskInstanceName = TaskInstanceName;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -311,11 +313,8 @@ uint8 UGameplayTask_ClaimResource::ClaimResources(TScriptInterface<class IGamepl
 
 	Func->FunctionFlags = Flgs;
 
-	if (InTaskOwner != nullptr)
-		*InTaskOwner = Parms.InTaskOwner;
-
-	if (ResourceClasses != nullptr)
-		*ResourceClasses = std::move(Parms.ResourceClasses);
+	if (Priority != nullptr)
+		*Priority = Parms.Priority;
 
 	return Parms.ReturnValue;
 
@@ -325,13 +324,13 @@ uint8 UGameplayTask_ClaimResource::ClaimResources(TScriptInterface<class IGamepl
 // Function GameplayTasks.GameplayTask_ClaimResource.ClaimResource
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// TScriptInterface<class IGameplayTaskOwnerInterface>InTaskOwner                                                      (OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// class UClass*                      ResourceClass                                                    (ConstParm, Parm, OutParm, ReturnParm, DisableEditOnTemplate, DisableEditOnInstance, InstancedReference, SubobjectReference)
-// uint8                              Priority                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// class FName                        TaskInstanceName                                                 (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// class UGameplayTask_ClaimResource* ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TScriptInterface<class IGameplayTaskOwnerInterface>InTaskOwner                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UClass*                      ResourceClass                                                    (ConstParm, ExportObject, Net, OutParm, ZeroConstructor, EditConst, InstancedReference, SubobjectReference)
+// uint8                              Priority                                                         (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
+// class FName                        TaskInstanceName                                                 (Edit, BlueprintVisible, ExportObject, Net, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UGameplayTask_ClaimResource* ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-uint8 UGameplayTask_ClaimResource::ClaimResource(TScriptInterface<class IGameplayTaskOwnerInterface>* InTaskOwner, class FName TaskInstanceName, class UGameplayTask_ClaimResource* ReturnValue)
+class UGameplayTask_ClaimResource* UGameplayTask_ClaimResource::ClaimResource(TScriptInterface<class IGameplayTaskOwnerInterface> InTaskOwner, class UClass** ResourceClass, uint8* Priority, class FName TaskInstanceName)
 {
 	static class UFunction* Func = nullptr;
 
@@ -340,8 +339,8 @@ uint8 UGameplayTask_ClaimResource::ClaimResource(TScriptInterface<class IGamepla
 
 	Params::UGameplayTask_ClaimResource_ClaimResource_Params Parms{};
 
+	Parms.InTaskOwner = InTaskOwner;
 	Parms.TaskInstanceName = TaskInstanceName;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -351,8 +350,11 @@ uint8 UGameplayTask_ClaimResource::ClaimResource(TScriptInterface<class IGamepla
 
 	Func->FunctionFlags = Flgs;
 
-	if (InTaskOwner != nullptr)
-		*InTaskOwner = Parms.InTaskOwner;
+	if (ResourceClass != nullptr)
+		*ResourceClass = Parms.ResourceClass;
+
+	if (Priority != nullptr)
+		*Priority = Parms.Priority;
 
 	return Parms.ReturnValue;
 
@@ -390,14 +392,14 @@ class UGameplayTask_SpawnActor* UGameplayTask_SpawnActor::GetDefaultObj()
 // Function GameplayTasks.GameplayTask_SpawnActor.SpawnActor
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable)
 // Parameters:
-// TScriptInterface<class IGameplayTaskOwnerInterface>TaskOwner                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// struct FVector                     SpawnLocation                                                    (ConstParm, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, InstancedReference, SubobjectReference)
-// struct FRotator                    SpawnRotation                                                    (Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// TScriptInterface<class IGameplayTaskOwnerInterface>TaskOwner                                                        (ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FVector                     SpawnLocation                                                    (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, Config, DisableEditOnInstance, InstancedReference, SubobjectReference)
+// struct FRotator                    SpawnRotation                                                    (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, ReturnParm, EditConst, InstancedReference, SubobjectReference)
 // class UClass*                      Class                                                            (ConstParm, BlueprintVisible, ExportObject, ZeroConstructor)
-// bool                               bSpawnOnlyOnAuthority                                            (BlueprintReadOnly, OutParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
-// class UGameplayTask_SpawnActor*    ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               bSpawnOnlyOnAuthority                                            (ConstParm, BlueprintVisible, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UGameplayTask_SpawnActor*    ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FVector UGameplayTask_SpawnActor::SpawnActor(const struct FRotator& SpawnRotation, class UClass* Class, bool* bSpawnOnlyOnAuthority, class UGameplayTask_SpawnActor* ReturnValue)
+class UGameplayTask_SpawnActor* UGameplayTask_SpawnActor::SpawnActor(class UClass* Class, bool bSpawnOnlyOnAuthority)
 {
 	static class UFunction* Func = nullptr;
 
@@ -406,9 +408,8 @@ struct FVector UGameplayTask_SpawnActor::SpawnActor(const struct FRotator& Spawn
 
 	Params::UGameplayTask_SpawnActor_SpawnActor_Params Parms{};
 
-	Parms.SpawnRotation = SpawnRotation;
 	Parms.Class = Class;
-	Parms.ReturnValue = ReturnValue;
+	Parms.bSpawnOnlyOnAuthority = bSpawnOnlyOnAuthority;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -417,9 +418,6 @@ struct FVector UGameplayTask_SpawnActor::SpawnActor(const struct FRotator& Spawn
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (bSpawnOnlyOnAuthority != nullptr)
-		*bSpawnOnlyOnAuthority = Parms.bSpawnOnlyOnAuthority;
 
 	return Parms.ReturnValue;
 
@@ -429,10 +427,10 @@ struct FVector UGameplayTask_SpawnActor::SpawnActor(const struct FRotator& Spawn
 // Function GameplayTasks.GameplayTask_SpawnActor.FinishSpawningActor
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class AActor*                      SpawnedActor                                                     (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, Config, GlobalConfig, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class AActor*                      SpawnedActor                                                     (ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
 
-class UObject* UGameplayTask_SpawnActor::FinishSpawningActor(class AActor* SpawnedActor)
+class AActor* UGameplayTask_SpawnActor::FinishSpawningActor(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -441,7 +439,6 @@ class UObject* UGameplayTask_SpawnActor::FinishSpawningActor(class AActor* Spawn
 
 	Params::UGameplayTask_SpawnActor_FinishSpawningActor_Params Parms{};
 
-	Parms.SpawnedActor = SpawnedActor;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -450,6 +447,9 @@ class UObject* UGameplayTask_SpawnActor::FinishSpawningActor(class AActor* Spawn
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -459,11 +459,11 @@ class UObject* UGameplayTask_SpawnActor::FinishSpawningActor(class AActor* Spawn
 // Function GameplayTasks.GameplayTask_SpawnActor.BeginSpawningActor
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// class UObject*                     WorldContextObject                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
-// class AActor*                      SpawnedActor                                                     (Edit, ConstParm, BlueprintVisible, EditFixedSize, Parm, Config, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     WorldContextObject                                               (Edit, ConstParm, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Config, EditConst, SubobjectReference)
+// class AActor*                      SpawnedActor                                                     (ConstParm, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, DisableEditOnInstance, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UGameplayTask_SpawnActor::BeginSpawningActor(class AActor* SpawnedActor, bool ReturnValue)
+bool UGameplayTask_SpawnActor::BeginSpawningActor(class UObject** WorldContextObject)
 {
 	static class UFunction* Func = nullptr;
 
@@ -472,8 +472,6 @@ class UObject* UGameplayTask_SpawnActor::BeginSpawningActor(class AActor* Spawne
 
 	Params::UGameplayTask_SpawnActor_BeginSpawningActor_Params Parms{};
 
-	Parms.SpawnedActor = SpawnedActor;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -482,6 +480,9 @@ class UObject* UGameplayTask_SpawnActor::BeginSpawningActor(class AActor* Spawne
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (WorldContextObject != nullptr)
+		*WorldContextObject = Parms.WorldContextObject;
 
 	return Parms.ReturnValue;
 
@@ -547,12 +548,12 @@ class UGameplayTask_WaitDelay* UGameplayTask_WaitDelay::GetDefaultObj()
 // Function GameplayTasks.GameplayTask_WaitDelay.TaskWaitDelay
 // (Final, Native, Static, Public, BlueprintCallable)
 // Parameters:
-// TScriptInterface<class IGameplayTaskOwnerInterface>TaskOwner                                                        (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, ReturnParm, Transient, EditConst, GlobalConfig, SubobjectReference)
-// float                              Time                                                             (ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// uint8                              Priority                                                         (Edit, ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance, SubobjectReference)
-// class UGameplayTask_WaitDelay*     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TScriptInterface<class IGameplayTaskOwnerInterface>TaskOwner                                                        (ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              Time                                                             (Edit, ConstParm, Parm, OutParm, ReturnParm, Transient, DisableEditOnInstance, SubobjectReference)
+// uint8                              Priority                                                         (ConstParm, BlueprintVisible, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, Transient, DisableEditOnInstance, SubobjectReference)
+// class UGameplayTask_WaitDelay*     ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-uint8 UGameplayTask_WaitDelay::TaskWaitDelay(class UGameplayTask_WaitDelay* ReturnValue)
+class UGameplayTask_WaitDelay* UGameplayTask_WaitDelay::TaskWaitDelay(uint8* Priority)
 {
 	static class UFunction* Func = nullptr;
 
@@ -561,7 +562,6 @@ uint8 UGameplayTask_WaitDelay::TaskWaitDelay(class UGameplayTask_WaitDelay* Retu
 
 	Params::UGameplayTask_WaitDelay_TaskWaitDelay_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -570,6 +570,9 @@ uint8 UGameplayTask_WaitDelay::TaskWaitDelay(class UGameplayTask_WaitDelay* Retu
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (Priority != nullptr)
+		*Priority = Parms.Priority;
 
 	return Parms.ReturnValue;
 

@@ -484,7 +484,7 @@ void AReplicationGraphDebugActor::ServerStartDebugging()
 // (Net, NetReliable, Native, Event, Public, NetServer)
 // Parameters:
 // class UClass*                      Class                                                            (ConstParm, BlueprintVisible, ExportObject, ZeroConstructor)
-// int32                              PeriodFrame                                                      (Edit, ConstParm, BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// int32                              PeriodFrame                                                      (ConstParm, ExportObject, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
 
 int32 AReplicationGraphDebugActor::ServerSetPeriodFrameForClass(class UClass* Class)
 {
@@ -514,7 +514,7 @@ int32 AReplicationGraphDebugActor::ServerSetPeriodFrameForClass(class UClass* Cl
 // (Net, NetReliable, Native, Event, Public, NetServer)
 // Parameters:
 // class UClass*                      Class                                                            (ConstParm, BlueprintVisible, ExportObject, ZeroConstructor)
-// float                              CullDistance                                                     (Edit, ConstParm, ExportObject, Net, Parm, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// float                              CullDistance                                                     (ConstParm, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
 
 float AReplicationGraphDebugActor::ServerSetCullDistanceForClass(class UClass* Class)
 {
@@ -596,7 +596,7 @@ void AReplicationGraphDebugActor::ServerPrintCullDistances()
 // Function ReplicationGraph.ReplicationGraphDebugActor.ServerPrintAllActorInfo
 // (Net, NetReliable, Native, Event, Public, NetServer)
 // Parameters:
-// class FString                      Str                                                              (BlueprintVisible, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// class FString                      Str                                                              (Edit, ConstParm, BlueprintVisible, Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
 
 class FString AReplicationGraphDebugActor::ServerPrintAllActorInfo()
 {
@@ -648,9 +648,9 @@ void AReplicationGraphDebugActor::ServerCellInfo()
 // Function ReplicationGraph.ReplicationGraphDebugActor.ClientCellInfo
 // (Net, NetReliable, Native, Event, Public, HasDefaults, NetClient)
 // Parameters:
-// struct FVector                     CellLocation                                                     (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-// struct FVector                     CellExtent                                                       (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, OutParm, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-// TArray<class AActor*>              Actors                                                           (ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, SubobjectReference)
+// struct FVector                     CellLocation                                                     (Net, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// struct FVector                     CellExtent                                                       (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, ReturnParm, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
+// TArray<class AActor*>              Actors                                                           (Edit, ConstParm, Net, EditFixedSize, Parm, ReturnParm, DisableEditOnTemplate, Transient, Config, EditConst, GlobalConfig, SubobjectReference)
 
 TArray<class AActor*> AReplicationGraphDebugActor::ClientCellInfo()
 {

@@ -25,8 +25,8 @@ public:
 class UPropertyBag : public UScriptStruct
 {
 public:
-	TArray<struct FPropertyBagPropertyDesc>      PropertyDescs;                                     // 0xC0(0x10)(Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, InstancedReference, SubobjectReference)
-	uint8                                        Pad_ECB[0x8];                                      // Fixing Size Of Struct > TateDumper <
+	TArray<struct FPropertyBagPropertyDesc>      PropertyDescs;                                     // 0xC0(0x10)(Edit, BlueprintVisible, BlueprintReadOnly, EditFixedSize, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, InstancedReference, SubobjectReference)
+	uint8                                        Pad_6F7[0x8];                                      // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UPropertyBag* GetDefaultObj();
@@ -43,13 +43,13 @@ public:
 	static class UStructUtilsFunctionLibrary* GetDefaultObj();
 
 	struct FInstancedStruct SetInstancedStructValue(int32* Value);
-	struct FInstancedStruct Reset(class UScriptStruct** StructType);
-	struct FInstancedStruct NotEqual_InstancedStruct(bool ReturnValue);
-	void MakeInstancedStruct(int32* Value, const struct FInstancedStruct& ReturnValue);
-	struct FInstancedStruct IsValid_InstancedStruct(bool ReturnValue);
-	struct FInstancedStruct IsInstancedStructValid(enum class EStructUtilsResult ReturnValue);
-	struct FInstancedStruct GetInstancedStructValue(enum class EStructUtilsResult* ExecResult, int32* Value);
-	struct FInstancedStruct EqualEqual_InstancedStruct(bool ReturnValue);
+	struct FInstancedStruct Reset(class UScriptStruct* StructType);
+	bool NotEqual_InstancedStruct();
+	struct FInstancedStruct MakeInstancedStruct(int32* Value);
+	bool IsValid_InstancedStruct();
+	enum class EStructUtilsResult IsInstancedStructValid();
+	struct FInstancedStruct GetInstancedStructValue(enum class EStructUtilsResult ExecResult, int32* Value);
+	bool EqualEqual_InstancedStruct();
 };
 
 }

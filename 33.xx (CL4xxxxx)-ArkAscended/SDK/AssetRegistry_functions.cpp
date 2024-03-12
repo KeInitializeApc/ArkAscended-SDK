@@ -43,10 +43,10 @@ class UAssetRegistryHelpers* UAssetRegistryHelpers::GetDefaultObj()
 // Function AssetRegistry.AssetRegistryHelpers.ToSoftObjectPath
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FAssetData                  InAssetData                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// struct FSoftObjectPath             ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FAssetData                  InAssetData                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FSoftObjectPath             ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAssetRegistryHelpers::ToSoftObjectPath(const struct FAssetData& InAssetData, const struct FSoftObjectPath& ReturnValue)
+struct FSoftObjectPath UAssetRegistryHelpers::ToSoftObjectPath()
 {
 	static class UFunction* Func = nullptr;
 
@@ -55,8 +55,6 @@ void UAssetRegistryHelpers::ToSoftObjectPath(const struct FAssetData& InAssetDat
 
 	Params::UAssetRegistryHelpers_ToSoftObjectPath_Params Parms{};
 
-	Parms.InAssetData = InAssetData;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -66,17 +64,19 @@ void UAssetRegistryHelpers::ToSoftObjectPath(const struct FAssetData& InAssetDat
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AssetRegistry.AssetRegistryHelpers.SetFilterTagsAndValues
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FARFilter                   InFilter                                                         (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// TArray<struct FTagAndValue>        InTagsAndValues                                                  (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// struct FARFilter                   ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FARFilter                   InFilter                                                         (BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FTagAndValue>        InTagsAndValues                                                  (ConstParm, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FARFilter                   ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAssetRegistryHelpers::SetFilterTagsAndValues(struct FARFilter* InFilter, TArray<struct FTagAndValue>* InTagsAndValues, const struct FARFilter& ReturnValue)
+struct FARFilter UAssetRegistryHelpers::SetFilterTagsAndValues()
 {
 	static class UFunction* Func = nullptr;
 
@@ -85,7 +85,6 @@ void UAssetRegistryHelpers::SetFilterTagsAndValues(struct FARFilter* InFilter, T
 
 	Params::UAssetRegistryHelpers_SetFilterTagsAndValues_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -95,11 +94,7 @@ void UAssetRegistryHelpers::SetFilterTagsAndValues(struct FARFilter* InFilter, T
 
 	Func->FunctionFlags = Flgs;
 
-	if (InFilter != nullptr)
-		*InFilter = std::move(Parms.InFilter);
-
-	if (InTagsAndValues != nullptr)
-		*InTagsAndValues = std::move(Parms.InTagsAndValues);
+	return Parms.ReturnValue;
 
 }
 
@@ -107,10 +102,10 @@ void UAssetRegistryHelpers::SetFilterTagsAndValues(struct FARFilter* InFilter, T
 // Function AssetRegistry.AssetRegistryHelpers.IsValid
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FAssetData                  InAssetData                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FAssetData                  InAssetData                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAssetRegistryHelpers::IsValid(const struct FAssetData& InAssetData, bool ReturnValue)
+bool UAssetRegistryHelpers::IsValid()
 {
 	static class UFunction* Func = nullptr;
 
@@ -119,8 +114,6 @@ void UAssetRegistryHelpers::IsValid(const struct FAssetData& InAssetData, bool R
 
 	Params::UAssetRegistryHelpers_IsValid_Params Parms{};
 
-	Parms.InAssetData = InAssetData;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -130,16 +123,18 @@ void UAssetRegistryHelpers::IsValid(const struct FAssetData& InAssetData, bool R
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AssetRegistry.AssetRegistryHelpers.IsUAsset
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FAssetData                  InAssetData                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FAssetData                  InAssetData                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAssetRegistryHelpers::IsUAsset(const struct FAssetData& InAssetData, bool ReturnValue)
+bool UAssetRegistryHelpers::IsUAsset()
 {
 	static class UFunction* Func = nullptr;
 
@@ -148,8 +143,6 @@ void UAssetRegistryHelpers::IsUAsset(const struct FAssetData& InAssetData, bool 
 
 	Params::UAssetRegistryHelpers_IsUAsset_Params Parms{};
 
-	Parms.InAssetData = InAssetData;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -159,16 +152,18 @@ void UAssetRegistryHelpers::IsUAsset(const struct FAssetData& InAssetData, bool 
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AssetRegistry.AssetRegistryHelpers.IsRedirector
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FAssetData                  InAssetData                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FAssetData                  InAssetData                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAssetRegistryHelpers::IsRedirector(const struct FAssetData& InAssetData, bool ReturnValue)
+bool UAssetRegistryHelpers::IsRedirector()
 {
 	static class UFunction* Func = nullptr;
 
@@ -177,8 +172,6 @@ void UAssetRegistryHelpers::IsRedirector(const struct FAssetData& InAssetData, b
 
 	Params::UAssetRegistryHelpers_IsRedirector_Params Parms{};
 
-	Parms.InAssetData = InAssetData;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -188,16 +181,18 @@ void UAssetRegistryHelpers::IsRedirector(const struct FAssetData& InAssetData, b
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AssetRegistry.AssetRegistryHelpers.IsAssetLoaded
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FAssetData                  InAssetData                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FAssetData                  InAssetData                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAssetRegistryHelpers::IsAssetLoaded(const struct FAssetData& InAssetData, bool ReturnValue)
+bool UAssetRegistryHelpers::IsAssetLoaded()
 {
 	static class UFunction* Func = nullptr;
 
@@ -206,8 +201,6 @@ void UAssetRegistryHelpers::IsAssetLoaded(const struct FAssetData& InAssetData, 
 
 	Params::UAssetRegistryHelpers_IsAssetLoaded_Params Parms{};
 
-	Parms.InAssetData = InAssetData;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -217,18 +210,20 @@ void UAssetRegistryHelpers::IsAssetLoaded(const struct FAssetData& InAssetData, 
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AssetRegistry.AssetRegistryHelpers.GetTagValue
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FAssetData                  InAssetData                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class FName                        InTagName                                                        (ExportObject, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class FString                      OutTagValue                                                      (Edit, BlueprintReadOnly, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FAssetData                  InAssetData                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class FName                        InTagName                                                        (BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class FString                      OutTagValue                                                      (Edit, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAssetRegistryHelpers::GetTagValue(const struct FAssetData& InAssetData, class FName* InTagName, class FString* OutTagValue, bool ReturnValue)
+bool UAssetRegistryHelpers::GetTagValue()
 {
 	static class UFunction* Func = nullptr;
 
@@ -237,8 +232,6 @@ void UAssetRegistryHelpers::GetTagValue(const struct FAssetData& InAssetData, cl
 
 	Params::UAssetRegistryHelpers_GetTagValue_Params Parms{};
 
-	Parms.InAssetData = InAssetData;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -248,11 +241,7 @@ void UAssetRegistryHelpers::GetTagValue(const struct FAssetData& InAssetData, cl
 
 	Func->FunctionFlags = Flgs;
 
-	if (InTagName != nullptr)
-		*InTagName = Parms.InTagName;
-
-	if (OutTagValue != nullptr)
-		*OutTagValue = std::move(Parms.OutTagValue);
+	return Parms.ReturnValue;
 
 }
 
@@ -260,10 +249,10 @@ void UAssetRegistryHelpers::GetTagValue(const struct FAssetData& InAssetData, cl
 // Function AssetRegistry.AssetRegistryHelpers.GetFullName
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FAssetData                  InAssetData                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FAssetData                  InAssetData                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAssetRegistryHelpers::GetFullName(const struct FAssetData& InAssetData, const class FString& ReturnValue)
+class FString UAssetRegistryHelpers::GetFullName()
 {
 	static class UFunction* Func = nullptr;
 
@@ -272,8 +261,6 @@ void UAssetRegistryHelpers::GetFullName(const struct FAssetData& InAssetData, co
 
 	Params::UAssetRegistryHelpers_GetFullName_Params Parms{};
 
-	Parms.InAssetData = InAssetData;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -283,16 +270,18 @@ void UAssetRegistryHelpers::GetFullName(const struct FAssetData& InAssetData, co
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AssetRegistry.AssetRegistryHelpers.GetExportTextName
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FAssetData                  InAssetData                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class FString                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FAssetData                  InAssetData                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class FString                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAssetRegistryHelpers::GetExportTextName(const struct FAssetData& InAssetData, const class FString& ReturnValue)
+class FString UAssetRegistryHelpers::GetExportTextName()
 {
 	static class UFunction* Func = nullptr;
 
@@ -301,8 +290,6 @@ void UAssetRegistryHelpers::GetExportTextName(const struct FAssetData& InAssetDa
 
 	Params::UAssetRegistryHelpers_GetExportTextName_Params Parms{};
 
-	Parms.InAssetData = InAssetData;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -312,16 +299,18 @@ void UAssetRegistryHelpers::GetExportTextName(const struct FAssetData& InAssetDa
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AssetRegistry.AssetRegistryHelpers.GetClass
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FAssetData                  InAssetData                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class UClass*                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FAssetData                  InAssetData                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UClass*                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAssetRegistryHelpers::GetClass(const struct FAssetData& InAssetData, class UClass* ReturnValue)
+class UClass* UAssetRegistryHelpers::GetClass()
 {
 	static class UFunction* Func = nullptr;
 
@@ -330,8 +319,6 @@ void UAssetRegistryHelpers::GetClass(const struct FAssetData& InAssetData, class
 
 	Params::UAssetRegistryHelpers_GetClass_Params Parms{};
 
-	Parms.InAssetData = InAssetData;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -341,16 +328,18 @@ void UAssetRegistryHelpers::GetClass(const struct FAssetData& InAssetData, class
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AssetRegistry.AssetRegistryHelpers.GetBlueprintAssets
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FARFilter                   InFilter                                                         (BlueprintVisible, ExportObject, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// TArray<struct FAssetData>          OutAssetData                                                     (Edit, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// struct FARFilter                   InFilter                                                         (BlueprintVisible, Net, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FAssetData>          OutAssetData                                                     (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void UAssetRegistryHelpers::GetBlueprintAssets(struct FARFilter* InFilter, TArray<struct FAssetData>* OutAssetData)
+TArray<struct FAssetData> UAssetRegistryHelpers::GetBlueprintAssets()
 {
 	static class UFunction* Func = nullptr;
 
@@ -368,11 +357,7 @@ void UAssetRegistryHelpers::GetBlueprintAssets(struct FARFilter* InFilter, TArra
 
 	Func->FunctionFlags = Flgs;
 
-	if (InFilter != nullptr)
-		*InFilter = std::move(Parms.InFilter);
-
-	if (OutAssetData != nullptr)
-		*OutAssetData = std::move(Parms.OutAssetData);
+	return Parms.ReturnValue;
 
 }
 
@@ -380,9 +365,9 @@ void UAssetRegistryHelpers::GetBlueprintAssets(struct FARFilter* InFilter, TArra
 // Function AssetRegistry.AssetRegistryHelpers.GetAssetRegistry
 // (Final, Native, Static, Public, BlueprintCallable, BlueprintPure)
 // Parameters:
-// TScriptInterface<class IAssetRegistry>ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TScriptInterface<class IAssetRegistry>ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAssetRegistryHelpers::GetAssetRegistry(TScriptInterface<class IAssetRegistry> ReturnValue)
+TScriptInterface<class IAssetRegistry> UAssetRegistryHelpers::GetAssetRegistry()
 {
 	static class UFunction* Func = nullptr;
 
@@ -391,7 +376,6 @@ void UAssetRegistryHelpers::GetAssetRegistry(TScriptInterface<class IAssetRegist
 
 	Params::UAssetRegistryHelpers_GetAssetRegistry_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -401,16 +385,18 @@ void UAssetRegistryHelpers::GetAssetRegistry(TScriptInterface<class IAssetRegist
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AssetRegistry.AssetRegistryHelpers.GetAsset
 // (Final, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FAssetData                  InAssetData                                                      (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// class UObject*                     ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FAssetData                  InAssetData                                                      (ConstParm, BlueprintVisible, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// class UObject*                     ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void UAssetRegistryHelpers::GetAsset(const struct FAssetData& InAssetData, class UObject* ReturnValue)
+class UObject* UAssetRegistryHelpers::GetAsset()
 {
 	static class UFunction* Func = nullptr;
 
@@ -419,8 +405,6 @@ void UAssetRegistryHelpers::GetAsset(const struct FAssetData& InAssetData, class
 
 	Params::UAssetRegistryHelpers_GetAsset_Params Parms{};
 
-	Parms.InAssetData = InAssetData;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -430,16 +414,18 @@ void UAssetRegistryHelpers::GetAsset(const struct FAssetData& InAssetData, class
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AssetRegistry.AssetRegistryHelpers.FindAssetNativeClass
 // (Final, RequiredAPI, Native, Static, Public, HasOutParams, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// struct FAssetData                  AssetData                                                        (Edit, ConstParm, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, DisableEditOnInstance)
-// class UClass*                      ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FAssetData                  AssetData                                                        (Edit, BlueprintVisible, BlueprintReadOnly, OutParm, ReturnParm, Transient, DisableEditOnInstance)
+// class UClass*                      ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FAssetData UAssetRegistryHelpers::FindAssetNativeClass(class UClass* ReturnValue)
+class UClass* UAssetRegistryHelpers::FindAssetNativeClass()
 {
 	static class UFunction* Func = nullptr;
 
@@ -448,7 +434,6 @@ struct FAssetData UAssetRegistryHelpers::FindAssetNativeClass(class UClass* Retu
 
 	Params::UAssetRegistryHelpers_FindAssetNativeClass_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -466,11 +451,11 @@ struct FAssetData UAssetRegistryHelpers::FindAssetNativeClass(class UClass* Retu
 // Function AssetRegistry.AssetRegistryHelpers.CreateAssetData
 // (Final, Native, Static, Public, HasDefaults, BlueprintCallable, BlueprintPure)
 // Parameters:
-// class UObject*                     InAsset                                                          (EditFixedSize, OutParm, ReturnParm, Transient, InstancedReference, SubobjectReference)
-// bool                               bAllowBlueprintClass                                             (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, Parm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// struct FAssetData                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class UObject*                     InAsset                                                          (Edit, ConstParm, Net, Parm, OutParm, ZeroConstructor, Config, InstancedReference, SubobjectReference)
+// bool                               bAllowBlueprintClass                                             (Edit, ConstParm, ExportObject, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FAssetData                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-class UObject* UAssetRegistryHelpers::CreateAssetData(bool bAllowBlueprintClass, const struct FAssetData& ReturnValue)
+struct FAssetData UAssetRegistryHelpers::CreateAssetData(class UObject** InAsset)
 {
 	static class UFunction* Func = nullptr;
 
@@ -479,8 +464,6 @@ class UObject* UAssetRegistryHelpers::CreateAssetData(bool bAllowBlueprintClass,
 
 	Params::UAssetRegistryHelpers_CreateAssetData_Params Parms{};
 
-	Parms.bAllowBlueprintClass = bAllowBlueprintClass;
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -489,6 +472,9 @@ class UObject* UAssetRegistryHelpers::CreateAssetData(bool bAllowBlueprintClass,
 
 
 	Func->FunctionFlags = Flgs;
+
+	if (InAsset != nullptr)
+		*InAsset = Parms.InAsset;
 
 	return Parms.ReturnValue;
 
@@ -526,9 +512,9 @@ class IAssetRegistry* IAssetRegistry::GetDefaultObj()
 // Function AssetRegistry.AssetRegistry.WaitForPackage
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      PackageName                                                      (ExportObject, OutParm, Transient, Config, SubobjectReference)
+// class FString                      PackageName                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Config, EditConst, GlobalConfig)
 
-void IAssetRegistry::WaitForPackage(class FString* PackageName)
+class FString IAssetRegistry::WaitForPackage()
 {
 	static class UFunction* Func = nullptr;
 
@@ -546,8 +532,7 @@ void IAssetRegistry::WaitForPackage(class FString* PackageName)
 
 	Func->FunctionFlags = Flgs;
 
-	if (PackageName != nullptr)
-		*PackageName = std::move(Parms.PackageName);
+	return Parms.ReturnValue;
 
 }
 
@@ -579,10 +564,10 @@ void IAssetRegistry::WaitForCompletion()
 // Function AssetRegistry.AssetRegistry.UseFilterToExcludeAssets
 // (Native, Public, HasOutParams, HasDefaults, BlueprintCallable, Const)
 // Parameters:
-// TArray<struct FAssetData>          AssetDataList                                                    (ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// struct FARFilter                   Filter                                                           (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config)
+// TArray<struct FAssetData>          AssetDataList                                                    (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FARFilter                   Filter                                                           (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, Config)
 
-struct FARFilter IAssetRegistry::UseFilterToExcludeAssets(TArray<struct FAssetData>* AssetDataList)
+struct FARFilter IAssetRegistry::UseFilterToExcludeAssets()
 {
 	static class UFunction* Func = nullptr;
 
@@ -600,9 +585,6 @@ struct FARFilter IAssetRegistry::UseFilterToExcludeAssets(TArray<struct FAssetDa
 
 	Func->FunctionFlags = Flgs;
 
-	if (AssetDataList != nullptr)
-		*AssetDataList = std::move(Parms.AssetDataList);
-
 	return Parms.ReturnValue;
 
 }
@@ -611,9 +593,9 @@ struct FARFilter IAssetRegistry::UseFilterToExcludeAssets(TArray<struct FAssetDa
 // Function AssetRegistry.AssetRegistry.SearchAllAssets
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// bool                               bSynchronousSearch                                               (Edit, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// bool                               bSynchronousSearch                                               (Edit, ExportObject, BlueprintReadOnly, Parm, OutParm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void IAssetRegistry::SearchAllAssets(bool* bSynchronousSearch)
+bool IAssetRegistry::SearchAllAssets()
 {
 	static class UFunction* Func = nullptr;
 
@@ -631,8 +613,7 @@ void IAssetRegistry::SearchAllAssets(bool* bSynchronousSearch)
 
 	Func->FunctionFlags = Flgs;
 
-	if (bSynchronousSearch != nullptr)
-		*bSynchronousSearch = Parms.bSynchronousSearch;
+	return Parms.ReturnValue;
 
 }
 
@@ -640,11 +621,11 @@ void IAssetRegistry::SearchAllAssets(bool* bSynchronousSearch)
 // Function AssetRegistry.AssetRegistry.ScanPathsSynchronous
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<class FString>              InPaths                                                          (BlueprintVisible, ExportObject, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               bForceRescan                                                     (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               bIgnoreDenyListScanFilters                                       (ConstParm, BlueprintVisible, EditFixedSize, OutParm, ZeroConstructor, ReturnParm, DisableEditOnInstance, SubobjectReference)
+// TArray<class FString>              InPaths                                                          (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bForceRescan                                                     (ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bIgnoreDenyListScanFilters                                       (ConstParm, Net, EditFixedSize, EditConst, SubobjectReference)
 
-bool IAssetRegistry::ScanPathsSynchronous(TArray<class FString>* InPaths, bool* bForceRescan)
+bool IAssetRegistry::ScanPathsSynchronous(bool bIgnoreDenyListScanFilters)
 {
 	static class UFunction* Func = nullptr;
 
@@ -653,6 +634,7 @@ bool IAssetRegistry::ScanPathsSynchronous(TArray<class FString>* InPaths, bool* 
 
 	Params::IAssetRegistry_ScanPathsSynchronous_Params Parms{};
 
+	Parms.bIgnoreDenyListScanFilters = bIgnoreDenyListScanFilters;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -662,12 +644,6 @@ bool IAssetRegistry::ScanPathsSynchronous(TArray<class FString>* InPaths, bool* 
 
 	Func->FunctionFlags = Flgs;
 
-	if (InPaths != nullptr)
-		*InPaths = std::move(Parms.InPaths);
-
-	if (bForceRescan != nullptr)
-		*bForceRescan = Parms.bForceRescan;
-
 	return Parms.ReturnValue;
 
 }
@@ -676,9 +652,9 @@ bool IAssetRegistry::ScanPathsSynchronous(TArray<class FString>* InPaths, bool* 
 // Function AssetRegistry.AssetRegistry.ScanModifiedAssetFiles
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<class FString>              InFilePaths                                                      (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// TArray<class FString>              InFilePaths                                                      (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void IAssetRegistry::ScanModifiedAssetFiles(TArray<class FString>* InFilePaths)
+TArray<class FString> IAssetRegistry::ScanModifiedAssetFiles()
 {
 	static class UFunction* Func = nullptr;
 
@@ -696,8 +672,7 @@ void IAssetRegistry::ScanModifiedAssetFiles(TArray<class FString>* InFilePaths)
 
 	Func->FunctionFlags = Flgs;
 
-	if (InFilePaths != nullptr)
-		*InFilePaths = std::move(Parms.InFilePaths);
+	return Parms.ReturnValue;
 
 }
 
@@ -705,10 +680,10 @@ void IAssetRegistry::ScanModifiedAssetFiles(TArray<class FString>* InFilePaths)
 // Function AssetRegistry.AssetRegistry.ScanFilesSynchronous
 // (Native, Public, HasOutParams, BlueprintCallable)
 // Parameters:
-// TArray<class FString>              InFilePaths                                                      (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               bForceRescan                                                     (ConstParm, BlueprintVisible, ExportObject, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// TArray<class FString>              InFilePaths                                                      (Edit, BlueprintVisible, ExportObject, Parm, OutParm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bForceRescan                                                     (ConstParm, BlueprintVisible, Parm, OutParm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void IAssetRegistry::ScanFilesSynchronous(TArray<class FString>* InFilePaths, bool* bForceRescan)
+bool IAssetRegistry::ScanFilesSynchronous()
 {
 	static class UFunction* Func = nullptr;
 
@@ -726,11 +701,7 @@ void IAssetRegistry::ScanFilesSynchronous(TArray<class FString>* InFilePaths, bo
 
 	Func->FunctionFlags = Flgs;
 
-	if (InFilePaths != nullptr)
-		*InFilePaths = std::move(Parms.InFilePaths);
-
-	if (bForceRescan != nullptr)
-		*bForceRescan = Parms.bForceRescan;
+	return Parms.ReturnValue;
 
 }
 
@@ -738,10 +709,10 @@ void IAssetRegistry::ScanFilesSynchronous(TArray<class FString>* InFilePaths, bo
 // Function AssetRegistry.AssetRegistry.RunAssetsThroughFilter
 // (Native, Public, HasOutParams, HasDefaults, BlueprintCallable, Const)
 // Parameters:
-// TArray<struct FAssetData>          AssetDataList                                                    (ConstParm, BlueprintVisible, Net, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// struct FARFilter                   Filter                                                           (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config)
+// TArray<struct FAssetData>          AssetDataList                                                    (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// struct FARFilter                   Filter                                                           (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, Config)
 
-struct FARFilter IAssetRegistry::RunAssetsThroughFilter(TArray<struct FAssetData>* AssetDataList)
+struct FARFilter IAssetRegistry::RunAssetsThroughFilter()
 {
 	static class UFunction* Func = nullptr;
 
@@ -759,9 +730,6 @@ struct FARFilter IAssetRegistry::RunAssetsThroughFilter(TArray<struct FAssetData
 
 	Func->FunctionFlags = Flgs;
 
-	if (AssetDataList != nullptr)
-		*AssetDataList = std::move(Parms.AssetDataList);
-
 	return Parms.ReturnValue;
 
 }
@@ -770,9 +738,9 @@ struct FARFilter IAssetRegistry::RunAssetsThroughFilter(TArray<struct FAssetData
 // Function AssetRegistry.AssetRegistry.PrioritizeSearchPath
 // (Native, Public, BlueprintCallable)
 // Parameters:
-// class FString                      PathToPrioritize                                                 (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class FString                      PathToPrioritize                                                 (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, OutParm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void IAssetRegistry::PrioritizeSearchPath(class FString* PathToPrioritize)
+class FString IAssetRegistry::PrioritizeSearchPath()
 {
 	static class UFunction* Func = nullptr;
 
@@ -790,8 +758,7 @@ void IAssetRegistry::PrioritizeSearchPath(class FString* PathToPrioritize)
 
 	Func->FunctionFlags = Flgs;
 
-	if (PathToPrioritize != nullptr)
-		*PathToPrioritize = std::move(Parms.PathToPrioritize);
+	return Parms.ReturnValue;
 
 }
 
@@ -799,12 +766,12 @@ void IAssetRegistry::PrioritizeSearchPath(class FString* PathToPrioritize)
 // Function AssetRegistry.AssetRegistry.K2_GetReferencers
 // (Native, Public, HasOutParams, BlueprintCallable, Const)
 // Parameters:
-// class FName                        PackageName                                                      (ExportObject, OutParm, Transient, Config, SubobjectReference)
-// struct FAssetRegistryDependencyOptionsReferenceOptions                                                 (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// TArray<class FName>                OutReferencers                                                   (BlueprintVisible, ExportObject, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        PackageName                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Config, EditConst, GlobalConfig)
+// struct FAssetRegistryDependencyOptionsReferenceOptions                                                 (BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<class FName>                OutReferencers                                                   (BlueprintVisible, Net, EditFixedSize, OutParm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void IAssetRegistry::K2_GetReferencers(class FName* PackageName, struct FAssetRegistryDependencyOptions* ReferenceOptions, TArray<class FName>* OutReferencers, bool ReturnValue)
+bool IAssetRegistry::K2_GetReferencers()
 {
 	static class UFunction* Func = nullptr;
 
@@ -813,7 +780,6 @@ void IAssetRegistry::K2_GetReferencers(class FName* PackageName, struct FAssetRe
 
 	Params::IAssetRegistry_K2_GetReferencers_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -823,14 +789,7 @@ void IAssetRegistry::K2_GetReferencers(class FName* PackageName, struct FAssetRe
 
 	Func->FunctionFlags = Flgs;
 
-	if (PackageName != nullptr)
-		*PackageName = Parms.PackageName;
-
-	if (ReferenceOptions != nullptr)
-		*ReferenceOptions = std::move(Parms.ReferenceOptions);
-
-	if (OutReferencers != nullptr)
-		*OutReferencers = std::move(Parms.OutReferencers);
+	return Parms.ReturnValue;
 
 }
 
@@ -838,12 +797,12 @@ void IAssetRegistry::K2_GetReferencers(class FName* PackageName, struct FAssetRe
 // Function AssetRegistry.AssetRegistry.K2_GetDependencies
 // (Native, Public, HasOutParams, BlueprintCallable, Const)
 // Parameters:
-// class FName                        PackageName                                                      (ExportObject, OutParm, Transient, Config, SubobjectReference)
-// struct FAssetRegistryDependencyOptionsDependencyOptions                                                (ConstParm, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// TArray<class FName>                OutDependencies                                                  (Edit, ExportObject, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        PackageName                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Config, EditConst, GlobalConfig)
+// struct FAssetRegistryDependencyOptionsDependencyOptions                                                (ConstParm, ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<class FName>                OutDependencies                                                  (Edit, BlueprintReadOnly, EditFixedSize, OutParm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void IAssetRegistry::K2_GetDependencies(class FName* PackageName, struct FAssetRegistryDependencyOptions* DependencyOptions, TArray<class FName>* OutDependencies, bool ReturnValue)
+bool IAssetRegistry::K2_GetDependencies()
 {
 	static class UFunction* Func = nullptr;
 
@@ -852,7 +811,6 @@ void IAssetRegistry::K2_GetDependencies(class FName* PackageName, struct FAssetR
 
 	Params::IAssetRegistry_K2_GetDependencies_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -862,14 +820,7 @@ void IAssetRegistry::K2_GetDependencies(class FName* PackageName, struct FAssetR
 
 	Func->FunctionFlags = Flgs;
 
-	if (PackageName != nullptr)
-		*PackageName = Parms.PackageName;
-
-	if (DependencyOptions != nullptr)
-		*DependencyOptions = std::move(Parms.DependencyOptions);
-
-	if (OutDependencies != nullptr)
-		*OutDependencies = std::move(Parms.OutDependencies);
+	return Parms.ReturnValue;
 
 }
 
@@ -877,11 +828,11 @@ void IAssetRegistry::K2_GetDependencies(class FName* PackageName, struct FAssetR
 // Function AssetRegistry.AssetRegistry.K2_GetAssetByObjectPath
 // (RequiredAPI, Native, Public, HasOutParams, HasDefaults, BlueprintCallable, Const)
 // Parameters:
-// struct FSoftObjectPath             ObjectPath                                                       (ConstParm, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bIncludeOnlyOnDiskAssets                                         (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-// struct FAssetData                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FSoftObjectPath             ObjectPath                                                       (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, InstancedReference, SubobjectReference)
+// bool                               bIncludeOnlyOnDiskAssets                                         (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+// struct FAssetData                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool IAssetRegistry::K2_GetAssetByObjectPath(struct FSoftObjectPath* ObjectPath, const struct FAssetData& ReturnValue)
+struct FAssetData IAssetRegistry::K2_GetAssetByObjectPath(struct FSoftObjectPath* ObjectPath, bool bIncludeOnlyOnDiskAssets)
 {
 	static class UFunction* Func = nullptr;
 
@@ -890,7 +841,7 @@ bool IAssetRegistry::K2_GetAssetByObjectPath(struct FSoftObjectPath* ObjectPath,
 
 	Params::IAssetRegistry_K2_GetAssetByObjectPath_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.bIncludeOnlyOnDiskAssets = bIncludeOnlyOnDiskAssets;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -911,9 +862,9 @@ bool IAssetRegistry::K2_GetAssetByObjectPath(struct FSoftObjectPath* ObjectPath,
 // Function AssetRegistry.AssetRegistry.IsSearchAsync
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void IAssetRegistry::IsSearchAsync(bool ReturnValue)
+bool IAssetRegistry::IsSearchAsync()
 {
 	static class UFunction* Func = nullptr;
 
@@ -922,7 +873,6 @@ void IAssetRegistry::IsSearchAsync(bool ReturnValue)
 
 	Params::IAssetRegistry_IsSearchAsync_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -932,15 +882,17 @@ void IAssetRegistry::IsSearchAsync(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AssetRegistry.AssetRegistry.IsSearchAllAssets
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void IAssetRegistry::IsSearchAllAssets(bool ReturnValue)
+bool IAssetRegistry::IsSearchAllAssets()
 {
 	static class UFunction* Func = nullptr;
 
@@ -949,7 +901,6 @@ void IAssetRegistry::IsSearchAllAssets(bool ReturnValue)
 
 	Params::IAssetRegistry_IsSearchAllAssets_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -959,15 +910,17 @@ void IAssetRegistry::IsSearchAllAssets(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AssetRegistry.AssetRegistry.IsLoadingAssets
 // (Native, Public, BlueprintCallable, BlueprintPure, Const)
 // Parameters:
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void IAssetRegistry::IsLoadingAssets(bool ReturnValue)
+bool IAssetRegistry::IsLoadingAssets()
 {
 	static class UFunction* Func = nullptr;
 
@@ -976,7 +929,6 @@ void IAssetRegistry::IsLoadingAssets(bool ReturnValue)
 
 	Params::IAssetRegistry_IsLoadingAssets_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -986,17 +938,19 @@ void IAssetRegistry::IsLoadingAssets(bool ReturnValue)
 
 	Func->FunctionFlags = Flgs;
 
+	return Parms.ReturnValue;
+
 }
 
 
 // Function AssetRegistry.AssetRegistry.HasAssets
 // (Native, Public, BlueprintCallable, Const)
 // Parameters:
-// class FName                        PackagePath                                                      (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, EditConst, SubobjectReference)
-// bool                               bRecursive                                                       (Edit, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        PackagePath                                                      (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+// bool                               bRecursive                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool IAssetRegistry::HasAssets(class FName* PackagePath, bool ReturnValue)
+bool IAssetRegistry::HasAssets(class FName* PackagePath, bool bRecursive)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1005,7 +959,7 @@ bool IAssetRegistry::HasAssets(class FName* PackagePath, bool ReturnValue)
 
 	Params::IAssetRegistry_HasAssets_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.bRecursive = bRecursive;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1026,11 +980,11 @@ bool IAssetRegistry::HasAssets(class FName* PackagePath, bool ReturnValue)
 // Function AssetRegistry.AssetRegistry.GetSubPaths
 // (Native, Public, HasOutParams, BlueprintCallable, Const)
 // Parameters:
-// class FString                      InBasePath                                                       (Edit, ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// TArray<class FString>              OutPathList                                                      (Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               bInRecurse                                                       (Edit, BlueprintVisible, ExportObject, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// class FString                      InBasePath                                                       (Edit, ConstParm, ExportObject, EditFixedSize, OutParm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<class FString>              OutPathList                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bInRecurse                                                       (Edit, BlueprintVisible, EditFixedSize, OutParm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void IAssetRegistry::GetSubPaths(class FString* InBasePath, TArray<class FString>* OutPathList, bool* bInRecurse)
+bool IAssetRegistry::GetSubPaths()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1048,14 +1002,7 @@ void IAssetRegistry::GetSubPaths(class FString* InBasePath, TArray<class FString
 
 	Func->FunctionFlags = Flgs;
 
-	if (InBasePath != nullptr)
-		*InBasePath = std::move(Parms.InBasePath);
-
-	if (OutPathList != nullptr)
-		*OutPathList = std::move(Parms.OutPathList);
-
-	if (bInRecurse != nullptr)
-		*bInRecurse = Parms.bInRecurse;
+	return Parms.ReturnValue;
 
 }
 
@@ -1063,11 +1010,11 @@ void IAssetRegistry::GetSubPaths(class FString* InBasePath, TArray<class FString
 // Function AssetRegistry.AssetRegistry.GetDerivedClassNames
 // (Native, Public, HasOutParams, BlueprintCallable, Const)
 // Parameters:
-// TArray<struct FTopLevelAssetPath>  ClassNames                                                       (Edit, ConstParm, ExportObject, EditFixedSize, Parm, Transient, EditConst, SubobjectReference)
-// TSet<struct FTopLevelAssetPath>    ExcludedClassNames                                               (Edit, ConstParm, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// TSet<struct FTopLevelAssetPath>    OutDerivedClassNames                                             (ExportObject, BlueprintReadOnly, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// TArray<struct FTopLevelAssetPath>  ClassNames                                                       (Edit, ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+// TSet<struct FTopLevelAssetPath>    ExcludedClassNames                                               (Edit, ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TSet<struct FTopLevelAssetPath>    OutDerivedClassNames                                             (BlueprintReadOnly, Net, OutParm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void IAssetRegistry::GetDerivedClassNames(const TArray<struct FTopLevelAssetPath>& ClassNames, TSet<struct FTopLevelAssetPath>* ExcludedClassNames, TSet<struct FTopLevelAssetPath>* OutDerivedClassNames)
+TSet<struct FTopLevelAssetPath> IAssetRegistry::GetDerivedClassNames(TArray<struct FTopLevelAssetPath>* ClassNames)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1076,7 +1023,6 @@ void IAssetRegistry::GetDerivedClassNames(const TArray<struct FTopLevelAssetPath
 
 	Params::IAssetRegistry_GetDerivedClassNames_Params Parms{};
 
-	Parms.ClassNames = ClassNames;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1086,11 +1032,10 @@ void IAssetRegistry::GetDerivedClassNames(const TArray<struct FTopLevelAssetPath
 
 	Func->FunctionFlags = Flgs;
 
-	if (ExcludedClassNames != nullptr)
-		*ExcludedClassNames = Parms.ExcludedClassNames;
+	if (ClassNames != nullptr)
+		*ClassNames = std::move(Parms.ClassNames);
 
-	if (OutDerivedClassNames != nullptr)
-		*OutDerivedClassNames = Parms.OutDerivedClassNames;
+	return Parms.ReturnValue;
 
 }
 
@@ -1098,13 +1043,13 @@ void IAssetRegistry::GetDerivedClassNames(const TArray<struct FTopLevelAssetPath
 // Function AssetRegistry.AssetRegistry.GetAssetsByPaths
 // (Native, Public, HasOutParams, BlueprintCallable, Const)
 // Parameters:
-// TArray<class FName>                PackagePaths                                                     (Edit, BlueprintReadOnly, Net, OutParm, Transient, EditConst, SubobjectReference)
-// TArray<struct FAssetData>          OutAssetData                                                     (Edit, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               bRecursive                                                       (Edit, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bIncludeOnlyOnDiskAssets                                         (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<class FName>                PackagePaths                                                     (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+// TArray<struct FAssetData>          OutAssetData                                                     (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bRecursive                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bIncludeOnlyOnDiskAssets                                         (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool IAssetRegistry::GetAssetsByPaths(TArray<class FName>* PackagePaths, TArray<struct FAssetData>* OutAssetData, bool ReturnValue)
+bool IAssetRegistry::GetAssetsByPaths(TArray<class FName>* PackagePaths, bool bRecursive, bool bIncludeOnlyOnDiskAssets)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1113,7 +1058,8 @@ bool IAssetRegistry::GetAssetsByPaths(TArray<class FName>* PackagePaths, TArray<
 
 	Params::IAssetRegistry_GetAssetsByPaths_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.bRecursive = bRecursive;
+	Parms.bIncludeOnlyOnDiskAssets = bIncludeOnlyOnDiskAssets;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1126,9 +1072,6 @@ bool IAssetRegistry::GetAssetsByPaths(TArray<class FName>* PackagePaths, TArray<
 	if (PackagePaths != nullptr)
 		*PackagePaths = std::move(Parms.PackagePaths);
 
-	if (OutAssetData != nullptr)
-		*OutAssetData = std::move(Parms.OutAssetData);
-
 	return Parms.ReturnValue;
 
 }
@@ -1137,13 +1080,13 @@ bool IAssetRegistry::GetAssetsByPaths(TArray<class FName>* PackagePaths, TArray<
 // Function AssetRegistry.AssetRegistry.GetAssetsByPath
 // (Native, Public, HasOutParams, BlueprintCallable, Const)
 // Parameters:
-// class FName                        PackagePath                                                      (ConstParm, BlueprintReadOnly, Net, EditFixedSize, OutParm, Transient, EditConst, SubobjectReference)
-// TArray<struct FAssetData>          OutAssetData                                                     (Edit, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               bRecursive                                                       (Edit, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bIncludeOnlyOnDiskAssets                                         (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        PackagePath                                                      (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, Parm, OutParm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+// TArray<struct FAssetData>          OutAssetData                                                     (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bRecursive                                                       (ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, ZeroConstructor, Transient, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
+// bool                               bIncludeOnlyOnDiskAssets                                         (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool IAssetRegistry::GetAssetsByPath(class FName* PackagePath, TArray<struct FAssetData>* OutAssetData, bool ReturnValue)
+bool IAssetRegistry::GetAssetsByPath(class FName* PackagePath, bool bRecursive, bool bIncludeOnlyOnDiskAssets)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1152,7 +1095,8 @@ bool IAssetRegistry::GetAssetsByPath(class FName* PackagePath, TArray<struct FAs
 
 	Params::IAssetRegistry_GetAssetsByPath_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.bRecursive = bRecursive;
+	Parms.bIncludeOnlyOnDiskAssets = bIncludeOnlyOnDiskAssets;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1165,9 +1109,6 @@ bool IAssetRegistry::GetAssetsByPath(class FName* PackagePath, TArray<struct FAs
 	if (PackagePath != nullptr)
 		*PackagePath = Parms.PackagePath;
 
-	if (OutAssetData != nullptr)
-		*OutAssetData = std::move(Parms.OutAssetData);
-
 	return Parms.ReturnValue;
 
 }
@@ -1176,13 +1117,13 @@ bool IAssetRegistry::GetAssetsByPath(class FName* PackagePath, TArray<struct FAs
 // Function AssetRegistry.AssetRegistry.GetAssetsByPackageName
 // (Native, Public, HasOutParams, BlueprintCallable, Const)
 // Parameters:
-// class FName                        PackageName                                                      (ExportObject, OutParm, Transient, Config, SubobjectReference)
-// TArray<struct FAssetData>          OutAssetData                                                     (Edit, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               bIncludeOnlyOnDiskAssets                                         (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-// bool                               bSkipARFilteredAssets                                            (ConstParm, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        PackageName                                                      (Edit, ConstParm, BlueprintVisible, BlueprintReadOnly, Net, ReturnParm, Config, EditConst, GlobalConfig)
+// TArray<struct FAssetData>          OutAssetData                                                     (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bIncludeOnlyOnDiskAssets                                         (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+// bool                               bSkipARFilteredAssets                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool IAssetRegistry::GetAssetsByPackageName(class FName* PackageName, TArray<struct FAssetData>* OutAssetData, bool* bSkipARFilteredAssets, bool ReturnValue)
+bool IAssetRegistry::GetAssetsByPackageName(bool bIncludeOnlyOnDiskAssets)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1191,7 +1132,7 @@ bool IAssetRegistry::GetAssetsByPackageName(class FName* PackageName, TArray<str
 
 	Params::IAssetRegistry_GetAssetsByPackageName_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.bIncludeOnlyOnDiskAssets = bIncludeOnlyOnDiskAssets;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1200,15 +1141,6 @@ bool IAssetRegistry::GetAssetsByPackageName(class FName* PackageName, TArray<str
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (PackageName != nullptr)
-		*PackageName = Parms.PackageName;
-
-	if (OutAssetData != nullptr)
-		*OutAssetData = std::move(Parms.OutAssetData);
-
-	if (bSkipARFilteredAssets != nullptr)
-		*bSkipARFilteredAssets = Parms.bSkipARFilteredAssets;
 
 	return Parms.ReturnValue;
 
@@ -1218,12 +1150,12 @@ bool IAssetRegistry::GetAssetsByPackageName(class FName* PackageName, TArray<str
 // Function AssetRegistry.AssetRegistry.GetAssetsByClass
 // (Native, Public, HasOutParams, BlueprintCallable, Const)
 // Parameters:
-// struct FTopLevelAssetPath          ClassPathName                                                    (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// TArray<struct FAssetData>          OutAssetData                                                     (Edit, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               bSearchSubClasses                                                (ConstParm, BlueprintVisible, ExportObject, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FTopLevelAssetPath          ClassPathName                                                    (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FAssetData>          OutAssetData                                                     (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bSearchSubClasses                                                (ConstParm, BlueprintVisible, Net, OutParm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void IAssetRegistry::GetAssetsByClass(struct FTopLevelAssetPath* ClassPathName, TArray<struct FAssetData>* OutAssetData, bool* bSearchSubClasses, bool ReturnValue)
+bool IAssetRegistry::GetAssetsByClass()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1232,7 +1164,6 @@ void IAssetRegistry::GetAssetsByClass(struct FTopLevelAssetPath* ClassPathName, 
 
 	Params::IAssetRegistry_GetAssetsByClass_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1242,14 +1173,7 @@ void IAssetRegistry::GetAssetsByClass(struct FTopLevelAssetPath* ClassPathName, 
 
 	Func->FunctionFlags = Flgs;
 
-	if (ClassPathName != nullptr)
-		*ClassPathName = std::move(Parms.ClassPathName);
-
-	if (OutAssetData != nullptr)
-		*OutAssetData = std::move(Parms.OutAssetData);
-
-	if (bSearchSubClasses != nullptr)
-		*bSearchSubClasses = Parms.bSearchSubClasses;
+	return Parms.ReturnValue;
 
 }
 
@@ -1257,12 +1181,12 @@ void IAssetRegistry::GetAssetsByClass(struct FTopLevelAssetPath* ClassPathName, 
 // Function AssetRegistry.AssetRegistry.GetAssets
 // (Native, Public, HasOutParams, HasDefaults, BlueprintCallable, Const)
 // Parameters:
-// struct FARFilter                   Filter                                                           (Edit, BlueprintVisible, BlueprintReadOnly, Net, EditFixedSize, ReturnParm, Transient, Config)
-// TArray<struct FAssetData>          OutAssetData                                                     (Edit, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               bSkipARFilteredAssets                                            (ConstParm, EditFixedSize, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FARFilter                   Filter                                                           (Edit, ConstParm, ExportObject, Net, EditFixedSize, Parm, ReturnParm, Transient, Config)
+// TArray<struct FAssetData>          OutAssetData                                                     (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bSkipARFilteredAssets                                            (ConstParm, ExportObject, BlueprintReadOnly, OutParm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-struct FARFilter IAssetRegistry::GetAssets(TArray<struct FAssetData>* OutAssetData, bool* bSkipARFilteredAssets, bool ReturnValue)
+bool IAssetRegistry::GetAssets()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1271,7 +1195,6 @@ struct FARFilter IAssetRegistry::GetAssets(TArray<struct FAssetData>* OutAssetDa
 
 	Params::IAssetRegistry_GetAssets_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1280,12 +1203,6 @@ struct FARFilter IAssetRegistry::GetAssets(TArray<struct FAssetData>* OutAssetDa
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (OutAssetData != nullptr)
-		*OutAssetData = std::move(Parms.OutAssetData);
-
-	if (bSkipARFilteredAssets != nullptr)
-		*bSkipARFilteredAssets = Parms.bSkipARFilteredAssets;
 
 	return Parms.ReturnValue;
 
@@ -1295,11 +1212,11 @@ struct FARFilter IAssetRegistry::GetAssets(TArray<struct FAssetData>* OutAssetDa
 // Function AssetRegistry.AssetRegistry.GetAssetByObjectPath
 // (Native, Public, HasDefaults, BlueprintCallable, Const)
 // Parameters:
-// class FName                        ObjectPath                                                       (ConstParm, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnInstance, EditConst, GlobalConfig, SubobjectReference)
-// bool                               bIncludeOnlyOnDiskAssets                                         (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-// struct FAssetData                  ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// class FName                        ObjectPath                                                       (BlueprintVisible, BlueprintReadOnly, Parm, OutParm, InstancedReference, SubobjectReference)
+// bool                               bIncludeOnlyOnDiskAssets                                         (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+// struct FAssetData                  ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool IAssetRegistry::GetAssetByObjectPath(class FName* ObjectPath, const struct FAssetData& ReturnValue)
+struct FAssetData IAssetRegistry::GetAssetByObjectPath(class FName* ObjectPath, bool bIncludeOnlyOnDiskAssets)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1308,7 +1225,7 @@ bool IAssetRegistry::GetAssetByObjectPath(class FName* ObjectPath, const struct 
 
 	Params::IAssetRegistry_GetAssetByObjectPath_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.bIncludeOnlyOnDiskAssets = bIncludeOnlyOnDiskAssets;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1329,11 +1246,11 @@ bool IAssetRegistry::GetAssetByObjectPath(class FName* ObjectPath, const struct 
 // Function AssetRegistry.AssetRegistry.GetAncestorClassNames
 // (Native, Public, HasOutParams, BlueprintCallable, Const)
 // Parameters:
-// struct FTopLevelAssetPath          ClassPathName                                                    (ConstParm, ExportObject, BlueprintReadOnly, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// TArray<struct FTopLevelAssetPath>  OutAncestorClassNames                                            (ConstParm, BlueprintVisible, ExportObject, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// struct FTopLevelAssetPath          ClassPathName                                                    (ConstParm, BlueprintReadOnly, OutParm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// TArray<struct FTopLevelAssetPath>  OutAncestorClassNames                                            (ConstParm, BlueprintVisible, OutParm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-void IAssetRegistry::GetAncestorClassNames(struct FTopLevelAssetPath* ClassPathName, TArray<struct FTopLevelAssetPath>* OutAncestorClassNames, bool ReturnValue)
+bool IAssetRegistry::GetAncestorClassNames()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1342,7 +1259,6 @@ void IAssetRegistry::GetAncestorClassNames(struct FTopLevelAssetPath* ClassPathN
 
 	Params::IAssetRegistry_GetAncestorClassNames_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1352,11 +1268,7 @@ void IAssetRegistry::GetAncestorClassNames(struct FTopLevelAssetPath* ClassPathN
 
 	Func->FunctionFlags = Flgs;
 
-	if (ClassPathName != nullptr)
-		*ClassPathName = std::move(Parms.ClassPathName);
-
-	if (OutAncestorClassNames != nullptr)
-		*OutAncestorClassNames = std::move(Parms.OutAncestorClassNames);
+	return Parms.ReturnValue;
 
 }
 
@@ -1364,9 +1276,9 @@ void IAssetRegistry::GetAncestorClassNames(struct FTopLevelAssetPath* ClassPathN
 // Function AssetRegistry.AssetRegistry.GetAllCachedPaths
 // (Native, Public, HasOutParams, BlueprintCallable, Const)
 // Parameters:
-// TArray<class FString>              OutPathList                                                      (Edit, ConstParm, BlueprintVisible, Net, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
+// TArray<class FString>              OutPathList                                                      (Edit, ConstParm, BlueprintVisible, ExportObject, BlueprintReadOnly, Net, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
 
-void IAssetRegistry::GetAllCachedPaths(TArray<class FString>* OutPathList)
+TArray<class FString> IAssetRegistry::GetAllCachedPaths()
 {
 	static class UFunction* Func = nullptr;
 
@@ -1384,8 +1296,7 @@ void IAssetRegistry::GetAllCachedPaths(TArray<class FString>* OutPathList)
 
 	Func->FunctionFlags = Flgs;
 
-	if (OutPathList != nullptr)
-		*OutPathList = std::move(Parms.OutPathList);
+	return Parms.ReturnValue;
 
 }
 
@@ -1393,11 +1304,11 @@ void IAssetRegistry::GetAllCachedPaths(TArray<class FString>* OutPathList)
 // Function AssetRegistry.AssetRegistry.GetAllAssets
 // (Native, Public, HasOutParams, BlueprintCallable, Const)
 // Parameters:
-// TArray<struct FAssetData>          OutAssetData                                                     (Edit, BlueprintVisible, OutParm, ZeroConstructor, DisableEditOnTemplate, Transient, DisableEditOnInstance, EditConst, InstancedReference, SubobjectReference)
-// bool                               bIncludeOnlyOnDiskAssets                                         (Edit, ConstParm, BlueprintReadOnly, Net, OutParm, ReturnParm, DisableEditOnTemplate, EditConst, SubobjectReference)
-// bool                               ReturnValue                                                      (BlueprintVisible, ExportObject, ZeroConstructor, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
+// TArray<struct FAssetData>          OutAssetData                                                     (Edit, BlueprintVisible, ExportObject, BlueprintReadOnly, EditFixedSize, Parm, ReturnParm, Config, GlobalConfig, InstancedReference, SubobjectReference)
+// bool                               bIncludeOnlyOnDiskAssets                                         (Edit, BlueprintVisible, BlueprintReadOnly, Net, Parm, ZeroConstructor, DisableEditOnTemplate, EditConst, SubobjectReference)
+// bool                               ReturnValue                                                      (Edit, ConstParm, ZeroConstructor, ReturnParm, DisableEditOnTemplate, Transient, EditConst, SubobjectReference)
 
-bool IAssetRegistry::GetAllAssets(TArray<struct FAssetData>* OutAssetData, bool ReturnValue)
+bool IAssetRegistry::GetAllAssets(bool bIncludeOnlyOnDiskAssets)
 {
 	static class UFunction* Func = nullptr;
 
@@ -1406,7 +1317,7 @@ bool IAssetRegistry::GetAllAssets(TArray<struct FAssetData>* OutAssetData, bool 
 
 	Params::IAssetRegistry_GetAllAssets_Params Parms{};
 
-	Parms.ReturnValue = ReturnValue;
+	Parms.bIncludeOnlyOnDiskAssets = bIncludeOnlyOnDiskAssets;
 
 	auto Flgs = Func->FunctionFlags;
 	Func->FunctionFlags |= 0x400;
@@ -1415,9 +1326,6 @@ bool IAssetRegistry::GetAllAssets(TArray<struct FAssetData>* OutAssetData, bool 
 
 
 	Func->FunctionFlags = Flgs;
-
-	if (OutAssetData != nullptr)
-		*OutAssetData = std::move(Parms.OutAssetData);
 
 	return Parms.ReturnValue;
 

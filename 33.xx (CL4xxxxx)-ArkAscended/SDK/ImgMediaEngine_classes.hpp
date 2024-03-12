@@ -14,8 +14,8 @@ namespace SDK
 class UImgMediaPlaybackComponent : public UActorComponent
 {
 public:
-	float                                        LODBias;                                           // 0xB8(0x4)(Edit, BlueprintReadOnly, Net, OutParm, DisableEditOnTemplate, Config, EditConst, GlobalConfig, InstancedReference)
-	uint8                                        Pad_168A[0x24];                                    // Fixing Size Of Struct > TateDumper <
+	float                                        LODBias;                                           // 0xB8(0x4)(Edit, ExportObject, OutParm, ReturnParm, Transient, DisableEditOnInstance, DuplicateTransient)
+	uint8                                        Pad_1A90[0x24];                                    // Fixing Size Of Struct > TateDumper <
 
 	static class UClass* StaticClass();
 	static class UImgMediaPlaybackComponent* GetDefaultObj();

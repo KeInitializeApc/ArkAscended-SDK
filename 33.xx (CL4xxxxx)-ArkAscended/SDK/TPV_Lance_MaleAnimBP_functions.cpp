@@ -39,6 +39,24 @@ class UTPV_Lance_MaleAnimBP_C* UTPV_Lance_MaleAnimBP_C::GetDefaultObj()
 	return Default;
 }
 
+
+// Function TPV_Lance_MaleAnimBP.TPV_Lance_MaleAnimBP_C.UpdateLayeringValues
+// (Public, BlueprintCallable, BlueprintEvent)
+// Parameters:
+
+void UTPV_Lance_MaleAnimBP_C::UpdateLayeringValues()
+{
+	static class UFunction* Func = nullptr;
+
+	if (!Func)
+		Func = Class->GetFunction("TPV_Lance_MaleAnimBP_C", "UpdateLayeringValues");
+
+
+
+	UObject::ProcessEvent(Func, nullptr);
+
+}
+
 }
 
 

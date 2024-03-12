@@ -9,7 +9,7 @@ namespace SDK
 // CLASSES
 //---------------------------------------------------------------------------------------------------------------------
 
-// 0x0 (0x558 - 0x558)
+// 0x0 (0x550 - 0x550)
 // BlueprintGeneratedClass MeshFadeOut_Blueprint_WithDrop.MeshFadeOut_Blueprint_WithDrop_C
 class AMeshFadeOut_Blueprint_WithDrop_C : public AFadingDestructibleActor
 {
